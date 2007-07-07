@@ -10,13 +10,13 @@ if __name__ == "__main__":
 	projectpath = projectutils.expandArchive(os.path.abspath("OpenSourceProjects/"),"libetpan")
 	os.chdir(projectpath)
 	print "Building libetpan i386"
-	os.system('env CPPFLAGS="-isysroot /Developer/SDKs/MacOSX10.4u.sdk -arch i386 -I`pwd`/../include/" ./configure --disable-dependency-tracking --host i386')
+	os.system('env CPPFLAGS="-isysroot /Developer/SDKs/MacOSX10.5.sdk -arch i386" ./configure --disable-dependency-tracking --host i386')
 	os.system('make')
 	os.system('mkdir i386')
 	os.system('mv src/.libs/*.a i386')
 	print "Building libetpan PPC"
 	os.system('make clean')
-	os.system('env CPPFLAGS="-isysroot /Developer/SDKs/MacOSX10.4u.sdk -arch ppc -I`pwd`/../include/" ./configure --disable-dependency-tracking --host ppc')
+	os.system('env CPPFLAGS="-isysroot /Developer/SDKs/MacOSX10.5.sdk -arch ppc" ./configure --disable-dependency-tracking --host ppc')
 	os.system('make')
 	os.system('mkdir ppc')
 	os.system('mv src/.libs/*.a ppc')

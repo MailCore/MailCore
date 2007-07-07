@@ -1,0 +1,8 @@
+syntax: glob
+build
+OpenSourceProjects/libetpan-0.49
+OpenSourceProjects/include/libetpan
+.DS_Store
+*.pyc
+*.mode1v3
+*.pbxuser

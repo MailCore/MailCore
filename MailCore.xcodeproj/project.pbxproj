@@ -169,6 +169,8 @@
 		F88CA0CF0BF7A7B00055AC29 /* CTSMTP.m in Sources */ = {isa = PBXBuildFile; fileRef = F88CA0CD0BF7A7B00055AC29 /* CTSMTP.m */; };
 		F88CA0D40BF7AC0B0055AC29 /* CTESMTP.h in Headers */ = {isa = PBXBuildFile; fileRef = F88CA0D20BF7AC0B0055AC29 /* CTESMTP.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F88CA0D50BF7AC0B0055AC29 /* CTESMTP.m in Sources */ = {isa = PBXBuildFile; fileRef = F88CA0D30BF7AC0B0055AC29 /* CTESMTP.m */; };
+		F8A70EEF0C4059E100D1D694 /* JRLog.h in Headers */ = {isa = PBXBuildFile; fileRef = F8A70EED0C4059E100D1D694 /* JRLog.h */; };
+		F8A70EF00C4059E100D1D694 /* JRLog.m in Sources */ = {isa = PBXBuildFile; fileRef = F8A70EEE0C4059E100D1D694 /* JRLog.m */; };
 		F8D31A3209C524EA00468234 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D31A3109C524EA00468234 /* main.m */; };
 		F8D31A8609C52A9400468234 /* MailCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* MailCore.framework */; };
 		F8DCD3990C13E18100B10F94 /* acl_types.h in Headers */ = {isa = PBXBuildFile; fileRef = F8DCD3970C13E18100B10F94 /* acl_types.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -379,6 +381,8 @@
 		F88CA0CD0BF7A7B00055AC29 /* CTSMTP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTSMTP.m; path = Source/CTSMTP.m; sourceTree = "<group>"; };
 		F88CA0D20BF7AC0B0055AC29 /* CTESMTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTESMTP.h; path = Source/CTESMTP.h; sourceTree = "<group>"; };
 		F88CA0D30BF7AC0B0055AC29 /* CTESMTP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTESMTP.m; path = Source/CTESMTP.m; sourceTree = "<group>"; };
+		F8A70EED0C4059E100D1D694 /* JRLog.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = JRLog.h; path = Source/JRLog.h; sourceTree = "<group>"; };
+		F8A70EEE0C4059E100D1D694 /* JRLog.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = JRLog.m; path = Source/JRLog.m; sourceTree = "<group>"; };
 		F8D31A2909C5247100468234 /* TestShell */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestShell; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8D31A3109C524EA00468234 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F8DCD3970C13E18100B10F94 /* acl_types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = acl_types.h; path = OpenSourceProjects/include/libetpan/acl_types.h; sourceTree = SOURCE_ROOT; };
@@ -533,6 +537,8 @@
 		32C88DFF0371C24200C91783 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				F8A70EED0C4059E100D1D694 /* JRLog.h */,
+				F8A70EEE0C4059E100D1D694 /* JRLog.m */,
 				F80BDF490A774369003B344E /* libetpan */,
 				F81B88710A74AAD800143DF6 /* MailCore_Prefix.pch */,
 				F8D31A3109C524EA00468234 /* main.m */,
@@ -840,6 +846,7 @@
 				F81A8AE20C03FC3B002F780A /* CTMIME_TextPart.h in Headers */,
 				F81A8AE40C03FC3B002F780A /* CTMIME.h in Headers */,
 				F8245A6D0C041C8C005E08A8 /* CTMIMEFactory.h in Headers */,
+				F8A70EEF0C4059E100D1D694 /* JRLog.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1003,6 +1010,7 @@
 				F81A8AE30C03FC3B002F780A /* CTMIME_TextPart.m in Sources */,
 				F81A8AE50C03FC3B002F780A /* CTMIME.m in Sources */,
 				F8245A700C041C91005E08A8 /* CTMIMEFactory.m in Sources */,
+				F8A70EF00C4059E100D1D694 /* JRLog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1113,7 +1121,7 @@
 				HEADER_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = "";
 				PREBINDING = NO;
-				SDKROOT = "";
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 			};
 			name = Debug;
 		};
@@ -1132,7 +1140,7 @@
 				HEADER_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = "";
 				PREBINDING = NO;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 			};
 			name = Release;
 		};
