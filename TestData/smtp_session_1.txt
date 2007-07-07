@@ -1,0 +1,31 @@
+Server: 220 green.dls.net ESMTP Postfix
+Client: EHLO Ronge.local
+Server: 250-green.dls.net
+250-PIPELINING
+250-SIZE 15728640
+250-VRFY
+250-ETRN
+250-AUTH PLAIN OTP LOGIN GSSAPI DIGEST-MD5 CRAM-MD5
+250-AUTH=PLAIN OTP LOGIN GSSAPI DIGEST-MD5 CRAM-MD5
+250 8BITMIME
+Client: MAIL FROM:<test@theronge.com>
+Server: 250 Ok
+Client: RCPT TO:<mronge@theronge.com>
+Server: 250 Ok
+Client: DATA
+Server: 354 End data with <CR><LF>.<CR><LF>
+Client: Date: Wed, 27 Dec 2006 21:16:44 -0600
+From: test <test@theronge.com>
+To: Bob <mronge@theronge.com>
+Message-ID: <etPan.4593371c.6b8b4567.2593@Ronge.local>
+Subject: Subject
+MIME-Version: 1.0
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: 8bit
+
+Test
+.
+
+Server: 250 Ok: queued as A936E41243B
+Client: QUIT
+Server: 221 Bye

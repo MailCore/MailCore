@@ -1,0 +1,119 @@
+Return-Path: <kiwi-dev-bounces@lists.theronge.com>
+X-Original-To: mronge@theronge.com
+Delivered-To: mronge@randymail-mx2.dreamhost.com
+Received: from deathwish.dreamhost.com (deathwish.dreamhost.com [66.33.206.108])
+	by randymail-mx2.dreamhost.com (Postfix) with ESMTP id 111F6139DCE
+	for <mronge@theronge.com>; Sun, 13 Aug 2006 02:54:50 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by deathwish.dreamhost.com (Postfix) with ESMTP id E624D1762D2
+	for <mronge@theronge.com>; Sun, 13 Aug 2006 02:54:49 -0700 (PDT)
+Received: from deathwish.dreamhost.com ([127.0.0.1])
+	by localhost (deathwish [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 31909-20 for <mronge@theronge.com>;
+	Sun, 13 Aug 2006 02:54:49 -0700 (PDT)
+Received: from frida.dreamhost.com (frida.dreamhost.com [66.33.206.23])
+	by deathwish.dreamhost.com (Postfix) with ESMTP id AB6B61762CA
+	for <mronge@theronge.com>; Sun, 13 Aug 2006 02:54:49 -0700 (PDT)
+Received: from che.dreamhost.com (che.dreamhost.com [66.33.216.23])
+	by frida.dreamhost.com (Postfix) with ESMTP
+	id 32B6F16D29B; Sun, 13 Aug 2006 02:54:49 -0700 (PDT)
+Received: from che.dreamhost.com (localhost [127.0.0.1])
+	by che.dreamhost.com (Postfix) with ESMTP id C711D1BB39;
+	Sun, 13 Aug 2006 02:54:47 -0700 (PDT)
+X-Original-To: kiwi-dev@lists.theronge.com
+Received: from nova.rhapsodyk.net (nova.rhapsodyk.net [212.43.230.60])
+	by che.dreamhost.com (Postfix) with ESMTP id 07EDE1BBA7
+	for <kiwi-dev@lists.theronge.com>; Sun, 13 Aug 2006 02:54:33 -0700 (PDT)
+Received: from [192.168.125.125] (ram94-5-82-229-222-187.fbx.proxad.net
+	[82.229.222.187]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+	(No client certificate requested)
+	by nova.rhapsodyk.net (Postfix) with ESMTP id C4AB036CF6
+	for <kiwi-dev@lists.theronge.com>;
+	Sun, 13 Aug 2006 11:54:12 +0200 (CEST)
+Mime-Version: 1.0 (Apple Message framework v752.2)
+In-Reply-To: <DA8CEADA-9B4A-462F-86CC-3989BA1441BB@flyingmeat.com>
+References: <DA8CEADA-9B4A-462F-86CC-3989BA1441BB@flyingmeat.com>
+Message-Id: <E93391C0-7DB9-432C-882C-D7E83B688FA0@poulet.org>
+From: Nicolas Zinovieff <krugazor@poulet.org>
+Date: Sun, 13 Aug 2006 11:54:28 +0200
+To: kiwi-dev@lists.theronge.com
+X-Mailer: Apple Mail (2.752.2)
+Subject: Re: [Kiwi-dev] Time Machine and other backup apps
+X-BeenThere: kiwi-dev@lists.theronge.com
+X-Mailman-Version: 2.1.6
+Precedence: list
+List-Id: <kiwi-dev-theronge.com>
+List-Unsubscribe: <http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com>, 
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=unsubscribe>
+List-Archive: <http://lists.theronge.com/private.cgi/kiwi-dev-theronge.com>
+List-Post: <mailto:kiwi-dev@lists.theronge.com>
+List-Help: <mailto:kiwi-dev-request@lists.theronge.com?subject=help>
+List-Subscribe: <http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com>, 
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Sender: kiwi-dev-bounces@lists.theronge.com
+Errors-To: kiwi-dev-bounces@lists.theronge.com
+X-DH-Virus-Scanned: by amavisd-new-20030616-p10 (Debian) at deathwish
+X-Spam-Status: No, hits=0.0 tagged_above=-999.0 required=2.0 tests=
+X-Spam-Level: 
+
+
+On 12 Aug, 2006, at 00:44, August Mueller wrote:
+
+> I have to confess that I haven't even bothered to look at the
+> coredata schema yet, so it might not be an issue... but I thought I'd
+> mention it.
+
+I concur... We should take a look at this, sooner or later. After  
+all, we *are* trying to have a perfect solution, right? :)
+
+> So the way a lot of backup programs work are that they look at the
+> modification date of a file, and then if it's changed, copy it over
+> to whatever store it uses to stash it away for later use.  If it's an
+> incremental backup app, then you'll have multiple copies in the
+> backup repository.  Most don't do binary diffs.
+
+True. Besides, even binary diffs are somewhat of a hassle to begin  
+with. I doubt there is a sane and simple way to minimize the size of  
+these diffs. It would be a whole new field of research/development...
+
+> <snip>   Suck!
+
+Yes indeed.
+
+> Do you guys think this is a concern for kiwi?  If it is, I think it
+> should probably be something that is addressed sooner rather than  
+> later.
+
+I agree.
+I don't know coredata well enough, but I can see several possibilities:
+- There's a way to split the db, which would mean finding a smart  
+criteria for the splitting.
+- There's no way to split the db, so we have two options:
+* save the main bulk of the data outside of the db (raw message and  
+attachments, I guess), in which case, the db would be a spotlight- 
+like database, containing only metadata, and a file address
+* create one small db per {account;folder;<insert smart splitting  
+idea here}, and a big one pointing to the smaller ones
+
+If we look closely, we can see that these are the 3 methods currently  
+employed in the field...
+There's only one other thing I can think of : looking at "real"  
+database software (mysql/postgresql/whatever) and see if one of those  
+has a splintered file base, and a networkless access, in which case,  
+we could probably use something like that, and have a "SQL backend"  
+plugin that would accept standard database software or this  
+networkless based thing.
+
+My $.02...
+
+Cheers!
+
+-- 
+Nicolas
+
+_______________________________________________
+kiwi-dev mailing list
+kiwi-dev@lists.theronge.com
+http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com

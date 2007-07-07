@@ -1,0 +1,90 @@
+Return-Path: <kiwi-dev-bounces@lists.theronge.com>
+X-Original-To: mronge@theronge.com
+Delivered-To: mronge@randymail-mx1.dreamhost.com
+Received: from deathwish.dreamhost.com (deathwish.dreamhost.com [66.33.206.108])
+	by randymail-mx1.dreamhost.com (Postfix) with ESMTP id 95272347B0
+	for <mronge@theronge.com>; Sun, 30 Jul 2006 02:02:15 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by deathwish.dreamhost.com (Postfix) with ESMTP id D15C5175107
+	for <mronge@theronge.com>; Sun, 30 Jul 2006 02:02:12 -0700 (PDT)
+Received: from deathwish.dreamhost.com ([127.0.0.1])
+	by localhost (deathwish [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 20862-03 for <mronge@theronge.com>;
+	Sun, 30 Jul 2006 02:02:12 -0700 (PDT)
+Received: from frida.dreamhost.com (frida.dreamhost.com [66.33.206.23])
+	by deathwish.dreamhost.com (Postfix) with ESMTP id 903F017510B
+	for <mronge@theronge.com>; Sun, 30 Jul 2006 02:02:12 -0700 (PDT)
+Received: from che.dreamhost.com (che.dreamhost.com [66.33.216.23])
+	by frida.dreamhost.com (Postfix) with ESMTP
+	id 7FC0716D257; Sun, 30 Jul 2006 02:02:12 -0700 (PDT)
+Received: from che.dreamhost.com (localhost [127.0.0.1])
+	by che.dreamhost.com (Postfix) with ESMTP id 5B4481BB9E;
+	Sun, 30 Jul 2006 02:02:12 -0700 (PDT)
+X-Original-To: kiwi-dev@lists.theronge.com
+Received: from randymail-a4.dreamhost.com (sd-green-bigip-118.dreamhost.com
+	[208.97.132.118])
+	by che.dreamhost.com (Postfix) with ESMTP id 716571BB96
+	for <kiwi-dev@lists.theronge.com>; Sun, 30 Jul 2006 02:02:10 -0700 (PDT)
+Received: from [10.0.1.2] (unknown [67.170.235.51])
+	by randymail-a4.dreamhost.com (Postfix) with ESMTP id EDB3C1953EB
+	for <kiwi-dev@lists.theronge.com>; Sun, 30 Jul 2006 02:02:09 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v752.2)
+In-Reply-To: <B0FD96B9-DEAA-4898-86B2-61D1562F7691@flyingmeat.com>
+References: <28504473-2295-4824-8531-460F0510A5E5@flyingmeat.com>
+	<0F56D333-A5D6-49B6-ABAF-056BB3E2A1B9@theronge.com>
+	<B0FD96B9-DEAA-4898-86B2-61D1562F7691@flyingmeat.com>
+Message-Id: <C6B52E3C-20E3-41E2-961C-030ADE867EB0@theronge.com>
+From: Matt Ronge <mronge@theronge.com>
+Date: Sun, 30 Jul 2006 02:02:08 -0700
+To: kiwi-dev@lists.theronge.com
+X-Mailer: Apple Mail (2.752.2)
+Subject: Re: [Kiwi-dev] Lua code to format messages with blockquotes
+X-BeenThere: kiwi-dev@lists.theronge.com
+X-Mailman-Version: 2.1.6
+Precedence: list
+List-Id: <kiwi-dev-theronge.com>
+List-Unsubscribe: <http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com>, 
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=unsubscribe>
+List-Archive: <http://lists.theronge.com/private.cgi/kiwi-dev-theronge.com>
+List-Post: <mailto:kiwi-dev@lists.theronge.com>
+List-Help: <mailto:kiwi-dev-request@lists.theronge.com?subject=help>
+List-Subscribe: <http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com>, 
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Sender: kiwi-dev-bounces@lists.theronge.com
+Errors-To: kiwi-dev-bounces@lists.theronge.com
+X-DH-Virus-Scanned: by amavisd-new-20030616-p10 (Debian) at deathwish
+X-Spam-Status: No, hits=0.0 tagged_above=-999.0 required=2.0 tests=
+X-Spam-Level: 
+
+I've fixed a few minor issues that were preventing Kiwi from building:
+
+- LuaCore now has an install location of @executable_path/../ 
+Frameworks so that it isn't hard coded to any path and can sit inside  
+Kiwi's frameworks folder. Otherwise, Kiwi will complain during  
+runtime and it won't launch.
+- Ranlib is run on the liblua.a so that a link error doesn't occur  
+when building LuaCore.
+
+Another thing I've been thinking about,  is maybe we should move to  
+not including prebuilt frameworks, and build the subprojects from the  
+Kiwi project.
+Is there a good way to replace frameworks on SVN? Right now I `svn  
+rm` the framework and do a commit. Then I add the new build result  
+and do a commit, which is kinda cumbersome. Is there a better way to  
+do this, or should we eventually go to building everything from  
+source (or most things atleast)? Any opinions? Not that this is a big  
+deal, just a thought.
+
+
+Nicolas, ApplescriptCore would be cool. Applescript and I don't get  
+along, but if you want to work on it, that's great :)
+
+--
+Matt
+
+_______________________________________________
+kiwi-dev mailing list
+kiwi-dev@lists.theronge.com
+http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com

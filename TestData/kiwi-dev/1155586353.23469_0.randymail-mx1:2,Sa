@@ -1,0 +1,86 @@
+Return-Path: <kiwi-dev-bounces@lists.theronge.com>
+X-Original-To: mronge@theronge.com
+Delivered-To: mronge@randymail-mx1.dreamhost.com
+Received: from deathwish.dreamhost.com (deathwish.dreamhost.com [66.33.206.108])
+	by randymail-mx1.dreamhost.com (Postfix) with ESMTP id 4AD44346DD
+	for <mronge@theronge.com>; Mon, 14 Aug 2006 13:12:33 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by deathwish.dreamhost.com (Postfix) with ESMTP id 25E97175139
+	for <mronge@theronge.com>; Mon, 14 Aug 2006 13:12:33 -0700 (PDT)
+Received: from deathwish.dreamhost.com ([127.0.0.1])
+	by localhost (deathwish [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 22495-09 for <mronge@theronge.com>;
+	Mon, 14 Aug 2006 13:12:32 -0700 (PDT)
+Received: from frida.dreamhost.com (frida.dreamhost.com [66.33.206.23])
+	by deathwish.dreamhost.com (Postfix) with ESMTP id D7FFC175125
+	for <mronge@theronge.com>; Mon, 14 Aug 2006 13:12:32 -0700 (PDT)
+Received: from che.dreamhost.com (che.dreamhost.com [66.33.216.23])
+	by frida.dreamhost.com (Postfix) with ESMTP
+	id C379116DA3C; Mon, 14 Aug 2006 13:12:32 -0700 (PDT)
+Received: from che.dreamhost.com (localhost [127.0.0.1])
+	by che.dreamhost.com (Postfix) with ESMTP id 620A91BB9B;
+	Mon, 14 Aug 2006 13:12:20 -0700 (PDT)
+X-Original-To: kiwi-dev@lists.theronge.com
+Received: from elvis.mu.org (elvis.mu.org [192.203.228.196])
+	by che.dreamhost.com (Postfix) with ESMTP id 106241BB72
+	for <kiwi-dev@lists.theronge.com>; Mon, 14 Aug 2006 13:12:16 -0700 (PDT)
+Received: from [192.168.0.2] (c-24-17-91-38.hsd1.mn.comcast.net [24.17.91.38])
+	by elvis.mu.org (Postfix) with ESMTP id A18FA1A4DBD
+	for <kiwi-dev@lists.theronge.com>; Mon, 14 Aug 2006 13:12:15 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v752.2)
+In-Reply-To: <AC65CFEF-9C12-445F-ADE2-FE019C125A04@theronge.com>
+References: <DA8CEADA-9B4A-462F-86CC-3989BA1441BB@flyingmeat.com>
+	<AC65CFEF-9C12-445F-ADE2-FE019C125A04@theronge.com>
+Message-Id: <6FD84ABD-1E68-4D2E-AD26-0D0BA378DE21@flyingmeat.com>
+From: Gus Mueller <gus@flyingmeat.com>
+Date: Mon, 14 Aug 2006 13:10:56 -0700
+To: kiwi-dev@lists.theronge.com
+X-Mailer: Apple Mail (2.752.2)
+Subject: Re: [Kiwi-dev] Time Machine and other backup apps
+X-BeenThere: kiwi-dev@lists.theronge.com
+X-Mailman-Version: 2.1.6
+Precedence: list
+List-Id: <kiwi-dev-theronge.com>
+List-Unsubscribe: <http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com>, 
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=unsubscribe>
+List-Archive: <http://lists.theronge.com/private.cgi/kiwi-dev-theronge.com>
+List-Post: <mailto:kiwi-dev@lists.theronge.com>
+List-Help: <mailto:kiwi-dev-request@lists.theronge.com?subject=help>
+List-Subscribe: <http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com>, 
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Sender: kiwi-dev-bounces@lists.theronge.com
+Errors-To: kiwi-dev-bounces@lists.theronge.com
+X-DH-Virus-Scanned: by amavisd-new-20030616-p10 (Debian) at deathwish
+X-Spam-Status: No, hits=0.0 tagged_above=-999.0 required=2.0 tests=
+X-Spam-Level: 
+
+On Aug 13, 2006, at 10:40 , Matt Ronge wrote:
+
+> So in summary I think: The short term solution is to separate user
+> preferences, and account settings from the DB model, move the DB to
+> the Cache folder. In the future, once Kiwi is more mature, we can
+> take a look at other methods of storing the cache data.
+
+That sounds good.  It's not too hard to switch the file storage  
+aspect around later on assuming it's got a little bit of abstraction  
+behind it.
+
+I do know that at some point people are going to want to make sure  
+they have a full copy of all the messages locally, like I did when I  
+was flying back from SF on Saturday trying to find an email from my  
+mom saying what time her flight was coming in... :)
+
+-gus
+
+--  
+August 'Gus' Mueller
+Flying Meat Inc.
+http://flyingmeat.com/
+
+
+_______________________________________________
+kiwi-dev mailing list
+kiwi-dev@lists.theronge.com
+http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com

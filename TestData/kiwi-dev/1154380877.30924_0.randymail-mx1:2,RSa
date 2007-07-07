@@ -1,0 +1,87 @@
+Return-Path: <kiwi-dev-bounces@lists.theronge.com>
+X-Original-To: mronge@theronge.com
+Delivered-To: mronge@randymail-mx1.dreamhost.com
+Received: from deathwish.dreamhost.com (deathwish.dreamhost.com [66.33.206.108])
+	by randymail-mx1.dreamhost.com (Postfix) with ESMTP id 928F8347A9
+	for <mronge@theronge.com>; Mon, 31 Jul 2006 14:21:17 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by deathwish.dreamhost.com (Postfix) with ESMTP id 4B043175170
+	for <mronge@theronge.com>; Mon, 31 Jul 2006 14:21:17 -0700 (PDT)
+Received: from deathwish.dreamhost.com ([127.0.0.1])
+	by localhost (deathwish [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 07299-12 for <mronge@theronge.com>;
+	Mon, 31 Jul 2006 14:21:17 -0700 (PDT)
+Received: from frida.dreamhost.com (frida.dreamhost.com [66.33.206.23])
+	by deathwish.dreamhost.com (Postfix) with ESMTP id D52DF17511F
+	for <mronge@theronge.com>; Mon, 31 Jul 2006 14:21:16 -0700 (PDT)
+Received: from che.dreamhost.com (che.dreamhost.com [66.33.216.23])
+	by frida.dreamhost.com (Postfix) with ESMTP
+	id 9B66216D2F9; Mon, 31 Jul 2006 14:21:16 -0700 (PDT)
+Received: from che.dreamhost.com (localhost [127.0.0.1])
+	by che.dreamhost.com (Postfix) with ESMTP id CCFFF1BB7A;
+	Mon, 31 Jul 2006 14:21:10 -0700 (PDT)
+X-Original-To: kiwi-dev@lists.theronge.com
+Received: from elvis.mu.org (elvis.mu.org [192.203.228.196])
+	by che.dreamhost.com (Postfix) with ESMTP id 464691BB73
+	for <kiwi-dev@lists.theronge.com>; Mon, 31 Jul 2006 14:21:09 -0700 (PDT)
+Received: from [192.168.0.2] (c-24-17-91-38.hsd1.wa.comcast.net [24.17.91.38])
+	by elvis.mu.org (Postfix) with ESMTP id E6E721A4DA8
+	for <kiwi-dev@lists.theronge.com>; Mon, 31 Jul 2006 14:21:08 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v752.2)
+Message-Id: <2C915148-CCBE-41D6-8CB7-824882E9BC71@flyingmeat.com>
+To: kiwi-dev@lists.theronge.com
+From: Gus Mueller <gus@flyingmeat.com>
+Date: Mon, 31 Jul 2006 14:20:14 -0700
+X-Mailer: Apple Mail (2.752.2)
+Subject: [Kiwi-dev] More lua code for formatting + crash reporter.
+X-BeenThere: kiwi-dev@lists.theronge.com
+X-Mailman-Version: 2.1.6
+Precedence: list
+List-Id: <kiwi-dev-theronge.com>
+List-Unsubscribe: <http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com>, 
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=unsubscribe>
+List-Archive: <http://lists.theronge.com/private.cgi/kiwi-dev-theronge.com>
+List-Post: <mailto:kiwi-dev@lists.theronge.com>
+List-Help: <mailto:kiwi-dev-request@lists.theronge.com?subject=help>
+List-Subscribe: <http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com>, 
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Sender: kiwi-dev-bounces@lists.theronge.com
+Errors-To: kiwi-dev-bounces@lists.theronge.com
+X-DH-Virus-Scanned: by amavisd-new-20030616-p10 (Debian) at deathwish
+X-Spam-Status: No, hits=0.0 tagged_above=-999.0 required=2.0 tests=
+X-Spam-Level: 
+
+I made another lua script to do the formatting for the non blockquote  
+formatting stuff, and made some fixes for the blockquote one  
+(testing, what's that?).
+
+It would replace most of the code in -[CTMainController  
+prepareForWebDisplay:]
+
+Should I check this in?
+
+I also made another change to the lua stuff so that it'll look for  
+scripts in a hidden pref dir if set, so a new build of Kiwi isn't  
+required just to tweak a script.  Check out LCLua runScriptInBundle:  
+for the defaults example.
+
+For the Crash Reporter stuff, Jonathan Wight has been working on open  
+sourcing a crash reporter framework he's got.  I figured Kiwi would  
+use that instead of the stuff I did, since I'll probably end up  
+moving to Jonathan's code for my apps as well.  (He did the  
+CToxicProgressIndicator that Kiwi is also using).
+
+-gus
+
+--  
+August 'Gus' Mueller
+Flying Meat Inc.
+http://flyingmeat.com/
+
+
+_______________________________________________
+kiwi-dev mailing list
+kiwi-dev@lists.theronge.com
+http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com

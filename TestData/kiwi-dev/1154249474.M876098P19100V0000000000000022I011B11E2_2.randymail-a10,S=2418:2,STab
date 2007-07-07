@@ -1,0 +1,57 @@
+Return-Path: <gus@flyingmeat.com>
+X-Original-To: mronge@theronge.com
+Delivered-To: mronge@randymail-mx1.dreamhost.com
+Received: from deathwish.dreamhost.com (deathwish.dreamhost.com [66.33.206.108])
+	by randymail-mx1.dreamhost.com (Postfix) with ESMTP id 712E7347EF
+	for <mronge@theronge.com>; Sat, 29 Jul 2006 09:11:45 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by deathwish.dreamhost.com (Postfix) with ESMTP id 4F8AF17517F
+	for <mronge@theronge.com>; Sat, 29 Jul 2006 09:11:45 -0700 (PDT)
+Received: from deathwish.dreamhost.com ([127.0.0.1])
+	by localhost (deathwish [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 25573-07 for <mronge@theronge.com>;
+	Sat, 29 Jul 2006 09:11:45 -0700 (PDT)
+Received: from elvis.mu.org (elvis.mu.org [192.203.228.196])
+	by deathwish.dreamhost.com (Postfix) with ESMTP id 13BA1175150
+	for <mronge@theronge.com>; Sat, 29 Jul 2006 09:11:44 -0700 (PDT)
+Received: from [192.168.0.2] (c-24-17-91-38.hsd1.wa.comcast.net [24.17.91.38])
+	by elvis.mu.org (Postfix) with ESMTP id 83C4E1A3C1E
+	for <mronge@theronge.com>; Sat, 29 Jul 2006 09:11:43 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v752.2)
+In-Reply-To: <4C5125A2-2707-470F-916C-B106F909E0B9@theronge.com>
+References: <4C5125A2-2707-470F-916C-B106F909E0B9@theronge.com>
+Content-Type: text/plain; charset=US-ASCII; delsp=yes; format=flowed
+Message-Id: <40B87915-2EAB-4C09-92C8-BD620E1C11BE@flyingmeat.com>
+Content-Transfer-Encoding: 7bit
+From: Gus Mueller <gus@flyingmeat.com>
+Subject: Re: Kiwi discussion list
+Date: Sat, 29 Jul 2006 09:11:01 -0700
+To: Matt Ronge <mronge@theronge.com>
+X-Mailer: Apple Mail (2.752.2)
+X-DH-Virus-Scanned: by amavisd-new-20030616-p10 (Debian) at deathwish
+X-Spam-Status: No, hits=0.0 tagged_above=-999.0 required=2.0 tests=
+X-Spam-Level: 
+
+On Jul 29, 2006, at 12:27 , Matt Ronge wrote:
+
+> Check it out:
+>
+> http://www.theronge.com/kiwi/#keepintouch
+
+Awesome- thanks for setting that up.  I'm awaiting my confirm emails :)
+
+On the crash report stuff- Jonathan Wight of (of toxic software) has  
+been working on a crash reporter framework that does pretty much what  
+mine does and more.  I pinged him about it and he said it was  
+finished and he'd put it out today.  So I'll check that out when he  
+releases it and see if that might be a good choice to put in instead  
+of rolling my own again.
+
+-gus
+
+--  
+August 'Gus' Mueller
+Flying Meat Inc.
+http://flyingmeat.com/
+
+

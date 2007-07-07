@@ -1,0 +1,356 @@
+Return-Path: <adam@artandarch.net>
+X-Original-To: mronge@theronge.com
+Delivered-To: mronge@randymail-mx2.dreamhost.com
+Received: from punisher.dreamhost.com (punisher.dreamhost.com [66.33.206.109])
+	by randymail-mx2.dreamhost.com (Postfix) with ESMTP id C801313B791
+	for <mronge@theronge.com>; Fri, 11 Aug 2006 13:32:04 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by punisher.dreamhost.com (Postfix) with ESMTP id A2069673EB
+	for <mronge@theronge.com>; Fri, 11 Aug 2006 13:32:04 -0700 (PDT)
+Received: from punisher.dreamhost.com ([127.0.0.1])
+	by localhost (punisher [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 29457-02 for <mronge@theronge.com>;
+	Fri, 11 Aug 2006 13:32:04 -0700 (PDT)
+Received: from bilbo.w-link.net (bilbo.w-link.net [207.244.144.20])
+	by punisher.dreamhost.com (Postfix) with ESMTP id 0C9C8673BA
+	for <mronge@theronge.com>; Fri, 11 Aug 2006 13:32:04 -0700 (PDT)
+Received: from [192.168.0.3] (usw3662-d-207-244-150-57.dsl.w-link.net [207.244.150.57])
+	by bilbo.w-link.net (8.12.10/8.12.10) with ESMTP id k7BKW32s024335
+	for <mronge@theronge.com>; Fri, 11 Aug 2006 13:32:03 -0700
+Mime-Version: 1.0 (Apple Message framework v752.2)
+In-Reply-To: <901E1C44-5CE2-4BFE-B379-01AC05E8CE4A@theronge.com>
+References: <99C6FAFB-C8D8-420C-98B5-24F537650558@artandarch.net> <901E1C44-5CE2-4BFE-B379-01AC05E8CE4A@theronge.com>
+Content-Type: multipart/alternative; boundary=Apple-Mail-8-927356568
+Message-Id: <01B4715D-9E73-460B-87DE-58D4641BA0F1@artandarch.net>
+From: Adam Peltier <adam@artandarch.net>
+Subject: Re: Kiwi status?
+Date: Fri, 11 Aug 2006 13:30:15 -0700
+To: mronge <mronge@theronge.com>
+X-Mailer: Apple Mail (2.752.2)
+X-DH-Virus-Scanned: by amavisd-new-20030616-p10 (Debian) at punisher
+X-Spam-Status: No, hits=0.0 tagged_above=-999.0 required=2.0
+	tests=HTML_MESSAGE
+X-Spam-Level: 
+
+
+--Apple-Mail-8-927356568
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain;
+	charset=US-ASCII;
+	delsp=yes;
+	format=flowed
+
+Matt,
+Thanks for the quick reply.  As far as what's let her down, it seems  
+to center around the fact that she has a TON of messages.  However,  
+the symptoms differ between the two apps:
+	Mail.app can't even seem to handle simple things like folder  
+synchronization for her (it works fine for me, but I don't live in my  
+email).  You can put her laptop and desktop side-by-side, sync them  
+up, and watch the mis-matching begin - multiple versions of the same  
+message appear/disappear, etc.  It just seems buggy overall.  It's  
+funny that at Jobs' latest keynote he spoke about implementing "great  
+new things" in Mail.app like html templates, to-dos, etc. when I  
+think a nice feature would be for it to actually reliably grab your  
+mail for you!
+	Thunderbird just seems slow overall, although its IMAP  
+implementation does seem much smoother.
+For either of these apps, here problems could likely be remedied (or  
+at least minimized) by a good regimen of organization, archiving -  
+sadly I don't think I'll ever be able to get her to do that.  Also, I  
+don't want to waste her time by figuring out how to archive for  
+whichever application when it may not be the one we stick with.  I  
+imagine there are a lot of potential users of your program out there  
+who are just like her though - poorly organized and with perhaps  
+thousands of messages.  Scary, huh?
+
+Thanks,
+Adam
+
+On Aug 11, 2006, at 12:55 PM, mronge wrote:
+
+> I hate to say it, but you'll have to steer her back to Entourage.  
+> Kiwi is still under heavy development, and I can't give a release  
+> date. However, I hope that it won't be too long that she has to use  
+> Entourage. On the Kiwi website there is an announcement mailing  
+> list, she can sign up and I'll be posting to it as betas become  
+> available.
+>
+> What about Mail.app and Thunderbird have let her down? I'm very  
+> interested in this kind of feedback so I can hopefully avoid the  
+> same problems with Kiwi.
+>
+> Anyway, thanks,
+> --
+> Matt
+>
+> On Aug 11, 2006, at 12:48 PM, Adam Peltier wrote:
+>
+>> Hi there,
+>>   I've been watching your website for a couple of months now, and  
+>> was just wondering how close you may be to having a working beta.   
+>> I do some computer consulting for an artist here in Seattle, and  
+>> she NEEDS a good imap client - Mail.app and Thunderbird have both  
+>> let her down.  I was telling her about your project and she was  
+>> interested, as am I, but if it will still be a while before  
+>> anything is out then I may have to steer her back to Entourage.   
+>> Yuck.
+>>
+>> Thanks and keep up the good work!
+>>
+>> Sincerely,
+>> Adam
+>>
+>> __________
+>>
+>> ADAM  PELTIER
+>> art and architecture
+>> 6126 12th Avenue NE
+>> Seattle, WA 98115
+>> 206.524.8680 ph
+>> 206.527.5215   fax
+>> adam@artandarch.net
+>> www.artandarch.net
+>>
+>>
+>
+
+__________
+
+ADAM  PELTIER
+art and architecture
+6126 12th Avenue NE
+Seattle, WA 98115
+206.524.8680 ph
+206.527.5215   fax
+adam@artandarch.net
+www.artandarch.net
+
+
+
+--Apple-Mail-8-927356568
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=ISO-8859-1
+
+<HTML><BODY style=3D"word-wrap: break-word; -khtml-nbsp-mode: space; =
+-khtml-line-break: after-white-space; ">Matt,<DIV>Thanks for the quick =
+reply.=A0 As far as what's let her down, it seems to center around the =
+fact that she has a TON of messages.=A0 However, the symptoms differ =
+between the two apps:</DIV><DIV><DIV><DIV><SPAN class=3D"Apple-tab-span" =
+style=3D"white-space:pre">	</SPAN>Mail.app can't even seem to =
+handle simple things like folder synchronization for her (it works fine =
+for me, but I don't live in my email).=A0 You can put her laptop and =
+desktop side-by-side, sync them up, and watch the mis-matching begin - =
+multiple versions of the same message appear/disappear, etc.=A0 It just =
+seems buggy overall.=A0 It's funny that at Jobs' latest keynote he spoke =
+about implementing "great new things" in Mail.app like html templates, =
+to-dos, etc. when I think a nice feature would be for it to actually =
+reliably grab your mail for you!</DIV><DIV><SPAN class=3D"Apple-tab-span" =
+style=3D"white-space:pre">	</SPAN>Thunderbird just seems slow =
+overall, although its IMAP implementation does seem much =
+smoother.</DIV><DIV>For either of these apps, here problems could likely =
+be remedied (or at least minimized) by a good regimen of organization, =
+archiving - sadly I don't think I'll ever be able to get her to do =
+that.=A0 Also, I don't want to waste her time by figuring out how to =
+archive for whichever application when it may not be the one we stick =
+with.=A0 I imagine there are a lot of potential users of your program =
+out there who are just like her though - poorly organized and with =
+perhaps thousands of messages.=A0 Scary, huh?</DIV><DIV><BR =
+class=3D"khtml-block-placeholder"></DIV><DIV>Thanks,</DIV><DIV>Adam</DIV><=
+DIV><BR class=3D"khtml-block-placeholder"></DIV><DIV>On Aug 11, 2006, at =
+12:55 PM, mronge wrote:</DIV><BR =
+class=3D"Apple-interchange-newline"><BLOCKQUOTE type=3D"cite"><DIV>I =
+hate to say it, but you'll have to steer her back to Entourage. Kiwi is =
+still under heavy development, and I can't=A0give a=A0release date. =
+However, I hope that it won't be too long that she has to use Entourage. =
+On the Kiwi website there is an=A0announcement mailing list, she can =
+sign up and I'll be posting to it as betas become =
+available.</DIV><DIV><BR class=3D"khtml-block-placeholder"></DIV><DIV>What=
+ about Mail.app and Thunderbird have let her down? I'm very interested =
+in this kind of feedback so I can hopefully avoid the same problems with =
+Kiwi.</DIV><DIV><BR class=3D"khtml-block-placeholder"></DIV><DIV>Anyway, =
+thanks,</DIV><DIV>--</DIV><DIV>Matt</DIV><BR><DIV><DIV>On Aug 11, 2006, =
+at 12:48 PM, Adam Peltier wrote:</DIV><BR =
+class=3D"Apple-interchange-newline"><BLOCKQUOTE type=3D"cite">Hi =
+there,<DIV>=A0 I've been watching your website for a couple of months =
+now, and was just wondering how close you may be to having a working =
+beta.=A0 I do some computer consulting for an artist here in Seattle, =
+and she NEEDS a good imap client - Mail.app and Thunderbird have both =
+let her down.=A0 I was telling her about your project and she was =
+interested, as am I, but if it will still be a while before anything is =
+out then I may have to steer her back to Entourage.=A0 =
+Yuck.</DIV><DIV><BR class=3D"khtml-block-placeholder"></DIV><DIV>Thanks =
+and keep up the good work!</DIV><DIV><BR =
+class=3D"khtml-block-placeholder"></DIV><DIV>Sincerely,</DIV><DIV>Adam</DI=
+V><DIV><BR><DIV> <SPAN class=3D"Apple-style-span" =
+style=3D"border-collapse: separate; border-spacing: 0px 0px; color: =
+rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: =
+normal; font-variant: normal; font-weight: normal; letter-spacing: =
+normal; line-height: normal; text-align: auto; =
+-khtml-text-decorations-in-effect: none; text-indent: 0px; =
+-apple-text-size-adjust: auto; text-transform: none; orphans: 2; =
+white-space: normal; widows: 2; word-spacing: 0px; "><DIV =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; "><FONT class=3D"Apple-style-span" face=3D"Skia" =
+size=3D"2"><SPAN class=3D"Apple-style-span" style=3D"font-size: 10px;; =
+font-family: Skia; "><SPAN class=3D"Apple-style-span" =
+style=3D"font-family: Skia; font-size: 10px; =
+">__________</SPAN></SPAN></FONT></DIV><DIV style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; "><FONT =
+class=3D"Apple-style-span" face=3D"Skia" size=3D"2"><SPAN =
+class=3D"Apple-style-span" style=3D"font-size: 10px;; font-family: Skia; =
+"><BR class=3D"khtml-block-placeholder"></SPAN></FONT></DIV><DIV =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; "><FONT class=3D"Apple-style-span" face=3D"Skia" =
+size=3D"2"><SPAN class=3D"Apple-style-span" style=3D"font-size: 10px;; =
+font-family: Skia; "><SPAN class=3D"Apple-style-span" =
+style=3D"font-family: Skia; font-size: 10px; ">ADAM=A0 =
+PELTIER</SPAN></SPAN></FONT></DIV><DIV style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; "><FONT =
+class=3D"Apple-style-span" color=3D"#810004" face=3D"Sand" =
+size=3D"2"><SPAN class=3D"Apple-style-span" style=3D"font-size: 10px;; =
+color: rgb(129, 0, 4); font-family: Sand; "><SPAN =
+class=3D"Apple-style-span" style=3D"color: rgb(129, 0, 4); font-family: =
+Sand; font-size: 10px; ">art and =
+architecture</SPAN></SPAN></FONT></DIV><DIV style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; "><FONT =
+class=3D"Apple-style-span" face=3D"Skia" size=3D"2"><SPAN =
+class=3D"Apple-style-span" style=3D"font-size: 10px;; font-family: Skia; =
+"><SPAN class=3D"Apple-style-span" style=3D"font-family: Skia; =
+font-size: 10px; ">6126 12th Avenue NE</SPAN></SPAN></FONT></DIV><DIV =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; "><FONT class=3D"Apple-style-span" face=3D"Skia" =
+size=3D"2"><SPAN class=3D"Apple-style-span" style=3D"font-size: 10px;; =
+font-family: Skia; "><SPAN class=3D"Apple-style-span" =
+style=3D"font-family: Skia; font-size: 10px; ">Seattle, WA =
+98115</SPAN></SPAN></FONT></DIV><DIV style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; "><FONT =
+class=3D"Apple-style-span" face=3D"Skia" size=3D"2"><SPAN =
+class=3D"Apple-style-span" style=3D"font-size: 10px;; font-family: Skia; =
+"><SPAN class=3D"Apple-style-span" style=3D"font-family: Skia; =
+font-size: 10px; ">206.524.8680 ph</SPAN></SPAN></FONT></DIV><DIV =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; "><FONT class=3D"Apple-style-span" face=3D"Skia" =
+size=3D"2"><SPAN class=3D"Apple-style-span" style=3D"font-size: 10px;; =
+font-family: Skia; "><SPAN class=3D"Apple-style-span" =
+style=3D"font-family: Skia; font-size: 10px; ">206.527.5215 =
+=A0=A0fax</SPAN></SPAN></FONT></DIV><DIV style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; "><FONT =
+class=3D"Apple-style-span" color=3D"#810004" face=3D"Skia" =
+size=3D"2"><SPAN class=3D"Apple-style-span" style=3D"text-decoration: =
+underline;; color: rgb(129, 0, 4); font-family: Skia; font-size: 10px; =
+-khtml-text-decorations-in-effect: underline; "><SPAN =
+class=3D"Apple-style-span" style=3D"color: rgb(129, 0, 4); font-family: =
+Skia; font-size: 10px; -khtml-text-decorations-in-effect: underline; =
+">adam</SPAN></SPAN><SPAN class=3D"Apple-style-span" style=3D"font-size: =
+10px; text-decoration: underline;; color: rgb(129, 0, 4); font-family: =
+Skia; -khtml-text-decorations-in-effect: underline; "><SPAN =
+class=3D"Apple-style-span" style=3D"color: rgb(129, 0, 4); font-family: =
+Skia; font-size: 10px; -khtml-text-decorations-in-effect: underline; =
+">@artandarch.net</SPAN></SPAN></FONT><FONT class=3D"Apple-style-span" =
+color=3D"#810004" face=3D"Verdana" size=3D"2"><SPAN =
+class=3D"Apple-style-span" style=3D"font-size: 10px;; color: rgb(129, 0, =
+4); font-family: Verdana; "><SPAN class=3D"Apple-style-span" =
+style=3D"color: rgb(129, 0, 4); font-family: Verdana; font-size: 10px; =
+">=A0</SPAN></SPAN></FONT><A href=3D"http://www.artandarch.net/"><FONT =
+class=3D"Apple-style-span" face=3D"Skia" size=3D"2"><SPAN =
+class=3D"Apple-style-span" style=3D"font-size: 10px;; color: rgb(0, 0, =
+238); font-family: Skia; -khtml-text-decorations-in-effect: underline; =
+"></SPAN></FONT></A></DIV><DIV style=3D"margin-top: 0px; margin-right: =
+0px; margin-bottom: 0px; margin-left: 0px; "><A =
+href=3D"http://www.artandarch.net/"><FONT class=3D"Apple-style-span" =
+face=3D"Skia" size=3D"2"><SPAN class=3D"Apple-style-span" =
+style=3D"font-size: 10px;; color: rgb(0, 0, 238); font-family: Skia; =
+-khtml-text-decorations-in-effect: underline; "><SPAN =
+class=3D"Apple-style-span" style=3D"color: rgb(0, 0, 238); font-family: =
+Skia; font-size: 10px; -khtml-text-decorations-in-effect: underline; =
+">www.artandarch.net</SPAN></SPAN></FONT></A></DIV><BR =
+class=3D"Apple-interchange-newline"></SPAN> =
+</DIV><BR></DIV></BLOCKQUOTE></DIV><BR></BLOCKQUOTE></DIV><BR><DIV> =
+<SPAN class=3D"Apple-style-span" style=3D"border-collapse: separate; =
+border-spacing: 0px 0px; color: rgb(0, 0, 0); font-family: Helvetica; =
+font-size: 12px; font-style: normal; font-variant: normal; font-weight: =
+normal; letter-spacing: normal; line-height: normal; text-align: auto; =
+-khtml-text-decorations-in-effect: none; text-indent: 0px; =
+-apple-text-size-adjust: auto; text-transform: none; orphans: 2; =
+white-space: normal; widows: 2; word-spacing: 0px; "><DIV =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; "><FONT class=3D"Apple-style-span" face=3D"Skia" =
+size=3D"2"><SPAN class=3D"Apple-style-span" style=3D"font-size: 10px;; =
+font-family: Skia; "><SPAN class=3D"Apple-style-span" =
+style=3D"font-family: Skia; font-size: 10px; =
+">__________</SPAN></SPAN></FONT></DIV><DIV style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; "><FONT =
+class=3D"Apple-style-span" face=3D"Skia" size=3D"2"><SPAN =
+class=3D"Apple-style-span" style=3D"font-size: 10px;; font-family: Skia; =
+"><BR class=3D"khtml-block-placeholder"></SPAN></FONT></DIV><DIV =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; "><FONT class=3D"Apple-style-span" face=3D"Skia" =
+size=3D"2"><SPAN class=3D"Apple-style-span" style=3D"font-size: 10px;; =
+font-family: Skia; "><SPAN class=3D"Apple-style-span" =
+style=3D"font-family: Skia; font-size: 10px; ">ADAM=A0 =
+PELTIER</SPAN></SPAN></FONT></DIV><DIV style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; "><FONT =
+class=3D"Apple-style-span" color=3D"#810004" face=3D"Sand" =
+size=3D"2"><SPAN class=3D"Apple-style-span" style=3D"font-size: 10px;; =
+color: rgb(129, 0, 4); font-family: Sand; "><SPAN =
+class=3D"Apple-style-span" style=3D"color: rgb(129, 0, 4); font-family: =
+Sand; font-size: 10px; ">art and =
+architecture</SPAN></SPAN></FONT></DIV><DIV style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; "><FONT =
+class=3D"Apple-style-span" face=3D"Skia" size=3D"2"><SPAN =
+class=3D"Apple-style-span" style=3D"font-size: 10px;; font-family: Skia; =
+"><SPAN class=3D"Apple-style-span" style=3D"font-family: Skia; =
+font-size: 10px; ">6126 12th Avenue NE</SPAN></SPAN></FONT></DIV><DIV =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; "><FONT class=3D"Apple-style-span" face=3D"Skia" =
+size=3D"2"><SPAN class=3D"Apple-style-span" style=3D"font-size: 10px;; =
+font-family: Skia; "><SPAN class=3D"Apple-style-span" =
+style=3D"font-family: Skia; font-size: 10px; ">Seattle, WA =
+98115</SPAN></SPAN></FONT></DIV><DIV style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; "><FONT =
+class=3D"Apple-style-span" face=3D"Skia" size=3D"2"><SPAN =
+class=3D"Apple-style-span" style=3D"font-size: 10px;; font-family: Skia; =
+"><SPAN class=3D"Apple-style-span" style=3D"font-family: Skia; =
+font-size: 10px; ">206.524.8680 ph</SPAN></SPAN></FONT></DIV><DIV =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; "><FONT class=3D"Apple-style-span" face=3D"Skia" =
+size=3D"2"><SPAN class=3D"Apple-style-span" style=3D"font-size: 10px;; =
+font-family: Skia; "><SPAN class=3D"Apple-style-span" =
+style=3D"font-family: Skia; font-size: 10px; ">206.527.5215 =
+=A0=A0fax</SPAN></SPAN></FONT></DIV><DIV style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px; "><FONT =
+class=3D"Apple-style-span" color=3D"#810004" face=3D"Skia" =
+size=3D"2"><SPAN class=3D"Apple-style-span" style=3D"text-decoration: =
+underline;; color: rgb(129, 0, 4); font-family: Skia; font-size: 10px; =
+-khtml-text-decorations-in-effect: underline; "><SPAN =
+class=3D"Apple-style-span" style=3D"color: rgb(129, 0, 4); font-family: =
+Skia; font-size: 10px; -khtml-text-decorations-in-effect: underline; =
+">adam</SPAN></SPAN><SPAN class=3D"Apple-style-span" style=3D"font-size: =
+10px; text-decoration: underline;; color: rgb(129, 0, 4); font-family: =
+Skia; -khtml-text-decorations-in-effect: underline; "><SPAN =
+class=3D"Apple-style-span" style=3D"color: rgb(129, 0, 4); font-family: =
+Skia; font-size: 10px; -khtml-text-decorations-in-effect: underline; =
+">@artandarch.net</SPAN></SPAN></FONT><FONT class=3D"Apple-style-span" =
+color=3D"#810004" face=3D"Verdana" size=3D"2"><SPAN =
+class=3D"Apple-style-span" style=3D"font-size: 10px;; color: rgb(129, 0, =
+4); font-family: Verdana; "><SPAN class=3D"Apple-style-span" =
+style=3D"color: rgb(129, 0, 4); font-family: Verdana; font-size: 10px; =
+">=A0</SPAN></SPAN></FONT><A href=3D"http://www.artandarch.net/"><FONT =
+class=3D"Apple-style-span" face=3D"Skia" size=3D"2"><SPAN =
+class=3D"Apple-style-span" style=3D"font-size: 10px;; color: rgb(0, 0, =
+238); font-family: Skia; -khtml-text-decorations-in-effect: underline; =
+"></SPAN></FONT></A></DIV><DIV style=3D"margin-top: 0px; margin-right: =
+0px; margin-bottom: 0px; margin-left: 0px; "><A =
+href=3D"http://www.artandarch.net/"><FONT class=3D"Apple-style-span" =
+face=3D"Skia" size=3D"2"><SPAN class=3D"Apple-style-span" =
+style=3D"font-size: 10px;; color: rgb(0, 0, 238); font-family: Skia; =
+-khtml-text-decorations-in-effect: underline; "><SPAN =
+class=3D"Apple-style-span" style=3D"color: rgb(0, 0, 238); font-family: =
+Skia; font-size: 10px; -khtml-text-decorations-in-effect: underline; =
+">www.artandarch.net</SPAN></SPAN></FONT></A></DIV><BR =
+class=3D"Apple-interchange-newline"></SPAN> =
+</DIV><BR></DIV></BODY></HTML>=
+
+--Apple-Mail-8-927356568--

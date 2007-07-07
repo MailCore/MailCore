@@ -1,0 +1,47 @@
+Return-Path: <fmoledina@eml.cc>
+X-Original-To: mronge@theronge.com
+Delivered-To: mronge@randymail-mx1.dreamhost.com
+Received: from deathwish.dreamhost.com (deathwish.dreamhost.com [66.33.206.108])
+	by randymail-mx1.dreamhost.com (Postfix) with ESMTP id 31C9034761
+	for <mronge@theronge.com>; Sat, 12 Aug 2006 08:19:06 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by deathwish.dreamhost.com (Postfix) with ESMTP id BFF2517628D
+	for <mronge@theronge.com>; Sat, 12 Aug 2006 08:19:04 -0700 (PDT)
+Received: from deathwish.dreamhost.com ([127.0.0.1])
+	by localhost (deathwish [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 09215-06 for <mronge@theronge.com>;
+	Sat, 12 Aug 2006 08:19:04 -0700 (PDT)
+Received: from out4.smtp.messagingengine.com (out4.smtp.messagingengine.com [66.111.4.28])
+	by deathwish.dreamhost.com (Postfix) with ESMTP id 783D31762C3
+	for <mronge@theronge.com>; Sat, 12 Aug 2006 08:19:04 -0700 (PDT)
+Received: from frontend3.internal (frontend3.internal [10.202.2.152])
+	by frontend1.messagingengine.com (Postfix) with ESMTP id 5EE77D94E00
+	for <mronge@theronge.com>; Sat, 12 Aug 2006 11:19:03 -0400 (EDT)
+Received: from heartbeat1.messagingengine.com ([10.202.2.160])
+  by frontend3.internal (MEProxy); Sat, 12 Aug 2006 11:19:03 -0400
+X-Sasl-enc: TBwUp0pITiIeG/fiCvuzskeAr9dKozFjJmf9KNeLkHhG 1155395943
+Received: from [192.168.0.100] (163-61-222-209.mycybernet.net [209.222.61.163])
+	by mail.messagingengine.com (Postfix) with ESMTP id 94A0E6F08
+	for <mronge@theronge.com>; Sat, 12 Aug 2006 11:19:03 -0400 (EDT)
+Mime-Version: 1.0 (Apple Message framework v752.2)
+Content-Transfer-Encoding: 7bit
+Message-Id: <CE7A7A56-C285-4DA6-88FA-14B2612BAE0B@eml.cc>
+Content-Type: text/plain; charset=US-ASCII; delsp=yes; format=flowed
+To: mronge@theronge.com
+From: Faisal Moledina <fmoledina@eml.cc>
+Subject: Kiwi
+Date: Sat, 12 Aug 2006 11:18:59 -0400
+X-Mailer: Apple Mail (2.752.2)
+X-DH-Virus-Scanned: by amavisd-new-20030616-p10 (Debian) at deathwish
+X-Spam-Status: No, hits=0.0 tagged_above=-999.0 required=2.0 tests=
+X-Spam-Level: 
+
+Hi there,
+
+I am looking forward to trying out Kiwi, especially since I'm  
+starting to outgrow Mail.app.  Although I understand the work  
+required for development, I was wondering when the first download  
+will be available.  Also, will a feature such as smart folders be  
+implemented?  Thanks!
+
+Faisal Moledina

@@ -1,0 +1,73 @@
+<h2>What is MailCore?</h2>
+
+<p>MailCore is a Cocoa framework designed to ease the pain of dealing with e-mail protocols by adding a nice Objective-C/Cocoa interface to the C library <a href="http://www.etpan.org">Libetpan!</a>. MailCore makes the process of sending e-mail easy by hiding the nasty details like MIME composition from you. Instead, there is a nice interface for composing messages and then there is a single method required to send the message. Checking e-mail on an IMAP server is a more complex beast, but MailCore makes the job much simpler but presenting everything as a set of abstract objects like Messages, Folders and Accounts. Note, however, that MailCore is not multithreaded so any calls made will potentially block and not every IMAP detail is abstracted away. Also, MailCore stores everything in memory so if you want to save state to disk it has to be done by hand.</p>
+
+<br/>
+<h2>Sending E-mail</h2>
+
+<p>Sending e-mail with MailCore is very easy, it takes care of all the details like MIME encoding, and the SMTP protocol. First, start by creating a <a href="interfaceCTCoreMessage.html">CTCoreMessage</a> instance. Then set the subject, body, from, and atleast one to, bcc, or cc recipient. One detail to note is that the to, cc, bcc attributes take an NSSet of <a href="interfaceCTCoreAddress.html">CTCoreAddress</a> recipients.</p>
+  
+<blockquote>
+  CTCoreMessage *testMsg = [[CTCoreMessage alloc] init];<br/>
+  [testMsg setTo:[NSSet setWithObject:[CTCoreAddress addressWithName:@"Monkey" email:@"monkey@monkey.com"]]];<br/>
+	[testMsg setFrom:[NSSet setWithObject:[CTCoreAddress addressWithName:@"Someone" email:@"test@someone.com"]]];<br/>
+	[testMsg setBody:@"This is a test message!"];<br/>
+	[testMsg setSubject:@"This is a subject"];<br/>
+</blockquote>
+  
+<p>Once the message attributes have been set, all that is left is sending the message using <a href="interfaceCTSMTPConnection.html">CTSMTPConnection</a>:</p>
+
+<blockquote>
+  [CTSMTPConnection sendMessage:testMsg server:@"mail.test.com" username:@"test" password:@"test" port:25 useTLS:YES shouldAuth:YES];<br/>
+  [testMsg release];<br/>
+</blockquote>
+
+<p>That's all, let me know if you have any problems/suggestions/recommendations</p>
+
+
+<br/>
+<h2>Working with IMAP</h2>
+
+<p>Working with IMAP through MailCore is quite easy. First you need to instantiate a <a href="interfaceCTCoreAccount.html">CTCoreAccount</a> object and establish a connection like so:</p>
+
+<blockquote>
+  CTCoreAccount *account = [[CTCoreAccount alloc] init];<br/>
+  [account connectToServer:@"mail.theronge.com" port:143 connectionType:CONNECTION_TYPE_PLAIN
+  authType:IMAP_AUTH_TYPE_PLAIN login:@"test" password:@"none"];<br/>
+</blockquote>
+
+<p>If by any chance it fails to make a connection an exception will be thrown. Now that we have a connection to the server we can go ahead and get a list of folders. <em>Note: I use the term folder in place of mailbox; the IMAP spec uses the term mailbox but I get that confused with account.</em></p>
+
+<blockquote>
+  NSSet *subFolders = [account subscribedFolders];<br/>
+</blockquote>
+
+<p>If we take a look at the resulting NSSet, we see that what is returned is a set of NSStrings with folder path's.</p>
+
+<blockquote>
+  &lt;NSCFSet: 0x309d60&gt; (INBOX.Test.Test22, INBOX, INBOX.TheArchive, INBOX.Test, INBOX.Trash)<br/>
+</blockquote>
+
+<p>We can use one of those strings to create a <a href="interfaceCTCoreFolder.html">CTCoreFolder</a> object or we can just pass in a path, for example this sets up a connection to the INBOX on the server.</p>
+
+<blockquote>
+  CTCoreFolder *inbox = [account folderWithPath:@"INBOX"];<br/>
+</blockquote>
+
+<p>Now that we have a connection to a folder we can start to do more interesting things, like we can get a set of the messages in the particular folder, or we can delete the folder, or remove the folder from the subscribed list, check the <a href="interfaceCTCoreFolder.html">CTCoreFolder</a> for more information. For this particular example I am going to get a list of the messages in the INBOX.</p>
+
+<blockquote>
+  NSSet *messageList = [inbox messageListFromIndex:nil];<br/>
+</blockquote>
+
+<p>Like the with folders, what is returned is a set of NSString's containing unique message identifiers (UID).</p>
+
+<blockquote>
+  &lt;NSCFSet: 0x309d60&gt; (1142229815-5, 1142229815-6, 1142229815-7, 1142229815-8, 1142229815-10, 1142229815-1, 1142229815-9, 1142229815-2, 1142229815-11, 1142229815-3, 1142229815-4)<br/>
+</blockquote>
+
+<p>You might be wondering about the parameter to messageListFromIndex: now, it's exists because of a limitation of IMAP. IMAP was designed to be a protocol where you would always be connected to the server, it wasn't until later that people got the idea using IMAP as an offline protocol. Therefore, IMAP generally returns the entire list of message UID's, but this can be very time consuming for very large folders, and by a large folder I'm talking over 5000 messages. To download only new messages and not every message each time, you can save the last message UID you received. Since you have the last message UID you know the next UID has to be one after it. For example, if you receive the UID 1142229815-4 then you know the next UID has to be 1142229815-5. So if you pass 1142229815-4 into messageListFromIndex: it will only retrieve message with a higher UID.</p>
+  
+<p>While UID's are not supposed to change, a folder can change the message UID's on rare occasions. It's important to make sure that the cached UID"s are still valid by using the isUIDValid method. If a bad UID was used there is potential for data loss, since the former UID might not reference the message you intend on deleting. If you save a UID, you should make sure that the server is still using the same UID, otherwise start over by passing nil into messageListFromIndex.</p> 
+
+<p>Now back to working with messages, to retrieve with a particular message you need to use the method messageWithUID inside of <a href="interfaceCTCoreFolder.html">CTCoreFolder</a>. The resulting object will be of type <a href="interfaceCTCoreMessage.html">CTCoreMessage</a>, from there you can retrieve the subject, body and other things by using the message object.</p>

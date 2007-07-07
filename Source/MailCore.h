@@ -1,0 +1,8 @@
+#import "CTCoreAccount.h"
+#import "CTCoreAddress.h"
+#import "CTCoreFolder.h"
+#import "CTCoreMessage.h"
+#import "CTSMTPConnection.h"
+#import "libetpan.h"
+#import "MailCoreTypes.h"
+#import "MailCoreUtilities.h"

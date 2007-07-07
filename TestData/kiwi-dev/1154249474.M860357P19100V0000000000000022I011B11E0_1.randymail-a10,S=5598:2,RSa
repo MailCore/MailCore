@@ -1,0 +1,125 @@
+Return-Path: <kiwi-dev-bounces@lists.theronge.com>
+X-Original-To: mronge@theronge.com
+Delivered-To: mronge@randymail-mx2.dreamhost.com
+Received: from deathwish.dreamhost.com (deathwish.dreamhost.com [66.33.206.108])
+	by randymail-mx2.dreamhost.com (Postfix) with ESMTP id F363213B7F4
+	for <mronge@theronge.com>; Sun, 30 Jul 2006 00:22:15 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by deathwish.dreamhost.com (Postfix) with ESMTP id DF355175172
+	for <mronge@theronge.com>; Sun, 30 Jul 2006 00:22:15 -0700 (PDT)
+Received: from deathwish.dreamhost.com ([127.0.0.1])
+	by localhost (deathwish [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 29645-12 for <mronge@theronge.com>;
+	Sun, 30 Jul 2006 00:22:15 -0700 (PDT)
+Received: from frida.dreamhost.com (frida.dreamhost.com [66.33.206.23])
+	by deathwish.dreamhost.com (Postfix) with ESMTP id 6D629175178
+	for <mronge@theronge.com>; Sun, 30 Jul 2006 00:22:15 -0700 (PDT)
+Received: from che.dreamhost.com (che.dreamhost.com [66.33.216.23])
+	by frida.dreamhost.com (Postfix) with ESMTP
+	id 5CA7716D287; Sun, 30 Jul 2006 00:22:15 -0700 (PDT)
+Received: from che.dreamhost.com (localhost [127.0.0.1])
+	by che.dreamhost.com (Postfix) with ESMTP id 4A3B21BB83;
+	Sun, 30 Jul 2006 00:22:15 -0700 (PDT)
+X-Original-To: kiwi-dev@lists.theronge.com
+Received: from elvis.mu.org (elvis.mu.org [192.203.228.196])
+	by che.dreamhost.com (Postfix) with ESMTP id EE3781BAC7
+	for <kiwi-dev@lists.theronge.com>; Sun, 30 Jul 2006 00:22:13 -0700 (PDT)
+Received: from [192.168.0.2] (c-24-17-91-38.hsd1.wa.comcast.net [24.17.91.38])
+	by elvis.mu.org (Postfix) with ESMTP id 57F7A1A4D9E
+	for <kiwi-dev@lists.theronge.com>; Sun, 30 Jul 2006 00:22:13 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v752.2)
+In-Reply-To: <0F56D333-A5D6-49B6-ABAF-056BB3E2A1B9@theronge.com>
+References: <28504473-2295-4824-8531-460F0510A5E5@flyingmeat.com>
+	<0F56D333-A5D6-49B6-ABAF-056BB3E2A1B9@theronge.com>
+Message-Id: <B0FD96B9-DEAA-4898-86B2-61D1562F7691@flyingmeat.com>
+From: Gus Mueller <gus@flyingmeat.com>
+Date: Sun, 30 Jul 2006 00:21:20 -0700
+To: kiwi-dev@lists.theronge.com
+X-Mailer: Apple Mail (2.752.2)
+Subject: Re: [Kiwi-dev] Lua code to format messages with blockquotes
+X-BeenThere: kiwi-dev@lists.theronge.com
+X-Mailman-Version: 2.1.6
+Precedence: list
+List-Id: <kiwi-dev-theronge.com>
+List-Unsubscribe: <http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com>, 
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=unsubscribe>
+List-Archive: <http://lists.theronge.com/private.cgi/kiwi-dev-theronge.com>
+List-Post: <mailto:kiwi-dev@lists.theronge.com>
+List-Help: <mailto:kiwi-dev-request@lists.theronge.com?subject=help>
+List-Subscribe: <http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com>, 
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Sender: kiwi-dev-bounces@lists.theronge.com
+Errors-To: kiwi-dev-bounces@lists.theronge.com
+X-DH-Virus-Scanned: by amavisd-new-20030616-p10 (Debian) at deathwish
+X-Spam-Status: No, hits=0.8 tagged_above=-999.0 required=2.0
+	tests=LOTS_OF_STUFF
+X-Spam-Level: 
+
+On Jul 29, 2006, at 11:12 , Matt Ronge wrote:
+
+> On Jul 29, 2006, at 10:45 PM, Gus Mueller wrote:
+>
+>> So I've got some lua code written to format the messages like in
+>> Mail.app:
+>>
+>> http://gusmueller.com/2006/images/flysketch/5c318968-66ad-4d89-8e0e-
+>> e3d9806e3947.png
+>>
+>> It's all plugged in, and it seems to work.  It doesn't vary the
+>> coloring though.
+>> This is going to be a pref as well, right? :)
+>
+> Great! We can do the coloring entirely through CSS, we can specify  
+> a color for blockquote, a color for the blockquote>blockquote, and  
+> the blockquote>blockquote>blockquote...you get the idea. Yea, this  
+> can be a pref. I would like to expose the Lua hooks so others can  
+> hack in things we haven't thought of. At a high level we can have  
+> different scripts, and the user can select to show >'s and then we  
+> can change the script.
+
+Ok I've committed the code to do the lua stuff, and added a framework  
+named "LuaCore".  I figured hey- it's a theme :)
+
+These are basically the classes that I've used in VoodooPad and some  
+other stuff.  I added a convenience method:
++ (NSString*) runScriptInBundle:(NSString*)scriptName withInput: 
+(NSString*)input named:(NSString*)inputNamed recievingOuputNamed: 
+(NSString*)outName;
+
+so that we can run quick scripts, giving input and getting output.   
+I'm not sure this is the best way to do things, but I figure I'd give  
+it a shot and see how it works out.
+
+I still need to clean up some stuff in LCLuaFoundation, the exposed  
+lua calls have stupid names.  And I should note that the  
+LuaObjCBridge class is a hacked up version of what you can find on  
+the net.
+
+To use the blockquotes stuff, you'll need this:
+defaults write com.MacWarriors.Kiwi blockquoteReplies 1
+
+>> Also, for composing messages- what's the plan?  Is the road going to
+>> be going down using the webkit stuff like Mail.app, or NSTextView?  I
+>> for one prefer NSTextView, since I know Mail.app is using private
+>> interfaces to make things work...
+>
+> I'm totally in favor if NSTextView, I'd prefer to stay away from  
+> WebKit right now for composing. I think for the initial release  
+> that there shouldn't be any HTML message composing.
+
+Sounds good to me.
+
+-gus
+
+--  
+August 'Gus' Mueller
+Flying Meat Inc.
+http://flyingmeat.com/
+
+
+_______________________________________________
+kiwi-dev mailing list
+kiwi-dev@lists.theronge.com
+http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com

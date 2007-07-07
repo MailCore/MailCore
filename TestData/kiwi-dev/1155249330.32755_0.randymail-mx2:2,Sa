@@ -1,0 +1,67 @@
+Return-Path: <kiwi-dev-bounces@lists.theronge.com>
+X-Original-To: mronge@theronge.com
+Delivered-To: mronge@randymail-mx2.dreamhost.com
+Received: from punisher.dreamhost.com (punisher.dreamhost.com [66.33.206.109])
+	by randymail-mx2.dreamhost.com (Postfix) with ESMTP id 6B492139FEE
+	for <mronge@theronge.com>; Thu, 10 Aug 2006 15:35:29 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by punisher.dreamhost.com (Postfix) with ESMTP id 5FF7167378
+	for <mronge@theronge.com>; Thu, 10 Aug 2006 15:35:29 -0700 (PDT)
+Received: from punisher.dreamhost.com ([127.0.0.1])
+	by localhost (punisher [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 01636-07 for <mronge@theronge.com>;
+	Thu, 10 Aug 2006 15:35:28 -0700 (PDT)
+Received: from frida.dreamhost.com (frida.dreamhost.com [66.33.206.23])
+	by punisher.dreamhost.com (Postfix) with ESMTP id 95268673D2
+	for <mronge@theronge.com>; Thu, 10 Aug 2006 15:35:28 -0700 (PDT)
+Received: from che.dreamhost.com (che.dreamhost.com [66.33.216.23])
+	by frida.dreamhost.com (Postfix) with ESMTP
+	id 3D3E616D26D; Thu, 10 Aug 2006 15:35:28 -0700 (PDT)
+Received: from che.dreamhost.com (localhost [127.0.0.1])
+	by che.dreamhost.com (Postfix) with ESMTP id BADFF1BB40;
+	Thu, 10 Aug 2006 15:35:26 -0700 (PDT)
+X-Original-To: kiwi-dev@lists.theronge.com
+Received: from randymail-a5.dreamhost.com (sd-green-bigip-61.dreamhost.com
+	[208.97.132.61])
+	by che.dreamhost.com (Postfix) with ESMTP id 4DCCD1BB30
+	for <kiwi-dev@lists.theronge.com>; Thu, 10 Aug 2006 15:35:25 -0700 (PDT)
+Received: from [17.255.104.245] (A17-255-104-245.apple.com [17.255.104.245])
+	by randymail-a5.dreamhost.com (Postfix) with ESMTP id 79A66906A8
+	for <kiwi-dev@lists.theronge.com>; Thu, 10 Aug 2006 15:35:26 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v752.2)
+Message-Id: <0FDCDC34-86D8-42B1-9B6E-199129F520B1@theronge.com>
+To: kiwi-dev@lists.theronge.com
+From: Matt Ronge <mronge@theronge.com>
+Date: Thu, 10 Aug 2006 15:35:13 -0700
+X-Mailer: Apple Mail (2.752.2)
+Subject: [Kiwi-dev] liblua.a and svn
+X-BeenThere: kiwi-dev@lists.theronge.com
+X-Mailman-Version: 2.1.6
+Precedence: list
+List-Id: <kiwi-dev-theronge.com>
+List-Unsubscribe: <http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com>, 
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=unsubscribe>
+List-Archive: <http://lists.theronge.com/private.cgi/kiwi-dev-theronge.com>
+List-Post: <mailto:kiwi-dev@lists.theronge.com>
+List-Help: <mailto:kiwi-dev-request@lists.theronge.com?subject=help>
+List-Subscribe: <http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com>, 
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Sender: kiwi-dev-bounces@lists.theronge.com
+Errors-To: kiwi-dev-bounces@lists.theronge.com
+X-DH-Virus-Scanned: by amavisd-new-20030616-p10 (Debian) at punisher
+X-Spam-Status: No, hits=0.0 tagged_above=-999.0 required=2.0 tests=
+X-Spam-Level: 
+
+Since ranlib needs to be run on liblua.a everytime LuaCore is  
+compiled, liblua keeps getting changed, so svn thinks it needs to  
+commit liblua.a. The cycle repeats and we end up with a bunch of  
+conflicts. Does anyone know how to work with the combo of ranlib+svn?
+
+--
+Matt
+_______________________________________________
+kiwi-dev mailing list
+kiwi-dev@lists.theronge.com
+http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com

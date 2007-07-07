@@ -1,0 +1,133 @@
+Return-Path: <kiwi-dev-bounces@lists.theronge.com>
+X-Original-To: mronge@theronge.com
+Delivered-To: mronge@randymail-mx1.dreamhost.com
+Received: from punisher.dreamhost.com (punisher.dreamhost.com [66.33.206.109])
+	by randymail-mx1.dreamhost.com (Postfix) with ESMTP id E915B347F4
+	for <mronge@theronge.com>; Sun, 30 Jul 2006 11:08:53 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by punisher.dreamhost.com (Postfix) with ESMTP id D034767423
+	for <mronge@theronge.com>; Sun, 30 Jul 2006 11:08:53 -0700 (PDT)
+Received: from punisher.dreamhost.com ([127.0.0.1])
+	by localhost (punisher [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 18206-09 for <mronge@theronge.com>;
+	Sun, 30 Jul 2006 11:08:53 -0700 (PDT)
+Received: from frida.dreamhost.com (frida.dreamhost.com [66.33.206.23])
+	by punisher.dreamhost.com (Postfix) with ESMTP id 90C1D67408
+	for <mronge@theronge.com>; Sun, 30 Jul 2006 11:08:53 -0700 (PDT)
+Received: from che.dreamhost.com (che.dreamhost.com [66.33.216.23])
+	by frida.dreamhost.com (Postfix) with ESMTP
+	id 2568516D3A5; Sun, 30 Jul 2006 11:08:53 -0700 (PDT)
+Received: from che.dreamhost.com (localhost [127.0.0.1])
+	by che.dreamhost.com (Postfix) with ESMTP id 03E4C1BB83;
+	Sun, 30 Jul 2006 11:08:53 -0700 (PDT)
+X-Original-To: kiwi-dev@lists.theronge.com
+Received: from elvis.mu.org (elvis.mu.org [192.203.228.196])
+	by che.dreamhost.com (Postfix) with ESMTP id 306E21BB4E
+	for <kiwi-dev@lists.theronge.com>; Sun, 30 Jul 2006 11:08:51 -0700 (PDT)
+Received: from [192.168.0.2] (c-24-17-91-38.hsd1.mn.comcast.net [24.17.91.38])
+	by elvis.mu.org (Postfix) with ESMTP id D6A321A4DAE
+	for <kiwi-dev@lists.theronge.com>; Sun, 30 Jul 2006 11:08:50 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v752.2)
+In-Reply-To: <C6B52E3C-20E3-41E2-961C-030ADE867EB0@theronge.com>
+References: <28504473-2295-4824-8531-460F0510A5E5@flyingmeat.com>
+	<0F56D333-A5D6-49B6-ABAF-056BB3E2A1B9@theronge.com>
+	<B0FD96B9-DEAA-4898-86B2-61D1562F7691@flyingmeat.com>
+	<C6B52E3C-20E3-41E2-961C-030ADE867EB0@theronge.com>
+Message-Id: <7F15D0E5-4660-4F1F-98A5-0854F6512B42@flyingmeat.com>
+From: Gus Mueller <gus@flyingmeat.com>
+Date: Sun, 30 Jul 2006 11:07:56 -0700
+To: kiwi-dev@lists.theronge.com
+X-Mailer: Apple Mail (2.752.2)
+Subject: Re: [Kiwi-dev] Lua code to format messages with blockquotes
+X-BeenThere: kiwi-dev@lists.theronge.com
+X-Mailman-Version: 2.1.6
+Precedence: list
+List-Id: <kiwi-dev-theronge.com>
+List-Unsubscribe: <http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com>, 
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=unsubscribe>
+List-Archive: <http://lists.theronge.com/private.cgi/kiwi-dev-theronge.com>
+List-Post: <mailto:kiwi-dev@lists.theronge.com>
+List-Help: <mailto:kiwi-dev-request@lists.theronge.com?subject=help>
+List-Subscribe: <http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com>, 
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Sender: kiwi-dev-bounces@lists.theronge.com
+Errors-To: kiwi-dev-bounces@lists.theronge.com
+X-DH-Virus-Scanned: by amavisd-new-20030616-p10 (Debian) at punisher
+X-Spam-Status: No, hits=0.0 tagged_above=-999.0 required=2.0 tests=
+X-Spam-Level: 
+
+On Jul 30, 2006, at 2:02 , Matt Ronge wrote:
+
+> I've fixed a few minor issues that were preventing Kiwi from building:
+>
+> - LuaCore now has an install location of @executable_path/../
+> Frameworks so that it isn't hard coded to any path and can sit inside
+> Kiwi's frameworks folder. Otherwise, Kiwi will complain during
+> runtime and it won't launch.
+
+Doh- I forgot about that, thanks.  I have all my xcode projects build  
+into one directory, and I I don't have to worry about build folders  
+taking up all the space for my backups :)
+
+> - Ranlib is run on the liblua.a so that a link error doesn't occur
+> when building LuaCore.
+
+Yea, this will happen every time you check out a static lib.  At  
+least, that's my experience.
+
+I'm also wondering- did the project file merge ok?  I've never worked  
+with xcode project files and multiple people, so I've got no  
+experience there.
+
+> Another thing I've been thinking about,  is maybe we should move to
+> not including prebuilt frameworks, and build the subprojects from the
+> Kiwi project.
+> Is there a good way to replace frameworks on SVN? Right now I `svn
+> rm` the framework and do a commit. Then I add the new build result
+> and do a commit, which is kinda cumbersome. Is there a better way to
+> do this, or should we eventually go to building everything from
+> source (or most things atleast)? Any opinions? Not that this is a big
+> deal, just a thought.
+
+What I do with VoodooPad + FlySketch is- I've got a little bin  
+directory where I keep various little scripts to do things like  
+this.  Here's the one for copying in FMKit, which is a shared  
+framework between the two apps:
+
+#!/bin/bash
+
+SRC_DIR=`cd ${0%/*}/..; pwd`
+
+cd $SRC_DIR/lib/fmkit/FMKit.framework/Versions/A/
+
+cp ~/builds/Deployment/FMKit.framework/Versions/A/FMKit .
+cp ~/builds/Deployment/FMKit.framework/Versions/A/Headers/*.h Headers/.
+
+touch $SRC_DIR/lib/fmkit/FMKit.framework
+
+That way when I want to update the embedded framework, I just type  
+vpcopyinfmkit.sh (and the voodoopad/bin directory is in my path to  
+make this easier).  I've also got scripts to make the automator  
+actions, make the different plugins that VP relies on, and build the  
+whole app.
+
+The script that builds the whole app builds the plugins from scratch-  
+I don't keep compiled versions checked in at all.  So maybe one way  
+you could handle this is to not have the frameworks we make ourselves  
+checked in, but have a script that will build then and put them in  
+the right spot so kiwi sees it.
+
+-gus
+
+--  
+August 'Gus' Mueller
+Flying Meat Inc.
+http://flyingmeat.com/
+
+
+_______________________________________________
+kiwi-dev mailing list
+kiwi-dev@lists.theronge.com
+http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com

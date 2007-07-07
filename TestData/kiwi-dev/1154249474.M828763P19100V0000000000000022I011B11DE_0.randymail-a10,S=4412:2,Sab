@@ -1,0 +1,97 @@
+Return-Path: <kiwi-dev-bounces@lists.theronge.com>
+X-Original-To: mronge@theronge.com
+Delivered-To: mronge@randymail-mx1.dreamhost.com
+Received: from punisher.dreamhost.com (punisher.dreamhost.com [66.33.206.109])
+	by randymail-mx1.dreamhost.com (Postfix) with ESMTP id 328CD347A5
+	for <mronge@theronge.com>; Sun, 30 Jul 2006 00:34:11 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by punisher.dreamhost.com (Postfix) with ESMTP id 23CF667413
+	for <mronge@theronge.com>; Sun, 30 Jul 2006 00:34:11 -0700 (PDT)
+Received: from punisher.dreamhost.com ([127.0.0.1])
+	by localhost (punisher [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 29530-13 for <mronge@theronge.com>;
+	Sun, 30 Jul 2006 00:34:11 -0700 (PDT)
+Received: from frida.dreamhost.com (frida.dreamhost.com [66.33.206.23])
+	by punisher.dreamhost.com (Postfix) with ESMTP id F0F8D67419
+	for <mronge@theronge.com>; Sun, 30 Jul 2006 00:34:10 -0700 (PDT)
+Received: from che.dreamhost.com (che.dreamhost.com [66.33.216.23])
+	by frida.dreamhost.com (Postfix) with ESMTP
+	id D232516D2B6; Sun, 30 Jul 2006 00:34:10 -0700 (PDT)
+Received: from che.dreamhost.com (localhost [127.0.0.1])
+	by che.dreamhost.com (Postfix) with ESMTP id CA5781BB83;
+	Sun, 30 Jul 2006 00:34:10 -0700 (PDT)
+X-Original-To: kiwi-dev@lists.theronge.com
+Received: from nova.rhapsodyk.net (nova.rhapsodyk.net [212.43.230.60])
+	by che.dreamhost.com (Postfix) with ESMTP id 06FD41BAC7
+	for <kiwi-dev@lists.theronge.com>; Sun, 30 Jul 2006 00:34:09 -0700 (PDT)
+Received: from [192.168.125.125] (ram94-5-82-229-222-187.fbx.proxad.net
+	[82.229.222.187]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+	(No client certificate requested)
+	by nova.rhapsodyk.net (Postfix) with ESMTP id 8D4C236CC2
+	for <kiwi-dev@lists.theronge.com>;
+	Sun, 30 Jul 2006 09:33:52 +0200 (CEST)
+Mime-Version: 1.0 (Apple Message framework v752.2)
+In-Reply-To: <B0FD96B9-DEAA-4898-86B2-61D1562F7691@flyingmeat.com>
+References: <28504473-2295-4824-8531-460F0510A5E5@flyingmeat.com>
+	<0F56D333-A5D6-49B6-ABAF-056BB3E2A1B9@theronge.com>
+	<B0FD96B9-DEAA-4898-86B2-61D1562F7691@flyingmeat.com>
+Message-Id: <D06FA391-BC95-42F2-8F3C-7955C7CD89A0@poulet.org>
+From: Nicolas Zinovieff <krugazor@poulet.org>
+Date: Sun, 30 Jul 2006 09:34:04 +0200
+To: kiwi-dev@lists.theronge.com
+X-Mailer: Apple Mail (2.752.2)
+Subject: Re: [Kiwi-dev] Lua code to format messages with blockquotes
+X-BeenThere: kiwi-dev@lists.theronge.com
+X-Mailman-Version: 2.1.6
+Precedence: list
+List-Id: <kiwi-dev-theronge.com>
+List-Unsubscribe: <http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com>, 
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=unsubscribe>
+List-Archive: <http://lists.theronge.com/private.cgi/kiwi-dev-theronge.com>
+List-Post: <mailto:kiwi-dev@lists.theronge.com>
+List-Help: <mailto:kiwi-dev-request@lists.theronge.com?subject=help>
+List-Subscribe: <http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com>, 
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Sender: kiwi-dev-bounces@lists.theronge.com
+Errors-To: kiwi-dev-bounces@lists.theronge.com
+X-DH-Virus-Scanned: by amavisd-new-20030616-p10 (Debian) at punisher
+X-Spam-Status: No, hits=0.0 tagged_above=-999.0 required=2.0 tests=
+X-Spam-Level: 
+
+Hey there!
+
+On 30 Jul, 2006, at 09:21, Gus Mueller wrote:
+
+> Ok I've committed the code to do the lua stuff, and added a framework
+> named "LuaCore".  I figured hey- it's a theme :)
+
+Might even help for the AppleScriptCore I was thinking of ;D
+
+>> I'm totally in favor if NSTextView, I'd prefer to stay away from
+>> WebKit right now for composing. I think for the initial release
+>> that there shouldn't be any HTML message composing.
+>
+> Sounds good to me.
+
+Me too, completely. It's easy to go from HTML -> NSTextView (I do  
+that a lot here and there) through NSAttributedString, and I'm sure  
+that it would be relatively easy to go from NSAttributedString to  
+HTML (if it doesn't exist already), since we only have the text style  
+blocks to care about...
+
+Sorry I've been away for a week and a little more... I was traveling  
+for business' stake
+
+-- 
+Nicolas Zinovieff
+Custom Developments from France
+-- 
+ICQ: 7725641
+AIM/iChat: spadjack@mac.com
+
+_______________________________________________
+kiwi-dev mailing list
+kiwi-dev@lists.theronge.com
+http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com

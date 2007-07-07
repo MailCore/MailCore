@@ -1,0 +1,88 @@
+/* 
+nice red:    999999 
+nice orange: 555555
+nide green:  777788
+
+*/
+
+* {
+	font-family: "Helvetica Neue", sans-serif;
+	font-size: 13px;
+	line-height: 1.5em;
+}
+
+body {
+	margin: 0px;
+	padding: 30px;
+	background-color: #666666;
+}
+
+h1 {
+	font-size: 36px;
+	color: #ff8000;
+	margin-top: 0px;
+	margin-bottom: 3px;
+}
+
+h2 { 
+	font-weight: normal;
+	font-style: italic;
+	font-size: 18px;
+	color: #666666;
+}
+
+h3 {
+	margin: 0px;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+h2 .mark {
+	color: #999999;
+}
+
+div {
+	background-color: white;
+	padding: 30px;
+	margin-top: 2px;
+	
+	width: 600px;
+}
+
+a { 
+	text-decoration: none;
+	color: #777788;
+} 
+a:link { color: #777788; } 
+a:visited { color: #777788; } 
+a:hover { color: #555555; }
+
+pre {
+	font-size: 12px;
+	font-family: Courier, mono-spaced;
+	color: #333333;
+	padding: 15px;
+	border: 1px solid #777788C;
+	background-color: #F3F3F3;
+}
+
+blockquote {
+	font-family: Courier, mono-spaced;
+	font-size: 10px;
+	line-height: 1.2em;
+	background: #d6d7d9;
+}
+
+.copyright {
+	color: #999999;
+}
+.copyright, .copyright * {
+	font-size: 11px;
+}
+
+.break {
+	background-color: none;
+	padding: 0px;
+	margin-top: 0px;
+	height: 7px;
+}

@@ -1,0 +1,87 @@
+Return-Path: <kiwi-dev-bounces@lists.theronge.com>
+X-Original-To: mronge@theronge.com
+Delivered-To: mronge@randymail-mx1.dreamhost.com
+Received: from punisher.dreamhost.com (punisher.dreamhost.com [66.33.206.109])
+	by randymail-mx1.dreamhost.com (Postfix) with ESMTP id 379A8348CD
+	for <mronge@theronge.com>; Tue, 22 Aug 2006 13:54:01 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by punisher.dreamhost.com (Postfix) with ESMTP id 05C83674EC
+	for <mronge@theronge.com>; Tue, 22 Aug 2006 13:54:01 -0700 (PDT)
+Received: from punisher.dreamhost.com ([127.0.0.1])
+	by localhost (punisher [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 02567-08 for <mronge@theronge.com>;
+	Tue, 22 Aug 2006 13:54:00 -0700 (PDT)
+Received: from frida.dreamhost.com (frida.dreamhost.com [66.33.206.23])
+	by punisher.dreamhost.com (Postfix) with ESMTP id BE029674D8
+	for <mronge@theronge.com>; Tue, 22 Aug 2006 13:54:00 -0700 (PDT)
+Received: from che.dreamhost.com (che.dreamhost.com [66.33.216.23])
+	by frida.dreamhost.com (Postfix) with ESMTP
+	id 6D1A016D417; Tue, 22 Aug 2006 13:54:00 -0700 (PDT)
+Received: from che.dreamhost.com (localhost [127.0.0.1])
+	by che.dreamhost.com (Postfix) with ESMTP id 0EB451BAF3;
+	Tue, 22 Aug 2006 13:53:59 -0700 (PDT)
+X-Original-To: kiwi-dev@lists.theronge.com
+Received: from randymail-a4.dreamhost.com (sd-green-bigip-62.dreamhost.com
+	[208.97.132.62])
+	by che.dreamhost.com (Postfix) with ESMTP id C5F751BB65
+	for <kiwi-dev@lists.theronge.com>; Tue, 22 Aug 2006 13:53:37 -0700 (PDT)
+Received: from [10.0.1.3] (unknown [74.135.171.145])
+	by randymail-a4.dreamhost.com (Postfix) with ESMTP id A3B2D1954A6
+	for <kiwi-dev@lists.theronge.com>; Tue, 22 Aug 2006 13:53:36 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v752.2)
+In-Reply-To: <67EB754F-8433-4CB3-B8E3-9ECFBC9B4074@flyingmeat.com>
+References: <67EB754F-8433-4CB3-B8E3-9ECFBC9B4074@flyingmeat.com>
+Message-Id: <0D2733AC-F650-4C58-B21A-C9BC8261F380@theronge.com>
+From: Matt Ronge <mronge@theronge.com>
+Date: Tue, 22 Aug 2006 15:53:25 -0500
+To: kiwi-dev@lists.theronge.com
+X-Mailer: Apple Mail (2.752.2)
+Subject: Re: [Kiwi-dev] Should it be building right now?
+X-BeenThere: kiwi-dev@lists.theronge.com
+X-Mailman-Version: 2.1.6
+Precedence: list
+List-Id: <kiwi-dev-theronge.com>
+List-Unsubscribe: <http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com>, 
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=unsubscribe>
+List-Archive: <http://lists.theronge.com/private.cgi/kiwi-dev-theronge.com>
+List-Post: <mailto:kiwi-dev@lists.theronge.com>
+List-Help: <mailto:kiwi-dev-request@lists.theronge.com?subject=help>
+List-Subscribe: <http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com>, 
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Sender: kiwi-dev-bounces@lists.theronge.com
+Errors-To: kiwi-dev-bounces@lists.theronge.com
+X-DH-Virus-Scanned: by amavisd-new-20030616-p10 (Debian) at punisher
+X-Spam-Status: No, hits=0.0 tagged_above=-999.0 required=2.0 tests=
+X-Spam-Level: 
+
+I have no idea. :)
+
+On Aug 20, 2006, at 2:26 PM, Gus Mueller wrote:
+
+> Should Kiwi be building right now?  Right now when building the
+> MailCore framework I'm getting:
+> libetpan-config.h: No such file or directory
+>
+> I see it's in the repository, but gcc just isn't finding it
+> currently.  And I figured I'd ask before I go trying to fix it (in
+> case there are more changes coming.)
+>
+> -gus
+>
+> --  
+> August 'Gus' Mueller
+> Flying Meat Inc.
+> http://flyingmeat.com/
+>
+>
+> _______________________________________________
+> kiwi-dev mailing list
+> kiwi-dev@lists.theronge.com
+> http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com
+
+_______________________________________________
+kiwi-dev mailing list
+kiwi-dev@lists.theronge.com
+http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com

@@ -1,0 +1,98 @@
+Return-Path: <kiwi-dev-bounces@lists.theronge.com>
+X-Original-To: mronge@theronge.com
+Delivered-To: mronge@randymail-mx2.dreamhost.com
+Received: from deathwish.dreamhost.com (deathwish.dreamhost.com [66.33.206.108])
+	by randymail-mx2.dreamhost.com (Postfix) with ESMTP id 1E2D113B8E2
+	for <mronge@theronge.com>; Mon, 28 Aug 2006 20:53:04 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by deathwish.dreamhost.com (Postfix) with ESMTP id 0D4DF175172
+	for <mronge@theronge.com>; Mon, 28 Aug 2006 20:53:04 -0700 (PDT)
+Received: from deathwish.dreamhost.com ([127.0.0.1])
+	by localhost (deathwish [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 11908-18 for <mronge@theronge.com>;
+	Mon, 28 Aug 2006 20:53:03 -0700 (PDT)
+Received: from frida.dreamhost.com (frida.dreamhost.com [66.33.206.23])
+	by deathwish.dreamhost.com (Postfix) with ESMTP id B293817518D
+	for <mronge@theronge.com>; Mon, 28 Aug 2006 20:53:03 -0700 (PDT)
+Received: from che.dreamhost.com (che.dreamhost.com [66.33.216.23])
+	by frida.dreamhost.com (Postfix) with ESMTP
+	id 9B5A616D394; Mon, 28 Aug 2006 20:52:58 -0700 (PDT)
+Received: from che.dreamhost.com (localhost [127.0.0.1])
+	by che.dreamhost.com (Postfix) with ESMTP id D91CF1BB6F;
+	Mon, 28 Aug 2006 20:52:56 -0700 (PDT)
+X-Original-To: kiwi-dev@lists.theronge.com
+Received: from randymail-a4.dreamhost.com (sd-green-bigip-98.dreamhost.com
+	[208.97.132.98])
+	by che.dreamhost.com (Postfix) with ESMTP id C25FB1BBF2
+	for <kiwi-dev@lists.theronge.com>; Mon, 28 Aug 2006 20:52:47 -0700 (PDT)
+Received: from [10.0.1.3] (unknown [74.135.171.145])
+	by randymail-a4.dreamhost.com (Postfix) with ESMTP id 664E91953F6;
+	Mon, 28 Aug 2006 20:52:06 -0700 (PDT)
+In-Reply-To: <A0F7BD36-6988-4C25-B6D9-E6775CFB3592@cambrianhouse.com>
+References: <A0F7BD36-6988-4C25-B6D9-E6775CFB3592@cambrianhouse.com>
+Mime-Version: 1.0 (Apple Message framework v752.2)
+Message-Id: <1996AAC5-C984-41A4-A0B2-7942F51167B5@theronge.com>
+From: Matt Ronge <mronge@theronge.com>
+Date: Mon, 28 Aug 2006 22:52:03 -0500
+To: Aidan Rogers <aidan@cambrianhouse.com>
+X-Mailer: Apple Mail (2.752.2)
+Cc: kiwi-dev@lists.theronge.com
+Subject: Re: [Kiwi-dev] Need another dev for Kiwi?
+X-BeenThere: kiwi-dev@lists.theronge.com
+X-Mailman-Version: 2.1.6
+Precedence: list
+List-Id: <kiwi-dev-theronge.com>
+List-Unsubscribe: <http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com>, 
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=unsubscribe>
+List-Archive: <http://lists.theronge.com/private.cgi/kiwi-dev-theronge.com>
+List-Post: <mailto:kiwi-dev@lists.theronge.com>
+List-Help: <mailto:kiwi-dev-request@lists.theronge.com?subject=help>
+List-Subscribe: <http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com>, 
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Sender: kiwi-dev-bounces@lists.theronge.com
+Errors-To: kiwi-dev-bounces@lists.theronge.com
+X-DH-Virus-Scanned: by amavisd-new-20030616-p10 (Debian) at deathwish
+X-Spam-Status: No, hits=0.0 tagged_above=-999.0 required=2.0 tests=
+X-Spam-Level: 
+
+Hi Aidan,
+
+It would be great to have another dev working on the project, and I'd  
+also love to here about some of your ideas for improving the e-mail  
+experience. There is a ton of work to do on Kiwi, and I've spent most  
+of my time working on perfecting the engine. I have a list of TODO  
+items on svn, so take a look at that list and send a patch to the  
+kiwi-dev list, I want to start out with sending patches at first.
+
+Here is the command for checking out:
+svn co http://www.svn.theronge.com/kiwi/trunk kiwi
+
+Information on the kiwi-dev list is available on the website. Note,  
+that Kiwi is not standalone yet, and it isn't ready to be used as a  
+primary e-mail client yet,
+
+Thanks,
+--
+Matt
+
+
+On Aug 28, 2006, at 4:55 AM, Aidan Rogers wrote:
+
+> Hi,
+>
+> I approached Gus Mueller about putting together a team to write a  
+> replacement for Mail - he pointed me at Kiwi.  Do you need/want  
+> another developer?  I have a bunch of ideas on how to improve the  
+> mail client experience in general.  More than that, I'm plagued by  
+> Mail's poor IMAP support every day - an added incentive!
+>
+> Let me know,
+>
+> Aidan
+
+_______________________________________________
+kiwi-dev mailing list
+kiwi-dev@lists.theronge.com
+http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com

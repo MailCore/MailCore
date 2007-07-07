@@ -1,0 +1,10 @@
+<menu xmlns="http://developer.iconara.net/ixns">
+	<section>
+		<title>Core implementation</title>
+		<class>CTCoreAccount</class>
+		<class>CTCoreFolder</class>
+		<class>CTCoreMessage</class>
+		<class>CTCoreAddress</class>
+		<class>CTSMTPConnection</class>				
+	</section>
+</menu>

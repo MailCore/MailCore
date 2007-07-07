@@ -1,0 +1,76 @@
+Return-Path: <kiwi-dev-bounces@lists.theronge.com>
+X-Original-To: mronge@theronge.com
+Delivered-To: mronge@randymail-mx2.dreamhost.com
+Received: from gladiator.dreamhost.com (gladiator.dreamhost.com [66.33.206.110])
+	by randymail-mx2.dreamhost.com (Postfix) with ESMTP id 3AAB613BAE4
+	for <mronge@theronge.com>; Tue, 31 Oct 2006 19:15:38 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by gladiator.dreamhost.com (Postfix) with ESMTP id E3DD5604C2
+	for <mronge@theronge.com>; Tue, 31 Oct 2006 19:15:38 -0800 (PST)
+Received: from gladiator.dreamhost.com ([127.0.0.1])
+	by localhost (gladiator [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 31525-11 for <mronge@theronge.com>;
+	Tue, 31 Oct 2006 19:15:37 -0800 (PST)
+Received: from frida.dreamhost.com (frida.dreamhost.com [66.33.206.23])
+	by gladiator.dreamhost.com (Postfix) with ESMTP id B517C604C1
+	for <mronge@theronge.com>; Tue, 31 Oct 2006 19:15:37 -0800 (PST)
+Received: from che.dreamhost.com (che.dreamhost.com [66.33.216.23])
+	by frida.dreamhost.com (Postfix) with ESMTP
+	id D6DAD16D482; Tue, 31 Oct 2006 19:15:37 -0800 (PST)
+Received: from che.dreamhost.com (localhost [127.0.0.1])
+	by che.dreamhost.com (Postfix) with ESMTP id 160A41BB65;
+	Tue, 31 Oct 2006 19:15:36 -0800 (PST)
+X-Original-To: kiwi-dev@lists.theronge.com
+Received: from smarty.dreamhost.com (smarty.dreamhost.com [66.33.216.24])
+	by che.dreamhost.com (Postfix) with ESMTP id 1E9841BB6C
+	for <kiwi-dev@lists.theronge.com>; Tue, 31 Oct 2006 19:15:32 -0800 (PST)
+Received: from nimitz.dreamhost.com (nimitz.dreamhost.com [205.196.218.28])
+	by smarty.dreamhost.com (Postfix) with ESMTP id 163F4EE24F
+	for <kiwi-dev@lists.theronge.com>; Tue, 31 Oct 2006 19:15:32 -0800 (PST)
+Received: by nimitz.dreamhost.com (Postfix, from userid 137591)
+	id 5CDBE2421B; Tue, 31 Oct 2006 19:15:31 -0800 (PST)
+To: kiwi-dev@lists.theronge.com
+From: kiwi-dev@lists.theronge.com
+MIME-Version: 1.0
+Message-Id: <20061101031531.5CDBE2421B@nimitz.dreamhost.com>
+Date: Tue, 31 Oct 2006 19:15:31 -0800 (PST)
+Subject: [Kiwi-dev] Revision 115
+X-BeenThere: kiwi-dev@lists.theronge.com
+X-Mailman-Version: 2.1.6
+Precedence: list
+Reply-To: kiwi-dev@lists.theronge.com
+List-Id: <kiwi-dev-theronge.com>
+List-Unsubscribe: <http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com>, 
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=unsubscribe>
+List-Archive: <http://lists.theronge.com/private.cgi/kiwi-dev-theronge.com>
+List-Post: <mailto:kiwi-dev@lists.theronge.com>
+List-Help: <mailto:kiwi-dev-request@lists.theronge.com?subject=help>
+List-Subscribe: <http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com>, 
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=subscribe>
+Content-Type: multipart/mixed; boundary="===============1746922872=="
+Sender: kiwi-dev-bounces@lists.theronge.com
+Errors-To: kiwi-dev-bounces@lists.theronge.com
+X-DH-Virus-Scanned: by amavisd-new-20030616-p10 (Debian) at gladiator
+X-Spam-Status: No, hits=2.0 tagged_above=-999.0 required=2.0 tests=HTML_20_30,
+	HTML_MESSAGE, HTML_SHORT_LENGTH, NO_REAL_NAME
+X-Spam-Level: *
+
+--===============1746922872==
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<p><b>mronge</b> 2006-10-31 19:15:29 -0800 (Tue, 31 Oct 2006)</p><p>Removing some user specific data that should not be in the repos.<br>
+</p><hr noshade><pre></pre>
+
+--===============1746922872==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+kiwi-dev mailing list
+kiwi-dev@lists.theronge.com
+http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com
+
+--===============1746922872==--

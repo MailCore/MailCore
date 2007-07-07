@@ -1,0 +1,44 @@
+Return-Path: <kiwi-dev-bounces@lists.theronge.com>
+X-Original-To: mronge@theronge.com
+Delivered-To: mronge@theronge.com
+Received: from www.kiwiclient.org (localhost [127.0.0.1])
+	by theronge.com (Postfix) with ESMTP id 2BC19B8501;
+	Wed, 20 Dec 2006 22:26:05 -0800 (PST)
+Received: from [192.168.0.101] (66-117-168-79.rev.dls.net [66.117.168.79])
+	by theronge.com (Postfix) with ESMTP id 5923FB806F
+	for <kiwi-dev@lists.theronge.com>; Wed, 20 Dec 2006 22:26:03 -0800 (PST)
+Mime-Version: 1.0 (Apple Message framework v752.3)
+In-Reply-To: <20061221062139.AF599B87C4@theronge.com>
+References: <20061221062139.AF599B87C4@theronge.com>
+Content-Type: text/plain; charset=US-ASCII; delsp=yes; format=flowed
+Message-Id: <7674EBBF-2F76-48F1-9525-EE99F7FEF64D@theronge.com>
+Content-Transfer-Encoding: 7bit
+From: Matt Ronge <mronge@theronge.com>
+Subject: Re: [Kiwi-dev] Revision 9
+Date: Thu, 21 Dec 2006 00:25:54 -0600
+To: kiwi-dev@lists.theronge.com
+X-Mailer: Apple Mail (2.752.3)
+X-BeenThere: kiwi-dev@lists.theronge.com
+X-Mailman-Version: 2.1.5
+Precedence: list
+List-Id: kiwi-dev.lists.theronge.com
+List-Unsubscribe: <http://lists.theronge.com/mailman/listinfo/kiwi-dev>,
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=unsubscribe>
+List-Archive: <http://lists.theronge.com/pipermail/kiwi-dev>
+List-Post: <mailto:kiwi-dev@lists.theronge.com>
+List-Help: <mailto:kiwi-dev-request@lists.theronge.com?subject=help>
+List-Subscribe: <http://lists.theronge.com/mailman/listinfo/kiwi-dev>,
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=subscribe>
+Sender: kiwi-dev-bounces@lists.theronge.com
+Errors-To: kiwi-dev-bounces@lists.theronge.com
+
+If anyone is curious, I reset the revision numbers when I moved to  
+the new server. I probably should have preserved all of the SVN  
+history...but oh well.
+
+--
+Matt Ronge
+_______________________________________________
+Kiwi-dev mailing list
+Kiwi-dev@lists.theronge.com
+http://lists.theronge.com/mailman/listinfo/kiwi-dev

@@ -1,0 +1,116 @@
+Return-Path: <kiwi-dev-bounces@lists.theronge.com>
+X-Original-To: mronge@theronge.com
+Delivered-To: mronge@randymail-mx1.dreamhost.com
+Received: from punisher.dreamhost.com (punisher.dreamhost.com [66.33.206.109])
+	by randymail-mx1.dreamhost.com (Postfix) with ESMTP id 7AA24347D0
+	for <mronge@theronge.com>; Sun, 13 Aug 2006 22:41:15 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by punisher.dreamhost.com (Postfix) with ESMTP id 5B6DB673F1
+	for <mronge@theronge.com>; Sun, 13 Aug 2006 22:41:15 -0700 (PDT)
+Received: from punisher.dreamhost.com ([127.0.0.1])
+	by localhost (punisher [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 19639-08 for <mronge@theronge.com>;
+	Sun, 13 Aug 2006 22:41:15 -0700 (PDT)
+Received: from frida.dreamhost.com (frida.dreamhost.com [66.33.206.23])
+	by punisher.dreamhost.com (Postfix) with ESMTP id 0CC92673E0
+	for <mronge@theronge.com>; Sun, 13 Aug 2006 22:41:15 -0700 (PDT)
+Received: from che.dreamhost.com (che.dreamhost.com [66.33.216.23])
+	by frida.dreamhost.com (Postfix) with ESMTP
+	id D1B6F16D3D8; Sun, 13 Aug 2006 22:41:14 -0700 (PDT)
+Received: from che.dreamhost.com (localhost [127.0.0.1])
+	by che.dreamhost.com (Postfix) with ESMTP id E3DB51BB98;
+	Sun, 13 Aug 2006 22:41:13 -0700 (PDT)
+X-Original-To: kiwi-dev@lists.theronge.com
+Received: from randymail-a6.dreamhost.com (mailbigip.dreamhost.com
+	[208.97.132.5])
+	by che.dreamhost.com (Postfix) with ESMTP id 6187A1BB82
+	for <kiwi-dev@lists.theronge.com>; Sun, 13 Aug 2006 22:41:12 -0700 (PDT)
+Received: from [192.168.0.103] (66-117-168-181.rev.dls.net [66.117.168.181])
+	by randymail-a6.dreamhost.com (Postfix) with ESMTP id 085DD1757C2
+	for <kiwi-dev@lists.theronge.com>; Sun, 13 Aug 2006 22:41:11 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v752.2)
+In-Reply-To: <DA8CEADA-9B4A-462F-86CC-3989BA1441BB@flyingmeat.com>
+References: <DA8CEADA-9B4A-462F-86CC-3989BA1441BB@flyingmeat.com>
+Message-Id: <AC65CFEF-9C12-445F-ADE2-FE019C125A04@theronge.com>
+From: Matt Ronge <mronge@theronge.com>
+Date: Mon, 14 Aug 2006 00:40:58 -0500
+To: kiwi-dev@lists.theronge.com
+X-Mailer: Apple Mail (2.752.2)
+Subject: Re: [Kiwi-dev] Time Machine and other backup apps
+X-BeenThere: kiwi-dev@lists.theronge.com
+X-Mailman-Version: 2.1.6
+Precedence: list
+List-Id: <kiwi-dev-theronge.com>
+List-Unsubscribe: <http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com>, 
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=unsubscribe>
+List-Archive: <http://lists.theronge.com/private.cgi/kiwi-dev-theronge.com>
+List-Post: <mailto:kiwi-dev@lists.theronge.com>
+List-Help: <mailto:kiwi-dev-request@lists.theronge.com?subject=help>
+List-Subscribe: <http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com>, 
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Sender: kiwi-dev-bounces@lists.theronge.com
+Errors-To: kiwi-dev-bounces@lists.theronge.com
+X-DH-Virus-Scanned: by amavisd-new-20030616-p10 (Debian) at punisher
+X-Spam-Status: No, hits=0.0 tagged_above=-999.0 required=2.0 tests=
+X-Spam-Level: 
+
+
+On Aug 11, 2006, at 5:44 PM, August Mueller wrote:
+
+> I have to confess that I haven't even bothered to look at the
+> coredata schema yet, so it might not be an issue... but I thought I'd
+> mention it.
+
+Yes, it is an issue with how it is currently setup.
+
+> So the way a lot of backup programs work are that they look at the
+> modification date of a file, and then if it's changed, copy it over
+> to whatever store it uses to stash it away for later use.  If it's an
+> incremental backup app, then you'll have multiple copies in the
+> backup repository.  Most don't do binary diffs.
+>
+> So if the file that kiwi uses to store its mail grows and grows and
+> grows, and is eventually 1 gig or something insane like that for
+> someone- any change to the data store will trigger it for a backup-
+> and after 30 days we'll have lost 30 gigs.  Suck!
+>
+> Do you guys think this is a concern for kiwi?  If it is, I think it
+> should probably be something that is addressed sooner rather than  
+> later.
+>
+
+The data Kiwi keeps locally is a cache of what the server has, so in  
+reality the data could go into the user ~/Library/Caches folder and  
+most backup apps won't back it up. This is fine since the real data  
+is on the server, which Kiwi caches locally for performance reasons.  
+However, there are some settings in the database, like account  
+information, that aren't present on the server and should be backed  
+up. Maybe the solution here is then to have two data stores, or use  
+the NSUserDefaults to store account info and put the cache  
+information in the Cache folder.
+
+However, one nice thing I can see the advantage of backing up the  
+cache as well. One good example is if the user deletes a message, so  
+kiwi deletes the message locally and on the server. The user later  
+decides that they didn't want to delete that message, so we can go  
+back and restore the message locally, and then propogate the change  
+to the server. I think this would be great, but it's more than we can  
+bite off and chew right now. There is so much other work to do, and  
+CoreData gives us so much for free, that I think it would be best to  
+postpone work on this aspect until a usable version of Kiwi is  
+available.
+
+So in summary I think: The short term solution is to separate user  
+preferences, and account settings from the DB model, move the DB to  
+the Cache folder. In the future, once Kiwi is more mature, we can  
+take a look at other methods of storing the cache data.
+
+--
+Matt
+
+_______________________________________________
+kiwi-dev mailing list
+kiwi-dev@lists.theronge.com
+http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com

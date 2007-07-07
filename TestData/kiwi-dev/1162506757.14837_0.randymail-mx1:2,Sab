@@ -1,0 +1,114 @@
+Return-Path: <gus@flyingmeat.com>
+X-Original-To: mronge@theronge.com
+Delivered-To: mronge@randymail-mx1.dreamhost.com
+Received: from deathwish.dreamhost.com (deathwish.dreamhost.com [66.33.206.108])
+	by randymail-mx1.dreamhost.com (Postfix) with ESMTP id 71C16349E1
+	for <mronge@theronge.com>; Thu,  2 Nov 2006 14:32:37 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by deathwish.dreamhost.com (Postfix) with ESMTP id 52FEB175126
+	for <mronge@theronge.com>; Thu,  2 Nov 2006 14:32:37 -0800 (PST)
+Received: from deathwish.dreamhost.com ([127.0.0.1])
+	by localhost (deathwish [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 08183-12 for <mronge@theronge.com>;
+	Thu, 2 Nov 2006 14:32:37 -0800 (PST)
+Received: from elvis.mu.org (elvis.mu.org [192.203.228.196])
+	by deathwish.dreamhost.com (Postfix) with ESMTP id DDBB317511F
+	for <mronge@theronge.com>; Thu,  2 Nov 2006 14:32:34 -0800 (PST)
+Received: from [192.168.0.2] (c-24-17-106-145.hsd1.wa.comcast.net [24.17.106.145])
+	by elvis.mu.org (Postfix) with ESMTP id 82F951A4D88
+	for <mronge@theronge.com>; Thu,  2 Nov 2006 14:32:34 -0800 (PST)
+Message-Id: <4C838DE4-BD21-4779-8331-54A429B5B6EA@flyingmeat.com>
+From: Gus Mueller <gus@flyingmeat.com>
+To: Matt Ronge <mronge@theronge.com>
+In-Reply-To: <4CD5F5E9-8276-4953-8701-2AA54EF3E5A8@theronge.com>
+Content-Type: text/plain; charset=US-ASCII; format=flowed; delsp=yes
+X-Smtp-Server: ssl.mu.org:gus
+Mime-Version: 1.0 (Apple Message framework v849)
+Subject: Re: [Kiwi-dev] Kiwi Update
+Content-Transfer-Encoding: 7bit
+Date: Thu, 2 Nov 2006 14:29:01 -0800
+References: <4CD5F5E9-8276-4953-8701-2AA54EF3E5A8@theronge.com>
+X-Mailer: Apple Mail (2.849)
+X-DH-Virus-Scanned: by amavisd-new-20030616-p10 (Debian) at deathwish
+X-Spam-Status: No, hits=0.0 tagged_above=-999.0 required=2.0 tests=
+X-Spam-Level: 
+
+Very cool.  Sorry I haven't been able to help out lately, FlySketch 2  
+is behind schedule :)
+
+Make sure to let us know when the site goes live, I'll put a pointer  
+up on my website and hopefully that'll send some folks over.
+
+-gus
+
+On Nov 2, 2006, at 12:49 , Matt Ronge wrote:
+
+> Kiwi Update
+> ===========
+>
+> Progress has been slow on Kiwi lately, and I apologize for that. I'm
+> a student as many of you know, and I seem to have a ton of projects
+> and homework assignments floating around. Recently, there's been a
+> bit of progress, like builds no longer fail (yaay!). The client is
+> still not functional in it's current state. I've started the process
+> of removing glue code and moving to a nearly 100% bindings built app.
+> I've learned two things from this experience:
+>
+> 1.	The repository should always be left in a build-able state
+> 2.	There shouldn't be a loss of functionality with a subversion commit
+>
+> If either situation occurs, development should be done on a branch or
+> work should be done in a working copy until both of the conditions
+> are satisfied. This might be obvious to most developers, but it
+> wasn't until recently that I learned this particular lesson.
+>
+> With that out of the way...
+>
+> A new server
+> -----------
+> Just today I signed up for a virtual private server through Quantact.
+> I've also registered a domain name, kiwiclient.org, which I will be
+> moving the Kiwi resources over to. I'm going to be setting up a bug
+> tracking system, a wiki, http, mailman and etc, all with the sole
+> purpose of supporting this project. So please be patient, some
+> resources might go down for a day or so while I move to the new
+> server, but it will be for the better.
+>
+> What about my repository access?
+> -----------------------------
+> I've granted a number of people access, but that will be changing
+> with the move to the new server. I hate to revoke repository access,
+> but I think it will work better if people submit patches to the list
+> and I can approve them as deemed necessary. If people become very
+> active in the project, I can then grant repository access as is  
+> needed.
+>
+> What can I work on?
+> ------------------
+> A number of people have asked me what they can work on, I'll be
+> putting together a to do list shortly, and I'll be adding
+> documentation on the architecture of Kiwi. Once that is up it will be
+> easier for others to contribute to the project. I want to put
+> together a series of milestones, so that we can incrementally add
+> more functionality to Kiwi, and hopefully get off the ground sooner.
+>
+> So hang in there, I'm working on turning this into a **real** open
+> source project. This weekend I want to have the new server up and
+> running and a project schedule with milestones.
+>
+> Thanks for everyones interest,
+> --
+> Matt Ronge
+> _______________________________________________
+> kiwi-dev mailing list
+> kiwi-dev@lists.theronge.com
+> http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com
+
+-gus
+
+--  
+August 'Gus' Mueller
+Flying Meat Inc.
+http://flyingmeat.com/
+
+

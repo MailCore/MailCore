@@ -1,0 +1,54 @@
+Return-Path: <pdbowers@gmail.com>
+X-Original-To: mronge@theronge.com
+Delivered-To: mronge@randymail-mx2.dreamhost.com
+Received: from deathwish.dreamhost.com (deathwish.dreamhost.com [66.33.206.108])
+	by randymail-mx2.dreamhost.com (Postfix) with ESMTP id 5A4B0139DC9
+	for <mronge@theronge.com>; Sat, 12 Aug 2006 22:27:34 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by deathwish.dreamhost.com (Postfix) with ESMTP id 26CA117517E
+	for <mronge@theronge.com>; Sat, 12 Aug 2006 22:27:34 -0700 (PDT)
+Received: from deathwish.dreamhost.com ([127.0.0.1])
+	by localhost (deathwish [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 14120-08 for <mronge@theronge.com>;
+	Sat, 12 Aug 2006 22:27:34 -0700 (PDT)
+Received: from wx-out-0506.google.com (wx-out-0506.google.com [66.249.82.239])
+	by deathwish.dreamhost.com (Postfix) with ESMTP id DB3BB175129
+	for <mronge@theronge.com>; Sat, 12 Aug 2006 22:27:33 -0700 (PDT)
+Received: by wx-out-0506.google.com with SMTP id s19so967305wxc
+        for <mronge@theronge.com>; Sat, 12 Aug 2006 22:27:33 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;
+        s=beta; d=gmail.com;
+        h=received:mime-version:content-transfer-encoding:message-id:content-type:to:from:subject:date:x-mailer;
+        b=AEGNOmI8RVs8ox7xST4f0X6nzRcFfm4ygGrtIqdzu0G4ulweHTAGeaJTgl8yOIv5eRG/8WSKnw7C9G33Czo0WQYjjODH5Jn9NxYf2jj5eNeR5OizdZZqx85uBsfUbAFXGYTQ1elZ036Y73A4G9Rvh54Lq8p5MA28L1EipmdSX3A=
+Received: by 10.70.74.1 with SMTP id w1mr7792892wxa;
+        Sat, 12 Aug 2006 22:27:33 -0700 (PDT)
+Received: from ?24.236.74.135? ( [24.236.74.135])
+        by mx.gmail.com with ESMTP id g5sm4316178wra.2006.08.12.22.27.32;
+        Sat, 12 Aug 2006 22:27:33 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v752.2)
+Content-Transfer-Encoding: 7bit
+Message-Id: <7C2E112E-DB40-4E27-BC39-7B243549C3B1@gmail.com>
+Content-Type: text/plain; charset=US-ASCII; delsp=yes; format=flowed
+To: mronge@theronge.com
+From: Paul Bowers <pdbowers@gmail.com>
+Subject: Kiwi Mail Client
+Date: Sun, 13 Aug 2006 00:27:07 -0500
+X-Mailer: Apple Mail (2.752.2)
+X-DH-Virus-Scanned: by amavisd-new-20030616-p10 (Debian) at deathwish
+X-Spam-Status: No, hits=0.0 tagged_above=-999.0 required=2.0 tests=
+X-Spam-Level: 
+
+Hello-
+Quite by accident, I found out about Kiwi doing a Google search in an  
+attempt to find a suitable Mac email client.
+
+I am very excited about this new prospect, and look forward to using  
+it.  Is it possible for you to give a general idea of when it may be  
+released?.
+
+The screenshots look impressive, and of course, they will only  
+improve with time.  I am looking forward to trying and using Kiwi.
+
+Thanks
+
+

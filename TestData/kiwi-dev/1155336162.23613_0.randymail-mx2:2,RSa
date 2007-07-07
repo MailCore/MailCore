@@ -1,0 +1,78 @@
+Return-Path: <kiwi-dev-bounces@lists.theronge.com>
+X-Original-To: mronge@theronge.com
+Delivered-To: mronge@randymail-mx2.dreamhost.com
+Received: from deathwish.dreamhost.com (deathwish.dreamhost.com [66.33.206.108])
+	by randymail-mx2.dreamhost.com (Postfix) with ESMTP id 0367C13B43A
+	for <mronge@theronge.com>; Fri, 11 Aug 2006 15:42:42 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by deathwish.dreamhost.com (Postfix) with ESMTP id D22021756D6
+	for <mronge@theronge.com>; Fri, 11 Aug 2006 15:42:41 -0700 (PDT)
+Received: from deathwish.dreamhost.com ([127.0.0.1])
+	by localhost (deathwish [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 17622-04 for <mronge@theronge.com>;
+	Fri, 11 Aug 2006 15:42:41 -0700 (PDT)
+Received: from frida.dreamhost.com (frida.dreamhost.com [66.33.206.23])
+	by deathwish.dreamhost.com (Postfix) with ESMTP id 84444176237
+	for <mronge@theronge.com>; Fri, 11 Aug 2006 15:42:41 -0700 (PDT)
+Received: from che.dreamhost.com (che.dreamhost.com [66.33.216.23])
+	by frida.dreamhost.com (Postfix) with ESMTP
+	id 6F12516D2A3; Fri, 11 Aug 2006 15:42:41 -0700 (PDT)
+Received: from che.dreamhost.com (localhost [127.0.0.1])
+	by che.dreamhost.com (Postfix) with ESMTP id DB62D1BB55;
+	Fri, 11 Aug 2006 15:42:37 -0700 (PDT)
+X-Original-To: kiwi-dev@lists.theronge.com
+Received: from elvis.mu.org (elvis.mu.org [192.203.228.196])
+	by che.dreamhost.com (Postfix) with ESMTP id 831E11BB42
+	for <kiwi-dev@lists.theronge.com>; Fri, 11 Aug 2006 15:42:35 -0700 (PDT)
+Received: from [192.168.1.174] (64-142-76-135.dsl.static.sonic.net
+	[64.142.76.135]) by elvis.mu.org (Postfix) with ESMTP id BE6151A3C31
+	for <kiwi-dev@lists.theronge.com>; Fri, 11 Aug 2006 15:42:35 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v752.2)
+Message-Id: <DA8CEADA-9B4A-462F-86CC-3989BA1441BB@flyingmeat.com>
+To: kiwi-dev@lists.theronge.com
+From: August Mueller <gus@flyingmeat.com>
+Date: Fri, 11 Aug 2006 15:44:54 -0700
+X-Mailer: Apple Mail (2.752.2)
+Subject: [Kiwi-dev] Time Machine and other backup apps
+X-BeenThere: kiwi-dev@lists.theronge.com
+X-Mailman-Version: 2.1.6
+Precedence: list
+List-Id: <kiwi-dev-theronge.com>
+List-Unsubscribe: <http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com>, 
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=unsubscribe>
+List-Archive: <http://lists.theronge.com/private.cgi/kiwi-dev-theronge.com>
+List-Post: <mailto:kiwi-dev@lists.theronge.com>
+List-Help: <mailto:kiwi-dev-request@lists.theronge.com?subject=help>
+List-Subscribe: <http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com>, 
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Sender: kiwi-dev-bounces@lists.theronge.com
+Errors-To: kiwi-dev-bounces@lists.theronge.com
+X-DH-Virus-Scanned: by amavisd-new-20030616-p10 (Debian) at deathwish
+X-Spam-Status: No, hits=0.0 tagged_above=-999.0 required=2.0 tests=
+X-Spam-Level: 
+
+I have to confess that I haven't even bothered to look at the  
+coredata schema yet, so it might not be an issue... but I thought I'd  
+mention it.
+
+So the way a lot of backup programs work are that they look at the  
+modification date of a file, and then if it's changed, copy it over  
+to whatever store it uses to stash it away for later use.  If it's an  
+incremental backup app, then you'll have multiple copies in the  
+backup repository.  Most don't do binary diffs.
+
+So if the file that kiwi uses to store its mail grows and grows and  
+grows, and is eventually 1 gig or something insane like that for  
+someone- any change to the data store will trigger it for a backup-  
+and after 30 days we'll have lost 30 gigs.  Suck!
+
+Do you guys think this is a concern for kiwi?  If it is, I think it  
+should probably be something that is addressed sooner rather than later.
+
+-gus
+_______________________________________________
+kiwi-dev mailing list
+kiwi-dev@lists.theronge.com
+http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com

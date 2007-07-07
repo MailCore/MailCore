@@ -1,0 +1,50 @@
+Return-Path: <kiwi-dev-bounces@lists.theronge.com>
+X-Original-To: mronge@theronge.com
+Delivered-To: mronge@theronge.com
+Received: from www.kiwiclient.org (localhost [127.0.0.1])
+	by theronge.com (Postfix) with ESMTP id 818DCB855C;
+	Tue, 26 Dec 2006 16:59:52 -0800 (PST)
+Received: by theronge.com (Postfix, from userid 33)
+	id E97A0B855C; Tue, 26 Dec 2006 16:59:48 -0800 (PST)
+To: kiwi-dev@lists.theronge.com
+From: kiwi-dev@lists.theronge.com
+MIME-Version: 1.0
+Message-Id: <20061227005948.E97A0B855C@theronge.com>
+Date: Tue, 26 Dec 2006 16:59:48 -0800 (PST)
+Subject: [Kiwi-dev] Revision 14
+X-BeenThere: kiwi-dev@lists.theronge.com
+X-Mailman-Version: 2.1.5
+Precedence: list
+Reply-To: kiwi-dev@lists.theronge.com
+List-Id: kiwi-dev.lists.theronge.com
+List-Unsubscribe: <http://lists.theronge.com/mailman/listinfo/kiwi-dev>,
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=unsubscribe>
+List-Archive: <http://lists.theronge.com/pipermail/kiwi-dev>
+List-Post: <mailto:kiwi-dev@lists.theronge.com>
+List-Help: <mailto:kiwi-dev-request@lists.theronge.com?subject=help>
+List-Subscribe: <http://lists.theronge.com/mailman/listinfo/kiwi-dev>,
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=subscribe>
+Content-Type: multipart/mixed; boundary="===============0528869245=="
+Mime-version: 1.0
+Sender: kiwi-dev-bounces@lists.theronge.com
+Errors-To: kiwi-dev-bounces@lists.theronge.com
+
+--===============0528869245==
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<p><b>mronge</b> 2006-12-26 16:59:35 -0800 (Tue, 26 Dec 2006)</p><p>MailCore no longer included cyrus-sasl. Instead, I've included the necessary headers so that libetpan can link against the version of cyrus-sasl included with the system. This should solve all sorts of problems, including the instability of SASL and SMTP.<br>
+</p><hr noshade><pre></pre>
+
+--===============0528869245==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Kiwi-dev mailing list
+Kiwi-dev@lists.theronge.com
+http://lists.theronge.com/mailman/listinfo/kiwi-dev
+
+--===============0528869245==--

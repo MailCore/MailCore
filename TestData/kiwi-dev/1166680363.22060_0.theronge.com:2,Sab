@@ -1,0 +1,39 @@
+Return-Path: <kiwi-dev-bounces@lists.theronge.com>
+X-Original-To: mronge@theronge.com
+Delivered-To: mronge@theronge.com
+Received: from www.kiwiclient.org (localhost [127.0.0.1])
+	by theronge.com (Postfix) with ESMTP id D0B9EB87C9
+	for <mronge@theronge.com>; Wed, 20 Dec 2006 21:52:42 -0800 (PST)
+Received: from [192.168.0.101] (66-117-168-18.rev.dls.net [66.117.168.18])
+	by theronge.com (Postfix) with ESMTP id DDC27B8707
+	for <kiwi-dev@lists.theronge.com>; Wed, 20 Dec 2006 21:09:22 -0800 (PST)
+Mime-Version: 1.0 (Apple Message framework v752.3)
+Content-Transfer-Encoding: 7bit
+Message-Id: <A86FC79B-8621-4C38-8C80-38FD227565B5@theronge.com>
+Content-Type: text/plain; charset=US-ASCII; format=flowed
+To: kiwi-dev@lists.theronge.com
+From: Matt Ronge <mronge@theronge.com>
+Date: Wed, 20 Dec 2006 23:09:14 -0600
+X-Mailer: Apple Mail (2.752.3)
+Subject: [Kiwi-dev] test message
+X-BeenThere: kiwi-dev@lists.theronge.com
+X-Mailman-Version: 2.1.5
+Precedence: list
+List-Id: kiwi-dev.lists.theronge.com
+List-Unsubscribe: <http://lists.theronge.com/mailman/listinfo/kiwi-dev>,
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=unsubscribe>
+List-Archive: <http://lists.theronge.com/pipermail/kiwi-dev>
+List-Post: <mailto:kiwi-dev@lists.theronge.com>
+List-Help: <mailto:kiwi-dev-request@lists.theronge.com?subject=help>
+List-Subscribe: <http://lists.theronge.com/mailman/listinfo/kiwi-dev>,
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=subscribe>
+Sender: kiwi-dev-bounces@lists.theronge.com
+Errors-To: kiwi-dev-bounces@lists.theronge.com
+
+this is a test
+
+test message
+_______________________________________________
+Kiwi-dev mailing list
+Kiwi-dev@lists.theronge.com
+http://lists.theronge.com/mailman/listinfo/kiwi-dev

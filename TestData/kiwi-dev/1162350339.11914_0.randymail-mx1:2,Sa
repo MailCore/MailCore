@@ -1,0 +1,222 @@
+Return-Path: <kiwi-dev-bounces@lists.theronge.com>
+X-Original-To: mronge@theronge.com
+Delivered-To: mronge@randymail-mx1.dreamhost.com
+Received: from deathwish.dreamhost.com (deathwish.dreamhost.com [66.33.206.108])
+	by randymail-mx1.dreamhost.com (Postfix) with ESMTP id D5507349CB
+	for <mronge@theronge.com>; Tue, 31 Oct 2006 19:05:38 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by deathwish.dreamhost.com (Postfix) with ESMTP id BC3F117516F
+	for <mronge@theronge.com>; Tue, 31 Oct 2006 19:05:38 -0800 (PST)
+Received: from deathwish.dreamhost.com ([127.0.0.1])
+	by localhost (deathwish [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 29839-14 for <mronge@theronge.com>;
+	Tue, 31 Oct 2006 19:05:38 -0800 (PST)
+Received: from frida.dreamhost.com (frida.dreamhost.com [66.33.206.23])
+	by deathwish.dreamhost.com (Postfix) with ESMTP id 464BA175161
+	for <mronge@theronge.com>; Tue, 31 Oct 2006 19:05:38 -0800 (PST)
+Received: from che.dreamhost.com (che.dreamhost.com [66.33.216.23])
+	by frida.dreamhost.com (Postfix) with ESMTP
+	id 27FE316D388; Tue, 31 Oct 2006 19:05:38 -0800 (PST)
+Received: from che.dreamhost.com (localhost [127.0.0.1])
+	by che.dreamhost.com (Postfix) with ESMTP id 7D6031BB62;
+	Tue, 31 Oct 2006 19:05:37 -0800 (PST)
+X-Original-To: kiwi-dev@lists.theronge.com
+Received: from randymail-a8.dreamhost.com (sd-green-bigip-177.dreamhost.com
+	[208.97.132.177])
+	by che.dreamhost.com (Postfix) with ESMTP id 513131BB50
+	for <kiwi-dev@lists.theronge.com>; Tue, 31 Oct 2006 19:05:31 -0800 (PST)
+Received: from [10.0.1.3] (unknown [74.136.217.138])
+	by randymail-a8.dreamhost.com (Postfix) with ESMTP id D9867AF318;
+	Tue, 31 Oct 2006 19:05:30 -0800 (PST)
+In-Reply-To: <57955.193.11.234.162.1162094622.squirrel@webmail.chalmers.se>
+References: <20061025030616.97B1C2425E@nimitz.dreamhost.com>
+	<57955.193.11.234.162.1162094622.squirrel@webmail.chalmers.se>
+Mime-Version: 1.0 (Apple Message framework v752.3)
+X-Priority: 3 (Normal)
+Message-Id: <72615D53-4C7B-43D9-BFF5-694201A9B740@theronge.com>
+From: Matt Ronge <mronge@theronge.com>
+Date: Tue, 31 Oct 2006 21:04:03 -0600
+To: =?ISO-8859-1?Q?Joachim_M=E5rtensson?= <joachimm@etek.chalmers.se>
+X-Mailer: Apple Mail (2.752.3)
+Cc: kiwi-dev@lists.theronge.com
+Subject: Re: [Kiwi-dev] Revision 114
+X-BeenThere: kiwi-dev@lists.theronge.com
+X-Mailman-Version: 2.1.6
+Precedence: list
+List-Id: <kiwi-dev-theronge.com>
+List-Unsubscribe: <http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com>, 
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=unsubscribe>
+List-Archive: <http://lists.theronge.com/private.cgi/kiwi-dev-theronge.com>
+List-Post: <mailto:kiwi-dev@lists.theronge.com>
+List-Help: <mailto:kiwi-dev-request@lists.theronge.com?subject=help>
+List-Subscribe: <http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com>, 
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=subscribe>
+Content-Type: text/plain; charset="windows-1252"
+Content-Transfer-Encoding: quoted-printable
+Sender: kiwi-dev-bounces@lists.theronge.com
+Errors-To: kiwi-dev-bounces@lists.theronge.com
+X-DH-Virus-Scanned: by amavisd-new-20030616-p10 (Debian) at deathwish
+X-Spam-Status: No, hits=0.0 tagged_above=-999.0 required=2.0 tests=
+X-Spam-Level: 
+
+Hello Joachim,
+
+So I initially thought that I had fixed the build errors, but as you  =
+
+are finding out, the problem is still present. I'm going to attempt  =
+
+to correct these build errors tonight, and that should fix all of the  =
+
+aforementioned errors.
+
+I'll get back to you once I have these issues sorted out,
+--
+Matt Ronge
+
+On Oct 28, 2006, at 11:03 PM, Joachim M=E5rtensson wrote:
+
+>> mronge 2006-10-24 20:06:13 -0700 (Tue, 24 Oct 2006)Build
+>> errors have been fixed<br>
+> Hello I have been looking into Kiwi revision 114., trying to build  =
+
+> it in
+> release mode I get the following errors
+>
+> /Users/joachimm/Projects/kiwi/build/Kiwi.build/Release/Kiwi.build/ =
+
+> Script-370EAA310A89CED9004C76AC.sh
+> cp: /Users/joachimm/Projects/kiwi/build/Release/ =
+
+> RBSplitView.framework: No
+> such file or directory
+> cp: /Users/joachimm/Projects/kiwi/build/Release/LuaCore.framework:  =
+
+> No such
+> file or directory
+> cp: /Users/joachimm/Projects/kiwi/build/Release/MailCore.framework: No
+> such file or directory
+> 		cp: /Users/joachimm/Projects/kiwi/build/Release/ =
+
+> RBSplitView.framework:
+> No such file or directory
+> 		cp: /Users/joachimm/Projects/kiwi/build/Release/ =
+
+> LuaCore.framework: No
+> such file or directory
+> 		cp: /Users/joachimm/Projects/kiwi/build/Release/ =
+
+> MailCore.framework: No
+> such file or directory
+> Build failed (3 errors, 2 warnings)
+>
+> trying to track down the problem I find this in the build phase[Run  =
+
+> Script].
+>
+> if [ ! -e "$SRCROOT/build/$CONFIGURATION/Kiwi.app/Contents/ =
+
+> Frameworks/" ]
+> ; then mkdir "$SRCROOT/build/$CONFIGURATION/Kiwi.app/Contents/ =
+
+> Frameworks/"
+> ; fi
+> cp -rf "$SRCROOT/build/$CONFIGURATION/RBSplitView.framework"
+> "$SRCROOT/build/$CONFIGURATION/Kiwi.app/Contents/Frameworks/"
+> cp -rf "$SRCROOT/build/$CONFIGURATION/LuaCore.framework"
+> "$SRCROOT/build/$CONFIGURATION/Kiwi.app/Contents/Frameworks/"
+> cp -rf "$SRCROOT/build/$CONFIGURATION/MailCore.framework"
+> "$SRCROOT/build/$CONFIGURATION/Kiwi.app/Contents/Frameworks/"
+>
+> is there some reason why this should not be
+>
+> if [ ! -e "$SRCROOT/build/$CONFIGURATION/Kiwi.app/Contents/ =
+
+> Frameworks/" ]
+> ; then mkdir "$SRCROOT/build/$CONFIGURATION/Kiwi.app/Contents/ =
+
+> Frameworks/"
+> ; fi
+> cp -rf
+> "$SRCROOT/Frameworks/RBSplitView/build/$CONFIGURATION/ =
+
+> RBSplitView.framework"
+> "$SRCROOT/build/$CONFIGURATION/Kiwi.app/Contents/Frameworks/"
+> cp -rf
+> "$SRCROOT/Frameworks/LuaCore/build/$CONFIGURATION/LuaCore.framework"
+> "$SRCROOT/build/$CONFIGURATION/Kiwi.app/Contents/Frameworks/"
+> cp -rf
+> "$SRCROOT/Frameworks/MailCore/build/$CONFIGURATION/MailCore.framework"
+> "$SRCROOT/build/$CONFIGURATION/Kiwi.app/Contents/Frameworks/"
+>
+> seeing as this is the place where the built frameworks end up?
+> anyway I moved the files manually to the place where the script  =
+
+> wants them
+> to be.
+> When doing a release build i get the following error plus crash.
+> 2006-09-27 01:29:57.084 Kiwi[3781] An uncaught exception was raised
+> 2006-09-27 01:29:57.084 Kiwi[3781] *** -[NSKeyedUnarchiver
+> decodeObjectForKey:]: cannot decode object of class (RBSplitView)
+> 2006-09-27 01:29:57.084 Kiwi[3781] *** Uncaught exception:
+> <NSInvalidUnarchiveOperationException> *** -[NSKeyedUnarchiver
+> decodeObjectForKey:]: cannot decode object of class (RBSplitView)
+> Sep 27 01:30:00 pb12 crashdump[3782]: Kiwi crashed
+> Sep 27 01:30:01 pb12 crashdump[3782]: crash report written to:
+> /Users/joachimm/Library/Logs/CrashReporter/Kiwi.crash.log
+>
+> building in debug mode gets me the following.
+> Building target =93MailCore=94 of project =93MailCore=94 with configurati=
+on
+> =93Debug=94 =97 (1 warning)
+> 	Checking DependenciesWarning: Multiple build commands for output file
+> /Users/joachimm/Projects/kiwi/trunk/Frameworks/MailCore/build/Debug/ =
+
+> MailCore.framework/Versions/A/Resources/Info.plist
+> 		Warning: Multiple build commands for output file
+> /Users/joachimm/Projects/kiwi/trunk/Frameworks/MailCore/build/Debug/ =
+
+> MailCore.framework/Versions/A/Resources/Info.plist
+> Building target =93Kiwi=94 of project =93Kiwi=94 with configuration =93De=
+bug=94  =
+
+> =97 (2
+> errors)
+> In file included from
+> /Users/joachimm/Projects/kiwi/trunk/Source/CTAccount.m:2:
+> /Users/joachimm/Projects/kiwi/trunk/Source/Thread Backend/ =
+
+> CTThread.h:2:30:
+> error: MailCore/MailCore.h: No such file or directory
+> In file included from
+> /Users/joachimm/Projects/kiwi/trunk/Source/CTAccount.m:2:
+> /Users/joachimm/Projects/kiwi/trunk/Source/Thread Backend/ =
+
+> CTThread.h:6:
+> error: parse error before 'CTCoreAccount'
+> 		In file included from
+> /Users/joachimm/Projects/kiwi/trunk/Source/CTAccount.m:2:
+> 			/Users/joachimm/Projects/kiwi/trunk/Source/Thread
+> Backend/CTThread.h:2:30: error: MailCore/MailCore.h: No such file or
+> directory
+> 		In file included from
+> /Users/joachimm/Projects/kiwi/trunk/Source/CTAccount.m:2:
+> 			/Users/joachimm/Projects/kiwi/trunk/Source/Thread Backend/ =
+
+> CTThread.h:6:
+> error: parse error before 'CTCoreAccount'
+>
+>
+> Build failed (2 errors, 1 warning)
+>
+> TIA
+> Joachim M=E5rtensson
+>
+> _______________________________________________
+> kiwi-dev mailing list
+> kiwi-dev@lists.theronge.com
+> http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com
+
+_______________________________________________
+kiwi-dev mailing list
+kiwi-dev@lists.theronge.com
+http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com

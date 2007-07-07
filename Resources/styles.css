@@ -1,0 +1,59 @@
+body {
+
+}
+
+td {
+	vertical-align: top;
+}
+
+h1 {
+	text-align: left;
+}
+
+h3 {
+	margin-bottom: 3px;
+}
+
+ul {
+	margin: 0px;
+}
+
+.image-container {
+	width: 580px;
+	padding: 5px;
+	overflow: auto;
+}
+
+.copyright {
+	padding-top: 5px;
+	margin-top: 40px;
+	font-size: 80%;
+}
+
+.content, .copyright {
+	width: 600px;
+	overflow: auto;
+}
+
+.horizontal-rule {
+	padding-top: 30px;
+	margin-top: 10px;
+}
+
+.menu {
+	position: absolute;
+	left: 700px;
+	top: 30px;
+	width: 230px;
+	z-index: 5;
+}
+
+.menu h3 {
+	margin-top: 10px;
+}
+
+.fragment .stringliteral,
+.fragment a {
+	font-size: 100%;
+	font-family: monospace;
+}

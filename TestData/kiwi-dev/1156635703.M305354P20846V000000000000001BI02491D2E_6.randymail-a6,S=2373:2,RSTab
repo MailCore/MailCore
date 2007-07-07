@@ -1,0 +1,57 @@
+Return-Path: <krugazor@poulet.org>
+X-Original-To: mronge@theronge.com
+Delivered-To: mronge@randymail-mx1.dreamhost.com
+Received: from punisher.dreamhost.com (punisher.dreamhost.com [66.33.206.109])
+	by randymail-mx1.dreamhost.com (Postfix) with ESMTP id 4A1CC34598
+	for <mronge@theronge.com>; Mon, 31 Jul 2006 04:43:14 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by punisher.dreamhost.com (Postfix) with ESMTP id 45CB56742D
+	for <mronge@theronge.com>; Mon, 31 Jul 2006 04:43:14 -0700 (PDT)
+Received: from punisher.dreamhost.com ([127.0.0.1])
+	by localhost (punisher [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 10250-10 for <mronge@theronge.com>;
+	Mon, 31 Jul 2006 04:43:14 -0700 (PDT)
+Received: from smtp2-g19.free.fr (smtp2-g19.free.fr [212.27.42.28])
+	by punisher.dreamhost.com (Postfix) with ESMTP id E8E1C673B7
+	for <mronge@theronge.com>; Mon, 31 Jul 2006 04:43:13 -0700 (PDT)
+Received: from [192.168.1.102] (did75-1-81-57-20-205.fbx.proxad.net [81.57.20.205])
+	by smtp2-g19.free.fr (Postfix) with ESMTP id F35B175C21
+	for <mronge@theronge.com>; Mon, 31 Jul 2006 13:43:12 +0200 (CEST)
+Message-ID: <44CDECCF.1010404@poulet.org>
+Disposition-Notification-To: Nicolas Zinovieff <krugazor@poulet.org>
+Date: Mon, 31 Jul 2006 13:43:11 +0200
+From: Nicolas Zinovieff <krugazor@poulet.org>
+User-Agent: Mozilla Thunderbird 1.0.6 (Macintosh/20050716)
+X-Accept-Language: en-us, en
+MIME-Version: 1.0
+To: mronge@theronge.com
+Subject: MailCore build
+X-Enigmail-Version: 0.89.5.0
+X-Enigmail-Supports: pgp-inline, pgp-mime
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-DH-Virus-Scanned: by amavisd-new-20030616-p10 (Debian) at punisher
+X-Spam-Status: No, hits=0.0 tagged_above=-999.0 required=2.0 tests=
+X-Spam-Level: 
+
+Heya,
+
+are there any specific settings to pass to the libetpan and cyrus sasl 
+configure scripts? I have a working shell script that compiles them both 
+in universal binaries, but I was curious as to what kind of options you 
+expect from these libs...
+
+-- 
+  Nicolas Zinovieff
+  Custom developments from France
+*-------------------------------*
+  AIM/iChat: spadjack@mac.com
+  ICQ: 7725641
+  Phone: +33 6 83 68 46 41
+*-------------------------------*
+  Fortune:
+Q:  Why do ducks have flat feet?
+A:  To stamp out forest fires.
+
+Q:  Why do elephants have flat feet?
+A:  To stamp out flaming ducks.

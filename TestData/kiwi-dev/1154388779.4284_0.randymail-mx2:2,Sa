@@ -1,0 +1,110 @@
+Return-Path: <kiwi-dev-bounces@lists.theronge.com>
+X-Original-To: mronge@theronge.com
+Delivered-To: mronge@randymail-mx2.dreamhost.com
+Received: from deathwish.dreamhost.com (deathwish.dreamhost.com [66.33.206.108])
+	by randymail-mx2.dreamhost.com (Postfix) with ESMTP id 3D26213A215
+	for <mronge@theronge.com>; Mon, 31 Jul 2006 16:32:59 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by deathwish.dreamhost.com (Postfix) with ESMTP id 164F0175112
+	for <mronge@theronge.com>; Mon, 31 Jul 2006 16:32:59 -0700 (PDT)
+Received: from deathwish.dreamhost.com ([127.0.0.1])
+	by localhost (deathwish [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 29322-03 for <mronge@theronge.com>;
+	Mon, 31 Jul 2006 16:32:58 -0700 (PDT)
+Received: from frida.dreamhost.com (frida.dreamhost.com [66.33.206.23])
+	by deathwish.dreamhost.com (Postfix) with ESMTP id 76E13175162
+	for <mronge@theronge.com>; Mon, 31 Jul 2006 16:32:58 -0700 (PDT)
+Received: from che.dreamhost.com (che.dreamhost.com [66.33.216.23])
+	by frida.dreamhost.com (Postfix) with ESMTP
+	id 02BFF16DB7C; Mon, 31 Jul 2006 16:32:57 -0700 (PDT)
+Received: from che.dreamhost.com (localhost [127.0.0.1])
+	by che.dreamhost.com (Postfix) with ESMTP id 4EBE61BF58;
+	Mon, 31 Jul 2006 15:59:30 -0700 (PDT)
+X-Original-To: kiwi-dev@lists.theronge.com
+Received: from mail-out4.apple.com (mail-out4.apple.com [17.254.13.23])
+	by che.dreamhost.com (Postfix) with ESMTP id 097981BE62
+	for <kiwi-dev@lists.theronge.com>; Mon, 31 Jul 2006 15:58:36 -0700 (PDT)
+Received: from relay8.apple.com (a17-128-113-38.apple.com [17.128.113.38])
+	by mail-out4.apple.com (8.12.11/8.12.11) with ESMTP id k6VMP9NL015631
+	for <kiwi-dev@lists.theronge.com>; Mon, 31 Jul 2006 15:25:09 -0700 (PDT)
+Received: from [17.202.39.153] (unknown [17.202.39.153])
+	(using TLSv1 with cipher AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by relay8.apple.com (Apple SCV relay) with ESMTP id 181434F0001
+	for <kiwi-dev@lists.theronge.com>; Mon, 31 Jul 2006 15:25:09 -0700 (PDT)
+Date: Mon, 31 Jul 2006 15:24:55 -0700
+From: Matt Ronge <mronge@theronge.com>
+In-Reply-To: <2C915148-CCBE-41D6-8CB7-824882E9BC71@flyingmeat.com>
+References: <2C915148-CCBE-41D6-8CB7-824882E9BC71@flyingmeat.com>
+To: kiwi-dev@lists.theronge.com
+Mime-Version: 1.0 (Apple Message framework v840)
+Message-Id: <4F4396C1-323E-4B6F-A9B1-DFB82BFB8BA3@theronge.com>
+X-Mailer: Apple Mail (2.840)
+X-Brightmail-Tracker: AAAAAA==
+Subject: Re: [Kiwi-dev] More lua code for formatting + crash reporter.
+X-BeenThere: kiwi-dev@lists.theronge.com
+X-Mailman-Version: 2.1.6
+Precedence: list
+List-Id: <kiwi-dev-theronge.com>
+List-Unsubscribe: <http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com>, 
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=unsubscribe>
+List-Archive: <http://lists.theronge.com/private.cgi/kiwi-dev-theronge.com>
+List-Post: <mailto:kiwi-dev@lists.theronge.com>
+List-Help: <mailto:kiwi-dev-request@lists.theronge.com?subject=help>
+List-Subscribe: <http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com>, 
+	<mailto:kiwi-dev-request@lists.theronge.com?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Sender: kiwi-dev-bounces@lists.theronge.com
+Errors-To: kiwi-dev-bounces@lists.theronge.com
+X-DH-Virus-Scanned: by amavisd-new-20030616-p10 (Debian) at deathwish
+X-Spam-Status: No, hits=0.0 tagged_above=-999.0 required=2.0 tests=
+X-Spam-Level: 
+
+
+On Jul 31, 2006, at 2:20 PM, Gus Mueller wrote:
+
+> I made another lua script to do the formatting for the non blockquote
+> formatting stuff, and made some fixes for the blockquote one
+> (testing, what's that?).
+
+Heh. Blech, who needs testing when you write perfect code ;) (totally  
+sarcastic)
+
+>
+> It would replace most of the code in -[CTMainController
+> prepareForWebDisplay:]
+>
+> Should I check this in?
+
+Yea, awesome. prepareForWebDisplay: I've been wanting to get rid of
+for some time.
+
+> I also made another change to the lua stuff so that it'll look for
+> scripts in a hidden pref dir if set, so a new build of Kiwi isn't
+> required just to tweak a script.  Check out LCLua runScriptInBundle:
+> for the defaults example.
+
+Hmm, not 100% sure what you mean, but I'll check out the code.
+
+>
+> For the Crash Reporter stuff, Jonathan Wight has been working on open
+> sourcing a crash reporter framework he's got.  I figured Kiwi would
+> use that instead of the stuff I did, since I'll probably end up
+> moving to Jonathan's code for my apps as well.  (He did the
+> CToxicProgressIndicator that Kiwi is also using).
+>
+
+OK.
+
+Also, I might go silent for a few days. My powerbook screen is totally  
+smashed in, so I don't have a computer. Apple onsite support is fixing  
+it right now, but it will take me a little while to get up to speed.  
+I've been working on the build system, and I'm working on integrating  
+all the frameworks into the Kiwi svn repos. Build times will be  
+longer, because MailCore takes quite a while to build, but it will be  
+easier in the long run.
+_______________________________________________
+kiwi-dev mailing list
+kiwi-dev@lists.theronge.com
+http://lists.theronge.com/listinfo.cgi/kiwi-dev-theronge.com

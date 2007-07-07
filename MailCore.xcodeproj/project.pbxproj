@@ -1,0 +1,1289 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
+		F80BDFC40A77436A003B344E /* acl.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF4A0A774369003B344E /* acl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFC50A77436A003B344E /* annotatemore.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF4B0A774369003B344E /* annotatemore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFC60A77436A003B344E /* carray.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF4C0A774369003B344E /* carray.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFC70A77436A003B344E /* charconv.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF4D0A774369003B344E /* charconv.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFC80A77436A003B344E /* chash.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF4E0A774369003B344E /* chash.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFC90A77436A003B344E /* cinthash.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF4F0A774369003B344E /* cinthash.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFCA0A77436A003B344E /* clist.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF500A774369003B344E /* clist.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFCB0A77436A003B344E /* data_message_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF510A774369003B344E /* data_message_driver.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFCC0A77436A003B344E /* dbdriver.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF520A774369003B344E /* dbdriver.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFCD0A77436A003B344E /* dbdriver_message.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF530A774369003B344E /* dbdriver_message.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFCE0A77436A003B344E /* dbdriver_types.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF540A774369003B344E /* dbdriver_types.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFCF0A77436A003B344E /* dbstorage.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF550A774369003B344E /* dbstorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFD00A77436A003B344E /* generic_cache_types.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF560A774369003B344E /* generic_cache_types.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFD10A77436A003B344E /* hotmailstorage.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF570A774369003B344E /* hotmailstorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFD20A77436A003B344E /* imapdriver.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF580A774369003B344E /* imapdriver.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFD30A77436A003B344E /* imapdriver_cached.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF590A774369003B344E /* imapdriver_cached.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFD40A77436A003B344E /* imapdriver_cached_message.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF5A0A774369003B344E /* imapdriver_cached_message.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFD50A77436A003B344E /* imapdriver_message.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF5B0A774369003B344E /* imapdriver_message.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFD60A77436A003B344E /* imapdriver_types.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF5C0A774369003B344E /* imapdriver_types.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFD70A77436A003B344E /* imapstorage.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF5D0A774369003B344E /* imapstorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFD80A77436A003B344E /* libetpan-config.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF5E0A774369003B344E /* libetpan-config.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFD90A77436A003B344E /* libetpan.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF5F0A774369003B344E /* libetpan.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFDA0A77436A003B344E /* libetpan_version.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF600A774369003B344E /* libetpan_version.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFDB0A77436A003B344E /* mail.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF610A774369003B344E /* mail.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFDC0A77436A003B344E /* maildir.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF620A774369003B344E /* maildir.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFDD0A77436A003B344E /* maildir_types.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF630A774369003B344E /* maildir_types.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFDE0A77436A003B344E /* maildirdriver.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF640A774369003B344E /* maildirdriver.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFDF0A77436A003B344E /* maildirdriver_cached.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF650A774369003B344E /* maildirdriver_cached.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFE00A77436A003B344E /* maildirdriver_cached_message.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF660A77436A003B344E /* maildirdriver_cached_message.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFE10A77436A003B344E /* maildirdriver_message.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF670A77436A003B344E /* maildirdriver_message.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFE20A77436A003B344E /* maildirdriver_types.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF680A77436A003B344E /* maildirdriver_types.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFE30A77436A003B344E /* maildirstorage.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF690A77436A003B344E /* maildirstorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFE40A77436A003B344E /* maildriver.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF6A0A77436A003B344E /* maildriver.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFE50A77436A003B344E /* maildriver_errors.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF6B0A77436A003B344E /* maildriver_errors.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFE60A77436A003B344E /* maildriver_types.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF6C0A77436A003B344E /* maildriver_types.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFE70A77436A003B344E /* maildriver_types_helper.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF6D0A77436A003B344E /* maildriver_types_helper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFE80A77436A003B344E /* mailengine.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF6E0A77436A003B344E /* mailengine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFE90A77436A003B344E /* mailfolder.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF6F0A77436A003B344E /* mailfolder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFEA0A77436A003B344E /* mailimap.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF700A77436A003B344E /* mailimap.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFEB0A77436A003B344E /* mailimap_extension.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF710A77436A003B344E /* mailimap_extension.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFEC0A77436A003B344E /* mailimap_extension_types.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF720A77436A003B344E /* mailimap_extension_types.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFED0A77436A003B344E /* mailimap_helper.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF730A77436A003B344E /* mailimap_helper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFEE0A77436A003B344E /* mailimap_socket.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF740A77436A003B344E /* mailimap_socket.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFEF0A77436A003B344E /* mailimap_ssl.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF750A77436A003B344E /* mailimap_ssl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFF00A77436A003B344E /* mailimap_types.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF760A77436A003B344E /* mailimap_types.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFF10A77436A003B344E /* mailimap_types_helper.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF770A77436A003B344E /* mailimap_types_helper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFF20A77436A003B344E /* mailimf.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF780A77436A003B344E /* mailimf.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFF30A77436A003B344E /* mailimf_types.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF790A77436A003B344E /* mailimf_types.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFF40A77436A003B344E /* mailimf_types_helper.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF7A0A77436A003B344E /* mailimf_types_helper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFF50A77436A003B344E /* mailimf_write_file.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF7B0A77436A003B344E /* mailimf_write_file.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFF60A77436A003B344E /* mailimf_write_generic.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF7C0A77436A003B344E /* mailimf_write_generic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFF70A77436A003B344E /* mailimf_write_mem.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF7D0A77436A003B344E /* mailimf_write_mem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFF80A77436A003B344E /* mailmbox.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF7E0A77436A003B344E /* mailmbox.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFF90A77436A003B344E /* mailmbox_types.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF7F0A77436A003B344E /* mailmbox_types.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFFA0A77436A003B344E /* mailmessage.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF800A77436A003B344E /* mailmessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFFB0A77436A003B344E /* mailmessage_types.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF810A77436A003B344E /* mailmessage_types.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFFC0A77436A003B344E /* mailmh.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF820A77436A003B344E /* mailmh.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFFD0A77436A003B344E /* mailmime.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF830A77436A003B344E /* mailmime.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFFE0A77436A003B344E /* mailmime_content.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF840A77436A003B344E /* mailmime_content.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BDFFF0A77436A003B344E /* mailmime_decode.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF850A77436A003B344E /* mailmime_decode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0000A77436A003B344E /* mailmime_disposition.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF860A77436A003B344E /* mailmime_disposition.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0010A77436A003B344E /* mailmime_types.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF870A77436A003B344E /* mailmime_types.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0020A77436A003B344E /* mailmime_types_helper.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF880A77436A003B344E /* mailmime_types_helper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0030A77436A003B344E /* mailmime_write_file.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF890A77436A003B344E /* mailmime_write_file.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0040A77436A003B344E /* mailmime_write_generic.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF8A0A77436A003B344E /* mailmime_write_generic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0050A77436A003B344E /* mailmime_write_mem.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF8B0A77436A003B344E /* mailmime_write_mem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0060A77436A003B344E /* mailpop3.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF8C0A77436A003B344E /* mailpop3.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0070A77436A003B344E /* mailpop3_helper.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF8D0A77436A003B344E /* mailpop3_helper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0080A77436A003B344E /* mailpop3_socket.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF8E0A77436A003B344E /* mailpop3_socket.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0090A77436A003B344E /* mailpop3_ssl.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF8F0A77436A003B344E /* mailpop3_ssl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE00A0A77436A003B344E /* mailpop3_types.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF900A77436A003B344E /* mailpop3_types.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE00B0A77436A003B344E /* mailprivacy.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF910A77436A003B344E /* mailprivacy.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE00C0A77436A003B344E /* mailprivacy_gnupg.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF920A77436A003B344E /* mailprivacy_gnupg.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE00D0A77436A003B344E /* mailprivacy_smime.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF930A77436A003B344E /* mailprivacy_smime.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE00E0A77436A003B344E /* mailprivacy_tools.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF940A77436A003B344E /* mailprivacy_tools.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE00F0A77436A003B344E /* mailprivacy_types.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF950A77436A003B344E /* mailprivacy_types.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0100A77436A003B344E /* mailsem.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF960A77436A003B344E /* mailsem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0110A77436A003B344E /* mailsmtp.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF970A77436A003B344E /* mailsmtp.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0120A77436A003B344E /* mailsmtp_helper.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF980A77436A003B344E /* mailsmtp_helper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0130A77436A003B344E /* mailsmtp_socket.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF990A77436A003B344E /* mailsmtp_socket.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0140A77436A003B344E /* mailsmtp_ssl.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF9A0A77436A003B344E /* mailsmtp_ssl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0150A77436A003B344E /* mailsmtp_types.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF9B0A77436A003B344E /* mailsmtp_types.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0160A77436A003B344E /* mailstorage.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF9C0A77436A003B344E /* mailstorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0170A77436A003B344E /* mailstorage_types.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF9D0A77436A003B344E /* mailstorage_types.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0180A77436A003B344E /* mailstream.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF9E0A77436A003B344E /* mailstream.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0190A77436A003B344E /* mailstream_helper.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF9F0A77436A003B344E /* mailstream_helper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE01A0A77436A003B344E /* mailstream_low.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFA00A77436A003B344E /* mailstream_low.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE01B0A77436A003B344E /* mailstream_socket.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFA10A77436A003B344E /* mailstream_socket.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE01C0A77436A003B344E /* mailstream_ssl.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFA20A77436A003B344E /* mailstream_ssl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE01D0A77436A003B344E /* mailstream_types.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFA30A77436A003B344E /* mailstream_types.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE01E0A77436A003B344E /* mailthread.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFA40A77436A003B344E /* mailthread.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE01F0A77436A003B344E /* mailthread_types.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFA50A77436A003B344E /* mailthread_types.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0200A77436A003B344E /* mboxdriver.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFA60A77436A003B344E /* mboxdriver.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0210A77436A003B344E /* mboxdriver_cached.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFA70A77436A003B344E /* mboxdriver_cached.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0220A77436A003B344E /* mboxdriver_cached_message.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFA80A77436A003B344E /* mboxdriver_cached_message.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0230A77436A003B344E /* mboxdriver_message.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFA90A77436A003B344E /* mboxdriver_message.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0240A77436A003B344E /* mboxdriver_types.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFAA0A77436A003B344E /* mboxdriver_types.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0250A77436A003B344E /* mboxstorage.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFAB0A77436A003B344E /* mboxstorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0260A77436A003B344E /* mhdriver.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFAC0A77436A003B344E /* mhdriver.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0270A77436A003B344E /* mhdriver_cached.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFAD0A77436A003B344E /* mhdriver_cached.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0280A77436A003B344E /* mhdriver_cached_message.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFAE0A77436A003B344E /* mhdriver_cached_message.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0290A77436A003B344E /* mhdriver_message.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFAF0A77436A003B344E /* mhdriver_message.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE02A0A77436A003B344E /* mhdriver_types.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFB00A77436A003B344E /* mhdriver_types.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE02B0A77436A003B344E /* mhstorage.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFB10A77436A003B344E /* mhstorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE02C0A77436A003B344E /* mime_message_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFB20A77436A003B344E /* mime_message_driver.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE02D0A77436A003B344E /* mmapstring.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFB30A77436A003B344E /* mmapstring.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE02E0A77436A003B344E /* newsnntp.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFB40A77436A003B344E /* newsnntp.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE02F0A77436A003B344E /* newsnntp_socket.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFB50A77436A003B344E /* newsnntp_socket.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0300A77436A003B344E /* newsnntp_ssl.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFB60A77436A003B344E /* newsnntp_ssl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0310A77436A003B344E /* newsnntp_types.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFB70A77436A003B344E /* newsnntp_types.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0320A77436A003B344E /* nntpdriver.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFB80A77436A003B344E /* nntpdriver.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0330A77436A003B344E /* nntpdriver_cached.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFB90A77436A003B344E /* nntpdriver_cached.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0340A77436A003B344E /* nntpdriver_cached_message.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFBA0A77436A003B344E /* nntpdriver_cached_message.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0350A77436A003B344E /* nntpdriver_message.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFBB0A77436A003B344E /* nntpdriver_message.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0360A77436A003B344E /* nntpdriver_types.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFBC0A77436A003B344E /* nntpdriver_types.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0370A77436A003B344E /* nntpstorage.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFBD0A77436A003B344E /* nntpstorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0380A77436A003B344E /* pop3driver.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFBE0A77436A003B344E /* pop3driver.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE0390A77436A003B344E /* pop3driver_cached.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFBF0A77436A003B344E /* pop3driver_cached.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE03A0A77436A003B344E /* pop3driver_cached_message.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFC00A77436A003B344E /* pop3driver_cached_message.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE03B0A77436A003B344E /* pop3driver_message.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFC10A77436A003B344E /* pop3driver_message.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE03C0A77436A003B344E /* pop3driver_types.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFC20A77436A003B344E /* pop3driver_types.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80BE03D0A77436A003B344E /* pop3storage.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDFC30A77436A003B344E /* pop3storage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F81A8ADC0C03FC3B002F780A /* CTMIME_MessagePart.h in Headers */ = {isa = PBXBuildFile; fileRef = F81A8AD20C03FC3B002F780A /* CTMIME_MessagePart.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F81A8ADD0C03FC3B002F780A /* CTMIME_MessagePart.m in Sources */ = {isa = PBXBuildFile; fileRef = F81A8AD30C03FC3B002F780A /* CTMIME_MessagePart.m */; };
+		F81A8ADE0C03FC3B002F780A /* CTMIME_MultiPart.h in Headers */ = {isa = PBXBuildFile; fileRef = F81A8AD40C03FC3B002F780A /* CTMIME_MultiPart.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F81A8ADF0C03FC3B002F780A /* CTMIME_MultiPart.m in Sources */ = {isa = PBXBuildFile; fileRef = F81A8AD50C03FC3B002F780A /* CTMIME_MultiPart.m */; };
+		F81A8AE00C03FC3B002F780A /* CTMIME_SinglePart.h in Headers */ = {isa = PBXBuildFile; fileRef = F81A8AD60C03FC3B002F780A /* CTMIME_SinglePart.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F81A8AE10C03FC3B002F780A /* CTMIME_SinglePart.m in Sources */ = {isa = PBXBuildFile; fileRef = F81A8AD70C03FC3B002F780A /* CTMIME_SinglePart.m */; };
+		F81A8AE20C03FC3B002F780A /* CTMIME_TextPart.h in Headers */ = {isa = PBXBuildFile; fileRef = F81A8AD80C03FC3B002F780A /* CTMIME_TextPart.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F81A8AE30C03FC3B002F780A /* CTMIME_TextPart.m in Sources */ = {isa = PBXBuildFile; fileRef = F81A8AD90C03FC3B002F780A /* CTMIME_TextPart.m */; };
+		F81A8AE40C03FC3B002F780A /* CTMIME.h in Headers */ = {isa = PBXBuildFile; fileRef = F81A8ADA0C03FC3B002F780A /* CTMIME.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F81A8AE50C03FC3B002F780A /* CTMIME.m in Sources */ = {isa = PBXBuildFile; fileRef = F81A8ADB0C03FC3B002F780A /* CTMIME.m */; };
+		F81A8AED0C03FC58002F780A /* CTMIMETests.m in Sources */ = {isa = PBXBuildFile; fileRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */; };
+		F81B885E0A74AA7100143DF6 /* CTCoreAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = F81B88500A74AA7100143DF6 /* CTCoreAccount.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F81B885F0A74AA7100143DF6 /* CTCoreAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = F81B88510A74AA7100143DF6 /* CTCoreAccount.m */; };
+		F81B88600A74AA7100143DF6 /* CTCoreAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = F81B88520A74AA7100143DF6 /* CTCoreAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F81B88610A74AA7100143DF6 /* CTCoreAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = F81B88530A74AA7100143DF6 /* CTCoreAddress.m */; };
+		F81B88620A74AA7100143DF6 /* CTCoreFolder.h in Headers */ = {isa = PBXBuildFile; fileRef = F81B88540A74AA7100143DF6 /* CTCoreFolder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F81B88630A74AA7100143DF6 /* CTCoreFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = F81B88550A74AA7100143DF6 /* CTCoreFolder.m */; };
+		F81B88640A74AA7100143DF6 /* CTCoreMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = F81B88560A74AA7100143DF6 /* CTCoreMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F81B88650A74AA7100143DF6 /* CTCoreMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F81B88570A74AA7100143DF6 /* CTCoreMessage.m */; };
+		F81B88660A74AA7100143DF6 /* CTMIMEParser.h in Headers */ = {isa = PBXBuildFile; fileRef = F81B88580A74AA7100143DF6 /* CTMIMEParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F81B88670A74AA7100143DF6 /* CTMIMEParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F81B88590A74AA7100143DF6 /* CTMIMEParser.m */; };
+		F81B88680A74AA7100143DF6 /* CTSMTPConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = F81B885A0A74AA7100143DF6 /* CTSMTPConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F81B88690A74AA7100143DF6 /* CTSMTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = F81B885B0A74AA7100143DF6 /* CTSMTPConnection.m */; };
+		F81B886A0A74AA7100143DF6 /* MailCore.h in Headers */ = {isa = PBXBuildFile; fileRef = F81B885C0A74AA7100143DF6 /* MailCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F81B886B0A74AA7100143DF6 /* MailCoreTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = F81B885D0A74AA7100143DF6 /* MailCoreTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F81B886E0A74AAAD00143DF6 /* libetpan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F81B886D0A74AAAD00143DF6 /* libetpan.a */; };
+		F81B88730A74AAD800143DF6 /* MailCore_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = F81B88710A74AAD800143DF6 /* MailCore_Prefix.pch */; };
+		F8245A6D0C041C8C005E08A8 /* CTMIMEFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = F8245A2F0C04089D005E08A8 /* CTMIMEFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8245A700C041C91005E08A8 /* CTMIMEFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F8245A300C04089D005E08A8 /* CTMIMEFactory.m */; };
+		F8483E4109CE7B9000B80440 /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8483E4009CE7B9000B80440 /* libssl.dylib */; };
+		F8483E4309CE7B9C00B80440 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8483E4209CE7B9C00B80440 /* libiconv.dylib */; };
+		F8483E4C09CE7C2800B80440 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8483E4B09CE7C2800B80440 /* libcrypto.dylib */; };
+		F88804620B42018500D400E7 /* libsasl2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F88804610B42018500D400E7 /* libsasl2.dylib */; };
+		F88804D70B4243C000D400E7 /* MailCoreUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = F88804D50B4243C000D400E7 /* MailCoreUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F88804D80B4243C000D400E7 /* MailCoreUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F88804D60B4243C000D400E7 /* MailCoreUtilities.m */; };
+		F88CA0CE0BF7A7B00055AC29 /* CTSMTP.h in Headers */ = {isa = PBXBuildFile; fileRef = F88CA0CC0BF7A7B00055AC29 /* CTSMTP.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F88CA0CF0BF7A7B00055AC29 /* CTSMTP.m in Sources */ = {isa = PBXBuildFile; fileRef = F88CA0CD0BF7A7B00055AC29 /* CTSMTP.m */; };
+		F88CA0D40BF7AC0B0055AC29 /* CTESMTP.h in Headers */ = {isa = PBXBuildFile; fileRef = F88CA0D20BF7AC0B0055AC29 /* CTESMTP.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F88CA0D50BF7AC0B0055AC29 /* CTESMTP.m in Sources */ = {isa = PBXBuildFile; fileRef = F88CA0D30BF7AC0B0055AC29 /* CTESMTP.m */; };
+		F8D31A3209C524EA00468234 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D31A3109C524EA00468234 /* main.m */; };
+		F8D31A8609C52A9400468234 /* MailCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* MailCore.framework */; };
+		F8DCD3990C13E18100B10F94 /* acl_types.h in Headers */ = {isa = PBXBuildFile; fileRef = F8DCD3970C13E18100B10F94 /* acl_types.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8DCD39A0C13E18100B10F94 /* annotatemore_types.h in Headers */ = {isa = PBXBuildFile; fileRef = F8DCD3980C13E18100B10F94 /* annotatemore_types.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8DCD39E0C13E1A800B10F94 /* maillock.h in Headers */ = {isa = PBXBuildFile; fileRef = F8DCD39D0C13E1A800B10F94 /* maillock.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8DCD3A10C13E1BE00B10F94 /* uidplus_types.h in Headers */ = {isa = PBXBuildFile; fileRef = F8DCD39F0C13E1BE00B10F94 /* uidplus_types.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8DCD3A20C13E1BE00B10F94 /* uidplus.h in Headers */ = {isa = PBXBuildFile; fileRef = F8DCD3A00C13E1BE00B10F94 /* uidplus.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8EA76130C1141C1004F85D8 /* CTCoreAddressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EA76120C1141C1004F85D8 /* CTCoreAddressTests.m */; };
+		F8EADFB50B3BB178000C8371 /* CTCoreMessageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */; };
+		F8EADFCA0B3BB375000C8371 /* MailCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* MailCore.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F86E986909CE559D00732DBA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = MailCore;
+		};
+		F8EADFC70B3BB36D000C8371 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = MailCore;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F89614140A79D30A00F93E26 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		0867D6A5FE840307C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		8DC2EF5B0486A6940098B216 /* MailCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MailCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		F80BDF4A0A774369003B344E /* acl.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = acl.h; path = OpenSourceProjects/include/libetpan/acl.h; sourceTree = SOURCE_ROOT; };
+		F80BDF4B0A774369003B344E /* annotatemore.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = annotatemore.h; path = OpenSourceProjects/include/libetpan/annotatemore.h; sourceTree = SOURCE_ROOT; };
+		F80BDF4C0A774369003B344E /* carray.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = carray.h; path = OpenSourceProjects/include/libetpan/carray.h; sourceTree = SOURCE_ROOT; };
+		F80BDF4D0A774369003B344E /* charconv.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = charconv.h; path = OpenSourceProjects/include/libetpan/charconv.h; sourceTree = SOURCE_ROOT; };
+		F80BDF4E0A774369003B344E /* chash.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = chash.h; path = OpenSourceProjects/include/libetpan/chash.h; sourceTree = SOURCE_ROOT; };
+		F80BDF4F0A774369003B344E /* cinthash.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = cinthash.h; path = OpenSourceProjects/include/libetpan/cinthash.h; sourceTree = SOURCE_ROOT; };
+		F80BDF500A774369003B344E /* clist.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = clist.h; path = OpenSourceProjects/include/libetpan/clist.h; sourceTree = SOURCE_ROOT; };
+		F80BDF510A774369003B344E /* data_message_driver.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = data_message_driver.h; path = OpenSourceProjects/include/libetpan/data_message_driver.h; sourceTree = SOURCE_ROOT; };
+		F80BDF520A774369003B344E /* dbdriver.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = dbdriver.h; path = OpenSourceProjects/include/libetpan/dbdriver.h; sourceTree = SOURCE_ROOT; };
+		F80BDF530A774369003B344E /* dbdriver_message.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = dbdriver_message.h; path = OpenSourceProjects/include/libetpan/dbdriver_message.h; sourceTree = SOURCE_ROOT; };
+		F80BDF540A774369003B344E /* dbdriver_types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = dbdriver_types.h; path = OpenSourceProjects/include/libetpan/dbdriver_types.h; sourceTree = SOURCE_ROOT; };
+		F80BDF550A774369003B344E /* dbstorage.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = dbstorage.h; path = OpenSourceProjects/include/libetpan/dbstorage.h; sourceTree = SOURCE_ROOT; };
+		F80BDF560A774369003B344E /* generic_cache_types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = generic_cache_types.h; path = OpenSourceProjects/include/libetpan/generic_cache_types.h; sourceTree = SOURCE_ROOT; };
+		F80BDF570A774369003B344E /* hotmailstorage.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = hotmailstorage.h; path = OpenSourceProjects/include/libetpan/hotmailstorage.h; sourceTree = SOURCE_ROOT; };
+		F80BDF580A774369003B344E /* imapdriver.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = imapdriver.h; path = OpenSourceProjects/include/libetpan/imapdriver.h; sourceTree = SOURCE_ROOT; };
+		F80BDF590A774369003B344E /* imapdriver_cached.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = imapdriver_cached.h; path = OpenSourceProjects/include/libetpan/imapdriver_cached.h; sourceTree = SOURCE_ROOT; };
+		F80BDF5A0A774369003B344E /* imapdriver_cached_message.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = imapdriver_cached_message.h; path = OpenSourceProjects/include/libetpan/imapdriver_cached_message.h; sourceTree = SOURCE_ROOT; };
+		F80BDF5B0A774369003B344E /* imapdriver_message.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = imapdriver_message.h; path = OpenSourceProjects/include/libetpan/imapdriver_message.h; sourceTree = SOURCE_ROOT; };
+		F80BDF5C0A774369003B344E /* imapdriver_types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = imapdriver_types.h; path = OpenSourceProjects/include/libetpan/imapdriver_types.h; sourceTree = SOURCE_ROOT; };
+		F80BDF5D0A774369003B344E /* imapstorage.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = imapstorage.h; path = OpenSourceProjects/include/libetpan/imapstorage.h; sourceTree = SOURCE_ROOT; };
+		F80BDF5E0A774369003B344E /* libetpan-config.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = "libetpan-config.h"; path = "OpenSourceProjects/include/libetpan/libetpan-config.h"; sourceTree = SOURCE_ROOT; };
+		F80BDF5F0A774369003B344E /* libetpan.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = libetpan.h; path = OpenSourceProjects/include/libetpan/libetpan.h; sourceTree = SOURCE_ROOT; };
+		F80BDF600A774369003B344E /* libetpan_version.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = libetpan_version.h; path = OpenSourceProjects/include/libetpan/libetpan_version.h; sourceTree = SOURCE_ROOT; };
+		F80BDF610A774369003B344E /* mail.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mail.h; path = OpenSourceProjects/include/libetpan/mail.h; sourceTree = SOURCE_ROOT; };
+		F80BDF620A774369003B344E /* maildir.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = maildir.h; path = OpenSourceProjects/include/libetpan/maildir.h; sourceTree = SOURCE_ROOT; };
+		F80BDF630A774369003B344E /* maildir_types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = maildir_types.h; path = OpenSourceProjects/include/libetpan/maildir_types.h; sourceTree = SOURCE_ROOT; };
+		F80BDF640A774369003B344E /* maildirdriver.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = maildirdriver.h; path = OpenSourceProjects/include/libetpan/maildirdriver.h; sourceTree = SOURCE_ROOT; };
+		F80BDF650A774369003B344E /* maildirdriver_cached.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = maildirdriver_cached.h; path = OpenSourceProjects/include/libetpan/maildirdriver_cached.h; sourceTree = SOURCE_ROOT; };
+		F80BDF660A77436A003B344E /* maildirdriver_cached_message.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = maildirdriver_cached_message.h; path = OpenSourceProjects/include/libetpan/maildirdriver_cached_message.h; sourceTree = SOURCE_ROOT; };
+		F80BDF670A77436A003B344E /* maildirdriver_message.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = maildirdriver_message.h; path = OpenSourceProjects/include/libetpan/maildirdriver_message.h; sourceTree = SOURCE_ROOT; };
+		F80BDF680A77436A003B344E /* maildirdriver_types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = maildirdriver_types.h; path = OpenSourceProjects/include/libetpan/maildirdriver_types.h; sourceTree = SOURCE_ROOT; };
+		F80BDF690A77436A003B344E /* maildirstorage.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = maildirstorage.h; path = OpenSourceProjects/include/libetpan/maildirstorage.h; sourceTree = SOURCE_ROOT; };
+		F80BDF6A0A77436A003B344E /* maildriver.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = maildriver.h; path = OpenSourceProjects/include/libetpan/maildriver.h; sourceTree = SOURCE_ROOT; };
+		F80BDF6B0A77436A003B344E /* maildriver_errors.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = maildriver_errors.h; path = OpenSourceProjects/include/libetpan/maildriver_errors.h; sourceTree = SOURCE_ROOT; };
+		F80BDF6C0A77436A003B344E /* maildriver_types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = maildriver_types.h; path = OpenSourceProjects/include/libetpan/maildriver_types.h; sourceTree = SOURCE_ROOT; };
+		F80BDF6D0A77436A003B344E /* maildriver_types_helper.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = maildriver_types_helper.h; path = OpenSourceProjects/include/libetpan/maildriver_types_helper.h; sourceTree = SOURCE_ROOT; };
+		F80BDF6E0A77436A003B344E /* mailengine.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailengine.h; path = OpenSourceProjects/include/libetpan/mailengine.h; sourceTree = SOURCE_ROOT; };
+		F80BDF6F0A77436A003B344E /* mailfolder.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailfolder.h; path = OpenSourceProjects/include/libetpan/mailfolder.h; sourceTree = SOURCE_ROOT; };
+		F80BDF700A77436A003B344E /* mailimap.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailimap.h; path = OpenSourceProjects/include/libetpan/mailimap.h; sourceTree = SOURCE_ROOT; };
+		F80BDF710A77436A003B344E /* mailimap_extension.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailimap_extension.h; path = OpenSourceProjects/include/libetpan/mailimap_extension.h; sourceTree = SOURCE_ROOT; };
+		F80BDF720A77436A003B344E /* mailimap_extension_types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailimap_extension_types.h; path = OpenSourceProjects/include/libetpan/mailimap_extension_types.h; sourceTree = SOURCE_ROOT; };
+		F80BDF730A77436A003B344E /* mailimap_helper.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailimap_helper.h; path = OpenSourceProjects/include/libetpan/mailimap_helper.h; sourceTree = SOURCE_ROOT; };
+		F80BDF740A77436A003B344E /* mailimap_socket.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailimap_socket.h; path = OpenSourceProjects/include/libetpan/mailimap_socket.h; sourceTree = SOURCE_ROOT; };
+		F80BDF750A77436A003B344E /* mailimap_ssl.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailimap_ssl.h; path = OpenSourceProjects/include/libetpan/mailimap_ssl.h; sourceTree = SOURCE_ROOT; };
+		F80BDF760A77436A003B344E /* mailimap_types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailimap_types.h; path = OpenSourceProjects/include/libetpan/mailimap_types.h; sourceTree = SOURCE_ROOT; };
+		F80BDF770A77436A003B344E /* mailimap_types_helper.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailimap_types_helper.h; path = OpenSourceProjects/include/libetpan/mailimap_types_helper.h; sourceTree = SOURCE_ROOT; };
+		F80BDF780A77436A003B344E /* mailimf.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailimf.h; path = OpenSourceProjects/include/libetpan/mailimf.h; sourceTree = SOURCE_ROOT; };
+		F80BDF790A77436A003B344E /* mailimf_types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailimf_types.h; path = OpenSourceProjects/include/libetpan/mailimf_types.h; sourceTree = SOURCE_ROOT; };
+		F80BDF7A0A77436A003B344E /* mailimf_types_helper.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailimf_types_helper.h; path = OpenSourceProjects/include/libetpan/mailimf_types_helper.h; sourceTree = SOURCE_ROOT; };
+		F80BDF7B0A77436A003B344E /* mailimf_write_file.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailimf_write_file.h; path = OpenSourceProjects/include/libetpan/mailimf_write_file.h; sourceTree = SOURCE_ROOT; };
+		F80BDF7C0A77436A003B344E /* mailimf_write_generic.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailimf_write_generic.h; path = OpenSourceProjects/include/libetpan/mailimf_write_generic.h; sourceTree = SOURCE_ROOT; };
+		F80BDF7D0A77436A003B344E /* mailimf_write_mem.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailimf_write_mem.h; path = OpenSourceProjects/include/libetpan/mailimf_write_mem.h; sourceTree = SOURCE_ROOT; };
+		F80BDF7E0A77436A003B344E /* mailmbox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailmbox.h; path = OpenSourceProjects/include/libetpan/mailmbox.h; sourceTree = SOURCE_ROOT; };
+		F80BDF7F0A77436A003B344E /* mailmbox_types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailmbox_types.h; path = OpenSourceProjects/include/libetpan/mailmbox_types.h; sourceTree = SOURCE_ROOT; };
+		F80BDF800A77436A003B344E /* mailmessage.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailmessage.h; path = OpenSourceProjects/include/libetpan/mailmessage.h; sourceTree = SOURCE_ROOT; };
+		F80BDF810A77436A003B344E /* mailmessage_types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailmessage_types.h; path = OpenSourceProjects/include/libetpan/mailmessage_types.h; sourceTree = SOURCE_ROOT; };
+		F80BDF820A77436A003B344E /* mailmh.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailmh.h; path = OpenSourceProjects/include/libetpan/mailmh.h; sourceTree = SOURCE_ROOT; };
+		F80BDF830A77436A003B344E /* mailmime.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailmime.h; path = OpenSourceProjects/include/libetpan/mailmime.h; sourceTree = SOURCE_ROOT; };
+		F80BDF840A77436A003B344E /* mailmime_content.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailmime_content.h; path = OpenSourceProjects/include/libetpan/mailmime_content.h; sourceTree = SOURCE_ROOT; };
+		F80BDF850A77436A003B344E /* mailmime_decode.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailmime_decode.h; path = OpenSourceProjects/include/libetpan/mailmime_decode.h; sourceTree = SOURCE_ROOT; };
+		F80BDF860A77436A003B344E /* mailmime_disposition.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailmime_disposition.h; path = OpenSourceProjects/include/libetpan/mailmime_disposition.h; sourceTree = SOURCE_ROOT; };
+		F80BDF870A77436A003B344E /* mailmime_types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailmime_types.h; path = OpenSourceProjects/include/libetpan/mailmime_types.h; sourceTree = SOURCE_ROOT; };
+		F80BDF880A77436A003B344E /* mailmime_types_helper.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailmime_types_helper.h; path = OpenSourceProjects/include/libetpan/mailmime_types_helper.h; sourceTree = SOURCE_ROOT; };
+		F80BDF890A77436A003B344E /* mailmime_write_file.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailmime_write_file.h; path = OpenSourceProjects/include/libetpan/mailmime_write_file.h; sourceTree = SOURCE_ROOT; };
+		F80BDF8A0A77436A003B344E /* mailmime_write_generic.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailmime_write_generic.h; path = OpenSourceProjects/include/libetpan/mailmime_write_generic.h; sourceTree = SOURCE_ROOT; };
+		F80BDF8B0A77436A003B344E /* mailmime_write_mem.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailmime_write_mem.h; path = OpenSourceProjects/include/libetpan/mailmime_write_mem.h; sourceTree = SOURCE_ROOT; };
+		F80BDF8C0A77436A003B344E /* mailpop3.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailpop3.h; path = OpenSourceProjects/include/libetpan/mailpop3.h; sourceTree = SOURCE_ROOT; };
+		F80BDF8D0A77436A003B344E /* mailpop3_helper.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailpop3_helper.h; path = OpenSourceProjects/include/libetpan/mailpop3_helper.h; sourceTree = SOURCE_ROOT; };
+		F80BDF8E0A77436A003B344E /* mailpop3_socket.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailpop3_socket.h; path = OpenSourceProjects/include/libetpan/mailpop3_socket.h; sourceTree = SOURCE_ROOT; };
+		F80BDF8F0A77436A003B344E /* mailpop3_ssl.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailpop3_ssl.h; path = OpenSourceProjects/include/libetpan/mailpop3_ssl.h; sourceTree = SOURCE_ROOT; };
+		F80BDF900A77436A003B344E /* mailpop3_types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailpop3_types.h; path = OpenSourceProjects/include/libetpan/mailpop3_types.h; sourceTree = SOURCE_ROOT; };
+		F80BDF910A77436A003B344E /* mailprivacy.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailprivacy.h; path = OpenSourceProjects/include/libetpan/mailprivacy.h; sourceTree = SOURCE_ROOT; };
+		F80BDF920A77436A003B344E /* mailprivacy_gnupg.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailprivacy_gnupg.h; path = OpenSourceProjects/include/libetpan/mailprivacy_gnupg.h; sourceTree = SOURCE_ROOT; };
+		F80BDF930A77436A003B344E /* mailprivacy_smime.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailprivacy_smime.h; path = OpenSourceProjects/include/libetpan/mailprivacy_smime.h; sourceTree = SOURCE_ROOT; };
+		F80BDF940A77436A003B344E /* mailprivacy_tools.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailprivacy_tools.h; path = OpenSourceProjects/include/libetpan/mailprivacy_tools.h; sourceTree = SOURCE_ROOT; };
+		F80BDF950A77436A003B344E /* mailprivacy_types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailprivacy_types.h; path = OpenSourceProjects/include/libetpan/mailprivacy_types.h; sourceTree = SOURCE_ROOT; };
+		F80BDF960A77436A003B344E /* mailsem.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailsem.h; path = OpenSourceProjects/include/libetpan/mailsem.h; sourceTree = SOURCE_ROOT; };
+		F80BDF970A77436A003B344E /* mailsmtp.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailsmtp.h; path = OpenSourceProjects/include/libetpan/mailsmtp.h; sourceTree = SOURCE_ROOT; };
+		F80BDF980A77436A003B344E /* mailsmtp_helper.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailsmtp_helper.h; path = OpenSourceProjects/include/libetpan/mailsmtp_helper.h; sourceTree = SOURCE_ROOT; };
+		F80BDF990A77436A003B344E /* mailsmtp_socket.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailsmtp_socket.h; path = OpenSourceProjects/include/libetpan/mailsmtp_socket.h; sourceTree = SOURCE_ROOT; };
+		F80BDF9A0A77436A003B344E /* mailsmtp_ssl.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailsmtp_ssl.h; path = OpenSourceProjects/include/libetpan/mailsmtp_ssl.h; sourceTree = SOURCE_ROOT; };
+		F80BDF9B0A77436A003B344E /* mailsmtp_types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailsmtp_types.h; path = OpenSourceProjects/include/libetpan/mailsmtp_types.h; sourceTree = SOURCE_ROOT; };
+		F80BDF9C0A77436A003B344E /* mailstorage.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailstorage.h; path = OpenSourceProjects/include/libetpan/mailstorage.h; sourceTree = SOURCE_ROOT; };
+		F80BDF9D0A77436A003B344E /* mailstorage_types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailstorage_types.h; path = OpenSourceProjects/include/libetpan/mailstorage_types.h; sourceTree = SOURCE_ROOT; };
+		F80BDF9E0A77436A003B344E /* mailstream.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailstream.h; path = OpenSourceProjects/include/libetpan/mailstream.h; sourceTree = SOURCE_ROOT; };
+		F80BDF9F0A77436A003B344E /* mailstream_helper.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailstream_helper.h; path = OpenSourceProjects/include/libetpan/mailstream_helper.h; sourceTree = SOURCE_ROOT; };
+		F80BDFA00A77436A003B344E /* mailstream_low.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailstream_low.h; path = OpenSourceProjects/include/libetpan/mailstream_low.h; sourceTree = SOURCE_ROOT; };
+		F80BDFA10A77436A003B344E /* mailstream_socket.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailstream_socket.h; path = OpenSourceProjects/include/libetpan/mailstream_socket.h; sourceTree = SOURCE_ROOT; };
+		F80BDFA20A77436A003B344E /* mailstream_ssl.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailstream_ssl.h; path = OpenSourceProjects/include/libetpan/mailstream_ssl.h; sourceTree = SOURCE_ROOT; };
+		F80BDFA30A77436A003B344E /* mailstream_types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailstream_types.h; path = OpenSourceProjects/include/libetpan/mailstream_types.h; sourceTree = SOURCE_ROOT; };
+		F80BDFA40A77436A003B344E /* mailthread.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailthread.h; path = OpenSourceProjects/include/libetpan/mailthread.h; sourceTree = SOURCE_ROOT; };
+		F80BDFA50A77436A003B344E /* mailthread_types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mailthread_types.h; path = OpenSourceProjects/include/libetpan/mailthread_types.h; sourceTree = SOURCE_ROOT; };
+		F80BDFA60A77436A003B344E /* mboxdriver.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mboxdriver.h; path = OpenSourceProjects/include/libetpan/mboxdriver.h; sourceTree = SOURCE_ROOT; };
+		F80BDFA70A77436A003B344E /* mboxdriver_cached.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mboxdriver_cached.h; path = OpenSourceProjects/include/libetpan/mboxdriver_cached.h; sourceTree = SOURCE_ROOT; };
+		F80BDFA80A77436A003B344E /* mboxdriver_cached_message.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mboxdriver_cached_message.h; path = OpenSourceProjects/include/libetpan/mboxdriver_cached_message.h; sourceTree = SOURCE_ROOT; };
+		F80BDFA90A77436A003B344E /* mboxdriver_message.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mboxdriver_message.h; path = OpenSourceProjects/include/libetpan/mboxdriver_message.h; sourceTree = SOURCE_ROOT; };
+		F80BDFAA0A77436A003B344E /* mboxdriver_types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mboxdriver_types.h; path = OpenSourceProjects/include/libetpan/mboxdriver_types.h; sourceTree = SOURCE_ROOT; };
+		F80BDFAB0A77436A003B344E /* mboxstorage.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mboxstorage.h; path = OpenSourceProjects/include/libetpan/mboxstorage.h; sourceTree = SOURCE_ROOT; };
+		F80BDFAC0A77436A003B344E /* mhdriver.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mhdriver.h; path = OpenSourceProjects/include/libetpan/mhdriver.h; sourceTree = SOURCE_ROOT; };
+		F80BDFAD0A77436A003B344E /* mhdriver_cached.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mhdriver_cached.h; path = OpenSourceProjects/include/libetpan/mhdriver_cached.h; sourceTree = SOURCE_ROOT; };
+		F80BDFAE0A77436A003B344E /* mhdriver_cached_message.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mhdriver_cached_message.h; path = OpenSourceProjects/include/libetpan/mhdriver_cached_message.h; sourceTree = SOURCE_ROOT; };
+		F80BDFAF0A77436A003B344E /* mhdriver_message.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mhdriver_message.h; path = OpenSourceProjects/include/libetpan/mhdriver_message.h; sourceTree = SOURCE_ROOT; };
+		F80BDFB00A77436A003B344E /* mhdriver_types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mhdriver_types.h; path = OpenSourceProjects/include/libetpan/mhdriver_types.h; sourceTree = SOURCE_ROOT; };
+		F80BDFB10A77436A003B344E /* mhstorage.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mhstorage.h; path = OpenSourceProjects/include/libetpan/mhstorage.h; sourceTree = SOURCE_ROOT; };
+		F80BDFB20A77436A003B344E /* mime_message_driver.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mime_message_driver.h; path = OpenSourceProjects/include/libetpan/mime_message_driver.h; sourceTree = SOURCE_ROOT; };
+		F80BDFB30A77436A003B344E /* mmapstring.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mmapstring.h; path = OpenSourceProjects/include/libetpan/mmapstring.h; sourceTree = SOURCE_ROOT; };
+		F80BDFB40A77436A003B344E /* newsnntp.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = newsnntp.h; path = OpenSourceProjects/include/libetpan/newsnntp.h; sourceTree = SOURCE_ROOT; };
+		F80BDFB50A77436A003B344E /* newsnntp_socket.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = newsnntp_socket.h; path = OpenSourceProjects/include/libetpan/newsnntp_socket.h; sourceTree = SOURCE_ROOT; };
+		F80BDFB60A77436A003B344E /* newsnntp_ssl.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = newsnntp_ssl.h; path = OpenSourceProjects/include/libetpan/newsnntp_ssl.h; sourceTree = SOURCE_ROOT; };
+		F80BDFB70A77436A003B344E /* newsnntp_types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = newsnntp_types.h; path = OpenSourceProjects/include/libetpan/newsnntp_types.h; sourceTree = SOURCE_ROOT; };
+		F80BDFB80A77436A003B344E /* nntpdriver.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = nntpdriver.h; path = OpenSourceProjects/include/libetpan/nntpdriver.h; sourceTree = SOURCE_ROOT; };
+		F80BDFB90A77436A003B344E /* nntpdriver_cached.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = nntpdriver_cached.h; path = OpenSourceProjects/include/libetpan/nntpdriver_cached.h; sourceTree = SOURCE_ROOT; };
+		F80BDFBA0A77436A003B344E /* nntpdriver_cached_message.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = nntpdriver_cached_message.h; path = OpenSourceProjects/include/libetpan/nntpdriver_cached_message.h; sourceTree = SOURCE_ROOT; };
+		F80BDFBB0A77436A003B344E /* nntpdriver_message.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = nntpdriver_message.h; path = OpenSourceProjects/include/libetpan/nntpdriver_message.h; sourceTree = SOURCE_ROOT; };
+		F80BDFBC0A77436A003B344E /* nntpdriver_types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = nntpdriver_types.h; path = OpenSourceProjects/include/libetpan/nntpdriver_types.h; sourceTree = SOURCE_ROOT; };
+		F80BDFBD0A77436A003B344E /* nntpstorage.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = nntpstorage.h; path = OpenSourceProjects/include/libetpan/nntpstorage.h; sourceTree = SOURCE_ROOT; };
+		F80BDFBE0A77436A003B344E /* pop3driver.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = pop3driver.h; path = OpenSourceProjects/include/libetpan/pop3driver.h; sourceTree = SOURCE_ROOT; };
+		F80BDFBF0A77436A003B344E /* pop3driver_cached.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = pop3driver_cached.h; path = OpenSourceProjects/include/libetpan/pop3driver_cached.h; sourceTree = SOURCE_ROOT; };
+		F80BDFC00A77436A003B344E /* pop3driver_cached_message.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = pop3driver_cached_message.h; path = OpenSourceProjects/include/libetpan/pop3driver_cached_message.h; sourceTree = SOURCE_ROOT; };
+		F80BDFC10A77436A003B344E /* pop3driver_message.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = pop3driver_message.h; path = OpenSourceProjects/include/libetpan/pop3driver_message.h; sourceTree = SOURCE_ROOT; };
+		F80BDFC20A77436A003B344E /* pop3driver_types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = pop3driver_types.h; path = OpenSourceProjects/include/libetpan/pop3driver_types.h; sourceTree = SOURCE_ROOT; };
+		F80BDFC30A77436A003B344E /* pop3storage.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = pop3storage.h; path = OpenSourceProjects/include/libetpan/pop3storage.h; sourceTree = SOURCE_ROOT; };
+		F81A8AD20C03FC3B002F780A /* CTMIME_MessagePart.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = CTMIME_MessagePart.h; path = Source/CTMIME_MessagePart.h; sourceTree = SOURCE_ROOT; };
+		F81A8AD30C03FC3B002F780A /* CTMIME_MessagePart.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = CTMIME_MessagePart.m; path = Source/CTMIME_MessagePart.m; sourceTree = SOURCE_ROOT; };
+		F81A8AD40C03FC3B002F780A /* CTMIME_MultiPart.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = CTMIME_MultiPart.h; path = Source/CTMIME_MultiPart.h; sourceTree = SOURCE_ROOT; };
+		F81A8AD50C03FC3B002F780A /* CTMIME_MultiPart.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = CTMIME_MultiPart.m; path = Source/CTMIME_MultiPart.m; sourceTree = SOURCE_ROOT; };
+		F81A8AD60C03FC3B002F780A /* CTMIME_SinglePart.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = CTMIME_SinglePart.h; path = Source/CTMIME_SinglePart.h; sourceTree = SOURCE_ROOT; };
+		F81A8AD70C03FC3B002F780A /* CTMIME_SinglePart.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = CTMIME_SinglePart.m; path = Source/CTMIME_SinglePart.m; sourceTree = SOURCE_ROOT; };
+		F81A8AD80C03FC3B002F780A /* CTMIME_TextPart.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = CTMIME_TextPart.h; path = Source/CTMIME_TextPart.h; sourceTree = SOURCE_ROOT; };
+		F81A8AD90C03FC3B002F780A /* CTMIME_TextPart.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = CTMIME_TextPart.m; path = Source/CTMIME_TextPart.m; sourceTree = SOURCE_ROOT; };
+		F81A8ADA0C03FC3B002F780A /* CTMIME.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = CTMIME.h; path = Source/CTMIME.h; sourceTree = SOURCE_ROOT; };
+		F81A8ADB0C03FC3B002F780A /* CTMIME.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = CTMIME.m; path = Source/CTMIME.m; sourceTree = SOURCE_ROOT; };
+		F81A8AEB0C03FC58002F780A /* CTMIMETests.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = CTMIMETests.h; path = Tests/CTMIMETests.h; sourceTree = SOURCE_ROOT; };
+		F81A8AEC0C03FC58002F780A /* CTMIMETests.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = CTMIMETests.m; path = Tests/CTMIMETests.m; sourceTree = SOURCE_ROOT; };
+		F81B88500A74AA7100143DF6 /* CTCoreAccount.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = CTCoreAccount.h; path = Source/CTCoreAccount.h; sourceTree = SOURCE_ROOT; };
+		F81B88510A74AA7100143DF6 /* CTCoreAccount.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = CTCoreAccount.m; path = Source/CTCoreAccount.m; sourceTree = SOURCE_ROOT; };
+		F81B88520A74AA7100143DF6 /* CTCoreAddress.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = CTCoreAddress.h; path = Source/CTCoreAddress.h; sourceTree = SOURCE_ROOT; };
+		F81B88530A74AA7100143DF6 /* CTCoreAddress.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = CTCoreAddress.m; path = Source/CTCoreAddress.m; sourceTree = SOURCE_ROOT; };
+		F81B88540A74AA7100143DF6 /* CTCoreFolder.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = CTCoreFolder.h; path = Source/CTCoreFolder.h; sourceTree = SOURCE_ROOT; };
+		F81B88550A74AA7100143DF6 /* CTCoreFolder.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = CTCoreFolder.m; path = Source/CTCoreFolder.m; sourceTree = SOURCE_ROOT; };
+		F81B88560A74AA7100143DF6 /* CTCoreMessage.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = CTCoreMessage.h; path = Source/CTCoreMessage.h; sourceTree = SOURCE_ROOT; };
+		F81B88570A74AA7100143DF6 /* CTCoreMessage.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = CTCoreMessage.m; path = Source/CTCoreMessage.m; sourceTree = SOURCE_ROOT; };
+		F81B88580A74AA7100143DF6 /* CTMIMEParser.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = CTMIMEParser.h; path = Source/CTMIMEParser.h; sourceTree = SOURCE_ROOT; };
+		F81B88590A74AA7100143DF6 /* CTMIMEParser.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = CTMIMEParser.m; path = Source/CTMIMEParser.m; sourceTree = SOURCE_ROOT; };
+		F81B885A0A74AA7100143DF6 /* CTSMTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = CTSMTPConnection.h; path = Source/CTSMTPConnection.h; sourceTree = SOURCE_ROOT; };
+		F81B885B0A74AA7100143DF6 /* CTSMTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = CTSMTPConnection.m; path = Source/CTSMTPConnection.m; sourceTree = SOURCE_ROOT; };
+		F81B885C0A74AA7100143DF6 /* MailCore.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = MailCore.h; path = Source/MailCore.h; sourceTree = SOURCE_ROOT; };
+		F81B885D0A74AA7100143DF6 /* MailCoreTypes.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = MailCoreTypes.h; path = Source/MailCoreTypes.h; sourceTree = SOURCE_ROOT; };
+		F81B886D0A74AAAD00143DF6 /* libetpan.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libetpan.a; path = OpenSourceProjects/build/libetpan.a; sourceTree = SOURCE_ROOT; };
+		F81B88700A74AAD800143DF6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
+		F81B88710A74AAD800143DF6 /* MailCore_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MailCore_Prefix.pch; sourceTree = "<group>"; };
+		F8245A2F0C04089D005E08A8 /* CTMIMEFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTMIMEFactory.h; path = Source/CTMIMEFactory.h; sourceTree = "<group>"; };
+		F8245A300C04089D005E08A8 /* CTMIMEFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTMIMEFactory.m; path = Source/CTMIMEFactory.m; sourceTree = "<group>"; };
+		F8483E4009CE7B9000B80440 /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = /usr/lib/libssl.dylib; sourceTree = "<absolute>"; };
+		F8483E4209CE7B9C00B80440 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = /usr/lib/libiconv.dylib; sourceTree = "<absolute>"; };
+		F8483E4B09CE7C2800B80440 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = /usr/lib/libcrypto.dylib; sourceTree = "<absolute>"; };
+		F88804610B42018500D400E7 /* libsasl2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsasl2.dylib; path = /usr/lib/libsasl2.dylib; sourceTree = "<absolute>"; };
+		F88804D50B4243C000D400E7 /* MailCoreUtilities.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = MailCoreUtilities.h; path = Source/MailCoreUtilities.h; sourceTree = SOURCE_ROOT; };
+		F88804D60B4243C000D400E7 /* MailCoreUtilities.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = MailCoreUtilities.m; path = Source/MailCoreUtilities.m; sourceTree = SOURCE_ROOT; };
+		F88CA0CC0BF7A7B00055AC29 /* CTSMTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTSMTP.h; path = Source/CTSMTP.h; sourceTree = "<group>"; };
+		F88CA0CD0BF7A7B00055AC29 /* CTSMTP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTSMTP.m; path = Source/CTSMTP.m; sourceTree = "<group>"; };
+		F88CA0D20BF7AC0B0055AC29 /* CTESMTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTESMTP.h; path = Source/CTESMTP.h; sourceTree = "<group>"; };
+		F88CA0D30BF7AC0B0055AC29 /* CTESMTP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTESMTP.m; path = Source/CTESMTP.m; sourceTree = "<group>"; };
+		F8D31A2909C5247100468234 /* TestShell */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestShell; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8D31A3109C524EA00468234 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F8DCD3970C13E18100B10F94 /* acl_types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = acl_types.h; path = OpenSourceProjects/include/libetpan/acl_types.h; sourceTree = SOURCE_ROOT; };
+		F8DCD3980C13E18100B10F94 /* annotatemore_types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = annotatemore_types.h; path = OpenSourceProjects/include/libetpan/annotatemore_types.h; sourceTree = SOURCE_ROOT; };
+		F8DCD39D0C13E1A800B10F94 /* maillock.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = maillock.h; path = OpenSourceProjects/include/libetpan/maillock.h; sourceTree = SOURCE_ROOT; };
+		F8DCD39F0C13E1BE00B10F94 /* uidplus_types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = uidplus_types.h; path = OpenSourceProjects/include/libetpan/uidplus_types.h; sourceTree = SOURCE_ROOT; };
+		F8DCD3A00C13E1BE00B10F94 /* uidplus.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = uidplus.h; path = OpenSourceProjects/include/libetpan/uidplus.h; sourceTree = SOURCE_ROOT; };
+		F8EA76110C1141C1004F85D8 /* CTCoreAddressTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTCoreAddressTests.h; path = Tests/CTCoreAddressTests.h; sourceTree = "<group>"; };
+		F8EA76120C1141C1004F85D8 /* CTCoreAddressTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTCoreAddressTests.m; path = Tests/CTCoreAddressTests.m; sourceTree = "<group>"; };
+		F8EADFAC0B3BB14D000C8371 /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8EADFAD0B3BB14D000C8371 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
+		F8EADFB30B3BB178000C8371 /* CTCoreMessageTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTCoreMessageTests.h; path = Tests/CTCoreMessageTests.h; sourceTree = "<group>"; };
+		F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTCoreMessageTests.m; path = Tests/CTCoreMessageTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8DC2EF560486A6940098B216 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */,
+				F8483E4109CE7B9000B80440 /* libssl.dylib in Frameworks */,
+				F8483E4309CE7B9C00B80440 /* libiconv.dylib in Frameworks */,
+				F8483E4C09CE7C2800B80440 /* libcrypto.dylib in Frameworks */,
+				F81B886E0A74AAAD00143DF6 /* libetpan.a in Frameworks */,
+				F88804620B42018500D400E7 /* libsasl2.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8D31A2709C5247100468234 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8D31A8609C52A9400468234 /* MailCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8EADFA90B3BB14D000C8371 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8EADFCA0B3BB375000C8371 /* MailCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		034768DFFF38A50411DB9C8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8DC2EF5B0486A6940098B216 /* MailCore.framework */,
+				F8D31A2909C5247100468234 /* TestShell */,
+				F8EADFAC0B3BB14D000C8371 /* Tests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0867D691FE84028FC02AAC07 /* MailCore */ = {
+			isa = PBXGroup;
+			children = (
+				F85A18AF09C7D8F200305C06 /* Tests */,
+				08FB77AEFE84172EC02AAC07 /* Classes */,
+				32C88DFF0371C24200C91783 /* Other Sources */,
+				089C1665FE841158C02AAC07 /* Resources */,
+				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
+				034768DFFF38A50411DB9C8B /* Products */,
+				F8EADFAD0B3BB14D000C8371 /* Tests-Info.plist */,
+			);
+			name = MailCore;
+			sourceTree = "<group>";
+		};
+		0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */,
+				1058C7B2FEA5585E11CA2CBB /* Other Frameworks */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		089C1665FE841158C02AAC07 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F81B88700A74AAD800143DF6 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		08FB77AEFE84172EC02AAC07 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F8245A2F0C04089D005E08A8 /* CTMIMEFactory.h */,
+				F8245A300C04089D005E08A8 /* CTMIMEFactory.m */,
+				F81A8AD20C03FC3B002F780A /* CTMIME_MessagePart.h */,
+				F81A8AD30C03FC3B002F780A /* CTMIME_MessagePart.m */,
+				F81A8AD40C03FC3B002F780A /* CTMIME_MultiPart.h */,
+				F81A8AD50C03FC3B002F780A /* CTMIME_MultiPart.m */,
+				F81A8AD60C03FC3B002F780A /* CTMIME_SinglePart.h */,
+				F81A8AD70C03FC3B002F780A /* CTMIME_SinglePart.m */,
+				F81A8AD80C03FC3B002F780A /* CTMIME_TextPart.h */,
+				F81A8AD90C03FC3B002F780A /* CTMIME_TextPart.m */,
+				F81A8ADA0C03FC3B002F780A /* CTMIME.h */,
+				F81A8ADB0C03FC3B002F780A /* CTMIME.m */,
+				F88804D50B4243C000D400E7 /* MailCoreUtilities.h */,
+				F88804D60B4243C000D400E7 /* MailCoreUtilities.m */,
+				F81B88500A74AA7100143DF6 /* CTCoreAccount.h */,
+				F81B88510A74AA7100143DF6 /* CTCoreAccount.m */,
+				F81B88520A74AA7100143DF6 /* CTCoreAddress.h */,
+				F81B88530A74AA7100143DF6 /* CTCoreAddress.m */,
+				F81B88540A74AA7100143DF6 /* CTCoreFolder.h */,
+				F81B88550A74AA7100143DF6 /* CTCoreFolder.m */,
+				F81B88560A74AA7100143DF6 /* CTCoreMessage.h */,
+				F81B88570A74AA7100143DF6 /* CTCoreMessage.m */,
+				F81B88580A74AA7100143DF6 /* CTMIMEParser.h */,
+				F81B88590A74AA7100143DF6 /* CTMIMEParser.m */,
+				F81B885A0A74AA7100143DF6 /* CTSMTPConnection.h */,
+				F81B885B0A74AA7100143DF6 /* CTSMTPConnection.m */,
+				F81B885C0A74AA7100143DF6 /* MailCore.h */,
+				F81B885D0A74AA7100143DF6 /* MailCoreTypes.h */,
+				F88CA0CC0BF7A7B00055AC29 /* CTSMTP.h */,
+				F88CA0CD0BF7A7B00055AC29 /* CTSMTP.m */,
+				F88CA0D20BF7AC0B0055AC29 /* CTESMTP.h */,
+				F88CA0D30BF7AC0B0055AC29 /* CTESMTP.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F88804610B42018500D400E7 /* libsasl2.dylib */,
+				F81B886D0A74AAAD00143DF6 /* libetpan.a */,
+				F8483E4B09CE7C2800B80440 /* libcrypto.dylib */,
+				F8483E4209CE7B9C00B80440 /* libiconv.dylib */,
+				F8483E4009CE7B9000B80440 /* libssl.dylib */,
+				1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7B2FEA5585E11CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0867D6A5FE840307C02AAC07 /* AppKit.framework */,
+				D2F7E79907B2D74100F64583 /* CoreData.framework */,
+				0867D69BFE84028FC02AAC07 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		32C88DFF0371C24200C91783 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				F80BDF490A774369003B344E /* libetpan */,
+				F81B88710A74AAD800143DF6 /* MailCore_Prefix.pch */,
+				F8D31A3109C524EA00468234 /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		F80BDF490A774369003B344E /* libetpan */ = {
+			isa = PBXGroup;
+			children = (
+				F8DCD3970C13E18100B10F94 /* acl_types.h */,
+				F8DCD3980C13E18100B10F94 /* annotatemore_types.h */,
+				F80BDF4A0A774369003B344E /* acl.h */,
+				F80BDF4B0A774369003B344E /* annotatemore.h */,
+				F80BDF4C0A774369003B344E /* carray.h */,
+				F80BDF4D0A774369003B344E /* charconv.h */,
+				F80BDF4E0A774369003B344E /* chash.h */,
+				F80BDF4F0A774369003B344E /* cinthash.h */,
+				F80BDF500A774369003B344E /* clist.h */,
+				F80BDF510A774369003B344E /* data_message_driver.h */,
+				F80BDF520A774369003B344E /* dbdriver.h */,
+				F80BDF530A774369003B344E /* dbdriver_message.h */,
+				F80BDF540A774369003B344E /* dbdriver_types.h */,
+				F80BDF550A774369003B344E /* dbstorage.h */,
+				F80BDF560A774369003B344E /* generic_cache_types.h */,
+				F80BDF570A774369003B344E /* hotmailstorage.h */,
+				F80BDF580A774369003B344E /* imapdriver.h */,
+				F80BDF590A774369003B344E /* imapdriver_cached.h */,
+				F80BDF5A0A774369003B344E /* imapdriver_cached_message.h */,
+				F80BDF5B0A774369003B344E /* imapdriver_message.h */,
+				F80BDF5C0A774369003B344E /* imapdriver_types.h */,
+				F80BDF5D0A774369003B344E /* imapstorage.h */,
+				F80BDF5E0A774369003B344E /* libetpan-config.h */,
+				F80BDF5F0A774369003B344E /* libetpan.h */,
+				F80BDF600A774369003B344E /* libetpan_version.h */,
+				F80BDF610A774369003B344E /* mail.h */,
+				F80BDF620A774369003B344E /* maildir.h */,
+				F80BDF630A774369003B344E /* maildir_types.h */,
+				F80BDF640A774369003B344E /* maildirdriver.h */,
+				F80BDF650A774369003B344E /* maildirdriver_cached.h */,
+				F80BDF660A77436A003B344E /* maildirdriver_cached_message.h */,
+				F80BDF670A77436A003B344E /* maildirdriver_message.h */,
+				F80BDF680A77436A003B344E /* maildirdriver_types.h */,
+				F80BDF690A77436A003B344E /* maildirstorage.h */,
+				F80BDF6A0A77436A003B344E /* maildriver.h */,
+				F80BDF6B0A77436A003B344E /* maildriver_errors.h */,
+				F80BDF6C0A77436A003B344E /* maildriver_types.h */,
+				F80BDF6D0A77436A003B344E /* maildriver_types_helper.h */,
+				F80BDF6E0A77436A003B344E /* mailengine.h */,
+				F80BDF6F0A77436A003B344E /* mailfolder.h */,
+				F80BDF700A77436A003B344E /* mailimap.h */,
+				F80BDF710A77436A003B344E /* mailimap_extension.h */,
+				F80BDF720A77436A003B344E /* mailimap_extension_types.h */,
+				F80BDF730A77436A003B344E /* mailimap_helper.h */,
+				F80BDF740A77436A003B344E /* mailimap_socket.h */,
+				F80BDF750A77436A003B344E /* mailimap_ssl.h */,
+				F80BDF760A77436A003B344E /* mailimap_types.h */,
+				F80BDF770A77436A003B344E /* mailimap_types_helper.h */,
+				F80BDF780A77436A003B344E /* mailimf.h */,
+				F80BDF790A77436A003B344E /* mailimf_types.h */,
+				F80BDF7A0A77436A003B344E /* mailimf_types_helper.h */,
+				F80BDF7B0A77436A003B344E /* mailimf_write_file.h */,
+				F80BDF7C0A77436A003B344E /* mailimf_write_generic.h */,
+				F80BDF7D0A77436A003B344E /* mailimf_write_mem.h */,
+				F80BDF7E0A77436A003B344E /* mailmbox.h */,
+				F80BDF7F0A77436A003B344E /* mailmbox_types.h */,
+				F80BDF800A77436A003B344E /* mailmessage.h */,
+				F80BDF810A77436A003B344E /* mailmessage_types.h */,
+				F80BDF820A77436A003B344E /* mailmh.h */,
+				F80BDF830A77436A003B344E /* mailmime.h */,
+				F80BDF840A77436A003B344E /* mailmime_content.h */,
+				F80BDF850A77436A003B344E /* mailmime_decode.h */,
+				F80BDF860A77436A003B344E /* mailmime_disposition.h */,
+				F80BDF870A77436A003B344E /* mailmime_types.h */,
+				F80BDF880A77436A003B344E /* mailmime_types_helper.h */,
+				F80BDF890A77436A003B344E /* mailmime_write_file.h */,
+				F80BDF8A0A77436A003B344E /* mailmime_write_generic.h */,
+				F80BDF8B0A77436A003B344E /* mailmime_write_mem.h */,
+				F80BDF8C0A77436A003B344E /* mailpop3.h */,
+				F80BDF8D0A77436A003B344E /* mailpop3_helper.h */,
+				F80BDF8E0A77436A003B344E /* mailpop3_socket.h */,
+				F80BDF8F0A77436A003B344E /* mailpop3_ssl.h */,
+				F80BDF900A77436A003B344E /* mailpop3_types.h */,
+				F80BDF910A77436A003B344E /* mailprivacy.h */,
+				F80BDF920A77436A003B344E /* mailprivacy_gnupg.h */,
+				F80BDF930A77436A003B344E /* mailprivacy_smime.h */,
+				F80BDF940A77436A003B344E /* mailprivacy_tools.h */,
+				F80BDF950A77436A003B344E /* mailprivacy_types.h */,
+				F80BDF960A77436A003B344E /* mailsem.h */,
+				F80BDF970A77436A003B344E /* mailsmtp.h */,
+				F80BDF980A77436A003B344E /* mailsmtp_helper.h */,
+				F80BDF990A77436A003B344E /* mailsmtp_socket.h */,
+				F80BDF9A0A77436A003B344E /* mailsmtp_ssl.h */,
+				F80BDF9B0A77436A003B344E /* mailsmtp_types.h */,
+				F80BDF9C0A77436A003B344E /* mailstorage.h */,
+				F80BDF9D0A77436A003B344E /* mailstorage_types.h */,
+				F80BDF9E0A77436A003B344E /* mailstream.h */,
+				F80BDF9F0A77436A003B344E /* mailstream_helper.h */,
+				F80BDFA00A77436A003B344E /* mailstream_low.h */,
+				F80BDFA10A77436A003B344E /* mailstream_socket.h */,
+				F80BDFA20A77436A003B344E /* mailstream_ssl.h */,
+				F80BDFA30A77436A003B344E /* mailstream_types.h */,
+				F80BDFA40A77436A003B344E /* mailthread.h */,
+				F80BDFA50A77436A003B344E /* mailthread_types.h */,
+				F80BDFA60A77436A003B344E /* mboxdriver.h */,
+				F80BDFA70A77436A003B344E /* mboxdriver_cached.h */,
+				F80BDFA80A77436A003B344E /* mboxdriver_cached_message.h */,
+				F80BDFA90A77436A003B344E /* mboxdriver_message.h */,
+				F80BDFAA0A77436A003B344E /* mboxdriver_types.h */,
+				F80BDFAB0A77436A003B344E /* mboxstorage.h */,
+				F80BDFAC0A77436A003B344E /* mhdriver.h */,
+				F80BDFAD0A77436A003B344E /* mhdriver_cached.h */,
+				F80BDFAE0A77436A003B344E /* mhdriver_cached_message.h */,
+				F80BDFAF0A77436A003B344E /* mhdriver_message.h */,
+				F80BDFB00A77436A003B344E /* mhdriver_types.h */,
+				F80BDFB10A77436A003B344E /* mhstorage.h */,
+				F80BDFB20A77436A003B344E /* mime_message_driver.h */,
+				F80BDFB30A77436A003B344E /* mmapstring.h */,
+				F80BDFB40A77436A003B344E /* newsnntp.h */,
+				F80BDFB50A77436A003B344E /* newsnntp_socket.h */,
+				F80BDFB60A77436A003B344E /* newsnntp_ssl.h */,
+				F80BDFB70A77436A003B344E /* newsnntp_types.h */,
+				F80BDFB80A77436A003B344E /* nntpdriver.h */,
+				F80BDFB90A77436A003B344E /* nntpdriver_cached.h */,
+				F80BDFBA0A77436A003B344E /* nntpdriver_cached_message.h */,
+				F80BDFBB0A77436A003B344E /* nntpdriver_message.h */,
+				F80BDFBC0A77436A003B344E /* nntpdriver_types.h */,
+				F80BDFBD0A77436A003B344E /* nntpstorage.h */,
+				F80BDFBE0A77436A003B344E /* pop3driver.h */,
+				F80BDFBF0A77436A003B344E /* pop3driver_cached.h */,
+				F80BDFC00A77436A003B344E /* pop3driver_cached_message.h */,
+				F80BDFC10A77436A003B344E /* pop3driver_message.h */,
+				F80BDFC20A77436A003B344E /* pop3driver_types.h */,
+				F80BDFC30A77436A003B344E /* pop3storage.h */,
+				F8DCD39D0C13E1A800B10F94 /* maillock.h */,
+				F8DCD39F0C13E1BE00B10F94 /* uidplus_types.h */,
+				F8DCD3A00C13E1BE00B10F94 /* uidplus.h */,
+			);
+			name = libetpan;
+			path = OpenSourceProjects/include/libetpan;
+			sourceTree = SOURCE_ROOT;
+		};
+		F85A18AF09C7D8F200305C06 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				F81A8AEB0C03FC58002F780A /* CTMIMETests.h */,
+				F81A8AEC0C03FC58002F780A /* CTMIMETests.m */,
+				F8EADFB30B3BB178000C8371 /* CTCoreMessageTests.h */,
+				F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */,
+				F8EA76110C1141C1004F85D8 /* CTCoreAddressTests.h */,
+				F8EA76120C1141C1004F85D8 /* CTCoreAddressTests.m */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		8DC2EF500486A6940098B216 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8DCD3A10C13E1BE00B10F94 /* uidplus_types.h in Headers */,
+				F8DCD3A20C13E1BE00B10F94 /* uidplus.h in Headers */,
+				F8DCD39E0C13E1A800B10F94 /* maillock.h in Headers */,
+				F8DCD3990C13E18100B10F94 /* acl_types.h in Headers */,
+				F8DCD39A0C13E18100B10F94 /* annotatemore_types.h in Headers */,
+				F81B885E0A74AA7100143DF6 /* CTCoreAccount.h in Headers */,
+				F81B88600A74AA7100143DF6 /* CTCoreAddress.h in Headers */,
+				F81B88620A74AA7100143DF6 /* CTCoreFolder.h in Headers */,
+				F81B88640A74AA7100143DF6 /* CTCoreMessage.h in Headers */,
+				F81B88660A74AA7100143DF6 /* CTMIMEParser.h in Headers */,
+				F81B88680A74AA7100143DF6 /* CTSMTPConnection.h in Headers */,
+				F81B886A0A74AA7100143DF6 /* MailCore.h in Headers */,
+				F81B886B0A74AA7100143DF6 /* MailCoreTypes.h in Headers */,
+				F81B88730A74AAD800143DF6 /* MailCore_Prefix.pch in Headers */,
+				F80BDFC40A77436A003B344E /* acl.h in Headers */,
+				F80BDFC50A77436A003B344E /* annotatemore.h in Headers */,
+				F80BDFC60A77436A003B344E /* carray.h in Headers */,
+				F80BDFC70A77436A003B344E /* charconv.h in Headers */,
+				F80BDFC80A77436A003B344E /* chash.h in Headers */,
+				F80BDFC90A77436A003B344E /* cinthash.h in Headers */,
+				F80BDFCA0A77436A003B344E /* clist.h in Headers */,
+				F80BDFCB0A77436A003B344E /* data_message_driver.h in Headers */,
+				F80BDFCC0A77436A003B344E /* dbdriver.h in Headers */,
+				F80BDFCD0A77436A003B344E /* dbdriver_message.h in Headers */,
+				F80BDFCE0A77436A003B344E /* dbdriver_types.h in Headers */,
+				F80BDFCF0A77436A003B344E /* dbstorage.h in Headers */,
+				F80BDFD00A77436A003B344E /* generic_cache_types.h in Headers */,
+				F80BDFD10A77436A003B344E /* hotmailstorage.h in Headers */,
+				F80BDFD20A77436A003B344E /* imapdriver.h in Headers */,
+				F80BDFD30A77436A003B344E /* imapdriver_cached.h in Headers */,
+				F80BDFD40A77436A003B344E /* imapdriver_cached_message.h in Headers */,
+				F80BDFD50A77436A003B344E /* imapdriver_message.h in Headers */,
+				F80BDFD60A77436A003B344E /* imapdriver_types.h in Headers */,
+				F80BDFD70A77436A003B344E /* imapstorage.h in Headers */,
+				F80BDFD80A77436A003B344E /* libetpan-config.h in Headers */,
+				F80BDFD90A77436A003B344E /* libetpan.h in Headers */,
+				F80BDFDA0A77436A003B344E /* libetpan_version.h in Headers */,
+				F80BDFDB0A77436A003B344E /* mail.h in Headers */,
+				F80BDFDC0A77436A003B344E /* maildir.h in Headers */,
+				F80BDFDD0A77436A003B344E /* maildir_types.h in Headers */,
+				F80BDFDE0A77436A003B344E /* maildirdriver.h in Headers */,
+				F80BDFDF0A77436A003B344E /* maildirdriver_cached.h in Headers */,
+				F80BDFE00A77436A003B344E /* maildirdriver_cached_message.h in Headers */,
+				F80BDFE10A77436A003B344E /* maildirdriver_message.h in Headers */,
+				F80BDFE20A77436A003B344E /* maildirdriver_types.h in Headers */,
+				F80BDFE30A77436A003B344E /* maildirstorage.h in Headers */,
+				F80BDFE40A77436A003B344E /* maildriver.h in Headers */,
+				F80BDFE50A77436A003B344E /* maildriver_errors.h in Headers */,
+				F80BDFE60A77436A003B344E /* maildriver_types.h in Headers */,
+				F80BDFE70A77436A003B344E /* maildriver_types_helper.h in Headers */,
+				F80BDFE80A77436A003B344E /* mailengine.h in Headers */,
+				F80BDFE90A77436A003B344E /* mailfolder.h in Headers */,
+				F80BDFEA0A77436A003B344E /* mailimap.h in Headers */,
+				F80BDFEB0A77436A003B344E /* mailimap_extension.h in Headers */,
+				F80BDFEC0A77436A003B344E /* mailimap_extension_types.h in Headers */,
+				F80BDFED0A77436A003B344E /* mailimap_helper.h in Headers */,
+				F80BDFEE0A77436A003B344E /* mailimap_socket.h in Headers */,
+				F80BDFEF0A77436A003B344E /* mailimap_ssl.h in Headers */,
+				F80BDFF00A77436A003B344E /* mailimap_types.h in Headers */,
+				F80BDFF10A77436A003B344E /* mailimap_types_helper.h in Headers */,
+				F80BDFF20A77436A003B344E /* mailimf.h in Headers */,
+				F80BDFF30A77436A003B344E /* mailimf_types.h in Headers */,
+				F80BDFF40A77436A003B344E /* mailimf_types_helper.h in Headers */,
+				F80BDFF50A77436A003B344E /* mailimf_write_file.h in Headers */,
+				F80BDFF60A77436A003B344E /* mailimf_write_generic.h in Headers */,
+				F80BDFF70A77436A003B344E /* mailimf_write_mem.h in Headers */,
+				F80BDFF80A77436A003B344E /* mailmbox.h in Headers */,
+				F80BDFF90A77436A003B344E /* mailmbox_types.h in Headers */,
+				F80BDFFA0A77436A003B344E /* mailmessage.h in Headers */,
+				F80BDFFB0A77436A003B344E /* mailmessage_types.h in Headers */,
+				F80BDFFC0A77436A003B344E /* mailmh.h in Headers */,
+				F80BDFFD0A77436A003B344E /* mailmime.h in Headers */,
+				F80BDFFE0A77436A003B344E /* mailmime_content.h in Headers */,
+				F80BDFFF0A77436A003B344E /* mailmime_decode.h in Headers */,
+				F80BE0000A77436A003B344E /* mailmime_disposition.h in Headers */,
+				F80BE0010A77436A003B344E /* mailmime_types.h in Headers */,
+				F80BE0020A77436A003B344E /* mailmime_types_helper.h in Headers */,
+				F80BE0030A77436A003B344E /* mailmime_write_file.h in Headers */,
+				F80BE0040A77436A003B344E /* mailmime_write_generic.h in Headers */,
+				F80BE0050A77436A003B344E /* mailmime_write_mem.h in Headers */,
+				F80BE0060A77436A003B344E /* mailpop3.h in Headers */,
+				F80BE0070A77436A003B344E /* mailpop3_helper.h in Headers */,
+				F80BE0080A77436A003B344E /* mailpop3_socket.h in Headers */,
+				F80BE0090A77436A003B344E /* mailpop3_ssl.h in Headers */,
+				F80BE00A0A77436A003B344E /* mailpop3_types.h in Headers */,
+				F80BE00B0A77436A003B344E /* mailprivacy.h in Headers */,
+				F80BE00C0A77436A003B344E /* mailprivacy_gnupg.h in Headers */,
+				F80BE00D0A77436A003B344E /* mailprivacy_smime.h in Headers */,
+				F80BE00E0A77436A003B344E /* mailprivacy_tools.h in Headers */,
+				F80BE00F0A77436A003B344E /* mailprivacy_types.h in Headers */,
+				F80BE0100A77436A003B344E /* mailsem.h in Headers */,
+				F80BE0110A77436A003B344E /* mailsmtp.h in Headers */,
+				F80BE0120A77436A003B344E /* mailsmtp_helper.h in Headers */,
+				F80BE0130A77436A003B344E /* mailsmtp_socket.h in Headers */,
+				F80BE0140A77436A003B344E /* mailsmtp_ssl.h in Headers */,
+				F80BE0150A77436A003B344E /* mailsmtp_types.h in Headers */,
+				F80BE0160A77436A003B344E /* mailstorage.h in Headers */,
+				F80BE0170A77436A003B344E /* mailstorage_types.h in Headers */,
+				F80BE0180A77436A003B344E /* mailstream.h in Headers */,
+				F80BE0190A77436A003B344E /* mailstream_helper.h in Headers */,
+				F80BE01A0A77436A003B344E /* mailstream_low.h in Headers */,
+				F80BE01B0A77436A003B344E /* mailstream_socket.h in Headers */,
+				F80BE01C0A77436A003B344E /* mailstream_ssl.h in Headers */,
+				F80BE01D0A77436A003B344E /* mailstream_types.h in Headers */,
+				F80BE01E0A77436A003B344E /* mailthread.h in Headers */,
+				F80BE01F0A77436A003B344E /* mailthread_types.h in Headers */,
+				F80BE0200A77436A003B344E /* mboxdriver.h in Headers */,
+				F80BE0210A77436A003B344E /* mboxdriver_cached.h in Headers */,
+				F80BE0220A77436A003B344E /* mboxdriver_cached_message.h in Headers */,
+				F80BE0230A77436A003B344E /* mboxdriver_message.h in Headers */,
+				F80BE0240A77436A003B344E /* mboxdriver_types.h in Headers */,
+				F80BE0250A77436A003B344E /* mboxstorage.h in Headers */,
+				F80BE0260A77436A003B344E /* mhdriver.h in Headers */,
+				F80BE0270A77436A003B344E /* mhdriver_cached.h in Headers */,
+				F80BE0280A77436A003B344E /* mhdriver_cached_message.h in Headers */,
+				F80BE0290A77436A003B344E /* mhdriver_message.h in Headers */,
+				F80BE02A0A77436A003B344E /* mhdriver_types.h in Headers */,
+				F80BE02B0A77436A003B344E /* mhstorage.h in Headers */,
+				F80BE02C0A77436A003B344E /* mime_message_driver.h in Headers */,
+				F80BE02D0A77436A003B344E /* mmapstring.h in Headers */,
+				F80BE02E0A77436A003B344E /* newsnntp.h in Headers */,
+				F80BE02F0A77436A003B344E /* newsnntp_socket.h in Headers */,
+				F80BE0300A77436A003B344E /* newsnntp_ssl.h in Headers */,
+				F80BE0310A77436A003B344E /* newsnntp_types.h in Headers */,
+				F80BE0320A77436A003B344E /* nntpdriver.h in Headers */,
+				F80BE0330A77436A003B344E /* nntpdriver_cached.h in Headers */,
+				F80BE0340A77436A003B344E /* nntpdriver_cached_message.h in Headers */,
+				F80BE0350A77436A003B344E /* nntpdriver_message.h in Headers */,
+				F80BE0360A77436A003B344E /* nntpdriver_types.h in Headers */,
+				F80BE0370A77436A003B344E /* nntpstorage.h in Headers */,
+				F80BE0380A77436A003B344E /* pop3driver.h in Headers */,
+				F80BE0390A77436A003B344E /* pop3driver_cached.h in Headers */,
+				F80BE03A0A77436A003B344E /* pop3driver_cached_message.h in Headers */,
+				F80BE03B0A77436A003B344E /* pop3driver_message.h in Headers */,
+				F80BE03C0A77436A003B344E /* pop3driver_types.h in Headers */,
+				F80BE03D0A77436A003B344E /* pop3storage.h in Headers */,
+				F88804D70B4243C000D400E7 /* MailCoreUtilities.h in Headers */,
+				F88CA0CE0BF7A7B00055AC29 /* CTSMTP.h in Headers */,
+				F88CA0D40BF7AC0B0055AC29 /* CTESMTP.h in Headers */,
+				F81A8ADC0C03FC3B002F780A /* CTMIME_MessagePart.h in Headers */,
+				F81A8ADE0C03FC3B002F780A /* CTMIME_MultiPart.h in Headers */,
+				F81A8AE00C03FC3B002F780A /* CTMIME_SinglePart.h in Headers */,
+				F81A8AE20C03FC3B002F780A /* CTMIME_TextPart.h in Headers */,
+				F81A8AE40C03FC3B002F780A /* CTMIME.h in Headers */,
+				F8245A6D0C041C8C005E08A8 /* CTMIMEFactory.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		8DC2EF4F0486A6940098B216 /* MailCore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "MailCore" */;
+			buildPhases = (
+				F89618D30A7D77CF00F93E26 /* ShellScript */,
+				8DC2EF500486A6940098B216 /* Headers */,
+				8DC2EF520486A6940098B216 /* Resources */,
+				8DC2EF540486A6940098B216 /* Sources */,
+				8DC2EF560486A6940098B216 /* Frameworks */,
+				F848422D09CFACA000B80440 /* ShellScript */,
+				F89614140A79D30A00F93E26 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MailCore;
+			productInstallPath = "$(HOME)/Library/Frameworks";
+			productName = MailCore;
+			productReference = 8DC2EF5B0486A6940098B216 /* MailCore.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F8D31A2809C5247100468234 /* TestShell */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8D31A2E09C524E400468234 /* Build configuration list for PBXNativeTarget "TestShell" */;
+			buildPhases = (
+				F8D31A2609C5247100468234 /* Sources */,
+				F8D31A2709C5247100468234 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F86E986A09CE559D00732DBA /* PBXTargetDependency */,
+			);
+			name = TestShell;
+			productName = TestShell;
+			productReference = F8D31A2909C5247100468234 /* TestShell */;
+			productType = "com.apple.product-type.tool";
+		};
+		F8EADFAB0B3BB14D000C8371 /* Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8EADFAE0B3BB14E000C8371 /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildPhases = (
+				F8EADFA70B3BB14D000C8371 /* Resources */,
+				F8EADFA80B3BB14D000C8371 /* Sources */,
+				F8EADFA90B3BB14D000C8371 /* Frameworks */,
+				F8EADFAA0B3BB14D000C8371 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F8EADFC80B3BB36D000C8371 /* PBXTargetDependency */,
+			);
+			name = Tests;
+			productName = Tests;
+			productReference = F8EADFAC0B3BB14D000C8371 /* Tests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0867D690FE84028FC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "MailCore" */;
+			compatibilityVersion = "Xcode 2.4";
+			hasScannedForEncodings = 1;
+			mainGroup = 0867D691FE84028FC02AAC07 /* MailCore */;
+			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
+			projectDirPath = "";
+			projectRoot = ..;
+			targets = (
+				8DC2EF4F0486A6940098B216 /* MailCore */,
+				F8D31A2809C5247100468234 /* TestShell */,
+				F8EADFAB0B3BB14D000C8371 /* Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8DC2EF520486A6940098B216 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8EADFA70B3BB14D000C8371 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F848422D09CFACA000B80440 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sh Scripts/DocScripts/doxygen.sh";
+		};
+		F89618D30A7D77CF00F93E26 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "python Scripts/BuildScripts/buildopensource.py";
+		};
+		F8EADFAA0B3BB14D000C8371 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8DC2EF540486A6940098B216 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F81B885F0A74AA7100143DF6 /* CTCoreAccount.m in Sources */,
+				F81B88610A74AA7100143DF6 /* CTCoreAddress.m in Sources */,
+				F81B88630A74AA7100143DF6 /* CTCoreFolder.m in Sources */,
+				F81B88650A74AA7100143DF6 /* CTCoreMessage.m in Sources */,
+				F81B88670A74AA7100143DF6 /* CTMIMEParser.m in Sources */,
+				F81B88690A74AA7100143DF6 /* CTSMTPConnection.m in Sources */,
+				F88804D80B4243C000D400E7 /* MailCoreUtilities.m in Sources */,
+				F88CA0CF0BF7A7B00055AC29 /* CTSMTP.m in Sources */,
+				F88CA0D50BF7AC0B0055AC29 /* CTESMTP.m in Sources */,
+				F81A8ADD0C03FC3B002F780A /* CTMIME_MessagePart.m in Sources */,
+				F81A8ADF0C03FC3B002F780A /* CTMIME_MultiPart.m in Sources */,
+				F81A8AE10C03FC3B002F780A /* CTMIME_SinglePart.m in Sources */,
+				F81A8AE30C03FC3B002F780A /* CTMIME_TextPart.m in Sources */,
+				F81A8AE50C03FC3B002F780A /* CTMIME.m in Sources */,
+				F8245A700C041C91005E08A8 /* CTMIMEFactory.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8D31A2609C5247100468234 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8D31A3209C524EA00468234 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8EADFA80B3BB14D000C8371 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8EADFB50B3BB178000C8371 /* CTCoreMessageTests.m in Sources */,
+				F81A8AED0C03FC58002F780A /* CTMIMETests.m in Sources */,
+				F8EA76130C1141C1004F85D8 /* CTCoreAddressTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F86E986A09CE559D00732DBA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC2EF4F0486A6940098B216 /* MailCore */;
+			targetProxy = F86E986909CE559D00732DBA /* PBXContainerItemProxy */;
+		};
+		F8EADFC80B3BB36D000C8371 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC2EF4F0486A6940098B216 /* MailCore */;
+			targetProxy = F8EADFC70B3BB36D000C8371 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB91AE08733DA50010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = MailCore_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "@executable_path/../Frameworks/";
+				LIBRARY_SEARCH_PATHS = (
+					"$(LIBRARY_SEARCH_PATHS)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_2)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/OpenSourceProjects/build\"";
+				OTHER_LDFLAGS = (
+					"-seg1addr",
+					0xb0000000,
+				);
+				PRODUCT_NAME = MailCore;
+				WRAPPER_EXTENSION = framework;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		1DEB91AF08733DA50010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = MailCore_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "@executable_path/../Frameworks/";
+				LIBRARY_SEARCH_PATHS = (
+					"$(LIBRARY_SEARCH_PATHS)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_2)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/OpenSourceProjects/build\"";
+				OTHER_LDFLAGS = (
+					"-seg1addr",
+					0xb0000000,
+				);
+				PRODUCT_NAME = MailCore;
+				STRIP_INSTALLED_PRODUCT = YES;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		1DEB91B208733DA50010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "";
+				PREBINDING = NO;
+				SDKROOT = "";
+			};
+			name = Debug;
+		};
+		1DEB91B308733DA50010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				DEAD_CODE_STRIPPING = YES;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "";
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Release;
+		};
+		F8D31A2F09C524E400468234 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = "$(HOME)/bin";
+				LIBRARY_SEARCH_PATHS = "$(LIBRARY_SEARCH_PATHS)";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = TestShell;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		F8D31A3009C524E400468234 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = "$(HOME)/bin";
+				LIBRARY_SEARCH_PATHS = "$(LIBRARY_SEARCH_PATHS)";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = TestShell;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		F8EADFAF0B3BB14E000C8371 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR_QUOTED)",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "Tests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Tests;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Debug;
+		};
+		F8EADFB00B3BB14E000C8371 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR_QUOTED)",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "Tests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Tests;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "MailCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB91AE08733DA50010E9CD /* Debug */,
+				1DEB91AF08733DA50010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "MailCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB91B208733DA50010E9CD /* Debug */,
+				1DEB91B308733DA50010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8D31A2E09C524E400468234 /* Build configuration list for PBXNativeTarget "TestShell" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8D31A2F09C524E400468234 /* Debug */,
+				F8D31A3009C524E400468234 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8EADFAE0B3BB14E000C8371 /* Build configuration list for PBXNativeTarget "Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8EADFAF0B3BB14E000C8371 /* Debug */,
+				F8EADFB00B3BB14E000C8371 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
+}
