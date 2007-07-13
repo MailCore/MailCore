@@ -10,15 +10,21 @@ int main( int argc, char *argv[ ] )
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
-//	CTCoreAccount *account = [[CTCoreAccount alloc] init];
+	CTCoreAccount *account = [[CTCoreAccount alloc] init];
+	CTCoreFolder *folder;
 //	CTCoreFolder *inbox, *newFolder, *archive;
 //	CTCoreMessage *msgOne;
 //	
-//	[account connectToServer:@"mail.theronge.com" port:143 connectionType:CONNECTION_TYPE_PLAIN 
-//				authType:IMAP_AUTH_TYPE_PLAIN login:@"mronge" password:@""];
-//	
-//	inbox = [account folderWithPath:@"INBOX"];
-//	//NSLog(@"%@", [inbox messageListFromUID:nil]);
+	[account connectToServer:@"mail.theronge.com" port:143 connectionType:CONNECTION_TYPE_STARTTLS 
+				authType:IMAP_AUTH_TYPE_PLAIN login:@"mronge" password:@""];
+	
+	folder = [account folderWithPath:@"INBOX"];
+	NSLog(@"%@", [folder messageObjectsFromUID:nil]);
+//	CTCoreMessage *msg;
+//	NSEnumerator *enumer = [set objectEnumerator];
+//	while ((msg == [enumer nextObject])) {
+//		
+//	}
 //	//NSLog(@"%@", [inbox messageObjectsFromIndex:500 toIndex:600]);
 //	
 //	msgOne = [inbox messageWithUID:@"1146070022-553"];
@@ -71,21 +77,21 @@ int main( int argc, char *argv[ ] )
 	
 	/* GMAIL Test */
 	
-	MailCoreEnableLogging();
-	
-	CTCoreMessage *msgOne = [[CTCoreMessage alloc] init];
-	[msgOne setTo:[NSSet setWithObject:[CTCoreAddress addressWithName:@"Bob" email:@"mronge@theronge.com"]]];
-	[msgOne setFrom:[NSSet setWithObject:[CTCoreAddress addressWithName:@"test" email:@"test@test.com"]]];
-	[msgOne setBody:@"Test"];
-	[msgOne setSubject:@"Subject"];	
-	[CTSMTPConnection sendMessage:msgOne server:@"mail.theronge.com" username:@"mronge" password:@"" port:25 useTLS:YES shouldAuth:YES];
+//	MailCoreEnableLogging();
+//	
+//	CTCoreMessage *msgOne = [[CTCoreMessage alloc] init];
+//	[msgOne setTo:[NSSet setWithObject:[CTCoreAddress addressWithName:@"Bob" email:@"mronge@theronge.com"]]];
+//	[msgOne setFrom:[NSSet setWithObject:[CTCoreAddress addressWithName:@"test" email:@"test@test.com"]]];
+//	[msgOne setBody:@"Test"];
+//	[msgOne setSubject:@"Subject"];	
+//	[CTSMTPConnection sendMessage:msgOne server:@"mail.theronge.com" username:@"mronge" password:@"" port:25 useTLS:YES shouldAuth:YES];
 	//[CTSMTPConnection sendMessage:msgOne server:@"mail.dls.net" username:@"" password:@"" port:25 useTLS:NO shouldAuth:NO];
 	//[archive disconnect];
 	//[account disconnect];
 	//[account release];
 	
-	while(1) {}
-	
 	[pool release];
+		
+	while(1) {}
 	return 0;
 }

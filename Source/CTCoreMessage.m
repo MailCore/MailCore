@@ -58,7 +58,7 @@
 - (void)dealloc {
 	//TODO mailmessage_free?
 	if (myMessage != NULL)
-		mailmessage_flush(myMessage);
+		mailmessage_free(myMessage);
 	if (myFields != NULL)
 		mailimf_single_fields_free(myFields);
 	[myParsedMIME release];

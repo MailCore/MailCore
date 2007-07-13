@@ -358,8 +358,11 @@
 		[messages addObject:msgObject];
 		[msgObject release];
 	}
-	if ( msgList != NULL )
-		carray_free(msgList->msg_tab); //I am only freeing the message array because the messages themselves are in use
+	if ( msgList != NULL ) {
+		//I am only freeing the message array because the messages themselves are in use
+		carray_free(msgList->msg_tab); 
+		free(msgList);
+	}
 	return messages;	
 }
 
