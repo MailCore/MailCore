@@ -67,4 +67,10 @@
 		return NO;
 	return [[object name] isEqualToString:[self name]] && [[object email] isEqualToString:[self email]];
 }
+
+- (void)dealloc {
+	[email release];
+	[name release];
+	[super dealloc];
+}
 @end

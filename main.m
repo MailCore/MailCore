@@ -19,7 +19,18 @@ int main( int argc, char *argv[ ] )
 				authType:IMAP_AUTH_TYPE_PLAIN login:@"mronge" password:@""];
 	
 	folder = [account folderWithPath:@"INBOX"];
-	NSLog(@"%@", [folder messageObjectsFromUID:nil]);
+	//NSLog(@"%@", [folder messageObjectsFromUID:nil]);
+	for (CTCoreMessage *msg in [folder messageObjectsFromUID:nil]) {
+		NSMutableDictionary *msgDict = [NSMutableDictionary dictionary];
+		if([msg from] != nil)
+			[msgDict setObject:[msg from] forKey:@"From"];
+		if([msg to] != nil)
+			[msgDict setObject:[msg to] forKey:@"To"];
+		if([msg subject] != nil)
+			[msgDict setObject:[msg subject] forKey:@"Subject"];
+		[msgDict setObject:[msg uid] forKey:@"UID"];
+		NSLog(@"%@", msgDict);
+	}
 //	CTCoreMessage *msg;
 //	NSEnumerator *enumer = [set objectEnumerator];
 //	while ((msg == [enumer nextObject])) {
