@@ -308,8 +308,11 @@
 		[messages addObject:msgObject];
 		[msgObject release];
 	}
-	if ( env_list != NULL )
-		carray_free(env_list->msg_tab); //I am only freeing the message array because the messages themselves are in use
+	if ( env_list != NULL ) {
+		//I am only freeing the message array because the messages themselves are in use
+		carray_free(env_list->msg_tab); 
+		free(env_list);
+	} 
 	return messages;
 }
 
