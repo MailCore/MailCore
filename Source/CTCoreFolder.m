@@ -486,7 +486,7 @@
 }
 
 
-- (NSNumber *)unreadMessageCount {
+- (NSUInteger)unreadMessageCount {
 	unsigned int unseenCount = 0;
 	unsigned int junk;
 	int err;
@@ -500,11 +500,11 @@
 			        userInfo:nil];
 		[exception raise];	
 	}
-	return [NSNumber numberWithUnsignedInt:unseenCount];
+	return unseenCount;
 }
 
 
-- (NSNumber *)totalMessageCount {
+- (NSUInteger)totalMessageCount {
 	unsigned int totalCount = 0;
 	unsigned int junk;
 	int err;
@@ -518,7 +518,7 @@
 			        userInfo:nil];
 		[exception raise];	
 	}
-	return [NSNumber numberWithUnsignedInt:totalCount];	
+	return totalCount;
 }
 
 

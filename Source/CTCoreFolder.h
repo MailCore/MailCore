@@ -144,15 +144,15 @@
 
 /*!
 	@abstract	Returns the number of unread messages.
-	@result		A NSNumber containing the number of unread messages.
+	@result		A NSUInteger containing the number of unread messages.
 */
-- (NSNumber *)unreadMessageCount;
+- (NSUInteger)unreadMessageCount;
 
 /*!
 	@abstract	Returns the number of messages in the folder.
-	@result		A NSNumber containing the number of messages.
+	@result		A NSUInteger containing the number of messages.
 */
-- (NSNumber *)totalMessageCount;
+- (NSUInteger)totalMessageCount;
 
 /* Intended for advanced use only */
 - (struct mailfolder *)folderStruct;
