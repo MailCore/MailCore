@@ -15,22 +15,24 @@ int main( int argc, char *argv[ ] )
 //	CTCoreFolder *inbox, *newFolder, *archive;
 //	CTCoreMessage *msgOne;
 //	
+
+	MailCoreEnableLogging();
 	[account connectToServer:@"mail.theronge.com" port:143 connectionType:CONNECTION_TYPE_STARTTLS 
-				authType:IMAP_AUTH_TYPE_PLAIN login:@"mronge" password:@""];
+				authType:IMAP_AUTH_TYPE_PLAIN login:@"mronge" password:@"garlicmustard7"];
 	
+	//wtf this doesn't work on the INBOX
 	folder = [account folderWithPath:@"INBOX"];
-	//NSLog(@"%@", [folder messageObjectsFromUID:nil]);
-	for (CTCoreMessage *msg in [folder messageObjectsFromUID:nil]) {
-		NSMutableDictionary *msgDict = [NSMutableDictionary dictionary];
-		if([msg from] != nil)
-			[msgDict setObject:[msg from] forKey:@"From"];
-		if([msg to] != nil)
-			[msgDict setObject:[msg to] forKey:@"To"];
-		if([msg subject] != nil)
-			[msgDict setObject:[msg subject] forKey:@"Subject"];
-		[msgDict setObject:[msg uid] forKey:@"UID"];
-		NSLog(@"%@", msgDict);
-	}
+	NSLog(@"%d", [folder totalMessageCount]);
+/*	for (CTCoreMessage *msg in [folder messageObjectsFromIndex:10 toIndex:18]) {
+		NSLog(@"%d", [msg sequenceNumber]);
+		NSLog([msg uid]);
+	}*/
+	//	14
+	//1163978737-3518
+	//CTCoreMessage *msg = [folder messageWithUID:@"1163978737-3518"];
+	//NSLog([msg subject]);
+	NSLog(@"%d", [folder sequenceNumberForUID:@"1163978737-3518"]);
+	[account release];
 //	CTCoreMessage *msg;
 //	NSEnumerator *enumer = [set objectEnumerator];
 //	while ((msg == [enumer nextObject])) {
@@ -103,6 +105,6 @@ int main( int argc, char *argv[ ] )
 	
 	[pool release];
 		
-	while(1) {}
+	//while(1) {}
 	return 0;
 }

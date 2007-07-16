@@ -314,8 +314,6 @@
 
 	r = mailimap_fetch([self imapSession], set, fetch_type, &fetch_result);
 	if (r != MAIL_NO_ERROR) {
-		if ( env_list != NULL )
-			mailmessage_list_free(env_list);
 		NSException *exception = [NSException
 			        exceptionWithName:CTUnknownError
 			        reason:[NSString stringWithFormat:@"Error number: %d",r]
@@ -617,7 +615,6 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
 		size_t size;
 
 		msg_att = clist_content(cur);
-		printf("number: %d\n", msg_att->att_number); 
 		uid = 0;
 		size = 0;
 		for(item_cur = clist_begin(msg_att->att_list); item_cur != NULL; item_cur = clist_next(item_cur)) {
