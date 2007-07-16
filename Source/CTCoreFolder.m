@@ -264,7 +264,7 @@
 		return nil;
 	}
 
-	r = mailimap_uid_fetch([self imapSession], set, fetch_type, &fetch_result);
+	r = mailimap_fetch([self imapSession], set, fetch_type, &fetch_result);
 	if (r != MAIL_NO_ERROR) {
 		if ( env_list != NULL )
 			mailmessage_list_free(env_list);
