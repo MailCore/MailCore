@@ -83,6 +83,15 @@
 */
 - (BOOL)isUIDValid:(NSString *)uid;
 
+/*!
+	@abstract	Pulls the sequence number for the messag with the specified uid.
+				It does not perform UID validation, and the sequence ID is only
+				valid per session.
+	@param		The uid for the message
+	@return		> 1 if successful, 0 on err
+*/
+- (NSUInteger)sequenceNumberForUID:(NSString *)uid;
+
 
 //FIXME What is this?
 - (void)check;

@@ -16,6 +16,7 @@
 	struct mailmessage *myMessage;
 	struct mailimf_single_fields *myFields;
 	CTMIME *myParsedMIME;
+	NSUInteger mySequenceNumber;
 }
 //TODO Parse this stuff: message_id, inReplyTo, references, comments, keywords, headers
 
@@ -87,9 +88,15 @@
 - (NSString *)uid;
 
 /*!
-	@abstract	Returns the message index, this number cannot be used across sessions
+	@abstract	Returns the message sequence number, this number cannot be used across sessions
 */
-- (NSUInteger)indexNumber;
+- (NSUInteger)sequenceNumber;
+
+/*!
+	@abstract	Set the message sequence number, this will NOT set any thing on the server.
+				This is used to assign sequence numbers after retrieving the message list.
+*/
+- (void)setSequenceNumber:(NSUInteger)sequenceNumber;
 
 /*!
 	@abstract	Parses the from list, the result is an NSSet containing CTCoreAddress's

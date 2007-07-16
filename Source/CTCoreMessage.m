@@ -164,8 +164,12 @@
 	return [NSString stringWithCString:myMessage->msg_uid encoding:NSASCIIStringEncoding];
 }
 
-- (NSUInteger)indexNumber {
-	return myMessage->msg_index;
+- (NSUInteger)sequenceNumber {
+	return mySequenceNumber;
+}
+
+- (void)setSequenceNumber:(NSUInteger)sequenceNumber {
+	mySequenceNumber = sequenceNumber;
 }
 
 
