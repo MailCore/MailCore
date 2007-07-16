@@ -87,6 +87,11 @@
 - (NSString *)uid;
 
 /*!
+	@abstract	Returns the message index, this number cannot be used across sessions
+*/
+- (NSUInteger)indexNumber;
+
+/*!
 	@abstract	Parses the from list, the result is an NSSet containing CTCoreAddress's
 */
 - (NSSet *)from;

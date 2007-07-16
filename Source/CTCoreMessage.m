@@ -164,6 +164,10 @@
 	return [NSString stringWithCString:myMessage->msg_uid encoding:NSASCIIStringEncoding];
 }
 
+- (NSUInteger)indexNumber {
+	return myMessage->msg_index;
+}
+
 
 - (NSSet *)from {
 	if (myFields->fld_from == NULL)
