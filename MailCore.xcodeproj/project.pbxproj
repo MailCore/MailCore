@@ -162,7 +162,7 @@
 		F8483E4109CE7B9000B80440 /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8483E4009CE7B9000B80440 /* libssl.dylib */; };
 		F8483E4309CE7B9C00B80440 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8483E4209CE7B9C00B80440 /* libiconv.dylib */; };
 		F8483E4C09CE7C2800B80440 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8483E4B09CE7C2800B80440 /* libcrypto.dylib */; };
-		F858CC490C51DE6B00EF1B3D /* CTBareMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = F858CC470C51DE6B00EF1B3D /* CTBareMessage.h */; };
+		F858CC490C51DE6B00EF1B3D /* CTBareMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = F858CC470C51DE6B00EF1B3D /* CTBareMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F858CC4A0C51DE6B00EF1B3D /* CTBareMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F858CC480C51DE6B00EF1B3D /* CTBareMessage.m */; };
 		F88804620B42018500D400E7 /* libsasl2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F88804610B42018500D400E7 /* libsasl2.dylib */; };
 		F88804D70B4243C000D400E7 /* MailCoreUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = F88804D50B4243C000D400E7 /* MailCoreUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
