@@ -3,6 +3,11 @@
 #import "CTCoreMessage.h"
 #import "CTCoreAccount.h"
 #import "MailCoreTypes.h"
+#import "CTBareMessage.h"
+
+@interface CTCoreFolder (Private)
+- (NSDictionary *)_createFlagDictionary:(struct mail_flags *)flagStruct;
+@end
 	
 @implementation CTCoreFolder
 - (id)initWithPath:(NSString *)path inAccount:(CTCoreAccount *)account; {
@@ -165,16 +170,19 @@
 
 - (BOOL)isUIDValid:(NSString *)uid {
 	uint32_t uidvalidity, check_uidvalidity;
-	mailimap *imapSession;
-	
+	uidvalidity = [self uidValidity];
+	check_uidvalidity = (uint32_t)[[[uid componentsSeparatedByString:@"-"] objectAtIndex:0] doubleValue];
+	return (uidvalidity == check_uidvalidity);
+}
+
+- (NSUInteger)uidValidity {
 	[self connect];
+	mailimap *imapSession;
 	imapSession = [self imapSession];
 	if (imapSession->imap_selection_info != NULL) {
-		uidvalidity = imapSession->imap_selection_info->sel_uidvalidity;
-		check_uidvalidity = (uint32_t)[[[uid componentsSeparatedByString:@"-"] objectAtIndex:0] doubleValue];
-		return (uidvalidity == check_uidvalidity);
+		return imapSession->imap_selection_info->sel_uidvalidity;
 	}
-	return NO;
+	return 0;
 }
 
 
@@ -275,6 +283,98 @@
 	}
 	mailimap_fetch_list_free(fetch_result);	
 	return sequenceNumber;
+}
+
+- (NSSet *)messageListWithFetchAttributes:(NSArray *)attributes {
+	int r;
+	struct mailimap_fetch_att * fetch_att;
+	struct mailimap_fetch_type * fetch_type;
+	struct mailimap_set * set;
+	clist * fetch_result;
+
+	[self connect];
+	set = mailimap_set_new_interval(1, 0);
+	if (set == NULL) 
+		return nil;
+
+	fetch_type = mailimap_fetch_type_new_fetch_att_list_empty();
+	fetch_att = mailimap_fetch_att_new_uid();
+	r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
+	if (r != MAILIMAP_NO_ERROR) {
+		mailimap_fetch_att_free(fetch_att);
+		return nil;
+	}
+
+	fetch_att = mailimap_fetch_att_new_flags();
+	if (fetch_att == NULL) {
+		mailimap_fetch_type_free(fetch_type);
+		return nil;
+	}
+
+	r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
+	if (r != MAILIMAP_NO_ERROR) {
+		mailimap_fetch_att_free(fetch_att);
+		mailimap_fetch_type_free(fetch_type);
+		return nil;
+	}
+
+	r = mailimap_fetch([self imapSession], set, fetch_type, &fetch_result);
+	if (r != MAIL_NO_ERROR) {
+		NSException *exception = [NSException
+			        exceptionWithName:CTUnknownError
+			        reason:[NSString stringWithFormat:@"Error number: %d",r]
+			        userInfo:nil];
+		[exception raise];
+	}
+
+	mailimap_fetch_type_free(fetch_type);
+	mailimap_set_free(set);
+
+	if (r != MAILIMAP_NO_ERROR) 
+		return nil; //Add exception
+
+	NSMutableSet *messages = [NSMutableSet set];
+	NSUInteger uidValidity = [self uidValidity];
+	clistiter *iter;
+	for(iter = clist_begin(fetch_result); iter != NULL; iter = clist_next(iter)) {
+		CTBareMessage *msg = [[CTBareMessage alloc] init];
+		
+		struct mailimap_msg_att *msg_att = clist_content(iter);
+		clistiter * item_cur;
+		uint32_t uid;
+		struct mail_flags *flags;
+
+		uid = 0;
+		for(item_cur = clist_begin(msg_att->att_list); item_cur != NULL; 
+			item_cur = clist_next(item_cur)) {
+			struct mailimap_msg_att_item * item;
+
+			NSString *str;
+			item = clist_content(item_cur);
+			switch (item->att_type) {
+				case MAILIMAP_MSG_ATT_ITEM_STATIC:
+				switch (item->att_data.att_static->att_type) {
+					case MAILIMAP_MSG_ATT_UID:
+					str = [[NSString alloc] initWithFormat:@"%d-%d", uidValidity,
+										item->att_data.att_static->att_data.att_uid];
+					msg.uid = str;
+					[str release];
+					break;
+				}
+				break;
+				case MAILIMAP_MSG_ATT_ITEM_DYNAMIC:
+				r = imap_flags_to_flags(item->att_data.att_dyn, &flags);
+			 	if (r == MAIL_NO_ERROR) {
+					msg.flags = flags->fl_flags;
+			  	}
+				break;
+			}
+		}
+		[messages addObject:msg];
+		[msg release];
+  	}
+	mailimap_fetch_list_free(fetch_result);	
+	return messages;
 }
 
 
@@ -453,13 +553,8 @@
 	already depends on CTCoreMessage so we aren't adding any dependencies here. */
 
 - (NSDictionary *)flagsForMessage:(CTCoreMessage *)msg {
-	struct mail_flags *flagStruct = NULL;
-	uint32_t msgFlags;
 	int err;
-	NSMutableDictionary *theFlags = [NSMutableDictionary dictionaryWithObjectsAndKeys:CTFlagNotSet,CTFlagNew,
-	CTFlagNotSet,CTFlagSeen,CTFlagNotSet,CTFlagFlagged,CTFlagNotSet,CTFlagDeleted,CTFlagNotSet,CTFlagAnswered,
-	CTFlagNotSet,CTFlagForwarded,CTFlagNotSet,CTFlagCancelled,nil];
-	
+	struct mail_flags *flagStruct;
 	err = mailmessage_get_flags([msg messageStruct], &flagStruct);
 	if (err != MAILIMAP_NO_ERROR) {
 		NSException *exception = [NSException
@@ -468,25 +563,7 @@
 			        userInfo:nil];
 		[exception raise];	
 	}
-	if (flagStruct == NULL)
-		return theFlags;
-		
-	msgFlags = flagStruct->fl_flags;
-	if (msgFlags & MAIL_FLAG_NEW)
-		[theFlags setObject:CTFlagSet forKey:CTFlagNew];
-	if (msgFlags & MAIL_FLAG_SEEN)
-		[theFlags setObject:CTFlagSet forKey:CTFlagSeen];
-	if (msgFlags & MAIL_FLAG_FLAGGED)
-		[theFlags setObject:CTFlagSet forKey:CTFlagFlagged];	
-	if (msgFlags & MAIL_FLAG_DELETED)
-		[theFlags setObject:CTFlagSet forKey:CTFlagDeleted];
-	if (msgFlags & MAIL_FLAG_ANSWERED)
-		[theFlags setObject:CTFlagSet forKey:CTFlagAnswered];
-	if (msgFlags & MAIL_FLAG_FORWARDED)
-		[theFlags setObject:CTFlagSet forKey:CTFlagForwarded];
-
-	//TODO Implement advanced flags
-	return theFlags;
+	return [self _createFlagDictionary:flagStruct];
 }
 
 
@@ -590,6 +667,32 @@
 	return data->imap_session;	
 }
 
+- (NSDictionary *)_createFlagDictionary:(struct mail_flags *)flagStruct {
+	NSMutableDictionary *theFlags = [NSMutableDictionary dictionaryWithObjectsAndKeys:CTFlagNotSet,CTFlagNew,
+	CTFlagNotSet,CTFlagSeen,CTFlagNotSet,CTFlagFlagged,CTFlagNotSet,CTFlagDeleted,CTFlagNotSet,CTFlagAnswered,
+	CTFlagNotSet,CTFlagForwarded,CTFlagNotSet,CTFlagCancelled,nil];
+	
+	if (flagStruct == NULL)
+		return theFlags;
+		
+	uint32_t msgFlags = flagStruct->fl_flags;
+	if (msgFlags & MAIL_FLAG_NEW)
+		[theFlags setObject:CTFlagSet forKey:CTFlagNew];
+	if (msgFlags & MAIL_FLAG_SEEN)
+		[theFlags setObject:CTFlagSet forKey:CTFlagSeen];
+	if (msgFlags & MAIL_FLAG_FLAGGED)
+		[theFlags setObject:CTFlagSet forKey:CTFlagFlagged];	
+	if (msgFlags & MAIL_FLAG_DELETED)
+		[theFlags setObject:CTFlagSet forKey:CTFlagDeleted];
+	if (msgFlags & MAIL_FLAG_ANSWERED)
+		[theFlags setObject:CTFlagSet forKey:CTFlagAnswered];
+	if (msgFlags & MAIL_FLAG_FORWARDED)
+		[theFlags setObject:CTFlagSet forKey:CTFlagForwarded];
+
+	//TODO Implement advanced flags
+	return theFlags;	
+}
+
 
 /* From Libetpan source */
 int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result, 
@@ -672,5 +775,94 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
 		mailmessage_free(carray_get(tab, i));
 	err:
 		return res;
+}
+
+int imap_flags_to_flags(struct mailimap_msg_att_dynamic * att_dyn,
+			       struct mail_flags ** result)
+{
+  struct mail_flags * flags;
+  clist * flag_list;
+  clistiter * cur;
+
+  flags = mail_flags_new_empty();
+  if (flags == NULL)
+    goto err;
+  flags->fl_flags = 0;
+
+  flag_list = att_dyn->att_list;
+  if (flag_list != NULL) {
+    for(cur = clist_begin(flag_list) ; cur != NULL ;
+        cur = clist_next(cur)) {
+      struct mailimap_flag_fetch * flag_fetch;
+
+      flag_fetch = clist_content(cur);
+      if (flag_fetch->fl_type == MAILIMAP_FLAG_FETCH_RECENT)
+	flags->fl_flags |= MAIL_FLAG_NEW;
+      else {
+	char * keyword;
+	int r;
+
+	switch (flag_fetch->fl_flag->fl_type) {
+	case MAILIMAP_FLAG_ANSWERED:
+	  flags->fl_flags |= MAIL_FLAG_ANSWERED;
+	  break;
+	case MAILIMAP_FLAG_FLAGGED:
+	  flags->fl_flags |= MAIL_FLAG_FLAGGED;
+	  break;
+	case MAILIMAP_FLAG_DELETED:
+	  flags->fl_flags |= MAIL_FLAG_DELETED;
+	  break;
+	case MAILIMAP_FLAG_SEEN:
+	  flags->fl_flags |= MAIL_FLAG_SEEN;
+	  break;
+	case MAILIMAP_FLAG_DRAFT:
+	  keyword = strdup("Draft");
+	  if (keyword == NULL)
+	    goto free;
+	  r = clist_append(flags->fl_extension, keyword);
+	  if (r < 0) {
+	    free(keyword);
+	    goto free;
+	  }
+	  break;
+	case MAILIMAP_FLAG_KEYWORD:
+          if (strcasecmp(flag_fetch->fl_flag->fl_data.fl_keyword,
+                  "$Forwarded") == 0) {
+            flags->fl_flags |= MAIL_FLAG_FORWARDED;
+          }
+          else {
+            keyword = strdup(flag_fetch->fl_flag->fl_data.fl_keyword);
+            if (keyword == NULL)
+              goto free;
+            r = clist_append(flags->fl_extension, keyword);
+            if (r < 0) {
+              free(keyword);
+              goto free;
+            }
+          }
+	  break;
+	case MAILIMAP_FLAG_EXTENSION:
+	  /* do nothing */
+	  break;
+	}
+      }
+    }
+    /*
+      MAIL_FLAG_NEW was set for \Recent messages.
+      Correct this flag for \Seen messages by unsetting it.
+    */
+    if ((flags->fl_flags & MAIL_FLAG_SEEN) && (flags->fl_flags & MAIL_FLAG_NEW)) {
+      flags->fl_flags &= ~MAIL_FLAG_NEW;
+    }
+  }
+
+  * result = flags;
+  
+  return MAIL_NO_ERROR;
+
+ free:
+  mail_flags_free(flags);
+ err:
+  return MAIL_ERROR_MEMORY;
 }
 @end

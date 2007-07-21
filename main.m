@@ -18,11 +18,12 @@ int main( int argc, char *argv[ ] )
 
 	MailCoreEnableLogging();
 	[account connectToServer:@"mail.theronge.com" port:143 connectionType:CONNECTION_TYPE_STARTTLS 
-				authType:IMAP_AUTH_TYPE_PLAIN login:@"mronge" password:@"garlicmustard7"];
+				authType:IMAP_AUTH_TYPE_PLAIN login:@"mronge" password:@""];
 	
 	//wtf this doesn't work on the INBOX
 	folder = [account folderWithPath:@"INBOX"];
-	NSLog(@"%d", [folder totalMessageCount]);
+	NSLog(@"%@", [folder messageListWithFetchAttributes:nil]);
+	//NSLog(@"%d", [folder totalMessageCount]);
 /*	for (CTCoreMessage *msg in [folder messageObjectsFromIndex:10 toIndex:18]) {
 		NSLog(@"%d", [msg sequenceNumber]);
 		NSLog([msg uid]);

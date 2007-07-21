@@ -47,11 +47,14 @@
 */
 - (NSSet *)messageListFromUID:(NSString *)uid;
 
+//TODO Document me!
+//TODO Attributes is ignore, fix me!
+- (NSSet *)messageListWithFetchAttributes:(NSArray *)attributes;
 
 /*
 	Implementation is in alpha.
 */
-//TODO Fix me!
+//TODO Document Me!
 - (NSSet *)messageObjectsFromIndex:(unsigned int)start toIndex:(unsigned int)end;
 
 /*!
@@ -162,6 +165,12 @@
 	@result		A NSUInteger containing the number of messages.
 */
 - (NSUInteger)totalMessageCount;
+
+/*!
+	@abstract	Returns the uid validity value for the folder
+	@result		An integer containing the uid validity
+*/
+- (NSUInteger)uidValidity;
 
 /* Intended for advanced use only */
 - (struct mailfolder *)folderStruct;
