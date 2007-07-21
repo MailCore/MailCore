@@ -49,7 +49,7 @@
 
 //TODO Document me!
 //TODO Attributes is ignore, fix me!
-- (NSSet *)messageListWithFetchAttributes:(NSArray *)attributes;
+- (NSSet *)messageListWithFetchAttributes:(NSArray *)attributes
 
 /*
 	Implementation is in alpha.

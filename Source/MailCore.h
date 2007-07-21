@@ -3,6 +3,7 @@
 #import "CTCoreFolder.h"
 #import "CTCoreMessage.h"
 #import "CTSMTPConnection.h"
+#import "CTBareMessage.h"
 #import "libetpan.h"
 #import "MailCoreTypes.h"
 #import "MailCoreUtilities.h"
