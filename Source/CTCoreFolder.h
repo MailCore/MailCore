@@ -47,10 +47,6 @@
 */
 - (NSSet *)messageListFromUID:(NSString *)uid;
 
-//TODO Document me!
-//TODO Attributes is ignore, fix me!
-- (NSSet *)messageListWithFetchAttributes:(NSArray *)attributes;
-
 /*
 	Implementation is in alpha.
 */
@@ -77,6 +73,11 @@
 				on the message.
 */
 - (CTCoreMessage *)messageWithUID:(NSString *)uid;
+
+
+//TODO Document me!
+//TODO Attributes is ignore, fix me!
+- (NSSet *)messageListWithFetchAttributes:(NSArray *)attributes;
 
 /*!
 	@abstract	This validates the passed in UID. The server can at times change the set of UID's for a folder. So

@@ -11,4 +11,6 @@
 @property NSUInteger flags;
 
 - (id)init;
+- (NSUInteger)hash;
+- (BOOL)isEqual:(id)anObject;
 @end
