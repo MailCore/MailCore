@@ -141,17 +141,25 @@
 - (void)unsubscribe;
 
 /*!
-	@abstract	Returns an NSDictionary of message flags, every flag is either marked as CTFlagSet or CTFlagNotSet. Here is a list of message flags: CTFlagNew, CTFlagSeen, CTFlagFlagged, CTFlagDeleted, CTFlagAnswered, CTFlagForwarded. Those are the keys you should use on the dictionary that is returned.
+	@abstract	Returns the message flags. You must AND/OR using the defines constants.
+				Here is a list of message flags: 
+				CTFlagNew, CTFlagSeen, CTFlagFlagged, CTFlagDeleted,
+				CTFlagAnswered, CTFlagForwarded.
 */
-- (NSDictionary *)flagsForMessage:(CTCoreMessage *)msg;
+- (unsigned int)flagsForMessage:(CTCoreMessage *)msg;
 
 /*!
-	@abstract	Sets the message's flags on the server, take a look at the documentation for the flags: for more information.
+	@abstract	Sets the message's flags on the server, take a look at the 
+				documentation for flagsForMessage:
 */
-- (void)setFlags:(NSDictionary *)flags forMessage:(CTCoreMessage *)msg;
+- (void)setFlags:(unsigned int)flags forMessage:(CTCoreMessage *)msg;
 
 /*!
-	@astract	Deletes all messages contained in the folder that are marked for deletion. Deleting messages in IMAP is a little strange, first you need to set the message flag CTFlagDeleted to CTFlagSet, and then when you call expunge on the folder the message is contained in, it will be deleted.
+	@astract	Deletes all messages contained in the folder that are marked for
+				deletion. Deleting messages in IMAP is a little strange, first 
+				you need to set the message flag CTFlagDeleted to CTFlagSet, and
+				then when you call expunge on the folder the message is contained 
+				in, it will be deleted.
 */
 - (void)expunge;
 

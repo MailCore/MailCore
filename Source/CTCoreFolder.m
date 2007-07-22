@@ -6,7 +6,6 @@
 #import "CTBareMessage.h"
 
 @interface CTCoreFolder (Private)
-- (NSDictionary *)_createFlagDictionary:(struct mail_flags *)flagStruct;
 @end
 	
 @implementation CTCoreFolder
@@ -552,7 +551,7 @@
 	By not including these methods, CTCoreMessage doesn't depend on CTCoreFolder anymore. CTCoreFolder
 	already depends on CTCoreMessage so we aren't adding any dependencies here. */
 
-- (NSDictionary *)flagsForMessage:(CTCoreMessage *)msg {
+- (unsigned int)flagsForMessage:(CTCoreMessage *)msg {
 	int err;
 	struct mail_flags *flagStruct;
 	err = mailmessage_get_flags([msg messageStruct], &flagStruct);
@@ -563,28 +562,14 @@
 			        userInfo:nil];
 		[exception raise];	
 	}
-	return [self _createFlagDictionary:flagStruct];
+	return flagStruct->fl_flags;
 }
 
 
-- (void)setFlags:(NSDictionary *)flags forMessage:(CTCoreMessage *)msg {
+- (void)setFlags:(unsigned int)flags forMessage:(CTCoreMessage *)msg {
 	int err;
-	uint32_t msgFlags = 0;
-	
-	if ([[flags objectForKey:CTFlagNew] isEqual:CTFlagSet])
-		msgFlags = msgFlags | MAIL_FLAG_NEW;
-	if ([[flags objectForKey:CTFlagSeen] isEqual:CTFlagSet])
-		msgFlags = msgFlags | MAIL_FLAG_SEEN;
-	if ([[flags objectForKey:CTFlagFlagged] isEqual:CTFlagSet])
-		msgFlags = msgFlags | MAIL_FLAG_FLAGGED;
-	if ([[flags objectForKey:CTFlagDeleted] isEqual:CTFlagSet])
-		msgFlags = msgFlags | MAIL_FLAG_DELETED;
-	if ([[flags objectForKey:CTFlagAnswered] isEqual:CTFlagSet])
-		msgFlags = msgFlags | MAIL_FLAG_ANSWERED;
-	if ([[flags objectForKey:CTFlagForwarded] isEqual:CTFlagSet])
-		msgFlags = msgFlags | MAIL_FLAG_FORWARDED;
-	
-	[msg messageStruct]->msg_flags->fl_flags=msgFlags;
+
+	[msg messageStruct]->msg_flags->fl_flags=flags;
 	err = mailmessage_check([msg messageStruct]);
 	if (err != MAILIMAP_NO_ERROR) {
 		NSException *exception = [NSException
@@ -666,33 +651,6 @@
 	data = session->sess_data;
 	return data->imap_session;	
 }
-
-- (NSDictionary *)_createFlagDictionary:(struct mail_flags *)flagStruct {
-	NSMutableDictionary *theFlags = [NSMutableDictionary dictionaryWithObjectsAndKeys:CTFlagNotSet,CTFlagNew,
-	CTFlagNotSet,CTFlagSeen,CTFlagNotSet,CTFlagFlagged,CTFlagNotSet,CTFlagDeleted,CTFlagNotSet,CTFlagAnswered,
-	CTFlagNotSet,CTFlagForwarded,CTFlagNotSet,CTFlagCancelled,nil];
-	
-	if (flagStruct == NULL)
-		return theFlags;
-		
-	uint32_t msgFlags = flagStruct->fl_flags;
-	if (msgFlags & MAIL_FLAG_NEW)
-		[theFlags setObject:CTFlagSet forKey:CTFlagNew];
-	if (msgFlags & MAIL_FLAG_SEEN)
-		[theFlags setObject:CTFlagSet forKey:CTFlagSeen];
-	if (msgFlags & MAIL_FLAG_FLAGGED)
-		[theFlags setObject:CTFlagSet forKey:CTFlagFlagged];	
-	if (msgFlags & MAIL_FLAG_DELETED)
-		[theFlags setObject:CTFlagSet forKey:CTFlagDeleted];
-	if (msgFlags & MAIL_FLAG_ANSWERED)
-		[theFlags setObject:CTFlagSet forKey:CTFlagAnswered];
-	if (msgFlags & MAIL_FLAG_FORWARDED)
-		[theFlags setObject:CTFlagSet forKey:CTFlagForwarded];
-
-	//TODO Implement advanced flags
-	return theFlags;	
-}
-
 
 /* From Libetpan source */
 int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result, 

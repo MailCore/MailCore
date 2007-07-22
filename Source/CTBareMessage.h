@@ -5,12 +5,12 @@
 //TODO Document me
 @interface CTBareMessage : NSObject {
 	NSString *mUid;
-	NSUInteger mFlags;
+	unsigned int mFlags;
 }
 @property(retain) NSString *uid;
-@property NSUInteger flags;
+@property unsigned int flags;
 
 - (id)init;
-- (NSUInteger)hash;
+- (unsigned int)hash;
 - (BOOL)isEqual:(id)anObject;
 @end

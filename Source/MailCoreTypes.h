@@ -2,17 +2,16 @@
 /* = List of Message Flags = */
 /* ========================= */
 
-#define CTFlagNew			@"NEW"
-#define CTFlagSeen			@"SEEN"
-#define CTFlagFlagged		@"FLAGGED"
-#define CTFlagDeleted		@"DELETED"
-#define CTFlagAnswered		@"ANSWERED"
-#define CTFlagForwarded		@"FORWARDED"
-#define CTFlagCancelled 	@"CANCELLED"
-#define CTFlagExtensions	@"EXTENSIONS"
+//TODO Turn these into extern's, not defines
 
-#define CTFlagSet			@"SET"
-#define CTFlagNotSet		@"NOT_SET"
+#define CTFlagNew			MAIL_FLAG_NEW
+#define CTFlagSeen			MAIL_FLAG_SEEN
+#define CTFlagFlagged		MAIL_FLAG_FLAGGED
+#define CTFlagDeleted		MAIL_FLAG_DELETED
+#define CTFlagAnswered		MAIL_FLAG_ANSWERED
+#define CTFlagForwarded		MAIL_FLAG_FORWARDED
+#define CTFlagCancelled 	MAIL_FLAG_CANCELLED
+
 
 /* =========================== */
 /* = List of Exception Types = */
