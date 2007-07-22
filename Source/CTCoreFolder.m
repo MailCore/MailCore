@@ -521,6 +521,7 @@
 	int err;
 	struct mailmessage *msgStruct;
 	
+
 	err = mailfolder_get_message_by_uid([self folderStruct], [uid cStringUsingEncoding:NSASCIIStringEncoding], &msgStruct);
 	if (err == MAIL_ERROR_MSG_NOT_FOUND) {
 		return nil;
@@ -533,6 +534,17 @@
 		[exception raise];
 	}
 	err = mailmessage_fetch_envelope(msgStruct,&(msgStruct->msg_fields));
+	if (err != MAIL_NO_ERROR) {
+		NSException *exception = [NSException
+			        exceptionWithName:CTUnknownError
+			        reason:[NSString stringWithFormat:@"Error number: %d",err]
+			        userInfo:nil];
+		[exception raise];
+	}
+	
+	//TODO Fix me, i'm missing alot of things that aren't being downloaded, 
+	// I just hacked this in here for the mean time
+	err = mailmessage_get_flags(msgStruct, &(msgStruct->msg_flags));
 	if (err != MAIL_NO_ERROR) {
 		NSException *exception = [NSException
 			        exceptionWithName:CTUnknownError
