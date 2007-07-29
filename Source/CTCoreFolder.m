@@ -198,44 +198,6 @@
 }
 
 
-- (NSSet *)messageListFromUID:(NSString *)uid {
-	struct mailmessage_list *msgList;
-	struct mailmessage *msg;
-	unsigned int len = 0, err = 0, uidnum = 0;
-	NSString *newUID;
-	NSMutableSet *messages = [NSMutableSet set];
-
-	[self connect];
-	if (uid == nil)
-		uidnum = 0;
-	else
-		uidnum = (unsigned int)[[[uid componentsSeparatedByString:@"-"] objectAtIndex:1] unsignedIntegerValue];
-
-	mailmessage_driver *driver = imap_message_driver;
-	err = imap_get_messages_list([self imapSession], [self folderSession], driver, (uint32_t)uidnum+1, &msgList);
-	if (err != MAIL_NO_ERROR) {
-		if ( msgList != NULL )
-			mailmessage_list_free(msgList);
-		NSException *exception = [NSException
-			        exceptionWithName:CTUnknownError
-			        reason:[NSString stringWithFormat:@"Error number: %d",err]
-			        userInfo:nil];
-		[exception raise];
-	}
-	
-	len = carray_count(msgList->msg_tab);
-	int i;
-	for(i=0; i<len; i++) {
-		msg = carray_get(msgList->msg_tab, i);
-		newUID = [[NSString alloc] initWithCString:msg->msg_uid encoding:NSASCIIStringEncoding];
-		[messages addObject:newUID];
-		[newUID release];
-	}
-	if ( msgList != NULL )
-		mailmessage_list_free(msgList);
-	return messages;
-}
-
 - (NSUInteger)sequenceNumberForUID:(NSString *)uid {
 	//TODO check UID validity
 	//TODO factor out this duplicate code

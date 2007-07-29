@@ -35,18 +35,6 @@
 */
 - (void)disconnect;
 
-/*!
-	@abstract	This returns an NSSet of NSStrings which contain the UID's (unique identifiers) of the messages
-				which reside in this folder. If you pass in a UID make sure you verify that UID is still valid with
-				isUIDValid first.
-	@param		uid If you pass in nil, then it will return the all of the UID's in the folder. If you pass in
-				a NSString containing a UID the method will only fetch a list of UID's which start after that base
-				UID. This can be used to for example, only download the newest messages if you pass in the last UID
-				returned from a previous fetch.
-	@result		A NSSet which contains NSStrings with the message UIDs
-*/
-- (NSSet *)messageListFromUID:(NSString *)uid;
-
 /*
 	Implementation is in alpha.
 */
