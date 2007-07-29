@@ -42,18 +42,6 @@
 - (NSSet *)messageObjectsFromIndex:(unsigned int)start toIndex:(unsigned int)end;
 
 /*!
-	@abstract	This returns an NSSet of CTCoreMessage's. If you need to get access the message attributes on
-				all of the messages it's faster to use this method than messageListFromIndex:. However, this method
-				has higher overhead if you need to get a list quickly.
-	@param		uid If you pass in nil, then it will return the all of the UID's in the folder. If you pass in
-				a NSString containing a UID the method will only fetch a list of UID's which start after that base
-				UID. This can be used to for example, only download the newest messages if you pass in the last UID
-				returned from a previous fetch.
-	@result		NSSet which contains CTCoreMessage's
-*/
-- (NSSet *)messageObjectsFromUID:(NSString *)uid;
-
-/*!
 	@abstract	This will return the message from this folder with the UID that was passed in. If the message
 				can't be found, nil is returned
 	@param		uid The uid as an NSString for the message to retrieve.
