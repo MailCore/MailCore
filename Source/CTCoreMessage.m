@@ -15,6 +15,7 @@
 - (NSSet *)_addressListFromIMFAddressList:(struct mailimf_address_list *)imfList;
 - (struct mailimf_address_list *)_IMFAddressListFromAddresssList:(NSSet *)addresses;
 - (void)_buildUpBodyText:(CTMIME *)mime result:(NSMutableString *)result;
+- (NSString *)_decodeMIMEPhrase:(char *)data;
 @end
 
 @implementation CTCoreMessage
@@ -117,7 +118,7 @@
 - (NSString *)subject {
 	if (myFields->fld_subject == NULL)
 		return @"";
-	NSString *decodedSubject = [CTMIMEParser decodeMIMEPhrase:myFields->fld_subject->sbj_value];
+	NSString *decodedSubject = [self _decodeMIMEPhrase:myFields->fld_subject->sbj_value];
 	if (decodedSubject == nil)
 		return @"";
 	return decodedSubject;
@@ -390,4 +391,25 @@
 	}
 	return imfList;
 }
+
+- (NSString *)_decodeMIMEPhrase:(char *)data {
+	int err;
+	size_t currToken = 0;
+	char *decodedSubject;
+	NSString *result;
+	
+	err = mailmime_encoded_phrase_parse(DEST_CHARSET, data, strlen(data),
+		&currToken, DEST_CHARSET, &decodedSubject);
+		
+	if (err != MAILIMF_NO_ERROR) {
+		if (decodedSubject == NULL)
+			free(decodedSubject);
+		return nil;
+	}
+		
+	result = [NSString stringWithCString:decodedSubject encoding:NSASCIIStringEncoding];
+	free(decodedSubject);
+	return result;
+}
+
 @end

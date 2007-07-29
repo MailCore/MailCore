@@ -150,8 +150,6 @@
 		F81B88630A74AA7100143DF6 /* CTCoreFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = F81B88550A74AA7100143DF6 /* CTCoreFolder.m */; };
 		F81B88640A74AA7100143DF6 /* CTCoreMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = F81B88560A74AA7100143DF6 /* CTCoreMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F81B88650A74AA7100143DF6 /* CTCoreMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F81B88570A74AA7100143DF6 /* CTCoreMessage.m */; };
-		F81B88660A74AA7100143DF6 /* CTMIMEParser.h in Headers */ = {isa = PBXBuildFile; fileRef = F81B88580A74AA7100143DF6 /* CTMIMEParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F81B88670A74AA7100143DF6 /* CTMIMEParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F81B88590A74AA7100143DF6 /* CTMIMEParser.m */; };
 		F81B88680A74AA7100143DF6 /* CTSMTPConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = F81B885A0A74AA7100143DF6 /* CTSMTPConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F81B88690A74AA7100143DF6 /* CTSMTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = F81B885B0A74AA7100143DF6 /* CTSMTPConnection.m */; };
 		F81B886A0A74AA7100143DF6 /* MailCore.h in Headers */ = {isa = PBXBuildFile; fileRef = F81B885C0A74AA7100143DF6 /* MailCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -365,8 +363,6 @@
 		F81B88550A74AA7100143DF6 /* CTCoreFolder.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = CTCoreFolder.m; path = Source/CTCoreFolder.m; sourceTree = SOURCE_ROOT; };
 		F81B88560A74AA7100143DF6 /* CTCoreMessage.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = CTCoreMessage.h; path = Source/CTCoreMessage.h; sourceTree = SOURCE_ROOT; };
 		F81B88570A74AA7100143DF6 /* CTCoreMessage.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = CTCoreMessage.m; path = Source/CTCoreMessage.m; sourceTree = SOURCE_ROOT; };
-		F81B88580A74AA7100143DF6 /* CTMIMEParser.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = CTMIMEParser.h; path = Source/CTMIMEParser.h; sourceTree = SOURCE_ROOT; };
-		F81B88590A74AA7100143DF6 /* CTMIMEParser.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = CTMIMEParser.m; path = Source/CTMIMEParser.m; sourceTree = SOURCE_ROOT; };
 		F81B885A0A74AA7100143DF6 /* CTSMTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = CTSMTPConnection.h; path = Source/CTSMTPConnection.h; sourceTree = SOURCE_ROOT; };
 		F81B885B0A74AA7100143DF6 /* CTSMTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = CTSMTPConnection.m; path = Source/CTSMTPConnection.m; sourceTree = SOURCE_ROOT; };
 		F81B885C0A74AA7100143DF6 /* MailCore.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = MailCore.h; path = Source/MailCore.h; sourceTree = SOURCE_ROOT; };
@@ -504,8 +500,6 @@
 				F81B88550A74AA7100143DF6 /* CTCoreFolder.m */,
 				F81B88560A74AA7100143DF6 /* CTCoreMessage.h */,
 				F81B88570A74AA7100143DF6 /* CTCoreMessage.m */,
-				F81B88580A74AA7100143DF6 /* CTMIMEParser.h */,
-				F81B88590A74AA7100143DF6 /* CTMIMEParser.m */,
 				F81B885A0A74AA7100143DF6 /* CTSMTPConnection.h */,
 				F81B885B0A74AA7100143DF6 /* CTSMTPConnection.m */,
 				F81B885C0A74AA7100143DF6 /* MailCore.h */,
@@ -721,7 +715,6 @@
 				F81B88600A74AA7100143DF6 /* CTCoreAddress.h in Headers */,
 				F81B88620A74AA7100143DF6 /* CTCoreFolder.h in Headers */,
 				F81B88640A74AA7100143DF6 /* CTCoreMessage.h in Headers */,
-				F81B88660A74AA7100143DF6 /* CTMIMEParser.h in Headers */,
 				F81B88680A74AA7100143DF6 /* CTSMTPConnection.h in Headers */,
 				F81B886A0A74AA7100143DF6 /* MailCore.h in Headers */,
 				F81B886B0A74AA7100143DF6 /* MailCoreTypes.h in Headers */,
@@ -1011,7 +1004,6 @@
 				F81B88610A74AA7100143DF6 /* CTCoreAddress.m in Sources */,
 				F81B88630A74AA7100143DF6 /* CTCoreFolder.m in Sources */,
 				F81B88650A74AA7100143DF6 /* CTCoreMessage.m in Sources */,
-				F81B88670A74AA7100143DF6 /* CTMIMEParser.m in Sources */,
 				F81B88690A74AA7100143DF6 /* CTSMTPConnection.m in Sources */,
 				F88804D80B4243C000D400E7 /* MailCoreUtilities.m in Sources */,
 				F88CA0CF0BF7A7B00055AC29 /* CTSMTP.m in Sources */,
