@@ -53,7 +53,8 @@ char * etpan_encode_mime_header(char * phrase)
 
 - (id)initWithFileAtPath:(NSString *)path {
 	NSString *msgData = [NSString stringWithContentsOfFile:path encoding:NSASCIIStringEncoding error:NULL];
-	struct mailmessage *msg = data_message_init((char *)[msgData cStringUsingEncoding:NSASCIIStringEncoding], [msgData lengthOfBytesUsingEncoding:NSASCIIStringEncoding]);
+	struct mailmessage *msg = data_message_init((char *)[msgData cStringUsingEncoding:NSASCIIStringEncoding], 
+								[msgData lengthOfBytesUsingEncoding:NSASCIIStringEncoding]);
 	int err;
 	struct mailmime *dummyMime;
 	/* mailmessage_get_bodystructure will fill the mailmessage struct for us */

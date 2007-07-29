@@ -55,6 +55,4 @@
 	@abstract Standard description method
 */
 - (NSString *)description;
-
-//TODO Do I need to overide: - (bool)isEqualTo:(id)object
 @end
