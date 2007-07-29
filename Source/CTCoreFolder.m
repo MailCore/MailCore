@@ -38,16 +38,9 @@
 - (void)connect {
 	int err = MAIL_NO_ERROR;
 	err =  mailfolder_connect(myFolder);
-	if (err != MAIL_NO_ERROR) {
-		connected = NO;
-		NSException *exception = [NSException
-			        exceptionWithName:CTUnknownError
-			        reason:[NSString stringWithFormat:@"Error number: %d",err]
-			        userInfo:nil];
-		[exception raise];
-	}
-	else
-		connected = YES;
+	IfTrue_RaiseException(err != MAILIMAP_NO_ERROR, CTUnknownError, 
+		[NSString stringWithFormat:@"Error number: %d",err]);	
+	connected = YES;
 }
 
 
@@ -76,89 +69,58 @@
 	[self connect];	
 	[self unsubscribe];
 	err =  mailimap_rename([myAccount session], oldPath, newPath);
-	if (err != MAILIMAP_NO_ERROR) {
-		NSException *exception = [NSException
-			        exceptionWithName:CTUnknownError
-			        reason:[NSString stringWithFormat:@"Error number: %d",err]
-			        userInfo:nil];
-		[exception raise];	
-	}
-	else {
-		[path retain];
-		[myPath release];
-		myPath = path;
-		[self subscribe];
-	}
+	IfTrue_RaiseException(err != MAILIMAP_NO_ERROR, CTUnknownError, 
+		[NSString stringWithFormat:@"Error number: %d",err]);	
+	[path retain];
+	[myPath release];
+	myPath = path;
+	[self subscribe];
 }
 
 
-- (void)create; {
+- (void)create {
 	int err;
 	const char *path = [myPath cStringUsingEncoding:NSASCIIStringEncoding];
 	
 	err =  mailimap_create([myAccount session], path);
-	if (err != MAILIMAP_NO_ERROR) {
-		NSException *exception = [NSException
-			        exceptionWithName:CTUnknownError
-			        reason:[NSString stringWithFormat:@"Error number: %d",err]
-			        userInfo:nil];
-		[exception raise];	
-	}
-	else {
-		[self connect];
-		[self subscribe];	
-	}
+	IfTrue_RaiseException(err != MAILIMAP_NO_ERROR, CTUnknownError, 
+		[NSString stringWithFormat:@"Error number: %d",err]);
+	[self connect];
+	[self subscribe];	
 }
 
 
-- (void)delete; {
+- (void)delete {
 	int err;
 	const char *path = [myPath cStringUsingEncoding:NSASCIIStringEncoding];
 	
 	[self connect];
 	[self unsubscribe];
 	err =  mailimap_delete([myAccount session], path);
-	if (err != MAILIMAP_NO_ERROR) {
-		NSException *exception = [NSException
-			        exceptionWithName:CTUnknownError
-			        reason:[NSString stringWithFormat:@"Error number: %d",err]
-			        userInfo:nil];
-		[exception raise];	
-	}	
+	IfTrue_RaiseException(err != MAILIMAP_NO_ERROR, CTUnknownError, 
+		[NSString stringWithFormat:@"Error number: %d",err]);
 }
 
 
-- (void)subscribe;
-{
+- (void)subscribe {
 	int err;
 	const char *path = [myPath cStringUsingEncoding:NSASCIIStringEncoding];
 	
 	[self connect];
 	err =  mailimap_subscribe([myAccount session], path);
-	if (err != MAILIMAP_NO_ERROR) {
-		NSException *exception = [NSException
-			        exceptionWithName:CTUnknownError
-			        reason:[NSString stringWithFormat:@"Error number: %d",err]
-			        userInfo:nil];
-		[exception raise];	
-	}	
+	IfTrue_RaiseException(err != MAILIMAP_NO_ERROR, CTUnknownError, 
+		[NSString stringWithFormat:@"Error number: %d",err]);
 }
 
 
-- (void)unsubscribe;
-{
+- (void)unsubscribe {
 	int err;
 	const char *path = [myPath cStringUsingEncoding:NSASCIIStringEncoding];
 	
 	[self connect];
 	err =  mailimap_unsubscribe([myAccount session], path);
-	if (err != MAILIMAP_NO_ERROR) {
-		NSException *exception = [NSException
-			        exceptionWithName:CTUnknownError
-			        reason:[NSString stringWithFormat:@"Error number: %d",err]
-			        userInfo:nil];
-		[exception raise];	
-	}	
+	IfTrue_RaiseException(err != MAILIMAP_NO_ERROR, CTUnknownError, 
+		[NSString stringWithFormat:@"Error number: %d",err]);	
 }
 
 
@@ -188,13 +150,8 @@
 - (void)check {
 	[self connect];
 	int err = mailfolder_check(myFolder);
-	if (err != MAILIMAP_NO_ERROR) {
-		NSException *exception = [NSException
-			        exceptionWithName:CTUnknownError
-			        reason:[NSString stringWithFormat:@"Error number: %d",err]
-			        userInfo:nil];
-		[exception raise];	
-	}
+	IfTrue_RaiseException(err != MAILIMAP_NO_ERROR, CTUnknownError, 
+		[NSString stringWithFormat:@"Error number: %d",err]);	
 }
 
 
@@ -492,13 +449,8 @@
 
 	[msg messageStruct]->msg_flags->fl_flags=flags;
 	err = mailmessage_check([msg messageStruct]);
-	if (err != MAILIMAP_NO_ERROR) {
-		NSException *exception = [NSException
-			        exceptionWithName:CTUnknownError
-			        reason:[NSString stringWithFormat:@"Error number: %d",err]
-			        userInfo:nil];
-		[exception raise];	
-	}
+	IfTrue_RaiseException(err != MAILIMAP_NO_ERROR, CTUnknownError, 
+		[NSString stringWithFormat:@"Error number: %d",err]);
 	[self check];
 }
 
@@ -507,13 +459,8 @@
 	int err;
 	[self connect];
 	err = mailfolder_expunge(myFolder);
-	if (err != MAILIMAP_NO_ERROR) {
-		NSException *exception = [NSException
-			        exceptionWithName:CTUnknownError
-			        reason:[NSString stringWithFormat:@"Error number: %d",err]
-			        userInfo:nil];
-		[exception raise];	
-	}
+	IfTrue_RaiseException(err != MAILIMAP_NO_ERROR, CTUnknownError, 
+		[NSString stringWithFormat:@"Error number: %d",err]);	
 }
 
 
@@ -524,13 +471,8 @@
 	
 	[self connect];
 	err =  mailfolder_status(myFolder, &junk, &junk, &unseenCount);
-	if (err != MAILIMAP_NO_ERROR) {
-		NSException *exception = [NSException
-			        exceptionWithName:CTUnknownError
-			        reason:[NSString stringWithFormat:@"Error number: %d",err]
-			        userInfo:nil];
-		[exception raise];	
-	}
+	IfTrue_RaiseException(err != MAILIMAP_NO_ERROR, CTUnknownError, 
+		[NSString stringWithFormat:@"Error number: %d",err]);
 	return unseenCount;
 }
 
@@ -542,13 +484,8 @@
 			
 	[self connect];			
 	err =  mailfolder_status(myFolder, &totalCount, &junk, &junk);
-	if (err != MAILIMAP_NO_ERROR) {
-		NSException *exception = [NSException
-			        exceptionWithName:CTUnknownError
-			        reason:[NSString stringWithFormat:@"Error number: %d",err]
-			        userInfo:nil];
-		[exception raise];	
-	}
+	IfTrue_RaiseException(err != MAILIMAP_NO_ERROR, CTUnknownError, 
+		[NSString stringWithFormat:@"Error number: %d",err]);
 	return totalCount;
 }
 
@@ -574,6 +511,7 @@
 }
 
 /* From Libetpan source */
+//TODO Can these things be made public in libetpan?
 int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result, 
 						mailsession * session, mailmessage_driver * driver) {
 	clistiter * cur;
