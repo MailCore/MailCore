@@ -3,7 +3,6 @@
 #import "MailCoreTypes.h"
 
 @interface CTCoreAccount (Private)
-- (NSString *)_cacheDirectory;
 @end
 
 
@@ -180,26 +179,5 @@
 	}
 	mailimap_list_result_free(allList);
 	return allFolders;
-}
-
-/********************************** INTERNALUSE **********************************/
-
-- (NSString *)_cacheDirectory {
-	NSArray *paths;
-	NSString *applicationDataPath;
-	NSString *folderPath;
-	NSFileManager *fs = [NSFileManager defaultManager];
-	BOOL success = YES;
-	
-	paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-	applicationDataPath = [paths objectAtIndex:0];
-	folderPath = [NSString stringWithFormat:@"%@/Kiwi", applicationDataPath];
-	if (![fs fileExistsAtPath:folderPath])
-		success = [fs createDirectoryAtPath:folderPath attributes:nil];
-	
-	if (success==NO)
-		return @"/tmp";
-	
-	return folderPath;
 }
 @end
