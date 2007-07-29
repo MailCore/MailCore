@@ -11,12 +11,12 @@
 - (id)initWithMIMEStruct:(struct mailmime *)mime forMessage:(struct mailmessage *)message {
 	self = [super init];
 	if (self) {
-		struct mailmime_single_fields mimeFields;		
+		struct mailmime_single_fields *mimeFields = NULL;
 		
 		int encoding = MAILMIME_MECHANISM_8BIT;
-		mailmime_single_fields_init(&mimeFields, mime->mm_mime_fields, mime->mm_content_type);
-		if (mimeFields.fld_encoding != NULL)
-			encoding = mimeFields.fld_encoding->enc_type;
+		mimeFields = mailmime_single_fields_new(mime->mm_mime_fields, mime->mm_content_type);
+		if (mimeFields != NULL && mimeFields->fld_encoding != NULL)
+			encoding = mimeFields->fld_encoding->enc_type;
 		
 		char *fetchedData;
 		size_t fetchedDataLen;
@@ -35,6 +35,9 @@
 			RaiseException(CTMIMEParseError, CTMIMEParseErrorDesc);
 		}
 		myString = [[NSString alloc] initWithBytes:result length:result_len encoding:NSASCIIStringEncoding];
+		mailmessage_fetch_result_free(message, fetchedData);
+		mailmime_decoded_part_free(result);
+		mailmime_single_fields_free(mimeFields);
 	}
 	return self;		
 }

@@ -1,0 +1,79 @@
+Return-Path: <>
+X-Original-To: mronge@theronge.com
+Delivered-To: mronge@theronge.com
+Received: by theronge.com (Postfix)
+	id DD35DB8492; Tue,  3 Jul 2007 23:12:44 -0700 (PDT)
+Date: Tue,  3 Jul 2007 23:12:44 -0700 (PDT)
+From: MAILER-DAEMON@theronge.com (Mail Delivery System)
+Subject: Undelivered Mail Returned to Sender
+To: mronge@theronge.com
+MIME-Version: 1.0
+Content-Type: multipart/report; report-type=delivery-status;
+	boundary="4D469B846B.1183529564/theronge.com"
+Message-Id: <20070704061244.DD35DB8492@theronge.com>
+X-Spambayes-Classification: ham; 0.03
+X-Spambayes-Trained: ham
+
+This is a MIME-encapsulated message.
+
+--4D469B846B.1183529564/theronge.com
+Content-Description: Notification
+Content-Type: text/plain
+
+This is the Postfix program at host theronge.com.
+
+I'm sorry to have to inform you that your message could not be
+be delivered to one or more recipients. It's attached below.
+
+For further assistance, please send mail to <postmaster>
+
+If you do so, please include this problem report. You can
+delete your own text from the attached returned message.
+
+			The Postfix program
+
+<arcoleo@gooui.com>: host gooui.com[206.71.150.47] said: 530 5.7.0 Must issue a
+    STARTTLS command first (in reply to MAIL FROM command)
+
+--4D469B846B.1183529564/theronge.com
+Content-Description: Delivery report
+Content-Type: message/delivery-status
+
+Reporting-MTA: dns; theronge.com
+X-Postfix-Queue-ID: 4D469B846B
+X-Postfix-Sender: rfc822; mronge@theronge.com
+Arrival-Date: Tue,  3 Jul 2007 23:12:33 -0700 (PDT)
+
+Final-Recipient: rfc822; arcoleo@gooui.com
+Action: failed
+Status: 5.0.0
+Diagnostic-Code: X-Postfix; host gooui.com[206.71.150.47] said: 530 5.7.0 Must
+	issue a STARTTLS command first (in reply to MAIL FROM command)
+
+--4D469B846B.1183529564/theronge.com
+Content-Description: Undelivered Message
+Content-Type: message/rfc822
+
+Received: from [192.168.0.11] (c-24-7-121-55.hsd1.ca.comcast.net [24.7.121.55])
+	by theronge.com (Postfix) with ESMTP id 4D469B846B
+	for <arcoleo@gooui.com>; Tue,  3 Jul 2007 23:12:33 -0700 (PDT)
+Mime-Version: 1.0 (Apple Message framework v752.3)
+Content-Transfer-Encoding: 7bit
+Message-Id: <7A8DC568-FF94-4C59-BF81-DD8F63C70057@theronge.com>
+Content-Type: text/plain; charset=US-ASCII; delsp=yes; format=flowed
+To: David Arcoleo <arcoleo@gooui.com>
+From: Matt Ronge <mronge@theronge.com>
+Subject: Wordpress really slow?
+Date: Tue, 3 Jul 2007 23:12:24 -0700
+X-Mailer: Apple Mail (2.752.3)
+
+Is wordpress really slow for you? I tried writing a post but it was  
+painfully slow..........
+
+And not just at night, pretty much at all times of the day.
+
+--
+Matt
+
+--4D469B846B.1183529564/theronge.com--
+

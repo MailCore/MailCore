@@ -6,23 +6,31 @@
 #import "CTCoreAddress.h"
 #import "MailCoreTypes.h"
 
+#import "CTMIMEFactory.h"
+
+const NSString *filePrefix = @"/Users/local/Projects/MailCore/";
+
 int main( int argc, char *argv[ ] )
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-
-	CTCoreAccount *account = [[CTCoreAccount alloc] init];
-	CTCoreFolder *folder;
-//	CTCoreFolder *inbox, *newFolder, *archive;
-//	CTCoreMessage *msgOne;
-//	
-
-	MailCoreEnableLogging();
-	[account connectToServer:@"mail.theronge.com" port:143 connectionType:CONNECTION_TYPE_STARTTLS 
-				authType:IMAP_AUTH_TYPE_PLAIN login:@"mronge" password:@""];
 	
-	//wtf this doesn't work on the INBOX
-	folder = [account folderWithPath:@"INBOX"];
-	NSLog(@"%@", [folder messageListWithFetchAttributes:nil]);
+	CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:[NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/mime-tests/imagetest"]];
+	CTMIME *mime = [CTMIMEFactory createMIMEWithMIMEStruct:[msg messageStruct]->msg_mime forMessage:[msg messageStruct]];
+	
+	
+//	CTCoreAccount *account = [[CTCoreAccount alloc] init];
+//	CTCoreFolder *folder;
+////	CTCoreFolder *inbox, *newFolder, *archive;
+////	CTCoreMessage *msgOne;
+////	
+//
+//	MailCoreEnableLogging();
+//	[account connectToServer:@"mail.theronge.com" port:143 connectionType:CONNECTION_TYPE_STARTTLS 
+//				authType:IMAP_AUTH_TYPE_PLAIN login:@"mronge" password:@""];
+//	
+//	//wtf this doesn't work on the INBOX
+//	folder = [account folderWithPath:@"INBOX"];
+//	NSLog(@"%@", [folder messageListWithFetchAttributes:nil]);
 	//NSLog(@"%d", [folder totalMessageCount]);
 /*	for (CTCoreMessage *msg in [folder messageObjectsFromIndex:10 toIndex:18]) {
 		NSLog(@"%d", [msg sequenceNumber]);
@@ -32,8 +40,8 @@ int main( int argc, char *argv[ ] )
 	//1163978737-3518
 	//CTCoreMessage *msg = [folder messageWithUID:@"1163978737-3518"];
 	//NSLog([msg subject]);
-	NSLog(@"%d", [folder sequenceNumberForUID:@"1163978737-3518"]);
-	[account release];
+//	NSLog(@"%d", [folder sequenceNumberForUID:@"1163978737-3518"]);
+//	[account release];
 //	CTCoreMessage *msg;
 //	NSEnumerator *enumer = [set objectEnumerator];
 //	while ((msg == [enumer nextObject])) {

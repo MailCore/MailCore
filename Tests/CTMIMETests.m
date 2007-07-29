@@ -61,4 +61,9 @@ const NSString *filePrefix = @"/Users/local/Projects/MailCore/";
 		[msg release];
 	}
 }
+
+- (void)testImageJPEGAttachment {
+	CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:[NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/mime-tests/imagetest"]];
+	CTMIME *mime = [CTMIMEFactory createMIMEWithMIMEStruct:[msg messageStruct]->msg_mime forMessage:[msg messageStruct]];
+}
 @end

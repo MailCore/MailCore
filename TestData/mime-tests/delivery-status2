@@ -1,0 +1,76 @@
+Return-Path: <>
+X-Original-To: mronge@gooui.com
+Delivered-To: mronge@gooui.com
+Received: by gooui.com (Postfix)
+	id 4A10E2BCC005; Fri,  8 Jun 2007 23:17:40 +0000 (UTC)
+Date: Fri,  8 Jun 2007 23:17:40 +0000 (UTC)
+From: MAILER-DAEMON@gooui.com (Mail Delivery System)
+Subject: Undelivered Mail Returned to Sender
+To: mronge@gooui.com
+Auto-Submitted: auto-replied
+MIME-Version: 1.0
+Content-Type: multipart/report; report-type=delivery-status;
+	boundary="D93A726C1033.1181344660/gooui.com"
+Message-Id: <20070608231740.4A10E2BCC005@gooui.com>
+X-Spambayes-Trained: ham
+
+This is a MIME-encapsulated message.
+
+--D93A726C1033.1181344660/gooui.com
+Content-Description: Notification
+Content-Type: text/plain; charset=us-ascii
+
+This is the mail system at host gooui.com.
+
+I'm sorry to have to inform you that your message could not
+be delivered to one or more recipients. It's attached below.
+
+For further assistance, please send mail to postmaster.
+
+If you do so, please include this problem report. You can
+delete your own text from the attached returned message.
+
+                   The mail system
+
+<mronge@theronge.com>: host mail.theronge.com[69.12.216.205] said: 450 Client
+    host rejected: cannot find your hostname, [206.71.150.47] (in reply to RCPT
+    TO command)
+
+--D93A726C1033.1181344660/gooui.com
+Content-Description: Delivery report
+Content-Type: message/delivery-status
+
+Reporting-MTA: dns; gooui.com
+X-Postfix-Queue-ID: D93A726C1033
+X-Postfix-Sender: rfc822; mronge@gooui.com
+Arrival-Date: Sun,  3 Jun 2007 22:29:12 +0000 (UTC)
+
+Final-Recipient: rfc822; mronge@theronge.com
+Original-Recipient: rfc822;mronge@theronge.com
+Action: failed
+Status: 4.0.0
+Remote-MTA: dns; mail.theronge.com
+Diagnostic-Code: smtp; 450 Client host rejected: cannot find your hostname,
+	[206.71.150.47]
+
+--D93A726C1033.1181344660/gooui.com
+Content-Description: Undelivered Message
+Content-Type: message/rfc822
+
+Received: from [192.168.0.13] (c-24-7-121-55.hsd1.ca.comcast.net [24.7.121.55])
+	(Authenticated sender: mronge@gooui.com)
+	by gooui.com (Postfix) with ESMTP id D93A726C1033
+	for <mronge@theronge.com>; Sun,  3 Jun 2007 22:29:12 +0000 (UTC)
+Mime-Version: 1.0 (Apple Message framework v752.3)
+Content-Transfer-Encoding: 7bit
+Message-Id: <5BC97C9B-667D-4A69-86D9-4C32DD8F6AA6@gooui.com>
+Content-Type: text/plain; charset=US-ASCII; format=flowed
+To: mronge@theronge.com
+From: Matt Ronge <mronge@gooui.com>
+Subject: Test
+Date: Sun, 3 Jun 2007 15:29:30 -0700
+X-Mailer: Apple Mail (2.752.3)
+
+Test
+
+--D93A726C1033.1181344660/gooui.com--

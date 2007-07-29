@@ -6,7 +6,10 @@
 #import "CTMIME_MessagePart.h"
 #import "CTMIME_MultiPart.h"
 #import "CTMIME_TextPart.h"
+#import "CTMIME_ImagePart.h"
 #import "CTMIME.h"
+
+//TODO Need to look at content disposition
 
 @implementation CTMIMEFactory
 + (CTMIME *)createMIMEWithMIMEStruct:(struct mailmime *)mime forMessage:(struct mailmessage *)message {
@@ -39,6 +42,9 @@
 	switch (aType->tp_data.tp_discrete_type->dt_type) {
 		case MAILMIME_DISCRETE_TYPE_TEXT:
 			content = [[CTMIME_TextPart alloc] initWithMIMEStruct:mime forMessage:message];
+		break;
+		case MAILMIME_DISCRETE_TYPE_IMAGE:
+			content = [[CTMIME_ImagePart alloc] initWithMIMEStruct:mime forMessage:message];
 		break;
 	}
 	return content;
