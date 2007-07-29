@@ -1,6 +1,5 @@
 #import "CTCoreMessage.h"
 #import "CTCoreFolder.h"
-#import "CTMIMEParser.h"
 #import "MailCoreTypes.h"
 #import "CTCoreAddress.h"
 #import "CTMIMEFactory.h"
@@ -17,6 +16,17 @@
 - (void)_buildUpBodyText:(CTMIME *)mime result:(NSMutableString *)result;
 - (NSString *)_decodeMIMEPhrase:(char *)data;
 @end
+
+//TODO Add encode of subjects/from/to
+//TODO Add decode of to/from ...
+/*
+char * etpan_encode_mime_header(char * phrase)
+{
+  return
+    etpan_make_quoted_printable(DEFAULT_DISPLAY_CHARSET,
+        phrase);
+}
+*/
 
 @implementation CTCoreMessage
 - (id)init {
@@ -398,13 +408,18 @@
 	char *decodedSubject;
 	NSString *result;
 	
-	err = mailmime_encoded_phrase_parse(DEST_CHARSET, data, strlen(data),
-		&currToken, DEST_CHARSET, &decodedSubject);
-		
-	if (err != MAILIMF_NO_ERROR) {
-		if (decodedSubject == NULL)
-			free(decodedSubject);
-		return nil;
+	if (*data != '\0') {
+		err = mailmime_encoded_phrase_parse(DEST_CHARSET, data, strlen(data),
+			&currToken, DEST_CHARSET, &decodedSubject);
+			
+		if (err != MAILIMF_NO_ERROR) {
+			if (decodedSubject == NULL)
+				free(decodedSubject);
+			return nil;
+		}
+	}
+	else {
+		decodedSubject = "";
 	}
 		
 	result = [NSString stringWithCString:decodedSubject encoding:NSASCIIStringEncoding];

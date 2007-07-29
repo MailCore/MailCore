@@ -3,8 +3,6 @@
 #import "libetpan.h"
 #import "MailCoreTypes.h"
 
-#define DEST_CHARSET "iso-8859-1"
-
 @implementation CTMIME_TextPart
 + (id)mimeTextPartWithString:(NSString *)str {
 	return [[[CTMIME_TextPart alloc] initWithString:str] autorelease];

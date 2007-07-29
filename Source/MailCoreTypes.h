@@ -2,6 +2,8 @@
 /* = List of Message Flags = */
 /* ========================= */
 
+#define DEST_CHARSET "iso-8859-1"
+
 //TODO Turn these into extern's, not defines
 
 #define CTFlagNew			MAIL_FLAG_NEW
