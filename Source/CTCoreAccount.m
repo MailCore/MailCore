@@ -19,6 +19,7 @@
 
 
 - (void)dealloc {
+	mailstorage_disconnect(myStorage);
 	mailstorage_free(myStorage);
 	[super dealloc]; 
 }
@@ -29,6 +30,7 @@
 }
 
 
+//TODO, should I use the cache?
 - (void)connectToServer:(NSString *)server port:(int)port 
 		connectionType:(int)conType authType:(int)authType
 		login:(NSString *)login password:(NSString *)password {

@@ -420,7 +420,7 @@ char * etpan_encode_mime_header(char * phrase)
 		}
 	}
 	else {
-		decodedSubject = "";
+		return @"";
 	}
 		
 	result = [NSString stringWithCString:decodedSubject encoding:NSASCIIStringEncoding];

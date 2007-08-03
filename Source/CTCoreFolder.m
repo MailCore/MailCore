@@ -463,6 +463,16 @@
 		[NSString stringWithFormat:@"Error number: %d",err]);	
 }
 
+- (void)copyMessageWithUID:(NSString *)uid toFolderWithPath:(NSString *)path {
+	[self connect];
+
+	const char *mbPath = [path cStringUsingEncoding:NSASCIIStringEncoding];
+	NSUInteger uidnum = (unsigned int)[[[uid componentsSeparatedByString:@"-"] objectAtIndex:1] doubleValue];
+	int err = mailsession_copy_message([self folderSession], uidnum, mbPath);
+	IfTrue_RaiseException(err != MAILIMAP_NO_ERROR, CTUnknownError, 
+		[NSString stringWithFormat:@"Error number: %d",err]);		
+}
+
 
 - (NSUInteger)unreadMessageCount {
 	unsigned int unseenCount = 0;

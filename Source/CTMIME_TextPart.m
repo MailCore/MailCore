@@ -25,11 +25,6 @@
 	return self;
 }
 
-- (void)dealloc {
-	[myString release];
-	[super dealloc];
-}
-
 - (id)content {
 	return myString;
 }
@@ -48,7 +43,7 @@
 	int r;
 
 	/* text/plain part */
-
+	//TODO this needs to be changed, something other than 8BIT should be used
 	mime_fields = mailmime_fields_new_encoding(MAILMIME_MECHANISM_8BIT);
 	assert(mime_fields != NULL);
 
@@ -66,5 +61,10 @@
 	r = mailmime_set_body_text(mime_sub, strdup([myString cStringUsingEncoding:NSASCIIStringEncoding]), [myString length]);
 	assert(r == MAILIMF_NO_ERROR);
 	return mime_sub;
+}
+
+- (void)dealloc {
+	[myString release];
+	[super dealloc];
 }
 @end

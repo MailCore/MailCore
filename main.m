@@ -14,23 +14,25 @@ int main( int argc, char *argv[ ] )
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-	CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:[NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/mime-tests/imagetest"]];
-	CTMIME *mime = [CTMIMEFactory createMIMEWithMIMEStruct:[msg messageStruct]->msg_mime forMessage:[msg messageStruct]];
+//	CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:[NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/mime-tests/imagetest"]];
+//	CTMIME *mime = [CTMIMEFactory createMIMEWithMIMEStruct:[msg messageStruct]->msg_mime forMessage:[msg messageStruct]];
 	
 	
-//	CTCoreAccount *account = [[CTCoreAccount alloc] init];
-//	CTCoreFolder *folder;
+	CTCoreAccount *account = [[CTCoreAccount alloc] init];
+	CTCoreFolder *folder;
 ////	CTCoreFolder *inbox, *newFolder, *archive;
 ////	CTCoreMessage *msgOne;
 ////	
 //
 //	MailCoreEnableLogging();
-//	[account connectToServer:@"mail.theronge.com" port:143 connectionType:CONNECTION_TYPE_STARTTLS 
-//				authType:IMAP_AUTH_TYPE_PLAIN login:@"mronge" password:@""];
-//	
-//	//wtf this doesn't work on the INBOX
-//	folder = [account folderWithPath:@"INBOX"];
-//	NSLog(@"%@", [folder messageListWithFetchAttributes:nil]);
+	[account connectToServer:@"mail.theronge.com" port:143 connectionType:CONNECTION_TYPE_STARTTLS 
+				authType:IMAP_AUTH_TYPE_PLAIN login:@"mronge" password:@""];
+	
+	folder = [account folderWithPath:@"INBOX"];
+	//for (CTCoreMessage *msg in [folder messageObjectsFromIndex:0 toIndex:10]) {
+	//	NSLog(@"%@ / %@", msg.subject, msg.uid);
+	//}
+	[folder copyMessageWithUID:@"1163978737-3691" toFolderWithPath:@"INBOX.Trash"];
 	//NSLog(@"%d", [folder totalMessageCount]);
 /*	for (CTCoreMessage *msg in [folder messageObjectsFromIndex:10 toIndex:18]) {
 		NSLog(@"%d", [msg sequenceNumber]);

@@ -139,6 +139,9 @@
 */
 - (void)expunge;
 
+//TODO document me
+- (void)copyMessageWithUID:(NSString *)uid toFolderWithPath:(NSString *)path;
+
 /*!
 	@abstract	Returns the number of unread messages.
 	@result		A NSUInteger containing the number of unread messages.
