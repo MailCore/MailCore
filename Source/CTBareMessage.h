@@ -33,6 +33,7 @@
 #import <Cocoa/Cocoa.h>
 
 //TODO Document me
+//TODO Eventually CTCoreMessage should inherit from this
 @interface CTBareMessage : NSObject {
 	NSString *mUid;
 	unsigned int mFlags;

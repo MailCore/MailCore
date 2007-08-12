@@ -40,7 +40,7 @@
 #import "CTMIME_SinglePart.h"
 #import "CTMIME_TextPart.h"
 
-const NSString *filePrefix = @"/Users/local/Projects/MailCore/";
+const NSString *filePrefix = @"/Users/mronge/Projects/MailCore/";
 
 @implementation CTMIMETests
 - (void)testMIMETextPart {

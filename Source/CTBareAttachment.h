@@ -33,7 +33,9 @@
 
 //TODO Document me
 @interface CTBareAttachment : NSObject {
-
+	NSString *mFilename;
+	NSString *mContentType;
 }
-
+@property(retain) NSString *filename;
+@property(retain) NSString *contentType;
 @end

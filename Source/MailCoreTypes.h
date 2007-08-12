@@ -28,12 +28,14 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
+ 
+#define DEST_CHARSET "iso-8859-1"
+#define CTContentTypesPath @"/System/Library/Frameworks/Foundation.framework/Resources/types.plist"
+
 
 /* ========================= */
 /* = List of Message Flags = */
 /* ========================= */
-
-#define DEST_CHARSET "iso-8859-1"
 
 //TODO Turn these into extern's, not defines
 

@@ -30,10 +30,14 @@
  */
 
 #import <Cocoa/Cocoa.h>
+#import "CTBareAttachment.h"
 
-
-@interface CTCoreAttachment : NSObject {
-
+@interface CTCoreAttachment : CTBareAttachment {
+	NSData *mData;
 }
+@property(retain) NSData *data;
 
+- (id)initWithContentsOfFile:(NSString *)path;
+- (id)initWithData:(NSData *)data contentType:(NSString *)contentType 
+		filename:(NSString *)filename;
 @end

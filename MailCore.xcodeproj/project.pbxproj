@@ -160,8 +160,9 @@
 		F81B88730A74AAD800143DF6 /* MailCore_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = F81B88710A74AAD800143DF6 /* MailCore_Prefix.pch */; };
 		F81E266A0C6ED35C00B3FBAC /* CTBareAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */; };
 		F81E266B0C6ED35C00B3FBAC /* CTBareAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */; };
-		F81E266E0C6ED4E100B3FBAC /* CTCoreAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = F81E266C0C6ED4E100B3FBAC /* CTCoreAttachment.h */; };
+		F81E266E0C6ED4E100B3FBAC /* CTCoreAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = F81E266C0C6ED4E100B3FBAC /* CTCoreAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F81E266F0C6ED4E100B3FBAC /* CTCoreAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = F81E266D0C6ED4E100B3FBAC /* CTCoreAttachment.m */; };
+		F81E272F0C6EDC6A00B3FBAC /* CTCoreAttachmentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F81E272E0C6EDC6A00B3FBAC /* CTCoreAttachmentTests.m */; };
 		F8245A6D0C041C8C005E08A8 /* CTMIMEFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = F8245A2F0C04089D005E08A8 /* CTMIMEFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8245A700C041C91005E08A8 /* CTMIMEFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F8245A300C04089D005E08A8 /* CTMIMEFactory.m */; };
 		F8483E4109CE7B9000B80440 /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8483E4009CE7B9000B80440 /* libssl.dylib */; };
@@ -382,6 +383,8 @@
 		F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTBareAttachment.m; path = Source/CTBareAttachment.m; sourceTree = "<group>"; };
 		F81E266C0C6ED4E100B3FBAC /* CTCoreAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTCoreAttachment.h; path = Source/CTCoreAttachment.h; sourceTree = "<group>"; };
 		F81E266D0C6ED4E100B3FBAC /* CTCoreAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTCoreAttachment.m; path = Source/CTCoreAttachment.m; sourceTree = "<group>"; };
+		F81E272D0C6EDC6A00B3FBAC /* CTCoreAttachmentTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTCoreAttachmentTests.h; path = Tests/CTCoreAttachmentTests.h; sourceTree = "<group>"; };
+		F81E272E0C6EDC6A00B3FBAC /* CTCoreAttachmentTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTCoreAttachmentTests.m; path = Tests/CTCoreAttachmentTests.m; sourceTree = "<group>"; };
 		F8245A2F0C04089D005E08A8 /* CTMIMEFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTMIMEFactory.h; path = Source/CTMIMEFactory.h; sourceTree = "<group>"; };
 		F8245A300C04089D005E08A8 /* CTMIMEFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTMIMEFactory.m; path = Source/CTMIMEFactory.m; sourceTree = "<group>"; };
 		F8483E4009CE7B9000B80440 /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = /usr/lib/libssl.dylib; sourceTree = "<absolute>"; };
@@ -729,6 +732,8 @@
 				F8EA76120C1141C1004F85D8 /* CTCoreAddressTests.m */,
 				72D117D00C5C181700FE2CB5 /* CTBareMessageTests.h */,
 				72D117D10C5C181700FE2CB5 /* CTBareMessageTests.m */,
+				F81E272D0C6EDC6A00B3FBAC /* CTCoreAttachmentTests.h */,
+				F81E272E0C6EDC6A00B3FBAC /* CTCoreAttachmentTests.m */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -1075,6 +1080,7 @@
 				F81A8AED0C03FC58002F780A /* CTMIMETests.m in Sources */,
 				F8EA76130C1141C1004F85D8 /* CTCoreAddressTests.m in Sources */,
 				72D117D20C5C181700FE2CB5 /* CTBareMessageTests.m in Sources */,
+				F81E272F0C6EDC6A00B3FBAC /* CTCoreAttachmentTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

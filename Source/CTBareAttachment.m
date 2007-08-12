@@ -30,8 +30,15 @@
  */
 
 #import "CTBareAttachment.h"
+#import "MailCoreTypes.h"
 
 
 @implementation CTBareAttachment
+@synthesize filename=mFilename, contentType=mContentType;
 
+- (void)dealloc {
+	[mFilename release];
+	[mContentType release];
+	[super dealloc];
+}
 @end
