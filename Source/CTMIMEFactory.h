@@ -5,6 +5,8 @@
 @interface CTMIMEFactory : NSObject {
 
 }
-+ (CTMIME *)createMIMEWithMIMEStruct:(struct mailmime *)mime forMessage:(struct mailmessage *)message;
-+ (CTMIME_SinglePart *)createMIMESinglePartWithMIMEStruct:(struct mailmime *)mime forMessage:(struct mailmessage *)message;
++ (CTMIME *)createMIMEWithMIMEStruct:(struct mailmime *)mime 
+				forMessage:(struct mailmessage *)message;
++ (CTMIME_SinglePart *)createMIMESinglePartWithMIMEStruct:(struct mailmime *)mime
+						forMessage:(struct mailmessage *)message;
 @end

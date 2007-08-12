@@ -8,10 +8,13 @@
 	return [[[CTMIME_MessagePart alloc] initWithContent:mime] autorelease];
 }
 
-- (id)initWithMIMEStruct:(struct mailmime *)mime forMessage:(struct mailmessage *)message {
+- (id)initWithMIMEStruct:(struct mailmime *)mime 
+		forMessage:(struct mailmessage *)message {
 	self = [super init];
 	if (self) {
-		myMessageContent = [CTMIMEFactory createMIMEWithMIMEStruct:mime->mm_data.mm_message.mm_msg_mime forMessage:message];
+		struct mailmime *content = mime->mm_data.mm_message.mm_msg_mime;
+		myMessageContent = [CTMIMEFactory createMIMEWithMIMEStruct:content 
+									forMessage:message];
 		myFields = mime->mm_data.mm_message.mm_fields;
 	}
 	return self;

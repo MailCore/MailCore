@@ -387,7 +387,7 @@
 	int err;
 	struct mailmessage *msgStruct;
 	
-
+	[self connect];
 	err = mailfolder_get_message_by_uid([self folderStruct], [uid cStringUsingEncoding:NSASCIIStringEncoding], &msgStruct);
 	if (err == MAIL_ERROR_MSG_NOT_FOUND) {
 		return nil;

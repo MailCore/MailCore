@@ -12,7 +12,8 @@
 //TODO Need to look at content disposition
 
 @implementation CTMIMEFactory
-+ (CTMIME *)createMIMEWithMIMEStruct:(struct mailmime *)mime forMessage:(struct mailmessage *)message {
++ (CTMIME *)createMIMEWithMIMEStruct:(struct mailmime *)mime 
+			forMessage:(struct mailmessage *)message {
 	if (mime == NULL) {
 		RaiseException(CTMIMEParseError, CTMIMEParseErrorDesc);
 	}
@@ -20,19 +21,23 @@
 	CTMIME *content = nil;
 	switch (mime->mm_type) {
 		case MAILMIME_SINGLE:
-			content = [CTMIMEFactory createMIMESinglePartWithMIMEStruct:mime forMessage:message];;
+			content = [CTMIMEFactory createMIMESinglePartWithMIMEStruct:mime
+							forMessage:message];
 		break;
 		case MAILMIME_MULTIPLE:
-			content = [[CTMIME_MultiPart alloc] initWithMIMEStruct:mime forMessage:message];
+			content = [[CTMIME_MultiPart alloc] initWithMIMEStruct:mime
+							forMessage:message];
 		break;
 		case MAILMIME_MESSAGE:
-			content = [[CTMIME_MessagePart alloc] initWithMIMEStruct:mime forMessage:message];
+			content = [[CTMIME_MessagePart alloc] initWithMIMEStruct:mime
+							forMessage:message];
 		break;
 	}
 	return content;
 }
 
-+ (CTMIME_SinglePart *)createMIMESinglePartWithMIMEStruct:(struct mailmime *)mime forMessage:(struct mailmessage *)message {
++ (CTMIME_SinglePart *)createMIMESinglePartWithMIMEStruct:(struct mailmime *)mime 
+						forMessage:(struct mailmessage *)message {
 	struct mailmime_type *aType = mime->mm_content_type->ct_type;
 	if (aType->tp_type != MAILMIME_TYPE_DISCRETE_TYPE) {
 		/* What do you do with a composite single part? */
@@ -41,10 +46,12 @@
 	CTMIME_SinglePart *content = nil;
 	switch (aType->tp_data.tp_discrete_type->dt_type) {
 		case MAILMIME_DISCRETE_TYPE_TEXT:
-			content = [[CTMIME_TextPart alloc] initWithMIMEStruct:mime forMessage:message];
+			content = [[CTMIME_TextPart alloc] initWithMIMEStruct:mime 
+							forMessage:message];
 		break;
 		case MAILMIME_DISCRETE_TYPE_IMAGE:
-			content = [[CTMIME_ImagePart alloc] initWithMIMEStruct:mime forMessage:message];
+			content = [[CTMIME_ImagePart alloc] initWithMIMEStruct:mime 
+							forMessage:message];
 		break;
 	}
 	return content;

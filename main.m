@@ -28,11 +28,19 @@ int main( int argc, char *argv[ ] )
 	[account connectToServer:@"mail.theronge.com" port:143 connectionType:CONNECTION_TYPE_STARTTLS 
 				authType:IMAP_AUTH_TYPE_PLAIN login:@"mronge" password:@""];
 	
-	folder = [account folderWithPath:@"INBOX"];
-	//for (CTCoreMessage *msg in [folder messageObjectsFromIndex:0 toIndex:10]) {
-	//	NSLog(@"%@ / %@", msg.subject, msg.uid);
-	//}
-	[folder copyMessageWithUID:@"1163978737-3691" toFolderWithPath:@"INBOX.Trash"];
+	folder = [account folderWithPath:@"INBOX.Trash"];
+	for (CTCoreMessage *msg in [folder messageObjectsFromIndex:0 toIndex:10]) {
+		NSLog(@"%@ / %@", msg.subject, msg.uid);
+	}
+	
+	CTCoreMessage *msg = [folder messageWithUID:@"1163997146-103"];
+	unsigned int flags = [folder flagsForMessage:msg];
+	flags = flags | CTFlagDeleted;
+	[folder setFlags:flags forMessage:msg];
+	[folder expunge];
+	
+	
+	//[folder copyMessageWithUID:@"1163978737-3691" toFolderWithPath:@"INBOX.Trash"];
 	//NSLog(@"%d", [folder totalMessageCount]);
 /*	for (CTCoreMessage *msg in [folder messageObjectsFromIndex:10 toIndex:18]) {
 		NSLog(@"%d", [msg sequenceNumber]);

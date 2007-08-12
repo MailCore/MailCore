@@ -140,6 +140,7 @@
 - (void)expunge;
 
 //TODO document me
+//Should this be by message instead of by UID?
 - (void)copyMessageWithUID:(NSString *)uid toFolderWithPath:(NSString *)path;
 
 /*!
