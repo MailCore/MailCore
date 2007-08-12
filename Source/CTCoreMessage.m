@@ -186,16 +186,20 @@ char * etpan_encode_mime_header(char * phrase)
 
 
 - (NSCalendarDate *)sentDate {
-  	if ( myFields->fld_orig_date == NULL)
+  	if ( myFields->fld_orig_date == NULL) {
     	return [NSDate distantPast];
+	}
   	else {
+		//This feels like a hack, there should be a better way to deal with the time zone
+		NSInteger seconds = 60*60*myFields->fld_orig_date->dt_date_time->dt_zone/100;
+		NSTimeZone *timeZone = [NSTimeZone timeZoneForSecondsFromGMT:seconds];
     	return [NSCalendarDate dateWithYear:myFields->fld_orig_date->dt_date_time->dt_year 
                                       month:myFields->fld_orig_date->dt_date_time->dt_month
                                         day:myFields->fld_orig_date->dt_date_time->dt_day
                                        hour:myFields->fld_orig_date->dt_date_time->dt_hour
                                      minute:myFields->fld_orig_date->dt_date_time->dt_min
                                     second:myFields->fld_orig_date->dt_date_time->dt_sec
-                                   timeZone:[NSTimeZone systemTimeZone]];
+                                   timeZone:timeZone];
   	}
 }
 
