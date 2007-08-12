@@ -156,6 +156,14 @@ char * etpan_encode_mime_header(char * phrase)
 	[oldMIME release];
 }
 
+- (NSArray *)attachments {
+	//TODO Implement me
+	return nil;
+}
+
+- (void)addAttachment:(CTCoreAttachment *)attachment {
+}
+
 
 - (NSString *)subject {
 	if (myFields->fld_subject == NULL)

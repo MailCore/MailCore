@@ -41,7 +41,7 @@
 	Anything that begins with "fetch", requires that an active network connection is present.
 */
 
-@class CTCoreFolder, CTCoreAddress, CTMIME;
+@class CTCoreFolder, CTCoreAddress, CTCoreAttachment, CTMIME;
 
 @interface CTCoreMessage : NSObject {
 	struct mailmessage *myMessage;
@@ -91,6 +91,9 @@
 	@abstract	This method sets the message body. Plaintext only please!
 */
 - (void)setBody:(NSString *)body;
+
+- (NSArray *)attachments;
+- (void)addAttachment:(CTCoreAttachment *)attachment;
 
 /*!
 	@abstract	Returns the subject of the message.
@@ -192,8 +195,7 @@
 
 /*!
 	@abstract	Returns the message rendered as the appropriate MIME and IMF content. Use this only if you
-				want the raw encoding of the message. Since the data is ASCII data, if you'd really like
-				you can put this in a string and display it.
+				want the raw encoding of the message.
 */
 - (NSString *)render;
 
