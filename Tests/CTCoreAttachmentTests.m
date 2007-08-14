@@ -60,7 +60,8 @@
 - (void)testNEF {
 	NSString *path = [NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/DSC_6204.NEF"];
 	CTCoreAttachment *attach = [[CTCoreAttachment alloc] initWithContentsOfFile:path];
-	STAssertEqualObjects(@"application/octet-stream", [attach contentType], @"The content-type should have been application/octet-stream");
+	STAssertEqualObjects(@"application/octet-stream", [attach contentType], 
+		@"The content-type should have been application/octet-stream");
 	STAssertTrue([attach data] != nil, @"Data should not have been nil");
 	[attach release];
 }
