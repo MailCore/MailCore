@@ -44,12 +44,28 @@
 		forMessage:(struct mailmessage *)message {
 	self = [super init];
 	if (self) {
-		self.attached = NO;
-		self.filename = nil;
 		self.data = nil;
 		mMime = mime;
 		mMessage = message;
 		self.fetched = NO;
+		
+		struct mailmime_single_fields *mimeFields = NULL;		
+		mimeFields = mailmime_single_fields_new(mMime->mm_mime_fields, mMime->mm_content_type);
+		if (mimeFields != NULL) {
+			struct mailmime_disposition *disp = mimeFields->fld_disposition;
+			if (disp != NULL) {
+				if (disp->dsp_type != NULL) {
+					self.attached = (disp->dsp_type->dsp_type == 
+										MAILMIME_DISPOSITION_TYPE_ATTACHMENT);
+				}
+			}
+			
+			if (mimeFields->fld_disposition_filename != NULL) {
+				self.filename = [NSString stringWithCString:mimeFields->fld_disposition_filename 
+									encoding:NSASCIIStringEncoding];
+			}
+			mailmime_single_fields_free(mimeFields);
+		}
 	}
 	return self;
 }
@@ -65,7 +81,8 @@
 		
 		char *fetchedData;
 		size_t fetchedDataLen;
-		int r = mailmessage_fetch_section(mMessage, mMime, &fetchedData, &fetchedDataLen);
+		int r;
+		r = mailmessage_fetch_section(mMessage, mMime, &fetchedData, &fetchedDataLen);
 		if (r != MAIL_NO_ERROR) {
 			mailmessage_fetch_result_free(mMessage, fetchedData);
 			RaiseException(CTMIMEParseError, CTMIMEParseErrorDesc);
@@ -74,7 +91,8 @@
 		size_t current_index = 0;
 		char * result;
 		size_t result_len;
-		r = mailmime_part_parse(fetchedData, fetchedDataLen, &current_index, encoding, &result, &result_len);
+		r = mailmime_part_parse(fetchedData, fetchedDataLen, &current_index, 
+									encoding, &result, &result_len);
 		if (r != MAILIMF_NO_ERROR) {
 			mailmime_decoded_part_free(result);
 			RaiseException(CTMIMEParseError, CTMIMEParseErrorDesc);
@@ -82,7 +100,7 @@
 		NSData *data = [NSData dataWithBytes:result length:result_len];
 		mailmessage_fetch_result_free(mMessage, fetchedData);
 		mailmime_decoded_part_free(result);
-		mailmime_single_fields_free(mimeFields);
+		mailmime_single_fields_free(mimeFields);		
 		self.data = data;
 		self.fetched = YES;
 	}
