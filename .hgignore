@@ -5,5 +5,3 @@ OpenSourceProjects/include/libetpan
 Documentation
 .DS_Store
 *.pyc
-*.mode1v3
-*.pbxuser
