@@ -37,6 +37,7 @@
 #import "CTMIME_MessagePart.h"
 #import "CTMIME_TextPart.h"
 #import "CTMIME_MultiPart.h"
+#import "CTBareAttachment.h"
 
 @interface CTCoreMessage (Private)
 - (CTCoreAddress *)_addressFromMailbox:(struct mailimf_mailbox *)mailbox;
@@ -117,7 +118,8 @@ char * etpan_encode_mime_header(char * phrase)
 	//Retrieve message mime and message field
 	err = mailmessage_get_bodystructure(myMessage, &dummyMime);
 	assert(err == 0);
-	myParsedMIME = [[CTMIMEFactory createMIMEWithMIMEStruct:[self messageStruct]->msg_mime forMessage:[self messageStruct]] retain];
+	myParsedMIME = [[CTMIMEFactory createMIMEWithMIMEStruct:[self messageStruct]->msg_mime 
+						forMessage:[self messageStruct]] retain];
 }
 
 
@@ -158,8 +160,22 @@ char * etpan_encode_mime_header(char * phrase)
 }
 
 - (NSArray *)attachments {
-	//TODO Implement me
-	return nil;
+	NSMutableArray *attachments = [NSMutableArray array];
+
+	CTMIME_Enumerator *enumerator = [myParsedMIME mimeEnumerator];
+	CTMIME *mime;
+	while ((mime = [enumerator nextObject])) {
+		if ([mime isKindOfClass:[CTMIME_SinglePart class]]) {
+			CTMIME_SinglePart *singlePart = (CTMIME_SinglePart *)mime;
+			if (singlePart.attached) {
+				CTBareAttachment *attach = [[CTBareAttachment alloc] 
+												initWithMIMESinglePart:singlePart];
+				[attachments addObject:attach];
+				[attach release];
+			}
+		}
+	}
+	return attachments;
 }
 
 - (void)addAttachment:(CTCoreAttachment *)attachment {

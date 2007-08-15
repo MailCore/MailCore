@@ -75,5 +75,6 @@
 
 - (void)dealloc {
 	[mData release];
+	[super dealloc];
 }
 @end

@@ -31,11 +31,16 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class CTMIME_SinglePart;
+
 //TODO Document me
 @interface CTBareAttachment : NSObject {
+	CTMIME_SinglePart *mMIMEPart;
 	NSString *mFilename;
 	NSString *mContentType;
 }
 @property(retain) NSString *filename;
 @property(retain) NSString *contentType;
+
+- (id)initWithMIMESinglePart:(CTMIME_SinglePart *)part;
 @end

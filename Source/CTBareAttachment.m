@@ -30,13 +30,32 @@
  */
 
 #import "CTBareAttachment.h"
-#import "MailCoreTypes.h"
 
+#import "MailCoreTypes.h"
+#import "CTMIME_SinglePart.h"
 
 @implementation CTBareAttachment
-@synthesize filename=mFilename, contentType=mContentType;
+@synthesize contentType=mContentType;
+@synthesize filename=mFilename;
+
+- (id)initWithMIMESinglePart:(CTMIME_SinglePart *)part {
+	self = [super init];
+	if (self) {
+		mMIMEPart = [part retain];
+		self.filename = mMIMEPart.filename;
+		//TODO Implement me
+		//self.contentType = mMIMEPart.contentType
+	}
+	return self;
+}
+
+- (NSString *)description {
+	return [NSString stringWithFormat:@"ContentType: %@\tFilename: %@",
+				self.contentType, self.filename];
+}
 
 - (void)dealloc {
+	[mMIMEPart release];
 	[mFilename release];
 	[mContentType release];
 	[super dealloc];

@@ -152,4 +152,14 @@
 	[msg setFrom:[NSSet setWithObject:[CTCoreAddress addressWithName:@"Matt R" email:@"mattr@r.org"]]];
 	[msg release];
 }
+
+- (void)testAttachments {
+	CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:
+				[NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/mime-tests/png_attachment"]];
+	[msg fetchBody];
+	NSArray *attachments = [msg attachments];
+	STAssertTrue([attachments count] == 1, @"Count should have been 1");
+	STAssertEqualObjects([[attachments objectAtIndex:0] filename], @"Picture 1.png", @"Incorrect filename");
+	[msg release];
+}
 @end
