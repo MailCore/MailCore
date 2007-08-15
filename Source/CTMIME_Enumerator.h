@@ -30,15 +30,16 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "libetpan.h"
 
-@class CTMIME_Enumerator;
+@class CTMIME;
 
-@interface CTMIME : NSObject {
+//TODO Document me
+// Breadth first
+@interface CTMIME_Enumerator : NSEnumerator {
+	NSMutableArray *mToVisit;
 }
-- (id)initWithMIMEStruct:(struct mailmime *)mime forMessage:(struct mailmessage *)message;
-- (id)content;
-- (struct mailmime *)buildMIMEStruct;
-- (NSString *)render;
-- (CTMIME_Enumerator *)mimeEnumerator;
+- (id)initWithMIME:(CTMIME *)mime;
+
+- (NSArray *)allObjects;
+- (id)nextObject;
 @end

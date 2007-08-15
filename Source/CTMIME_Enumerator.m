@@ -28,17 +28,57 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
+ 
+#import "CTMIME_Enumerator.h"
 
-#import <Cocoa/Cocoa.h>
-#import "libetpan.h"
+#import "CTMIME.h"
+#import "CTMIME_MultiPart.h"
+#import "CTMIME_MessagePart.h"
 
-@class CTMIME_Enumerator;
-
-@interface CTMIME : NSObject {
+@implementation CTMIME_Enumerator
+- (id)initWithMIME:(CTMIME *)mime {
+	self = [super init];
+	if (self) {
+		mToVisit = [[NSMutableArray alloc] init];
+		[mToVisit addObject:mime];
+	}
+	return self;
 }
-- (id)initWithMIMEStruct:(struct mailmime *)mime forMessage:(struct mailmessage *)message;
-- (id)content;
-- (struct mailmime *)buildMIMEStruct;
-- (NSString *)render;
-- (CTMIME_Enumerator *)mimeEnumerator;
+
+- (NSArray *)allObjects {
+	NSMutableArray *objects = [NSMutableArray array];
+	
+	id obj;
+	while ((obj = [self nextObject])) {
+		[objects addObject:obj];
+	}
+	return objects;
+}
+
+- (id)nextObject {
+	if ([mToVisit count] == 0) {
+		return nil;
+	}
+	
+	id mime = [mToVisit objectAtIndex:0];
+	if ([mime isKindOfClass:[CTMIME_MessagePart class]]) {
+		if ([mime content] != nil) {
+			[mToVisit addObject:[mime content]];
+		}
+	}
+	else if ([mime isKindOfClass:[CTMIME_MultiPart class]]) {
+		NSEnumerator *enumer = [[mime content] objectEnumerator];
+		CTMIME *subpart;
+		while ((subpart = [enumer nextObject])) {
+			[mToVisit addObject:subpart];
+		}
+	}
+	[mToVisit removeObjectAtIndex:0];
+	return mime;
+}
+
+- (void)dealloc {
+	[mToVisit release];
+	[super dealloc];
+}
 @end

@@ -31,6 +31,8 @@
 
 #import "CTMIME.h"
 
+#import "CTMIME_Enumerator.h"
+
 @implementation CTMIME
 - (id)initWithMIMEStruct:(struct mailmime *)mime forMessage:(struct mailmessage *)message {
 	return nil;
@@ -61,5 +63,11 @@
 	resultStr = [[NSString alloc] initWithBytes:str->str length:str->len encoding:NSASCIIStringEncoding];
 	mmap_string_free(str);
 	return [resultStr autorelease];
+}
+
+- (CTMIME_Enumerator *)mimeEnumerator {
+	CTMIME_Enumerator *enumerator;
+	enumerator = [[CTMIME_Enumerator alloc] initWithMIME:self];
+	return [enumerator autorelease];
 }
 @end

@@ -40,6 +40,7 @@
 #import "CTMIME_SinglePart.h"
 #import "CTMIME_TextPart.h"
 #import "CTMIME_ImagePart.h"
+#import "CTMIME_Enumerator.h"
 
 const NSString *filePrefix = @"/Users/mronge/Projects/MailCore/";
 
@@ -110,17 +111,67 @@ const NSString *filePrefix = @"/Users/mronge/Projects/MailCore/";
 }
 
 - (void)testImagePNGAttachment {
-	CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:[NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/mime-tests/png_attachment"]];
-	CTMIME *mime = [CTMIMEFactory createMIMEWithMIMEStruct:[msg messageStruct]->msg_mime forMessage:[msg messageStruct]];
-	STAssertTrue([mime isKindOfClass:[CTMIME_MessagePart class]],@"Outmost MIME type should be Message but it's not!");
-	STAssertTrue([[mime content] isKindOfClass:[CTMIME_MultiPart class]],@"Incorrect MIME structure found!");
+	CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:
+				[NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/mime-tests/png_attachment"]];
+	CTMIME *mime = [CTMIMEFactory createMIMEWithMIMEStruct:
+						[msg messageStruct]->msg_mime forMessage:[msg messageStruct]];
+	STAssertTrue([mime isKindOfClass:[CTMIME_MessagePart class]],
+					@"Outmost MIME type should be Message but it's not!");
+	STAssertTrue([[mime content] isKindOfClass:[CTMIME_MultiPart class]],
+					@"Incorrect MIME structure found!");
 	NSArray *multiPartContent = [[mime content] content];	
-	STAssertTrue([multiPartContent count] == 2, @"Incorrect MIME structure found!");
-	STAssertTrue([[multiPartContent objectAtIndex:0] isKindOfClass:[CTMIME_TextPart class]], @"Incorrect MIME structure found!");
-	STAssertTrue([[multiPartContent objectAtIndex:1] isKindOfClass:[CTMIME_ImagePart class]], @"Incorrect MIME structure found!");
+	STAssertTrue([multiPartContent count] == 2, 
+					@"Incorrect MIME structure found!");
+	STAssertTrue([[multiPartContent objectAtIndex:0] isKindOfClass:[CTMIME_TextPart class]], 
+					@"Incorrect MIME structure found!");
+	STAssertTrue([[multiPartContent objectAtIndex:1] isKindOfClass:[CTMIME_ImagePart class]], 
+					@"Incorrect MIME structure found!");
 	CTMIME_ImagePart *img = [multiPartContent objectAtIndex:1];	
 	STAssertTrue(img.attached == TRUE, @"Image is should be attached");
 	STAssertEqualObjects(img.filename, @"Picture 1.png", @"Filename of inline image not correct");
 	[msg release];
+}
+
+- (void)testEnumerator {
+	CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:
+				[NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/mime-tests/png_attachment"]];
+	CTMIME *mime = [CTMIMEFactory createMIMEWithMIMEStruct:
+						[msg messageStruct]->msg_mime forMessage:[msg messageStruct]];
+	CTMIME_Enumerator *enumerator = [mime mimeEnumerator];
+	NSArray *allObjects = [enumerator allObjects];
+	STAssertTrue([[allObjects objectAtIndex:0] isKindOfClass:[CTMIME_MessagePart class]], 
+					@"Incorrect MIME structure found!");
+	STAssertTrue([[allObjects objectAtIndex:1] isKindOfClass:[CTMIME_MultiPart class]], 
+					@"Incorrect MIME structure found!");
+	STAssertTrue([[allObjects objectAtIndex:2] isKindOfClass:[CTMIME_TextPart class]], 
+					@"Incorrect MIME structure found!");
+	STAssertTrue([[allObjects objectAtIndex:3] isKindOfClass:[CTMIME_ImagePart class]], 
+					@"Incorrect MIME structure found!");										
+	STAssertTrue([enumerator nextObject] == nil, @"Should have been nil");
+	NSArray *fullAllObjects = allObjects;
+	
+	enumerator = [[mime content] mimeEnumerator];
+	allObjects = [enumerator allObjects];
+	STAssertTrue([[allObjects objectAtIndex:0] isKindOfClass:[CTMIME_MultiPart class]], 
+					@"Incorrect MIME structure found!");
+	STAssertTrue([[allObjects objectAtIndex:1] isKindOfClass:[CTMIME_TextPart class]], 
+					@"Incorrect MIME structure found!");
+	STAssertTrue([[allObjects objectAtIndex:2] isKindOfClass:[CTMIME_ImagePart class]], 
+					@"Incorrect MIME structure found!");										
+	STAssertTrue([enumerator nextObject] == nil, @"Should have been nil");
+	
+	enumerator = [[[[mime content] content] objectAtIndex:0] mimeEnumerator];
+	allObjects = [enumerator allObjects];
+	STAssertTrue([[allObjects objectAtIndex:0] isKindOfClass:[CTMIME_TextPart class]], 
+					@"Incorrect MIME structure found!");	
+	STAssertTrue([enumerator nextObject] == nil, @"Should have been nil");
+	
+	enumerator = [mime mimeEnumerator];
+	NSMutableArray *objects = [NSMutableArray array];
+	CTMIME *obj;
+	while ((obj = [enumerator nextObject])) {
+		[objects addObject:obj];
+	}
+	STAssertEqualObjects(objects, fullAllObjects, @"nextObject isn't iterating over the same objects ast allObjects");
 }
 @end
