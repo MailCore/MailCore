@@ -33,6 +33,18 @@
 #import "CTMIME.h"
 
 @interface CTMIME_SinglePart : CTMIME {
+	struct mailmime *mMime;
+	struct mailmessage *mMessage;
+
+	NSData *mData;
+	BOOL mAttached;
+	BOOL mFetched;
+	NSString *mFilename;
 }
-- (NSData *)parsePart:(struct mailmime *)mime forMessage:(struct mailmessage *)message;
+@property BOOL attached;
+@property BOOL fetched;
+@property(retain) NSString *filename;
+@property(retain) NSData *data; 
+
+- (void)fetchPart;
 @end

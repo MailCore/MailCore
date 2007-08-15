@@ -33,23 +33,14 @@
 
 
 @implementation CTMIME_ImagePart
-- (id)initWithMIMEStruct:(struct mailmime *)mime forMessage:(struct mailmessage *)message {
-	self = [super init];
-	if (self) {
-		NSData *data = [self parsePart:mime forMessage:message];
-		mImage = [[NSImage alloc] initWithData:data];
-	}
-	return self;		
-}
-
 - (id)content {
-	return mImage;
+	return [[[NSImage alloc] initWithData:self.data] autorelease];
 }
 
 - (void)setImage:(NSImage *)image {
-	[image release];
-	[mImage release];
-	mImage = image;
+	// The data is all local, so we don't want it to do any fetching
+	self.fetched = YES;
+	//TODO Implement me
 }
 
 - (struct mailmime *)buildMIMEStruct {
@@ -78,10 +69,5 @@
 //	r = mailmime_set_body_text(mime_sub, strdup([myString cStringUsingEncoding:NSASCIIStringEncoding]), [myString length]);
 //	assert(r == MAILIMF_NO_ERROR);
 //	return mime_sub;
-}
-
-- (void)dealloc {
-	[mImage release];
-	[super dealloc];
 }
 @end

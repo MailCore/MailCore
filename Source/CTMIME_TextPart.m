@@ -39,31 +39,23 @@
 	return [[[CTMIME_TextPart alloc] initWithString:str] autorelease];
 }
 
-- (id)initWithMIMEStruct:(struct mailmime *)mime forMessage:(struct mailmessage *)message {
-	self = [super init];
-	if (self) {
-		NSData *data = [self parsePart:mime forMessage:message];
-		myString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-	}
-	return self;		
-}
-
 - (id)initWithString:(NSString *)string {
 	self = [super init];
 	if (self) {
-		myString = [string retain];
+		[self setString:string];
 	}
 	return self;
 }
 
 - (id)content {
-	return myString;
+	NSString *str = [[NSString alloc] initWithData:self.data encoding:NSASCIIStringEncoding];
+	return [str autorelease];
 }
 
 - (void)setString:(NSString *)str {
-	[str retain];
-	[myString release];
-	myString = str;
+	self.data = [str dataUsingEncoding:NSASCIIStringEncoding];
+	// The data is all local, so we don't want it to do any fetching
+	self.fetched = YES;
 }
 
 - (struct mailmime *)buildMIMEStruct {
@@ -89,13 +81,9 @@
 
 	mime_sub = mailmime_new_empty(content, mime_fields);
 	assert(mime_sub != NULL);
-	r = mailmime_set_body_text(mime_sub, strdup([myString cStringUsingEncoding:NSASCIIStringEncoding]), [myString length]);
+	NSString *str = [self content];
+	r = mailmime_set_body_text(mime_sub, strdup([str cStringUsingEncoding:NSASCIIStringEncoding]), [str length]);
 	assert(r == MAILIMF_NO_ERROR);
 	return mime_sub;
-}
-
-- (void)dealloc {
-	[myString release];
-	[super dealloc];
 }
 @end

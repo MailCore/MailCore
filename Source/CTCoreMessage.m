@@ -135,6 +135,7 @@ char * etpan_encode_mime_header(char * phrase)
 		[self _buildUpBodyText:[mime content] result:result];
 	}
 	else if ([mime isKindOfClass:[CTMIME_TextPart class]]) {
+		[(CTMIME_TextPart *)mime fetchPart];
 		[result appendString:[mime content]];
 	}
 	else if ([mime isKindOfClass:[CTMIME_MultiPart class]]) {
