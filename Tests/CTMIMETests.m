@@ -108,4 +108,19 @@ const NSString *filePrefix = @"/Users/mronge/Projects/MailCore/";
 	STAssertEqualObjects(img.filename, @"mytestimage.jpg", @"Filename of inline image not correct");
 	[msg release];
 }
+
+- (void)testImagePNGAttachment {
+	CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:[NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/mime-tests/png_attachment"]];
+	CTMIME *mime = [CTMIMEFactory createMIMEWithMIMEStruct:[msg messageStruct]->msg_mime forMessage:[msg messageStruct]];
+	STAssertTrue([mime isKindOfClass:[CTMIME_MessagePart class]],@"Outmost MIME type should be Message but it's not!");
+	STAssertTrue([[mime content] isKindOfClass:[CTMIME_MultiPart class]],@"Incorrect MIME structure found!");
+	NSArray *multiPartContent = [[mime content] content];	
+	STAssertTrue([multiPartContent count] == 2, @"Incorrect MIME structure found!");
+	STAssertTrue([[multiPartContent objectAtIndex:0] isKindOfClass:[CTMIME_TextPart class]], @"Incorrect MIME structure found!");
+	STAssertTrue([[multiPartContent objectAtIndex:1] isKindOfClass:[CTMIME_ImagePart class]], @"Incorrect MIME structure found!");
+	CTMIME_ImagePart *img = [multiPartContent objectAtIndex:1];	
+	STAssertTrue(img.attached == TRUE, @"Image is should be attached");
+	STAssertEqualObjects(img.filename, @"Picture 1.png", @"Filename of inline image not correct");
+	[msg release];
+}
 @end
