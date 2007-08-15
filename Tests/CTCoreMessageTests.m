@@ -32,6 +32,8 @@
 #import "CTCoreMessageTests.h"
 #import "CTMIMETests.h"
 #import "CTCoreAddress.h"
+#import "CTCoreAttachment.h"
+#import "CTBareAttachment.h"
 
 @implementation CTCoreMessageTests
 - (void)setUp {
@@ -160,6 +162,11 @@
 	NSArray *attachments = [msg attachments];
 	STAssertTrue([attachments count] == 1, @"Count should have been 1");
 	STAssertEqualObjects([[attachments objectAtIndex:0] filename], @"Picture 1.png", @"Incorrect filename");
+	CTBareAttachment *bareAttach = [attachments objectAtIndex:0];
+	CTCoreAttachment *attach = [bareAttach fetchFullAttachment];
+	NSString *path = [NSString stringWithFormat:@"/tmp/%@", attach.filename];
+	NSLog(@"path: %@\nobject: %@", path, attach);
+	[attach writeToFile:path];
 	[msg release];
 }
 @end

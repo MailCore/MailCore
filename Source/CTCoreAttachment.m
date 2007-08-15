@@ -69,8 +69,13 @@
 	if (self) {
 		self.data = data;
 		self.contentType = contentType;
+		self.filename = filename;
 	}
 	return self;
+}
+
+- (BOOL)writeToFile:(NSString *)path {
+	return [mData writeToFile:path atomically:YES];
 }
 
 - (void)dealloc {

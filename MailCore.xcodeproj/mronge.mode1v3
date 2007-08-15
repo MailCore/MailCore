@@ -262,8 +262,6 @@
 								<string>0867D691FE84028FC02AAC07</string>
 								<string>F85A18AF09C7D8F200305C06</string>
 								<string>08FB77AEFE84172EC02AAC07</string>
-								<string>F81E26810C6ED57400B3FBAC</string>
-								<string>F81E26720C6ED56000B3FBAC</string>
 								<string>32C88DFF0371C24200C91783</string>
 								<string>089C1665FE841158C02AAC07</string>
 								<string>034768DFFF38A50411DB9C8B</string>
@@ -274,13 +272,13 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>5</integer>
-									<integer>1</integer>
+									<integer>28</integer>
+									<integer>12</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {261, 986}}</string>
+							<string>{{0, 2}, {261, 986}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -317,7 +315,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>CTCoreMessageTests.m</string>
+								<string>CTBareAttachment.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -325,11 +323,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>CTCoreMessageTests.m</string>
+										<string>CTBareAttachment.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F8430C930C72C13700753941</string>
+										<string>F8430CD80C72C4B000753941</string>
 										<key>history</key>
 										<array>
 											<string>F8430ACF0C729AD900753941</string>
@@ -378,16 +376,16 @@
 											<string>F8430C3E0C72BE5C00753941</string>
 											<string>F8430C3F0C72BE5C00753941</string>
 											<string>F8430C400C72BE5C00753941</string>
-											<string>F8430C410C72BE5C00753941</string>
-											<string>F8430C690C72BF7700753941</string>
-											<string>F8430C800C72C13700753941</string>
 											<string>F8430C810C72C13700753941</string>
 											<string>F8430C820C72C13700753941</string>
 											<string>F8430C830C72C13700753941</string>
-											<string>F8430C840C72C13700753941</string>
-											<string>F8430C850C72C13700753941</string>
-											<string>F8430C860C72C13700753941</string>
-											<string>F8430C870C72C13700753941</string>
+											<string>F8430CA30C72C32A00753941</string>
+											<string>F8430CA70C72C32A00753941</string>
+											<string>F8430CC70C72C42D00753941</string>
+											<string>F8430CCE0C72C48200753941</string>
+											<string>F8430CD20C72C49C00753941</string>
+											<string>F8430CD30C72C49C00753941</string>
+											<string>F8430CC80C72C42D00753941</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -691,6 +689,29 @@
 											<string>F8430C900C72C13700753941</string>
 											<string>F8430C910C72C13700753941</string>
 											<string>F8430C920C72C13700753941</string>
+											<string>F8430CA90C72C32A00753941</string>
+											<string>F8430CAA0C72C32A00753941</string>
+											<string>F8430CAB0C72C32A00753941</string>
+											<string>F8430CAC0C72C32A00753941</string>
+											<string>F8430CAD0C72C32A00753941</string>
+											<string>F8430CAE0C72C32A00753941</string>
+											<string>F8430CAF0C72C32A00753941</string>
+											<string>F8430CB00C72C32A00753941</string>
+											<string>F8430CB10C72C32A00753941</string>
+											<string>F8430CB20C72C32A00753941</string>
+											<string>F8430CB30C72C32A00753941</string>
+											<string>F8430CB40C72C32A00753941</string>
+											<string>F8430CB50C72C32A00753941</string>
+											<string>F8430CB60C72C32A00753941</string>
+											<string>F8430CB70C72C32A00753941</string>
+											<string>F8430CB80C72C32A00753941</string>
+											<string>F8430CB90C72C32A00753941</string>
+											<string>F8430CBA0C72C32A00753941</string>
+											<string>F8430CCA0C72C42D00753941</string>
+											<string>F8430CCB0C72C42D00753941</string>
+											<string>F8430CCF0C72C48200753941</string>
+											<string>F8430CD40C72C49C00753941</string>
+											<string>F8430CD50C72C49C00753941</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -888,9 +909,9 @@
 		<string>F8430A100C72970900753941</string>
 		<string>F8430A110C72970900753941</string>
 		<string>F8430A120C72970900753941</string>
-		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>F8A70F040C406A6E00D1D694</string>
+		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/mronge/Projects/MailCore/MailCore.xcodeproj</string>
 	</array>
@@ -916,7 +937,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>CTCoreAttachmentTests.m</string>
+								<string>CTBareAttachment.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -985,7 +1006,7 @@
 			<key>WindowToolGUID</key>
 			<string>F8A70F040C406A6E00D1D694</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
@@ -1109,7 +1130,7 @@
 			<key>WindowToolGUID</key>
 			<string>1CD10A99069EF8BA00B06720</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>

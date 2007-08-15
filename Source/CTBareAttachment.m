@@ -33,6 +33,7 @@
 
 #import "MailCoreTypes.h"
 #import "CTMIME_SinglePart.h"
+#import "CTCoreAttachment.h"
 
 @implementation CTBareAttachment
 @synthesize contentType=mContentType;
@@ -52,6 +53,13 @@
 - (NSString *)description {
 	return [NSString stringWithFormat:@"ContentType: %@\tFilename: %@",
 				self.contentType, self.filename];
+}
+
+- (CTCoreAttachment *)fetchFullAttachment {
+	[mMIMEPart fetchPart];
+	CTCoreAttachment *attach = [[CTCoreAttachment alloc] initWithData:mMIMEPart.data
+								 contentType:self.contentType filename:self.filename];
+	return [attach autorelease];
 }
 
 - (void)dealloc {

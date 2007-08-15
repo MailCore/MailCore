@@ -32,6 +32,7 @@
 #import <Cocoa/Cocoa.h>
 
 @class CTMIME_SinglePart;
+@class CTCoreAttachment;
 
 //TODO Document me
 @interface CTBareAttachment : NSObject {
@@ -43,4 +44,5 @@
 @property(retain) NSString *contentType;
 
 - (id)initWithMIMESinglePart:(CTMIME_SinglePart *)part;
+- (CTCoreAttachment *)fetchFullAttachment;
 @end

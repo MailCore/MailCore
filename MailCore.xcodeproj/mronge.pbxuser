@@ -4,12 +4,12 @@
 		activeArchitecture = i386;
 		activeBuildConfigurationName = Debug;
 		activeExecutable = F84309ED0C72962000753941 /* DebugRig */;
-		activeTarget = F8EADFAB0B3BB14D000C8371 /* Tests */;
+		activeTarget = 8DC2EF4F0486A6940098B216 /* MailCore */;
 		addToTargets = (
 			8DC2EF4F0486A6940098B216 /* MailCore */,
 		);
 		breakpoints = (
-			F8430C750C72C01500753941 /* CTCoreMessageTests.m:160 */,
+			F8430CBF0C72C38B00753941 /* CTCoreMessageTests.m:166 */,
 		);
 		codeSenseManager = F8A70F000C4069C300D1D694 /* Code sense */;
 		executables = (
@@ -850,6 +850,56 @@
 			F8430C910C72C13700753941 /* PBXTextBookmark */ = F8430C910C72C13700753941 /* PBXTextBookmark */;
 			F8430C920C72C13700753941 /* PBXTextBookmark */ = F8430C920C72C13700753941 /* PBXTextBookmark */;
 			F8430C930C72C13700753941 /* PBXTextBookmark */ = F8430C930C72C13700753941 /* PBXTextBookmark */;
+			F8430C970C72C28C00753941 /* PBXTextBookmark */ = F8430C970C72C28C00753941 /* PBXTextBookmark */;
+			F8430C980C72C28C00753941 /* PBXTextBookmark */ = F8430C980C72C28C00753941 /* PBXTextBookmark */;
+			F8430C990C72C28C00753941 /* PBXTextBookmark */ = F8430C990C72C28C00753941 /* PBXTextBookmark */;
+			F8430C9A0C72C28C00753941 /* PBXTextBookmark */ = F8430C9A0C72C28C00753941 /* PBXTextBookmark */;
+			F8430C9B0C72C28C00753941 /* PBXTextBookmark */ = F8430C9B0C72C28C00753941 /* PBXTextBookmark */;
+			F8430CA00C72C31D00753941 /* PBXTextBookmark */ = F8430CA00C72C31D00753941 /* PBXTextBookmark */;
+			F8430CA10C72C31D00753941 /* PBXTextBookmark */ = F8430CA10C72C31D00753941 /* PBXTextBookmark */;
+			F8430CA30C72C32A00753941 /* PBXTextBookmark */ = F8430CA30C72C32A00753941 /* PBXTextBookmark */;
+			F8430CA40C72C32A00753941 /* PBXTextBookmark */ = F8430CA40C72C32A00753941 /* PBXTextBookmark */;
+			F8430CA50C72C32A00753941 /* PBXTextBookmark */ = F8430CA50C72C32A00753941 /* PBXTextBookmark */;
+			F8430CA60C72C32A00753941 /* PBXTextBookmark */ = F8430CA60C72C32A00753941 /* PBXTextBookmark */;
+			F8430CA70C72C32A00753941 /* PBXTextBookmark */ = F8430CA70C72C32A00753941 /* PBXTextBookmark */;
+			F8430CA80C72C32A00753941 /* PBXTextBookmark */ = F8430CA80C72C32A00753941 /* PBXTextBookmark */;
+			F8430CA90C72C32A00753941 /* PBXTextBookmark */ = F8430CA90C72C32A00753941 /* PBXTextBookmark */;
+			F8430CAA0C72C32A00753941 /* PBXTextBookmark */ = F8430CAA0C72C32A00753941 /* PBXTextBookmark */;
+			F8430CAB0C72C32A00753941 /* PBXTextBookmark */ = F8430CAB0C72C32A00753941 /* PBXTextBookmark */;
+			F8430CAC0C72C32A00753941 /* PBXTextBookmark */ = F8430CAC0C72C32A00753941 /* PBXTextBookmark */;
+			F8430CAD0C72C32A00753941 /* PBXTextBookmark */ = F8430CAD0C72C32A00753941 /* PBXTextBookmark */;
+			F8430CAE0C72C32A00753941 /* PBXTextBookmark */ = F8430CAE0C72C32A00753941 /* PBXTextBookmark */;
+			F8430CAF0C72C32A00753941 /* PBXTextBookmark */ = F8430CAF0C72C32A00753941 /* PBXTextBookmark */;
+			F8430CB00C72C32A00753941 /* PBXTextBookmark */ = F8430CB00C72C32A00753941 /* PBXTextBookmark */;
+			F8430CB10C72C32A00753941 /* PBXTextBookmark */ = F8430CB10C72C32A00753941 /* PBXTextBookmark */;
+			F8430CB20C72C32A00753941 /* PBXTextBookmark */ = F8430CB20C72C32A00753941 /* PBXTextBookmark */;
+			F8430CB30C72C32A00753941 /* PBXTextBookmark */ = F8430CB30C72C32A00753941 /* PBXTextBookmark */;
+			F8430CB40C72C32A00753941 /* PBXTextBookmark */ = F8430CB40C72C32A00753941 /* PBXTextBookmark */;
+			F8430CB50C72C32A00753941 /* PBXTextBookmark */ = F8430CB50C72C32A00753941 /* PBXTextBookmark */;
+			F8430CB60C72C32A00753941 /* PBXTextBookmark */ = F8430CB60C72C32A00753941 /* PBXTextBookmark */;
+			F8430CB70C72C32A00753941 /* PBXTextBookmark */ = F8430CB70C72C32A00753941 /* PBXTextBookmark */;
+			F8430CB80C72C32A00753941 /* PBXTextBookmark */ = F8430CB80C72C32A00753941 /* PBXTextBookmark */;
+			F8430CB90C72C32A00753941 /* PBXTextBookmark */ = F8430CB90C72C32A00753941 /* PBXTextBookmark */;
+			F8430CBA0C72C32A00753941 /* PBXTextBookmark */ = F8430CBA0C72C32A00753941 /* PBXTextBookmark */;
+			F8430CBB0C72C32A00753941 /* PBXTextBookmark */ = F8430CBB0C72C32A00753941 /* PBXTextBookmark */;
+			F8430CC40C72C41B00753941 /* PBXTextBookmark */ = F8430CC40C72C41B00753941 /* PBXTextBookmark */;
+			F8430CC50C72C41B00753941 /* PBXTextBookmark */ = F8430CC50C72C41B00753941 /* PBXTextBookmark */;
+			F8430CC70C72C42D00753941 /* PBXTextBookmark */ = F8430CC70C72C42D00753941 /* PBXTextBookmark */;
+			F8430CC80C72C42D00753941 /* PBXTextBookmark */ = F8430CC80C72C42D00753941 /* PBXTextBookmark */;
+			F8430CC90C72C42D00753941 /* PBXTextBookmark */ = F8430CC90C72C42D00753941 /* PBXTextBookmark */;
+			F8430CCA0C72C42D00753941 /* PBXTextBookmark */ = F8430CCA0C72C42D00753941 /* PBXTextBookmark */;
+			F8430CCB0C72C42D00753941 /* PBXTextBookmark */ = F8430CCB0C72C42D00753941 /* PBXTextBookmark */;
+			F8430CCC0C72C42D00753941 /* PBXTextBookmark */ = F8430CCC0C72C42D00753941 /* PBXTextBookmark */;
+			F8430CCD0C72C46400753941 /* PBXTextBookmark */ = F8430CCD0C72C46400753941 /* PBXTextBookmark */;
+			F8430CCE0C72C48200753941 /* PBXTextBookmark */ = F8430CCE0C72C48200753941 /* PBXTextBookmark */;
+			F8430CCF0C72C48200753941 /* PBXTextBookmark */ = F8430CCF0C72C48200753941 /* PBXTextBookmark */;
+			F8430CD00C72C48200753941 /* PBXTextBookmark */ = F8430CD00C72C48200753941 /* PBXTextBookmark */;
+			F8430CD20C72C49C00753941 /* PBXTextBookmark */ = F8430CD20C72C49C00753941 /* PBXTextBookmark */;
+			F8430CD30C72C49C00753941 /* PBXTextBookmark */ = F8430CD30C72C49C00753941 /* PBXTextBookmark */;
+			F8430CD40C72C49C00753941 /* PBXTextBookmark */ = F8430CD40C72C49C00753941 /* PBXTextBookmark */;
+			F8430CD50C72C49C00753941 /* PBXTextBookmark */ = F8430CD50C72C49C00753941 /* PBXTextBookmark */;
+			F8430CD60C72C49C00753941 /* PBXTextBookmark */ = F8430CD60C72C49C00753941 /* PBXTextBookmark */;
+			F8430CD80C72C4B000753941 /* PBXTextBookmark */ = F8430CD80C72C4B000753941 /* PBXTextBookmark */;
 			F8584AAE0C4B0CE1007B6EF3 = F8584AAE0C4B0CE1007B6EF3 /* PBXTextBookmark */;
 			F8584B4B0C4B2675007B6EF3 = F8584B4B0C4B2675007B6EF3 /* PBXTextBookmark */;
 			F858CC950C51E42100EF1B3D = F858CC950C51E42100EF1B3D /* PBXTextBookmark */;
@@ -884,7 +934,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1063, 1050}}";
 			sepNavSelRange = "{628, 0}";
-			sepNavVisRange = "{0, 2742}";
+			sepNavVisRange = "{77, 2706}";
 		};
 	};
 	72D118410C5C212100FE2CB5 /* CTMIME_ImagePart.h */ = {
@@ -1088,9 +1138,9 @@
 	};
 	F81B88570A74AA7100143DF6 /* CTCoreMessage.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1063, 6748}}";
-			sepNavSelRange = "{5546, 0}";
-			sepNavVisRange = "{4836, 1958}";
+			sepNavIntBoundsRect = "{{0, 0}, {960, 7182}}";
+			sepNavSelRange = "{4486, 0}";
+			sepNavVisRange = "{8418, 449}";
 			sepNavWindowFrame = "{{109, 45}, {1100, 785}}";
 		};
 	};
@@ -1392,29 +1442,29 @@
 	F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1063, 967}}";
-			sepNavSelRange = "{1766, 0}";
-			sepNavVisRange = "{0, 1910}";
+			sepNavSelRange = "{1978, 0}";
+			sepNavVisRange = "{0, 1978}";
 		};
 	};
 	F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1063, 967}}";
-			sepNavSelRange = "{2169, 0}";
-			sepNavVisRange = "{0, 2264}";
+			sepNavIntBoundsRect = "{{0, 0}, {1063, 1008}}";
+			sepNavSelRange = "{2226, 0}";
+			sepNavVisRange = "{15, 2524}";
 		};
 	};
 	F81E266C0C6ED4E100B3FBAC /* CTCoreAttachment.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {770, 667}}";
-			sepNavSelRange = "{628, 0}";
-			sepNavVisRange = "{0, 1887}";
+			sepNavIntBoundsRect = "{{0, 0}, {1063, 967}}";
+			sepNavSelRange = "{1925, 0}";
+			sepNavVisRange = "{0, 1925}";
 		};
 	};
 	F81E266D0C6ED4E100B3FBAC /* CTCoreAttachment.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {770, 1134}}";
-			sepNavSelRange = "{2670, 0}";
-			sepNavVisRange = "{0, 2668}";
+			sepNavIntBoundsRect = "{{0, 0}, {1063, 1204}}";
+			sepNavSelRange = "{2729, 0}";
+			sepNavVisRange = "{728, 2174}";
 		};
 	};
 	F81E26830C6ED59700B3FBAC /* PBXTextBookmark */ = {
@@ -2342,7 +2392,7 @@
 		fRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */;
 		name = "CTBareAttachment.h: 34";
 		rLen = 0;
-		rLoc = 1647;
+		rLoc = 1672;
 		rType = 0;
 		vrLen = 1672;
 		vrLoc = 0;
@@ -2472,7 +2522,7 @@
 		fRef = F81E266C0C6ED4E100B3FBAC /* CTCoreAttachment.h */;
 		name = "CTCoreAttachment.h: 38";
 		rLen = 0;
-		rLoc = 1881;
+		rLoc = 1919;
 		rType = 0;
 		vrLen = 1654;
 		vrLoc = 0;
@@ -2492,7 +2542,7 @@
 		fRef = F81E266C0C6ED4E100B3FBAC /* CTCoreAttachment.h */;
 		name = "CTCoreAttachment.h: 38";
 		rLen = 0;
-		rLoc = 1881;
+		rLoc = 1919;
 		rType = 0;
 		vrLen = 1654;
 		vrLoc = 0;
@@ -2652,7 +2702,7 @@
 		fRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */;
 		name = "CTBareAttachment.h: 40";
 		rLen = 78;
-		rLoc = 1769;
+		rLoc = 1794;
 		rType = 0;
 		vrLen = 1796;
 		vrLoc = 0;
@@ -2662,7 +2712,7 @@
 		fRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */;
 		name = "CTBareAttachment.m: 36";
 		rLen = 0;
-		rLoc = 2258;
+		rLoc = 2533;
 		rType = 0;
 		vrLen = 1718;
 		vrLoc = 0;
@@ -2672,7 +2722,7 @@
 		fRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */;
 		name = "CTBareAttachment.h: 44";
 		rLen = 0;
-		rLoc = 1904;
+		rLoc = 1972;
 		rType = 0;
 		vrLen = 1796;
 		vrLoc = 0;
@@ -2682,7 +2732,7 @@
 		fRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */;
 		name = "CTBareAttachment.m: 41";
 		rLen = 0;
-		rLoc = 2258;
+		rLoc = 2533;
 		rType = 0;
 		vrLen = 1817;
 		vrLoc = 0;
@@ -2692,7 +2742,7 @@
 		fRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */;
 		name = "CTBareAttachment.h: 45";
 		rLen = 0;
-		rLoc = 1904;
+		rLoc = 1972;
 		rType = 0;
 		vrLen = 1796;
 		vrLoc = 0;
@@ -2702,7 +2752,7 @@
 		fRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */;
 		name = "CTBareAttachment.m: 40";
 		rLen = 0;
-		rLoc = 2258;
+		rLoc = 2533;
 		rType = 0;
 		vrLen = 1740;
 		vrLoc = 77;
@@ -2732,7 +2782,7 @@
 		fRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */;
 		name = "CTBareAttachment.m: 65";
 		rLen = 0;
-		rLoc = 2258;
+		rLoc = 2533;
 		rType = 0;
 		vrLen = 489;
 		vrLoc = 1328;
@@ -2742,7 +2792,7 @@
 		fRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */;
 		name = "CTBareAttachment.h: 46";
 		rLen = 0;
-		rLoc = 1904;
+		rLoc = 1972;
 		rType = 0;
 		vrLen = 1796;
 		vrLoc = 0;
@@ -2756,9 +2806,9 @@
 	};
 	F81E272E0C6EDC6A00B3FBAC /* CTCoreAttachmentTests.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {770, 968}}";
-			sepNavSelRange = "{1845, 109}";
-			sepNavVisRange = "{0, 3261}";
+			sepNavIntBoundsRect = "{{0, 0}, {1063, 967}}";
+			sepNavSelRange = "{2064, 0}";
+			sepNavVisRange = "{0, 3266}";
 		};
 	};
 	F81E273E0C6EDF9400B3FBAC /* PBXTextBookmark */ = {
@@ -2796,7 +2846,7 @@
 		fRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */;
 		name = "CTBareAttachment.h: 40";
 		rLen = 0;
-		rLoc = 1904;
+		rLoc = 1972;
 		rType = 0;
 		vrLen = 1796;
 		vrLoc = 0;
@@ -2846,7 +2896,7 @@
 		fRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */;
 		name = "CTBareAttachment.m: 76";
 		rLen = 0;
-		rLoc = 2264;
+		rLoc = 2539;
 		rType = 0;
 		vrLen = 1667;
 		vrLoc = 150;
@@ -2856,7 +2906,7 @@
 		fRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */;
 		name = "CTBareAttachment.h: 42";
 		rLen = 0;
-		rLoc = 1904;
+		rLoc = 1972;
 		rType = 0;
 		vrLen = 1793;
 		vrLoc = 3;
@@ -3006,7 +3056,7 @@
 		fRef = F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */;
 		name = "CTCoreMessageTests.m: 49";
 		rLen = 20;
-		rLoc = 2041;
+		rLoc = 2099;
 		rType = 0;
 		vrLen = 3076;
 		vrLoc = 220;
@@ -3076,7 +3126,7 @@
 		fRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */;
 		name = "CTBareAttachment.h: 35";
 		rLen = 199;
-		rLoc = 1648;
+		rLoc = 1673;
 		rType = 0;
 		vrLen = 1796;
 		vrLoc = 0;
@@ -3096,7 +3146,7 @@
 		fRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */;
 		name = "CTBareAttachment.m: 37";
 		rLen = 0;
-		rLoc = 2258;
+		rLoc = 2533;
 		rType = 0;
 		vrLen = 1743;
 		vrLoc = 0;
@@ -3106,7 +3156,7 @@
 		fRef = F81E266D0C6ED4E100B3FBAC /* CTCoreAttachment.m */;
 		name = "CTCoreAttachment.m: 71";
 		rLen = 0;
-		rLoc = 2777;
+		rLoc = 2896;
 		rType = 0;
 		vrLen = 1818;
 		vrLoc = 800;
@@ -3116,7 +3166,7 @@
 		fRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */;
 		name = "CTBareAttachment.h: 42";
 		rLen = 0;
-		rLoc = 1904;
+		rLoc = 1972;
 		rType = 0;
 		vrLen = 1796;
 		vrLoc = 0;
@@ -3126,7 +3176,7 @@
 		fRef = F81E266D0C6ED4E100B3FBAC /* CTCoreAttachment.m */;
 		name = "CTCoreAttachment.m: 71";
 		rLen = 0;
-		rLoc = 2777;
+		rLoc = 2896;
 		rType = 0;
 		vrLen = 1421;
 		vrLoc = 1255;
@@ -3136,7 +3186,7 @@
 		fRef = F81E266C0C6ED4E100B3FBAC /* CTCoreAttachment.h */;
 		name = "CTCoreAttachment.h: 41";
 		rLen = 0;
-		rLoc = 1881;
+		rLoc = 1919;
 		rType = 0;
 		vrLen = 1805;
 		vrLoc = 0;
@@ -3146,7 +3196,7 @@
 		fRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */;
 		name = "CTBareAttachment.h: 37";
 		rLen = 0;
-		rLoc = 1767;
+		rLoc = 1792;
 		rType = 0;
 		vrLen = 1796;
 		vrLoc = 0;
@@ -3156,7 +3206,7 @@
 		fRef = F81E266D0C6ED4E100B3FBAC /* CTCoreAttachment.m */;
 		name = "CTCoreAttachment.m: 71";
 		rLen = 0;
-		rLoc = 2777;
+		rLoc = 2896;
 		rType = 0;
 		vrLen = 1496;
 		vrLoc = 1180;
@@ -3176,7 +3226,7 @@
 		fRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */;
 		name = "CTBareAttachment.h: 40";
 		rLen = 0;
-		rLoc = 1904;
+		rLoc = 1972;
 		rType = 0;
 		vrLen = 1796;
 		vrLoc = 0;
@@ -3196,7 +3246,7 @@
 		fRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */;
 		name = "CTBareAttachment.m: 37";
 		rLen = 0;
-		rLoc = 2152;
+		rLoc = 2427;
 		rType = 0;
 		vrLen = 1731;
 		vrLoc = 0;
@@ -3346,7 +3396,7 @@
 		fRef = F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */;
 		name = "CTCoreMessageTests.m: 145";
 		rLen = 0;
-		rLoc = 7388;
+		rLoc = 7446;
 		rType = 0;
 		vrLen = 2121;
 		vrLoc = 5674;
@@ -3356,7 +3406,7 @@
 		fRef = F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */;
 		name = "CTCoreMessageTests.m: 146";
 		rLen = 0;
-		rLoc = 7388;
+		rLoc = 7446;
 		rType = 0;
 		vrLen = 2121;
 		vrLoc = 5674;
@@ -3376,7 +3426,7 @@
 		fRef = F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */;
 		name = "CTCoreMessageTests.m: 145";
 		rLen = 0;
-		rLoc = 7388;
+		rLoc = 7446;
 		rType = 0;
 		vrLen = 2121;
 		vrLoc = 5674;
@@ -3386,7 +3436,7 @@
 		fRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */;
 		name = "CTBareAttachment.m: 42";
 		rLen = 0;
-		rLoc = 2256;
+		rLoc = 2531;
 		rType = 0;
 		vrLen = 1817;
 		vrLoc = 0;
@@ -3426,7 +3476,7 @@
 		fRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */;
 		name = "CTBareAttachment.m: 42";
 		rLen = 0;
-		rLoc = 2256;
+		rLoc = 2531;
 		rType = 0;
 		vrLen = 1817;
 		vrLoc = 0;
@@ -3446,7 +3496,7 @@
 		fRef = F81E266D0C6ED4E100B3FBAC /* CTCoreAttachment.m */;
 		name = "CTCoreAttachment.m: 77";
 		rLen = 0;
-		rLoc = 2775;
+		rLoc = 2894;
 		rType = 0;
 		vrLen = 1189;
 		vrLoc = 1577;
@@ -3658,7 +3708,7 @@
 		comments = "error: -[CTCoreMessageTests testSubjectOnData] : \"!NSEqualRanges([[msg body] rangeOfString:@\"Kiwi-dev mailing list\"],notFound)\" should be true. Body sanity check failed!";
 		fRef = F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */;
 		rLen = 1;
-		rLoc = 77;
+		rLoc = 79;
 		rType = 1;
 	};
 	F84309860C7294D600753941 /* PBXTextBookmark */ = {
@@ -3676,7 +3726,7 @@
 		fRef = F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */;
 		name = "CTCoreMessageTests.m: 78";
 		rLen = 123;
-		rLoc = 4047;
+		rLoc = 4105;
 		rType = 0;
 		vrLen = 895;
 		vrLoc = 3464;
@@ -3686,7 +3736,7 @@
 		fRef = F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */;
 		name = "CTCoreMessageTests.m: 78";
 		rLen = 123;
-		rLoc = 4047;
+		rLoc = 4105;
 		rType = 0;
 		vrLen = 1045;
 		vrLoc = 3464;
@@ -3716,7 +3766,7 @@
 		fRef = F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */;
 		name = "CTCoreMessageTests.m: 78";
 		rLen = 123;
-		rLoc = 4047;
+		rLoc = 4105;
 		rType = 0;
 		vrLen = 1045;
 		vrLoc = 3464;
@@ -5511,7 +5561,7 @@
 		fRef = F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */;
 		name = "CTCoreMessageTests.m: 145";
 		rLen = 0;
-		rLoc = 7388;
+		rLoc = 7446;
 		rType = 0;
 		vrLen = 2138;
 		vrLoc = 5657;
@@ -5731,7 +5781,7 @@
 		fRef = F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */;
 		name = "CTCoreMessageTests.m: 145";
 		rLen = 0;
-		rLoc = 7388;
+		rLoc = 7446;
 		rType = 0;
 		vrLen = 2138;
 		vrLoc = 5657;
@@ -6982,7 +7032,7 @@
 		fRef = F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */;
 		name = "CTCoreMessageTests.m: 39";
 		rLen = 18;
-		rLoc = 1785;
+		rLoc = 1843;
 		rType = 0;
 		vrLen = 2138;
 		vrLoc = 0;
@@ -7112,7 +7162,7 @@
 		fRef = F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */;
 		name = "CTCoreMessageTests.m: 39";
 		rLen = 18;
-		rLoc = 1785;
+		rLoc = 1843;
 		rType = 0;
 		vrLen = 2138;
 		vrLoc = 0;
@@ -7918,7 +7968,7 @@
 		fRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */;
 		name = "CTBareAttachment.h: 43";
 		rLen = 0;
-		rLoc = 1898;
+		rLoc = 1923;
 		rType = 0;
 		vrLen = 993;
 		vrLoc = 874;
@@ -7928,7 +7978,7 @@
 		fRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */;
 		name = "CTBareAttachment.m: 35";
 		rLen = 0;
-		rLoc = 1662;
+		rLoc = 1691;
 		rType = 0;
 		vrLen = 446;
 		vrLoc = 1577;
@@ -7955,8 +8005,8 @@
 		isa = PBXTextBookmark;
 		fRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */;
 		name = "CTBareAttachment.h: 43";
-		rLen = 56;
-		rLoc = 1849;
+		rLen = 99;
+		rLoc = 1874;
 		rType = 0;
 		vrLen = 918;
 		vrLoc = 947;
@@ -7976,7 +8026,7 @@
 		fRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */;
 		name = "CTBareAttachment.h: 43";
 		rLen = 0;
-		rLoc = 1898;
+		rLoc = 1923;
 		rType = 0;
 		vrLen = 993;
 		vrLoc = 874;
@@ -7986,7 +8036,7 @@
 		fRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */;
 		name = "CTBareAttachment.m: 46";
 		rLen = 0;
-		rLoc = 2152;
+		rLoc = 2427;
 		rType = 0;
 		vrLen = 375;
 		vrLoc = 1577;
@@ -7996,7 +8046,7 @@
 		fRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */;
 		name = "CTBareAttachment.h: 43";
 		rLen = 0;
-		rLoc = 1898;
+		rLoc = 1923;
 		rType = 0;
 		vrLen = 993;
 		vrLoc = 874;
@@ -8006,7 +8056,7 @@
 		fRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */;
 		name = "CTBareAttachment.m: 35";
 		rLen = 0;
-		rLoc = 1662;
+		rLoc = 1691;
 		rType = 0;
 		vrLen = 446;
 		vrLoc = 1577;
@@ -8086,7 +8136,7 @@
 		fRef = F81E266D0C6ED4E100B3FBAC /* CTCoreAttachment.m */;
 		name = "CTCoreAttachment.m: 78";
 		rLen = 0;
-		rLoc = 2775;
+		rLoc = 2894;
 		rType = 0;
 		vrLen = 1146;
 		vrLoc = 1632;
@@ -8116,7 +8166,7 @@
 		fRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */;
 		name = "CTBareAttachment.h: 43";
 		rLen = 0;
-		rLoc = 1898;
+		rLoc = 1923;
 		rType = 0;
 		vrLen = 1867;
 		vrLoc = 0;
@@ -8176,7 +8226,7 @@
 		fRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */;
 		name = "CTBareAttachment.h: 45";
 		rLen = 55;
-		rLoc = 1849;
+		rLoc = 1874;
 		rType = 0;
 		vrLen = 1908;
 		vrLoc = 0;
@@ -8186,7 +8236,7 @@
 		fRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */;
 		name = "CTBareAttachment.m: 38";
 		rLen = 0;
-		rLoc = 2152;
+		rLoc = 2427;
 		rType = 0;
 		vrLen = 1816;
 		vrLoc = 0;
@@ -8196,7 +8246,7 @@
 		fRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */;
 		name = "CTBareAttachment.h: 39";
 		rLen = 0;
-		rLoc = 1767;
+		rLoc = 1792;
 		rType = 0;
 		vrLen = 1865;
 		vrLoc = 0;
@@ -8206,7 +8256,7 @@
 		fRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */;
 		name = "CTBareAttachment.m: 49";
 		rLen = 0;
-		rLoc = 2152;
+		rLoc = 2427;
 		rType = 0;
 		vrLen = 1781;
 		vrLoc = 150;
@@ -8216,7 +8266,7 @@
 		fRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */;
 		name = "CTBareAttachment.h: 39";
 		rLen = 0;
-		rLoc = 1767;
+		rLoc = 1792;
 		rType = 0;
 		vrLen = 1865;
 		vrLoc = 0;
@@ -8226,7 +8276,7 @@
 		fRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */;
 		name = "CTBareAttachment.m: 50";
 		rLen = 0;
-		rLoc = 2152;
+		rLoc = 2427;
 		rType = 0;
 		vrLen = 1862;
 		vrLoc = 0;
@@ -8316,7 +8366,7 @@
 		fRef = F81E266D0C6ED4E100B3FBAC /* CTCoreAttachment.m */;
 		name = "CTCoreAttachment.m: 78";
 		rLen = 0;
-		rLoc = 2775;
+		rLoc = 2894;
 		rType = 0;
 		vrLen = 1146;
 		vrLoc = 1632;
@@ -8336,7 +8386,7 @@
 		fRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */;
 		name = "CTBareAttachment.h: 43";
 		rLen = 0;
-		rLoc = 1898;
+		rLoc = 1923;
 		rType = 0;
 		vrLen = 1867;
 		vrLoc = 0;
@@ -8356,7 +8406,7 @@
 		fRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */;
 		name = "CTBareAttachment.h: 40";
 		rLen = 78;
-		rLoc = 1769;
+		rLoc = 1794;
 		rType = 0;
 		vrLen = 1867;
 		vrLoc = 0;
@@ -8414,7 +8464,7 @@
 		fRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */;
 		name = "CTBareAttachment.h: 40";
 		rLen = 0;
-		rLoc = 1766;
+		rLoc = 1791;
 		rType = 0;
 		vrLen = 1910;
 		vrLoc = 0;
@@ -8424,7 +8474,7 @@
 		fRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */;
 		name = "CTBareAttachment.m: 38";
 		rLen = 0;
-		rLoc = 1729;
+		rLoc = 1758;
 		rType = 0;
 		vrLen = 2126;
 		vrLoc = 0;
@@ -8454,7 +8504,7 @@
 		fRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */;
 		name = "CTBareAttachment.h: 37";
 		rLen = 0;
-		rLoc = 1674;
+		rLoc = 1699;
 		rType = 0;
 		vrLen = 1867;
 		vrLoc = 0;
@@ -8484,7 +8534,7 @@
 		fRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */;
 		name = "CTBareAttachment.h: 40";
 		rLen = 0;
-		rLoc = 1766;
+		rLoc = 1791;
 		rType = 0;
 		vrLen = 1910;
 		vrLoc = 0;
@@ -8494,7 +8544,7 @@
 		fRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */;
 		name = "CTBareAttachment.m: 38";
 		rLen = 0;
-		rLoc = 1729;
+		rLoc = 1758;
 		rType = 0;
 		vrLen = 2126;
 		vrLoc = 0;
@@ -8518,23 +8568,6 @@
 		rType = 0;
 		vrLen = 2414;
 		vrLoc = 369;
-	};
-	F8430C750C72C01500753941 /* CTCoreMessageTests.m:160 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */;
-		functionName = "-testAttachments";
-		hitCount = 1;
-		ignoreCount = 0;
-		lineNumber = 160;
-		location = Tests;
-		modificationTime = 208846880.962797;
-		state = 1;
 	};
 	F8430C800C72C13700753941 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -8581,7 +8614,7 @@
 		fRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */;
 		name = "CTBareAttachment.h: 40";
 		rLen = 0;
-		rLoc = 1766;
+		rLoc = 1791;
 		rType = 0;
 		vrLen = 1910;
 		vrLoc = 0;
@@ -8591,7 +8624,7 @@
 		fRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */;
 		name = "CTBareAttachment.m: 57";
 		rLen = 0;
-		rLoc = 2169;
+		rLoc = 2444;
 		rType = 0;
 		vrLen = 2264;
 		vrLoc = 0;
@@ -8611,7 +8644,7 @@
 		fRef = F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */;
 		name = "CTCoreMessageTests.m: 159";
 		rLen = 0;
-		rLoc = 7989;
+		rLoc = 8047;
 		rType = 0;
 		vrLen = 3019;
 		vrLoc = 5065;
@@ -8631,7 +8664,7 @@
 		fRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */;
 		name = "CTBareAttachment.h: 40";
 		rLen = 0;
-		rLoc = 1766;
+		rLoc = 1791;
 		rType = 0;
 		vrLen = 1910;
 		vrLoc = 0;
@@ -8651,7 +8684,7 @@
 		fRef = F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */;
 		name = "CTCoreMessageTests.m: 39";
 		rLen = 18;
-		rLoc = 1785;
+		rLoc = 1843;
 		rType = 0;
 		vrLen = 3436;
 		vrLoc = 4358;
@@ -8671,7 +8704,7 @@
 		fRef = F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */;
 		name = "CTCoreMessageTests.m: 160";
 		rLen = 0;
-		rLoc = 8209;
+		rLoc = 8542;
 		rType = 0;
 		vrLen = 3001;
 		vrLoc = 5065;
@@ -8691,7 +8724,7 @@
 		fRef = F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */;
 		name = "CTCoreMessageTests.m: 159";
 		rLen = 0;
-		rLoc = 7989;
+		rLoc = 8047;
 		rType = 0;
 		vrLen = 3019;
 		vrLoc = 5065;
@@ -8701,7 +8734,7 @@
 		fRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */;
 		name = "CTBareAttachment.h: 40";
 		rLen = 0;
-		rLoc = 1766;
+		rLoc = 1791;
 		rType = 0;
 		vrLen = 1910;
 		vrLoc = 0;
@@ -8711,7 +8744,7 @@
 		fRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */;
 		name = "CTBareAttachment.m: 57";
 		rLen = 0;
-		rLoc = 2169;
+		rLoc = 2444;
 		rType = 0;
 		vrLen = 2264;
 		vrLoc = 0;
@@ -8731,10 +8764,525 @@
 		fRef = F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */;
 		name = "CTCoreMessageTests.m: 163";
 		rLen = 0;
-		rLoc = 8209;
+		rLoc = 8542;
 		rType = 0;
 		vrLen = 3166;
 		vrLoc = 5066;
+	};
+	F8430C970C72C28C00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E272E0C6EDC6A00B3FBAC /* CTCoreAttachmentTests.m */;
+		name = "CTCoreAttachmentTests.m: 40";
+		rLen = 71;
+		rLoc = 1954;
+		rType = 0;
+		vrLen = 1035;
+		vrLoc = 1405;
+	};
+	F8430C980C72C28C00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "warning: receiver 'CTCoreAttachment' is a forward class and corresponding @interface may not exist";
+		fRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */;
+		rLen = 1;
+		rLoc = 59;
+		rType = 1;
+	};
+	F8430C990C72C28C00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E272E0C6EDC6A00B3FBAC /* CTCoreAttachmentTests.m */;
+		name = "CTCoreAttachmentTests.m: 40";
+		rLen = 71;
+		rLoc = 1954;
+		rType = 0;
+		vrLen = 1035;
+		vrLoc = 1405;
+	};
+	F8430C9A0C72C28C00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */;
+		name = "CTBareAttachment.m: 59";
+		rLen = 82;
+		rLoc = 2249;
+		rType = 0;
+		vrLen = 627;
+		vrLoc = 1768;
+	};
+	F8430C9B0C72C28C00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F8245A300C04089D005E08A8 /* CTMIMEFactory.m */;
+		name = "CTMIMEFactory.m: 43";
+		rLen = 0;
+		rLoc = 1818;
+		rType = 0;
+		vrLen = 21;
+		vrLoc = 1798;
+	};
+	F8430CA00C72C31D00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */;
+		name = "CTBareAttachment.m: 60";
+		rLen = 82;
+		rLoc = 2249;
+		rType = 0;
+		vrLen = 692;
+		vrLoc = 1797;
+	};
+	F8430CA10C72C31D00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F8245A300C04089D005E08A8 /* CTMIMEFactory.m */;
+		name = "CTMIMEFactory.m: 43";
+		rLen = 0;
+		rLoc = 1818;
+		rType = 0;
+		vrLen = 21;
+		vrLoc = 1798;
+	};
+	F8430CA30C72C32A00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */;
+		name = "CTBareAttachment.h: 49";
+		rLen = 0;
+		rLoc = 1978;
+		rType = 0;
+		vrLen = 1978;
+		vrLoc = 0;
+	};
+	F8430CA40C72C32A00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E266C0C6ED4E100B3FBAC /* CTCoreAttachment.h */;
+		name = "CTCoreAttachment.h: 43";
+		rLen = 0;
+		rLoc = 1889;
+		rType = 0;
+		vrLen = 1925;
+		vrLoc = 0;
+	};
+	F8430CA50C72C32A00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E266D0C6ED4E100B3FBAC /* CTCoreAttachment.m */;
+		name = "CTCoreAttachment.m: 53";
+		rLen = 0;
+		rLoc = 2213;
+		rType = 0;
+		vrLen = 2216;
+		vrLoc = 658;
+	};
+	F8430CA60C72C32A00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */;
+		name = "CTBareAttachment.m: 36";
+		rLen = 0;
+		rLoc = 1691;
+		rType = 0;
+		vrLen = 2534;
+		vrLoc = 0;
+	};
+	F8430CA70C72C32A00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 72D117D10C5C181700FE2CB5 /* CTBareMessageTests.m */;
+		name = "CTBareMessageTests.m: 15";
+		rLen = 0;
+		rLoc = 628;
+		rType = 0;
+		vrLen = 2706;
+		vrLoc = 77;
+	};
+	F8430CA80C72C32A00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */;
+		name = "CTCoreMessageTests.m: 163";
+		rLen = 0;
+		rLoc = 8542;
+		rType = 0;
+		vrLen = 3134;
+		vrLoc = 5098;
+	};
+	F8430CA90C72C32A00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */;
+		name = "CTCoreMessageTests.m: 163";
+		rLen = 0;
+		rLoc = 8542;
+		rType = 0;
+		vrLen = 3134;
+		vrLoc = 5098;
+	};
+	F8430CAA0C72C32A00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */;
+		name = "CTBareAttachment.h: 47";
+		rLen = 42;
+		rLoc = 1930;
+		rType = 0;
+		vrLen = 1978;
+		vrLoc = 0;
+	};
+	F8430CAB0C72C32A00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */;
+		name = "CTBareAttachment.m: 58";
+		rLen = 0;
+		rLoc = 2423;
+		rType = 0;
+		vrLen = 2313;
+		vrLoc = 0;
+	};
+	F8430CAC0C72C32A00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E266C0C6ED4E100B3FBAC /* CTCoreAttachment.h */;
+		name = "CTCoreAttachment.h: 41";
+		rLen = 103;
+		rLoc = 1778;
+		rType = 0;
+		vrLen = 1887;
+		vrLoc = 0;
+	};
+	F8430CAD0C72C32A00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */;
+		name = "CTBareAttachment.h: 49";
+		rLen = 0;
+		rLoc = 1978;
+		rType = 0;
+		vrLen = 1978;
+		vrLoc = 0;
+	};
+	F8430CAE0C72C32A00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */;
+		name = "CTBareAttachment.m: 55";
+		rLen = 0;
+		rLoc = 2179;
+		rType = 0;
+		vrLen = 2507;
+		vrLoc = 3;
+	};
+	F8430CAF0C72C32A00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E266C0C6ED4E100B3FBAC /* CTCoreAttachment.h */;
+		name = "CTCoreAttachment.h: 41";
+		rLen = 103;
+		rLoc = 1778;
+		rType = 0;
+		vrLen = 1887;
+		vrLoc = 0;
+	};
+	F8430CB00C72C32A00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E266D0C6ED4E100B3FBAC /* CTCoreAttachment.m */;
+		name = "CTCoreAttachment.m: 74";
+		rLen = 0;
+		rLoc = 2839;
+		rType = 0;
+		vrLen = 2414;
+		vrLoc = 369;
+	};
+	F8430CB10C72C32A00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E266C0C6ED4E100B3FBAC /* CTCoreAttachment.h */;
+		name = "CTCoreAttachment.h: 43";
+		rLen = 37;
+		rLoc = 1882;
+		rType = 0;
+		vrLen = 1925;
+		vrLoc = 0;
+	};
+	F8430CB20C72C32A00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E266D0C6ED4E100B3FBAC /* CTCoreAttachment.m */;
+		name = "CTCoreAttachment.m: 82";
+		rLen = 0;
+		rLoc = 2896;
+		rType = 0;
+		vrLen = 2209;
+		vrLoc = 658;
+	};
+	F8430CB30C72C32A00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E266C0C6ED4E100B3FBAC /* CTCoreAttachment.h */;
+		name = "CTCoreAttachment.h: 43";
+		rLen = 37;
+		rLoc = 1882;
+		rType = 0;
+		vrLen = 1925;
+		vrLoc = 0;
+	};
+	F8430CB40C72C32A00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E266D0C6ED4E100B3FBAC /* CTCoreAttachment.m */;
+		name = "CTCoreAttachment.m: 81";
+		rLen = 0;
+		rLoc = 2896;
+		rType = 0;
+		vrLen = 2209;
+		vrLoc = 658;
+	};
+	F8430CB50C72C32A00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E266C0C6ED4E100B3FBAC /* CTCoreAttachment.h */;
+		name = "CTCoreAttachment.h: 43";
+		rLen = 0;
+		rLoc = 1885;
+		rType = 0;
+		vrLen = 1928;
+		vrLoc = 0;
+	};
+	F8430CB60C72C32A00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E266D0C6ED4E100B3FBAC /* CTCoreAttachment.m */;
+		name = "CTCoreAttachment.m: 81";
+		rLen = 0;
+		rLoc = 2896;
+		rType = 0;
+		vrLen = 2209;
+		vrLoc = 658;
+	};
+	F8430CB70C72C32A00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E266C0C6ED4E100B3FBAC /* CTCoreAttachment.h */;
+		name = "CTCoreAttachment.h: 43";
+		rLen = 0;
+		rLoc = 1889;
+		rType = 0;
+		vrLen = 1925;
+		vrLoc = 0;
+	};
+	F8430CB80C72C32A00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E266D0C6ED4E100B3FBAC /* CTCoreAttachment.m */;
+		name = "CTCoreAttachment.m: 53";
+		rLen = 0;
+		rLoc = 2213;
+		rType = 0;
+		vrLen = 2216;
+		vrLoc = 658;
+	};
+	F8430CB90C72C32A00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */;
+		name = "CTBareAttachment.m: 36";
+		rLen = 0;
+		rLoc = 1691;
+		rType = 0;
+		vrLen = 2534;
+		vrLoc = 0;
+	};
+	F8430CBA0C72C32A00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 72D117D10C5C181700FE2CB5 /* CTBareMessageTests.m */;
+		name = "CTBareMessageTests.m: 15";
+		rLen = 0;
+		rLoc = 628;
+		rType = 0;
+		vrLen = 2706;
+		vrLoc = 77;
+	};
+	F8430CBB0C72C32A00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */;
+		name = "CTCoreMessageTests.m: 165";
+		rLen = 0;
+		rLoc = 8326;
+		rType = 0;
+		vrLen = 3129;
+		vrLoc = 5365;
+	};
+	F8430CBF0C72C38B00753941 /* CTCoreMessageTests.m:166 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */;
+		functionName = "-testAttachments";
+		hitCount = 1;
+		ignoreCount = 0;
+		lineNumber = 166;
+		location = Tests;
+		modificationTime = 208847859.198762;
+		state = 1;
+	};
+	F8430CC40C72C41B00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */;
+		name = "CTBareAttachment.m: 60";
+		rLen = 82;
+		rLoc = 2249;
+		rType = 0;
+		vrLen = 671;
+		vrLoc = 1796;
+	};
+	F8430CC50C72C41B00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F8245A300C04089D005E08A8 /* CTMIMEFactory.m */;
+		name = "CTMIMEFactory.m: 43";
+		rLen = 0;
+		rLoc = 1818;
+		rType = 0;
+		vrLen = 21;
+		vrLoc = 1798;
+	};
+	F8430CC70C72C42D00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */;
+		name = "CTCoreMessageTests.m: 168";
+		rLen = 0;
+		rLoc = 8513;
+		rType = 0;
+		vrLen = 3193;
+		vrLoc = 5365;
+	};
+	F8430CC80C72C42D00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */;
+		name = "CTBareAttachment.m: 59";
+		rLen = 0;
+		rLoc = 2225;
+		rType = 0;
+		vrLen = 2524;
+		vrLoc = 15;
+	};
+	F8430CC90C72C42D00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E266D0C6ED4E100B3FBAC /* CTCoreAttachment.m */;
+		name = "CTCoreAttachment.m: 53";
+		rLen = 0;
+		rLoc = 2213;
+		rType = 0;
+		vrLen = 2216;
+		vrLoc = 658;
+	};
+	F8430CCA0C72C42D00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */;
+		name = "CTCoreMessageTests.m: 168";
+		rLen = 0;
+		rLoc = 8513;
+		rType = 0;
+		vrLen = 3193;
+		vrLoc = 5365;
+	};
+	F8430CCB0C72C42D00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */;
+		name = "CTBareAttachment.m: 59";
+		rLen = 0;
+		rLoc = 2225;
+		rType = 0;
+		vrLen = 2524;
+		vrLoc = 15;
+	};
+	F8430CCC0C72C42D00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E266D0C6ED4E100B3FBAC /* CTCoreAttachment.m */;
+		name = "CTCoreAttachment.m: 72";
+		rLen = 0;
+		rLoc = 2729;
+		rType = 0;
+		vrLen = 2244;
+		vrLoc = 658;
+	};
+	F8430CCD0C72C46400753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E266D0C6ED4E100B3FBAC /* CTCoreAttachment.m */;
+		name = "CTCoreAttachment.m: 72";
+		rLen = 0;
+		rLoc = 2729;
+		rType = 0;
+		vrLen = 2174;
+		vrLoc = 728;
+	};
+	F8430CCE0C72C48200753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E266D0C6ED4E100B3FBAC /* CTCoreAttachment.m */;
+		name = "CTCoreAttachment.m: 72";
+		rLen = 0;
+		rLoc = 2729;
+		rType = 0;
+		vrLen = 2174;
+		vrLoc = 728;
+	};
+	F8430CCF0C72C48200753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E266D0C6ED4E100B3FBAC /* CTCoreAttachment.m */;
+		name = "CTCoreAttachment.m: 72";
+		rLen = 0;
+		rLoc = 2729;
+		rType = 0;
+		vrLen = 2174;
+		vrLoc = 728;
+	};
+	F8430CD00C72C48200753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E266C0C6ED4E100B3FBAC /* CTCoreAttachment.h */;
+		name = "CTCoreAttachment.h: 45";
+		rLen = 0;
+		rLoc = 1925;
+		rType = 0;
+		vrLen = 1925;
+		vrLoc = 0;
+	};
+	F8430CD20C72C49C00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E266C0C6ED4E100B3FBAC /* CTCoreAttachment.h */;
+		name = "CTCoreAttachment.h: 45";
+		rLen = 0;
+		rLoc = 1925;
+		rType = 0;
+		vrLen = 1925;
+		vrLoc = 0;
+	};
+	F8430CD30C72C49C00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E272E0C6EDC6A00B3FBAC /* CTCoreAttachmentTests.m */;
+		name = "CTCoreAttachmentTests.m: 44";
+		rLen = 0;
+		rLoc = 2064;
+		rType = 0;
+		vrLen = 3266;
+		vrLoc = 0;
+	};
+	F8430CD40C72C49C00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E266C0C6ED4E100B3FBAC /* CTCoreAttachment.h */;
+		name = "CTCoreAttachment.h: 45";
+		rLen = 0;
+		rLoc = 1925;
+		rType = 0;
+		vrLen = 1925;
+		vrLoc = 0;
+	};
+	F8430CD50C72C49C00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E272E0C6EDC6A00B3FBAC /* CTCoreAttachmentTests.m */;
+		name = "CTCoreAttachmentTests.m: 44";
+		rLen = 0;
+		rLoc = 2064;
+		rType = 0;
+		vrLen = 3266;
+		vrLoc = 0;
+	};
+	F8430CD60C72C49C00753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */;
+		name = "CTBareAttachment.m: 59";
+		rLen = 0;
+		rLoc = 2226;
+		rType = 0;
+		vrLen = 2526;
+		vrLoc = 15;
+	};
+	F8430CD80C72C4B000753941 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */;
+		name = "CTBareAttachment.m: 59";
+		rLen = 0;
+		rLoc = 2226;
+		rType = 0;
+		vrLen = 2524;
+		vrLoc = 15;
 	};
 	F8584AAE0C4B0CE1007B6EF3 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -9077,9 +9625,9 @@
 	};
 	F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {5900, 2324}}";
-			sepNavSelRange = "{8209, 0}";
-			sepNavVisRange = "{5066, 3166}";
+			sepNavIntBoundsRect = "{{0, 0}, {974, 2506}}";
+			sepNavSelRange = "{8330, 0}";
+			sepNavVisRange = "{7544, 970}";
 		};
 	};
 }
