@@ -35,9 +35,12 @@
 @class CTMIME_Enumerator;
 
 @interface CTMIME : NSObject {
+	NSString *mContentType;
 }
-- (id)initWithMIMEStruct:(struct mailmime *)mime forMessage:(struct mailmessage *)message;
+- (id)initWithMIMEStruct:(struct mailmime *)mime 
+		forMessage:(struct mailmessage *)message;
 - (id)content;
+- (NSString *)contentType;
 - (struct mailmime *)buildMIMEStruct;
 - (NSString *)render;
 - (CTMIME_Enumerator *)mimeEnumerator;

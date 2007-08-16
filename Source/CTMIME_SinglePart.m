@@ -42,7 +42,7 @@
 
 - (id)initWithMIMEStruct:(struct mailmime *)mime 
 		forMessage:(struct mailmessage *)message {
-	self = [super init];
+	self = [super initWithMIMEStruct:mime forMessage:message];
 	if (self) {
 		self.data = nil;
 		mMime = mime;

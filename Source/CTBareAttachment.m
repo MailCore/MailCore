@@ -44,8 +44,7 @@
 	if (self) {
 		mMIMEPart = [part retain];
 		self.filename = mMIMEPart.filename;
-		//TODO Implement me
-		//self.contentType = mMIMEPart.contentType
+		self.contentType = mMIMEPart.contentType;
 	}
 	return self;
 }

@@ -141,12 +141,20 @@ const NSString *filePrefix = @"/Users/mronge/Projects/MailCore/";
 	NSArray *allObjects = [enumerator allObjects];
 	STAssertTrue([[allObjects objectAtIndex:0] isKindOfClass:[CTMIME_MessagePart class]], 
 					@"Incorrect MIME structure found!");
+	STAssertEqualObjects([[allObjects objectAtIndex:0] contentType], @"message/rfc822",
+							@"found incorrect contentType");
 	STAssertTrue([[allObjects objectAtIndex:1] isKindOfClass:[CTMIME_MultiPart class]], 
 					@"Incorrect MIME structure found!");
+	STAssertEqualObjects([[allObjects objectAtIndex:1] contentType], @"multipart/mixed",
+							@"found incorrect contentType");					
 	STAssertTrue([[allObjects objectAtIndex:2] isKindOfClass:[CTMIME_TextPart class]], 
 					@"Incorrect MIME structure found!");
+	STAssertEqualObjects([[allObjects objectAtIndex:2] contentType], @"text/plain",
+							@"found incorrect contentType");					
 	STAssertTrue([[allObjects objectAtIndex:3] isKindOfClass:[CTMIME_ImagePart class]], 
-					@"Incorrect MIME structure found!");										
+					@"Incorrect MIME structure found!");
+	STAssertEqualObjects([[allObjects objectAtIndex:3] contentType], @"image/png",
+							@"found incorrect contentType");															
 	STAssertTrue([enumerator nextObject] == nil, @"Should have been nil");
 	NSArray *fullAllObjects = allObjects;
 	

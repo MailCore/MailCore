@@ -41,7 +41,7 @@
 }
 
 - (id)initWithMIMEStruct:(struct mailmime *)mime forMessage:(struct mailmessage *)message {
-	self = [super init];
+	self = [super initWithMIMEStruct:mime forMessage:message];
 	if (self) {
 		myContentList = [[NSMutableArray alloc] init];
  		clistiter *cur = clist_begin(mime->mm_data.mm_multipart.mm_mp_list);

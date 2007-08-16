@@ -164,9 +164,9 @@
 	STAssertEqualObjects([[attachments objectAtIndex:0] filename], @"Picture 1.png", @"Incorrect filename");
 	CTBareAttachment *bareAttach = [attachments objectAtIndex:0];
 	CTCoreAttachment *attach = [bareAttach fetchFullAttachment];
-	NSString *path = [NSString stringWithFormat:@"/tmp/%@", attach.filename];
-	NSLog(@"path: %@\nobject: %@", path, attach);
-	[attach writeToFile:path];
+	NSData *origData = [NSData dataWithContentsOfFile:
+						[NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/Picture 1.png"]];
+	STAssertEqualObjects(origData, attach.data, @"Original data and attach data should be the same");
 	[msg release];
 }
 @end
