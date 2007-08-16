@@ -213,6 +213,16 @@
 			F805DA1D0C74094000F10EB1 /* PBXTextBookmark */ = F805DA1D0C74094000F10EB1 /* PBXTextBookmark */;
 			F805DA1E0C740A5300F10EB1 /* PBXTextBookmark */ = F805DA1E0C740A5300F10EB1 /* PBXTextBookmark */;
 			F805DA210C740B3800F10EB1 /* PBXTextBookmark */ = F805DA210C740B3800F10EB1 /* PBXTextBookmark */;
+			F805DA230C740C4600F10EB1 /* PBXTextBookmark */ = F805DA230C740C4600F10EB1 /* PBXTextBookmark */;
+			F805DA240C740C4600F10EB1 /* PBXTextBookmark */ = F805DA240C740C4600F10EB1 /* PBXTextBookmark */;
+			F805DA250C740C6700F10EB1 /* PBXTextBookmark */ = F805DA250C740C6700F10EB1 /* PBXTextBookmark */;
+			F805DA260C740C6700F10EB1 /* PBXTextBookmark */ = F805DA260C740C6700F10EB1 /* PBXTextBookmark */;
+			F805DA2F0C740CA200F10EB1 /* PBXTextBookmark */ = F805DA2F0C740CA200F10EB1 /* PBXTextBookmark */;
+			F805DA300C740CA200F10EB1 /* PBXTextBookmark */ = F805DA300C740CA200F10EB1 /* PBXTextBookmark */;
+			F805DA310C740CA200F10EB1 /* PBXTextBookmark */ = F805DA310C740CA200F10EB1 /* PBXTextBookmark */;
+			F805DA320C740CA200F10EB1 /* PBXTextBookmark */ = F805DA320C740CA200F10EB1 /* PBXTextBookmark */;
+			F805DA330C740CA200F10EB1 /* PBXTextBookmark */ = F805DA330C740CA200F10EB1 /* PBXTextBookmark */;
+			F805DA340C740CA200F10EB1 /* PBXTextBookmark */ = F805DA340C740CA200F10EB1 /* PBXTextBookmark */;
 			F81E26480C6ECE3800B3FBAC = F81E26480C6ECE3800B3FBAC /* PBXTextBookmark */;
 			F81E26490C6ECE3800B3FBAC = F81E26490C6ECE3800B3FBAC /* PBXTextBookmark */;
 			F81E264A0C6ECE3800B3FBAC = F81E264A0C6ECE3800B3FBAC /* PBXTextBookmark */;
@@ -615,17 +625,29 @@
 		};
 	};
 	72D118410C5C212100FE2CB5 /* CTMIME_ImagePart.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = CTMIME_ImagePart.h;
+		path = /Users/mronge/Projects/MailCore/Source/CTMIME_ImagePart.h;
+		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {996, 681}}";
+			sepNavIntBoundsRect = "{{0, 0}, {726, 943}}";
 			sepNavSelRange = "{628, 0}";
 			sepNavVisRange = "{0, 1739}";
 		};
 	};
 	72D118420C5C212100FE2CB5 /* CTMIME_ImagePart.m */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.objc;
+		name = CTMIME_ImagePart.m;
+		path = /Users/mronge/Projects/MailCore/Source/CTMIME_ImagePart.m;
+		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {746, 1064}}";
-			sepNavSelRange = "{628, 0}";
-			sepNavVisRange = "{220, 2520}";
+			sepNavIntBoundsRect = "{{0, 0}, {746, 1008}}";
+			sepNavSelRange = "{1575, 0}";
+			sepNavVisRange = "{0, 2556}";
 		};
 	};
 	8DC2EF4F0486A6940098B216 /* MailCore */ = {
@@ -635,7 +657,7 @@
 		isa = PBXTextBookmark;
 		fRef = F8245A300C04089D005E08A8 /* CTMIMEFactory.m */;
 		rLen = 6;
-		rLoc = 2066;
+		rLoc = 2037;
 		rType = 0;
 	};
 	F805D9950C73EC7200F10EB1 /* PBXTextBookmark */ = {
@@ -643,7 +665,7 @@
 		fRef = F8245A300C04089D005E08A8 /* CTMIMEFactory.m */;
 		name = "CTMIMEFactory.m: 59";
 		rLen = 0;
-		rLoc = 2326;
+		rLoc = 2297;
 		rType = 0;
 		vrLen = 896;
 		vrLoc = 1849;
@@ -671,7 +693,7 @@
 		fRef = F8245A300C04089D005E08A8 /* CTMIMEFactory.m */;
 		name = "CTMIMEFactory.m: 59";
 		rLen = 0;
-		rLoc = 2326;
+		rLoc = 2297;
 		rType = 0;
 		vrLen = 896;
 		vrLoc = 1849;
@@ -699,7 +721,7 @@
 		fRef = F8245A300C04089D005E08A8 /* CTMIMEFactory.m */;
 		name = "CTMIMEFactory.m: 59";
 		rLen = 0;
-		rLoc = 2326;
+		rLoc = 2297;
 		rType = 0;
 		vrLen = 896;
 		vrLoc = 1849;
@@ -747,7 +769,7 @@
 		fRef = F8245A300C04089D005E08A8 /* CTMIMEFactory.m */;
 		name = "CTMIMEFactory.m: 59";
 		rLen = 0;
-		rLoc = 2326;
+		rLoc = 2297;
 		rType = 0;
 		vrLen = 896;
 		vrLoc = 1849;
@@ -817,7 +839,7 @@
 		fRef = F8245A300C04089D005E08A8 /* CTMIMEFactory.m */;
 		name = "CTMIMEFactory.m: 52";
 		rLen = 6;
-		rLoc = 2066;
+		rLoc = 2037;
 		rType = 0;
 		vrLen = 2688;
 		vrLoc = 3;
@@ -977,7 +999,7 @@
 		fRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */;
 		name = "CTMIMETests.m: 172";
 		rLen = 0;
-		rLoc = 10018;
+		rLoc = 9995;
 		rType = 0;
 		vrLen = 3441;
 		vrLoc = 6224;
@@ -1187,7 +1209,7 @@
 		fRef = F8245A300C04089D005E08A8 /* CTMIMEFactory.m */;
 		name = "CTMIMEFactory.m: 52";
 		rLen = 6;
-		rLoc = 2066;
+		rLoc = 2037;
 		rType = 0;
 		vrLen = 2579;
 		vrLoc = 0;
@@ -1227,7 +1249,7 @@
 		fRef = F8245A300C04089D005E08A8 /* CTMIMEFactory.m */;
 		name = "CTMIMEFactory.m: 52";
 		rLen = 6;
-		rLoc = 2066;
+		rLoc = 2037;
 		rType = 0;
 		vrLen = 2688;
 		vrLoc = 3;
@@ -1397,7 +1419,7 @@
 		fRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */;
 		name = "CTMIMETests.m: 157";
 		rLen = 0;
-		rLoc = 9254;
+		rLoc = 9230;
 		rType = 0;
 		vrLen = 3474;
 		vrLoc = 6224;
@@ -1507,7 +1529,7 @@
 		fRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */;
 		name = "CTMIMETests.m: 172";
 		rLen = 0;
-		rLoc = 10018;
+		rLoc = 9995;
 		rType = 0;
 		vrLen = 3425;
 		vrLoc = 6240;
@@ -1527,7 +1549,7 @@
 		fRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */;
 		name = "CTMIMETests.m: 156";
 		rLen = 0;
-		rLoc = 8834;
+		rLoc = 8810;
 		rType = 0;
 		vrLen = 3551;
 		vrLoc = 6621;
@@ -1547,7 +1569,7 @@
 		comments = "error: -[CTMIMETests testEnumerator] : 'message/rfc822' should be equal to 'multipart/mixed' found incorrect contentType";
 		fRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */;
 		rLen = 1;
-		rLoc = 148;
+		rLoc = 147;
 		rType = 1;
 	};
 	F805DA0D0C7408D700F10EB1 /* PBXTextBookmark */ = {
@@ -1565,7 +1587,7 @@
 		fRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */;
 		name = "CTMIMETests.m: 149";
 		rLen = 45;
-		rLoc = 8331;
+		rLoc = 8306;
 		rType = 0;
 		vrLen = 849;
 		vrLoc = 8203;
@@ -1575,7 +1597,7 @@
 		fRef = F8245A300C04089D005E08A8 /* CTMIMEFactory.m */;
 		name = "CTMIMEFactory.m: 59";
 		rLen = 0;
-		rLoc = 2326;
+		rLoc = 2297;
 		rType = 0;
 		vrLen = 779;
 		vrLoc = 1849;
@@ -1585,7 +1607,7 @@
 		fRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */;
 		name = "CTMIMETests.m: 156";
 		rLen = 0;
-		rLoc = 8834;
+		rLoc = 8810;
 		rType = 0;
 		vrLen = 3551;
 		vrLoc = 6621;
@@ -1603,7 +1625,7 @@
 		fRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */;
 		name = "CTMIMETests.m: 156";
 		rLen = 0;
-		rLoc = 8834;
+		rLoc = 8810;
 		rType = 0;
 		vrLen = 3551;
 		vrLoc = 6621;
@@ -1623,7 +1645,7 @@
 		fRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */;
 		name = "CTMIMETests.m: 149";
 		rLen = 45;
-		rLoc = 8331;
+		rLoc = 8306;
 		rType = 0;
 		vrLen = 1239;
 		vrLoc = 8245;
@@ -1641,7 +1663,7 @@
 		fRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */;
 		name = "CTMIMETests.m: 149";
 		rLen = 45;
-		rLoc = 8331;
+		rLoc = 8306;
 		rType = 0;
 		vrLen = 1239;
 		vrLoc = 8245;
@@ -1661,7 +1683,7 @@
 		fRef = F8245A300C04089D005E08A8 /* CTMIMEFactory.m */;
 		name = "CTMIMEFactory.m: 59";
 		rLen = 0;
-		rLoc = 2326;
+		rLoc = 2297;
 		rType = 0;
 		vrLen = 779;
 		vrLoc = 1849;
@@ -1671,7 +1693,7 @@
 		fRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */;
 		name = "CTMIMETests.m: 156";
 		rLen = 0;
-		rLoc = 8807;
+		rLoc = 8783;
 		rType = 0;
 		vrLen = 3551;
 		vrLoc = 6621;
@@ -1691,7 +1713,7 @@
 		fRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */;
 		name = "CTMIMETests.m: 156";
 		rLen = 0;
-		rLoc = 8807;
+		rLoc = 8783;
 		rType = 0;
 		vrLen = 3551;
 		vrLoc = 6621;
@@ -1725,6 +1747,103 @@
 		rType = 0;
 		vrLen = 3628;
 		vrLoc = 0;
+	};
+	F805DA230C740C4600F10EB1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */;
+		name = "CTCoreMessageTests.m: 169";
+		rLen = 0;
+		rLoc = 8623;
+		rType = 0;
+		vrLen = 1020;
+		vrLoc = 7627;
+	};
+	F805DA240C740C4600F10EB1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F8245A300C04089D005E08A8 /* CTMIMEFactory.m */;
+		name = "CTMIMEFactory.m: 59";
+		rLen = 0;
+		rLoc = 2297;
+		rType = 0;
+		vrLen = 779;
+		vrLoc = 1849;
+	};
+	F805DA250C740C6700F10EB1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */;
+		name = "CTCoreMessageTests.m: 169";
+		rLen = 0;
+		rLoc = 8623;
+		rType = 0;
+		vrLen = 1020;
+		vrLoc = 7627;
+	};
+	F805DA260C740C6700F10EB1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F8245A300C04089D005E08A8 /* CTMIMEFactory.m */;
+		name = "CTMIMEFactory.m: 59";
+		rLen = 0;
+		rLoc = 2297;
+		rType = 0;
+		vrLen = 779;
+		vrLoc = 1849;
+	};
+	F805DA2F0C740CA200F10EB1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */;
+		name = "CTCoreMessageTests.m: 169";
+		rLen = 0;
+		rLoc = 8623;
+		rType = 0;
+		vrLen = 1020;
+		vrLoc = 7627;
+	};
+	F805DA300C740CA200F10EB1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */;
+		name = "CTMIMETests.m: 166";
+		rLen = 0;
+		rLoc = 9398;
+		rType = 0;
+		vrLen = 1392;
+		vrLoc = 8604;
+	};
+	F805DA310C740CA200F10EB1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F8245A300C04089D005E08A8 /* CTMIMEFactory.m */;
+		rLen = 17;
+		rLoc = 3036;
+		rType = 0;
+	};
+	F805DA320C740CA200F10EB1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F8245A300C04089D005E08A8 /* CTMIMEFactory.m */;
+		name = "CTMIMEFactory.m: 59";
+		rLen = 0;
+		rLoc = 2297;
+		rType = 0;
+		vrLen = 779;
+		vrLoc = 1849;
+	};
+	F805DA330C740CA200F10EB1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */;
+		name = "CTMIMETests.m: 166";
+		rLen = 0;
+		rLoc = 9398;
+		rType = 0;
+		vrLen = 1392;
+		vrLoc = 8604;
+	};
+	F805DA340C740CA200F10EB1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F8245A300C04089D005E08A8 /* CTMIMEFactory.m */;
+		name = "CTMIMEFactory.m: 84";
+		rLen = 0;
+		rLoc = 3113;
+		rType = 0;
+		vrLen = 732;
+		vrLoc = 2473;
 	};
 	F80BDF5C0A774369003B344E /* imapdriver_types.h */ = {
 		uiCtxt = {
@@ -1811,8 +1930,8 @@
 	F81A8AD70C03FC3B002F780A /* CTMIME_SinglePart.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {726, 1624}}";
-			sepNavSelRange = "{1963, 0}";
-			sepNavVisRange = "{2012, 2068}";
+			sepNavSelRange = "{2722, 0}";
+			sepNavVisRange = "{1808, 2136}";
 		};
 	};
 	F81A8AD80C03FC3B002F780A /* CTMIME_TextPart.h */ = {
@@ -1845,16 +1964,16 @@
 	};
 	F81A8AEB0C03FC58002F780A /* CTMIMETests.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {996, 681}}";
+			sepNavIntBoundsRect = "{{0, 0}, {726, 943}}";
 			sepNavSelRange = "{620, 9}";
 			sepNavVisRange = "{0, 1696}";
 		};
 	};
 	F81A8AEC0C03FC58002F780A /* CTMIMETests.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1046, 2604}}";
-			sepNavSelRange = "{8807, 0}";
-			sepNavVisRange = "{6621, 3551}";
+			sepNavIntBoundsRect = "{{0, 0}, {1046, 2590}}";
+			sepNavSelRange = "{9152, 0}";
+			sepNavVisRange = "{220, 4047}";
 		};
 	};
 	F81B88500A74AA7100143DF6 /* CTCoreAccount.h */ = {
@@ -1996,7 +2115,7 @@
 		fRef = F8245A300C04089D005E08A8 /* CTMIMEFactory.m */;
 		name = "CTMIMEFactory.m: 16";
 		rLen = 0;
-		rLoc = 1914;
+		rLoc = 1885;
 		rType = 0;
 		vrLen = 1671;
 		vrLoc = 0;
@@ -2342,9 +2461,9 @@
 	};
 	F8245A300C04089D005E08A8 /* CTMIMEFactory.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {777, 1190}}";
-			sepNavSelRange = "{2326, 0}";
-			sepNavVisRange = "{1849, 779}";
+			sepNavIntBoundsRect = "{{0, 0}, {777, 1260}}";
+			sepNavSelRange = "{3167, 0}";
+			sepNavVisRange = "{2473, 732}";
 		};
 	};
 	F843098D0C72953800753941 /* RunUnitTests */ = {
@@ -2506,7 +2625,7 @@
 		fRef = F8245A300C04089D005E08A8 /* CTMIMEFactory.m */;
 		name = "CTMIMEFactory.m: 40";
 		rLen = 0;
-		rLoc = 1797;
+		rLoc = 1768;
 		rType = 0;
 		vrLen = 2179;
 		vrLoc = 1026;
@@ -2748,7 +2867,7 @@
 		rLen = 0;
 		rLoc = 1576;
 		rType = 0;
-		vrLen = 1758;
+		vrLen = 1739;
 		vrLoc = 0;
 	};
 	F84309D30C7295C900753941 /* PBXTextBookmark */ = {
@@ -2928,7 +3047,7 @@
 		rLen = 0;
 		rLoc = 1681;
 		rType = 0;
-		vrLen = 1740;
+		vrLen = 1739;
 		vrLoc = 0;
 	};
 	F84309E50C7295C900753941 /* PBXTextBookmark */ = {
@@ -2958,7 +3077,7 @@
 		rLen = 0;
 		rLoc = 1681;
 		rType = 0;
-		vrLen = 1740;
+		vrLen = 1739;
 		vrLoc = 0;
 	};
 	F84309ED0C72962000753941 /* DebugRig */ = {
@@ -3231,7 +3350,7 @@
 		rLen = 0;
 		rLoc = 1681;
 		rType = 0;
-		vrLen = 1740;
+		vrLen = 1739;
 		vrLoc = 0;
 	};
 	F8430AE70C729AD900753941 /* PBXTextBookmark */ = {
@@ -3251,7 +3370,7 @@
 		rLen = 0;
 		rLoc = 1630;
 		rType = 0;
-		vrLen = 1740;
+		vrLen = 1739;
 		vrLoc = 0;
 	};
 	F8430AE90C729AD900753941 /* PBXTextBookmark */ = {
@@ -3289,7 +3408,7 @@
 		fRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */;
 		name = "CTMIMETests.m: 106";
 		rLen = 0;
-		rLoc = 6056;
+		rLoc = 6029;
 		rType = 0;
 		vrLen = 3006;
 		vrLoc = 3145;
@@ -3309,7 +3428,7 @@
 		fRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */;
 		name = "CTMIMETests.m: 107";
 		rLen = 166;
-		rLoc = 6058;
+		rLoc = 6031;
 		rType = 0;
 		vrLen = 2255;
 		vrLoc = 0;
@@ -3329,7 +3448,7 @@
 		fRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */;
 		name = "CTMIMETests.m: 107";
 		rLen = 166;
-		rLoc = 6058;
+		rLoc = 6031;
 		rType = 0;
 		vrLen = 3006;
 		vrLoc = 3145;
@@ -3349,7 +3468,7 @@
 		fRef = F8245A300C04089D005E08A8 /* CTMIMEFactory.m */;
 		name = "CTMIMEFactory.m: 48";
 		rLen = 0;
-		rLoc = 1957;
+		rLoc = 1928;
 		rType = 0;
 		vrLen = 1513;
 		vrLoc = 1026;
@@ -3359,7 +3478,7 @@
 		fRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */;
 		name = "CTMIMETests.m: 99";
 		rLen = 0;
-		rLoc = 5260;
+		rLoc = 5231;
 		rType = 0;
 		vrLen = 3146;
 		vrLoc = 2998;
@@ -3379,7 +3498,7 @@
 		fRef = F8245A300C04089D005E08A8 /* CTMIMEFactory.m */;
 		name = "CTMIMEFactory.m: 48";
 		rLen = 0;
-		rLoc = 1957;
+		rLoc = 1928;
 		rType = 0;
 		vrLen = 1513;
 		vrLoc = 1026;
@@ -3399,7 +3518,7 @@
 		fRef = F8245A300C04089D005E08A8 /* CTMIMEFactory.m */;
 		name = "CTMIMEFactory.m: 48";
 		rLen = 0;
-		rLoc = 1957;
+		rLoc = 1928;
 		rType = 0;
 		vrLen = 1591;
 		vrLoc = 948;
@@ -3419,7 +3538,7 @@
 		fRef = F8245A300C04089D005E08A8 /* CTMIMEFactory.m */;
 		name = "CTMIMEFactory.m: 48";
 		rLen = 0;
-		rLoc = 1957;
+		rLoc = 1928;
 		rType = 0;
 		vrLen = 1406;
 		vrLoc = 1799;
@@ -3439,7 +3558,7 @@
 		fRef = F8245A300C04089D005E08A8 /* CTMIMEFactory.m */;
 		name = "CTMIMEFactory.m: 82";
 		rLen = 0;
-		rLoc = 3030;
+		rLoc = 3001;
 		rType = 0;
 		vrLen = 1342;
 		vrLoc = 1863;
@@ -3459,7 +3578,7 @@
 		fRef = F8245A300C04089D005E08A8 /* CTMIMEFactory.m */;
 		name = "CTMIMEFactory.m: 48";
 		rLen = 0;
-		rLoc = 1957;
+		rLoc = 1928;
 		rType = 0;
 		vrLen = 1343;
 		vrLoc = 1862;
@@ -3479,7 +3598,7 @@
 		fRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */;
 		name = "CTMIMETests.m: 108";
 		rLen = 0;
-		rLoc = 6136;
+		rLoc = 6109;
 		rType = 0;
 		vrLen = 2993;
 		vrLoc = 1629;
@@ -3819,7 +3938,7 @@
 		fRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */;
 		name = "CTMIMETests.m: 123";
 		rLen = 0;
-		rLoc = 7387;
+		rLoc = 7362;
 		rType = 0;
 		vrLen = 2255;
 		vrLoc = 0;
@@ -4763,7 +4882,7 @@
 		fRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */;
 		name = "CTMIMETests.m: 138";
 		rLen = 0;
-		rLoc = 10165;
+		rLoc = 10142;
 		rType = 0;
 		vrLen = 2768;
 		vrLoc = 4984;
@@ -4873,7 +4992,7 @@
 		fRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */;
 		name = "CTMIMETests.m: 142";
 		rLen = 0;
-		rLoc = 10172;
+		rLoc = 10149;
 		rType = 0;
 		vrLen = 2777;
 		vrLoc = 5077;
@@ -4893,7 +5012,7 @@
 		fRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */;
 		name = "CTMIMETests.m: 135";
 		rLen = 0;
-		rLoc = 7463;
+		rLoc = 7438;
 		rType = 0;
 		vrLen = 2786;
 		vrLoc = 5077;
@@ -4943,7 +5062,7 @@
 		fRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */;
 		name = "CTMIMETests.m: 170";
 		rLen = 0;
-		rLoc = 9921;
+		rLoc = 9898;
 		rType = 0;
 		vrLen = 2329;
 		vrLoc = 7336;
@@ -5293,7 +5412,7 @@
 		fRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */;
 		name = "CTMIMETests.m: 135";
 		rLen = 181;
-		rLoc = 7451;
+		rLoc = 7426;
 		rType = 0;
 		vrLen = 3539;
 		vrLoc = 6126;
@@ -5353,7 +5472,7 @@
 		fRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */;
 		name = "CTMIMETests.m: 135";
 		rLen = 181;
-		rLoc = 7451;
+		rLoc = 7426;
 		rType = 0;
 		vrLen = 3539;
 		vrLoc = 6126;
@@ -6077,9 +6196,9 @@
 	};
 	F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {5900, 2422}}";
-			sepNavSelRange = "{7740, 0}";
-			sepNavVisRange = "{0, 3628}";
+			sepNavIntBoundsRect = "{{0, 0}, {974, 2562}}";
+			sepNavSelRange = "{8623, 0}";
+			sepNavVisRange = "{7627, 1020}";
 		};
 	};
 }

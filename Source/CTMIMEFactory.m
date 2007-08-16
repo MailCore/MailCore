@@ -37,7 +37,6 @@
 #import "CTMIME_MessagePart.h"
 #import "CTMIME_MultiPart.h"
 #import "CTMIME_TextPart.h"
-#import "CTMIME_ImagePart.h"
 #import "CTMIME.h"
 
 
@@ -79,8 +78,8 @@
 			content = [[CTMIME_TextPart alloc] initWithMIMEStruct:mime 
 							forMessage:message];
 		break;
-		case MAILMIME_DISCRETE_TYPE_IMAGE:
-			content = [[CTMIME_ImagePart alloc] initWithMIMEStruct:mime 
+		default:
+			content = [[CTMIME_SinglePart alloc] initWithMIMEStruct:mime 
 							forMessage:message];
 		break;
 	}

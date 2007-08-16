@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		72D117D20C5C181700FE2CB5 /* CTBareMessageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 72D117D10C5C181700FE2CB5 /* CTBareMessageTests.m */; };
-		72D118430C5C212100FE2CB5 /* CTMIME_ImagePart.h in Headers */ = {isa = PBXBuildFile; fileRef = 72D118410C5C212100FE2CB5 /* CTMIME_ImagePart.h */; };
-		72D118440C5C212100FE2CB5 /* CTMIME_ImagePart.m in Sources */ = {isa = PBXBuildFile; fileRef = 72D118420C5C212100FE2CB5 /* CTMIME_ImagePart.m */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 		F80BDFC40A77436A003B344E /* acl.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF4A0A774369003B344E /* acl.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F80BDFC50A77436A003B344E /* annotatemore.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF4B0A774369003B344E /* annotatemore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -228,8 +226,6 @@
 		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		72D117D00C5C181700FE2CB5 /* CTBareMessageTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTBareMessageTests.h; path = Tests/CTBareMessageTests.h; sourceTree = "<group>"; };
 		72D117D10C5C181700FE2CB5 /* CTBareMessageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTBareMessageTests.m; path = Tests/CTBareMessageTests.m; sourceTree = "<group>"; };
-		72D118410C5C212100FE2CB5 /* CTMIME_ImagePart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTMIME_ImagePart.h; path = Source/CTMIME_ImagePart.h; sourceTree = "<group>"; };
-		72D118420C5C212100FE2CB5 /* CTMIME_ImagePart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTMIME_ImagePart.m; path = Source/CTMIME_ImagePart.m; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* MailCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MailCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		F80BDF4A0A774369003B344E /* acl.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = acl.h; path = OpenSourceProjects/include/libetpan/acl.h; sourceTree = SOURCE_ROOT; };
@@ -702,8 +698,6 @@
 				F81A8AD50C03FC3B002F780A /* CTMIME_MultiPart.m */,
 				F81A8AD60C03FC3B002F780A /* CTMIME_SinglePart.h */,
 				F81A8AD70C03FC3B002F780A /* CTMIME_SinglePart.m */,
-				72D118420C5C212100FE2CB5 /* CTMIME_ImagePart.m */,
-				72D118410C5C212100FE2CB5 /* CTMIME_ImagePart.h */,
 				F81A8AD80C03FC3B002F780A /* CTMIME_TextPart.h */,
 				F81A8AD90C03FC3B002F780A /* CTMIME_TextPart.m */,
 				F81A8ADA0C03FC3B002F780A /* CTMIME.h */,
@@ -897,7 +891,6 @@
 				F8245A6D0C041C8C005E08A8 /* CTMIMEFactory.h in Headers */,
 				F8A70EEF0C4059E100D1D694 /* JRLog.h in Headers */,
 				F858CC490C51DE6B00EF1B3D /* CTBareMessage.h in Headers */,
-				72D118430C5C212100FE2CB5 /* CTMIME_ImagePart.h in Headers */,
 				F81E266A0C6ED35C00B3FBAC /* CTBareAttachment.h in Headers */,
 				F81E266E0C6ED4E100B3FBAC /* CTCoreAttachment.h in Headers */,
 				F8430BB10C72B16000753941 /* CTMIME_Enumerator.h in Headers */,
@@ -1065,7 +1058,6 @@
 				F8245A700C041C91005E08A8 /* CTMIMEFactory.m in Sources */,
 				F8A70EF00C4059E100D1D694 /* JRLog.m in Sources */,
 				F858CC4A0C51DE6B00EF1B3D /* CTBareMessage.m in Sources */,
-				72D118440C5C212100FE2CB5 /* CTMIME_ImagePart.m in Sources */,
 				F81E266B0C6ED35C00B3FBAC /* CTBareAttachment.m in Sources */,
 				F81E266F0C6ED4E100B3FBAC /* CTCoreAttachment.m in Sources */,
 				F8430BB20C72B16000753941 /* CTMIME_Enumerator.m in Sources */,

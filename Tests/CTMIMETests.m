@@ -39,7 +39,6 @@
 #import "CTMIME_MultiPart.h"
 #import "CTMIME_SinglePart.h"
 #import "CTMIME_TextPart.h"
-#import "CTMIME_ImagePart.h"
 #import "CTMIME_Enumerator.h"
 
 const NSString *filePrefix = @"/Users/mronge/Projects/MailCore/";
@@ -103,8 +102,8 @@ const NSString *filePrefix = @"/Users/mronge/Projects/MailCore/";
 	NSArray *multiPartContent = [[mime content] content];	
 	STAssertTrue([multiPartContent count] == 3, @"Incorrect MIME structure found!");
 	STAssertTrue([[multiPartContent objectAtIndex:0] isKindOfClass:[CTMIME_TextPart class]], @"Incorrect MIME structure found!");
-	STAssertTrue([[multiPartContent objectAtIndex:1] isKindOfClass:[CTMIME_ImagePart class]], @"Incorrect MIME structure found!");
-	CTMIME_ImagePart *img = [multiPartContent objectAtIndex:1];	
+	STAssertTrue([[multiPartContent objectAtIndex:1] isKindOfClass:[CTMIME_SinglePart class]], @"Incorrect MIME structure found!");
+	CTMIME_SinglePart *img = [multiPartContent objectAtIndex:1];	
 	STAssertTrue(img.attached == FALSE, @"Image is should be inline");
 	STAssertEqualObjects(img.filename, @"mytestimage.jpg", @"Filename of inline image not correct");
 	[msg release];
@@ -124,9 +123,9 @@ const NSString *filePrefix = @"/Users/mronge/Projects/MailCore/";
 					@"Incorrect MIME structure found!");
 	STAssertTrue([[multiPartContent objectAtIndex:0] isKindOfClass:[CTMIME_TextPart class]], 
 					@"Incorrect MIME structure found!");
-	STAssertTrue([[multiPartContent objectAtIndex:1] isKindOfClass:[CTMIME_ImagePart class]], 
+	STAssertTrue([[multiPartContent objectAtIndex:1] isKindOfClass:[CTMIME_SinglePart class]], 
 					@"Incorrect MIME structure found!");
-	CTMIME_ImagePart *img = [multiPartContent objectAtIndex:1];	
+	CTMIME_SinglePart *img = [multiPartContent objectAtIndex:1];	
 	STAssertTrue(img.attached == TRUE, @"Image is should be attached");
 	STAssertEqualObjects(img.filename, @"Picture 1.png", @"Filename of inline image not correct");
 	[msg release];
@@ -151,7 +150,7 @@ const NSString *filePrefix = @"/Users/mronge/Projects/MailCore/";
 					@"Incorrect MIME structure found!");
 	STAssertEqualObjects([[allObjects objectAtIndex:2] contentType], @"text/plain",
 							@"found incorrect contentType");					
-	STAssertTrue([[allObjects objectAtIndex:3] isKindOfClass:[CTMIME_ImagePart class]], 
+	STAssertTrue([[allObjects objectAtIndex:3] isKindOfClass:[CTMIME_SinglePart class]], 
 					@"Incorrect MIME structure found!");
 	STAssertEqualObjects([[allObjects objectAtIndex:3] contentType], @"image/png",
 							@"found incorrect contentType");															
@@ -164,7 +163,7 @@ const NSString *filePrefix = @"/Users/mronge/Projects/MailCore/";
 					@"Incorrect MIME structure found!");
 	STAssertTrue([[allObjects objectAtIndex:1] isKindOfClass:[CTMIME_TextPart class]], 
 					@"Incorrect MIME structure found!");
-	STAssertTrue([[allObjects objectAtIndex:2] isKindOfClass:[CTMIME_ImagePart class]], 
+	STAssertTrue([[allObjects objectAtIndex:2] isKindOfClass:[CTMIME_SinglePart class]], 
 					@"Incorrect MIME structure found!");										
 	STAssertTrue([enumerator nextObject] == nil, @"Should have been nil");
 	
