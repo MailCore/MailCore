@@ -49,6 +49,8 @@
 	CTMIME *myParsedMIME;
 	NSUInteger mySequenceNumber;
 }
+@property(retain) CTMIME *mime;
+
 //TODO Parse this stuff: message_id, inReplyTo, references, comments, keywords, headers
 
 /*!

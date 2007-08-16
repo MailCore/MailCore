@@ -61,6 +61,8 @@ char * etpan_encode_mime_header(char * phrase)
 */
 
 @implementation CTCoreMessage
+@synthesize mime=myParsedMIME;
+
 - (id)init {
 	[super init];
 	if (self) {

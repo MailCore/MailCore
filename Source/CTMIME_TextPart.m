@@ -82,6 +82,7 @@
 	mime_sub = mailmime_new_empty(content, mime_fields);
 	assert(mime_sub != NULL);
 	NSString *str = [self content];
+	//TODO is strdup necessary?
 	r = mailmime_set_body_text(mime_sub, strdup([str cStringUsingEncoding:NSASCIIStringEncoding]), [str length]);
 	assert(r == MAILIMF_NO_ERROR);
 	return mime_sub;

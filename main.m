@@ -37,6 +37,12 @@
 #import "CTCoreAddress.h"
 #import "MailCoreTypes.h"
 
+#import "CTMIME_TextPart.h"
+#import "CTMIME_SinglePart.h"
+#import "CTMIME_MultiPart.h"
+#import "CTMIME_MessagePart.h"
+#import "CTMIME.h"
+
 #import "CTMIMEFactory.h"
 
 const NSString *filePrefix = @"/Users/local/Projects/MailCore/";
@@ -49,27 +55,27 @@ int main( int argc, char *argv[ ] )
 //	CTMIME *mime = [CTMIMEFactory createMIMEWithMIMEStruct:[msg messageStruct]->msg_mime forMessage:[msg messageStruct]];
 	
 	
-	CTCoreAccount *account = [[CTCoreAccount alloc] init];
-	CTCoreFolder *folder;
-////	CTCoreFolder *inbox, *newFolder, *archive;
-////	CTCoreMessage *msgOne;
-////	
-//
-//	MailCoreEnableLogging();
-	[account connectToServer:@"mail.theronge.com" port:143 connectionType:CONNECTION_TYPE_STARTTLS 
-				authType:IMAP_AUTH_TYPE_PLAIN login:@"mronge" password:@""];
-	
-	folder = [account folderWithPath:@"INBOX.Trash"];
-	for (CTCoreMessage *msg in [folder messageObjectsFromIndex:0 toIndex:10]) {
-		NSLog(@"%@ / %@", msg.subject, msg.uid);
-	}
-	
-	CTCoreMessage *msg = [folder messageWithUID:@"1163997146-103"];
-	unsigned int flags = [folder flagsForMessage:msg];
-	flags = flags | CTFlagDeleted;
-	[folder setFlags:flags forMessage:msg];
-	[folder expunge];
-	
+//	CTCoreAccount *account = [[CTCoreAccount alloc] init];
+//	CTCoreFolder *folder;
+//////	CTCoreFolder *inbox, *newFolder, *archive;
+//////	CTCoreMessage *msgOne;
+//////	
+////
+////	MailCoreEnableLogging();
+//	[account connectToServer:@"mail.theronge.com" port:143 connectionType:CONNECTION_TYPE_STARTTLS 
+//				authType:IMAP_AUTH_TYPE_PLAIN login:@"mronge" password:@""];
+//	
+//	folder = [account folderWithPath:@"INBOX.Trash"];
+//	for (CTCoreMessage *msg in [folder messageObjectsFromIndex:0 toIndex:10]) {
+//		NSLog(@"%@ / %@", msg.subject, msg.uid);
+//	}
+//	
+//	CTCoreMessage *msg = [folder messageWithUID:@"1163997146-103"];
+//	unsigned int flags = [folder flagsForMessage:msg];
+//	flags = flags | CTFlagDeleted;
+//	[folder setFlags:flags forMessage:msg];
+//	[folder expunge];
+//	
 	
 	//[folder copyMessageWithUID:@"1163978737-3691" toFolderWithPath:@"INBOX.Trash"];
 	//NSLog(@"%d", [folder totalMessageCount]);
@@ -141,13 +147,23 @@ int main( int argc, char *argv[ ] )
 	/* GMAIL Test */
 	
 //	MailCoreEnableLogging();
-//	
-//	CTCoreMessage *msgOne = [[CTCoreMessage alloc] init];
-//	[msgOne setTo:[NSSet setWithObject:[CTCoreAddress addressWithName:@"Bob" email:@"mronge@theronge.com"]]];
-//	[msgOne setFrom:[NSSet setWithObject:[CTCoreAddress addressWithName:@"test" email:@"test@test.com"]]];
-//	[msgOne setBody:@"Test"];
-//	[msgOne setSubject:@"Subject"];	
-//	[CTSMTPConnection sendMessage:msgOne server:@"mail.theronge.com" username:@"mronge" password:@"" port:25 useTLS:YES shouldAuth:YES];
+	
+	CTCoreMessage *msgOne = [[CTCoreMessage alloc] init];
+	[msgOne setTo:[NSSet setWithObject:[CTCoreAddress addressWithName:@"Bob" email:@"mronge@theronge.com"]]];
+	[msgOne setFrom:[NSSet setWithObject:[CTCoreAddress addressWithName:@"test" email:@"test@test.com"]]];
+	//[msgOne setBody:@"Test"];
+	CTMIME_TextPart *text = [CTMIME_TextPart mimeTextPartWithString:@"Hell this is a mime test"];
+	CTMIME_SinglePart *part = [CTMIME_SinglePart mimeSinglePartWithData:[NSData dataWithContentsOfFile:@"/tmp/DSC_6201.jpg"]];
+	part.contentType = @"image/jpeg";
+	CTMIME_MultiPart *multi = [CTMIME_MultiPart mimeMultiPart];
+	[multi addMIMEPart:text];
+	[multi addMIMEPart:part];
+	CTMIME_MessagePart *messagePart = [CTMIME_MessagePart mimeMessagePartWithContent:multi];
+	[msgOne setSubject:@"MIME Test"];	
+	msgOne.mime = messagePart;
+	[CTSMTPConnection sendMessage:msgOne server:@"mail.theronge.com" username:@"mronge" password:@"" port:25 useTLS:YES useAuth:YES];
+	[msgOne release];
+
 	//[CTSMTPConnection sendMessage:msgOne server:@"mail.dls.net" username:@"" password:@"" port:25 useTLS:NO shouldAuth:NO];
 	//[archive disconnect];
 	//[account disconnect];

@@ -37,5 +37,4 @@
 + (id)mimeTextPartWithString:(NSString *)str;
 - (id)initWithString:(NSString *)string;
 - (void)setString:(NSString *)str;
-- (id)content;
 @end

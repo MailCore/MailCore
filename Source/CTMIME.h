@@ -37,10 +37,11 @@
 @interface CTMIME : NSObject {
 	NSString *mContentType;
 }
+@property(retain) NSString *contentType;
+@property(readonly) id content;
+
 - (id)initWithMIMEStruct:(struct mailmime *)mime 
 		forMessage:(struct mailmessage *)message;
-- (id)content;
-- (NSString *)contentType;
 - (struct mailmime *)buildMIMEStruct;
 - (NSString *)render;
 - (CTMIME_Enumerator *)mimeEnumerator;

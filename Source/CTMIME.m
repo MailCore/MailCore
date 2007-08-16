@@ -34,6 +34,8 @@
 #import "CTMIME_Enumerator.h"
 
 @implementation CTMIME
+@synthesize contentType=mContentType;
+
 - (id)initWithMIMEStruct:(struct mailmime *)mime 
 		forMessage:(struct mailmessage *)message {
 	self = [super init];

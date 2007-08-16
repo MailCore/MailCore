@@ -40,6 +40,19 @@
 @synthesize data=mData;
 @synthesize fetched=mFetched;
 
++ (id)mimeSinglePartWithData:(NSData *)data {
+	return [[[CTMIME_SinglePart alloc] initWithData:data] autorelease];
+}
+
+- (id)initWithData:(NSData *)data {
+	self = [super init];
+	if (self) {
+		self.data = data;
+		self.fetched = YES;
+	}
+	return self;
+}
+
 - (id)initWithMIMEStruct:(struct mailmime *)mime 
 		forMessage:(struct mailmessage *)message {
 	self = [super initWithMIMEStruct:mime forMessage:message];
@@ -105,6 +118,26 @@
 		self.fetched = YES;
 	}
 }
+
+//TODO need to do content disposition
+- (struct mailmime *)buildMIMEStruct {
+	struct mailmime_fields *mime_fields;
+	struct mailmime *mime_sub;
+	struct mailmime_content *content;
+	int r;
+
+	mime_fields = mailmime_fields_new_encoding(MAILMIME_MECHANISM_BASE64);
+	assert(mime_fields != NULL);
+
+	content = mailmime_content_new_with_str([self.contentType cStringUsingEncoding:NSASCIIStringEncoding]);
+	assert(content != NULL);
+	mime_sub = mailmime_new_empty(content, mime_fields);
+	assert(mime_sub != NULL);
+	r = mailmime_set_body_text(mime_sub, (char *)[self.data bytes], [self.data length]);
+	assert(r == MAILIMF_NO_ERROR);
+	return mime_sub;
+}
+
 
 - (void)dealloc {
 	[mData release];

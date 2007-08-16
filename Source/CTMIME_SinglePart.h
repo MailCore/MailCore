@@ -46,5 +46,7 @@
 @property(retain) NSString *filename;
 @property(retain) NSData *data; 
 
++ (id)mimeSinglePartWithData:(NSData *)data;
+- (id)initWithData:(NSData *)data;
 - (void)fetchPart;
 @end
