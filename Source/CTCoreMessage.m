@@ -80,7 +80,6 @@ char * etpan_encode_mime_header(char * phrase)
 		assert(message != NULL);
 		myMessage = message;
 		myFields = mailimf_single_fields_new(message->msg_fields);
-		mailimf_single_fields_init(myFields, message->msg_fields);
 	}
 	return self;
 }
@@ -106,8 +105,9 @@ char * etpan_encode_mime_header(char * phrase)
 		mailmessage_flush(myMessage);
 		mailmessage_free(myMessage);
 	}
-	if (myFields != NULL)
+	if (myFields != NULL) {
 		mailimf_single_fields_free(myFields);
+	}
 	[myParsedMIME release];
 	[super dealloc];
 }
@@ -362,6 +362,8 @@ char * etpan_encode_mime_header(char * phrase)
 		clist *references = (myFields->fld_references != NULL) ? (myFields->fld_references->mid_list) : NULL;
 		char *subject = (myFields->fld_subject != NULL) ? (myFields->fld_subject->sbj_value) : NULL;
 		
+		//TODO uh oh, when this get freed it frees stuff in the CTCoreMessage
+		//TODO Need to make sure that fields gets freed somewhere
 		fields = mailimf_fields_new_with_data(from, sender, replyTo, to, cc, bcc, inReplyTo, references, subject);
 		[(CTMIME_MessagePart *)myParsedMIME setIMFFields:fields];
 	}
