@@ -166,6 +166,7 @@
 		F82D7C880F48ACB500ADA65C /* CTCoreAddressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EA76120C1141C1004F85D8 /* CTCoreAddressTests.m */; };
 		F82D7C890F48ACB500ADA65C /* CTCoreAttachmentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F81E272E0C6EDC6A00B3FBAC /* CTCoreAttachmentTests.m */; };
 		F82D7D1F0F48ACC700ADA65C /* MailCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* MailCore.framework */; };
+		F82D7D440F49279400ADA65C /* CTCoreAccountTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F82D7D430F49279400ADA65C /* CTCoreAccountTests.m */; };
 		F8430BB10C72B16000753941 /* CTMIME_Enumerator.h in Headers */ = {isa = PBXBuildFile; fileRef = F8430BAF0C72B16000753941 /* CTMIME_Enumerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8430BB20C72B16000753941 /* CTMIME_Enumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = F8430BB00C72B16000753941 /* CTMIME_Enumerator.m */; };
 		F8483E4109CE7B9000B80440 /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8483E4009CE7B9000B80440 /* libssl.dylib */; };
@@ -377,6 +378,8 @@
 		F8245A2F0C04089D005E08A8 /* CTMIMEFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTMIMEFactory.h; path = Source/CTMIMEFactory.h; sourceTree = "<group>"; };
 		F8245A300C04089D005E08A8 /* CTMIMEFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTMIMEFactory.m; path = Source/CTMIMEFactory.m; sourceTree = "<group>"; };
 		F82D7C810F48AC8500ADA65C /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = Tests.octest; path = build/Debug/Tests.octest; sourceTree = "<group>"; };
+		F82D7D420F49279400ADA65C /* CTCoreAccountTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTCoreAccountTests.h; path = Tests/CTCoreAccountTests.h; sourceTree = "<group>"; };
+		F82D7D430F49279400ADA65C /* CTCoreAccountTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTCoreAccountTests.m; path = Tests/CTCoreAccountTests.m; sourceTree = "<group>"; };
 		F8430BAF0C72B16000753941 /* CTMIME_Enumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTMIME_Enumerator.h; path = Source/CTMIME_Enumerator.h; sourceTree = "<group>"; };
 		F8430BB00C72B16000753941 /* CTMIME_Enumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTMIME_Enumerator.m; path = Source/CTMIME_Enumerator.m; sourceTree = "<group>"; };
 		F8483E4009CE7B9000B80440 /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = /usr/lib/libssl.dylib; sourceTree = "<absolute>"; };
@@ -715,6 +718,8 @@
 				72D117D10C5C181700FE2CB5 /* CTBareMessageTests.m */,
 				F81E272D0C6EDC6A00B3FBAC /* CTCoreAttachmentTests.h */,
 				F81E272E0C6EDC6A00B3FBAC /* CTCoreAttachmentTests.m */,
+				F82D7D420F49279400ADA65C /* CTCoreAccountTests.h */,
+				F82D7D430F49279400ADA65C /* CTCoreAccountTests.m */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -892,6 +897,7 @@
 				8DC2EF560486A6940098B216 /* Frameworks */,
 				F848422D09CFACA000B80440 /* ShellScript */,
 				F89614140A79D30A00F93E26 /* CopyFiles */,
+				F82D7D490F4A0D1900ADA65C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -972,6 +978,19 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
+		F82D7D490F4A0D1900ADA65C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "find . -name \"*.h\" -or -name \"*.c\" -or -name \"*.m\" -not -name \"*~\" | xargs /usr/bin/etags";
+		};
 		F848422D09CFACA000B80440 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1036,6 +1055,7 @@
 				F82D7C870F48ACB500ADA65C /* CTBareMessageTests.m in Sources */,
 				F82D7C880F48ACB500ADA65C /* CTCoreAddressTests.m in Sources */,
 				F82D7C890F48ACB500ADA65C /* CTCoreAttachmentTests.m in Sources */,
+				F82D7D440F49279400ADA65C /* CTCoreAccountTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
