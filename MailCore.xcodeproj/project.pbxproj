@@ -989,7 +989,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "find . -name \"*.h\" -or -name \"*.c\" -or -name \"*.m\" -not -name \"*~\" | xargs /usr/bin/etags";
+			shellScript = "find Tests Source OpenSourceProjects -name \"*.h\" -or -name \"*.c\" -or -name \"*.m\" | xargs /usr/bin/etags";
 		};
 		F848422D09CFACA000B80440 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

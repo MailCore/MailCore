@@ -334,7 +334,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F82D7D5D0F4A0DE700ADA65C</string>
+										<string>F82D7D640F4A640100ADA65C</string>
 										<key>history</key>
 										<array>
 											<string>F82D7D360F48AD5200ADA65C</string>
@@ -641,7 +641,7 @@
 			<key>WindowToolGUID</key>
 			<string>F82D7D250F48AD0300ADA65C</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>
