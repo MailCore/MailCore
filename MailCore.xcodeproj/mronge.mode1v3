@@ -322,7 +322,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>CTCoreAccountTests.h</string>
+								<string>CTCoreAccountTests.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -330,11 +330,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>CTCoreAccountTests.h</string>
+										<string>CTCoreAccountTests.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F82D7D640F4A640100ADA65C</string>
+										<string>F82D7DA60F4A72DC00ADA65C</string>
 										<key>history</key>
 										<array>
 											<string>F82D7D360F48AD5200ADA65C</string>
@@ -342,7 +342,9 @@
 											<string>F82D7D4A0F4A0D2500ADA65C</string>
 											<string>F82D7D4B0F4A0D2500ADA65C</string>
 											<string>F82D7D4C0F4A0D2500ADA65C</string>
-											<string>F82D7D4D0F4A0D2500ADA65C</string>
+											<string>F82D7D6D0F4A662300ADA65C</string>
+											<string>F82D7D8E0F4A67E300ADA65C</string>
+											<string>F82D7DA50F4A72DC00ADA65C</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -351,6 +353,9 @@
 											<string>F82D7D4E0F4A0D2500ADA65C</string>
 											<string>F82D7D4F0F4A0D2500ADA65C</string>
 											<string>F82D7D500F4A0D2500ADA65C</string>
+											<string>F82D7D6F0F4A662300ADA65C</string>
+											<string>F82D7D800F4A675300ADA65C</string>
+											<string>F82D7D8F0F4A67E300ADA65C</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -570,7 +575,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>CTCoreMessageTests.m</string>
+								<string>CTCoreAccountTests.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -591,8 +596,6 @@
 							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
-								<key>PBXBuildLogShowsTranscriptDefaultKey</key>
-								<string>{{0, 93}, {1085, 143}}</string>
 								<key>PBXProjectModuleGUID</key>
 								<string>XCMainBuildResultsModuleGUID</string>
 								<key>PBXProjectModuleLabel</key>
