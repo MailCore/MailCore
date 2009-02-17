@@ -1,4 +1,5 @@
 syntax: glob
+TAGS
 build
 OpenSourceProjects/libetpan-0.49
 OpenSourceProjects/include/libetpan
