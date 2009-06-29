@@ -47,22 +47,21 @@
 		RaiseException(CTMIMEParseError, CTMIMEParseErrorDesc);
 	}
 	
-	CTMIME *content = nil;
 	switch (mime->mm_type) {
 		case MAILMIME_SINGLE:
-			content = [CTMIMEFactory createMIMESinglePartWithMIMEStruct:mime
+			return [CTMIMEFactory createMIMESinglePartWithMIMEStruct:mime
 							forMessage:message];
 		break;
 		case MAILMIME_MULTIPLE:
-			content = [[CTMIME_MultiPart alloc] initWithMIMEStruct:mime
-							forMessage:message];
+			return [[[CTMIME_MultiPart alloc] initWithMIMEStruct:mime
+							forMessage:message] autorelease];
 		break;
 		case MAILMIME_MESSAGE:
-			content = [[CTMIME_MessagePart alloc] initWithMIMEStruct:mime
-							forMessage:message];
+			return [[[CTMIME_MessagePart alloc] initWithMIMEStruct:mime
+							forMessage:message] autorelease];
 		break;
 	}
-	return content;
+	return NULL;
 }
 
 + (CTMIME_SinglePart *)createMIMESinglePartWithMIMEStruct:(struct mailmime *)mime 
@@ -83,6 +82,6 @@
 							forMessage:message];
 		break;
 	}
-	return content;
+	return [content autorelease];
 }
 @end 
