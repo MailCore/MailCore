@@ -66,10 +66,16 @@
 - (id)initWithMessageStruct:(struct mailmessage *)message;
 
 /*!
-	@abstract	Used it instantiate a message object based off the contents of a file on disk.
+	@abstract	Used to instantiate a message object based off the contents of a file on disk.
 				The file on disk must be a valid MIME message.
 */
 - (id)initWithFileAtPath:(NSString *)path;
+
+/*!
+	@abstract Used to instantiate a message object based off a string
+            	that contains a valid MIME message
+*/
+- (id)initWithString:(NSString *)msgData;
 
 /*
 	@abstract	Creates an empty message
