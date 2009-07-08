@@ -53,8 +53,8 @@
 							forMessage:message];
 		break;
 		case MAILMIME_MULTIPLE:
-			return [[CTMIME_MultiPart alloc] initWithMIMEStruct:mime
-                                             forMessage:message];
+			return [[[CTMIME_MultiPart alloc] initWithMIMEStruct:mime
+                                             forMessage:message] autorelease];
 		break;
 		case MAILMIME_MESSAGE:
 			return [[[CTMIME_MessagePart alloc] initWithMIMEStruct:mime
