@@ -48,7 +48,7 @@
 		for (; cur != NULL; cur=clist_next(cur)) {
 			CTMIME *content = [CTMIMEFactory createMIMEWithMIMEStruct:clist_content(cur) forMessage:message];
 			if (content != nil) {
-				[myContentList addObject:[content autorelease]];
+				[myContentList addObject:content];
 			}
 		}
 	}

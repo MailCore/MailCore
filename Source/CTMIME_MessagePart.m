@@ -45,8 +45,8 @@
 	self = [super initWithMIMEStruct:mime forMessage:message];
 	if (self) {
 		struct mailmime *content = mime->mm_data.mm_message.mm_msg_mime;
-		myMessageContent = [CTMIMEFactory createMIMEWithMIMEStruct:content 
-									forMessage:message];
+		myMessageContent = [[CTMIMEFactory createMIMEWithMIMEStruct:content 
+                                           forMessage:message] retain];
 		myFields = mime->mm_data.mm_message.mm_fields;
 	}
 	return self;
