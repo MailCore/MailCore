@@ -236,6 +236,13 @@ char * etpan_encode_mime_header(char * phrase)
 	return NO;
 }
 
+- (NSString *)messageId {
+  	if (myFields->fld_message_id != NULL) {
+        char *value = myFields->fld_message_id->mid_value;
+        return [NSString stringWithCString:value encoding:NSASCIIStringEncoding];
+	}
+    return nil;
+}
 
 - (NSString *)uid {
 	return [NSString stringWithCString:myMessage->msg_uid encoding:NSASCIIStringEncoding];

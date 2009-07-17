@@ -125,6 +125,12 @@
 - (BOOL)isNew;
 
 /*!
+	@abstract A machine readable ID that is guaranteed unique by the
+	host that generated the messaeg
+*/
+- (NSString *)messageId;
+
+/*!
 	@abstract	Returns an NSString containing the messages UID.
 */
 - (NSString *)uid;
