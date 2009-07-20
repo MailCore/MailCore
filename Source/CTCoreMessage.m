@@ -388,12 +388,19 @@ char * etpan_encode_mime_header(char * phrase)
 /*********************************** myprivates ***********************************/
 - (CTCoreAddress *)_addressFromMailbox:(struct mailimf_mailbox *)mailbox; {
 	CTCoreAddress *address = [CTCoreAddress address];
-	if (mailbox == NULL)
+	if (mailbox == NULL) {
 		return address;
-	if (mailbox->mb_display_name != NULL)
-		[address setName:[NSString stringWithCString:mailbox->mb_display_name encoding:NSASCIIStringEncoding]];
-	if (mailbox->mb_addr_spec != NULL)
+    }
+	if (mailbox->mb_display_name != NULL) {
+		NSString *decodedName = [self _decodeMIMEPhrase:mailbox->mb_display_name];
+		if (decodedName == nil) {
+			decodedName = @"** can't decode **";
+        }
+		[address setName:decodedName];
+	}
+	if (mailbox->mb_addr_spec != NULL) {
 		[address setEmail:[NSString stringWithCString:mailbox->mb_addr_spec encoding:NSASCIIStringEncoding]];
+    }
 	return address;
 }
 

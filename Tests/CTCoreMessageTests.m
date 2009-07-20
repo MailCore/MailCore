@@ -125,6 +125,13 @@
 	STAssertEqualObjects(addr, [from anyObject], @"The only address object should have been kiwi-dev@lists.theronge.com");
 }
 
+- (void)testFromSpecialChar {
+	CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:[NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/kiwi-dev/1162094633.15211_0.randymail-mx2:2,RSab"]];
+	CTCoreAddress *addr = [[msg from] anyObject];
+	STAssertEqualObjects(@"Joachim Mårtensson", [addr name], @"");
+	[msg release];
+}
+
 - (void)testEmptyBcc {
 	STAssertTrue([myRealMsg bcc] != nil, @"Shouldn't have been nil");
 	STAssertTrue([[myRealMsg bcc] count] == 0, @"There shouldn't be any bcc's");
