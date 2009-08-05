@@ -231,8 +231,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -269,25 +267,20 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>0867D691FE84028FC02AAC07</string>
+								<string>08FB77AEFE84172EC02AAC07</string>
 								<string>1C37FBAC04509CD000000102</string>
-								<string>F82D7D310F48AD5200ADA65C</string>
-								<string>F82D7D320F48AD5200ADA65C</string>
-								<string>F82D7D330F48AD5200ADA65C</string>
-								<string>F82D7D340F48AD5200ADA65C</string>
-								<string>F82D7D350F48AD5200ADA65C</string>
 								<string>1C37FAAC04509CD000000102</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>17</integer>
-									<integer>9</integer>
-									<integer>8</integer>
+									<integer>30</integer>
+									<integer>28</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {307, 596}}</string>
+							<string>{{0, 67}, {307, 596}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -331,10 +324,6 @@
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
 										<string>CTCoreAccountTests.m</string>
-										<key>_historyCapacity</key>
-										<integer>0</integer>
-										<key>bookmark</key>
-										<string>F82D7DA60F4A72DC00ADA65C</string>
 										<key>history</key>
 										<array>
 											<string>F82D7D360F48AD5200ADA65C</string>
@@ -344,7 +333,6 @@
 											<string>F82D7D4C0F4A0D2500ADA65C</string>
 											<string>F82D7D6D0F4A662300ADA65C</string>
 											<string>F82D7D8E0F4A67E300ADA65C</string>
-											<string>F82D7DA50F4A72DC00ADA65C</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -377,6 +365,8 @@
 							<string>436pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -413,9 +403,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>F82D7C760F489A2F00ADA65C</string>
+				<string>F846CD25102910CB00E0277B</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>F82D7C770F489A2F00ADA65C</string>
+				<string>F846CD26102910CB00E0277B</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -549,8 +539,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C78EAAD065D492600B07095</string>
-		<string>F82D7D250F48AD0300ADA65C</string>
 		<string>/Users/mronge/Projects/mailcore/MailCore.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -575,27 +563,29 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>CTCoreAccountTests.m</string>
+								<string>&lt;No Editor&gt;</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1085, 450}}</string>
+								<string>{{0, 0}, {1085, 0}}</string>
 								<key>RubberWindowFrame</key>
-								<string>587 285 1085 732 0 0 1920 1178 </string>
+								<string>945 -2 1085 732 0 0 1920 1178 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>450pt</string>
+							<string>0pt</string>
 						</dict>
 						<dict>
 							<key>BecomeActive</key>
 							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
+								<key>PBXBuildLogShowsTranscriptDefaultKey</key>
+								<string>{{0, 264}, {1085, 422}}</string>
 								<key>PBXProjectModuleGUID</key>
 								<string>XCMainBuildResultsModuleGUID</string>
 								<key>PBXProjectModuleLabel</key>
@@ -608,14 +598,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 455}, {1085, 236}}</string>
+								<string>{{0, 5}, {1085, 686}}</string>
 								<key>RubberWindowFrame</key>
-								<string>587 285 1085 732 0 0 1920 1178 </string>
+								<string>945 -2 1085 732 0 0 1920 1178 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXBuildResultsModule</string>
 							<key>Proportion</key>
-							<string>236pt</string>
+							<string>686pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -633,18 +623,18 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>F82D7D250F48AD0300ADA65C</string>
-				<string>F82D7D260F48AD0300ADA65C</string>
+				<string>F846CCFE102906EB00E0277B</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.buildV3</string>
 			<key>WindowString</key>
-			<string>587 285 1085 732 0 0 1920 1178 </string>
+			<string>945 -2 1085 732 0 0 1920 1178 </string>
 			<key>WindowToolGUID</key>
 			<string>F82D7D250F48AD0300ADA65C</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

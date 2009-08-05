@@ -13,7 +13,6 @@
 		F80BDFC60A77436A003B344E /* carray.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF4C0A774369003B344E /* carray.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F80BDFC70A77436A003B344E /* charconv.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF4D0A774369003B344E /* charconv.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F80BDFC80A77436A003B344E /* chash.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF4E0A774369003B344E /* chash.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F80BDFC90A77436A003B344E /* cinthash.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF4F0A774369003B344E /* cinthash.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F80BDFCA0A77436A003B344E /* clist.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF500A774369003B344E /* clist.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F80BDFCB0A77436A003B344E /* data_message_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF510A774369003B344E /* data_message_driver.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F80BDFCC0A77436A003B344E /* dbdriver.h in Headers */ = {isa = PBXBuildFile; fileRef = F80BDF520A774369003B344E /* dbdriver.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -195,7 +194,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* MailCore */;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = MailCore;
 		};
 /* End PBXContainerItemProxy section */
@@ -225,7 +224,6 @@
 		F80BDF4C0A774369003B344E /* carray.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = carray.h; path = OpenSourceProjects/include/libetpan/carray.h; sourceTree = SOURCE_ROOT; };
 		F80BDF4D0A774369003B344E /* charconv.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = charconv.h; path = OpenSourceProjects/include/libetpan/charconv.h; sourceTree = SOURCE_ROOT; };
 		F80BDF4E0A774369003B344E /* chash.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = chash.h; path = OpenSourceProjects/include/libetpan/chash.h; sourceTree = SOURCE_ROOT; };
-		F80BDF4F0A774369003B344E /* cinthash.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = cinthash.h; path = OpenSourceProjects/include/libetpan/cinthash.h; sourceTree = SOURCE_ROOT; };
 		F80BDF500A774369003B344E /* clist.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = clist.h; path = OpenSourceProjects/include/libetpan/clist.h; sourceTree = SOURCE_ROOT; };
 		F80BDF510A774369003B344E /* data_message_driver.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = data_message_driver.h; path = OpenSourceProjects/include/libetpan/data_message_driver.h; sourceTree = SOURCE_ROOT; };
 		F80BDF520A774369003B344E /* dbdriver.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = dbdriver.h; path = OpenSourceProjects/include/libetpan/dbdriver.h; sourceTree = SOURCE_ROOT; };
@@ -377,7 +375,7 @@
 		F81E272E0C6EDC6A00B3FBAC /* CTCoreAttachmentTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTCoreAttachmentTests.m; path = Tests/CTCoreAttachmentTests.m; sourceTree = "<group>"; };
 		F8245A2F0C04089D005E08A8 /* CTMIMEFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTMIMEFactory.h; path = Source/CTMIMEFactory.h; sourceTree = "<group>"; };
 		F8245A300C04089D005E08A8 /* CTMIMEFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTMIMEFactory.m; path = Source/CTMIMEFactory.m; sourceTree = "<group>"; };
-		F82D7C810F48AC8500ADA65C /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = Tests.octest; path = build/Debug/Tests.octest; sourceTree = "<group>"; };
+		F82D7C810F48AC8500ADA65C /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F82D7D420F49279400ADA65C /* CTCoreAccountTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTCoreAccountTests.h; path = Tests/CTCoreAccountTests.h; sourceTree = "<group>"; };
 		F82D7D430F49279400ADA65C /* CTCoreAccountTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTCoreAccountTests.m; path = Tests/CTCoreAccountTests.m; sourceTree = "<group>"; };
 		F8430BAF0C72B16000753941 /* CTMIME_Enumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTMIME_Enumerator.h; path = Source/CTMIME_Enumerator.h; sourceTree = "<group>"; };
@@ -546,7 +544,6 @@
 				F80BDF4C0A774369003B344E /* carray.h */,
 				F80BDF4D0A774369003B344E /* charconv.h */,
 				F80BDF4E0A774369003B344E /* chash.h */,
-				F80BDF4F0A774369003B344E /* cinthash.h */,
 				F80BDF500A774369003B344E /* clist.h */,
 				F80BDF510A774369003B344E /* data_message_driver.h */,
 				F80BDF520A774369003B344E /* dbdriver.h */,
@@ -749,7 +746,6 @@
 				F80BDFC60A77436A003B344E /* carray.h in Headers */,
 				F80BDFC70A77436A003B344E /* charconv.h in Headers */,
 				F80BDFC80A77436A003B344E /* chash.h in Headers */,
-				F80BDFC90A77436A003B344E /* cinthash.h in Headers */,
 				F80BDFCA0A77436A003B344E /* clist.h in Headers */,
 				F80BDFCB0A77436A003B344E /* data_message_driver.h in Headers */,
 				F80BDFCC0A77436A003B344E /* dbdriver.h in Headers */,
