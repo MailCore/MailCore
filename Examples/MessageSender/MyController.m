@@ -24,8 +24,6 @@
 	[msg setFrom:[myMessage from]];
 	[msg setBody:[myMessage body]];
 	[msg setSubject:[myMessage subject]];
-	
-	MailCoreEnableLogging();
 
 	BOOL auth = ([useAuth state] == NSOnState);
 	BOOL tls = ([useTLS state] == NSOnState);
