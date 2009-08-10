@@ -27,7 +27,7 @@
 	
 	if ([useTLS state] == NSOnState )
 	{
-		[myAccount connectToServer:[server stringValue] port:[port intValue] connectionType:CONNECTION_TYPE_TRY_STARTTLS 
+		[myAccount connectToServer:[server stringValue] port:[port intValue] connectionType:CONNECTION_TYPE_TLS
 				authType:IMAP_AUTH_TYPE_PLAIN login:[username stringValue] password:[password stringValue]];
 	}
 	else
@@ -35,9 +35,10 @@
 		[myAccount connectToServer:[server stringValue] port:[port intValue] connectionType:CONNECTION_TYPE_PLAIN 
 				authType:IMAP_AUTH_TYPE_PLAIN login:[username stringValue] password:[password stringValue]];
 	}
-				
 	CTCoreFolder *inbox = [myAccount folderWithPath:@"INBOX"];
-	NSSet *messageSet = [inbox messageObjectsFromUID:nil]; //NIL so that we get all the messages
+	NSLog(@"INBOX %@", inbox);
+	// set the toIndex to 0 so all messages are loaded
+	NSSet *messageSet = [inbox messageObjectsFromIndex:1 toIndex:0]; 
 	NSLog(@"Done getting list of messages...");
 	
 	NSMutableSet *messagesProxy = [self mutableSetValueForKey:@"messages"];
@@ -62,11 +63,5 @@
 	[messages retain];
 	[myMessages release];
 	myMessages = messages;
-}
-
-
--(void)awakeFromNib
-{
-	NSLog(@"I am awake!");
 }
 @end
