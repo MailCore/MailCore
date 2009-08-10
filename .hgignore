@@ -1,8 +1,9 @@
 syntax: glob
 TAGS
 build
-OpenSourceProjects/libetpan-0.49
-OpenSourceProjects/include/libetpan
+OpenSourceProjects/libetpan-*
+OpenSourceProjects/include
 Documentation
 .DS_Store
+*~
 *.pyc
