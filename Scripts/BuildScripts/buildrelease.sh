@@ -18,6 +18,4 @@ cp Resources/LICENSE.txt build/MailCore
 cp Resources/RELEASE_NOTES.txt build/MailCore
 cd build/MailCore
 ln -s Documentation/index.html index.html
-hg clone -r $1 https://bitbucket.org/mronge/mailcore/ src
-cd ..
 tar czf MailCore.tar.gz MailCore
