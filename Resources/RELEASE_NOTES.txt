@@ -1,39 +1,50 @@
---------------
 RELEASE NOTES
---------------
+
+Version 0.2.7
+- Fixed a memory leak found by Stefano Barbato where mime structures
+  weren't autoreleased when returned
+- Added a new method to CTCoreMessage that can be used to init from a string
+- Added proper decoding of unicode characters, w/ test (patch from
+  Julián Romero)
+- Updated the examples to work with the latest API
+- Fixed a issue with CTCoreMessage where fields were being freed twice
 
 Version 0.2.6
---------------
 - Updated to LibEtPan 0.49
-- Built an entirely new MIME parsing component. Eventually I will expose this so others can build up or parse complex MIME structures if necessary.
-- Improved fetching of body text for messages, there are still a few edge cases that aren't taken care of, but it's much better, see README.txt for more information.
-- SMTP has been reworked internally, and now it is possible to enable/disable authentication.
-- A slew of unit tests have been written. If you have tests that you have written, please send them my way!
-- A few random convenient methods, like isEqual: for CTCoreAddress, have been added,
+- Built an entirely new MIME parsing component. Eventually I will
+  expose this so others can build up or parse complex MIME structures
+  if necessary.
+- Improved fetching of body text for messages, there are still a few
+  edge cases that aren't taken care of, but it's much better, see
+  README.txt for more information.
+- SMTP has been reworked internally, and now it is possible to
+  enable/disable authentication.
+- A slew of unit tests have been written. If you have tests that you
+  have written, please send them my way!
+- A few random convenient methods, like isEqual: for CTCoreAddress,
+  have been added,
 - Memory leaks fixes
-- @executable_path/../Frameworks/ IS once again the default for the installation location. This makes it a snap to put into your apps framework folder.
+- @executable_path/../Frameworks/ IS once again the default for the
+  installation location. This makes it a snap to put into your apps
+  framework folder.
 
 
 Version 0.2.5
---------------
 - SMTP now works properly with servers that require StartTLS
 
 
 Version 0.2.4
---------------
 - Message flags now work
 
 
 Version 0.2.3
---------------
-- The CTCoreMessage object now has a flag attribute, it holds flags like unread, forwarded, new..etc.
+- The CTCoreMessage object now has a flag attribute, it holds flags
+  like unread, forwarded, new..etc.
 - More documentation has been added. I added a small section on sending e-mail.
 - MailCore has now been released under the BSD license
-- @executable_path/../Frameworks/ is no longer the default for the installation location. If you are going to be placing MailCore inside your application bundle you will need to run the install_name_tool on the library, please look at the man page for more information.
 
 
 Version 0.2
--------------
 - I fixed a memory smasher where a copy of the string wasn't been made properly
 - I fixed SMTP so it sends properly
 - I have updated Libetpan and libsasl so they they are universal binaries

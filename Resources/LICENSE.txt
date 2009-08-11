@@ -1,7 +1,7 @@
 NEW BSD LICENSE
 
 MailCore
-Copyright (c) 2006, Matt Ronge
+Copyright (c) 2006 - 2009, Matt Ronge
 All rights reserved.
 
 LibEtPan!

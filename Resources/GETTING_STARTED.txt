@@ -1,0 +1,24 @@
+GETTING STARTED
+
+The best way to start learning MailCore is by reading through
+documentation intro (in index.html) and the the included example
+projects. To run the example projects:
+
+1. Copy MailCore.framework to your ~/Library/Frameworks folder.
+2. In each example project, add ~/Library/Frameworks/MailCore.framework
+   to the list of Linked Frameworks.
+3. Build it!
+
+The documentation isn't as detailed as I'd like. Sorry about that! If
+something isn't clear try reading the source included or contact me.
+
+CONTACT INFO
+
+MailCore by Matt Ronge
+http://www.mronge.com
+mronge@mronge.com
+
+LICENSE
+
+Licensed under BSD, see LICENSE.txt for more information.
+Based on LibEtPan and work done by Dinh Viet Hoa.

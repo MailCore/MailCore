@@ -54,10 +54,10 @@
   CTCoreFolder *inbox = [account folderWithPath:@"INBOX"];<br/>
 </blockquote>
 
-<p>Now that we have a connection to a folder we can start to do more interesting things, like we can get a set of the messages in the particular folder, or we can delete the folder, or remove the folder from the subscribed list, check the <a href="interfaceCTCoreFolder.html">CTCoreFolder</a> for more information. For this particular example I am going to get a list of the messages in the INBOX.</p>
+<p>Now that we have a connection to a folder we can start to do more interesting things, like we can get a set of the messages in the particular folder, or we can delete the folder, or remove the folder from the subscribed list, check the <a href="interfaceCTCoreFolder.html">CTCoreFolder</a> for more information. For this particular example I am going to get a list of the messages in the INBOX (0 as the end index indicates that the entire inbox should be loaded).</p>
 
 <blockquote>
-  NSSet *messageList = [inbox messageListFromIndex:nil];<br/>
+  NSSet *messageList = [inbox messageListFromIndex:1 toIndex:0];<br/>
 </blockquote>
 
 <p>Like the with folders, what is returned is a set of NSString's containing unique message identifiers (UID).</p>

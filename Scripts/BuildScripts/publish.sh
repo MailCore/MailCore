@@ -1,10 +1,8 @@
 #! /usr/bin/sh
 
 # Run this from the root of the MailCore project
+# Arg 1 is the tag name
 
-scp -r Documentation theronge.com:/var/www/theronge.com/docs/MailCore/
-cd ../../build/
-name="MailCore-$1.tar.gz"
-echo $name
-mv MailCore.tar.gz $name
-scp $name theronge.com:/var/www/theronge.com/docs/MailCore
+cp -r Documentation API
+scp -r API mronge.com:/var/www/mronge/m/MailCore/API
+scp build/MailCore.tar.gz mronge.com:/var/www/mronge/m/MailCore/MailCore-$1.tar.gz
