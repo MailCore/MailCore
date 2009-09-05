@@ -69,10 +69,10 @@
 	int imap_cached = 0;
 
 	err = imap_mailstorage_init(myStorage, 
-						(char *)[server cStringUsingEncoding:NSASCIIStringEncoding],
+						(char *)[server cStringUsingEncoding:NSUTF8StringEncoding],
 						(uint16_t)port, NULL, conType, authType,
-						(char *)[login cStringUsingEncoding:NSASCIIStringEncoding],
-						(char *)[password cStringUsingEncoding:NSASCIIStringEncoding],
+						(char *)[login cStringUsingEncoding:NSUTF8StringEncoding],
+						(char *)[password cStringUsingEncoding:NSUTF8StringEncoding],
 						imap_cached, NULL);
 	
 	if (err != MAIL_NO_ERROR) {
@@ -166,7 +166,7 @@
 	for(cur = clist_begin(subscribedList); cur != NULL; cur = cur->next) {
 		mailboxStruct = cur->data;
 		mailboxName = mailboxStruct->mb_name;
-		mailboxNameObject = [NSString stringWithCString:mailboxName encoding:NSASCIIStringEncoding];
+		mailboxNameObject = [NSString stringWithCString:mailboxName encoding:NSUTF8StringEncoding];
 		[subscribedFolders addObject:mailboxNameObject];
 	}
 	mailimap_list_result_free(subscribedList);
@@ -207,7 +207,7 @@
 	{
 		mailboxStruct = cur->data;
 		mailboxName = mailboxStruct->mb_name;
-		mailboxNameObject = [NSString stringWithCString:mailboxName encoding:NSASCIIStringEncoding];
+		mailboxNameObject = [NSString stringWithCString:mailboxName encoding:NSUTF8StringEncoding];
 		[allFolders addObject:mailboxNameObject];
 	}
 	mailimap_list_result_free(allList);

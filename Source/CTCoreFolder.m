@@ -48,7 +48,7 @@
 		myPath = [path retain];
 		connected = NO;
 		myAccount = [account retain];
-		myFolder = mailfolder_new(storage, (char *)[myPath cStringUsingEncoding:NSASCIIStringEncoding], NULL);	
+		myFolder = mailfolder_new(storage, (char *)[myPath cStringUsingEncoding:NSUTF8StringEncoding], NULL);	
 		assert(myFolder != NULL);
 	}
 	return self;
@@ -94,8 +94,8 @@
 
 - (void)setPath:(NSString *)path; {
 	int err;
-	const char *newPath = [path cStringUsingEncoding:NSASCIIStringEncoding];
-	const char *oldPath = [myPath cStringUsingEncoding:NSASCIIStringEncoding];
+	const char *newPath = [path cStringUsingEncoding:NSUTF8StringEncoding];
+	const char *oldPath = [myPath cStringUsingEncoding:NSUTF8StringEncoding];
 	
 	[self connect];	
 	[self unsubscribe];
@@ -111,7 +111,7 @@
 
 - (void)create {
 	int err;
-	const char *path = [myPath cStringUsingEncoding:NSASCIIStringEncoding];
+	const char *path = [myPath cStringUsingEncoding:NSUTF8StringEncoding];
 	
 	err =  mailimap_create([myAccount session], path);
 	IfTrue_RaiseException(err != MAILIMAP_NO_ERROR, CTUnknownError, 
@@ -123,7 +123,7 @@
 
 - (void)delete {
 	int err;
-	const char *path = [myPath cStringUsingEncoding:NSASCIIStringEncoding];
+	const char *path = [myPath cStringUsingEncoding:NSUTF8StringEncoding];
 	
 	[self connect];
 	[self unsubscribe];
@@ -135,7 +135,7 @@
 
 - (void)subscribe {
 	int err;
-	const char *path = [myPath cStringUsingEncoding:NSASCIIStringEncoding];
+	const char *path = [myPath cStringUsingEncoding:NSUTF8StringEncoding];
 	
 	[self connect];
 	err =  mailimap_subscribe([myAccount session], path);
@@ -146,7 +146,7 @@
 
 - (void)unsubscribe {
 	int err;
-	const char *path = [myPath cStringUsingEncoding:NSASCIIStringEncoding];
+	const char *path = [myPath cStringUsingEncoding:NSUTF8StringEncoding];
 	
 	[self connect];
 	err =  mailimap_unsubscribe([myAccount session], path);
@@ -419,7 +419,7 @@
 	struct mailmessage *msgStruct;
 	
 	[self connect];
-	err = mailfolder_get_message_by_uid([self folderStruct], [uid cStringUsingEncoding:NSASCIIStringEncoding], &msgStruct);
+	err = mailfolder_get_message_by_uid([self folderStruct], [uid cStringUsingEncoding:NSUTF8StringEncoding], &msgStruct);
 	if (err == MAIL_ERROR_MSG_NOT_FOUND) {
 		return nil;
 	}
@@ -497,7 +497,7 @@
 - (void)copyMessageWithUID:(NSString *)uid toFolderWithPath:(NSString *)path {
 	[self connect];
 
-	const char *mbPath = [path cStringUsingEncoding:NSASCIIStringEncoding];
+	const char *mbPath = [path cStringUsingEncoding:NSUTF8StringEncoding];
 	NSUInteger uidnum = (unsigned int)[[[uid componentsSeparatedByString:@"-"] objectAtIndex:1] doubleValue];
 	int err = mailsession_copy_message([self folderSession], uidnum, mbPath);
 	IfTrue_RaiseException(err != MAILIMAP_NO_ERROR, CTUnknownError, 

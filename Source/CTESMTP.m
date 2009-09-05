@@ -118,9 +118,9 @@ static int fill_local_ip_port(mailstream * stream, char * local_ip_port, size_t 
 
 
 - (void)authenticateWithUsername:(NSString *)username password:(NSString *)password server:(NSString *)server {
-	char *cUsername = (char *)[username cStringUsingEncoding:NSASCIIStringEncoding];
-	char *cPassword = (char *)[password cStringUsingEncoding:NSASCIIStringEncoding];
-	char *cServer = (char *)[server cStringUsingEncoding:NSASCIIStringEncoding];
+	char *cUsername = (char *)[username cStringUsingEncoding:NSUTF8StringEncoding];
+	char *cPassword = (char *)[password cStringUsingEncoding:NSUTF8StringEncoding];
+	char *cServer = (char *)[server cStringUsingEncoding:NSUTF8StringEncoding];
 	
 	char local_ip_port_buf[128];
 	char remote_ip_port_buf[128];
@@ -162,13 +162,13 @@ static int fill_local_ip_port(mailstream * stream, char * local_ip_port, size_t 
 
 
 - (void)setFrom:(NSString *)fromAddress {
-	int ret = mailesmtp_mail([self resource], [fromAddress cStringUsingEncoding:NSASCIIStringEncoding], 1, "MailCoreSMTP");
+	int ret = mailesmtp_mail([self resource], [fromAddress cStringUsingEncoding:NSUTF8StringEncoding], 1, "MailCoreSMTP");
 	IfTrue_RaiseException(ret != MAILSMTP_NO_ERROR, CTSMTPFrom, CTSMTPFromDesc);
 }
 
 
 - (void)setRecipientAddress:(NSString *)recAddress {
-	int ret = mailesmtp_rcpt([self resource], [recAddress cStringUsingEncoding:NSASCIIStringEncoding],
+	int ret = mailesmtp_rcpt([self resource], [recAddress cStringUsingEncoding:NSUTF8StringEncoding],
 	 					MAILSMTP_DSN_NOTIFY_FAILURE|MAILSMTP_DSN_NOTIFY_DELAY,NULL);
 	IfTrue_RaiseException(ret != MAILSMTP_NO_ERROR, CTSMTPRecipients, CTSMTPRecipientsDesc);
 }

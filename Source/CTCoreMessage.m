@@ -85,12 +85,12 @@ char * etpan_encode_mime_header(char * phrase)
 }
 
 - (id)initWithFileAtPath:(NSString *)path {
-	return [self initWithString:[NSString stringWithContentsOfFile:path encoding:NSASCIIStringEncoding error:NULL]];
+	return [self initWithString:[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL]];
 }
 
 - (id)initWithString:(NSString *)msgData {
-   	struct mailmessage *msg = data_message_init((char *)[msgData cStringUsingEncoding:NSASCIIStringEncoding], 
-								[msgData lengthOfBytesUsingEncoding:NSASCIIStringEncoding]);
+   	struct mailmessage *msg = data_message_init((char *)[msgData cStringUsingEncoding:NSUTF8StringEncoding], 
+								[msgData lengthOfBytesUsingEncoding:NSUTF8StringEncoding]);
 	int err;
 	struct mailmime *dummyMime;
 	/* mailmessage_get_bodystructure will fill the mailmessage struct for us */
@@ -200,7 +200,7 @@ char * etpan_encode_mime_header(char * phrase)
 - (void)setSubject:(NSString *)subject {
 	struct mailimf_subject *subjectStruct;
 	
-	subjectStruct = mailimf_subject_new(strdup([subject cStringUsingEncoding:NSASCIIStringEncoding]));
+	subjectStruct = mailimf_subject_new(strdup([subject cStringUsingEncoding:NSUTF8StringEncoding]));
 	if (myFields->fld_subject != NULL)
 		mailimf_subject_free(myFields->fld_subject);
 	myFields->fld_subject = subjectStruct;
@@ -239,13 +239,13 @@ char * etpan_encode_mime_header(char * phrase)
 - (NSString *)messageId {
   	if (myFields->fld_message_id != NULL) {
         char *value = myFields->fld_message_id->mid_value;
-        return [NSString stringWithCString:value encoding:NSASCIIStringEncoding];
+        return [NSString stringWithCString:value encoding:NSUTF8StringEncoding];
 	}
     return nil;
 }
 
 - (NSString *)uid {
-	return [NSString stringWithCString:myMessage->msg_uid encoding:NSASCIIStringEncoding];
+	return [NSString stringWithCString:myMessage->msg_uid encoding:NSUTF8StringEncoding];
 }
 
 - (NSUInteger)sequenceNumber {
@@ -399,7 +399,7 @@ char * etpan_encode_mime_header(char * phrase)
 		[address setName:decodedName];
 	}
 	if (mailbox->mb_addr_spec != NULL) {
-		[address setEmail:[NSString stringWithCString:mailbox->mb_addr_spec encoding:NSASCIIStringEncoding]];
+		[address setEmail:[NSString stringWithCString:mailbox->mb_addr_spec encoding:NSUTF8StringEncoding]];
     }
 	return address;
 }
@@ -432,8 +432,8 @@ char * etpan_encode_mime_header(char * phrase)
 	const char *addressEmail;
 
 	while(address = [objEnum nextObject]) {
-		addressName = [[address name] cStringUsingEncoding:NSASCIIStringEncoding];
-		addressEmail = [[address email] cStringUsingEncoding:NSASCIIStringEncoding];
+		addressName = [[address name] cStringUsingEncoding:NSUTF8StringEncoding];
+		addressEmail = [[address email] cStringUsingEncoding:NSUTF8StringEncoding];
 		err =  mailimf_mailbox_list_add_mb(imfList, strdup(addressName), strdup(addressEmail));
 		assert(err == 0);
 	}
@@ -476,8 +476,8 @@ char * etpan_encode_mime_header(char * phrase)
 	const char *addressEmail;
 
 	while(address = [objEnum nextObject]) {
-		addressName = [[address name] cStringUsingEncoding:NSASCIIStringEncoding];
-		addressEmail = [[address email] cStringUsingEncoding:NSASCIIStringEncoding];
+		addressName = [[address name] cStringUsingEncoding:NSUTF8StringEncoding];
+		addressEmail = [[address email] cStringUsingEncoding:NSUTF8StringEncoding];
 		err =  mailimf_address_list_add_mb(imfList, strdup(addressName), strdup(addressEmail));
 		assert(err == 0);
 	}
@@ -504,7 +504,7 @@ char * etpan_encode_mime_header(char * phrase)
 		return @"";
 	}
 		
-	result = [NSString stringWithCString:decodedSubject encoding:NSASCIIStringEncoding];
+	result = [NSString stringWithCString:decodedSubject encoding:NSUTF8StringEncoding];
 	free(decodedSubject);
 	return result;
 }

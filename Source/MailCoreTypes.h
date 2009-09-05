@@ -29,7 +29,7 @@
  * SUCH DAMAGE.
  */
  
-#define DEST_CHARSET "iso-8859-1"
+#define DEST_CHARSET "UTF-8"
 #define CTContentTypesPath @"/System/Library/Frameworks/Foundation.framework/Resources/types.plist"
 
 

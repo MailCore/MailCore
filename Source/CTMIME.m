@@ -47,7 +47,7 @@
 			struct mailmime_content *content = mime->mm_content_type;
 			if (content->ct_type != NULL) {
 				subType = [NSString stringWithCString:content->ct_subtype 
-							encoding:NSASCIIStringEncoding];
+							encoding:NSUTF8StringEncoding];
 				subType = [subType lowercaseString];
 				struct mailmime_type *type = content->ct_type;
 				if (type->tp_type == MAILMIME_TYPE_DISCRETE_TYPE &&
@@ -110,7 +110,7 @@
 	err = mmap_string_ref(str);
 	assert(err == 0);
 	resultStr = [[NSString alloc] initWithBytes:str->str length:str->len 
-					encoding:NSASCIIStringEncoding];
+					encoding:NSUTF8StringEncoding];
 	mmap_string_free(str);
 	return [resultStr autorelease];
 }

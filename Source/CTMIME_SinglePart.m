@@ -61,11 +61,10 @@
 		mMime = mime;
 		mMessage = message;
 		self.fetched = NO;
-		
-		struct mailmime_single_fields *mimeFields = NULL;		
-		mimeFields = mailmime_single_fields_new(mMime->mm_mime_fields, mMime->mm_content_type);
-		if (mimeFields != NULL) {
-			struct mailmime_disposition *disp = mimeFields->fld_disposition;
+				
+		mMimeFields = mailmime_single_fields_new(mMime->mm_mime_fields, mMime->mm_content_type);
+		if (mMimeFields != NULL) {
+			struct mailmime_disposition *disp = mMimeFields->fld_disposition;
 			if (disp != NULL) {
 				if (disp->dsp_type != NULL) {
 					self.attached = (disp->dsp_type->dsp_type == 
@@ -73,11 +72,11 @@
 				}
 			}
 			
-			if (mimeFields->fld_disposition_filename != NULL) {
-				self.filename = [NSString stringWithCString:mimeFields->fld_disposition_filename 
-									encoding:NSASCIIStringEncoding];
+			if (mMimeFields->fld_disposition_filename != NULL) {
+				self.filename = [NSString stringWithCString:mMimeFields->fld_disposition_filename 
+									encoding:NSUTF8StringEncoding];
 			}
-			mailmime_single_fields_free(mimeFields);
+
 		}
 	}
 	return self;
@@ -129,7 +128,7 @@
 	mime_fields = mailmime_fields_new_encoding(MAILMIME_MECHANISM_BASE64);
 	assert(mime_fields != NULL);
 
-	content = mailmime_content_new_with_str([self.contentType cStringUsingEncoding:NSASCIIStringEncoding]);
+	content = mailmime_content_new_with_str([self.contentType cStringUsingEncoding:NSUTF8StringEncoding]);
 	assert(content != NULL);
 	mime_sub = mailmime_new_empty(content, mime_fields);
 	assert(mime_sub != NULL);
@@ -140,6 +139,7 @@
 
 
 - (void)dealloc {
+	mailmime_single_fields_free(mMimeFields);
 	[mData release];
 	[mFilename release];
 	//The structs are held by CTCoreMessage so we don't have to free them

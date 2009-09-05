@@ -46,7 +46,7 @@
 
 - (void)connectToServer:(NSString *)server port:(unsigned int)port {
 	/* first open the stream */
-	int ret = mailsmtp_socket_connect([self resource], [server cStringUsingEncoding:NSASCIIStringEncoding], port);
+	int ret = mailsmtp_socket_connect([self resource], [server cStringUsingEncoding:NSUTF8StringEncoding], port);
 	IfTrue_RaiseException(ret != MAILSMTP_NO_ERROR, CTSMTPSocket, CTSMTPSocketDesc);
 }
 
@@ -70,7 +70,7 @@
 
 
 - (void)setFrom:(NSString *)fromAddress {
-	int ret = mailsmtp_mail([self resource], [fromAddress cStringUsingEncoding:NSASCIIStringEncoding]);
+	int ret = mailsmtp_mail([self resource], [fromAddress cStringUsingEncoding:NSUTF8StringEncoding]);
 	IfTrue_RaiseException(ret != MAILSMTP_NO_ERROR, CTSMTPFrom, CTSMTPFromDesc);
 }
 
@@ -85,13 +85,13 @@
 
 
 - (void)setRecipientAddress:(NSString *)recAddress {
-	int ret = mailsmtp_rcpt([self resource], [recAddress cStringUsingEncoding:NSASCIIStringEncoding]);
+	int ret = mailsmtp_rcpt([self resource], [recAddress cStringUsingEncoding:NSUTF8StringEncoding]);
 	IfTrue_RaiseException(ret != MAILSMTP_NO_ERROR, CTSMTPRecipients, CTSMTPRecipientsDesc);
 }
 
 
 - (void)setData:(NSString *)data {
-	NSData *dataObj = [data dataUsingEncoding:NSASCIIStringEncoding];
+	NSData *dataObj = [data dataUsingEncoding:NSUTF8StringEncoding];
 	int ret = mailsmtp_data([self resource]);
 	IfTrue_RaiseException(ret != MAILSMTP_NO_ERROR, CTSMTPData, CTSMTPDataDesc);
   	ret = mailsmtp_data_message([self resource], [dataObj bytes], [dataObj length]);

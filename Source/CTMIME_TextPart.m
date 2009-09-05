@@ -48,12 +48,37 @@
 }
 
 - (id)content {
-	NSString *str = [[NSString alloc] initWithData:self.data encoding:NSASCIIStringEncoding];
-	return [str autorelease];
+	if (mMimeFields != NULL) {
+		// We are decoding from an existing msg so read
+		// the charset and convert from that to UTF-8
+		char *converted;
+		size_t converted_len;
+		
+		char *source_charset = mMimeFields->fld_content_charset;
+		if (source_charset == NULL) {
+			source_charset = DEST_CHARSET;
+		}
+		
+		int r = charconv_buffer(DEST_CHARSET, source_charset,
+								self.data.bytes, self.data.length,
+								&converted, &converted_len);
+		NSString *str = @"";
+		if (r == MAIL_CHARCONV_NO_ERROR) {
+			NSData *newData = [NSData dataWithBytes:converted length:converted_len];
+			str = [[[NSString alloc] initWithData:newData encoding:NSUTF8StringEncoding] autorelease];
+		}
+		charconv_buffer_free(converted);
+		return str;
+	} else {
+		// Don't have a charset available so treat data as UTF-8
+		// This will happen when we are creating a msg and not decoding
+		// an existing one
+		return [[[NSString alloc] initWithData:self.data encoding:NSUTF8StringEncoding] autorelease];
+	}
 }
 
 - (void)setString:(NSString *)str {
-	self.data = [str dataUsingEncoding:NSASCIIStringEncoding];
+	self.data = [str dataUsingEncoding:NSUTF8StringEncoding];
 	// The data is all local, so we don't want it to do any fetching
 	self.fetched = YES;
 }
@@ -83,7 +108,7 @@
 	assert(mime_sub != NULL);
 	NSString *str = [self content];
 	//TODO is strdup necessary?
-	r = mailmime_set_body_text(mime_sub, strdup([str cStringUsingEncoding:NSASCIIStringEncoding]), [str length]);
+	r = mailmime_set_body_text(mime_sub, strdup([str cStringUsingEncoding:NSUTF8StringEncoding]), [str length]);
 	assert(r == MAILIMF_NO_ERROR);
 	return mime_sub;
 }

@@ -35,6 +35,7 @@
 @interface CTMIME_SinglePart : CTMIME {
 	struct mailmime *mMime;
 	struct mailmessage *mMessage;
+	struct mailmime_single_fields *mMimeFields;	
 
 	NSData *mData;
 	BOOL mAttached;
