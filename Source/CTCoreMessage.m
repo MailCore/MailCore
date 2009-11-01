@@ -90,7 +90,7 @@ char * etpan_encode_mime_header(char * phrase)
 
 - (id)initWithString:(NSString *)msgData {
    	struct mailmessage *msg = data_message_init((char *)[msgData cStringUsingEncoding:NSUTF8StringEncoding], 
-								[msgData lengthOfBytesUsingEncoding:NSUTF8StringEncoding]);
+									[msgData lengthOfBytesUsingEncoding:NSUTF8StringEncoding]);
 	int err;
 	struct mailmime *dummyMime;
 	/* mailmessage_get_bodystructure will fill the mailmessage struct for us */

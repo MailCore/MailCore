@@ -31,7 +31,7 @@
 
 #import "CTMIME_TextPart.h"
 
-#import "libetpan.h"
+#import <libetpan/libetpan.h>
 #import "MailCoreTypes.h"
 
 @implementation CTMIME_TextPart

@@ -30,7 +30,7 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "libetpan.h"
+#import <libetpan/libetpan.h>
 
 /*!
 	@class CTCoreAccount

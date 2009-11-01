@@ -30,7 +30,7 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "libetpan.h"
+#import <libetpan/libetpan.h>
 
 /*!
 	@class	CTCoreMessage
@@ -92,6 +92,8 @@
 
 /*!
 	@abstract	This method returns the parsed message body as an NSString.
+				This attempts to return a plain text body and skips HTML. If
+				a plaintext body isn't found the HTML body is returned.
 */
 - (NSString *)body;
 

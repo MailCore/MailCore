@@ -30,7 +30,7 @@
  */
 
 #import "CTCoreFolder.h"
-#import "libetpan.h"
+#import <libetpan/libetpan.h>
 #import "CTCoreMessage.h"
 #import "CTCoreAccount.h"
 #import "MailCoreTypes.h"

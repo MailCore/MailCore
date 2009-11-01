@@ -33,7 +33,7 @@
 
 #import "CTCoreMessage.h"
 #import "CTMIME.h"
-#import "libetpan.h"
+#import <libetpan/libetpan.h>
 #import "CTMIMEFactory.h"
 #import "CTMIME_MessagePart.h"
 #import "CTMIME_MultiPart.h"

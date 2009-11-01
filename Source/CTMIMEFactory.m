@@ -32,7 +32,7 @@
 #import "CTMIMEFactory.h"
 
 #import "MailCoreTypes.h"
-#import "libetpan.h"
+#import <libetpan/libetpan.h>
 #import "CTMIME_SinglePart.h"
 #import "CTMIME_MessagePart.h"
 #import "CTMIME_MultiPart.h"

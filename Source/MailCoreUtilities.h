@@ -29,7 +29,7 @@
  * SUCH DAMAGE.
  */
 
-#import "libetpan.h"
+#import <libetpan/libetpan.h>
 
 /*!
 	@abstract Enables logging of all streams, data is output to standard out.

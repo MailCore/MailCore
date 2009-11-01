@@ -30,7 +30,7 @@
  */
 
 #import "CTSMTPConnection.h"
-#import "libetpan.h"
+#import <libetpan/libetpan.h>
 #import "CTCoreAddress.h"
 #import "CTCoreMessage.h"
 #import "MailCoreTypes.h"
