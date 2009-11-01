@@ -96,9 +96,6 @@ char * etpan_encode_mime_header(char * phrase)
 	/* mailmessage_get_bodystructure will fill the mailmessage struct for us */
 	err = mailmessage_get_bodystructure(msg, &dummyMime);
 	assert(err == 0);
-	/* mailmessage_fetch_envelope does not fill the struct, so that's why we don't have a dummy variable */
-	err = mailmessage_fetch_envelope(msg, &(msg->msg_fields));
-	assert(err == 0);
 	return [self initWithMessageStruct:msg];
 }
 
