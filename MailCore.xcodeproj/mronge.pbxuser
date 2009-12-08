@@ -55,7 +55,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_FiletypeID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					905,
+					833,
 					20,
 					48,
 					43,
@@ -101,7 +101,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					865,
+					793,
 					60,
 					20,
 					48,
@@ -138,6 +138,17 @@
 			F890781C10A5FF7400852ABD = F890781C10A5FF7400852ABD /* PBXTextBookmark */;
 			F890782810A5FFA700852ABD = F890782810A5FFA700852ABD /* PBXTextBookmark */;
 			F890D24D10CEBADB0039817C /* PBXTextBookmark */ = F890D24D10CEBADB0039817C /* PBXTextBookmark */;
+			F890D3A510CEED8F0039817C /* XCBuildMessageTextBookmark */ = F890D3A510CEED8F0039817C /* XCBuildMessageTextBookmark */;
+			F890D3A610CEED8F0039817C /* PBXTextBookmark */ = F890D3A610CEED8F0039817C /* PBXTextBookmark */;
+			F890D3A910CEED920039817C /* PBXTextBookmark */ = F890D3A910CEED920039817C /* PBXTextBookmark */;
+			F890D3AA10CEED920039817C /* XCBuildMessageTextBookmark */ = F890D3AA10CEED920039817C /* XCBuildMessageTextBookmark */;
+			F890D3AB10CEED920039817C /* PBXTextBookmark */ = F890D3AB10CEED920039817C /* PBXTextBookmark */;
+			F890D3B310CEEE3E0039817C /* PBXTextBookmark */ = F890D3B310CEEE3E0039817C /* PBXTextBookmark */;
+			F890D3B410CEEE3E0039817C /* XCBuildMessageTextBookmark */ = F890D3B410CEEE3E0039817C /* XCBuildMessageTextBookmark */;
+			F890D3B610CEEE3E0039817C /* PBXTextBookmark */ = F890D3B610CEEE3E0039817C /* PBXTextBookmark */;
+			F890D3B810CEEE520039817C /* PBXTextBookmark */ = F890D3B810CEEE520039817C /* PBXTextBookmark */;
+			F890D3B910CEEE520039817C /* XCBuildMessageTextBookmark */ = F890D3B910CEEE520039817C /* XCBuildMessageTextBookmark */;
+			F890D3BB10CEEE520039817C /* PBXTextBookmark */ = F890D3BB10CEEE520039817C /* PBXTextBookmark */;
 			F8B2719E108FB85600BA08D2 = F8B2719E108FB85600BA08D2 /* PBXTextBookmark */;
 			F8B271A4108FE4F100BA08D2 = F8B271A4108FE4F100BA08D2 /* PBXTextBookmark */;
 			F8B271BA108FEEC300BA08D2 = F8B271BA108FEEC300BA08D2 /* PBXTextBookmark */;
@@ -351,9 +362,9 @@
 	};
 	F81B88500A74AA7100143DF6 /* CTCoreAccount.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1530, 1248}}";
-			sepNavSelRange = "{1576, 0}";
-			sepNavVisRange = "{0, 3161}";
+			sepNavIntBoundsRect = "{{0, 0}, {1011, 1248}}";
+			sepNavSelRange = "{1601, 0}";
+			sepNavVisRange = "{0, 1658}";
 			sepNavWindowFrame = "{{63, 87}, {1100, 785}}";
 		};
 	};
@@ -603,7 +614,7 @@
 	};
 	F88804D60B4243C000D400E7 /* MailCoreUtilities.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1083, 1014}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1011, 1014}}";
 			sepNavSelRange = "{2144, 0}";
 			sepNavVisRange = "{1327, 965}";
 		};
@@ -675,6 +686,136 @@
 		rType = 0;
 		vrLen = 965;
 		vrLoc = 1327;
+	};
+	F890D3A510CEED8F0039817C /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Libetpan/libetpan.h: No such file or directory";
+		fRef = F81B88500A74AA7100143DF6 /* CTCoreAccount.h */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 32;
+		rType = 1;
+	};
+	F890D3A610CEED8F0039817C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81B88500A74AA7100143DF6 /* CTCoreAccount.h */;
+		name = "CTCoreAccount.h: 33";
+		rLen = 0;
+		rLoc = 1601;
+		rType = 0;
+		vrLen = 491;
+		vrLoc = 1405;
+	};
+	F890D3A910CEED920039817C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F88804D60B4243C000D400E7 /* MailCoreUtilities.m */;
+		name = "MailCoreUtilities.m: 55";
+		rLen = 0;
+		rLoc = 2144;
+		rType = 0;
+		vrLen = 965;
+		vrLoc = 1327;
+	};
+	F890D3AA10CEED920039817C /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Libetpan/libetpan.h: No such file or directory";
+		fRef = F81B88500A74AA7100143DF6 /* CTCoreAccount.h */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 32;
+		rType = 1;
+	};
+	F890D3AB10CEED920039817C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81B88500A74AA7100143DF6 /* CTCoreAccount.h */;
+		name = "CTCoreAccount.h: 33";
+		rLen = 0;
+		rLoc = 1601;
+		rType = 0;
+		vrLen = 1658;
+		vrLoc = 0;
+	};
+	F890D3B310CEEE3E0039817C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81B88500A74AA7100143DF6 /* CTCoreAccount.h */;
+		name = "CTCoreAccount.h: 33";
+		rLen = 0;
+		rLoc = 1601;
+		rType = 0;
+		vrLen = 491;
+		vrLoc = 1405;
+	};
+	F890D3B410CEEE3E0039817C /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Implicit declaration of function 'mailimap_struct_multiple_parse'";
+		fRef = F890D3B510CEEE3E0039817C /* idle.c */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 70;
+		rType = 1;
+	};
+	F890D3B510CEEE3E0039817C /* idle.c */ = {
+		isa = PBXFileReference;
+		name = idle.c;
+		path = "/Users/mronge/Projects/mailcore-work/libetpan/build-mac/../src/low-level/imap/idle.c";
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1011, 2314}}";
+			sepNavSelRange = "{1304, 0}";
+			sepNavVisRange = "{939, 1001}";
+		};
+	};
+	F890D3B610CEEE3E0039817C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F890D3B710CEEE3E0039817C /* idle.c */;
+		name = "idle.c: 71";
+		rLen = 0;
+		rLoc = 1304;
+		rType = 0;
+		vrLen = 326;
+		vrLoc = 1208;
+	};
+	F890D3B710CEEE3E0039817C /* idle.c */ = {
+		isa = PBXFileReference;
+		name = idle.c;
+		path = "/Users/mronge/Projects/mailcore-work/libetpan/build-mac/../src/low-level/imap/idle.c";
+		sourceTree = "<absolute>";
+	};
+	F890D3B810CEEE520039817C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F81B88500A74AA7100143DF6 /* CTCoreAccount.h */;
+		name = "CTCoreAccount.h: 33";
+		rLen = 0;
+		rLoc = 1601;
+		rType = 0;
+		vrLen = 1658;
+		vrLoc = 0;
+	};
+	F890D3B910CEEE520039817C /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Implicit declaration of function 'mailimap_struct_multiple_parse'";
+		fRef = F890D3BA10CEEE520039817C /* idle.c */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 70;
+		rType = 1;
+	};
+	F890D3BA10CEEE520039817C /* idle.c */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.c;
+		name = idle.c;
+		path = "/Users/mronge/Projects/mailcore-work/libetpan/build-mac/../src/low-level/imap/idle.c";
+		sourceTree = "<absolute>";
+	};
+	F890D3BB10CEEE520039817C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F890D3B510CEEE3E0039817C /* idle.c */;
+		name = "idle.c: 71";
+		rLen = 0;
+		rLoc = 1304;
+		rType = 0;
+		vrLen = 1001;
+		vrLoc = 939;
 	};
 	F8A70EED0C4059E100D1D694 /* JRLog.h */ = {
 		uiCtxt = {

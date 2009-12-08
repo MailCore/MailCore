@@ -57,9 +57,9 @@
 		F88CA0CF0BF7A7B00055AC29 /* CTSMTP.m in Sources */ = {isa = PBXBuildFile; fileRef = F88CA0CD0BF7A7B00055AC29 /* CTSMTP.m */; };
 		F88CA0D40BF7AC0B0055AC29 /* CTESMTP.h in Headers */ = {isa = PBXBuildFile; fileRef = F88CA0D20BF7AC0B0055AC29 /* CTESMTP.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F88CA0D50BF7AC0B0055AC29 /* CTESMTP.m in Sources */ = {isa = PBXBuildFile; fileRef = F88CA0D30BF7AC0B0055AC29 /* CTESMTP.m */; };
+		F890D39F10CEED640039817C /* libetpan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F890D39810CEECD50039817C /* libetpan.a */; };
 		F8A70EEF0C4059E100D1D694 /* JRLog.h in Headers */ = {isa = PBXBuildFile; fileRef = F8A70EED0C4059E100D1D694 /* JRLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8A70EF00C4059E100D1D694 /* JRLog.m in Sources */ = {isa = PBXBuildFile; fileRef = F8A70EEE0C4059E100D1D694 /* JRLog.m */; };
-		F8DFAB0510541708003D3CC1 /* libetpan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8DFAB0410541708003D3CC1 /* libetpan.framework */; };
 		F8DFABF010541804003D3CC1 /* libetpan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8DFAB0410541708003D3CC1 /* libetpan.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +70,34 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = MailCore;
+		};
+		F890D39510CEECD50039817C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F890D38D10CEECD50039817C /* libetpan.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216 /* libetpan.framework */;
+			remoteInfo = libetpan;
+		};
+		F890D39710CEECD50039817C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F890D38D10CEECD50039817C /* libetpan.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C69AB10A10546FE500F32FBD /* libetpan.a */;
+			remoteInfo = "static libetpan";
+		};
+		F890D39910CEECD50039817C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F890D38D10CEECD50039817C /* libetpan.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C6DC660510829E8300FA050B /* libetpan-iphone.a */;
+			remoteInfo = "static libetpan iphone";
+		};
+		F890D39C10CEED080039817C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F890D38D10CEECD50039817C /* libetpan.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = C69AB10910546FE500F32FBD /* static libetpan */;
+			remoteInfo = "static libetpan";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -144,6 +172,7 @@
 		F88CA0CD0BF7A7B00055AC29 /* CTSMTP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTSMTP.m; path = Source/CTSMTP.m; sourceTree = "<group>"; };
 		F88CA0D20BF7AC0B0055AC29 /* CTESMTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTESMTP.h; path = Source/CTESMTP.h; sourceTree = "<group>"; };
 		F88CA0D30BF7AC0B0055AC29 /* CTESMTP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTESMTP.m; path = Source/CTESMTP.m; sourceTree = "<group>"; };
+		F890D38D10CEECD50039817C /* libetpan.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libetpan.xcodeproj; path = "libetpan/build-mac/libetpan.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		F8A70EED0C4059E100D1D694 /* JRLog.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = JRLog.h; path = Source/JRLog.h; sourceTree = "<group>"; };
 		F8A70EEE0C4059E100D1D694 /* JRLog.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = JRLog.m; path = Source/JRLog.m; sourceTree = "<group>"; };
 		F8D31A3109C524EA00468234 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -160,12 +189,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F890D39F10CEED640039817C /* libetpan.a in Frameworks */,
 				8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */,
 				F8483E4109CE7B9000B80440 /* libssl.dylib in Frameworks */,
 				F8483E4309CE7B9C00B80440 /* libiconv.dylib in Frameworks */,
 				F8483E4C09CE7C2800B80440 /* libcrypto.dylib in Frameworks */,
 				F88804620B42018500D400E7 /* libsasl2.dylib in Frameworks */,
-				F8DFAB0510541708003D3CC1 /* libetpan.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +222,7 @@
 		0867D691FE84028FC02AAC07 /* MailCore */ = {
 			isa = PBXGroup;
 			children = (
+				F890D38D10CEECD50039817C /* libetpan.xcodeproj */,
 				F85A18AF09C7D8F200305C06 /* Tests */,
 				08FB77AEFE84172EC02AAC07 /* Classes */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
@@ -335,6 +365,16 @@
 			name = Tests;
 			sourceTree = "<group>";
 		};
+		F890D39010CEECD50039817C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F890D39610CEECD50039817C /* libetpan.framework */,
+				F890D39810CEECD50039817C /* libetpan.a */,
+				F890D39A10CEECD50039817C /* libetpan-iphone.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -386,6 +426,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				F890D39D10CEED080039817C /* PBXTargetDependency */,
 			);
 			name = MailCore;
 			productInstallPath = "$(HOME)/Library/Frameworks";
@@ -423,6 +464,12 @@
 			mainGroup = 0867D691FE84028FC02AAC07 /* MailCore */;
 			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = F890D39010CEECD50039817C /* Products */;
+					ProjectRef = F890D38D10CEECD50039817C /* libetpan.xcodeproj */;
+				},
+			);
 			projectRoot = ..;
 			targets = (
 				8DC2EF4F0486A6940098B216 /* MailCore */,
@@ -430,6 +477,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		F890D39610CEECD50039817C /* libetpan.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = libetpan.framework;
+			remoteRef = F890D39510CEECD50039817C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F890D39810CEECD50039817C /* libetpan.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libetpan.a;
+			remoteRef = F890D39710CEECD50039817C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F890D39A10CEECD50039817C /* libetpan-iphone.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libetpan-iphone.a";
+			remoteRef = F890D39910CEECD50039817C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8DC2EF520486A6940098B216 /* Resources */ = {
@@ -473,7 +544,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "find Tests Source OpenSourceProjects -name \"*.h\" -or -name \"*.c\" -or -name \"*.m\" | xargs /usr/bin/etags";
+			shellScript = "find Tests Source libetpan -name \"*.h\" -or -name \"*.c\" -or -name \"*.m\" | xargs /usr/bin/etags";
 		};
 		F848422D09CFACA000B80440 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -499,7 +570,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "python Scripts/BuildScripts/buildopensource.py";
+			shellScript = "#python Scripts/BuildScripts/buildopensource.py";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -549,6 +620,11 @@
 			isa = PBXTargetDependency;
 			target = 8DC2EF4F0486A6940098B216 /* MailCore */;
 			targetProxy = F82D7D220F48ACDA00ADA65C /* PBXContainerItemProxy */;
+		};
+		F890D39D10CEED080039817C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "static libetpan";
+			targetProxy = F890D39C10CEED080039817C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -633,7 +709,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "libetpan/build-mac/include/**";
 				LIBRARY_SEARCH_PATHS = "";
 				PREBINDING = NO;
 				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
@@ -650,7 +726,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "libetpan/build-mac/include/**";
 				LIBRARY_SEARCH_PATHS = "";
 				PREBINDING = NO;
 				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
