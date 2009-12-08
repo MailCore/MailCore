@@ -1,0 +1,12 @@
+/.cvsignore/1.1/Fri Nov 12 00:02:07 2004//
+/Makefile.am/1.1/Sun Jul 15 23:45:50 2007//
+/generic_cache.c/1.34/Wed Feb 20 22:15:51 2008//
+/generic_cache.h/1.18/Wed Feb 20 22:15:51 2008//
+/generic_cache_types.h/1.6/Sun Nov 21 21:53:35 2004//
+/imfcache.c/1.20/Thu Jul 23 19:46:46 2009//
+/imfcache.h/1.10/Wed Feb 20 22:15:51 2008//
+/mailthread.c/1.32/Wed Feb 20 22:35:48 2008//
+/mailthread.h/1.15/Mon Dec 10 21:32:59 2007//
+/mailthread_types.c/1.12/Mon May 22 13:39:40 2006//
+/mailthread_types.h/1.9/Mon May 22 13:39:40 2006//
+D

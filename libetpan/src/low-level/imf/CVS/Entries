@@ -1,0 +1,17 @@
+/.cvsignore/1.1/Fri Nov 12 00:02:10 2004//
+/Makefile.am/1.1/Sun Jul 15 23:45:51 2007//
+/TODO/1.3/Sat Nov 13 14:23:13 2004//
+/mailimf.c/1.47/Thu May 22 22:22:34 2008//
+/mailimf.h/1.28/Tue May 27 10:07:55 2008//
+/mailimf_types.c/1.18/Wed Jun  1 12:22:01 2005//
+/mailimf_types.h/1.34/Mon May 22 13:39:42 2006//
+/mailimf_types_helper.c/1.23/Sat Aug 29 19:11:04 2009//
+/mailimf_types_helper.h/1.15/Mon Dec 10 21:32:59 2007//
+/mailimf_write.h/1.13/Sun Nov 21 21:53:37 2004//
+/mailimf_write_file.c/1.3/Wed Jun  1 12:22:18 2005//
+/mailimf_write_file.h/1.3/Wed Jun  1 12:22:18 2005//
+/mailimf_write_generic.c/1.3/Mon May 22 13:39:42 2006//
+/mailimf_write_generic.h/1.3/Mon Dec 10 21:32:59 2007//
+/mailimf_write_mem.c/1.2/Sun Nov 21 21:53:37 2004//
+/mailimf_write_mem.h/1.2/Sun Nov 21 21:53:37 2004//
+D

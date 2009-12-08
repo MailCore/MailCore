@@ -1,0 +1,16 @@
+/.cvsignore/1.1/Fri Nov 12 00:01:56 2004//
+/Makefile.am/1.1/Sun Jul 15 23:45:49 2007//
+/nntpdriver.c/1.53/Sat Aug 29 18:36:31 2009//
+/nntpdriver.h/1.16/Sun Nov 21 21:53:33 2004//
+/nntpdriver_cached.c/1.56/Sun Feb 17 13:13:27 2008//
+/nntpdriver_cached.h/1.14/Sun Nov 21 21:53:33 2004//
+/nntpdriver_cached_message.c/1.21/Sun Feb 17 13:13:27 2008//
+/nntpdriver_cached_message.h/1.6/Sun Nov 21 21:53:33 2004//
+/nntpdriver_message.c/1.16/Sun Feb 17 13:13:27 2008//
+/nntpdriver_message.h/1.6/Sun Nov 21 21:53:33 2004//
+/nntpdriver_tools.c/1.22/Wed Feb 20 22:15:50 2008//
+/nntpdriver_tools.h/1.13/Wed Feb 20 22:15:50 2008//
+/nntpdriver_types.h/1.10/Sat Jun 30 12:58:21 2007//
+/nntpstorage.c/1.19/Sun Feb 17 13:13:27 2008//
+/nntpstorage.h/1.11/Sat Jun 30 12:58:21 2007//
+D

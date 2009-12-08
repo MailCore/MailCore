@@ -1,0 +1,10 @@
+/.cvsignore/1.1/Fri Nov 12 00:02:15 2004//
+/Makefile.am/1.1/Sun Jul 15 23:45:53 2007//
+/newsnntp.c/1.28/Wed Feb 20 22:15:53 2008//
+/newsnntp.h/1.21/Wed Feb 20 22:15:53 2008//
+/newsnntp_socket.c/1.14/Mon Jun 26 11:50:28 2006//
+/newsnntp_socket.h/1.14/Mon May 22 13:39:42 2006//
+/newsnntp_ssl.c/1.17/Tue Dec 26 13:13:24 2006//
+/newsnntp_ssl.h/1.17/Tue Dec 26 13:13:24 2006//
+/newsnntp_types.h/1.15/Wed Dec 13 18:31:32 2006//
+D
