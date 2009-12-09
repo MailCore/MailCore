@@ -316,6 +316,7 @@
 			 	if (r == MAIL_NO_ERROR) {
 					msg.flags = flags->fl_flags;
 			  	}
+				mail_flags_free(flags);					
 				break;
 			}
 		}
