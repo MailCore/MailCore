@@ -48,18 +48,23 @@ JRLogLevel	gDefaultJRLogLevel = JRLogLevel_Debug;
 	self = [super init];
 	if (self) {
 		sessionUUID = (id)CFUUIDCreateString(kCFAllocatorDefault, CFUUIDCreate(kCFAllocatorDefault));
+
+#if 0
 		[[NSDistributedNotificationCenter defaultCenter] addObserver:self
 															selector:@selector(destinationDOAvailable:)
 																name:@"JRLogDestinationDOAvailable"
 															  object:nil];
 		tryDO = YES;
+#endif
 	}
 	return self;
 }
 
+#if 0
 - (void)destinationDOAvailable:(NSNotification*)notification_ {
 	tryDO = YES;
 }
+#endif
 
 - (void)logWithLevel:(JRLogLevel)callerLevel_
 			instance:(NSString*)instance_
@@ -68,6 +73,7 @@ JRLogLevel	gDefaultJRLogLevel = JRLogLevel_Debug;
 			function:(const char*)function_
 			 message:(NSString*)message_
 {
+#if 0
 	if (tryDO) {
 		tryDO = NO;
 		destination = [[NSConnection rootProxyForConnectionWithRegisteredName:@"JRLogDestinationDO" host:nil] retain];
@@ -101,6 +107,12 @@ JRLogLevel	gDefaultJRLogLevel = JRLogLevel_Debug;
 			  line_,
 			  message_);
 	}
+#endif
+
+    NSLog(@"%@:%u: %@",
+          [[NSString stringWithUTF8String:file_] lastPathComponent],
+          line_,
+          message_);
 }
 @end
 
@@ -163,6 +175,17 @@ static void LoadJRLogSettings() {
 
 BOOL IsJRLogLevelActive(id self_, JRLogLevel callerLevel_) {
 	assert(callerLevel_ >= JRLogLevel_Debug && callerLevel_ <= JRLogLevel_Fatal);
+
+	//	Setting the default level to OFF disables all logging, regardless of everything else.
+	if (JRLogLevel_Off == gDefaultJRLogLevel)
+		return NO;
+    return YES;
+
+}
+
+#if 0
+BOOL IsJRLogLevelActive(id self_, JRLogLevel callerLevel_) {
+	assert(callerLevel_ >= JRLogLevel_Debug && callerLevel_ <= JRLogLevel_Fatal);
 	
 	if (!gLoadedJRLogSettings) {
 		gLoadedJRLogSettings = YES;
@@ -186,6 +209,7 @@ BOOL IsJRLogLevelActive(id self_, JRLogLevel callerLevel_) {
 	
 	return callerLevel_ >= currentLevel;
 }
+#endif
 
 	void
 JRLog(
@@ -209,7 +233,7 @@ JRLog(
 	va_end(args);
 	
 	[[JRLogOutput sharedOutput] logWithLevel:callerLevel_
-									instance:self_ ? [NSString stringWithFormat:@"<%@: %p>", [self_ className], self_] : @"nil"
+									instance:self_ ? [NSString stringWithFormat:@"<%@: %p>", [self_ class], self_] : @"nil"
 										file:file_
 										line:line_
 									function:function_
@@ -222,6 +246,7 @@ JRLog(
 
 @implementation NSObject (JRLogAdditions)
 
+#if 0
 NSMapTable *gClassLoggingLevels = NULL;
 + (void)load {
 	if (!gClassLoggingLevels) {
@@ -250,6 +275,28 @@ NSMapTable *gClassLoggingLevels = NULL;
 + (JRLogLevel)defaultJRLogLevel {
 	return gDefaultJRLogLevel;
 }
+
++ (void)setDefaultJRLogLevel:(JRLogLevel)level_ {
+	assert(level_ >= JRLogLevel_Debug && level_ <= JRLogLevel_Off);
+	gDefaultJRLogLevel = level_;
+}
+#endif
+
++ (void)load {
+}
+
++ (JRLogLevel)classJRLogLevel {
+	return gDefaultJRLogLevel;
+}
+
++ (void)setClassJRLogLevel:(JRLogLevel)level_ {
+}
+
+
++ (JRLogLevel)defaultJRLogLevel {
+	return gDefaultJRLogLevel;
+}
+
 
 + (void)setDefaultJRLogLevel:(JRLogLevel)level_ {
 	assert(level_ >= JRLogLevel_Debug && level_ <= JRLogLevel_Off);

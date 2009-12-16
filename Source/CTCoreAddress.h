@@ -61,6 +61,7 @@
 	@abstract Returns the name as a NSString
 */
 - (NSString *)name;
+-(NSString*)decodedName; // added by Gabor
 
 /*!
 	@abstract Sets the name.

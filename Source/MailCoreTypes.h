@@ -62,7 +62,7 @@
 #define CTMemoryErrorDesc  			@"Memory could not be allocated."
                            
 #define CTLoginError	   			@"LoginError"
-#define CTLoginErrorDesc   			@"The username or password you entered is invalid."
+#define CTLoginErrorDesc   			@"Error logging into account."
                            
 #define CTUnknownError	   			@"UnknownError"
 

@@ -49,6 +49,21 @@
 	return self;
 }
 
+-(NSString*)decodedFilename {
+	// added by Gabor
+	if (StringStartsWith(self.filename, @"=?ISO-8859-1?Q?")) {
+		NSString* newName = [self.filename substringFromIndex:[@"=?ISO-8859-1?Q?" length]];
+		newName = [newName stringByReplacingOccurrencesOfString:@"?=" withString:@""];
+		newName = [newName stringByReplacingOccurrencesOfString:@"__" withString:@" "];
+		newName = [newName stringByReplacingOccurrencesOfString:@"=" withString:@"%"];		
+		newName = [newName stringByReplacingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding];
+		return newName;
+	}
+	
+	return self.filename;
+}
+
+
 - (NSString *)description {
 	return [NSString stringWithFormat:@"ContentType: %@\tFilename: %@",
 				self.contentType, self.filename];

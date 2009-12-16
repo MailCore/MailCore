@@ -46,6 +46,7 @@
 - (NSSet *)_addressListFromIMFAddressList:(struct mailimf_address_list *)imfList;
 - (struct mailimf_address_list *)_IMFAddressListFromAddresssList:(NSSet *)addresses;
 - (void)_buildUpBodyText:(CTMIME *)mime result:(NSMutableString *)result;
+- (void)_buildUpHtmlBodyText:(CTMIME *)mime result:(NSMutableString *)result;
 - (NSString *)_decodeMIMEPhrase:(char *)data;
 @end
 
@@ -114,14 +115,18 @@ char * etpan_encode_mime_header(char * phrase)
 
 
 
-- (void)fetchBody {
+- (int)fetchBody {
 	int err;
 	struct mailmime *dummyMime;
 	//Retrieve message mime and message field
 	err = mailmessage_get_bodystructure(myMessage, &dummyMime);
-	assert(err == 0);
-    myParsedMIME = [[CTMIMEFactory createMIMEWithMIMEStruct:[self messageStruct]->msg_mime 
-                                   forMessage:[self messageStruct]] retain];
+	if(err != 0) { // added by gabor
+		return err;
+	}
+	myParsedMIME = [[CTMIMEFactory createMIMEWithMIMEStruct:[self messageStruct]->msg_mime 
+						forMessage:[self messageStruct]] retain];
+	
+	return 0;
 }
 
 
@@ -131,6 +136,14 @@ char * etpan_encode_mime_header(char * phrase)
 	return result;
 }
 
+- (NSString *)htmlBody {
+	// added by Gabor
+	NSMutableString *result = [NSMutableString string];
+	[self _buildUpHtmlBodyText:myParsedMIME result:result];
+	return result;
+}
+
+
 - (void)_buildUpBodyText:(CTMIME *)mime result:(NSMutableString *)result {
 	if (mime == nil)
 		return;
@@ -139,8 +152,13 @@ char * etpan_encode_mime_header(char * phrase)
 		[self _buildUpBodyText:[mime content] result:result];
 	}
 	else if ([mime isKindOfClass:[CTMIME_TextPart class]]) {
-		[(CTMIME_TextPart *)mime fetchPart];
-		[result appendString:[mime content]];
+		if ([mime.contentType isEqualToString:@"text/plain"]) {
+			[(CTMIME_TextPart *)mime fetchPart];
+			NSString* y = [mime content];
+			if(y != nil) {
+				[result appendString:y];
+			}
+		}
 	}
 	else if ([mime isKindOfClass:[CTMIME_MultiPart class]]) {
 		//TODO need to take into account the different kinds of multipart
@@ -148,6 +166,32 @@ char * etpan_encode_mime_header(char * phrase)
 		CTMIME *subpart;
 		while ((subpart = [enumer nextObject])) {
 			[self _buildUpBodyText:subpart result:result];
+		}
+	}
+}
+
+- (void)_buildUpHtmlBodyText:(CTMIME *)mime result:(NSMutableString *)result {
+	if (mime == nil)
+		return;
+	
+	if ([mime isKindOfClass:[CTMIME_MessagePart class]]) {
+		[self _buildUpHtmlBodyText:[mime content] result:result];
+	}
+	else if ([mime isKindOfClass:[CTMIME_TextPart class]]) {
+		if ([mime.contentType isEqualToString:@"text/html"]) {
+			[(CTMIME_TextPart *)mime fetchPart];
+			NSString* y = [mime content];
+			if(y != nil) {
+				[result appendString:y];
+			}
+		}
+	}
+	else if ([mime isKindOfClass:[CTMIME_MultiPart class]]) {
+		//TODO need to take into account the different kinds of multipart
+		NSEnumerator *enumer = [[mime content] objectEnumerator];
+		CTMIME *subpart;
+		while ((subpart = [enumer nextObject])) {
+			[self _buildUpHtmlBodyText:subpart result:result];
 		}
 	}
 }
@@ -391,7 +435,7 @@ char * etpan_encode_mime_header(char * phrase)
 	if (mailbox->mb_display_name != NULL) {
 		NSString *decodedName = [self _decodeMIMEPhrase:mailbox->mb_display_name];
 		if (decodedName == nil) {
-			decodedName = @"** can't decode **";
+			decodedName = @"";
         }
 		[address setName:decodedName];
 	}

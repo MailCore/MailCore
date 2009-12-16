@@ -76,3 +76,13 @@ void RaiseException(NSString *exceptionName, NSString *exceptionDesc) {
 		        userInfo:nil];
 	[exception raise];
 }
+
+// From Gabor
+BOOL StringStartsWith(NSString *string, NSString *subString) {
+	if([string length] < [subString length]) {
+		return NO;
+	}
+	
+	NSString* comp = [string substringToIndex:[subString length]];
+	return [comp isEqualToString:subString];
+}

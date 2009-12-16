@@ -88,7 +88,7 @@
 				method body. This method require that an active MailCore network
 				connection is present.
 */
-- (void)fetchBody;
+- (int)fetchBody;
 
 /*!
 	@abstract	This method returns the parsed message body as an NSString.
@@ -96,6 +96,11 @@
 				a plaintext body isn't found the HTML body is returned.
 */
 - (NSString *)body;
+
+/*!
+ @abstract	This method returns the html body as an NSString.
+ */
+- (NSString *)htmlBody;
 
 /*!
 	@abstract	This method sets the message body. Plaintext only please!

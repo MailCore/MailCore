@@ -76,7 +76,8 @@
 
 
 - (void)disconnect {
-	mailfolder_disconnect(myFolder);
+	if(connected)
+		mailfolder_disconnect(myFolder);
 }
 
 
@@ -400,8 +401,10 @@
 		msg = carray_get(env_list->msg_tab, i);
 		msgObject = [[CTCoreMessage alloc] initWithMessageStruct:msg];
 		struct mailimap_msg_att *msg_att = (struct mailimap_msg_att *)clist_content(fetchResultIter);
-		[msgObject setSequenceNumber:msg_att->att_number];
-		[messages addObject:msgObject];
+		if(msg_att != nil) {
+			[msgObject setSequenceNumber:msg_att->att_number];
+			[messages addObject:msgObject];
+		}
 		[msgObject release];
 		fetchResultIter = clist_next(fetchResultIter);
 	}

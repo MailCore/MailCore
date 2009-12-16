@@ -73,8 +73,14 @@
 			}
 			
 			if (mMimeFields->fld_disposition_filename != NULL) {
-				self.filename = [NSString stringWithCString:mMimeFields->fld_disposition_filename 
-									encoding:NSUTF8StringEncoding];
+				self.filename = [NSString stringWithCString:mMimeFields->fld_disposition_filename encoding:NSUTF8StringEncoding];
+				NSString* lowercaseName = [self.filename lowercaseString];
+				if([lowercaseName hasSuffix:@".pdf"] ||
+					[lowercaseName hasSuffix:@".jpg"] ||
+					[lowercaseName hasSuffix:@".png"] ||
+					[lowercaseName hasSuffix:@".gif"]) { // hack by gabor
+					self.attached = YES;
+				}
 			}
 
 		}

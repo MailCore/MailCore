@@ -43,6 +43,7 @@
 @property(retain) NSString *filename;
 @property(retain) NSString *contentType;
 
+-(NSString*)decodedFilename;
 - (id)initWithMIMESinglePart:(CTMIME_SinglePart *)part;
 - (CTCoreAttachment *)fetchFullAttachment;
 @end

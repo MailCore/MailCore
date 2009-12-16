@@ -68,13 +68,22 @@
 	int err = 0;
 	int imap_cached = 0;
 
-	err = imap_mailstorage_init(myStorage, 
-						(char *)[server cStringUsingEncoding:NSUTF8StringEncoding],
-						(uint16_t)port, NULL, conType, authType,
-						(char *)[login cStringUsingEncoding:NSUTF8StringEncoding],
-						(char *)[password cStringUsingEncoding:NSUTF8StringEncoding],
-						imap_cached, NULL);
+	const char* auth_type_to_pass = NULL;
+	if(authType == IMAP_AUTH_TYPE_SASL_CRAM_MD5) {
+		auth_type_to_pass = "CRAM-MD5";
+	}
 	
+	err = imap_mailstorage_init_sasl(myStorage,
+									 (char *)[server cStringUsingEncoding:NSUTF8StringEncoding],
+									 (uint16_t)port, NULL,
+									 conType,
+									 auth_type_to_pass,
+									 NULL,
+									 NULL, NULL,
+									 (char *)[login cStringUsingEncoding:NSUTF8StringEncoding], (char *)[login cStringUsingEncoding:NSUTF8StringEncoding],
+									 (char *)[password cStringUsingEncoding:NSUTF8StringEncoding], NULL,
+									 imap_cached, NULL);
+		
 	if (err != MAIL_NO_ERROR) {
 		NSException *exception = [NSException
 		        exceptionWithName:CTMemoryError
@@ -120,8 +129,10 @@
 	mailsession *session;
    
 	session = myStorage->sto_session;
-	if (strcasecmp(session->sess_driver->sess_name, "imap-cached") == 0) 
-	{
+	if(session == nil) {
+		return nil;
+	}
+	if (strcasecmp(session->sess_driver->sess_name, "imap-cached") == 0) {
     	cached_data = session->sess_data;
     	session = cached_data->imap_ancestor;
   	}
