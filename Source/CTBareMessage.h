@@ -30,7 +30,7 @@
  */
 
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 //TODO Document me
 //TODO Eventually CTCoreMessage should inherit from this

@@ -29,7 +29,7 @@
  * SUCH DAMAGE.
  */
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 #import "CTMIME_SinglePart.h"
 
 @interface CTMIME_TextPart : CTMIME_SinglePart {

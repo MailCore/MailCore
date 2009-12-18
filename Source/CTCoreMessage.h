@@ -29,7 +29,7 @@
  * SUCH DAMAGE.
  */
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 #import <libetpan/libetpan.h>
 
 /*!
@@ -124,7 +124,8 @@
 	@abstract	Return the date the message was sent. If a date wasn't included then
 				a date from the distant past is used instead.
 */
-- (NSCalendarDate *)sentDate;
+//FIXME 
+//- (NSCalendarDate *)sentDate;
 
 /*!
 	@abstract	Returns YES if the method is unread.
