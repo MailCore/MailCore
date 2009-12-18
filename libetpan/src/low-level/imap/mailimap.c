@@ -1442,6 +1442,18 @@ int mailimap_list(mailimap * session, const char * mb,
   }
 }
 
+static char* gabor_imap_login_response_1;
+static char* gabor_imap_login_response_2;
+
+LIBETPAN_EXPORT
+char* gabor_imap_login_response_1_ret() {
+	return gabor_imap_login_response_1;
+}
+
+LIBETPAN_EXPORT
+char* gabor_imap_login_response_2_ret() {
+	return gabor_imap_login_response_2;
+}
 LIBETPAN_EXPORT
 int mailimap_login(mailimap * session,
     const char * userid, const char * password)
@@ -1471,7 +1483,26 @@ int mailimap_login(mailimap * session,
   if (mailimap_read_line(session) == NULL)
     return MAILIMAP_ERROR_STREAM;
 
+	if(gabor_imap_login_response_1 != NULL) {
+		free(gabor_imap_login_response_1);
+		gabor_imap_login_response_1 = NULL;
+	}
+	if(gabor_imap_login_response_2 != NULL) {
+		free(gabor_imap_login_response_2);
+		gabor_imap_login_response_2 = NULL;
+	}
+	
+	if(session->imap_response != NULL) {
+		gabor_imap_login_response_1 = malloc(strlen(session->imap_response) + 1);
+		strcpy(gabor_imap_login_response_1, session->imap_response);
+	} 
+	
   r = mailimap_parse_response(session, &response);
+	if(session->imap_response != NULL) {
+		gabor_imap_login_response_2 = malloc(strlen(session->imap_response) + 1);
+		strcpy(gabor_imap_login_response_2, session->imap_response);
+	}
+	
   if (r != MAILIMAP_NO_ERROR)
     return r;
 
