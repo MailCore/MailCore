@@ -56,6 +56,10 @@ void MailCoreEnableLogging() {
 	mailstream_logger = mailcore_logger;
 }
 
+void MailCoreDisableLogging() {
+    mailstream_debug = 0;
+    mailstream_logger = nil;
+}
 
 void IfFalse_RaiseException(bool value, NSString *exceptionName, NSString *exceptionDesc) {
 	if (!value)

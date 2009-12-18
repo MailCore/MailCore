@@ -29,6 +29,7 @@
  * SUCH DAMAGE.
  */
 
+#import <Foundation/Foundation.h>
 #import <libetpan/libetpan.h>
 
 /*!
