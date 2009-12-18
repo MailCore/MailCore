@@ -17,7 +17,7 @@
 #define HAVE_CTYPE_H 1
 
 /* Define to use curl */
-#define HAVE_CURL 1
+//#define HAVE_CURL 0
 
 /* Define to 1 if you have the <dlfcn.h> header file. */
 #define HAVE_DLFCN_H 1

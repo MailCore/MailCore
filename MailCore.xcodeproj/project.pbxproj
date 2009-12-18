@@ -50,6 +50,26 @@
 		F8483E4C09CE7C2800B80440 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8483E4B09CE7C2800B80440 /* libcrypto.dylib */; };
 		F858CC490C51DE6B00EF1B3D /* CTBareMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = F858CC470C51DE6B00EF1B3D /* CTBareMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F858CC4A0C51DE6B00EF1B3D /* CTBareMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F858CC480C51DE6B00EF1B3D /* CTBareMessage.m */; };
+		F8618D0910DAE1C000C41188 /* libetpan-iphone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F890D39A10CEECD50039817C /* libetpan-iphone.a */; };
+		F8618D0D10DAE1E600C41188 /* CTSMTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = F81B885B0A74AA7100143DF6 /* CTSMTPConnection.m */; };
+		F8618D0E10DAE1E600C41188 /* CTSMTP.m in Sources */ = {isa = PBXBuildFile; fileRef = F88CA0CD0BF7A7B00055AC29 /* CTSMTP.m */; };
+		F8618D0F10DAE1E600C41188 /* CTESMTP.m in Sources */ = {isa = PBXBuildFile; fileRef = F88CA0D30BF7AC0B0055AC29 /* CTESMTP.m */; };
+		F8618D1010DAE1E600C41188 /* CTMIMEFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F8245A300C04089D005E08A8 /* CTMIMEFactory.m */; };
+		F8618D1110DAE1E600C41188 /* CTMIME_MessagePart.m in Sources */ = {isa = PBXBuildFile; fileRef = F81A8AD30C03FC3B002F780A /* CTMIME_MessagePart.m */; };
+		F8618D1210DAE1E600C41188 /* CTMIME_MultiPart.m in Sources */ = {isa = PBXBuildFile; fileRef = F81A8AD50C03FC3B002F780A /* CTMIME_MultiPart.m */; };
+		F8618D1310DAE1E600C41188 /* CTMIME_SinglePart.m in Sources */ = {isa = PBXBuildFile; fileRef = F81A8AD70C03FC3B002F780A /* CTMIME_SinglePart.m */; };
+		F8618D1410DAE1E600C41188 /* CTMIME_TextPart.m in Sources */ = {isa = PBXBuildFile; fileRef = F81A8AD90C03FC3B002F780A /* CTMIME_TextPart.m */; };
+		F8618D1510DAE1E600C41188 /* CTMIME.m in Sources */ = {isa = PBXBuildFile; fileRef = F81A8ADB0C03FC3B002F780A /* CTMIME.m */; };
+		F8618D1610DAE1E600C41188 /* CTMIME_Enumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = F8430BB00C72B16000753941 /* CTMIME_Enumerator.m */; };
+		F8618D1710DAE1E600C41188 /* CTCoreAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = F81E266D0C6ED4E100B3FBAC /* CTCoreAttachment.m */; };
+		F8618D1810DAE1E600C41188 /* CTCoreAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = F81B88510A74AA7100143DF6 /* CTCoreAccount.m */; };
+		F8618D1910DAE1E600C41188 /* CTCoreAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = F81B88530A74AA7100143DF6 /* CTCoreAddress.m */; };
+		F8618D1A10DAE1E600C41188 /* CTCoreFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = F81B88550A74AA7100143DF6 /* CTCoreFolder.m */; };
+		F8618D1B10DAE1E600C41188 /* CTCoreMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F81B88570A74AA7100143DF6 /* CTCoreMessage.m */; };
+		F8618D1C10DAE1E600C41188 /* CTBareMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F858CC480C51DE6B00EF1B3D /* CTBareMessage.m */; };
+		F8618D1D10DAE1E600C41188 /* CTBareAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */; };
+		F8618D1E10DAE1E600C41188 /* MailCoreUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F88804D60B4243C000D400E7 /* MailCoreUtilities.m */; };
+		F8618D1F10DAE1EB00C41188 /* JRLog.m in Sources */ = {isa = PBXBuildFile; fileRef = F8A70EEE0C4059E100D1D694 /* JRLog.m */; };
 		F88804620B42018500D400E7 /* libsasl2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F88804610B42018500D400E7 /* libsasl2.dylib */; };
 		F88804D70B4243C000D400E7 /* MailCoreUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = F88804D50B4243C000D400E7 /* MailCoreUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F88804D80B4243C000D400E7 /* MailCoreUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F88804D60B4243C000D400E7 /* MailCoreUtilities.m */; };
@@ -70,6 +90,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = MailCore;
+		};
+		F8618D0B10DAE1CB00C41188 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F890D38D10CEECD50039817C /* libetpan.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = C6DC64B010829E8300FA050B;
+			remoteInfo = "static libetpan iphone";
 		};
 		F890D39510CEECD50039817C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -165,6 +192,7 @@
 		F8483E4B09CE7C2800B80440 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = /usr/lib/libcrypto.dylib; sourceTree = "<absolute>"; };
 		F858CC470C51DE6B00EF1B3D /* CTBareMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTBareMessage.h; path = Source/CTBareMessage.h; sourceTree = "<group>"; };
 		F858CC480C51DE6B00EF1B3D /* CTBareMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTBareMessage.m; path = Source/CTBareMessage.m; sourceTree = "<group>"; };
+		F8618B5710DADB5C00C41188 /* libmailcore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmailcore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F88804610B42018500D400E7 /* libsasl2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsasl2.dylib; path = /usr/lib/libsasl2.dylib; sourceTree = "<absolute>"; };
 		F88804D50B4243C000D400E7 /* MailCoreUtilities.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = MailCoreUtilities.h; path = Source/MailCoreUtilities.h; sourceTree = SOURCE_ROOT; };
 		F88804D60B4243C000D400E7 /* MailCoreUtilities.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = MailCoreUtilities.m; path = Source/MailCoreUtilities.m; sourceTree = SOURCE_ROOT; };
@@ -207,6 +235,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F8618B5510DADB5C00C41188 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8618D0910DAE1C000C41188 /* libetpan-iphone.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -215,6 +251,7 @@
 			children = (
 				8DC2EF5B0486A6940098B216 /* MailCore.framework */,
 				F82D7C810F48AC8500ADA65C /* Tests.octest */,
+				F8618B5710DADB5C00C41188 /* libmailcore.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -453,6 +490,23 @@
 			productReference = F82D7C810F48AC8500ADA65C /* Tests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
+		F8618B5610DADB5C00C41188 /* MailCore iPhone */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8618B5B10DADB8300C41188 /* Build configuration list for PBXNativeTarget "MailCore iPhone" */;
+			buildPhases = (
+				F8618B5410DADB5C00C41188 /* Sources */,
+				F8618B5510DADB5C00C41188 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F8618D0C10DAE1CB00C41188 /* PBXTargetDependency */,
+			);
+			name = "MailCore iPhone";
+			productName = "MailCore iPhone";
+			productReference = F8618B5710DADB5C00C41188 /* libmailcore.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -474,6 +528,7 @@
 			targets = (
 				8DC2EF4F0486A6940098B216 /* MailCore */,
 				F82D7C800F48AC8500ADA65C /* Tests */,
+				F8618B5610DADB5C00C41188 /* MailCore iPhone */,
 			);
 		};
 /* End PBXProject section */
@@ -613,6 +668,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F8618B5410DADB5C00C41188 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8618D1F10DAE1EB00C41188 /* JRLog.m in Sources */,
+				F8618D0D10DAE1E600C41188 /* CTSMTPConnection.m in Sources */,
+				F8618D0E10DAE1E600C41188 /* CTSMTP.m in Sources */,
+				F8618D0F10DAE1E600C41188 /* CTESMTP.m in Sources */,
+				F8618D1010DAE1E600C41188 /* CTMIMEFactory.m in Sources */,
+				F8618D1110DAE1E600C41188 /* CTMIME_MessagePart.m in Sources */,
+				F8618D1210DAE1E600C41188 /* CTMIME_MultiPart.m in Sources */,
+				F8618D1310DAE1E600C41188 /* CTMIME_SinglePart.m in Sources */,
+				F8618D1410DAE1E600C41188 /* CTMIME_TextPart.m in Sources */,
+				F8618D1510DAE1E600C41188 /* CTMIME.m in Sources */,
+				F8618D1610DAE1E600C41188 /* CTMIME_Enumerator.m in Sources */,
+				F8618D1710DAE1E600C41188 /* CTCoreAttachment.m in Sources */,
+				F8618D1810DAE1E600C41188 /* CTCoreAccount.m in Sources */,
+				F8618D1910DAE1E600C41188 /* CTCoreAddress.m in Sources */,
+				F8618D1A10DAE1E600C41188 /* CTCoreFolder.m in Sources */,
+				F8618D1B10DAE1E600C41188 /* CTCoreMessage.m in Sources */,
+				F8618D1C10DAE1E600C41188 /* CTBareMessage.m in Sources */,
+				F8618D1D10DAE1E600C41188 /* CTBareAttachment.m in Sources */,
+				F8618D1E10DAE1E600C41188 /* MailCoreUtilities.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -620,6 +701,11 @@
 			isa = PBXTargetDependency;
 			target = 8DC2EF4F0486A6940098B216 /* MailCore */;
 			targetProxy = F82D7D220F48ACDA00ADA65C /* PBXContainerItemProxy */;
+		};
+		F8618D0C10DAE1CB00C41188 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "static libetpan iphone";
+			targetProxy = F8618D0B10DAE1CB00C41188 /* PBXContainerItemProxy */;
 		};
 		F890D39D10CEED080039817C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -795,6 +881,37 @@
 			};
 			name = Release;
 		};
+		F8618B5810DADB5C00C41188 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PREBINDING = NO;
+				PRODUCT_NAME = mailcore;
+				SDKROOT = iphonesimulator3.0;
+			};
+			name = Debug;
+		};
+		F8618B5910DADB5C00C41188 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PREBINDING = NO;
+				PRODUCT_NAME = mailcore;
+				SDKROOT = iphonesimulator3.0;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -821,6 +938,15 @@
 			buildConfigurations = (
 				F82D7C820F48AC8500ADA65C /* Debug */,
 				F82D7C830F48AC8500ADA65C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8618B5B10DADB8300C41188 /* Build configuration list for PBXNativeTarget "MailCore iPhone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8618B5810DADB5C00C41188 /* Debug */,
+				F8618B5910DADB5C00C41188 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

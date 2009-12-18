@@ -3116,15 +3116,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../binaries/$(SDKROOT)/$(CONFIGURATION)/include",
+					"$(SRCROOT)/include",
+				);
 				INSTALL_PATH = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../binaries/$(SDKROOT)/$(CONFIGURATION)/lib";
 				PREBINDING = NO;
 				PRODUCT_NAME = "etpan-iphone";
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphonesimulator3.0;
 			};
 			name = Debug;
 		};
@@ -3132,14 +3138,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../binaries/$(SDKROOT)/$(CONFIGURATION)/include",
+					"$(SRCROOT)/include",
+				);
 				INSTALL_PATH = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../binaries/$(SDKROOT)/$(CONFIGURATION)/lib";
 				PREBINDING = NO;
 				PRODUCT_NAME = "etpan-iphone";
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphonesimulator3.0;
 				ZERO_LINK = NO;
 			};
 			name = Release;
