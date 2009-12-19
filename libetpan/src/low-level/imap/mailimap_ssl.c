@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailimap_ssl.c,v 1.16 2006/12/26 13:13:24 hoa Exp $
+ * $Id: mailimap_ssl.c,v 1.17 2009/12/19 00:57:31 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -75,7 +75,11 @@ int mailimap_ssl_connect_with_callback(mailimap * f, const char * server, uint16
 
   stream = mailstream_ssl_open_with_callback(s, callback, data);
   if (stream == NULL) {
+#ifdef WIN32
+	closesocket(s);
+#else
     close(s);
+#endif
     return MAILIMAP_ERROR_SSL;
   }
 

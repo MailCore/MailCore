@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailimap_parser.c,v 1.48 2009/11/05 08:10:35 hoa Exp $
+ * $Id: mailimap_parser.c,v 1.49 2009/12/19 00:40:10 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -875,7 +875,7 @@ static int mailimap_crlf_parse(mailstream * fd, MMAPString * buffer,
   return MAILIMAP_ERROR_PARSE;
 }
 
-static int
+int
 mailimap_struct_multiple_parse(mailstream * fd, MMAPString * buffer,
 			       size_t * indx, clist ** result,
 			       mailimap_struct_parser * parser,
@@ -2354,12 +2354,16 @@ mailimap_body_fld_enc_parse(mailstream * fd, MMAPString * buffer,
   else if (r == MAILIMAP_ERROR_PARSE) {
     type = MAILIMAP_BODY_FLD_ENC_OTHER;
 
-    r = mailimap_string_parse(fd, buffer, &cur_token, &value, NULL,
+    r = mailimap_nstring_parse(fd, buffer, &cur_token, &value, NULL,
 			      progr_rate, progr_fun);
     if (r != MAILIMAP_NO_ERROR) {
       res = r;
       goto err;
     }
+
+	if (value == NULL) {
+	  type = MAILIMAP_BODY_FLD_ENC_8BIT;
+	}
   }
   else {
     res = r;

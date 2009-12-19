@@ -1,3 +1,37 @@
+2009-12-19 - libetpan-0.58cvs12 - hoa
+
+	* src/low-level/smtp/mailsmtp.c
+		better handling for errors.
+
+2009-12-19 - libetpan-0.58cvs11 - hoa
+
+	* src/low-level/imf/mailimf_types_helper.c
+		fixed crash on Win32 (2892730).
+
+2009-12-19 - libetpan-0.58cvs10 - hoa
+
+	* src/data-types/mailstream_ssl.c
+	* src/driver/implementation/imap/imapdriver_tools.c
+	* src/low-level/imap/mailimap_socket.c
+	* src/low-level/imap/mailimap_ssl.c
+	* src/low-level/nntp/newsnntp_socket.c
+	* src/low-level/nntp/newsnntp_ssl.c
+	* src/low-level/pop3/mailpop3_socket.c
+	* src/low-level/pop3/mailpop3_ssl.c
+	* src/low-level/smtp/mailsmtp_socket.c
+		fixed socket use on Win32 (2897095).
+
+2009-12-19 - libetpan-0.58cvs9 - hoa
+
+	* src/driver/implementation/imap/imapdriver_tools.c
+		fixed crash (Thanks Gabor for discovering the bug).
+
+2009-12-19 - libetpan-0.58cvs8 - hoa
+
+	* mailimap_parser.[ch]
+		fixed build.
+		workaround in parser for imap.gmx.com (Thanks Matt Ronge for reproducible case).
+
 2009-11-05 - libetpan-0.58cvs7 - hoa
 
 	* src/low-level/imap/idle.c

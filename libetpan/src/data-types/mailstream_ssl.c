@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailstream_ssl.c,v 1.71 2009/06/12 07:28:38 colinleroy Exp $
+ * $Id: mailstream_ssl.c,v 1.72 2009/12/19 00:57:31 hoa Exp $
  */
 
 /*
@@ -526,7 +526,11 @@ static void  ssl_data_close(struct mailstream_ssl_data * ssl_data)
   ssl_data->ssl_conn = NULL;
   SSL_CTX_free(ssl_data->ssl_ctx);
   ssl_data->ssl_ctx  = NULL;
+#ifdef WIN32
+  closesocket(socket_data->fd);
+#else
   close(ssl_data->fd);
+#endif
   ssl_data->fd = -1;
 }
 #else
@@ -535,7 +539,11 @@ static void  ssl_data_close(struct mailstream_ssl_data * ssl_data)
   gnutls_certificate_free_credentials(ssl_data->xcred);
   gnutls_deinit(ssl_data->session);
   ssl_data->session = NULL;
+#ifdef WIN32
+  closesocket(socket_data->fd);
+#else
   close(ssl_data->fd);
+#endif
   ssl_data->fd = -1;
 }
 #endif

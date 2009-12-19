@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailimap_socket.c,v 1.17 2006/12/26 13:13:24 hoa Exp $
+ * $Id: mailimap_socket.c,v 1.18 2009/12/19 00:57:31 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -75,7 +75,11 @@ int mailimap_socket_connect(mailimap * f, const char * server, uint16_t port)
 
   stream = mailstream_socket_open(s);
   if (stream == NULL) {
+#ifdef WIN32
+	closesocket(s);
+#else
     close(s);
+#endif
     return MAILIMAP_ERROR_MEMORY;
   }
   

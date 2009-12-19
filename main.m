@@ -29,7 +29,7 @@
  * SUCH DAMAGE.
  */
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 #import "CTCoreAccount.h"
 #import "CTCoreFolder.h"
 #import "CTCoreMessage.h"

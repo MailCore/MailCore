@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: imapdriver_tools.c,v 1.34 2009/08/29 19:11:04 hoa Exp $
+ * $Id: imapdriver_tools.c,v 1.36 2009/12/19 00:56:15 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -1230,9 +1230,16 @@ imap_body_type_msg_to_body(struct mailimap_body_type_msg *
   int res;
   uint32_t mime_size;
   
-  r = imap_body_fields_to_mime_fields(imap_type_msg->bd_fields,
-      body_ext_1part->bd_disposition, body_ext_1part->bd_language,
-      &mime_fields, &mime_size);
+  if (body_ext_1part != NULL) {
+  	r = imap_body_fields_to_mime_fields(imap_type_msg->bd_fields,
+      	body_ext_1part->bd_disposition, body_ext_1part->bd_language,
+      	&mime_fields, &mime_size);
+  }
+  else {
+  	r = imap_body_fields_to_mime_fields(imap_type_msg->bd_fields,
+      	NULL, NULL,
+      	&mime_fields, &mime_size);
+  }
   if (r != MAIL_NO_ERROR) {
     res = r;
     goto err;

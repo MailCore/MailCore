@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailimap_parser.h,v 1.12 2009/11/05 08:10:35 hoa Exp $
+ * $Id: mailimap_parser.h,v 1.13 2009/12/19 00:40:10 hoa Exp $
  */
 
 #ifndef MAILIMAP_PARSER_H
@@ -133,6 +133,14 @@ int mailimap_uniqueid_parse(mailstream * fd, MMAPString * buffer,
 
 int mailimap_colon_parse(mailstream * fd, MMAPString * buffer,
     size_t * indx);
+
+int
+mailimap_struct_multiple_parse(mailstream * fd, MMAPString * buffer,
+			       size_t * indx, clist ** result,
+			       mailimap_struct_parser * parser,
+			       mailimap_struct_destructor * destructor,
+			       size_t progr_rate,
+			       progress_function * progr_fun);
 
 #ifdef __cplusplus
 }

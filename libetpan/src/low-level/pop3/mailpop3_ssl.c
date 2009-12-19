@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailpop3_ssl.c,v 1.16 2007/10/27 10:08:26 hoa Exp $
+ * $Id: mailpop3_ssl.c,v 1.17 2009/12/19 00:57:31 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -80,7 +80,11 @@ int mailpop3_ssl_connect_with_callback(mailpop3 * f, const char * server, uint16
 
   stream = mailstream_ssl_open_with_callback(s, callback, data);
   if (stream == NULL) {
+#ifdef WIN32
+	closesocket(s);
+#else
     close(s);
+#endif
     return MAILPOP3_ERROR_SSL;
   }
 

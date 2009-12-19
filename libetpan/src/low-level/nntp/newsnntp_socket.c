@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: newsnntp_socket.c,v 1.14 2006/06/26 11:50:28 hoa Exp $
+ * $Id: newsnntp_socket.c,v 1.15 2009/12/19 00:57:31 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -73,7 +73,11 @@ int newsnntp_socket_connect(newsnntp * f, const char * server, uint16_t port)
 
   stream = mailstream_socket_open(s);
   if (stream == NULL) {
+#ifdef WIN32
+	closesocket(s);
+#else
     close(s);
+#endif
     return NEWSNNTP_ERROR_MEMORY;
   }
 

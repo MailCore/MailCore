@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailsmtp_socket.c,v 1.18 2006/12/26 13:13:25 hoa Exp $
+ * $Id: mailsmtp_socket.c,v 1.19 2009/12/19 00:57:31 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -75,7 +75,11 @@ int mailsmtp_socket_connect(mailsmtp * session,
 
   stream = mailstream_socket_open(s);
   if (stream == NULL) {
+#ifdef WIN32
+	closesocket(s);
+#else
     close(s);
+#endif
     return MAILSMTP_ERROR_MEMORY;
   }
 
