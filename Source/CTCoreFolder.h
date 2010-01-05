@@ -175,13 +175,15 @@
 - (void)copyMessageWithUID:(NSString *)uid toFolderWithPath:(NSString *)path;
 
 /*!
-	@abstract	Returns the number of unread messages.
+	@abstract	Returns the number of unread messages. This causes a round trip to the server, as it fetches
+				the count for each call.
 	@result		A NSUInteger containing the number of unread messages.
 */
 - (NSUInteger)unreadMessageCount;
 
 /*!
-	@abstract	Returns the number of messages in the folder.
+	@abstract	Returns the number of messages in the folder. The count was retrieved when the folder connection was
+				established, so to refresh the count you must disconnect and reconnect.
 	@result		A NSUInteger containing the number of messages.
 */
 - (NSUInteger)totalMessageCount;
