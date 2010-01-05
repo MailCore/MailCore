@@ -434,7 +434,7 @@ int mailimap_annotatemore_parse(int calling_parser, mailstream * fd,
         return r;
       * result = mailimap_extension_data_new(&mailimap_extension_annotatemore,
                 MAILIMAP_ANNOTATEMORE_TYPE_ANNOTATE_DATA, an_data);
-      if (result == NULL) {
+      if (*result == NULL) {
         mailimap_annotatemore_annotate_data_free(an_data);
         return MAILIMAP_ERROR_MEMORY;
       }
@@ -446,7 +446,7 @@ int mailimap_annotatemore_parse(int calling_parser, mailstream * fd,
         return r;
       * result = mailimap_extension_data_new(&mailimap_extension_annotatemore,
         MAILIMAP_ANNOTATEMORE_TYPE_RESP_TEXT_CODE, &resp_text_code);
-      if (result == NULL)
+      if (*result == NULL)
         return MAILIMAP_ERROR_MEMORY;
       break;
     default:

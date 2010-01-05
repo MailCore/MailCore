@@ -43,6 +43,7 @@
 #include "annotatemore.h"
 #include "acl.h"
 #include "uidplus.h"
+#include "quota.h"
 
 /*
   the list of registered extensions (struct mailimap_extension_api *)
@@ -56,6 +57,7 @@ static struct mailimap_extension_api * internal_extension_list[] = {
   &mailimap_extension_annotatemore,
   &mailimap_extension_acl,
   &mailimap_extension_uidplus,
+  &mailimap_extension_quota,
 };
 
 LIBETPAN_EXPORT
@@ -115,7 +117,7 @@ mailimap_extension_data_parse(int calling_parser,
       return r;
   }
 
-  return MAILIMAP_NO_ERROR;
+  return MAILIMAP_ERROR_PARSE;
 }
 
 LIBETPAN_EXPORT

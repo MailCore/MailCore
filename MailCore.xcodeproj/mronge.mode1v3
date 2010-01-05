@@ -270,17 +270,20 @@
 								<string>08FB77AEFE84172EC02AAC07</string>
 								<string>F81E26810C6ED57400B3FBAC</string>
 								<string>F81E26720C6ED56000B3FBAC</string>
+								<string>32C88DFF0371C24200C91783</string>
+								<string>089C1665FE841158C02AAC07</string>
 								<string>1C37FBAC04509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>1</integer>
+									<integer>51</integer>
+									<integer>47</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {262, 698}}</string>
+							<string>{{0, 373}, {262, 698}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -299,7 +302,7 @@
 							<real>262</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>0 121 1440 757 0 0 1440 878 </string>
+						<string>480 421 1440 757 0 0 1920 1178 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -315,7 +318,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>MailCoreUtilities.m</string>
+								<string>main.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -323,11 +326,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>MailCoreUtilities.m</string>
+										<string>main.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F841093D10DC67E700F8B090</string>
+										<string>F80F39D110E9AA5500D67C6A</string>
 										<key>history</key>
 										<array>
 											<string>F82D7D4C0F4A0D2500ADA65C</string>
@@ -363,7 +366,8 @@
 											<string>F83A923110DAEDAA0052E83A</string>
 											<string>F8428C9010DC27A80050ED47</string>
 											<string>F8428C9110DC27A80050ED47</string>
-											<string>F8428C9210DC27A80050ED47</string>
+											<string>F80F39CF10E9AA5500D67C6A</string>
+											<string>F80F39D010E9AA5500D67C6A</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -375,14 +379,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1156, 482}}</string>
+								<string>{{0, 0}, {1156, 475}}</string>
 								<key>RubberWindowFrame</key>
-								<string>0 121 1440 757 0 0 1440 878 </string>
+								<string>480 421 1440 757 0 0 1920 1178 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>482pt</string>
+							<string>475pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -395,14 +399,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 487}, {1156, 229}}</string>
+								<string>{{0, 480}, {1156, 236}}</string>
 								<key>RubberWindowFrame</key>
-								<string>0 121 1440 757 0 0 1440 878 </string>
+								<string>480 421 1440 757 0 0 1920 1178 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>229pt</string>
+							<string>236pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -421,9 +425,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>F841093A10DC67D900F8B090</string>
+				<string>F80F39D210E9AA5500D67C6A</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>F841093B10DC67D900F8B090</string>
+				<string>F80F39D310E9AA5500D67C6A</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -563,7 +567,7 @@
 		<string>/Users/mronge/repo/mailcore/MailCore.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>0 121 1440 757 0 0 1440 878 </string>
+	<string>480 421 1440 757 0 0 1920 1178 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -593,7 +597,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1085, 187}}</string>
 								<key>RubberWindowFrame</key>
-								<string>93 126 1085 732 0 0 1440 878 </string>
+								<string>219 359 1085 732 0 0 1920 1178 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -617,7 +621,7 @@
 								<key>Frame</key>
 								<string>{{0, 192}, {1085, 499}}</string>
 								<key>RubberWindowFrame</key>
-								<string>93 126 1085 732 0 0 1440 878 </string>
+								<string>219 359 1085 732 0 0 1920 1178 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXBuildResultsModule</string>
@@ -640,14 +644,14 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>F82D7D250F48AD0300ADA65C</string>
-				<string>F841093C10DC67D900F8B090</string>
+				<string>F80F39D410E9AA5500D67C6A</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.buildV3</string>
 			<key>WindowString</key>
-			<string>93 126 1085 732 0 0 1440 878 </string>
+			<string>219 359 1085 732 0 0 1920 1178 </string>
 			<key>WindowToolGUID</key>
 			<string>F82D7D250F48AD0300ADA65C</string>
 			<key>WindowToolIsVisible</key>

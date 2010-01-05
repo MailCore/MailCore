@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailimap_parser.c,v 1.49 2009/12/19 00:40:10 hoa Exp $
+ * $Id: mailimap_parser.c,v 1.50 2010/01/03 22:45:24 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -95,11 +95,6 @@ static int mailimap_addr_name_parse(mailstream * fd, MMAPString * buffer,
 				    size_t * indx, char ** result,
 				    size_t progr_rate,
 				    progress_function * progr_fun);
-
-static int mailimap_atom_parse(mailstream * fd, MMAPString * buffer,
-			       size_t * indx, char ** result,
-			       size_t progr_rate,
-			       progress_function * progr_fun);
 
 static int mailimap_auth_type_parse(mailstream * fd, MMAPString * buffer,
 				    size_t * indx, char ** result,
@@ -568,10 +563,6 @@ mailimap_msg_att_static_parse(mailstream * fd, MMAPString * buffer,
 
 static int mailimap_nil_parse(mailstream * fd, MMAPString * buffer,
 			      size_t * indx);
-
-static int
-mailimap_number_parse(mailstream * fd, MMAPString * buffer,
-		      size_t * indx, uint32_t * result);
 
 static int
 mailimap_quoted_parse(mailstream * fd, MMAPString * buffer,
@@ -1403,10 +1394,10 @@ static int is_astring_char(char ch)
    atom            = 1*ATOM-CHAR
 */
 
-static int mailimap_atom_parse(mailstream * fd, MMAPString * buffer,
-			       size_t * indx, char ** result,
-			       size_t progr_rate,
-			       progress_function * progr_fun)
+int mailimap_atom_parse(mailstream * fd, MMAPString * buffer,
+			size_t * indx, char ** result,
+			size_t progr_rate,
+			progress_function * progr_fun)
 {
   return mailimap_custom_string_parse(fd, buffer, indx, result,
 				      is_atom_char);
@@ -7378,7 +7369,7 @@ int mailimap_nstring_parse(mailstream * fd, MMAPString * buffer,
                        ; (0 <= n < 4,294,967,296)
 */
 
-static int
+int
 mailimap_number_parse(mailstream * fd, MMAPString * buffer,
 		      size_t * indx, uint32_t * result)
 {

@@ -1,3 +1,25 @@
+2010-01-04 - libetpan-0.58cvs15 - hoa
+
+	* src/low-level/imap/mailimap_extension.c
+	    fixed error code in extension parser (2918352). Thanks to Chris Head.
+
+2010-01-04 - libetpan-0.58cvs14 - hoa
+
+	* src/low-level/imap/acl_parser.c
+	* src/low-level/imap/annotatemore_parser.c
+	    fixed malloc allocation check (2918372). Thanks to Chris Head.
+
+2010-01-03 - libetpan-0.58cvs13 - hoa
+
+	* src/low-level/imap/mailimap_extension.c
+	* src/low-level/imap/mailimap_extension_types.h
+	* src/low-level/imap/mailimap_parser.[ch]
+	* src/low-level/imap/quota.[ch]				** NEW FILE **
+	* src/low-level/imap/quota_parser.[ch]		** NEW FILE **
+	* src/low-level/imap/quota_sender.[ch]		** NEW FILE **
+	* src/low-level/imap/quota_types.[ch]		** NEW FILE **
+	    added QUOTA support (RFC 2087, patch 2918500). Thanks to Chris Head.
+
 2009-12-19 - libetpan-0.58cvs12 - hoa
 
 	* src/low-level/smtp/mailsmtp.c

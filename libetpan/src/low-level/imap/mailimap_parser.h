@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailimap_parser.h,v 1.13 2009/12/19 00:40:10 hoa Exp $
+ * $Id: mailimap_parser.h,v 1.14 2010/01/03 22:45:24 hoa Exp $
  */
 
 #ifndef MAILIMAP_PARSER_H
@@ -108,12 +108,21 @@ int mailimap_oparenth_parse(mailstream * fd, MMAPString * buffer,
 int mailimap_cparenth_parse(mailstream * fd, MMAPString * buffer,
 				   size_t * indx);
 
+int mailimap_atom_parse(mailstream * fd, MMAPString * buffer,
+			size_t * indx, char ** result,
+			size_t progr_rate,
+			progress_function * progr_fun);
+
 int
 mailimap_astring_parse(mailstream * fd, MMAPString * buffer,
 		       size_t * indx,
 		       char ** result,
 		       size_t progr_rate,
 		       progress_function * progr_fun);
+
+int
+mailimap_number_parse(mailstream * fd, MMAPString * buffer,
+		      size_t * indx, uint32_t * result);
 
 int
 mailimap_nz_number_parse(mailstream * fd, MMAPString * buffer,

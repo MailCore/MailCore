@@ -429,7 +429,7 @@ int mailimap_acl_parse(int calling_parser, mailstream * fd,
 
       * result = mailimap_extension_data_new(&mailimap_extension_acl,
                 type, data);
-      if (result == NULL) {
+      if (*result == NULL) {
         res = MAILIMAP_ERROR_MEMORY;
         goto data_free;
       }

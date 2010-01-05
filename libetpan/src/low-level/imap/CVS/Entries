@@ -4,7 +4,6 @@
 /TODO/1.5/Wed Dec 16 19:49:11 2009//
 /acl.c/1.6/Wed Dec 16 19:49:11 2009//
 /acl.h/1.3/Wed Dec 16 19:49:11 2009//
-/acl_parser.c/1.3/Wed Dec 16 19:49:11 2009//
 /acl_parser.h/1.2/Wed Dec 16 19:49:11 2009//
 /acl_sender.c/1.2/Wed Dec 16 19:49:11 2009//
 /acl_sender.h/1.1/Wed Dec 16 19:49:11 2009//
@@ -12,7 +11,6 @@
 /acl_types.h/1.2/Wed Dec 16 19:49:11 2009//
 /annotatemore.c/1.8/Wed Dec 16 19:49:11 2009//
 /annotatemore.h/1.5/Wed Dec 16 19:49:11 2009//
-/annotatemore_parser.c/1.5/Wed Dec 16 19:49:11 2009//
 /annotatemore_parser.h/1.2/Wed Dec 16 19:49:11 2009//
 /annotatemore_sender.c/1.3/Wed Dec 16 19:49:11 2009//
 /annotatemore_sender.h/1.2/Wed Dec 16 19:49:11 2009//
@@ -21,15 +19,11 @@
 /idle.c/1.6/Wed Dec 16 19:49:11 2009//
 /idle.h/1.2/Wed Dec 16 19:49:11 2009//
 /mailimap.h/1.20/Wed Dec 16 19:49:11 2009//
-/mailimap_extension.c/1.8/Wed Dec 16 19:49:11 2009//
 /mailimap_extension.h/1.3/Wed Dec 16 19:49:11 2009//
-/mailimap_extension_types.h/1.5/Wed Dec 16 19:49:11 2009//
 /mailimap_helper.c/1.12/Wed Dec 16 19:49:11 2009//
 /mailimap_helper.h/1.12/Wed Dec 16 19:49:11 2009//
 /mailimap_keywords.c/1.13/Wed Dec 16 19:49:11 2009//
 /mailimap_keywords.h/1.9/Wed Dec 16 19:49:11 2009//
-/mailimap_parser.c/1.49/Sat Dec 19 01:45:44 2009//
-/mailimap_parser.h/1.13/Sat Dec 19 01:45:44 2009//
 /mailimap_print.c/1.15/Wed Dec 16 19:49:11 2009//
 /mailimap_print.h/1.6/Wed Dec 16 19:49:11 2009//
 /mailimap_sender.c/1.29/Wed Dec 16 19:49:11 2009//
@@ -50,4 +44,18 @@
 /uidplus_sender.h/1.1/Wed Dec 16 19:49:11 2009//
 /uidplus_types.c/1.1/Wed Dec 16 19:49:11 2009//
 /uidplus_types.h/1.3/Wed Dec 16 19:49:11 2009//
+/acl_parser.c/1.4/Tue Jan  5 02:08:58 2010//
+/annotatemore_parser.c/1.6/Tue Jan  5 02:08:58 2010//
+/mailimap_extension.c/1.10/Tue Jan  5 02:08:58 2010//
+/mailimap_extension_types.h/1.6/Tue Jan  5 02:08:58 2010//
+/mailimap_parser.c/1.50/Tue Jan  5 02:08:58 2010//
+/mailimap_parser.h/1.14/Tue Jan  5 02:08:58 2010//
+/quota.c/1.1/Sun Jan  3 22:45:24 2010//
+/quota.h/1.1/Sun Jan  3 22:45:24 2010//
+/quota_parser.c/1.1/Sun Jan  3 22:45:24 2010//
+/quota_parser.h/1.1/Sun Jan  3 22:45:24 2010//
+/quota_sender.c/1.1/Sun Jan  3 22:45:24 2010//
+/quota_sender.h/1.1/Sun Jan  3 22:45:24 2010//
+/quota_types.c/1.1/Sun Jan  3 22:45:24 2010//
+/quota_types.h/1.1/Sun Jan  3 22:45:24 2010//
 D
