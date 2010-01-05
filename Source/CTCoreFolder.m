@@ -523,15 +523,8 @@
 
 
 - (NSUInteger)totalMessageCount {
-	unsigned int totalCount = 0;
-	unsigned int junk;
-	int err;
-			
 	[self connect];			
-	err =  mailfolder_status(myFolder, &totalCount, &junk, &junk);
-	IfTrue_RaiseException(err != MAILIMAP_NO_ERROR, CTUnknownError, 
-		[NSString stringWithFormat:@"Error number: %d",err]);
-	return totalCount;
+	return [self imapSession]->imap_selection_info->sel_exists;
 }
 
 
