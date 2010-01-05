@@ -341,7 +341,7 @@ Copyright (C) 2006 Free Software Foundation, Inc.
 This config.status script is free software; the Free Software Foundation
 gives unlimited permission to copy, distribute and modify it."
 
-ac_pwd='/Users/mronge/Projects/mailcore-work/libetpan'
+ac_pwd='/Users/mronge/repo/mailcore/libetpan'
 srcdir='.'
 INSTALL='$(SHELL) $(top_srcdir)/install-sh -c'
 MKDIR_P='./install-sh -c -d'
@@ -658,7 +658,7 @@ fi
 
 
     PACKAGE='libetpan'
-    VERSION='0.58-dev-20091208'
+    VERSION='0.58-dev-20100104'
     TIMESTAMP=''
     RM='rm -f'
     ofile='libtool'
@@ -816,20 +816,20 @@ s,@INSTALL_DATA@,|#_!!_#|${INSTALL} -m 644,g
 s,@am__isrc@,|#_!!_#|,g
 s,@CYGPATH_W@,|#_!!_#|echo,g
 s,@PACKAGE@,|#_!!_#|libetpan,g
-s,@VERSION@,|#_!!_#|0.58-dev-20091208,g
-s,@ACLOCAL@,|#_!!_#|${SHELL} /Users/mronge/Projects/mailcore-work/libetpan/missing --run aclocal-1.10,g
-s,@AUTOCONF@,|#_!!_#|${SHELL} /Users/mronge/Projects/mailcore-work/libetpan/missing --run autoconf,g
-s,@AUTOMAKE@,|#_!!_#|${SHELL} /Users/mronge/Projects/mailcore-work/libetpan/missing --run automake-1.10,g
-s,@AUTOHEADER@,|#_!!_#|${SHELL} /Users/mronge/Projects/mailcore-work/libetpan/missing --run autoheader,g
-s,@MAKEINFO@,|#_!!_#|${SHELL} /Users/mronge/Projects/mailcore-work/libetpan/missing --run makeinfo,g
-s,@install_sh@,|#_!!_#|$(SHELL) /Users/mronge/Projects/mailcore-work/libetpan/install-sh,g
+s,@VERSION@,|#_!!_#|0.58-dev-20100104,g
+s,@ACLOCAL@,|#_!!_#|${SHELL} /Users/mronge/repo/mailcore/libetpan/missing --run aclocal-1.10,g
+s,@AUTOCONF@,|#_!!_#|${SHELL} /Users/mronge/repo/mailcore/libetpan/missing --run autoconf,g
+s,@AUTOMAKE@,|#_!!_#|${SHELL} /Users/mronge/repo/mailcore/libetpan/missing --run automake-1.10,g
+s,@AUTOHEADER@,|#_!!_#|${SHELL} /Users/mronge/repo/mailcore/libetpan/missing --run autoheader,g
+s,@MAKEINFO@,|#_!!_#|${SHELL} /Users/mronge/repo/mailcore/libetpan/missing --run makeinfo,g
+s,@install_sh@,|#_!!_#|$(SHELL) /Users/mronge/repo/mailcore/libetpan/install-sh,g
 s,@STRIP@,|#_!!_#|strip,g
 s,@INSTALL_STRIP_PROGRAM@,|#_!!_#|$(install_sh) -c -s,g
 s,@mkdir_p@,|#_!!_#|$(top_builddir)/./install-sh -c -d,g
 s,@AWK@,|#_!!_#|gawk,g
 s,@SET_MAKE@,|#_!!_#|,g
 s,@am__leading_dot@,|#_!!_#|.,g
-s,@AMTAR@,|#_!!_#|${SHELL} /Users/mronge/Projects/mailcore-work/libetpan/missing --run tar,g
+s,@AMTAR@,|#_!!_#|${SHELL} /Users/mronge/repo/mailcore/libetpan/missing --run tar,g
 s,@am__tar@,|#_!!_#|${AMTAR} chof - "$$tardir",g
 s,@am__untar@,|#_!!_#|${AMTAR} xf -,g
 s,@MAINTAINER_MODE_TRUE@,|#_!!_#|#,g
@@ -848,7 +848,7 @@ s,@API_COMPATIBILITY@,|#_!!_#|13,g
 s,@API_REVISION@,|#_!!_#|3,g
 s,@API_VERSION@,|#_!!_#|14:3:1,g
 s,@BUILD_REVISION@,|#_!!_#|0,g
-s,@BUILD_TIMESTAMP@,|#_!!_#|2009-12-08T14:18-0500,g
+s,@BUILD_TIMESTAMP@,|#_!!_#|2010-01-04T20:39-0500,g
 s,@BUILD_FILEVERSION@,|#_!!_#|0\,58\,0\,0,g
 s,@HAVE_MINGW32_SYSTEM_TRUE@,|#_!!_#|#,g
 s,@HAVE_MINGW32_SYSTEM_FALSE@,|#_!!_#|,g
@@ -911,7 +911,7 @@ s,@VERSION_MAJOR@,|#_!!_#|0,g
 s,@VERSION_MINOR@,|#_!!_#|58,g
 s,@SASLLIBS@,|#_!!_#|-lsasl2 ,g
 s,@libcurlconfig@,|#_!!_#|/usr/bin/curl-config,g
-s,@cfg_files@,|#_!!_#| /Users/mronge/Projects/mailcore-work/libetpan/libetpan-config /Users/mronge/Projects/mailcore-work/libetpan/Makefile /Users/mronge/Projects/mailcore-work/libetpan/build-windows/Makefile /Users/mronge/Projects/mailcore-work/libetpan/include/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/bsd/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/windows/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/data-types/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/low-level/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/low-level/feed/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/low-level/imap/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/low-level/imf/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/low-level/maildir/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/low-level/mbox/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/low-level/mh/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/low-level/mime/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/low-level/nntp/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/low-level/pop3/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/low-level/smtp/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/driver/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/driver/implementation/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/driver/implementation/data-message/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/driver/implementation/db/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/driver/implementation/feed/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/driver/implementation/hotmail/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/driver/implementation/imap/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/driver/implementation/maildir/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/driver/implementation/mbox/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/driver/implementation/mh/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/driver/implementation/mime-message/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/driver/implementation/nntp/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/driver/implementation/pop3/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/driver/interface/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/driver/tools/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/main/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/main/libetpan_version.h /Users/mronge/Projects/mailcore-work/libetpan/src/engine/Makefile /Users/mronge/Projects/mailcore-work/libetpan/src/versioninfo.rc /Users/mronge/Projects/mailcore-work/libetpan/doc/Makefile /Users/mronge/Projects/mailcore-work/libetpan/tests/Makefile,g
+s,@cfg_files@,|#_!!_#| /Users/mronge/repo/mailcore/libetpan/libetpan-config /Users/mronge/repo/mailcore/libetpan/Makefile /Users/mronge/repo/mailcore/libetpan/build-windows/Makefile /Users/mronge/repo/mailcore/libetpan/include/Makefile /Users/mronge/repo/mailcore/libetpan/src/Makefile /Users/mronge/repo/mailcore/libetpan/src/bsd/Makefile /Users/mronge/repo/mailcore/libetpan/src/windows/Makefile /Users/mronge/repo/mailcore/libetpan/src/data-types/Makefile /Users/mronge/repo/mailcore/libetpan/src/low-level/Makefile /Users/mronge/repo/mailcore/libetpan/src/low-level/feed/Makefile /Users/mronge/repo/mailcore/libetpan/src/low-level/imap/Makefile /Users/mronge/repo/mailcore/libetpan/src/low-level/imf/Makefile /Users/mronge/repo/mailcore/libetpan/src/low-level/maildir/Makefile /Users/mronge/repo/mailcore/libetpan/src/low-level/mbox/Makefile /Users/mronge/repo/mailcore/libetpan/src/low-level/mh/Makefile /Users/mronge/repo/mailcore/libetpan/src/low-level/mime/Makefile /Users/mronge/repo/mailcore/libetpan/src/low-level/nntp/Makefile /Users/mronge/repo/mailcore/libetpan/src/low-level/pop3/Makefile /Users/mronge/repo/mailcore/libetpan/src/low-level/smtp/Makefile /Users/mronge/repo/mailcore/libetpan/src/driver/Makefile /Users/mronge/repo/mailcore/libetpan/src/driver/implementation/Makefile /Users/mronge/repo/mailcore/libetpan/src/driver/implementation/data-message/Makefile /Users/mronge/repo/mailcore/libetpan/src/driver/implementation/db/Makefile /Users/mronge/repo/mailcore/libetpan/src/driver/implementation/feed/Makefile /Users/mronge/repo/mailcore/libetpan/src/driver/implementation/hotmail/Makefile /Users/mronge/repo/mailcore/libetpan/src/driver/implementation/imap/Makefile /Users/mronge/repo/mailcore/libetpan/src/driver/implementation/maildir/Makefile /Users/mronge/repo/mailcore/libetpan/src/driver/implementation/mbox/Makefile /Users/mronge/repo/mailcore/libetpan/src/driver/implementation/mh/Makefile /Users/mronge/repo/mailcore/libetpan/src/driver/implementation/mime-message/Makefile /Users/mronge/repo/mailcore/libetpan/src/driver/implementation/nntp/Makefile /Users/mronge/repo/mailcore/libetpan/src/driver/implementation/pop3/Makefile /Users/mronge/repo/mailcore/libetpan/src/driver/interface/Makefile /Users/mronge/repo/mailcore/libetpan/src/driver/tools/Makefile /Users/mronge/repo/mailcore/libetpan/src/main/Makefile /Users/mronge/repo/mailcore/libetpan/src/main/libetpan_version.h /Users/mronge/repo/mailcore/libetpan/src/engine/Makefile /Users/mronge/repo/mailcore/libetpan/src/versioninfo.rc /Users/mronge/repo/mailcore/libetpan/doc/Makefile /Users/mronge/repo/mailcore/libetpan/tests/Makefile,g
 s,@LIBOBJS@,|#_!!_#|,g
 s,@LTLIBOBJS@,|#_!!_#|,g
 :end
@@ -1230,7 +1230,7 @@ b
 :def
 s,^\([	 #]*\)[^	 ]*\([	 ]*HAVE_CURL\)[	 (].*,\1define\2 1 ,
 s,^\([	 #]*\)[^	 ]*\([	 ]*HAVE_EXPAT\)[	 (].*,\1define\2 1 ,
-s,^\([	 #]*\)[^	 ]*\([	 ]*LIBETPAN_VERSION\)[	 (].*,\1define\2 "0.58-dev-20091208" ,
+s,^\([	 #]*\)[^	 ]*\([	 ]*LIBETPAN_VERSION\)[	 (].*,\1define\2 "0.58-dev-20100104" ,
 s/ $//
 s,^[	 #]*u.*,/* & */,
 CEOF

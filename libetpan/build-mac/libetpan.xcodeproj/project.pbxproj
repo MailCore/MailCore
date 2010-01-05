@@ -782,6 +782,22 @@
 		C6F9EDAD1053395A0059C3BA /* libexpat.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C6F9EDAC1053395A0059C3BA /* libexpat.dylib */; };
 		C6F9EDB2105339650059C3BA /* libcurl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C6F9EDB1105339650059C3BA /* libcurl.dylib */; };
 		C6F9EDBE105339EA0059C3BA /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C6F9EDBD105339EA0059C3BA /* libcrypto.dylib */; };
+		F83E9C2910F2DDA400134C2B /* quota_parser.c in Sources */ = {isa = PBXBuildFile; fileRef = F83E9C2110F2DDA400134C2B /* quota_parser.c */; };
+		F83E9C2A10F2DDA400134C2B /* quota_sender.c in Sources */ = {isa = PBXBuildFile; fileRef = F83E9C2310F2DDA400134C2B /* quota_sender.c */; };
+		F83E9C2B10F2DDA400134C2B /* quota_types.c in Sources */ = {isa = PBXBuildFile; fileRef = F83E9C2510F2DDA400134C2B /* quota_types.c */; };
+		F83E9C2C10F2DDA400134C2B /* quota.c in Sources */ = {isa = PBXBuildFile; fileRef = F83E9C2710F2DDA400134C2B /* quota.c */; };
+		F83E9C2D10F2DDA400134C2B /* quota_parser.c in Sources */ = {isa = PBXBuildFile; fileRef = F83E9C2110F2DDA400134C2B /* quota_parser.c */; };
+		F83E9C2E10F2DDA400134C2B /* quota_sender.c in Sources */ = {isa = PBXBuildFile; fileRef = F83E9C2310F2DDA400134C2B /* quota_sender.c */; };
+		F83E9C2F10F2DDA400134C2B /* quota_types.c in Sources */ = {isa = PBXBuildFile; fileRef = F83E9C2510F2DDA400134C2B /* quota_types.c */; };
+		F83E9C3010F2DDA400134C2B /* quota.c in Sources */ = {isa = PBXBuildFile; fileRef = F83E9C2710F2DDA400134C2B /* quota.c */; };
+		F83E9C3110F2DDA400134C2B /* quota_parser.c in Sources */ = {isa = PBXBuildFile; fileRef = F83E9C2110F2DDA400134C2B /* quota_parser.c */; };
+		F83E9C3210F2DDA400134C2B /* quota_parser.h in Headers */ = {isa = PBXBuildFile; fileRef = F83E9C2210F2DDA400134C2B /* quota_parser.h */; };
+		F83E9C3310F2DDA400134C2B /* quota_sender.c in Sources */ = {isa = PBXBuildFile; fileRef = F83E9C2310F2DDA400134C2B /* quota_sender.c */; };
+		F83E9C3410F2DDA400134C2B /* quota_sender.h in Headers */ = {isa = PBXBuildFile; fileRef = F83E9C2410F2DDA400134C2B /* quota_sender.h */; };
+		F83E9C3510F2DDA400134C2B /* quota_types.c in Sources */ = {isa = PBXBuildFile; fileRef = F83E9C2510F2DDA400134C2B /* quota_types.c */; };
+		F83E9C3610F2DDA400134C2B /* quota_types.h in Headers */ = {isa = PBXBuildFile; fileRef = F83E9C2610F2DDA400134C2B /* quota_types.h */; };
+		F83E9C3710F2DDA400134C2B /* quota.c in Sources */ = {isa = PBXBuildFile; fileRef = F83E9C2710F2DDA400134C2B /* quota.c */; };
+		F83E9C3810F2DDA400134C2B /* quota.h in Headers */ = {isa = PBXBuildFile; fileRef = F83E9C2810F2DDA400134C2B /* quota.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -1306,6 +1322,14 @@
 		C6F9EDAC1053395A0059C3BA /* libexpat.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libexpat.dylib; path = /usr/lib/libexpat.dylib; sourceTree = "<absolute>"; };
 		C6F9EDB1105339650059C3BA /* libcurl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcurl.dylib; path = /usr/lib/libcurl.dylib; sourceTree = "<absolute>"; };
 		C6F9EDBD105339EA0059C3BA /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = /usr/lib/libcrypto.dylib; sourceTree = "<absolute>"; };
+		F83E9C2110F2DDA400134C2B /* quota_parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = quota_parser.c; path = "../src/low-level/imap/quota_parser.c"; sourceTree = SOURCE_ROOT; };
+		F83E9C2210F2DDA400134C2B /* quota_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = quota_parser.h; path = "../src/low-level/imap/quota_parser.h"; sourceTree = SOURCE_ROOT; };
+		F83E9C2310F2DDA400134C2B /* quota_sender.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = quota_sender.c; path = "../src/low-level/imap/quota_sender.c"; sourceTree = SOURCE_ROOT; };
+		F83E9C2410F2DDA400134C2B /* quota_sender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = quota_sender.h; path = "../src/low-level/imap/quota_sender.h"; sourceTree = SOURCE_ROOT; };
+		F83E9C2510F2DDA400134C2B /* quota_types.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = quota_types.c; path = "../src/low-level/imap/quota_types.c"; sourceTree = SOURCE_ROOT; };
+		F83E9C2610F2DDA400134C2B /* quota_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = quota_types.h; path = "../src/low-level/imap/quota_types.h"; sourceTree = SOURCE_ROOT; };
+		F83E9C2710F2DDA400134C2B /* quota.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = quota.c; path = "../src/low-level/imap/quota.c"; sourceTree = SOURCE_ROOT; };
+		F83E9C2810F2DDA400134C2B /* quota.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = quota.h; path = "../src/low-level/imap/quota.h"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1979,6 +2003,14 @@
 				C6F9EA20105335BC0059C3BA /* uidplus_sender.h */,
 				C6F9EA21105335BC0059C3BA /* uidplus_types.c */,
 				C6F9EA22105335BC0059C3BA /* uidplus_types.h */,
+				F83E9C2110F2DDA400134C2B /* quota_parser.c */,
+				F83E9C2210F2DDA400134C2B /* quota_parser.h */,
+				F83E9C2310F2DDA400134C2B /* quota_sender.c */,
+				F83E9C2410F2DDA400134C2B /* quota_sender.h */,
+				F83E9C2510F2DDA400134C2B /* quota_types.c */,
+				F83E9C2610F2DDA400134C2B /* quota_types.h */,
+				F83E9C2710F2DDA400134C2B /* quota.c */,
+				F83E9C2810F2DDA400134C2B /* quota.h */,
 			);
 			path = imap;
 			sourceTree = "<group>";
@@ -2454,6 +2486,10 @@
 				C6451BAE1083D34C003135FD /* carray.h in Headers */,
 				C6451BAF1083D34C003135FD /* mailsem.h in Headers */,
 				C6451BB01083D34C003135FD /* mailstream_types.h in Headers */,
+				F83E9C3210F2DDA400134C2B /* quota_parser.h in Headers */,
+				F83E9C3410F2DDA400134C2B /* quota_sender.h in Headers */,
+				F83E9C3610F2DDA400134C2B /* quota_types.h in Headers */,
+				F83E9C3810F2DDA400134C2B /* quota.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2699,6 +2735,10 @@
 				C6F9ED2D105335BD0059C3BA /* mailsmtp_socket.c in Sources */,
 				C6F9ED2F105335BD0059C3BA /* mailsmtp_ssl.c in Sources */,
 				C6F9ED39105335BD0059C3BA /* libetpan_version.c in Sources */,
+				F83E9C3110F2DDA400134C2B /* quota_parser.c in Sources */,
+				F83E9C3310F2DDA400134C2B /* quota_sender.c in Sources */,
+				F83E9C3510F2DDA400134C2B /* quota_types.c in Sources */,
+				F83E9C3710F2DDA400134C2B /* quota.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2855,6 +2895,10 @@
 				C69AB2DA1054704000F32FBD /* uidplus_parser.c in Sources */,
 				C69AB2DC1054704000F32FBD /* uidplus_sender.c in Sources */,
 				C69AB2DE1054704000F32FBD /* uidplus_types.c in Sources */,
+				F83E9C2D10F2DDA400134C2B /* quota_parser.c in Sources */,
+				F83E9C2E10F2DDA400134C2B /* quota_sender.c in Sources */,
+				F83E9C2F10F2DDA400134C2B /* quota_types.c in Sources */,
+				F83E9C3010F2DDA400134C2B /* quota.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3011,6 +3055,10 @@
 				C6DC65FE10829E8300FA050B /* uidplus_parser.c in Sources */,
 				C6DC65FF10829E8300FA050B /* uidplus_sender.c in Sources */,
 				C6DC660010829E8300FA050B /* uidplus_types.c in Sources */,
+				F83E9C2910F2DDA400134C2B /* quota_parser.c in Sources */,
+				F83E9C2A10F2DDA400134C2B /* quota_sender.c in Sources */,
+				F83E9C2B10F2DDA400134C2B /* quota_types.c in Sources */,
+				F83E9C2C10F2DDA400134C2B /* quota.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

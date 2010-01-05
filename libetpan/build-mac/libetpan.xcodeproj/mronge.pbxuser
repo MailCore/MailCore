@@ -1,8 +1,13 @@
 // !$*UTF8*$!
 {
 	0867D690FE84028FC02AAC07 /* Project object */ = {
-		activeBuildConfigurationName = Debug;
+		activeBuildConfigurationName = Release;
 		activeTarget = C6DC64B010829E8300FA050B /* static libetpan iphone */;
+		addToTargets = (
+			C6DC64B010829E8300FA050B /* static libetpan iphone */,
+			C69AB10910546FE500F32FBD /* static libetpan */,
+			8DC2EF4F0486A6940098B216 /* libetpan */,
+		);
 		codeSenseManager = F854964810D97457003AB832 /* Code sense */;
 		perUserDictionary = {
 			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
@@ -49,11 +54,11 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 282862382;
-			PBXWorkspaceStateSaveDate = 282862382;
+			PBXPerProjectTemplateStateSaveDate = 284351867;
+			PBXWorkspaceStateSaveDate = 284351867;
 		};
 		perUserProjectItems = {
-			F8428C8510DC233E0050ED47 /* PBXTextBookmark */ = F8428C8510DC233E0050ED47 /* PBXTextBookmark */;
+			F83E9C3910F2DDA700134C2B /* PBXTextBookmark */ = F83E9C3910F2DDA700134C2B /* PBXTextBookmark */;
 			F8428C8910DC233F0050ED47 /* PBXTextBookmark */ = F8428C8910DC233F0050ED47 /* PBXTextBookmark */;
 			F8428C9610DC27AA0050ED47 /* PBXTextBookmark */ = F8428C9610DC27AA0050ED47 /* PBXTextBookmark */;
 			F8618C4910DADF3D00C41188 /* PBXTextBookmark */ = F8618C4910DADF3D00C41188 /* PBXTextBookmark */;
@@ -69,9 +74,9 @@
 	};
 	C69AAFB51054298E00F32FBD /* config.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1039, 2249}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1141, 2262}}";
 			sepNavSelRange = "{621, 0}";
-			sepNavVisRange = "{0, 850}";
+			sepNavVisRange = "{0, 1064}";
 		};
 	};
 	C69AB03F1054298E00F32FBD /* libetpan-config.h */ = {
@@ -115,12 +120,15 @@
 			sepNavVisRange = "{1607, 913}";
 		};
 	};
-	F8428C8510DC233E0050ED47 /* PBXTextBookmark */ = {
+	F83E9C3910F2DDA700134C2B /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = C69AAFB51054298E00F32FBD /* config.h */;
+		name = "config.h: 24";
 		rLen = 0;
 		rLoc = 621;
 		rType = 0;
+		vrLen = 1064;
+		vrLoc = 0;
 	};
 	F8428C8910DC233F0050ED47 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;

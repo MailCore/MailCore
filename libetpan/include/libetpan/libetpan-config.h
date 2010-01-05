@@ -1,1 +1,1 @@
-../../././libetpan-config.h
+../.././libetpan-config.h

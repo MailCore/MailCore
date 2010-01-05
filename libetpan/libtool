@@ -1,8 +1,8 @@
 #! /bin/sh
 
 # libtool - Provide generalized library-building support services.
-# Generated automatically by config.status (libetpan) 0.58-dev-20091208
-# Libtool was configured on host mronge.igb.uiuc.edu:
+# Generated automatically by config.status (libetpan) 0.58-dev-20100104
+# Libtool was configured on host Rickover.local:
 # NOTE: Changes made to this file will be lost: look at ltmain.sh.
 #
 #   Copyright (C) 1996, 1997, 1998, 1999, 2000, 2001, 2003, 2004, 2005,

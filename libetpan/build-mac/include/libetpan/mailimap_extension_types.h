@@ -10,7 +10,8 @@
 enum {
   MAILIMAP_EXTENSION_ANNOTATEMORE,  /* the annotatemore-draft */
   MAILIMAP_EXTENSION_ACL,           /* the acl capability */
-  MAILIMAP_EXTENSION_UIDPLUS        /* UIDPLUS */
+  MAILIMAP_EXTENSION_UIDPLUS,       /* UIDPLUS */
+  MAILIMAP_EXTENSION_QUOTA          /* quota */
 };
 
 
