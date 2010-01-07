@@ -12,6 +12,16 @@ projects. To run the example projects:
 The documentation isn't as detailed as I'd like. Sorry about that! If
 something isn't clear try reading the source included or contact me.
 
+IPHONE USE
+
+MailCore has an included iPhone target, but it requires some
+additional compiled binaries (OpenSSL and CyrusSSL). I am unable to
+currently provide these, however the company Remail is offering the
+binaries and a compiled copy of MailCore for the iPhone. Contact
+Remail for more information:
+
+mailcore@remail.com
+
 CONTACT INFO
 
 MailCore by Matt Ronge
