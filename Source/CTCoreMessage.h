@@ -29,7 +29,7 @@
  * SUCH DAMAGE.
  */
 
-#import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 #import <libetpan/libetpan.h>
 
 /*!
@@ -125,7 +125,7 @@
 				a date from the distant past is used instead.
 */
 //FIXME 
-//- (NSCalendarDate *)sentDate;
+- (NSCalendarDate *)sentDate;
 
 /*!
 	@abstract	Returns YES if the method is unread.
