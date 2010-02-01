@@ -271,7 +271,7 @@ char * etpan_encode_mime_header(char * phrase)
 	struct mail_flags *flags = myMessage->msg_flags;
 	if (flags != NULL) {
 		if ( (flags->fl_flags & MAIL_FLAG_SEEN == 0) && 
-			(flags->fl_flags & MAIL_FLAG_NEW == 0))
+			 !(flags->fl_flags & MAIL_FLAG_NEW == 0))
 			return YES;
 	}
 	return NO;
