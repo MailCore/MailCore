@@ -128,7 +128,12 @@
 //- (NSCalendarDate *)sentDate;
 
 /*!
-	@abstract	Returns YES if the method is unread.
+ @abstract	Returns YES if the message is unread.
+ */
+- (BOOL)isUnread;
+
+/*!
+	@abstract	Returns YES if the message is recent and unread.
 */
 - (BOOL)isNew;
 

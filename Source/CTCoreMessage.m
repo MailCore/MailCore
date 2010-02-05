@@ -267,12 +267,21 @@ char * etpan_encode_mime_header(char * phrase)
 //}
 
 
+- (BOOL)isUnread {
+	struct mail_flags *flags = myMessage->msg_flags;
+	if (flags != NULL) {
+		BOOL flag_seen = (flags->fl_flags & MAIL_FLAG_SEEN);
+		return !flag_seen;
+	}
+	return NO;
+}
+
 - (BOOL)isNew {
 	struct mail_flags *flags = myMessage->msg_flags;
 	if (flags != NULL) {
-		if ( (flags->fl_flags & MAIL_FLAG_SEEN == 0) && 
-			 !(flags->fl_flags & MAIL_FLAG_NEW == 0))
-			return YES;
+		BOOL flag_seen = (flags->fl_flags & MAIL_FLAG_SEEN);
+		BOOL flag_new = (flags->fl_flags & MAIL_FLAG_NEW);
+		return !flag_seen && flag_new;
 	}
 	return NO;
 }
