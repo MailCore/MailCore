@@ -6,4 +6,10 @@ OpenSourceProjects/include
 Documentation
 .DS_Store
 *~
+*.orig
 *.pyc
+*.mode1v3
+*.pbxuser
+libetpan/binaries
+libetpan/build-mac/include/openssl
+libetpan/build-mac/include/sasl
