@@ -14,13 +14,10 @@ something isn't clear try reading the source included or contact me.
 
 IPHONE USE
 
-MailCore has an included iPhone target, but it requires some
-additional compiled binaries (OpenSSL and CyrusSSL). I am unable to
-currently provide these, however the company Remail is offering the
-binaries and a compiled copy of MailCore for the iPhone. Contact
-Remail for more information:
+reMail has ported MailCore over to the iPhone. Check out their open
+source project that includes MailCore:
 
-mailcore@remail.com
+http://code.google.com/p/remail-iphone/
 
 CONTACT INFO
 
