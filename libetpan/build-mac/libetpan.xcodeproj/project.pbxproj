@@ -3079,6 +3079,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = libetpan;
 				WRAPPER_EXTENSION = framework;
 			};
@@ -3140,6 +3141,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INSTALL_PATH = /usr/local/lib;
+				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
 				PRODUCT_NAME = etpan;
 			};
@@ -3176,6 +3178,7 @@
 				);
 				INSTALL_PATH = /usr/local/lib;
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../binaries/$(SDKROOT)/$(CONFIGURATION)/lib";
+				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = "etpan-iphone";
 				SDKROOT = iphonesimulator3.0;
