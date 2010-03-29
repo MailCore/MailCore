@@ -120,13 +120,18 @@
 */
 - (void)setSubject:(NSString *)subject;
 
-/*!
-	@abstract	Return the date the message was sent. If a date wasn't included then
-				a date from the distant past is used instead.
-*/
-//FIXME 
-//- (NSCalendarDate *)sentDate;
+// returns the timezone of the sender of the message (got from the Date field timezone attribute)
+- (NSTimeZone*)senderTimeZone;
 
+// returns the date as given in the Date mail field (no timezone is applied)
+- (NSDate *)senderDate; 
+
+// returns the date in the Date field converted to GMT
+- (NSDate *)sentDateGMT; 
+
+// returns the date in the Date field converted to the local timezone
+// the local timezone is the one set in the device running this code
+- (NSDate *)sentDateLocalTimeZone; 
 /*!
  @abstract	Returns YES if the message is unread.
  */
@@ -152,6 +157,11 @@
 	@abstract	Returns the message sequence number, this number cannot be used across sessions
 */
 - (NSUInteger)sequenceNumber;
+
+/*!
+ @abstract	Returns the message size
+ */
+- (NSUInteger)messageSize;
 
 /*!
 	@abstract	Set the message sequence number, this will NOT set any thing on the server.

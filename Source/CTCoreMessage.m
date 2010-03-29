@@ -248,23 +248,76 @@ char * etpan_encode_mime_header(char * phrase)
 }
 
 
-//- (NSCalendarDate *)sentDate {
-//  	if ( myFields->fld_orig_date == NULL) {
-//    	return [NSDate distantPast];
-//	}
-//  	else {
-//		//This feels like a hack, there should be a better way to deal with the time zone
-//		NSInteger seconds = 60*60*myFields->fld_orig_date->dt_date_time->dt_zone/100;
-//		NSTimeZone *timeZone = [NSTimeZone timeZoneForSecondsFromGMT:seconds];
-//    	return [NSCalendarDate dateWithYear:myFields->fld_orig_date->dt_date_time->dt_year 
-//                                      month:myFields->fld_orig_date->dt_date_time->dt_month
-//                                        day:myFields->fld_orig_date->dt_date_time->dt_day
-//                                       hour:myFields->fld_orig_date->dt_date_time->dt_hour
-//                                     minute:myFields->fld_orig_date->dt_date_time->dt_min
-//                                    second:myFields->fld_orig_date->dt_date_time->dt_sec
-//                                   timeZone:timeZone];
-//  	}
-//}
+- (struct mailimf_date_time*)libetpanDateTime
+{    
+    if(!myFields || !myFields->fld_orig_date || !myFields->fld_orig_date->dt_date_time)
+        return NULL;
+    
+    return myFields->fld_orig_date->dt_date_time;
+}
+
+- (NSTimeZone*)senderTimeZone
+{
+    struct mailimf_date_time *d;
+    
+    if((d = [self libetpanDateTime]) == NULL)
+        return nil;
+    
+    NSInteger timezoneOffsetInSeconds = 3600*d->dt_zone/100;
+    
+    return [NSTimeZone timeZoneForSecondsFromGMT:timezoneOffsetInSeconds];
+}
+
+- (NSDate *)senderDate 
+{
+    
+  	if ( myFields->fld_orig_date == NULL) {
+    	return [NSDate distantPast];
+	}
+  	else {
+        struct mailimf_date_time *d;
+        
+        if((d = [self libetpanDateTime]) == NULL)
+            return nil;
+        
+        NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        NSDateComponents *comps = [[NSDateComponents alloc] init];
+        
+        [comps setYear:d->dt_year];
+        [comps setMonth:d->dt_month];
+        [comps setDay:d->dt_day];
+        [comps setHour:d->dt_hour];
+        [comps setMinute:d->dt_min];
+        [comps setSecond:d->dt_sec];
+        
+        NSDate *messageDateNoTimezone = [calendar dateFromComponents:comps];
+        
+        [comps release];
+        [calendar release];
+        
+        // no timezone applied
+        return messageDateNoTimezone;
+  	}
+}
+
+- (NSDate *)sentDateGMT
+{
+    struct mailimf_date_time *d;
+    
+    if((d = [self libetpanDateTime]) == NULL)
+        return nil;
+    
+    NSInteger timezoneOffsetInSeconds = 3600*d->dt_zone/100;
+    
+    NSDate *date = [self senderDate];
+    
+    return [date addTimeInterval:timezoneOffsetInSeconds * -1];
+}
+
+- (NSDate*)sentDateLocalTimeZone
+{
+    return [[self sentDateGMT] addTimeInterval:[[NSTimeZone localTimeZone] secondsFromGMT]];
+}
 
 
 - (BOOL)isUnread {
@@ -300,6 +353,11 @@ char * etpan_encode_mime_header(char * phrase)
 
 - (NSUInteger)sequenceNumber {
 	return mySequenceNumber;
+}
+
+
+- (NSUInteger)messageSize {
+	return [self messageStruct]->msg_size;
 }
 
 - (void)setSequenceNumber:(NSUInteger)sequenceNumber {
