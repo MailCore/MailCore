@@ -102,6 +102,12 @@
  */
 - (NSString *)htmlBody;
 
+/*!  @abstract Returns a message body as an NSString. First attempts
+               to retrieve a plain text body, if that fails then
+               tries for an HTML body.
+ */
+- (NSString *)bodyPreferringPlainText;
+
 /*!
 	@abstract	This method sets the message body. Plaintext only please!
 */

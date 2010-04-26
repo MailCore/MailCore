@@ -143,6 +143,14 @@ char * etpan_encode_mime_header(char * phrase)
 	return result;
 }
 
+- (NSString *)bodyPreferringPlainText {
+    NSString *body = [self body];
+    if ([body length] == 0) {
+        body = [self htmlBody];
+    }
+    return body;
+}
+
 
 - (void)_buildUpBodyText:(CTMIME *)mime result:(NSMutableString *)result {
 	if (mime == nil)
