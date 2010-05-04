@@ -741,6 +741,7 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_2)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/OpenSourceProjects/build\"";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-seg1addr",
 					0xb0000000,
