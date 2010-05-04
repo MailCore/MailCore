@@ -5,6 +5,7 @@ Primary Authors:
 Contributors:
 	
 	* Stefano Barbato - For a patch that fixes a memory leak
+    * Jaremy Creechley - Added support for sending attachments
 	* Julián Romero - For a patch that adds unicode support for addresses
 	* Kyle Van Essen - For a patch that fixes a flags memory leak
 	
