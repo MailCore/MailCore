@@ -23,6 +23,7 @@ CTSMTPAsyncConnection* ptrToSelf;
 void
 smtpProgress( size_t aCurrent, size_t aTotal )
 {
+
     if( ptrToSelf != nil )
     {
         float theProgress = (float)aCurrent / (float)aTotal * 100;
@@ -35,9 +36,7 @@ smtpProgress( size_t aCurrent, size_t aTotal )
 
 - (void)sendMailThread;
 - (void)handleSmtpProgress:(NSNumber*)aProgress;
-- (void)cleanupSmtp;
 - (void)cleanupAfterThread;
-
 
 @end
 
@@ -85,7 +84,6 @@ smtpProgress( size_t aCurrent, size_t aTotal )
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self cleanupSmtp];
     [self cleanupAfterThread];
     [super dealloc];
 }
@@ -123,7 +121,12 @@ smtpProgress( size_t aCurrent, size_t aTotal )
 
 - (BOOL)isBusy
 {
-	return [mMailThread isExecuting];
+	return ( mMailThread != nil && [mMailThread isExecuting] );
+}
+
+- (BOOL)isCancelled
+{
+    return ( mMailThread != nil && [mMailThread isCancelled] );
 }
 
 - (void)threadWillExitHandler:(NSNotification*)aNote
@@ -132,10 +135,12 @@ smtpProgress( size_t aCurrent, size_t aTotal )
     {
     	return;
     }
-    NSLog(@"Thread will exit!");
-    //TODO: check mStatus and send it along.
-    [mDelegate smtpDidFinishSendingMessage];
-	[self cleanupAfterThread];
+    if( mDelegate )
+    {
+        //TODO: check mStatus and send it along.
+    	[mDelegate smtpDidFinishSendingMessage];
+	}
+    [self cleanupAfterThread];
 }
 
 @end
@@ -185,8 +190,8 @@ smtpProgress( size_t aCurrent, size_t aTotal )
 	}
     @catch (NSException* aException) {
         //TODO: handle exceptions, set mStatus, or let them out?
+        NSLog( @"Exception caught while sending mail:%@", [aException description] );
     }
-    [self cleanupSmtp];
     [thePool drain];
 }
 
@@ -195,9 +200,7 @@ smtpProgress( size_t aCurrent, size_t aTotal )
     //check if cancelled before sending an update
     if( [mMailThread isCancelled] && [NSThread currentThread] == mMailThread )
     {
-        NSLog(@"Exiting thread");
         [NSThread exit];
-        [self cleanupSmtp];
         return;
     }
 
@@ -206,24 +209,31 @@ smtpProgress( size_t aCurrent, size_t aTotal )
     {
  		mLastProgress = theProgress;
     	//call delegate
-		[mDelegate smtpProgress:mLastProgress];
+        if( mDelegate )
+        {
+			[mDelegate smtpProgress:mLastProgress];
+        }
     }
 }
 
-
-- (void)cleanupSmtp
-{
-    [mSMTPObj release];
-    if( mSMTP )
-    {
-        mailsmtp_free(mSMTP);
-    }
-}
 
 - (void)cleanupAfterThread
 {
+    [mSMTPObj release];
+    mSMTPObj = nil;
+
+    if( mSMTP )
+    {
+        mailstream_cancel( mSMTP->stream );
+        mailsmtp_free(mSMTP); //this can take 300 seconds to come back!
+        mSMTP = NULL;
+    }
+
     [mServerSettings release];
+    mServerSettings = nil;
+
     [mMessage release];
+    mMessage = nil;
 
     [mMailThread release];
     mMailThread = nil;

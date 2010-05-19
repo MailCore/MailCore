@@ -26,7 +26,7 @@
     unsigned int mLastProgress;
 }
 
-@property (readonly, retain) NSDictionary* serverSettings;
+@property (readonly) NSDictionary* serverSettings;
 @property (retain) CTCoreMessage* message;
 
 - (id)initWithServer:(NSString *)aServer 
@@ -41,5 +41,6 @@
 - (void)sendMessageInBackgroundAndNotify:(CTCoreMessage*)aMessage;
 - (void)cancel;
 - (BOOL)isBusy;
+- (BOOL)isCancelled;
 
 @end
