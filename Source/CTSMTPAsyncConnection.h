@@ -15,7 +15,6 @@
 //This is called with values between 0-100 (inclusive)
 -(void)smtpProgress:(unsigned int)aProgress;
 
-//TODO: this should include a status code
 -(void)smtpDidFinishSendingMessage:(CTSMTPAsyncStatus)aStatus;
 @end
 

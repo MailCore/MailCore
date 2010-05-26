@@ -21,7 +21,6 @@ CTSMTPAsyncConnection* ptrToSelf;
 void
 smtpProgress( size_t aCurrent, size_t aTotal )
 {
-
     if( ptrToSelf != nil )
     {
         float theProgress = (float)aCurrent / (float)aTotal * 100;
@@ -99,7 +98,7 @@ smtpProgress( size_t aCurrent, size_t aTotal )
 
 - (void)sendMessageInBackgroundAndNotify:(CTCoreMessage*)aMessage
 {
-	//TODO: convert to exceptions
+	//TODO: convert to exceptions?
     if( aMessage == nil )
     {
     	NSLog(@"CTCoreMessage param cannot be nil");
