@@ -101,3 +101,10 @@
 
 #define	CTSMTPData					@"SMTPData"
 #define	CTSMTPDataDesc				@"An error occured while sending message data."
+
+typedef enum 
+{
+    CTSMTPAsyncSuccess = 0,
+    CTSMTPAsyncCanceled = 1,
+    CTSMTPAsyncError = 2
+} CTSMTPAsyncStatus;

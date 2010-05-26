@@ -91,11 +91,20 @@
 
 
 - (void)setData:(NSString *)data {
+	[self setData:data raiseExceptions:YES];
+}
+
+- (int)setData:(NSString *)data raiseExceptions:(BOOL)aShouldRaise {
 	NSData *dataObj = [data dataUsingEncoding:NSUTF8StringEncoding];
 	int ret = mailsmtp_data([self resource]);
-	IfTrue_RaiseException(ret != MAILSMTP_NO_ERROR, CTSMTPData, CTSMTPDataDesc);
-  	ret = mailsmtp_data_message([self resource], [dataObj bytes], [dataObj length]);
-	IfTrue_RaiseException(ret != MAILSMTP_NO_ERROR, CTSMTPData, CTSMTPDataDesc);
+	if(aShouldRaise){
+	    IfTrue_RaiseException(ret != MAILSMTP_NO_ERROR, CTSMTPData, CTSMTPDataDesc);
+  	}
+    ret = mailsmtp_data_message([self resource], [dataObj bytes], [dataObj length]);
+	if(aShouldRaise){
+	    IfTrue_RaiseException(ret != MAILSMTP_NO_ERROR, CTSMTPData, CTSMTPDataDesc);
+	}
+    return ret;
 }
 
 

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2D538B45119803A6000AB4A2 /* CTSMTPAsyncConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D538B42119803A6000AB4A2 /* CTSMTPAsyncConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2D538B46119803A6000AB4A2 /* CTSMTPAsyncConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D538B43119803A6000AB4A2 /* CTSMTPAsyncConnection.m */; };
-		2D538B47119803A6000AB4A2 /* CTSMTPConnectionDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D538B44119803A6000AB4A2 /* CTSMTPConnectionDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2D538B48119803E2000AB4A2 /* CTSMTPAsyncConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D538B43119803A6000AB4A2 /* CTSMTPAsyncConnection.m */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 		F81A8ADC0C03FC3B002F780A /* CTMIME_MessagePart.h in Headers */ = {isa = PBXBuildFile; fileRef = F81A8AD20C03FC3B002F780A /* CTMIME_MessagePart.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -150,7 +149,6 @@
 		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		2D538B42119803A6000AB4A2 /* CTSMTPAsyncConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTSMTPAsyncConnection.h; path = Source/CTSMTPAsyncConnection.h; sourceTree = SOURCE_ROOT; };
 		2D538B43119803A6000AB4A2 /* CTSMTPAsyncConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTSMTPAsyncConnection.m; path = Source/CTSMTPAsyncConnection.m; sourceTree = SOURCE_ROOT; };
-		2D538B44119803A6000AB4A2 /* CTSMTPConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTSMTPConnectionDelegate.h; path = Source/CTSMTPConnectionDelegate.h; sourceTree = SOURCE_ROOT; };
 		72D117D00C5C181700FE2CB5 /* CTBareMessageTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTBareMessageTests.h; path = Tests/CTBareMessageTests.h; sourceTree = "<group>"; };
 		72D117D10C5C181700FE2CB5 /* CTBareMessageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTBareMessageTests.m; path = Tests/CTBareMessageTests.m; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* MailCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MailCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -384,7 +382,6 @@
 				F81B885B0A74AA7100143DF6 /* CTSMTPConnection.m */,
 				2D538B42119803A6000AB4A2 /* CTSMTPAsyncConnection.h */,
 				2D538B43119803A6000AB4A2 /* CTSMTPAsyncConnection.m */,
-				2D538B44119803A6000AB4A2 /* CTSMTPConnectionDelegate.h */,
 				F88CA0CC0BF7A7B00055AC29 /* CTSMTP.h */,
 				F88CA0CD0BF7A7B00055AC29 /* CTSMTP.m */,
 				F88CA0D20BF7AC0B0055AC29 /* CTESMTP.h */,
@@ -452,7 +449,6 @@
 				F81E266E0C6ED4E100B3FBAC /* CTCoreAttachment.h in Headers */,
 				F8430BB10C72B16000753941 /* CTMIME_Enumerator.h in Headers */,
 				2D538B45119803A6000AB4A2 /* CTSMTPAsyncConnection.h in Headers */,
-				2D538B47119803A6000AB4A2 /* CTSMTPConnectionDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -814,6 +810,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				PREBINDING = NO;
 				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				SYMROOT = ../../build;
 			};
 			name = Debug;
 		};
@@ -831,6 +828,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				PREBINDING = NO;
 				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				SYMROOT = ../../build;
 			};
 			name = Release;
 		};

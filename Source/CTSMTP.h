@@ -50,5 +50,6 @@
 - (void)setRecipients:(id)recipients;
 - (void)setRecipientAddress:(NSString *)recAddress;
 - (void)setData:(NSString *)data;
+- (int)setData:(NSString *)data raiseExceptions:(BOOL)aShouldRaise;
 - (mailsmtp *)resource;
 @end

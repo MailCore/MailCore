@@ -13,8 +13,6 @@
 #import "CTESMTP.h"
 #import "CTSMTP.h"
 #import "CTSMTPAsyncConnection.h"
-#import "CTSMTPConnectionDelegate.h"
-#import "MailCoreTypes.h"
 
 
 //setup to allow c callback fxn:
@@ -36,6 +34,7 @@ smtpProgress( size_t aCurrent, size_t aTotal )
 
 - (void)sendMailThread;
 - (void)handleSmtpProgress:(NSNumber*)aProgress;
+- (void)threadWillExitHandler:(NSNotification*)aNote;
 - (void)cleanupAfterThread;
 
 @end
@@ -45,6 +44,7 @@ smtpProgress( size_t aCurrent, size_t aTotal )
 
 @synthesize message = mMessage;
 @synthesize serverSettings = mServerSettings;
+@synthesize status = mStatus;
 
 - (id)initWithServer:(NSString *)aServer 
             username:(NSString *)aUsername
@@ -58,6 +58,7 @@ smtpProgress( size_t aCurrent, size_t aTotal )
     self = [super init];
     if(self)
     {
+        mStatus = CTSMTPAsyncSuccess;
         ptrToSelf = self;
         mSMTPObj = nil;
         mSMTP = NULL;
@@ -87,7 +88,14 @@ smtpProgress( size_t aCurrent, size_t aTotal )
     [self cleanupAfterThread];
     [super dealloc];
 }
-               
+
+- (void)finalize
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self cleanupAfterThread];
+    [super finalize];
+}
+
 
 - (void)sendMessageInBackgroundAndNotify:(CTCoreMessage*)aMessage
 {
@@ -116,31 +124,23 @@ smtpProgress( size_t aCurrent, size_t aTotal )
 
 - (void)cancel
 {
+	if( ![mMailThread isExecuting] || [mMailThread isCancelled] )
+    {
+    	return;
+    }
+	//mark thread as cancelled
     [mMailThread cancel];
+	//cancel libetpan smtp stream
+    mailstream_cancel(mSMTP->stream);
+    mailstream_close(mSMTP->stream);
+    mSMTP->stream = NULL;
+    mailsmtp_free(mSMTP);
+    mSMTP = NULL;
 }
 
 - (BOOL)isBusy
 {
 	return ( mMailThread != nil && [mMailThread isExecuting] );
-}
-
-- (BOOL)isCancelled
-{
-    return ( mMailThread != nil && [mMailThread isCancelled] );
-}
-
-- (void)threadWillExitHandler:(NSNotification*)aNote
-{
-	if ( [aNote object] != mMailThread )
-    {
-    	return;
-    }
-    if( mDelegate )
-    {
-        //TODO: check mStatus and send it along.
-    	[mDelegate smtpDidFinishSendingMessage];
-	}
-    [self cleanupAfterThread];
 }
 
 @end
@@ -154,12 +154,12 @@ smtpProgress( size_t aCurrent, size_t aTotal )
   	mSMTP = NULL;
 	mSMTP = mailsmtp_new(30, progFxn);
 	assert(mSMTP != NULL);
-
 	mSMTPObj = [[CTESMTP alloc] initWithResource:mSMTP];
 
 	NSDictionary* theSettings = self.serverSettings;
 
-	@try {
+	@try 
+    {
 		[mSMTPObj connectToServer:[theSettings objectForKey:@"server"] 
                              port:[[theSettings objectForKey:@"port"] unsignedIntValue]];
 		if ([mSMTPObj helo] == false) {
@@ -178,19 +178,31 @@ smtpProgress( size_t aCurrent, size_t aTotal )
 		CTCoreMessage* theMessage = self.message;
         [mSMTPObj setFrom:[[[theMessage from] anyObject] email]];
 
-		/* recipients */
 		NSMutableSet *rcpts = [NSMutableSet set];
 		[rcpts unionSet:[theMessage to]];
 		[rcpts unionSet:[theMessage bcc]];
 		[rcpts unionSet:[theMessage cc]];
 		[mSMTPObj setRecipients:rcpts];
 	 
-		/* data */
-		[mSMTPObj setData:[theMessage render]];
+     	//send
+		int theReturn = [mSMTPObj setData:[theMessage render] raiseExceptions:NO];
+		if( theReturn == MAILSMTP_NO_ERROR )
+        {
+        	mStatus = CTSMTPAsyncSuccess;
+        } 
+        else if( theReturn == MAILSMTP_ERROR_STREAM && [mMailThread isCancelled] )
+        {
+        	//libetpan was cancelled from another thread
+            mStatus = CTSMTPAsyncCanceled;
+        }
+        else
+        {
+        	mStatus = CTSMTPAsyncError;
+        }
 	}
-    @catch (NSException* aException) {
-        //TODO: handle exceptions, set mStatus, or let them out?
-        NSLog( @"Exception caught while sending mail:%@", [aException description] );
+    @catch (NSException* aException) 
+    {
+        mStatus = CTSMTPAsyncError;
     }
     [thePool drain];
 }
@@ -200,7 +212,6 @@ smtpProgress( size_t aCurrent, size_t aTotal )
     //check if cancelled before sending an update
     if( [mMailThread isCancelled] && [NSThread currentThread] == mMailThread )
     {
-        [NSThread exit];
         return;
     }
 
@@ -216,6 +227,18 @@ smtpProgress( size_t aCurrent, size_t aTotal )
     }
 }
 
+- (void)threadWillExitHandler:(NSNotification*)aNote
+{
+	if( [aNote object] != mMailThread )
+    {
+    	return;
+    }
+    if( mDelegate )
+    {
+    	[mDelegate smtpDidFinishSendingMessage:mStatus];
+	}
+    [self cleanupAfterThread];
+}
 
 - (void)cleanupAfterThread
 {
@@ -224,9 +247,12 @@ smtpProgress( size_t aCurrent, size_t aTotal )
 
     if( mSMTP )
     {
-        mailstream_cancel( mSMTP->stream );
-        mailsmtp_free(mSMTP); //this can take 300 seconds to come back!
+        mailstream_cancel(mSMTP->stream);
+        mailstream_close(mSMTP->stream);
+        mSMTP->stream = NULL;
+        mailsmtp_free(mSMTP);
         mSMTP = NULL;
+
     }
 
     [mServerSettings release];
