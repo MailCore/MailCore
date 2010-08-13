@@ -7,3 +7,6 @@ Documentation
 .DS_Store
 *~
 *.pyc
+*.pbxuser
+*.perspectivev3
+.svn
