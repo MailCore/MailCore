@@ -124,14 +124,23 @@
 	}
 }
 
-//TODO need to do content disposition
 - (struct mailmime *)buildMIMEStruct {
 	struct mailmime_fields *mime_fields;
 	struct mailmime *mime_sub;
 	struct mailmime_content *content;
 	int r;
 
-	mime_fields = mailmime_fields_new_encoding(MAILMIME_MECHANISM_BASE64);
+	if( mFilename )
+    {
+        mime_fields = mailmime_fields_new_filename( MAILMIME_DISPOSITION_TYPE_ATTACHMENT, 
+                                                    (char *)[mFilename cStringUsingEncoding:NSUTF8StringEncoding], 
+                                                    MAILMIME_MECHANISM_BASE64 ); 
+	}
+    else 
+    {
+	    mime_fields = mailmime_fields_new_encoding(MAILMIME_MECHANISM_BASE64);
+    }
+
 	assert(mime_fields != NULL);
 
 	content = mailmime_content_new_with_str([self.contentType cStringUsingEncoding:NSUTF8StringEncoding]);
