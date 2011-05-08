@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D538B45119803A6000AB4A2 /* CTSMTPAsyncConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D538B42119803A6000AB4A2 /* CTSMTPAsyncConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2D538B46119803A6000AB4A2 /* CTSMTPAsyncConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D538B43119803A6000AB4A2 /* CTSMTPAsyncConnection.m */; };
+		2D538B48119803E2000AB4A2 /* CTSMTPAsyncConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D538B43119803A6000AB4A2 /* CTSMTPAsyncConnection.m */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 		F81A8ADC0C03FC3B002F780A /* CTMIME_MessagePart.h in Headers */ = {isa = PBXBuildFile; fileRef = F81A8AD20C03FC3B002F780A /* CTMIME_MessagePart.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F81A8ADD0C03FC3B002F780A /* CTMIME_MessagePart.m in Sources */ = {isa = PBXBuildFile; fileRef = F81A8AD30C03FC3B002F780A /* CTMIME_MessagePart.m */; };
@@ -144,6 +147,8 @@
 		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		0867D6A5FE840307C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		2D538B42119803A6000AB4A2 /* CTSMTPAsyncConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTSMTPAsyncConnection.h; path = Source/CTSMTPAsyncConnection.h; sourceTree = SOURCE_ROOT; };
+		2D538B43119803A6000AB4A2 /* CTSMTPAsyncConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTSMTPAsyncConnection.m; path = Source/CTSMTPAsyncConnection.m; sourceTree = SOURCE_ROOT; };
 		72D117D00C5C181700FE2CB5 /* CTBareMessageTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTBareMessageTests.h; path = Tests/CTBareMessageTests.h; sourceTree = "<group>"; };
 		72D117D10C5C181700FE2CB5 /* CTBareMessageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTBareMessageTests.m; path = Tests/CTBareMessageTests.m; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* MailCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MailCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -375,6 +380,8 @@
 			children = (
 				F81B885A0A74AA7100143DF6 /* CTSMTPConnection.h */,
 				F81B885B0A74AA7100143DF6 /* CTSMTPConnection.m */,
+				2D538B42119803A6000AB4A2 /* CTSMTPAsyncConnection.h */,
+				2D538B43119803A6000AB4A2 /* CTSMTPAsyncConnection.m */,
 				F88CA0CC0BF7A7B00055AC29 /* CTSMTP.h */,
 				F88CA0CD0BF7A7B00055AC29 /* CTSMTP.m */,
 				F88CA0D20BF7AC0B0055AC29 /* CTESMTP.h */,
@@ -441,6 +448,7 @@
 				F81E266A0C6ED35C00B3FBAC /* CTBareAttachment.h in Headers */,
 				F81E266E0C6ED4E100B3FBAC /* CTCoreAttachment.h in Headers */,
 				F8430BB10C72B16000753941 /* CTMIME_Enumerator.h in Headers */,
+				2D538B45119803A6000AB4A2 /* CTSMTPAsyncConnection.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,7 +466,6 @@
 				8DC2EF560486A6940098B216 /* Frameworks */,
 				F848422D09CFACA000B80440 /* ShellScript */,
 				F89614140A79D30A00F93E26 /* CopyFiles */,
-				F82D7D490F4A0D1900ADA65C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -514,7 +521,11 @@
 			isa = PBXProject;
 			buildConfigurationList = 1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "MailCore" */;
 			compatibilityVersion = "Xcode 2.4";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 0867D691FE84028FC02AAC07 /* MailCore */;
 			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
 			projectDirPath = "";
@@ -588,19 +599,6 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
-		F82D7D490F4A0D1900ADA65C /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "find Tests Source libetpan -name \"*.h\" -or -name \"*.c\" -or -name \"*.m\" | xargs /usr/bin/etags";
-		};
 		F848422D09CFACA000B80440 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -612,7 +610,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "sh Scripts/DocScripts/doxygen.sh";
+			shellScript = "#sh Scripts/DocScripts/doxygen.sh";
 		};
 		F89618D30A7D77CF00F93E26 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -653,6 +651,7 @@
 				F81E266B0C6ED35C00B3FBAC /* CTBareAttachment.m in Sources */,
 				F81E266F0C6ED4E100B3FBAC /* CTCoreAttachment.m in Sources */,
 				F8430BB20C72B16000753941 /* CTMIME_Enumerator.m in Sources */,
+				2D538B46119803A6000AB4A2 /* CTSMTPAsyncConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -691,6 +690,7 @@
 				F8618D1C10DAE1E600C41188 /* CTBareMessage.m in Sources */,
 				F8618D1D10DAE1E600C41188 /* CTBareAttachment.m in Sources */,
 				F8618D1E10DAE1E600C41188 /* MailCoreUtilities.m in Sources */,
+				2D538B48119803E2000AB4A2 /* CTSMTPAsyncConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -798,8 +798,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "libetpan/build-mac/include/**";
 				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PREBINDING = NO;
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				SDKROOT = macosx;
+				SYMROOT = ../../build;
 			};
 			name = Debug;
 		};
@@ -815,8 +817,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "libetpan/build-mac/include/**";
 				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PREBINDING = NO;
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				SDKROOT = macosx;
+				SYMROOT = ../../build;
 			};
 			name = Release;
 		};

@@ -10,6 +10,7 @@ Documentation
 *.pyc
 *.mode1v3
 *.pbxuser
+*.perspectivev3
 libetpan/binaries
 libetpan/build-mac/include/openssl
 libetpan/build-mac/include/sasl

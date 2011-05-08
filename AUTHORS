@@ -9,6 +9,7 @@ Contributors:
 	* Julián Romero - For a patch that adds unicode support for addresses
 	* Kyle Van Essen - For a patch that fixes a flags memory leak
     * Gabor Cselle - For tons of contributions, especially iPhone support and bug fixes
+    * Juan Leon - For adding async SMTP support
 	
 Thanks to:
 
