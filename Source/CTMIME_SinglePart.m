@@ -126,18 +126,35 @@
 
 //TODO need to do content disposition
 - (struct mailmime *)buildMIMEStruct {
+	struct mailmime_mechanism * encoding;
 	struct mailmime_fields *mime_fields;
 	struct mailmime *mime_sub;
 	struct mailmime_content *content;
 	int r;
+    struct mailmime_disposition * disposition;
 
-	mime_fields = mailmime_fields_new_encoding(MAILMIME_MECHANISM_BASE64);
+	encoding = mailmime_mechanism_new(MAILMIME_MECHANISM_BASE64, NULL);
+
+    // MIME Disposition
+    disposition = mailmime_disposition_new_filename(MAILMIME_DISPOSITION_TYPE_ATTACHMENT, [self.filename cStringUsingEncoding:NSUTF8StringEncoding]);
+	assert(disposition != NULL);
+
+    // MIME Fields using disposition
+    // mailmime_fields_new_with_version(encoding, id, description, disposition, language);
+    mime_fields = mailmime_fields_new_with_version(encoding, NULL, NULL, disposition, NULL);
 	assert(mime_fields != NULL);
-
+    
+    // mime_fields = mailmime_fields_new_encoding(MAILMIME_MECHANISM_BASE64);
+    // assert(mime_fields != NULL);
+    
+    // MIME Content Type
 	content = mailmime_content_new_with_str([self.contentType cStringUsingEncoding:NSUTF8StringEncoding]);
 	assert(content != NULL);
+	
 	mime_sub = mailmime_new_empty(content, mime_fields);
 	assert(mime_sub != NULL);
+	
+	// Add Data
 	r = mailmime_set_body_text(mime_sub, (char *)[self.data bytes], [self.data length]);
 	assert(r == MAILIMF_NO_ERROR);
 	return mime_sub;

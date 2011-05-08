@@ -37,6 +37,7 @@
 #import "CTMIME_MessagePart.h"
 #import "CTMIME_TextPart.h"
 #import "CTMIME_MultiPart.h"
+#import "CTMIME_SinglePart.h"
 #import "CTBareAttachment.h"
 
 @interface CTCoreMessage (Private)
@@ -143,6 +144,14 @@ char * etpan_encode_mime_header(char * phrase)
 	return result;
 }
 
+- (NSString *)bodyPreferringPlainText {
+    NSString *body = [self body];
+    if ([body length] == 0) {
+        body = [self htmlBody];
+    }
+    return body;
+}
+
 
 - (void)_buildUpBodyText:(CTMIME *)mime result:(NSMutableString *)result {
 	if (mime == nil)
@@ -200,9 +209,17 @@ char * etpan_encode_mime_header(char * phrase)
 - (void)setBody:(NSString *)body {
 	CTMIME *oldMIME = myParsedMIME;
 	CTMIME_TextPart *text = [CTMIME_TextPart mimeTextPartWithString:body];
-	CTMIME_MessagePart *messagePart = [CTMIME_MessagePart mimeMessagePartWithContent:text];
-	myParsedMIME = [messagePart retain];
-	[oldMIME release];
+	
+	// If myParsedMIME is already a multi-part mime, just add it. otherwise replace it.
+    //TODO: If setBody is called multiple times it will add text parts multiple times. Instead
+    // it should find the existing text part (if there is one) and replace it
+	if ([myParsedMIME isKindOfClass:[CTMIME_MultiPart class]]) {
+		[(CTMIME_MultiPart *)myParsedMIME addMIMEPart:text];
+	} else {
+		CTMIME_MessagePart *messagePart = [CTMIME_MessagePart mimeMessagePartWithContent:text];
+		myParsedMIME = [messagePart retain];
+		[oldMIME release];		
+	}
 }
 
 - (NSArray *)attachments {
@@ -225,6 +242,30 @@ char * etpan_encode_mime_header(char * phrase)
 }
 
 - (void)addAttachment:(CTCoreAttachment *)attachment {
+	CTMIME_MultiPart *multi;
+	CTMIME_MessagePart *msg;
+	
+	if ([myParsedMIME isKindOfClass:[CTMIME_MessagePart class]]) {
+		msg = (CTMIME_MessagePart *)myParsedMIME;
+		CTMIME *sub = [msg content];
+		
+		
+		// Creat new multimime part if needed
+		if ([sub isKindOfClass:[CTMIME_MultiPart class]]) {
+			multi = (CTMIME_MultiPart *)sub;
+		} else {
+			multi = [CTMIME_MultiPart mimeMultiPart];
+			[multi addMIMEPart:sub];
+			[msg setContent:multi];
+		}
+		
+		// add new SinglePart which encodes the attachment in base64
+		CTMIME_SinglePart *attpart = [CTMIME_SinglePart mimeSinglePartWithData:[attachment data]];
+		attpart.contentType = [attachment contentType];
+		attpart.filename = [attachment filename];
+	
+		[multi addMIMEPart:attpart];
+	}
 }
 
 
@@ -248,23 +289,23 @@ char * etpan_encode_mime_header(char * phrase)
 }
 
 
-//- (NSCalendarDate *)sentDate {
-//  	if ( myFields->fld_orig_date == NULL) {
-//    	return [NSDate distantPast];
-//	}
-//  	else {
-//		//This feels like a hack, there should be a better way to deal with the time zone
-//		NSInteger seconds = 60*60*myFields->fld_orig_date->dt_date_time->dt_zone/100;
-//		NSTimeZone *timeZone = [NSTimeZone timeZoneForSecondsFromGMT:seconds];
-//    	return [NSCalendarDate dateWithYear:myFields->fld_orig_date->dt_date_time->dt_year 
-//                                      month:myFields->fld_orig_date->dt_date_time->dt_month
-//                                        day:myFields->fld_orig_date->dt_date_time->dt_day
-//                                       hour:myFields->fld_orig_date->dt_date_time->dt_hour
-//                                     minute:myFields->fld_orig_date->dt_date_time->dt_min
-//                                    second:myFields->fld_orig_date->dt_date_time->dt_sec
-//                                   timeZone:timeZone];
-//  	}
-//}
+- (NSCalendarDate *)sentDate {
+	if ( myFields->fld_orig_date == NULL) {
+		return [NSDate distantPast];
+	}
+  	else {
+		//This feels like a hack, there should be a better way to deal with the time zone
+		NSInteger seconds = 60*60*myFields->fld_orig_date->dt_date_time->dt_zone/100;
+		NSTimeZone *timeZone = [NSTimeZone timeZoneForSecondsFromGMT:seconds];
+    	return [NSCalendarDate dateWithYear:myFields->fld_orig_date->dt_date_time->dt_year 
+                                      month:myFields->fld_orig_date->dt_date_time->dt_month
+                                        day:myFields->fld_orig_date->dt_date_time->dt_day
+                                       hour:myFields->fld_orig_date->dt_date_time->dt_hour
+                                     minute:myFields->fld_orig_date->dt_date_time->dt_min
+									 second:myFields->fld_orig_date->dt_date_time->dt_sec
+                                   timeZone:timeZone];
+  	}
+}
 
 
 - (BOOL)isUnread {
@@ -409,7 +450,9 @@ char * etpan_encode_mime_header(char * phrase)
 
 
 - (NSString *)render {
-	if ([myParsedMIME isMemberOfClass:[myParsedMIME class]]) {
+	CTMIME *msgPart = myParsedMIME;
+
+	if ([myParsedMIME isKindOfClass:[CTMIME_MessagePart class]]) {
 		/* It's a message part, so let's set it's fields */
 		struct mailimf_fields *fields;
 		struct mailimf_mailbox *sender = (myFields->fld_sender != NULL) ? (myFields->fld_sender->snd_mb) : NULL;
@@ -425,7 +468,7 @@ char * etpan_encode_mime_header(char * phrase)
 		//TODO uh oh, when this get freed it frees stuff in the CTCoreMessage
 		//TODO Need to make sure that fields gets freed somewhere
 		fields = mailimf_fields_new_with_data(from, sender, replyTo, to, cc, bcc, inReplyTo, references, subject);
-		[(CTMIME_MessagePart *)myParsedMIME setIMFFields:fields];
+		[(CTMIME_MessagePart *)msgPart setIMFFields:fields];
 	}
 	return [myParsedMIME render];
 }

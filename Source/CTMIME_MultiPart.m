@@ -30,6 +30,7 @@
  */
 
 #import "CTMIME_MultiPart.h"
+#import "CTMIME_MessagePart.h"
 #import <libetpan/libetpan.h>
 #import "MailCoreTypes.h"
 #import "CTMIMEFactory.h"
@@ -79,12 +80,13 @@
 - (struct mailmime *)buildMIMEStruct {
 	//TODO make this smarter so it builds different types other than multipart/mixed
 	struct mailmime *mime = mailmime_multiple_new("multipart/mixed");
-
+	
 	NSEnumerator *enumer = [myContentList objectEnumerator];
+	
 	CTMIME *part;
 	int r;
 	while ((part = [enumer nextObject])) {
-		r = mailmime_add_part(mime, [part buildMIMEStruct]);
+		r = mailmime_smart_add_part(mime, [part buildMIMEStruct]);
 		assert(r == 0);
 	}
 	return mime;

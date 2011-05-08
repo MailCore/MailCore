@@ -29,7 +29,7 @@
  * SUCH DAMAGE.
  */
 
-#import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 #import <libetpan/libetpan.h>
 
 /*!
@@ -102,6 +102,12 @@
  */
 - (NSString *)htmlBody;
 
+/*!  @abstract Returns a message body as an NSString. First attempts
+               to retrieve a plain text body, if that fails then
+               tries for an HTML body.
+ */
+- (NSString *)bodyPreferringPlainText;
+
 /*!
 	@abstract	This method sets the message body. Plaintext only please!
 */
@@ -125,7 +131,7 @@
 				a date from the distant past is used instead.
 */
 //FIXME 
-//- (NSCalendarDate *)sentDate;
+- (NSCalendarDate *)sentDate;
 
 /*!
  @abstract	Returns YES if the message is unread.

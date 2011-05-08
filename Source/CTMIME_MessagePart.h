@@ -40,5 +40,6 @@
 + (id)mimeMessagePartWithContent:(CTMIME *)mime;
 - (id)initWithContent:(CTMIME *)messageContent;
 - (void)setContent:(CTMIME *)aContent;
+- (CTMIME *)content;
 - (void)setIMFFields:(struct mailimf_fields *)imfFields;
 @end

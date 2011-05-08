@@ -77,7 +77,9 @@
 
 - (struct mailmime *)buildMIMEStruct {
 	struct mailmime *mime = mailmime_new_message_data([myMessageContent buildMIMEStruct]);
-  	mailmime_set_imf_fields(mime, myFields);
+	if (myFields != NULL) {
+		mailmime_set_imf_fields(mime, myFields);		
+	}
 	return mime;
 }
 
