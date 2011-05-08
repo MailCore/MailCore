@@ -10,6 +10,7 @@ Contributors:
 	* Kyle Van Essen - For a patch that fixes a flags memory leak
     * Gabor Cselle - For tons of contributions, especially iPhone support and bug fixes
     * Juan Leon - For adding async SMTP support
+    * Matthew R. Miller - For move message support and date utilities
 	
 Thanks to:
 
