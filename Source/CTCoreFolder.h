@@ -170,9 +170,15 @@
 */
 - (void)expunge;
 
-//TODO document me
-//Should this be by message instead of by UID?
-- (void)copyMessageWithUID:(NSString *)uid toFolderWithPath:(NSString *)path;
+/*!
+ @abstract	Copies a message to a folder
+ */
+- (void)copyMessage: (NSString *)path forMessage:(CTCoreMessage *)msg;
+
+/*!
+ @abstract	Moves a message to a folder
+ */
+- (void)moveMessage: (NSString *)path forMessage:(CTCoreMessage *)msg;
 
 /*!
 	@abstract	Returns the number of unread messages. This causes a round trip to the server, as it fetches
