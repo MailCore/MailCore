@@ -473,14 +473,61 @@ char * etpan_encode_mime_header(char * phrase)
 	return [myParsedMIME render];
 }
 
-- (NSString *)messageAsEmlx {
-    NSString *rendered = [self render];
-    return rendered;
+- (NSData *)messageAsEmlx {
+    NSString *msgContent = [[self rfc822] stringByReplacingOccurrencesOfString:@"\r\n" withString:@"\n"];
+    NSData *msgContentAsData = [msgContent dataUsingEncoding:NSUTF8StringEncoding];
+    NSMutableData *emlx = [NSMutableData data];
+    [emlx appendData:[[NSString stringWithFormat:@"%-10d\n", msgContentAsData.length] dataUsingEncoding:NSUTF8StringEncoding]];
+    [emlx appendData:msgContentAsData];
+
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    [dictionary setValue:[NSNumber numberWithInt:0] forKey:@"date-sent"];
+    [dictionary setValue:[NSNumber numberWithInt:0] forKey:@"flags"];
+    [dictionary setValue:@"" forKey:@"original-mailbox"];
+    [dictionary setValue:@"" forKey:@"remote-id"];
+    [dictionary setValue:[self subject] forKey:@"subject"];
+
+    NSError *error;
+    NSData *propertyList = [NSPropertyListSerialization dataWithPropertyList:dictionary
+                                                                      format:NSPropertyListXMLFormat_v1_0
+                                                                     options:0
+                                                                       error:&error];
+    [emlx appendData:propertyList];
+    return emlx;
+}
+
+- (NSString *)rfc822 {
+    char *result = NULL;
+    NSString *nsresult;
+    int r = mailimap_fetch_rfc822([self imapSession], [self sequenceNumber], &result);
+    if (r == 0) {
+        nsresult = [[NSString alloc] initWithCString:result encoding:NSUTF8StringEncoding];
+    } else {
+        NSLog(@"error: %d", r);
+    }
+    if (result) {
+        free(result);
+    }
+    return [nsresult autorelease];
 }
 
 
 - (struct mailmessage *)messageStruct {
 	return myMessage;
+}
+
+- (mailimap *)imapSession; {
+	struct imap_cached_session_state_data * cached_data;
+	struct imap_session_state_data * data;
+	mailsession *session = [self messageStruct]->msg_session;
+
+	if (strcasecmp(session->sess_driver->sess_name, "imap-cached") == 0) {
+    	cached_data = session->sess_data;
+    	session = cached_data->imap_ancestor;
+  	}
+
+	data = session->sess_data;
+	return data->imap_session;	
 }
 
 /*********************************** myprivates ***********************************/

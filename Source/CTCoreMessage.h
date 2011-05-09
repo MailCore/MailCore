@@ -144,7 +144,7 @@
 - (BOOL)isUnread;
 
 /*!
-	@abstract	Returns YES if the message is recent and unread.
+xb	@abstract	Returns YES if the message is recent and unread.
 */
 - (BOOL)isNew;
 
@@ -242,8 +242,10 @@
 */
 - (NSString *)render;
 
-- (NSString *)messageAsEmlx;
+- (NSData *)messageAsEmlx;
+- (NSString *)rfc822;
 
 /* Intended for advanced use only */
 - (struct mailmessage *)messageStruct;
+- (mailimap *)imapSession;
 @end
