@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailstorage_tools.c,v 1.23 2007/10/27 10:08:25 hoa Exp $
+ * $Id: mailstorage_tools.c,v 1.24 2010/04/05 13:17:48 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -76,7 +76,7 @@ static void do_exec_command(int fd, const char *command,
     char *servername, uint16_t port)
 {
   int i, maxopen;
-#ifdef SOLARIS
+#ifndef HAVE_SETENV
   char env_buffer[ENV_BUFFER_SIZE];
 #endif
   
@@ -86,7 +86,7 @@ static void do_exec_command(int fd, const char *command,
     exit(0);
   }
   
-#ifdef SOLARIS
+#ifndef HAVE_SETENV
   if (servername)
     snprintf(env_buffer, ENV_BUFFER_SIZE, "ETPANSERVER=%s", servername);
   else
@@ -99,7 +99,7 @@ static void do_exec_command(int fd, const char *command,
     unsetenv("ETPANSERVER");
 #endif
   
-#ifdef SOLARIS
+#ifndef HAVE_SETENV
   if (port)
     snprintf(env_buffer, ENV_BUFFER_SIZE, "ETPANPORT=%d", port);
   else

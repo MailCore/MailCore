@@ -1,11 +1,11 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-m4_define([maj_version], [0])
-m4_define([min_version], [58])
-m4_define([api_current], [14])
-m4_define([api_revision], [3])
-m4_define([api_compatibility], [13])
+m4_define([maj_version], [1])
+m4_define([min_version], [0])
+m4_define([api_current], [15])
+m4_define([api_revision], [0])
+m4_define([api_compatibility], [15])
 dnl API version
 dnl 1. If you have changed any of the sources for this library, the revision
 dnl    number must be incremented. This is a new revision of the current
@@ -110,7 +110,7 @@ AC_PROG_CXX
 
 # Compiler flags.
 AC_ARG_ENABLE(debug,   [  --enable-debug          setup flags (gcc) for debugging (default=no)],
-if test "x$GCC" = xyes; then
+if test "x$enable_debug" = xyes; then
   CFLAGS="$CFLAGS -O2 -g"
 fi
 CPPFLAGS="$CPPFLAGS -DDEBUG"
@@ -176,6 +176,8 @@ case "x$LIBS" in
 esac
 fi
 
+AC_CHECK_FUNC(setenv, AC_DEFINE(HAVE_SETENV, 1, [Define to use setenv]),)
+
 # Check for getopt_long; if not found, use included source.
 AC_CHECK_FUNCS([getopt_long], has_getopt_long=no, has_getopt_long=yes)
 if test "x$has_getoptlong" = "xyes"; then
@@ -220,12 +222,12 @@ if test "x$with_gnutls" != "xno"; then
   OCPPFLAGS="$CPPFLAGS"
   OLDFLAGS="$LDFLAGS"
   if test "x$with_gnutls" != "xyes" ; then
-    CPPFLAGS="CRPPFLAGS -I$with_gnutls/include"
+    CPPFLAGS="CPPFLAGS -I$with_gnutls/include"
     LDFLAGS="$LDFLAGS -L$with_gnutls/lib"
   fi
   GNUTLSLIB=""
   AC_CHECK_HEADER(gnutls/gnutls.h, [
-   AC_CHECK_LIB(gnutls, gnutls_global_deinit, with_gnutls=yes, [GNUTLSLIB="-lgnutls"])
+   AC_CHECK_LIB(gnutls, gnutls_global_deinit, with_gnutls=yes, [GNUTLSLIB="-lgnutls -lgcrypt -lgpg-error -lz"])
   ])
   if test "x$with_gnutls" != "xyes"; then
    CPPFLAGS="$OCPPFLAGS"
@@ -237,7 +239,7 @@ fi
 if test "x$with_gnutls" = "xyes"; then
   AC_DEFINE([USE_GNUTLS],1, [Define to use GnuTLS])
   AC_DEFINE([USE_SSL], 1, [Define to use OpenSSL])
-  GNUTLSLIB="-lgnutls"
+  GNUTLSLIB="-lgnutls -lgcrypt -lgpg-error -lz"
 else
   GNUTLSLIB=""
 fi
@@ -383,7 +385,7 @@ dnl Look for db3 or superior with db_create call
   case "$DBVERS" in
     3)
     AC_MSG_RESULT([version 3.x or above])
-    for lib in db-4.7 db-4.6 db-4.5 db-4.4 db-4.3 db-4.2 db-4.1 db-4.0 db-4 db4 db-3.2 db-3 db3 db; do
+    for lib in db-5.1 db-5.0 db-4.8 db-4.7 db-4.6 db-4.5 db-4.4 db-4.3 db-4.2 db-4.1 db-4.0 db-4 db4 db-3.2 db-3 db3 db; do
       if test "x$DBLINKED" = "x0"; then
 dnl        AC_CHECK_LIB($lib, db_create, [DBLIB="-l$lib"; DBLINKED=1], [])
 dnl installations of libdb4 function names are defined in db.h
@@ -453,11 +455,11 @@ if test "x$enable_threads" = "xyes"; then
   for flag in "pthreads" "pthread"; do
     if test "x$checkpthread" = "xyes"; then
       AC_MSG_CHECKING([for pthread_create with -$flag])
-      OLDFLAGS="$LDFLAGS"
-      LDFLAGS="-$flag $LDFLAGS"
+      OLDLIBS="$LIBS"
+      LIBS="$LIBS -$flag"
       AC_TRY_LINK([], [pthread_create();], 
                       [pthflag=yes; checkpthread=no], 
-                      [pthflag=no; LDFLAGS="$OLDFLAGS"])
+                      [pthflag=no; LIBS="$OLDLIBS"])
       AC_MSG_RESULT($pthflag)
     fi
   done

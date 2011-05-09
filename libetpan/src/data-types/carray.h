@@ -33,7 +33,7 @@
  */
 
 /*
- * $Id: carray.h,v 1.17 2008/02/20 22:15:50 hoa Exp $
+ * $Id: carray.h,v 1.18 2010/11/16 20:46:35 hoa Exp $
  */
 
 #ifndef CARRAY_H
@@ -110,20 +110,31 @@ void      carray_set(carray * array, unsigned int indx, void * value);
 #define   carray_set(a, indx, v) do { a->array[indx]=v; } while(0)
 #endif
 
-static inline void ** carray_data(carray * array) {
+#ifndef INLINE
+#ifdef _MSC_VER
+#define INLINE __inline
+#else
+#define INLINE inline
+#endif
+#endif
+
+static INLINE void ** carray_data(carray * array)
+{
   return array->array;
 }
 
-static inline unsigned int carray_count(carray * array) {
+static INLINE unsigned int carray_count(carray * array)
+{
   return array->len;
 }
 
-static inline void * carray_get(carray * array, unsigned int indx) {
+static INLINE void * carray_get(carray * array, unsigned int indx)
+{
   return array->array[indx];
 }
 
-static inline void carray_set(carray * array,
-    unsigned int indx, void * value) {
+static INLINE void carray_set(carray * array, unsigned int indx, void * value)
+{
   array->array[indx] = value;
 }
 #endif

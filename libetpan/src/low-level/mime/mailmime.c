@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailmime.c,v 1.28 2008/02/20 22:15:52 hoa Exp $
+ * $Id: mailmime.c,v 1.29 2011/01/06 00:09:52 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -338,6 +338,16 @@ int mailmime_description_parse(const char * message, size_t length,
 				     is_text);
 }
 
+LIBETPAN_EXPORT
+int mailmime_location_parse(const char * message, size_t length,
+                            size_t * indx,
+                            char ** result)
+{
+  return mailimf_custom_string_parse(message, length,
+                                     indx, result,
+                                     is_text);
+}
+
 /*
 x  discrete-type := "text" / "image" / "audio" / "video" /
                    "application" / extension-token
@@ -448,7 +458,8 @@ x  entity-headers := [ content CRLF ]
 enum {
   FIELD_STATE_START,
   FIELD_STATE_T,
-  FIELD_STATE_D
+  FIELD_STATE_D,
+  FIELD_STATE_L
 };
 
 static int guess_field_type(char * name)
@@ -466,47 +477,59 @@ static int guess_field_type(char * name)
   state = FIELD_STATE_START;
 
   while (1) {
-
-    switch (state) {
     
-    case FIELD_STATE_START:
-      switch ((char) toupper((unsigned char) * name)) {
-      case 'T':
-	state = FIELD_STATE_T;
-	break;
-      case 'I':
-	return MAILMIME_FIELD_ID;
-      case 'D':
-	state = FIELD_STATE_D;
-	break;
-      case 'L':
-	return MAILMIME_FIELD_LANGUAGE;
-      default:
-	return MAILMIME_FIELD_NONE;
-      }
-      break;
-
-    case FIELD_STATE_T:
-      switch ((char) toupper((unsigned char) * name)) {
-      case 'Y':
-	return MAILMIME_FIELD_TYPE;
-      case 'R':
-	return MAILMIME_FIELD_TRANSFER_ENCODING;
-      default:
-	return MAILMIME_FIELD_NONE;
-      }
-      break;
-
-    case FIELD_STATE_D:
-      switch ((char) toupper((unsigned char) * name)) {
-      case 'E':
-	return MAILMIME_FIELD_DESCRIPTION;
-      case 'I':
-	return MAILMIME_FIELD_DISPOSITION;
-      default:
-	return MAILMIME_FIELD_NONE;
-      }
-      break;
+    switch (state) {
+        
+      case FIELD_STATE_START:
+        switch ((char) toupper((unsigned char) * name)) {
+          case 'T':
+            state = FIELD_STATE_T;
+            break;
+          case 'I':
+            return MAILMIME_FIELD_ID;
+          case 'D':
+            state = FIELD_STATE_D;
+            break;
+          case 'L':
+            state = FIELD_STATE_L;
+            break;
+          default:
+            return MAILMIME_FIELD_NONE;
+        }
+        break;
+        
+      case FIELD_STATE_T:
+        switch ((char) toupper((unsigned char) * name)) {
+          case 'Y':
+            return MAILMIME_FIELD_TYPE;
+          case 'R':
+            return MAILMIME_FIELD_TRANSFER_ENCODING;
+          default:
+            return MAILMIME_FIELD_NONE;
+        }
+        break;
+        
+      case FIELD_STATE_D:
+        switch ((char) toupper((unsigned char) * name)) {
+          case 'E':
+            return MAILMIME_FIELD_DESCRIPTION;
+          case 'I':
+            return MAILMIME_FIELD_DISPOSITION;
+          default:
+            return MAILMIME_FIELD_NONE;
+        }
+        break;
+        
+      case FIELD_STATE_L:
+        switch ((char) toupper((unsigned char) * name)) {
+          case 'A':
+            return MAILMIME_FIELD_LANGUAGE;
+          case 'O':
+            return MAILMIME_FIELD_LOCATION;
+          default:
+            return MAILMIME_FIELD_NONE;
+        }
+        break;
     }
     name ++;
   }
@@ -529,6 +552,7 @@ mailmime_field_parse(struct mailimf_optional_field * field,
   struct mailmime_field * mime_field;
   struct mailmime_language * language;
   struct mailmime_disposition * disposition;
+  char * location;
   int res;
   int r;
 
@@ -543,6 +567,7 @@ mailmime_field_parse(struct mailimf_optional_field * field,
   version = 0;
   disposition = NULL;
   language = NULL;
+  location = NULL;
 
   guessed_type = guess_field_type(name);
 
@@ -605,13 +630,21 @@ mailmime_field_parse(struct mailimf_optional_field * field,
       return r;
     break;
 
+  case MAILMIME_FIELD_LOCATION:
+    if (strcasecmp(name, "Content-Location") != 0)
+      return MAILIMF_ERROR_PARSE;
+    r = mailmime_location_parse(value, strlen(value), &cur_token, &location);
+    if (r != MAILIMF_NO_ERROR)
+      return r;
+    break;
+      
   default:
     return MAILIMF_ERROR_PARSE;
   }
 
   mime_field = mailmime_field_new(guessed_type, content, encoding,
 				  id, description, version, disposition,
-				  language);
+				  language, location);
   if (mime_field == NULL) {
     res = MAILIMF_ERROR_MEMORY;
     goto free;
@@ -622,6 +655,10 @@ mailmime_field_parse(struct mailimf_optional_field * field,
   return MAILIMF_NO_ERROR;
 
  free:
+  if (location != NULL)
+    mailmime_location_free(location);
+  if (language != NULL)
+    mailmime_language_free(language);
   if (content != NULL)
     mailmime_content_free(content);
   if (encoding != NULL)

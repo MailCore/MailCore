@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailmime_content.c,v 1.45 2008/02/20 22:15:52 hoa Exp $
+ * $Id: mailmime_content.c,v 1.46 2011/05/03 16:30:22 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -1606,6 +1606,11 @@ int mailmime_base64_body_parse(const char * message, size_t length,
   int res;
   int r;
   size_t written;
+
+  chunk[0] = 0;
+  chunk[1] = 0;
+  chunk[2] = 0;
+  chunk[3] = 0;
 
   cur_token = * indx;
   chunk_index = 0;

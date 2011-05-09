@@ -33,6 +33,7 @@
 
 #define ANNOTATEMORE_H
 
+#include <libetpan/libetpan-config.h>
 #include <libetpan/mailimap_extension.h>
 #include <libetpan/annotatemore_types.h>
 

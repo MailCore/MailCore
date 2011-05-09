@@ -36,7 +36,7 @@ while test $# -gt 0; do
       echo $exec_prefix
       ;;
     --version)
-      echo 0.58-dev-20100104
+      echo 1.0-dev-20110509
       ;;
     --cflags)
       if test "${prefix}/include" = "/usr/include" ; then
@@ -48,7 +48,7 @@ while test $# -gt 0; do
       ;;
     --libs)
       libdir=-L${exec_prefix}/lib
-      echo $libdir -letpan  -lcurl -lssl -lcrypto -Wl,-weak-lldap -dynamic -Os -pipe -g0 -Wno-system-headers -Wl,-search_paths_first -Wl,-weak-lgssapi_krb5 -Wl,-weak-lkrb5 -Wl,-weak-lk5crypto -Wl,-weak-lcom_err -Wl,-weak-lresolv -lssl -lcrypto -lz -lz -lexpat -lssl -lcrypto   -liconv   -lsasl2 
+      echo $libdir -letpan  -lcurl -lexpat -lssl -lcrypto   -liconv   -lsasl2 
       ;;
     *)
       echo "${usage}" 1>&2

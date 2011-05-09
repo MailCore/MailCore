@@ -10,9 +10,13 @@
 #include <process.h>
 #include <stdlib.h>
 #include <errno.h>
-#ifdef HAVE_MINGW32_SYSTEM
 #include <time.h>
+
+#ifdef HAVE_MINGW32_SYSTEM
 #include <dirent.h>
+#endif
+
+#ifdef WIN32
 #include <winsock2.h>
 #define EINPROGRESS WSAEINPROGRESS
 #endif

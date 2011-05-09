@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailmime_types.c,v 1.20 2006/06/26 11:50:27 hoa Exp $
+ * $Id: mailmime_types.c,v 1.21 2011/01/06 00:09:52 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -108,6 +108,11 @@ void mailmime_content_free(struct mailmime_content * content)
 void mailmime_description_free(char * description)
 {
   free(description);
+}
+
+void mailmime_location_free(char * location)
+{
+  free(location);
 }
 
 struct mailmime_discrete_type *
@@ -261,7 +266,8 @@ mailmime_field_new(int fld_type,
 		   char * fld_description,
 		   uint32_t fld_version,
 		   struct mailmime_disposition * fld_disposition,
-		   struct mailmime_language * fld_language)
+		   struct mailmime_language * fld_language,
+       char * fld_location)
 {
   struct mailmime_field * field;
   
@@ -291,6 +297,9 @@ mailmime_field_new(int fld_type,
     break;
   case MAILMIME_FIELD_LANGUAGE:
     field->fld_data.fld_language = fld_language;
+    break;
+  case MAILMIME_FIELD_LOCATION:
+    field->fld_data.fld_location = fld_location;
     break;
   }  
   return field;
@@ -323,6 +332,10 @@ void mailmime_field_free(struct mailmime_field * field)
     if (field->fld_data.fld_language != NULL)
       mailmime_language_free(field->fld_data.fld_language);
     break;
+  case MAILMIME_FIELD_LOCATION:
+    if (field->fld_data.fld_location != NULL)
+      mailmime_location_free(field->fld_data.fld_location);
+      break;
   }
 
   free(field);

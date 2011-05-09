@@ -1,7 +1,7 @@
 #! /bin/sh
 
 # libtool - Provide generalized library-building support services.
-# Generated automatically by config.status (libetpan) 0.58-dev-20100104
+# Generated automatically by config.status (libetpan) 1.0-dev-20110509
 # Libtool was configured on host Rickover.local:
 # NOTE: Changes made to this file will be lost: look at ltmain.sh.
 #
@@ -65,16 +65,16 @@ fast_install=needless
 
 # The host system.
 host_alias=
-host=i386-apple-darwin10.2.0
-host_os=darwin10.2.0
+host=i386-apple-darwin10.7.0
+host_os=darwin10.7.0
 
 # The build system.
 build_alias=
-build=i386-apple-darwin10.2.0
-build_os=darwin10.2.0
+build=i386-apple-darwin10.7.0
+build_os=darwin10.7.0
 
 # A sed program that does not truncate output.
-SED="/usr/bin/sed"
+SED="/opt/local/bin/gsed"
 
 # Sed that helps us avoid accidentally triggering echo(1) options like -n.
 Xsed="$SED -e 1s/^X//"

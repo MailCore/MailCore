@@ -33,7 +33,7 @@
  */
 
 /*
- * $Id: chash.h,v 1.15 2006/03/22 08:10:47 hoa Exp $
+ * $Id: chash.h,v 1.16 2010/11/16 20:46:35 hoa Exp $
  */
 
 #ifndef CHASH_H
@@ -153,22 +153,31 @@ LIBETPAN_EXPORT
 void chash_value(chashiter * iter, chashdatum * result);
 
 #else
-static inline unsigned int chash_size(chash * hash)
+
+#ifndef INLINE
+#ifdef _MSC_VER
+#define INLINE __inline
+#else
+#define INLINE inline
+#endif
+#endif
+
+static INLINE unsigned int chash_size(chash * hash)
 {
   return hash->size;
 }
 
-static inline unsigned int chash_count(chash * hash)
+static INLINE unsigned int chash_count(chash * hash)
 {
   return hash->count;
 }
 
-static inline void chash_key(chashiter * iter, chashdatum * result)
+static INLINE void chash_key(chashiter * iter, chashdatum * result)
 {
   * result = iter->key;
 }
 
-static inline void chash_value(chashiter * iter, chashdatum * result)
+static INLINE void chash_value(chashiter * iter, chashdatum * result)
 {
   * result = iter->value;
 }

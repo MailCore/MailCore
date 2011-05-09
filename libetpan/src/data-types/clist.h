@@ -33,7 +33,7 @@
  */
 
 /*
- * $Id: clist.h,v 1.12 2008/02/20 22:15:50 hoa Exp $
+ * $Id: clist.h,v 1.13 2011/05/09 21:49:46 hoa Exp $
  */
 
 #ifndef CLIST_H
@@ -101,15 +101,15 @@ int         clist_prepend(clist *, void *);
 /* Inserts this data pointer at the end of the list */
 int         clist_append(clist *, void *);
 #else
-#define     clist_isempty(lst)             ((lst->first==lst->last) && (lst->last==NULL))
-#define     clist_count(lst)               (lst->count)
-#define     clist_begin(lst)               (lst->first)
-#define     clist_end(lst)                 (lst->last)
-#define     clist_next(iter)               (iter ? iter->next : NULL)
-#define     clist_previous(iter)           (iter ? iter->previous : NULL)
-#define     clist_content(iter)            (iter ? iter->data : NULL)
-#define     clist_prepend(lst, data)  (clist_insert_before(lst, lst->first, data))
-#define     clist_append(lst, data)   (clist_insert_after(lst, lst->last, data))
+#define     clist_isempty(lst)             (((lst)->first==(lst)->last) && ((lst)->last==NULL))
+#define     clist_count(lst)               ((lst)->count)
+#define     clist_begin(lst)               ((lst)->first)
+#define     clist_end(lst)                 ((lst)->last)
+#define     clist_next(iter)               (iter ? (iter)->next : NULL)
+#define     clist_previous(iter)           (iter ? (iter)->previous : NULL)
+#define     clist_content(iter)            (iter ? (iter)->data : NULL)
+#define     clist_prepend(lst, data)  (clist_insert_before(lst, (lst)->first, data))
+#define     clist_append(lst, data)   (clist_insert_after(lst, (lst)->last, data))
 #endif
 
 /* Inserts this data pointer before the element pointed by the iterator */

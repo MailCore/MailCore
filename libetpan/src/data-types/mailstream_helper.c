@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailstream_helper.c,v 1.18 2008/02/20 22:15:50 hoa Exp $
+ * $Id: mailstream_helper.c,v 1.19 2010/11/28 17:01:26 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -345,11 +345,13 @@ static inline ssize_t send_data_line(mailstream * s,
   return -1;
 }
 
-static inline int send_data_crlf(mailstream * s, const char * message,
-    size_t size,
-    int quoted,
-    size_t progr_rate,
-    progress_function * progr_fun)
+static inline int send_data_crlf_progress(mailstream * s, const char * message,
+                                          size_t size,
+                                          int quoted,
+                                          size_t progr_rate,
+                                          progress_function * progr_fun,
+                                          mailprogress_function * progr_context_fun,
+                                          void * context)
 {
   const char * current;
   size_t count;
@@ -378,12 +380,18 @@ static inline int send_data_crlf(mailstream * s, const char * message,
     current += length;
 
     count += length;
-    if ((progr_rate != 0) && (progr_fun != NULL))
+    if (progr_rate != 0) {
       if (count - last >= progr_rate) {
-	(* progr_fun)(count, size);
-	last = count;
+        if (progr_fun != NULL) {
+          (* progr_fun)(count, size);
+        }
+        if (progr_context_fun != NULL) {
+          (* progr_context_fun)(count, size, context);
+        }
+        last = count;
       }
-
+    }
+    
     remaining -= length;
   }
   
@@ -391,6 +399,28 @@ static inline int send_data_crlf(mailstream * s, const char * message,
   
  err:
   return -1;
+}
+
+static inline int send_data_crlf(mailstream * s, const char * message,
+                                 size_t size,
+                                 int quoted,
+                                 size_t progr_rate,
+                                 progress_function * progr_fun)
+{
+  return send_data_crlf_progress(s, message, size, quoted,
+                                 progr_rate, progr_fun,
+                                 NULL, NULL);
+}
+
+static inline int send_data_crlf_with_context(mailstream * s, const char * message,
+                                              size_t size,
+                                              int quoted,
+                                              mailprogress_function * progr_fun,
+                                              void * context)
+{
+  return send_data_crlf_progress(s, message, size, quoted,
+                                 4096, NULL,
+                                 progr_fun, context);
 }
 
 int mailstream_send_data_crlf(mailstream * s, const char * message,
@@ -401,24 +431,57 @@ int mailstream_send_data_crlf(mailstream * s, const char * message,
   return send_data_crlf(s, message, size, 0, progr_rate, progr_fun);
 }
 
+int mailstream_send_data_crlf_with_context(mailstream * s, const char * message,
+                                           size_t size,
+                                           mailprogress_function * progr_fun,
+                                           void * context)
+{
+  return send_data_crlf_with_context(s, message, size, 0, progr_fun, context);
+}
+
+static inline int mailstream_send_data_progress(mailstream * s, const char * message,
+                                                size_t size,
+                                                size_t progr_rate,
+                                                progress_function * progr_fun,
+                                                mailprogress_function * progr_ctx_fun,
+                                                void * context)
+{
+  if (send_data_crlf_progress(s, message, size, 1, progr_rate, progr_fun,
+                              progr_ctx_fun, context) == -1)
+    goto err;
+  
+  if (mailstream_write(s, "\r\n.\r\n", 5) == -1)
+    goto err;
+  
+  if (mailstream_flush(s) == -1)
+    goto err;
+  
+  return 0;
+  
+err:
+  return -1;
+}
+
 int mailstream_send_data(mailstream * s, const char * message,
 			 size_t size,
 			 size_t progr_rate,
 			 progress_function * progr_fun)
 {
-  if (send_data_crlf(s, message, size, 1, progr_rate, progr_fun) == -1)
-    goto err;
-  
-  if (mailstream_write(s, "\r\n.\r\n", 5) == -1)
-    goto err;
+  return mailstream_send_data_progress(s, message,
+                                       size,
+                                       progr_rate, progr_fun,
+                                       NULL, NULL);
+}
 
-  if (mailstream_flush(s) == -1)
-    goto err;
-
-  return 0;
-
- err:
-  return -1;
+int mailstream_send_data_with_context(mailstream * s, const char * message,
+                                      size_t size,
+                                      mailprogress_function * progr_fun,
+                                      void * context)
+{
+  return mailstream_send_data_progress(s, message,
+                                       size,
+                                       4096, NULL,
+                                       progr_fun, context);
 }
 
 static inline ssize_t get_data_size(const char * line, size_t length,

@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailmime_types.h,v 1.32 2006/05/22 13:39:42 hoa Exp $
+ * $Id: mailmime_types.h,v 1.33 2011/01/06 00:09:52 hoa Exp $
  */
 
 #ifndef MAILMIME_TYPES_H
@@ -94,7 +94,8 @@ enum {
   MAILMIME_FIELD_DESCRIPTION,
   MAILMIME_FIELD_VERSION,
   MAILMIME_FIELD_DISPOSITION,
-  MAILMIME_FIELD_LANGUAGE
+  MAILMIME_FIELD_LANGUAGE,
+  MAILMIME_FIELD_LOCATION
 };
 
 struct mailmime_field {
@@ -107,6 +108,7 @@ struct mailmime_field {
     uint32_t fld_version;
     struct mailmime_disposition * fld_disposition;
     struct mailmime_language * fld_language;
+    char * fld_location;
   } fld_data;
 };
 
@@ -171,6 +173,9 @@ void mailmime_content_free(struct mailmime_content * content);
 
 LIBETPAN_EXPORT
 void mailmime_description_free(char * description);
+
+LIBETPAN_EXPORT
+void mailmime_location_free(char * location);
 
 LIBETPAN_EXPORT
 struct mailmime_discrete_type *
@@ -246,7 +251,8 @@ mailmime_field_new(int fld_type,
 		   char * fld_description,
 		   uint32_t fld_version,
 		   struct mailmime_disposition * fld_disposition,
-		   struct mailmime_language * fld_language);
+		   struct mailmime_language * fld_language,
+       char * fld_location);
 
 LIBETPAN_EXPORT
 void mailmime_field_free(struct mailmime_field * field);
@@ -486,6 +492,7 @@ struct mailmime_single_fields {
   char * fld_disposition_read_date;
   size_t fld_disposition_size;
   struct mailmime_language * fld_language;
+  char * fld_location;
 };
 
 #ifdef __cplusplus

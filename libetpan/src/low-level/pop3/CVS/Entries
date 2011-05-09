@@ -1,12 +1,12 @@
-/.cvsignore/1.1/Wed Dec 16 19:49:11 2009//
-/Makefile.am/1.1/Wed Dec 16 19:49:11 2009//
-/mailpop3.c/1.32/Wed Dec 16 19:49:11 2009//
-/mailpop3.h/1.18/Wed Dec 16 19:49:11 2009//
-/mailpop3_helper.c/1.11/Wed Dec 16 19:49:11 2009//
-/mailpop3_helper.h/1.9/Wed Dec 16 19:49:11 2009//
-/mailpop3_socket.c/1.16/Sat Dec 19 01:45:44 2009//
-/mailpop3_socket.h/1.16/Wed Dec 16 19:49:11 2009//
-/mailpop3_ssl.c/1.17/Sat Dec 19 01:45:44 2009//
-/mailpop3_ssl.h/1.17/Wed Dec 16 19:49:11 2009//
-/mailpop3_types.h/1.19/Wed Dec 16 19:49:11 2009//
+/.cvsignore/1.1/Fri Nov 12 00:02:15 2004//
+/Makefile.am/1.1/Sun Jul 15 23:45:53 2007//
+/mailpop3.c/1.36/Fri Mar 11 21:49:36 2011//
+/mailpop3.h/1.19/Mon Apr  5 12:56:44 2010//
+/mailpop3_helper.c/1.11/Wed Feb 20 22:15:53 2008//
+/mailpop3_helper.h/1.9/Wed Feb 20 22:15:53 2008//
+/mailpop3_socket.c/1.16/Sat Dec 19 00:57:31 2009//
+/mailpop3_socket.h/1.16/Tue Dec 26 13:13:24 2006//
+/mailpop3_ssl.c/1.17/Sat Dec 19 00:57:31 2009//
+/mailpop3_ssl.h/1.17/Tue Dec 26 13:13:24 2006//
+/mailpop3_types.h/1.19/Wed Dec 13 18:31:33 2006//
 D

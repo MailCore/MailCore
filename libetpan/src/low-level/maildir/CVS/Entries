@@ -1,6 +1,6 @@
-/.cvsignore/1.1/Wed Dec 16 19:49:11 2009//
-/Makefile.am/1.1/Wed Dec 16 19:49:11 2009//
-/maildir.c/1.19/Wed Dec 16 19:49:11 2009//
-/maildir.h/1.5/Wed Dec 16 19:49:11 2009//
-/maildir_types.h/1.9/Wed Dec 16 19:49:11 2009//
+/.cvsignore/1.1/Fri Nov 12 00:02:11 2004//
+/Makefile.am/1.1/Sun Jul 15 23:45:51 2007//
+/maildir.c/1.19/Sun Feb 17 13:13:29 2008//
+/maildir.h/1.5/Sun Nov 21 21:53:38 2004//
+/maildir_types.h/1.9/Mon May 22 13:39:42 2006//
 D

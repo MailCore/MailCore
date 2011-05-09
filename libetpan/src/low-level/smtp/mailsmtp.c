@@ -32,7 +32,7 @@
  */
 
 /*
- * $Id: mailsmtp.c,v 1.33 2009/12/19 01:19:05 hoa Exp $
+ * $Id: mailsmtp.c,v 1.41 2011/03/11 21:49:36 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -120,6 +120,10 @@ mailsmtp * mailsmtp_new(size_t progr_rate,
   session->smtp_sasl.sasl_conn = NULL;
 #endif
   
+  session->smtp_max_msg_size = 0;
+  session->smtp_progress_fun = NULL;
+  session->smtp_progress_context = NULL;
+
   return session;
 
  free_line_buffer:
@@ -148,6 +152,7 @@ void mailsmtp_free(mailsmtp * session)
 }
 
 static int send_command(mailsmtp * f, char * command);
+static int send_command_private(mailsmtp * f, char * command, int can_be_published);
 
 static int read_response(mailsmtp * session);
 
@@ -392,40 +397,95 @@ int mailesmtp_parse_ehlo(mailsmtp * session)
      AUTH <mechanisms...>
   */
   while (response != NULL) {
-    if (!strncasecmp(response, "EXPN", 4) && isdelim(response[4])) 
+    if (!strncasecmp(response, "EXPN", 4) && isdelim(response[4])) {
       session->esmtp |= MAILSMTP_ESMTP_EXPN;
-    else if (!strncasecmp(response, "ETRN", 4) && isdelim(response[4]))
+    }
+    else if (!strncasecmp(response, "ETRN", 4) && isdelim(response[4])) {
       session->esmtp |= MAILSMTP_ESMTP_ETRN;
-    else if (!strncasecmp(response, "DSN", 3) && isdelim(response[3]))
+    }
+    else if (!strncasecmp(response, "DSN", 3) && isdelim(response[3])) {
       session->esmtp |= MAILSMTP_ESMTP_DSN;
-    else if (!strncasecmp(response, "8BITMIME", 8) && isdelim(response[8]))
+    }
+    else if (!strncasecmp(response, "8BITMIME", 8) && isdelim(response[8])) {
       session->esmtp |= MAILSMTP_ESMTP_8BITMIME;
-    else if (!strncasecmp(response, "STARTTLS", 8) && isdelim(response[8]))
+    }
+    else if (!strncasecmp(response, "STARTTLS", 8) && isdelim(response[8])) {
       session->esmtp |= MAILSMTP_ESMTP_STARTTLS;
+    }
     else if (!strncasecmp(response, "SIZE", 4) && isdelim(response[4])) {
       session->esmtp |= MAILSMTP_ESMTP_SIZE;
+      session->smtp_max_msg_size = strtoul(response + 4, NULL, 10);
       /* TODO: grab optionnal max size */
-    } else if (!strncasecmp(response, "AUTH ", 5)) {
+    }
+    else if (!strncasecmp(response, "AUTH ", 5)) {
       response += 5;       /* remove "AUTH " */
       while (response[0] != '\n' && response[0] != '\0') {
-	while (response[0] == ' ') response++;
-	if (strncasecmp(response, "LOGIN", 5) == 0) {
-	  session->auth |= MAILSMTP_AUTH_LOGIN;
-	  response += 5;
-	} else if (strncasecmp(response, "CRAM-MD5", 8) == 0) {
-	  session->auth |= MAILSMTP_AUTH_CRAM_MD5;
-	  response += 8;
-	} else if (strncasecmp(response, "PLAIN", 5) == 0) {
-	  session->auth |= MAILSMTP_AUTH_PLAIN;
-	  response += 5;
-	} else if (strncasecmp(response, "DIGEST-MD5", 10) == 0) {
-	  session->auth |= MAILSMTP_AUTH_DIGEST_MD5;
-	  response += 10;
-	} else {
-	  /* unknown auth method - jump to next word or eol */
-	  while (!isdelim(response[0]) || response[0] == '\r')
-	    response++;
-	}
+        while (response[0] == ' ') response++;
+        if (strncasecmp(response, "LOGIN", 5) == 0) {
+          session->auth |= MAILSMTP_AUTH_LOGIN;
+          response += 5;
+        } else if (strncasecmp(response, "CRAM-MD5", 8) == 0) {
+          session->auth |= MAILSMTP_AUTH_CRAM_MD5;
+          response += 8;
+        } else if (strncasecmp(response, "PLAIN", 5) == 0) {
+          session->auth |= MAILSMTP_AUTH_PLAIN;
+          response += 5;
+        } else if (strncasecmp(response, "DIGEST-MD5", 10) == 0) {
+          session->auth |= MAILSMTP_AUTH_DIGEST_MD5;
+          response += 10;
+        } else if (strncasecmp(response, "GSSAPI", 6) == 0) {
+          session->auth |= MAILSMTP_AUTH_GSSAPI;
+          response += 6;
+        } else if (strncasecmp(response, "SRP", 3) == 0) {
+          session->auth |= MAILSMTP_AUTH_SRP;
+          response += 3;
+        } else if (strncasecmp(response, "NTLM", 4) == 0) {
+          session->auth |= MAILSMTP_AUTH_NTLM;
+          response += 4;
+        } else if (strncasecmp(response, "KERBEROS_V4", 11) == 0) {
+          session->auth |= MAILSMTP_AUTH_KERBEROS_V4;
+          response += 11;
+        } else {
+          /* unknown auth method - jump to next word or eol */
+          while (!isdelim(response[0]) || response[0] == '\r')
+            response++;
+        }
+      }
+    }
+    // for broken servers
+    else if (!strncasecmp(response, "AUTH=", 5)) {
+      response += 5;       /* remove "AUTH=" */
+      while (response[0] != '\n' && response[0] != '\0') {
+        while (response[0] == ' ') response++;
+        if (strncasecmp(response, "LOGIN", 5) == 0) {
+          session->auth |= MAILSMTP_AUTH_LOGIN;
+          response += 5;
+        } else if (strncasecmp(response, "CRAM-MD5", 8) == 0) {
+          session->auth |= MAILSMTP_AUTH_CRAM_MD5;
+          response += 8;
+        } else if (strncasecmp(response, "PLAIN", 5) == 0) {
+          session->auth |= MAILSMTP_AUTH_PLAIN;
+          response += 5;
+        } else if (strncasecmp(response, "DIGEST-MD5", 10) == 0) {
+          session->auth |= MAILSMTP_AUTH_DIGEST_MD5;
+          response += 10;
+        } else if (strncasecmp(response, "GSSAPI", 6) == 0) {
+          session->auth |= MAILSMTP_AUTH_GSSAPI;
+          response += 6;
+        } else if (strncasecmp(response, "SRP", 3) == 0) {
+          session->auth |= MAILSMTP_AUTH_SRP;
+          response += 3;
+        } else if (strncasecmp(response, "NTLM", 4) == 0) {
+          session->auth |= MAILSMTP_AUTH_NTLM;
+          response += 4;
+        } else if (strncasecmp(response, "KERBEROS_V4", 11) == 0) {
+          session->auth |= MAILSMTP_AUTH_KERBEROS_V4;
+          response += 11;
+        } else {
+          /* unknown auth method - jump to next word or eol */
+          while (!isdelim(response[0]) || response[0] == '\r')
+            response++;
+        }
       }
     }
     response = strpbrk(response, "\n");
@@ -476,32 +536,39 @@ int mailesmtp_ehlo(mailsmtp * session)
   envid can be NULL
 */
 
-
 int mailesmtp_mail(mailsmtp * session,
 		    const char * from,
 		    int return_full,
 		    const char * envid)
 {
+	return mailesmtp_mail_size(session, from, return_full, envid, 0);
+}
+
+int mailesmtp_mail_size(mailsmtp * session,
+		    const char * from,
+		    int return_full,
+		    const char * envid, size_t size)
+{
   int r;
   char command[SMTP_STRING_SIZE];
-  char *body = "";
+  char ret_param[SMTP_STRING_SIZE];
+  char envid_param[SMTP_STRING_SIZE];
+  char size_param[SMTP_STRING_SIZE];
 
-#ifdef notyet
-  /* TODO: figure out a way for the user to explicity enable this or not */
-  if (session->esmtp & MAILSMTP_ESMTP_8BITMIME)
-    body = " BODY=8BITMIME";
-#endif
-  
+  ret_param[0] = 0;
+  envid_param[0] = 0;
+  size_param[0] = 0;
   if (session->esmtp & MAILSMTP_ESMTP_DSN) {
-    if (envid)
-      snprintf(command, SMTP_STRING_SIZE, "MAIL FROM:<%s> RET=%s ENVID=%s%s\r\n",
-	       from, return_full ? "FULL" : "HDRS", envid, body);
-    else
-      snprintf(command, SMTP_STRING_SIZE, "MAIL FROM:<%s> RET=%s%s\r\n",
-	       from, return_full ? "FULL" : "HDRS", body);
-  } else
-    snprintf(command, SMTP_STRING_SIZE, "MAIL FROM:<%s>%s\r\n",
-	     from, body);
+    snprintf(ret_param, SMTP_STRING_SIZE, " RET=%s", return_full ? "FULL" : "HDRS");
+    if (envid != NULL) {
+      snprintf(envid_param, SMTP_STRING_SIZE, " ENVID=%s", envid);
+    }
+  }
+  if (((session->esmtp & MAILSMTP_ESMTP_SIZE) != 0) && (size != 0)) {
+	snprintf(size_param, SMTP_STRING_SIZE, " SIZE=%lu", (unsigned long) size);
+  }
+  snprintf(command, SMTP_STRING_SIZE, "MAIL FROM:<%s>%s%s%s\r\n",
+    from, ret_param, envid_param, size_param);
 
   r = send_command(session, command);
   if (r == -1)
@@ -626,6 +693,8 @@ int auth_map_errors(int err)
     return MAILSMTP_ERROR_AUTH_TEMPORARY_FAILTURE;
   case 501:
     return MAILSMTP_ERROR_AUTH_LOGIN;
+  case 503:
+    return MAILSMTP_ERROR_BAD_SEQUENCE_OF_COMMAND;
   case 504:
     return MAILSMTP_ERROR_AUTH_NOT_SUPPORTED;
   case 530:
@@ -697,7 +766,6 @@ int mailsmtp_auth_type(mailsmtp * session,
     const char * user, const char * pass, int type)
 {
   int err;
-  char command[SMTP_STRING_SIZE];
   char hostname[SMTP_STRING_SIZE];
   
   err = gethostname(hostname, sizeof(hostname));
@@ -712,19 +780,6 @@ int mailsmtp_auth_type(mailsmtp * session,
   
   switch (type) {
   case MAILSMTP_AUTH_LOGIN:
-#if 0
-    {
-      snprintf(command, SMTP_STRING_SIZE, "AUTH LOGIN\r\n");
-      err = send_command(session, command);
-      if (err == -1) return MAILSMTP_ERROR_STREAM;
-      
-      err = read_response(session);
-      err = auth_map_errors(err);
-      if (err != MAILSMTP_NO_ERROR) return err;
-      
-      return mailsmtp_auth_login(session, user, pass);
-    }
-#endif
     return mailesmtp_auth_sasl(session, "LOGIN",
         hostname, NULL, NULL, user, user, pass, NULL);
     
@@ -843,11 +898,16 @@ static int read_response(mailsmtp * session)
 
 
 
-
 static int send_command(mailsmtp * f, char * command)
+{
+  return send_command_private(f, command, 1);
+}
+
+static int send_command_private(mailsmtp * f, char * command, int can_be_published)
 {
   ssize_t r;
 
+  mailstream_set_privacy(f->stream, can_be_published);
   r = mailstream_write(f->stream, command, strlen(command));
   if (r == -1)
     return -1;
@@ -861,9 +921,16 @@ static int send_command(mailsmtp * f, char * command)
 
 static int send_data(mailsmtp * session, const char * message, size_t size)
 {
-  if (mailstream_send_data(session->stream, message, size,
-			   session->progr_rate, session->progr_fun) == -1)
-    return -1;
+  if (session->smtp_progress_fun != NULL) {
+    if (mailstream_send_data_with_context(session->stream, message, size,
+                             session->smtp_progress_fun, session->smtp_progress_context) == -1)
+      return -1;
+  }
+  else {
+    if (mailstream_send_data(session->stream, message, size,
+                             session->progr_rate, session->progr_fun) == -1)
+      return -1;
+  }
 
   if (mailstream_flush(session->stream) == -1)
     return -1;
@@ -1083,7 +1150,7 @@ int mailesmtp_auth_sasl(mailsmtp * session, const char * auth_type,
     snprintf(command, SMTP_STRING_SIZE, "AUTH %s\r\n", auth_type);
   }
   
-  r = send_command(session, command);
+  r = send_command_private(session, command, 0);
   if (r == -1) {
     res = MAILSMTP_ERROR_STREAM;
     goto free_sasl_conn;
@@ -1095,6 +1162,10 @@ int mailesmtp_auth_sasl(mailsmtp * session, const char * auth_type,
     case 220:
     case 235:
       res = MAILSMTP_NO_ERROR;
+      goto free_sasl_conn;
+        
+    case 535:
+      res = MAILSMTP_ERROR_AUTH_LOGIN;
       goto free_sasl_conn;
       
     case 334:
@@ -1221,4 +1292,12 @@ int mailsmtp_reset(mailsmtp * session)
     return MAILSMTP_ERROR_STREAM;
   
   return MAILSMTP_NO_ERROR;
+}
+
+void mailsmtp_set_progress_callback(mailsmtp * session,
+                                    mailprogress_function * progr_fun,
+                                    void * context)
+{
+  session->smtp_progress_fun = progr_fun;
+  session->smtp_progress_context = context;
 }

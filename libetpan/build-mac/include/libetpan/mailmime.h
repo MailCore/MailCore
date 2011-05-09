@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailmime.h,v 1.17 2008/02/20 22:15:52 hoa Exp $
+ * $Id: mailmime.h,v 1.18 2011/01/06 00:09:52 hoa Exp $
  */
 
 #ifndef MAILMIME_H
@@ -61,6 +61,11 @@ int mailmime_description_parse(const char * message, size_t length,
 			       size_t * indx,
 			       char ** result);
 
+LIBETPAN_EXPORT
+int mailmime_location_parse(const char * message, size_t length,
+                            size_t * indx,
+                            char ** result);
+  
 LIBETPAN_EXPORT
 int mailmime_encoding_parse(const char * message, size_t length,
 			    size_t * indx,

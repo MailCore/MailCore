@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailmime_disposition.c,v 1.16 2009/09/06 00:34:44 hoa Exp $
+ * $Id: mailmime_disposition.c,v 1.17 2011/05/03 16:30:22 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -409,15 +409,15 @@ mailmime_disposition_parm_parse(const char * message, size_t length,
 
  free:
   if (filename != NULL)
-    mailmime_filename_parm_free(dsp_parm->pa_data.pa_filename);
+    mailmime_filename_parm_free(filename);
   if (creation_date != NULL)
-    mailmime_creation_date_parm_free(dsp_parm->pa_data.pa_creation_date);
+    mailmime_creation_date_parm_free(creation_date);
   if (modification_date != NULL)
-    mailmime_modification_date_parm_free(dsp_parm->pa_data.pa_modification_date);
+    mailmime_modification_date_parm_free(modification_date);
   if (read_date != NULL)
-    mailmime_read_date_parm_free(dsp_parm->pa_data.pa_read_date);
+    mailmime_read_date_parm_free(read_date);
   if (parameter != NULL)
-    mailmime_parameter_free(dsp_parm->pa_data.pa_parameter);
+    mailmime_parameter_free(parameter);
  err:
   return res;
 }

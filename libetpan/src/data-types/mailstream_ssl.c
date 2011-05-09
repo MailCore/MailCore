@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailstream_ssl.c,v 1.72 2009/12/19 00:57:31 hoa Exp $
+ * $Id: mailstream_ssl.c,v 1.75 2011/04/15 09:21:49 hoa Exp $
  */
 
 /*
@@ -150,7 +150,7 @@ static int openssl_init_done = 0;
 
 void mailstream_ssl_init_lock(void)
 {
-#if !defined (HAVE_PTHREAD_H) && defined (WIN32)
+#if !defined (HAVE_PTHREAD_H) && defined (WIN32) && defined (USE_SSL)
   InitializeCriticalSection(&ssl_lock);
 #endif
 }
@@ -527,7 +527,7 @@ static void  ssl_data_close(struct mailstream_ssl_data * ssl_data)
   SSL_CTX_free(ssl_data->ssl_ctx);
   ssl_data->ssl_ctx  = NULL;
 #ifdef WIN32
-  closesocket(socket_data->fd);
+  closesocket(ssl_data->fd);
 #else
   close(ssl_data->fd);
 #endif
@@ -655,7 +655,7 @@ static int wait_read(mailstream_low * s)
   if (fd > max_fd)
     max_fd = fd;
   r = select(max_fd + 1, &fds_read, NULL, NULL, &timeout);
-  if (r == 0)
+  if (r <= 0)
     return -1;
   
   cancelled = (FD_ISSET(fd, &fds_read));
@@ -790,7 +790,7 @@ static int wait_write(mailstream_low * s)
     max_fd = fd;
   
   r = select(max_fd + 1, &fds_read, &fds_write, NULL, &timeout);
-  if (r == 0)
+  if (r <= 0)
     return -1;
   
   cancelled = FD_ISSET(fd, &fds_read);

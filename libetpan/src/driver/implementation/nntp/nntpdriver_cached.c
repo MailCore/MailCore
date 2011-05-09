@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: nntpdriver_cached.c,v 1.56 2008/02/17 13:13:27 hoa Exp $
+ * $Id: nntpdriver_cached.c,v 1.57 2010/04/05 14:21:35 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -805,7 +805,7 @@ static void write_article_seq(mailsession * session,
 	mmap_string_free(mmapstr);
       }
 	  
-      maillock_write_unlock(seq_filename, fd);
+      r = maillock_write_unlock(seq_filename, fd);
     }
     fclose(f);
   }

@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailsmtp_helper.c,v 1.14 2006/06/26 11:50:28 hoa Exp $
+ * $Id: mailsmtp_helper.c,v 1.17 2010/11/28 17:01:26 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -73,7 +73,15 @@ int mailesmtp_send(mailsmtp * session,
   if (!session->esmtp)
     return mailsmtp_send(session, from, addresses, message, size);
 
-  r = mailesmtp_mail(session, from, return_full, envid);
+  if ((session->esmtp & MAILSMTP_ESMTP_SIZE) != 0) {
+    if (session->smtp_max_msg_size != 0) {
+      if (size > session->smtp_max_msg_size) {
+        return MAILSMTP_ERROR_EXCEED_STORAGE_ALLOCATION;
+      }
+    }
+  }
+
+  r = mailesmtp_mail_size(session, from, return_full, envid, size);
   if (r != MAILSMTP_NO_ERROR)
     return r;
 

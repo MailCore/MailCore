@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailstream_types.h,v 1.14 2006/12/22 18:45:44 hoa Exp $
+ * $Id: mailstream_types.h,v 1.17 2011/04/19 12:22:17 hoa Exp $
  */
 
 #ifndef MAILSTREAM_TYPES_H
@@ -80,9 +80,13 @@ typedef struct mailstream_low_driver mailstream_low_driver;
 struct _mailstream_low {
   void * data;
   mailstream_low_driver * driver;
+  int privacy;
+	char * identifier;
 };
 
 typedef void progress_function(size_t current, size_t maximum);
+
+typedef void mailprogress_function(size_t current, size_t maximum, void * context);
 
 #ifdef __cplusplus
 }

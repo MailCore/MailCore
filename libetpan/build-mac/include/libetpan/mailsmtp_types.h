@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailsmtp_types.h,v 1.17 2006/12/13 18:31:33 hoa Exp $
+ * $Id: mailsmtp_types.h,v 1.20 2011/02/28 22:40:02 hoa Exp $
  */
 
 #ifndef MAILSMTP_TYPES_H
@@ -81,7 +81,11 @@ enum {
   MAILSMTP_AUTH_CRAM_MD5 = 2,
   MAILSMTP_AUTH_PLAIN = 4,
   MAILSMTP_AUTH_LOGIN = 8,
-  MAILSMTP_AUTH_DIGEST_MD5 = 16
+  MAILSMTP_AUTH_DIGEST_MD5 = 16,
+  MAILSMTP_AUTH_GSSAPI = 32,
+  MAILSMTP_AUTH_SRP = 64,
+  MAILSMTP_AUTH_NTLM = 128,
+  MAILSMTP_AUTH_KERBEROS_V4 = 256,
 };
 
 enum {
@@ -117,6 +121,11 @@ struct mailsmtp {
     const char * sasl_realm;
     void * sasl_secret;
   } smtp_sasl;
+
+  size_t smtp_max_msg_size;
+
+  mailprogress_function * smtp_progress_fun;
+  void * smtp_progress_context;
 };
 
 typedef struct mailsmtp mailsmtp;

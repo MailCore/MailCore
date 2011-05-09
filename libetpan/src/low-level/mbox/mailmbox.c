@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailmbox.c,v 1.47 2008/02/20 22:35:48 hoa Exp $
+ * $Id: mailmbox.c,v 1.48 2010/04/05 14:21:36 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -694,7 +694,7 @@ mailmbox_append_message_list_no_lock(struct mailmbox_folder * folder,
 
   r = mailmbox_map(folder);
   if (r < 0) {
-    ftruncate(folder->mb_fd, old_size);
+    r = ftruncate(folder->mb_fd, old_size);
     return MAILMBOX_ERROR_FILE;
   }
 
@@ -1313,8 +1313,6 @@ static int copy_to_old_file(char * source_filename,
   
   return MAILMBOX_NO_ERROR;
   
- unmap_dest:
-  munmap(dest, size);
  close_dest:
   close(source_fd);
  unmap_source:

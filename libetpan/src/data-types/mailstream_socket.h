@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailstream_socket.h,v 1.10 2006/12/22 18:45:44 hoa Exp $
+ * $Id: mailstream_socket.h,v 1.12 2011/04/15 10:43:31 hoa Exp $
  */
 
 #ifndef MAILSTREAM_SOCKET_H
@@ -48,6 +48,7 @@ extern "C" {
 extern mailstream_low_driver * mailstream_socket_driver;
 
 mailstream_low * mailstream_low_socket_open(int fd);
+void mailstream_socket_set_use_read(mailstream * stream, int use_read);
 mailstream * mailstream_socket_open(int fd);
 
 #ifdef __cplusplus

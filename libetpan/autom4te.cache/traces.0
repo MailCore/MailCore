@@ -2094,7 +2094,7 @@ m4trace:configure.ac:30: -1- _AM_SUBST_NOTMAKE([am__isrc])
 m4trace:configure.ac:30: -1- m4_pattern_allow([^CYGPATH_W$])
 m4trace:configure.ac:30: -1- _AM_SET_OPTIONS([])
 m4trace:configure.ac:30: -1- _m4_warn([obsolete], [The macro `AC_FOREACH' is obsolete.
-You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~193/SRC/autoconf/lib/autoconf/general.m4:198: AC_FOREACH is expanded from...
+You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~401/SRC/autoconf/lib/autoconf/general.m4:198: AC_FOREACH is expanded from...
 /usr/bin/../share/aclocal-1.10/options.m4:26: _AM_SET_OPTIONS is expanded from...
 /usr/bin/../share/aclocal-1.10/init.m4:103: AM_INIT_AUTOMAKE is expanded from...
 configure.ac:30: the top level])
@@ -2342,78 +2342,79 @@ m4trace:configure.ac:152: -1- m4_pattern_allow([^STDC_HEADERS$])
 m4trace:configure.ac:161: -1- m4_pattern_allow([^HAVE_MMAP$])
 m4trace:configure.ac:168: -1- m4_pattern_allow([^HAVE_LIBSOCKET$])
 m4trace:configure.ac:175: -1- m4_pattern_allow([^HAVE_LIBNSL$])
-m4trace:configure.ac:182: -1- m4_pattern_allow([^HAVE_GETOPT_LONG$])
-m4trace:configure.ac:209: -1- m4_pattern_allow([^USE_SSL$])
-m4trace:configure.ac:214: -1- m4_pattern_allow([^SSLLIBS$])
-m4trace:configure.ac:238: -1- m4_pattern_allow([^USE_GNUTLS$])
-m4trace:configure.ac:239: -1- m4_pattern_allow([^USE_SSL$])
-m4trace:configure.ac:244: -1- m4_pattern_allow([^GNUTLSLIB$])
-m4trace:configure.ac:274: -1- _m4_warn([obsolete], [The macro `AC_TRY_COMPILE' is obsolete.
-You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~193/SRC/autoconf/lib/autoconf/general.m4:2368: AC_TRY_COMPILE is expanded from...
-configure.ac:274: the top level])
-m4trace:configure.ac:282: -1- _m4_warn([obsolete], [The macro `AC_TRY_COMPILE' is obsolete.
-You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~193/SRC/autoconf/lib/autoconf/general.m4:2368: AC_TRY_COMPILE is expanded from...
-configure.ac:282: the top level])
-m4trace:configure.ac:300: -1- _m4_warn([obsolete], [The macro `AC_TRY_LINK' is obsolete.
-You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~193/SRC/autoconf/lib/autoconf/general.m4:2415: AC_TRY_LINK is expanded from...
-configure.ac:300: the top level])
-m4trace:configure.ac:311: -1- _m4_warn([obsolete], [The macro `AC_TRY_LINK' is obsolete.
-You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~193/SRC/autoconf/lib/autoconf/general.m4:2415: AC_TRY_LINK is expanded from...
-configure.ac:311: the top level])
-m4trace:configure.ac:326: -1- m4_pattern_allow([^HAVE_ICONV$])
-m4trace:configure.ac:332: -1- m4_pattern_allow([^HAVE_ICONV_PROTO_CONST$])
-m4trace:configure.ac:335: -1- m4_pattern_allow([^LIBICONV$])
-m4trace:configure.ac:363: -1- _m4_warn([obsolete], [The macro `AC_TRY_COMPILE' is obsolete.
-You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~193/SRC/autoconf/lib/autoconf/general.m4:2368: AC_TRY_COMPILE is expanded from...
-configure.ac:363: the top level])
-m4trace:configure.ac:372: -1- _m4_warn([obsolete], [The macro `AC_TRY_COMPILE' is obsolete.
-You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~193/SRC/autoconf/lib/autoconf/general.m4:2368: AC_TRY_COMPILE is expanded from...
-configure.ac:372: the top level])
-m4trace:configure.ac:397: -1- _m4_warn([obsolete], [The macro `AC_TRY_LINK' is obsolete.
-You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~193/SRC/autoconf/lib/autoconf/general.m4:2415: AC_TRY_LINK is expanded from...
-configure.ac:397: the top level])
-m4trace:configure.ac:435: -1- m4_pattern_allow([^DBVERS$])
-m4trace:configure.ac:436: -1- m4_pattern_allow([^DBLIB$])
-m4trace:configure.ac:450: -1- _m4_warn([obsolete], [The macro `AC_TRY_LINK' is obsolete.
-You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~193/SRC/autoconf/lib/autoconf/general.m4:2415: AC_TRY_LINK is expanded from...
-configure.ac:450: the top level])
-m4trace:configure.ac:460: -1- _m4_warn([obsolete], [The macro `AC_TRY_LINK' is obsolete.
-You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~193/SRC/autoconf/lib/autoconf/general.m4:2415: AC_TRY_LINK is expanded from...
-configure.ac:460: the top level])
-m4trace:configure.ac:479: -1- m4_pattern_allow([^LIBETPAN_REENTRANT$])
-m4trace:configure.ac:486: -1- m4_pattern_allow([^LIBSUFFIX$])
-m4trace:configure.ac:487: -1- m4_pattern_allow([^REENTRANT$])
-m4trace:configure.ac:495: -1- m4_pattern_allow([^HAVE_LIBLOCKFILE$])
-m4trace:configure.ac:499: -1- m4_pattern_allow([^LIBETPAN_VERSION_MAJOR$])
-m4trace:configure.ac:501: -1- m4_pattern_allow([^LIBETPAN_VERSION_MINOR$])
-m4trace:configure.ac:502: -1- m4_pattern_allow([^VERSION_MAJOR$])
-m4trace:configure.ac:503: -1- m4_pattern_allow([^VERSION_MINOR$])
-m4trace:configure.ac:525: -1- m4_pattern_allow([^USE_SASL$])
-m4trace:configure.ac:531: -1- m4_pattern_allow([^SASLLIBS$])
-m4trace:configure.ac:535: -2- _m4_warn([obsolete], [The macro `AC_HELP_STRING' is obsolete.
-You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~193/SRC/autoconf/lib/autoconf/general.m4:209: AC_HELP_STRING is expanded from...
-configure.ac:535: the top level])
-m4trace:configure.ac:545: -1- _m4_warn([obsolete], [The macro `AC_TRY_COMPILE' is obsolete.
-You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~193/SRC/autoconf/lib/autoconf/general.m4:2368: AC_TRY_COMPILE is expanded from...
-configure.ac:545: the top level])
-m4trace:configure.ac:553: -1- m4_pattern_allow([^HAVE_IPV6$])
-m4trace:configure.ac:560: -1- _m4_warn([obsolete], [The macro `AC_TRY_LINK' is obsolete.
-You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~193/SRC/autoconf/lib/autoconf/general.m4:2415: AC_TRY_LINK is expanded from...
-configure.ac:560: the top level])
-m4trace:configure.ac:572: -1- m4_pattern_allow([^libcurlconfig$])
-m4trace:configure.ac:580: -1- _m4_warn([obsolete], [The macro `AC_TRY_LINK' is obsolete.
-You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~193/SRC/autoconf/lib/autoconf/general.m4:2415: AC_TRY_LINK is expanded from...
-configure.ac:580: the top level])
-m4trace:configure.ac:602: -1- m4_pattern_allow([^HAVE_CURL$])
-m4trace:configure.ac:612: -1- _m4_warn([obsolete], [The macro `AC_TRY_LINK' is obsolete.
-You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~193/SRC/autoconf/lib/autoconf/general.m4:2415: AC_TRY_LINK is expanded from...
-configure.ac:612: the top level])
-m4trace:configure.ac:620: -1- m4_pattern_allow([^HAVE_EXPAT$])
-m4trace:configure.ac:627: -1- m4_pattern_allow([^LIBETPAN_VERSION$])
-m4trace:configure.ac:628: -1- m4_pattern_allow([^VERSION$])
-m4trace:configure.ac:684: -1- m4_pattern_allow([^cfg_files$])
-m4trace:configure.ac:686: -1- m4_pattern_allow([^LIB@&t@OBJS$])
-m4trace:configure.ac:686: -1- m4_pattern_allow([^LTLIBOBJS$])
-m4trace:configure.ac:686: -1- _AC_AM_CONFIG_HEADER_HOOK([$ac_file])
-m4trace:configure.ac:686: -1- _AM_OUTPUT_DEPENDENCY_COMMANDS
-m4trace:configure.ac:686: -1- _LT_PROG_LTMAIN
+m4trace:configure.ac:179: -2- m4_pattern_allow([^HAVE_SETENV$])
+m4trace:configure.ac:184: -1- m4_pattern_allow([^HAVE_GETOPT_LONG$])
+m4trace:configure.ac:211: -1- m4_pattern_allow([^USE_SSL$])
+m4trace:configure.ac:216: -1- m4_pattern_allow([^SSLLIBS$])
+m4trace:configure.ac:240: -1- m4_pattern_allow([^USE_GNUTLS$])
+m4trace:configure.ac:241: -1- m4_pattern_allow([^USE_SSL$])
+m4trace:configure.ac:246: -1- m4_pattern_allow([^GNUTLSLIB$])
+m4trace:configure.ac:276: -1- _m4_warn([obsolete], [The macro `AC_TRY_COMPILE' is obsolete.
+You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~401/SRC/autoconf/lib/autoconf/general.m4:2368: AC_TRY_COMPILE is expanded from...
+configure.ac:276: the top level])
+m4trace:configure.ac:284: -1- _m4_warn([obsolete], [The macro `AC_TRY_COMPILE' is obsolete.
+You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~401/SRC/autoconf/lib/autoconf/general.m4:2368: AC_TRY_COMPILE is expanded from...
+configure.ac:284: the top level])
+m4trace:configure.ac:302: -1- _m4_warn([obsolete], [The macro `AC_TRY_LINK' is obsolete.
+You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~401/SRC/autoconf/lib/autoconf/general.m4:2415: AC_TRY_LINK is expanded from...
+configure.ac:302: the top level])
+m4trace:configure.ac:313: -1- _m4_warn([obsolete], [The macro `AC_TRY_LINK' is obsolete.
+You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~401/SRC/autoconf/lib/autoconf/general.m4:2415: AC_TRY_LINK is expanded from...
+configure.ac:313: the top level])
+m4trace:configure.ac:328: -1- m4_pattern_allow([^HAVE_ICONV$])
+m4trace:configure.ac:334: -1- m4_pattern_allow([^HAVE_ICONV_PROTO_CONST$])
+m4trace:configure.ac:337: -1- m4_pattern_allow([^LIBICONV$])
+m4trace:configure.ac:365: -1- _m4_warn([obsolete], [The macro `AC_TRY_COMPILE' is obsolete.
+You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~401/SRC/autoconf/lib/autoconf/general.m4:2368: AC_TRY_COMPILE is expanded from...
+configure.ac:365: the top level])
+m4trace:configure.ac:374: -1- _m4_warn([obsolete], [The macro `AC_TRY_COMPILE' is obsolete.
+You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~401/SRC/autoconf/lib/autoconf/general.m4:2368: AC_TRY_COMPILE is expanded from...
+configure.ac:374: the top level])
+m4trace:configure.ac:399: -1- _m4_warn([obsolete], [The macro `AC_TRY_LINK' is obsolete.
+You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~401/SRC/autoconf/lib/autoconf/general.m4:2415: AC_TRY_LINK is expanded from...
+configure.ac:399: the top level])
+m4trace:configure.ac:437: -1- m4_pattern_allow([^DBVERS$])
+m4trace:configure.ac:438: -1- m4_pattern_allow([^DBLIB$])
+m4trace:configure.ac:452: -1- _m4_warn([obsolete], [The macro `AC_TRY_LINK' is obsolete.
+You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~401/SRC/autoconf/lib/autoconf/general.m4:2415: AC_TRY_LINK is expanded from...
+configure.ac:452: the top level])
+m4trace:configure.ac:462: -1- _m4_warn([obsolete], [The macro `AC_TRY_LINK' is obsolete.
+You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~401/SRC/autoconf/lib/autoconf/general.m4:2415: AC_TRY_LINK is expanded from...
+configure.ac:462: the top level])
+m4trace:configure.ac:481: -1- m4_pattern_allow([^LIBETPAN_REENTRANT$])
+m4trace:configure.ac:488: -1- m4_pattern_allow([^LIBSUFFIX$])
+m4trace:configure.ac:489: -1- m4_pattern_allow([^REENTRANT$])
+m4trace:configure.ac:497: -1- m4_pattern_allow([^HAVE_LIBLOCKFILE$])
+m4trace:configure.ac:501: -1- m4_pattern_allow([^LIBETPAN_VERSION_MAJOR$])
+m4trace:configure.ac:503: -1- m4_pattern_allow([^LIBETPAN_VERSION_MINOR$])
+m4trace:configure.ac:504: -1- m4_pattern_allow([^VERSION_MAJOR$])
+m4trace:configure.ac:505: -1- m4_pattern_allow([^VERSION_MINOR$])
+m4trace:configure.ac:527: -1- m4_pattern_allow([^USE_SASL$])
+m4trace:configure.ac:533: -1- m4_pattern_allow([^SASLLIBS$])
+m4trace:configure.ac:537: -2- _m4_warn([obsolete], [The macro `AC_HELP_STRING' is obsolete.
+You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~401/SRC/autoconf/lib/autoconf/general.m4:209: AC_HELP_STRING is expanded from...
+configure.ac:537: the top level])
+m4trace:configure.ac:547: -1- _m4_warn([obsolete], [The macro `AC_TRY_COMPILE' is obsolete.
+You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~401/SRC/autoconf/lib/autoconf/general.m4:2368: AC_TRY_COMPILE is expanded from...
+configure.ac:547: the top level])
+m4trace:configure.ac:555: -1- m4_pattern_allow([^HAVE_IPV6$])
+m4trace:configure.ac:562: -1- _m4_warn([obsolete], [The macro `AC_TRY_LINK' is obsolete.
+You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~401/SRC/autoconf/lib/autoconf/general.m4:2415: AC_TRY_LINK is expanded from...
+configure.ac:562: the top level])
+m4trace:configure.ac:574: -1- m4_pattern_allow([^libcurlconfig$])
+m4trace:configure.ac:582: -1- _m4_warn([obsolete], [The macro `AC_TRY_LINK' is obsolete.
+You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~401/SRC/autoconf/lib/autoconf/general.m4:2415: AC_TRY_LINK is expanded from...
+configure.ac:582: the top level])
+m4trace:configure.ac:604: -1- m4_pattern_allow([^HAVE_CURL$])
+m4trace:configure.ac:614: -1- _m4_warn([obsolete], [The macro `AC_TRY_LINK' is obsolete.
+You should run autoupdate.], [/var/tmp/autoconf/autoconf-15~401/SRC/autoconf/lib/autoconf/general.m4:2415: AC_TRY_LINK is expanded from...
+configure.ac:614: the top level])
+m4trace:configure.ac:622: -1- m4_pattern_allow([^HAVE_EXPAT$])
+m4trace:configure.ac:629: -1- m4_pattern_allow([^LIBETPAN_VERSION$])
+m4trace:configure.ac:630: -1- m4_pattern_allow([^VERSION$])
+m4trace:configure.ac:686: -1- m4_pattern_allow([^cfg_files$])
+m4trace:configure.ac:688: -1- m4_pattern_allow([^LIB@&t@OBJS$])
+m4trace:configure.ac:688: -1- m4_pattern_allow([^LTLIBOBJS$])
+m4trace:configure.ac:688: -1- _AC_AM_CONFIG_HEADER_HOOK([$ac_file])
+m4trace:configure.ac:688: -1- _AM_OUTPUT_DEPENDENCY_COMMANDS
+m4trace:configure.ac:688: -1- _LT_PROG_LTMAIN

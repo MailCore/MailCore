@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailimap.h,v 1.20 2007/05/26 12:16:01 hoa Exp $
+ * $Id: mailimap.h,v 1.23 2011/03/29 23:59:05 hoa Exp $
  */
 
 #ifndef MAILIMAP_H
@@ -52,6 +52,9 @@ extern "C" {
 #include <libetpan/annotatemore.h>
 #include <libetpan/uidplus.h>
 #include <libetpan/idle.h>
+#include <libetpan/quota.h>
+#include <libetpan/namespace.h>
+#include <libetpan/xlist.h>
 
 /*
   mailimap_connect()
@@ -651,6 +654,12 @@ char * mailimap_read_line(mailimap * session);
 
 int mailimap_parse_response(mailimap * session,
     struct mailimap_response ** result);
+
+LIBETPAN_EXPORT
+void mailimap_set_progress_callback(mailimap * session,
+                                    mailprogress_function * body_progr_fun,
+                                    mailprogress_function * items_progr_fun,
+                                    void * context);
 
 #ifdef __cplusplus
 }

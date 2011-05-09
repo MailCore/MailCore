@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailmime_decode.c,v 1.34 2008/02/20 22:15:52 hoa Exp $
+ * $Id: mailmime_decode.c,v 1.37 2010/11/16 20:52:28 hoa Exp $
  */
 
 /*
@@ -84,13 +84,14 @@ static int mailmime_etoken_parse(const char * message, size_t length,
 
 static int
 mailmime_non_encoded_word_parse(const char * message, size_t length,
-				size_t * indx,
-				char ** result);
+                                size_t * indx,
+                                char ** result, int * p_has_fwd);
 
 static int
 mailmime_encoded_word_parse(const char * message, size_t length,
-			    size_t * indx,
-			    struct mailmime_encoded_word ** result);
+                            size_t * indx,
+                            struct mailmime_encoded_word ** result,
+                            int * p_has_fwd);
      
 
 enum {
@@ -114,62 +115,63 @@ int mailmime_encoded_phrase_parse(const char * default_fromcode,
   char * str;
   char * wordutf8;
   int type;
-
+  
   cur_token = * indx;
-
+  
   gphrase = mmap_string_new("");
   if (gphrase == NULL) {
     res = MAILIMF_ERROR_MEMORY;
     goto err;
   }
-
+  
   first = TRUE;
-
+  
   type = TYPE_ERROR; /* XXX - removes a gcc warning */
-
+  
   while (1) {
-
+    int has_fwd;
+    
     word = NULL;
-    r = mailmime_encoded_word_parse(message, length, &cur_token, &word);
+    r = mailmime_encoded_word_parse(message, length, &cur_token, &word, &has_fwd);
     if (r == MAILIMF_NO_ERROR) {
-      if (!first) {
-	if (type != TYPE_ENCODED_WORD) {
-	  if (mmap_string_append_c(gphrase, ' ') == NULL) {
-	    mailmime_encoded_word_free(word);
-	    res = MAILIMF_ERROR_MEMORY;
-	    goto free;
-	  }
-	}
+      if ((!first) && has_fwd) {
+        if (type != TYPE_ENCODED_WORD) {
+          if (mmap_string_append_c(gphrase, ' ') == NULL) {
+            mailmime_encoded_word_free(word);
+            res = MAILIMF_ERROR_MEMORY;
+            goto free;
+          }
+        }
       }
       type = TYPE_ENCODED_WORD;
       wordutf8 = NULL;
       r = charconv(tocode, word->wd_charset, word->wd_text,
-          strlen(word->wd_text), &wordutf8);
+                   strlen(word->wd_text), &wordutf8);
       switch (r) {
-      case MAIL_CHARCONV_ERROR_MEMORY:
-	mailmime_encoded_word_free(word);
-	res = MAILIMF_ERROR_MEMORY;
-	goto free;
-
-      case MAIL_CHARCONV_ERROR_UNKNOWN_CHARSET:
-        r = charconv(tocode, "iso-8859-1", word->wd_text,
-            strlen(word->wd_text), &wordutf8);
-        break;
-      case MAIL_CHARCONV_ERROR_CONV:
-	mailmime_encoded_word_free(word);
-	res = MAILIMF_ERROR_PARSE;
-	goto free;
+        case MAIL_CHARCONV_ERROR_MEMORY:
+          mailmime_encoded_word_free(word);
+          res = MAILIMF_ERROR_MEMORY;
+          goto free;
+          
+        case MAIL_CHARCONV_ERROR_UNKNOWN_CHARSET:
+          r = charconv(tocode, "iso-8859-1", word->wd_text,
+                       strlen(word->wd_text), &wordutf8);
+          break;
+        case MAIL_CHARCONV_ERROR_CONV:
+          mailmime_encoded_word_free(word);
+          res = MAILIMF_ERROR_PARSE;
+          goto free;
       }
-
+      
       switch (r) {
-      case MAIL_CHARCONV_ERROR_MEMORY:
-	mailmime_encoded_word_free(word);
-	res = MAILIMF_ERROR_MEMORY;
-	goto free;
-      case MAIL_CHARCONV_ERROR_CONV:
-	mailmime_encoded_word_free(word);
-	res = MAILIMF_ERROR_PARSE;
-	goto free;
+        case MAIL_CHARCONV_ERROR_MEMORY:
+          mailmime_encoded_word_free(word);
+          res = MAILIMF_ERROR_MEMORY;
+          goto free;
+        case MAIL_CHARCONV_ERROR_CONV:
+          mailmime_encoded_word_free(word);
+          res = MAILIMF_ERROR_PARSE;
+          goto free;
       }
       
       if (wordutf8 != NULL) {
@@ -191,38 +193,38 @@ int mailmime_encoded_phrase_parse(const char * default_fromcode,
       res = r;
       goto free;
     }
-
+    
     if (r == MAILIMF_ERROR_PARSE) {
       char * raw_word;
-
+      
       raw_word = NULL;
       r = mailmime_non_encoded_word_parse(message, length,
-					  &cur_token, &raw_word);
+                                          &cur_token, &raw_word, &has_fwd);
       if (r == MAILIMF_NO_ERROR) {
-	if (!first) {
-	  if (mmap_string_append_c(gphrase, ' ') == NULL) {
-	    free(raw_word);
-	    res = MAILIMF_ERROR_MEMORY;
-	    goto free;
-	  }
-	}
-	type = TYPE_WORD;
+        if ((!first) && has_fwd) {
+          if (mmap_string_append_c(gphrase, ' ') == NULL) {
+            free(raw_word);
+            res = MAILIMF_ERROR_MEMORY;
+            goto free;
+          }
+        }
+        type = TYPE_WORD;
         
         wordutf8 = NULL;
         r = charconv(tocode, default_fromcode, raw_word,
-            strlen(raw_word), &wordutf8);
+                     strlen(raw_word), &wordutf8);
         
         switch (r) {
-        case MAIL_CHARCONV_ERROR_MEMORY:
-          free(raw_word);
-          res = MAILIMF_ERROR_MEMORY;
-          goto free;
-          
-        case MAIL_CHARCONV_ERROR_UNKNOWN_CHARSET:
-        case MAIL_CHARCONV_ERROR_CONV:
-          free(raw_word);
-          res = MAILIMF_ERROR_PARSE;
-          goto free;
+          case MAIL_CHARCONV_ERROR_MEMORY:
+            free(raw_word);
+            res = MAILIMF_ERROR_MEMORY;
+            goto free;
+            
+          case MAIL_CHARCONV_ERROR_UNKNOWN_CHARSET:
+          case MAIL_CHARCONV_ERROR_CONV:
+            free(raw_word);
+            res = MAILIMF_ERROR_PARSE;
+            goto free;
         }
         
         if (mmap_string_append(gphrase, wordutf8) == NULL) {
@@ -233,8 +235,8 @@ int mailmime_encoded_phrase_parse(const char * default_fromcode,
         }
         
         free(wordutf8);
-	free(raw_word);
-	first = FALSE;
+        free(raw_word);
+        first = FALSE;
       }
       else if (r == MAILIMF_ERROR_PARSE) {
         r = mailimf_fws_parse(message, length, &cur_token);
@@ -246,45 +248,45 @@ int mailmime_encoded_phrase_parse(const char * default_fromcode,
           res = MAILIMF_ERROR_MEMORY;
           goto free;
         }
-	first = FALSE;
+        first = FALSE;
         break;
       }
       else {
-	res = r;
-	goto free;
+        res = r;
+        goto free;
       }
     }
   }
-
+  
   if (first) {
     if (cur_token != length) {
       res = MAILIMF_ERROR_PARSE;
       goto free;
     }
   }
-
+  
   str = strdup(gphrase->str);
   if (str == NULL) {
     res = MAILIMF_ERROR_MEMORY;
     goto free;
   }
   mmap_string_free(gphrase);
-
+  
   * result = str;
   * indx = cur_token;
-
+  
   return MAILIMF_NO_ERROR;
-
- free:
+  
+free:
   mmap_string_free(gphrase);
- err:
+err:
   return res;
 }
 
 static int
 mailmime_non_encoded_word_parse(const char * message, size_t length,
-				size_t * indx,
-				char ** result)
+                                size_t * indx,
+                                char ** result, int * p_has_fwd)
 {
   int end;
   size_t cur_token;
@@ -292,10 +294,16 @@ mailmime_non_encoded_word_parse(const char * message, size_t length,
   char * text;
   int r;
   size_t begin;
+  int state;
+  int has_fwd;
 
   cur_token = * indx;
 
+  has_fwd = 0;
   r = mailimf_fws_parse(message, length, &cur_token);
+  if (r == MAILIMF_NO_ERROR) {
+    has_fwd = 1;
+  }
   if ((r != MAILIMF_NO_ERROR) && (r != MAILIMF_ERROR_PARSE)) {
     res = r;
     goto err;
@@ -303,6 +311,7 @@ mailmime_non_encoded_word_parse(const char * message, size_t length,
 
   begin = cur_token;
 
+  state = 0;
   end = FALSE;
   while (1) {
     if (cur_token >= length)
@@ -313,8 +322,20 @@ mailmime_non_encoded_word_parse(const char * message, size_t length,
       case '\t':
       case '\r':
       case '\n':
-	end = TRUE;
-	break;
+        state = 0;
+        end = TRUE;
+		break;
+      case '=':
+        state = 1;
+        break;
+      case '?':
+        if (state == 1) {
+          cur_token --;
+          end = TRUE;
+        }
+      default:
+        state = 0;
+        break;
     }
 
     if (end)
@@ -339,6 +360,7 @@ mailmime_non_encoded_word_parse(const char * message, size_t length,
 
   * indx = cur_token;
   * result = text;
+  * p_has_fwd = has_fwd;
 
   return MAILIMF_NO_ERROR;
 
@@ -347,8 +369,9 @@ mailmime_non_encoded_word_parse(const char * message, size_t length,
 }
 
 static int mailmime_encoded_word_parse(const char * message, size_t length,
-				       size_t * indx,
-				       struct mailmime_encoded_word ** result)
+                                       size_t * indx,
+                                       struct mailmime_encoded_word ** result,
+                                       int * p_has_fwd)
 {
   size_t cur_token;
   char * charset;
@@ -362,10 +385,15 @@ static int mailmime_encoded_word_parse(const char * message, size_t length,
   int res;
   int opening_quote;
   int end;
-
+  int has_fwd;
+  
   cur_token = * indx;
-
+  
+  has_fwd = 0;
   r = mailimf_fws_parse(message, length, &cur_token);
+  if (r == MAILIMF_NO_ERROR) {
+    has_fwd = 1;
+  }
   if ((r != MAILIMF_NO_ERROR) && (r != MAILIMF_ERROR_PARSE)) {
     res = r;
     goto err;
@@ -420,13 +448,10 @@ static int mailmime_encoded_word_parse(const char * message, size_t length,
     if (end_encoding >= length)
       break;
 
-    switch (message[end_encoding]) {
-      case '?':
-#if 0
-      case ' ':
-#endif
-	end = TRUE;
-	break;
+    if (end_encoding + 1 < length) {
+      if ((message[end_encoding] == '?') && (message[end_encoding + 1] == '=')) {
+        end = TRUE;
+      }
     }
 
     if (end)
@@ -500,6 +525,7 @@ static int mailmime_encoded_word_parse(const char * message, size_t length,
 
   * result = ew;
   * indx = cur_token;
+  * p_has_fwd = has_fwd;
   
   return MAILIMF_NO_ERROR;
 
@@ -569,7 +595,9 @@ int is_etoken_char(char ch)
   case '[':
   case ']':
   case '?':
+#if 0
   case '.':
+#endif
   case '=':
     return FALSE;
   }

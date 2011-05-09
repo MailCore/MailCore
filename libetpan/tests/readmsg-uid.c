@@ -85,7 +85,15 @@ int main(int argc, char ** argv)
       continue;
     }
 
-    fwrite(data, 1, size, stdout);
+    r = fwrite(data, 1, size, stdout);
+    if (r != (int) size) {
+      printf("** failed to dump message %s on stdout\n", uid);
+      mailmessage_fetch_result_free(msg, data);
+      mailmessage_free(msg);
+      optind ++;
+      continue;
+    }
+ 
     
     mailmessage_fetch_result_free(msg, data);
 

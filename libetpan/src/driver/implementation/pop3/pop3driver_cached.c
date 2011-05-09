@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: pop3driver_cached.c,v 1.50 2009/07/23 19:46:46 hoa Exp $
+ * $Id: pop3driver_cached.c,v 1.52 2010/04/05 14:43:49 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -428,7 +428,11 @@ static int pop3driver_cached_expunge_folder(mailsession * session)
     goto close_db_flags;
   }
 
-  mailpop3_list(pop3, &msg_tab);
+  r = mailpop3_list(pop3, &msg_tab);
+  if (r != MAILPOP3_NO_ERROR) {
+    res = pop3driver_pop3_error_to_mail_error(r);
+    goto free_mmapstr;
+  }
 
   for(i = 0 ; i < carray_count(msg_tab) ; i++) {
     struct mailpop3_msg_info * pop3_info;
@@ -458,6 +462,8 @@ static int pop3driver_cached_expunge_folder(mailsession * session)
 
   return MAIL_NO_ERROR;
 
+ free_mmapstr:
+  mmap_string_free(mmapstr);
  close_db_flags:
   mail_cache_db_close_unlock(filename_flags, cache_db_flags);
  err:
@@ -505,7 +511,11 @@ static int pop3driver_cached_status_folder(mailsession * session,
     goto close_db_flags;
   }
 
-  mailpop3_list(pop3, &msg_tab);
+  r = mailpop3_list(pop3, &msg_tab);
+  if (r != MAILPOP3_NO_ERROR) {
+    res = pop3driver_pop3_error_to_mail_error(r);
+    goto free_mmapstr;
+  }
 
   for(i = 0 ; i < carray_count(msg_tab) ; i++) {
     struct mailpop3_msg_info * pop3_info;
@@ -545,6 +555,8 @@ static int pop3driver_cached_status_folder(mailsession * session,
   
   return MAIL_NO_ERROR;
 
+ free_mmapstr:
+  mmap_string_free(mmapstr);
  close_db_flags:
   mail_cache_db_close_unlock(filename_flags, cache_db_flags);
  err:

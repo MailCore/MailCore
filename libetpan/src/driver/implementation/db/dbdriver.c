@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: dbdriver.c,v 1.13 2008/02/20 22:35:47 hoa Exp $
+ * $Id: dbdriver.c,v 1.14 2010/04/05 14:21:35 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -188,71 +188,6 @@ static int flags_store_process(mailsession * session)
   
   mail_cache_db_close_unlock(data->db_filename, maildb);
   mmap_string_free(mmapstr);
-  
-  return MAIL_NO_ERROR;
-  
- free_mmapstr:
-  mmap_string_free(mmapstr);
- err:
-  return res;
-}
-
-static int db_get_next_validity(struct mail_cache_db * maildb,
-    uint32_t * p_validity)
-{
-  int r;
-  char key_value[PATH_MAX];
-  uint32_t validity;
-  void * serialized;
-  size_t serialized_len;
-  int res;
-  MMAPString * mmapstr;
-  size_t cur_token;
-  
-  mmapstr = mmap_string_new("");
-  if (mmapstr == NULL) {
-    res = MAIL_ERROR_MEMORY;
-    goto err;
-  }
-  
-  snprintf(key_value, sizeof(key_value), "next-validity");
-  
-  r = mail_cache_db_get(maildb, key_value, strlen(key_value),
-      &serialized, &serialized_len);
-  
-  if (r >= 0) {
-    if (mmap_string_append_len(mmapstr, serialized, serialized_len) == NULL) {
-      res = MAIL_ERROR_MEMORY;
-      goto err;
-    }
-    
-    cur_token = 0;
-    r = mailimf_cache_int_read(mmapstr, &cur_token, &validity);
-    if (r < 0)
-      validity = 0;
-  }
-  else {
-    validity = 0;
-  }
-  
-  mmap_string_set_size(mmapstr, 0);
-  cur_token = 0;
-  r = mailimf_cache_int_write(mmapstr, &cur_token, validity + 1);
-  if (r < 0) {
-    res = MAIL_ERROR_MEMORY;
-    goto free_mmapstr;
-  }
-  
-  r = mail_cache_db_put(maildb, key_value, strlen(key_value),
-      mmapstr->str, mmapstr->len);
-  if (r < 0) {
-    res = MAIL_ERROR_FILE;
-    goto free_mmapstr;
-  }
-  
-  mmap_string_free(mmapstr);
-  
-  * p_validity = validity;
   
   return MAIL_NO_ERROR;
   

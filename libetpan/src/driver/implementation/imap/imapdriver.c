@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: imapdriver.c,v 1.57 2007/08/08 21:33:30 hoa Exp $
+ * $Id: imapdriver.c,v 1.59 2010/04/05 14:21:35 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -449,6 +449,8 @@ static int imapdriver_select_folder(mailsession * session, const char * mb)
       return MAIL_ERROR_MEMORY;
     }
 
+    if (old_mb != NULL)
+      free(old_mb);
     get_data(session)->imap_mailbox = new_mb;
 
     return MAIL_NO_ERROR;
@@ -1113,9 +1115,6 @@ static int imapdriver_starttls(mailsession * session)
   struct mailimap_capability_data * cap_data;
   clistiter * cur;
   int starttls;
-  int fd;
-  mailstream_low * low;
-  mailstream_low * new_low;
   int capability_available;
   struct imap_session_state_data * data;
   
@@ -1159,31 +1158,6 @@ static int imapdriver_starttls(mailsession * session)
   if (!starttls)
     return MAIL_ERROR_NO_TLS;
   
-#if 0
-  r = mailimap_starttls(imap);
-
-  switch (r) {
-  case MAILIMAP_NO_ERROR:
-    break;
-  default:
-    return imap_error_to_mail_error(r);
-  }
-
-  low = mailstream_get_low(imap->imap_stream);
-  fd = mailstream_low_get_fd(low);
-  if (fd == -1)
-    return MAIL_ERROR_STREAM;
-  
-  new_low = mailstream_low_tls_open_with_callback(fd,
-      data->imap_ssl_callback, data->imap_ssl_cb_data);
-  if (new_low == NULL)
-    return MAIL_ERROR_STREAM;
-
-  mailstream_low_free(low);
-  mailstream_set_low(imap->imap_stream, new_low);
-  
-  return MAIL_NO_ERROR;
-#endif
   r = mailimap_socket_starttls(imap);
   return imap_error_to_mail_error(r);
 }

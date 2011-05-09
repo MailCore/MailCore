@@ -1,3 +1,5 @@
+/.cvsignore/1.1/Fri Nov 12 00:01:49 2004//
+/Makefile.am/1.1/Sun Jul 15 23:45:48 2007//
 D/data-message////
 D/db////
 D/feed////
@@ -9,5 +11,3 @@ D/mh////
 D/mime-message////
 D/nntp////
 D/pop3////
-/.cvsignore/1.1/Wed Dec 16 19:49:10 2009//
-/Makefile.am/1.1/Wed Dec 16 19:49:10 2009//

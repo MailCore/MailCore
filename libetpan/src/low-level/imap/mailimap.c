@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailimap.c,v 1.43 2008/02/20 22:35:48 hoa Exp $
+ * $Id: mailimap.c,v 1.49 2011/05/09 21:42:11 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -629,8 +629,15 @@ int mailimap_append(mailimap * session, const char * mailbox,
     return MAILIMAP_ERROR_APPEND;
   }
 
-  r = mailimap_literal_data_send(session->imap_stream, literal, literal_size,
-      session->imap_progr_rate, session->imap_progr_fun);
+  if (session->imap_body_progress_fun != NULL) {
+    r = mailimap_literal_data_send_with_context(session->imap_stream, literal, literal_size,
+                                                session->imap_body_progress_fun,
+                                                session->imap_progress_context);
+  }
+  else {
+    r = mailimap_literal_data_send(session->imap_stream, literal, literal_size,
+                                   session->imap_progr_rate, session->imap_progr_fun);
+  }
   if (r != MAILIMAP_NO_ERROR)
 	return r;
 
@@ -1320,7 +1327,12 @@ mailimap_fetch(mailimap * session, struct mailimap_set * set,
   * result = session->imap_response_info->rsp_fetch_list;
   session->imap_response_info->rsp_fetch_list = NULL;
 
-  error_code = response->rsp_resp_done->rsp_data.rsp_tagged->rsp_cond_state->rsp_type;
+  if (clist_count(* result) == 0) {
+    error_code = response->rsp_resp_done->rsp_data.rsp_tagged->rsp_cond_state->rsp_type;
+  }
+  else {
+    error_code = MAILIMAP_RESP_COND_STATE_OK;
+  }
 
   mailimap_response_free(response);
 
@@ -1329,6 +1341,7 @@ mailimap_fetch(mailimap * session, struct mailimap_set * set,
     return MAILIMAP_NO_ERROR;
 
   default:
+    mailimap_fetch_list_free(* result);
     return MAILIMAP_ERROR_FETCH;
   }
 }
@@ -1372,15 +1385,20 @@ mailimap_uid_fetch(mailimap * session,
     return MAILIMAP_ERROR_STREAM;
 
   r = mailimap_parse_response(session, &response);
-  
-  if (r != MAILIMAP_NO_ERROR)
+  if (r != MAILIMAP_NO_ERROR) {
     return r;
-
+  }
+  
   * result = session->imap_response_info->rsp_fetch_list;
   session->imap_response_info->rsp_fetch_list = NULL;
 
-  error_code = response->rsp_resp_done->rsp_data.rsp_tagged->rsp_cond_state->rsp_type;
-
+  if (clist_count(* result) == 0) {
+    error_code = response->rsp_resp_done->rsp_data.rsp_tagged->rsp_cond_state->rsp_type;
+  }
+  else {
+    error_code = MAILIMAP_RESP_COND_STATE_OK;
+  }
+  
   mailimap_response_free(response);
 
   switch (error_code) {
@@ -1388,6 +1406,7 @@ mailimap_uid_fetch(mailimap * session,
     return MAILIMAP_NO_ERROR;
 
   default:
+    mailimap_fetch_list_free(* result);
     return MAILIMAP_ERROR_UID_FETCH;
   }
 }
@@ -1442,18 +1461,6 @@ int mailimap_list(mailimap * session, const char * mb,
   }
 }
 
-static char* gabor_imap_login_response_1;
-static char* gabor_imap_login_response_2;
-
-LIBETPAN_EXPORT
-char* gabor_imap_login_response_1_ret() {
-	return gabor_imap_login_response_1;
-}
-
-LIBETPAN_EXPORT
-char* gabor_imap_login_response_2_ret() {
-	return gabor_imap_login_response_2;
-}
 LIBETPAN_EXPORT
 int mailimap_login(mailimap * session,
     const char * userid, const char * password)
@@ -1465,44 +1472,35 @@ int mailimap_login(mailimap * session,
   if (session->imap_state != MAILIMAP_STATE_NON_AUTHENTICATED)
     return MAILIMAP_ERROR_BAD_STATE;
 
+  mailstream_set_privacy(session->imap_stream, 0);
   r = mailimap_send_current_tag(session);
-  if (r != MAILIMAP_NO_ERROR)
+  if (r != MAILIMAP_NO_ERROR) {
+    mailstream_set_privacy(session->imap_stream, 1);
     return r;
+  }
 
   r = mailimap_login_send(session->imap_stream, userid, password);
-  if (r != MAILIMAP_NO_ERROR)
+  if (r != MAILIMAP_NO_ERROR) {
+    mailstream_set_privacy(session->imap_stream, 1);
     return r;
+  }
 
   r = mailimap_crlf_send(session->imap_stream);
-  if (r != MAILIMAP_NO_ERROR)
+  if (r != MAILIMAP_NO_ERROR) {
+    mailstream_set_privacy(session->imap_stream, 1);
     return r;
+  }
 
-  if (mailstream_flush(session->imap_stream) == -1)
+  if (mailstream_flush(session->imap_stream) == -1) {
+    mailstream_set_privacy(session->imap_stream, 1);
     return MAILIMAP_ERROR_STREAM;
+  }
+  mailstream_set_privacy(session->imap_stream, 1);
 
   if (mailimap_read_line(session) == NULL)
     return MAILIMAP_ERROR_STREAM;
 
-	if(gabor_imap_login_response_1 != NULL) {
-		free(gabor_imap_login_response_1);
-		gabor_imap_login_response_1 = NULL;
-	}
-	if(gabor_imap_login_response_2 != NULL) {
-		free(gabor_imap_login_response_2);
-		gabor_imap_login_response_2 = NULL;
-	}
-	
-	if(session->imap_response != NULL) {
-		gabor_imap_login_response_1 = malloc(strlen(session->imap_response) + 1);
-		strcpy(gabor_imap_login_response_1, session->imap_response);
-	} 
-	
   r = mailimap_parse_response(session, &response);
-	if(session->imap_response != NULL) {
-		gabor_imap_login_response_2 = malloc(strlen(session->imap_response) + 1);
-		strcpy(gabor_imap_login_response_2, session->imap_response);
-	}
-	
   if (r != MAILIMAP_NO_ERROR)
     return r;
 
@@ -1596,7 +1594,6 @@ int mailimap_authenticate(mailimap * session, const char * auth_type,
   int r;
   int error_code;
   size_t indx;
-  struct mailimap_cont_req_or_resp_data * cont_or_resp_data;
   sasl_callback_t sasl_callback[5];
   const char * sasl_out;
   unsigned sasl_out_len;
@@ -1666,6 +1663,7 @@ int mailimap_authenticate(mailimap * session, const char * auth_type,
     goto free_sasl_conn;
   }
   
+  mailstream_set_privacy(session->imap_stream, 0);
   r = mailimap_send_current_tag(session);
   if (r != MAILIMAP_NO_ERROR) {
     res = r;
@@ -1823,6 +1821,7 @@ int mailimap_authenticate(mailimap * session, const char * auth_type,
   }
   
  free_sasl_conn:
+  mailstream_set_privacy(session->imap_stream, 1);
   sasl_dispose((sasl_conn_t **) &session->imap_sasl.sasl_conn);
   session->imap_sasl.sasl_conn = NULL;
   mailsasl_unref();
@@ -2425,10 +2424,21 @@ int mailimap_parse_response(mailimap * session,
 
   session->imap_response = NULL;
 
-  r = mailimap_response_parse(session->imap_stream,
-      session->imap_stream_buffer,
-      &indx, &response,
-      session->imap_progr_rate, session->imap_progr_fun);
+  if ((session->imap_body_progress_fun != NULL) ||
+      (session->imap_items_progress_fun != NULL)) {
+    r = mailimap_response_parse_with_context(session->imap_stream,
+                                             session->imap_stream_buffer,
+                                             &indx, &response,
+                                             session->imap_body_progress_fun,
+                                             session->imap_items_progress_fun,
+                                             session->imap_progress_context);
+  }
+  else {
+    r = mailimap_response_parse(session->imap_stream,
+                                session->imap_stream_buffer,
+                                &indx, &response,
+                                session->imap_progr_rate, session->imap_progr_fun);
+  }
   if (r != MAILIMAP_NO_ERROR)
     return r;
 
@@ -2447,16 +2457,22 @@ int mailimap_parse_response(mailimap * session,
 
   session->imap_response = session->imap_response_buffer->str;
 
-  if (response->rsp_resp_done->rsp_type == MAILIMAP_RESP_DONE_TYPE_FATAL)
+  if (response->rsp_resp_done->rsp_type == MAILIMAP_RESP_DONE_TYPE_FATAL) {
+    mailimap_response_free(response);
     return MAILIMAP_ERROR_FATAL;
+  }
 
   snprintf(tag_str, 15, "%i", session->imap_tag);
-  if (strcmp(response->rsp_resp_done->rsp_data.rsp_tagged->rsp_tag, tag_str) != 0)
+  if (strcmp(response->rsp_resp_done->rsp_data.rsp_tagged->rsp_tag, tag_str) != 0) {
+    mailimap_response_free(response);
     return MAILIMAP_ERROR_PROTOCOL;
+  }
   
   if (response->rsp_resp_done->rsp_data.rsp_tagged->rsp_cond_state->rsp_type ==
-      MAILIMAP_RESP_COND_STATE_BAD)
+      MAILIMAP_RESP_COND_STATE_BAD) {
+    mailimap_response_free(response);
     return MAILIMAP_ERROR_PROTOCOL;
+  }
 
   * result = response;
 
@@ -2553,6 +2569,10 @@ mailimap * mailimap_new(size_t imap_progr_rate,
   f->imap_idle_timestamp = 0;
   f->imap_idle_maxdelay = 29 * 60; /* IMAP IDLE spec */
   
+  f->imap_body_progress_fun = NULL;
+  f->imap_items_progress_fun = NULL;
+  f->imap_progress_context = NULL;
+  
   return f;
   
  free_stream_buffer:
@@ -2587,4 +2607,15 @@ void mailimap_free(mailimap * session)
     mailimap_connection_info_free(session->imap_connection_info);
 
   free(session);
+}
+
+LIBETPAN_EXPORT
+void mailimap_set_progress_callback(mailimap * session,
+                                    mailprogress_function * body_progr_fun,
+                                    mailprogress_function * items_progr_fun,
+                                    void * context)
+{
+  session->imap_body_progress_fun = body_progr_fun;
+  session->imap_items_progress_fun = items_progr_fun;
+  session->imap_progress_context = context;
 }

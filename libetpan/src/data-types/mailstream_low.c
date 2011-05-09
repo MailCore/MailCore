@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailstream_low.c,v 1.19 2007/10/27 10:08:24 hoa Exp $
+ * $Id: mailstream_low.c,v 1.27 2011/05/04 16:09:54 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -64,10 +64,16 @@ int mailstream_debug = 0;
 LIBETPAN_EXPORT
 void (* mailstream_logger)(int direction,
     const char * str, size_t size) = NULL;
+LIBETPAN_EXPORT
+void (* mailstream_logger_id)(mailstream_low * s, int is_stream_data, int direction,
+    const char * str, size_t size) = NULL;
 
-#define STREAM_LOG_BUF(direction, buf, size) \
+#define STREAM_LOG_ERROR(low, direction, buf, size) \
   if (mailstream_debug) { \
-    if (mailstream_logger != NULL) { \
+	if (mailstream_logger_id != NULL) { \
+	  mailstream_logger_id(low, 2, direction, buf, size); \
+	} \
+    else if (mailstream_logger != NULL) { \
       mailstream_logger(direction, buf, size); \
     } \
     else { \
@@ -78,18 +84,22 @@ void (* mailstream_logger)(int direction,
       f = fopen(LOG_FILE, "a"); \
       umask(old_mask); \
       if (f != NULL) { \
+        int nmemb; \
         maillock_write_lock(LOG_FILE, fileno(f)); \
-        fwrite((buf), 1, (size), f); \
+        nmemb = fwrite((buf), 1, (size), f); \
         maillock_write_unlock(LOG_FILE, fileno(f)); \
         fclose(f); \
       } \
     } \
   }
 
-#define STREAM_LOG(direction, str) \
+#define STREAM_LOG_BUF(low, direction, buf, size) \
   if (mailstream_debug) { \
-    if (mailstream_logger != NULL) { \
-      mailstream_logger(direction, str, strlen(str) + 1); \
+	if (mailstream_logger_id != NULL) { \
+	  mailstream_logger_id(low, 1, direction, buf, size); \
+	} \
+    else if (mailstream_logger != NULL) { \
+      mailstream_logger(direction, buf, size); \
     } \
     else { \
       FILE * f; \
@@ -99,8 +109,34 @@ void (* mailstream_logger)(int direction,
       f = fopen(LOG_FILE, "a"); \
       umask(old_mask); \
       if (f != NULL) { \
+        int nmemb; \
         maillock_write_lock(LOG_FILE, fileno(f)); \
-        fputs((str), f); \
+        nmemb = fwrite((buf), 1, (size), f); \
+        maillock_write_unlock(LOG_FILE, fileno(f)); \
+        fclose(f); \
+      } \
+    } \
+  }
+
+#define STREAM_LOG(low, direction, str) \
+  if (mailstream_debug) { \
+	if (mailstream_logger_id != NULL) { \
+	  mailstream_logger_id(low, 0, direction, str, strlen(str)); \
+	} \
+    else if (mailstream_logger != NULL) { \
+      mailstream_logger(direction, str, strlen(str)); \
+    } \
+    else { \
+      FILE * f; \
+      mode_t old_mask; \
+      \
+      old_mask = umask(0077); \
+      f = fopen(LOG_FILE, "a"); \
+      umask(old_mask); \
+      if (f != NULL) { \
+        int nmemb; \
+        maillock_write_lock(LOG_FILE, fileno(f)); \
+        nmemb = fputs((str), f); \
         maillock_write_unlock(LOG_FILE, fileno(f)); \
         fclose(f); \
       } \
@@ -109,8 +145,8 @@ void (* mailstream_logger)(int direction,
 
 #else
 
-#define STREAM_LOG_BUF(direction, buf, size) do { } while (0)
-#define STREAM_LOG(direction, buf) do { } while (0)
+#define STREAM_LOG_BUF(low, direction, buf, size) do { } while (0)
+#define STREAM_LOG(low, direction, buf) do { } while (0)
 
 #endif
 
@@ -128,7 +164,9 @@ mailstream_low * mailstream_low_new(void * data,
 
   s->data = data;
   s->driver = driver;
-
+  s->privacy = 1;
+	s->identifier = NULL;
+  
   return s;
 }
 
@@ -150,6 +188,8 @@ int mailstream_low_get_fd(mailstream_low * s)
 
 void mailstream_low_free(mailstream_low * s)
 {
+	free(s->identifier);
+	s->identifier = NULL;
   s->driver->mailstream_free(s);
 }
 
@@ -163,10 +203,10 @@ ssize_t mailstream_low_read(mailstream_low * s, void * buf, size_t count)
   
 #ifdef STREAM_DEBUG
   if (r > 0) {
-    STREAM_LOG(0, "<<<<<<< read <<<<<<\n");
-    STREAM_LOG_BUF(0, buf, r);
-    STREAM_LOG(0, "\n");
-    STREAM_LOG(0, "<<<<<<< end read <<<<<<\n");
+    STREAM_LOG(s, 0, "<<<<<<< read <<<<<<\n");
+    STREAM_LOG_BUF(s, 0, buf, r);
+    STREAM_LOG(s, 0, "\n");
+    STREAM_LOG(s, 0, "<<<<<<< end read <<<<<<\n");
   }
 #endif
   
@@ -180,10 +220,15 @@ ssize_t mailstream_low_write(mailstream_low * s,
     return -1;
 
 #ifdef STREAM_DEBUG
-  STREAM_LOG(1, ">>>>>>> send >>>>>>\n");
-  STREAM_LOG_BUF(1, buf, count);
-  STREAM_LOG(1, "\n");
-  STREAM_LOG(1, ">>>>>>> end send >>>>>>\n");
+  STREAM_LOG(s, 1, ">>>>>>> send >>>>>>\n");
+  if (s->privacy) {
+    STREAM_LOG_BUF(s, 1, buf, count);
+  }
+  else {
+    STREAM_LOG_BUF(s, 2, buf, count);
+  }
+  STREAM_LOG(s, 1, "\n");
+  STREAM_LOG(s, 1, ">>>>>>> end send >>>>>>\n");
 #endif
 
   return s->driver->mailstream_write(s, buf, count);
@@ -198,4 +243,33 @@ void mailstream_low_cancel(mailstream_low * s)
     return;
   
   s->driver->mailstream_cancel(s);
+}
+
+void mailstream_low_log_error(mailstream_low * s,
+    const void * buf, size_t count)
+{
+	STREAM_LOG_ERROR(s, 0, buf, count);
+}
+
+void mailstream_low_set_privacy(mailstream_low * s, int can_be_public)
+{
+  s->privacy = can_be_public;
+}
+
+int mailstream_low_set_identifier(mailstream_low * s,
+    char * identifier)
+{
+	free(s->identifier);
+	s->identifier = NULL;
+	
+	if (identifier != NULL) {
+		s->identifier = identifier;
+  }
+
+	return 0;
+}
+
+const char * mailstream_low_get_identifier(mailstream_low * s)
+{
+	return s->identifier;
 }

@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailprivacy_gnupg.c,v 1.13 2008/02/17 13:13:27 hoa Exp $
+ * $Id: mailprivacy_gnupg.c,v 1.14 2011/05/03 16:30:22 hoa Exp $
  */
 
 /* passphrase is needed when private key is needed
@@ -1714,8 +1714,7 @@ static int collect_recipient(char * recipient, size_t size,
   * recipient = '\0';
   remaining = size;
   
-  if (fields != NULL)
-    mailimf_single_fields_init(&single_fields, fields);
+	mailimf_single_fields_init(&single_fields, fields);
   
   if (single_fields.fld_to != NULL) {
     r = recipient_add_addr_list(recipient, &remaining,

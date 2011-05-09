@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailstream.h,v 1.18 2007/01/28 16:00:18 hoa Exp $
+ * $Id: mailstream.h,v 1.21 2011/03/11 21:49:36 hoa Exp $
  */
 
 #ifndef MAILSTREAM_H
@@ -58,12 +58,19 @@ int mailstream_close(mailstream * s);
 int mailstream_flush(mailstream * s);
 ssize_t mailstream_feed_read_buffer(mailstream * s);
 
+void mailstream_log_error(mailstream * s, char * buf, size_t count);
+
 LIBETPAN_EXPORT
 mailstream_low * mailstream_get_low(mailstream * s);
 
 LIBETPAN_EXPORT
 void mailstream_set_low(mailstream * s, mailstream_low * low);
+
+LIBETPAN_EXPORT
 void mailstream_cancel(mailstream * s);
+
+LIBETPAN_EXPORT
+void mailstream_set_privacy(mailstream * s, int can_be_public);
 
 #ifdef LIBETPAN_MAILSTREAM_DEBUG
 LIBETPAN_EXPORT
@@ -73,6 +80,9 @@ extern int mailstream_debug;
 LIBETPAN_EXPORT
 extern void (* mailstream_logger)(int direction,
     const char * str, size_t size);
+LIBETPAN_EXPORT
+extern void (* mailstream_logger_id)(mailstream_low * s, int is_stream_data, int direction,
+	const char * str, size_t size);
 #endif
 
 #define LIBETPAN_MAILSTREAM_NETWORK_DELAY

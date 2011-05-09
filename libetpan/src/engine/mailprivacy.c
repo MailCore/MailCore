@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailprivacy.c,v 1.8 2007/10/27 10:08:25 hoa Exp $
+ * $Id: mailprivacy.c,v 1.9 2010/04/05 14:21:35 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -61,30 +61,6 @@ carray * mailprivacy_get_protocols(struct mailprivacy * privacy)
 static int recursive_check_privacy(struct mailprivacy * privacy,
     mailmessage * msg,
     struct mailmime * mime);
-
-static int check_tmp_dir(char * tmp_dir)
-{
-  struct stat stat_info;
-  int r;
-  
-  r = stat(tmp_dir, &stat_info);
-  if (r < 0)
-    return MAIL_ERROR_FILE;
-
-#ifndef WIN32 
-  /* check if the directory belongs to the user */
-  if (stat_info.st_uid != getuid())
-    return MAIL_ERROR_INVAL;
-#endif
-
-  if ((stat_info.st_mode & 00777) != 0700) {
-    r = chmod(tmp_dir, 0700);
-    if (r < 0)
-      return MAIL_ERROR_FILE;
-  }
-  
-  return MAIL_NO_ERROR;
-}
 
 struct mailprivacy * mailprivacy_new(char * tmp_dir, int make_alternative)
 {

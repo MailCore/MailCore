@@ -76,9 +76,7 @@ int main(int argc, char ** argv)
   int r;
   struct mailprivacy * privacy;
   struct mailmime * mime;
-  struct mailmime * encrypted_mime;
   int col;
-  clist * encryption_id_list;
   
   privacy = mailprivacy_new("/Users/hoa/tmp", 1);
   if (privacy == NULL) {
@@ -128,7 +126,6 @@ int main(int argc, char ** argv)
   
   {
     clist * id_list;
-    unsigned int i;
     clistiter * iter;
     
     id_list = mailprivacy_gnupg_encryption_id_list(privacy, msg);
@@ -144,7 +141,6 @@ int main(int argc, char ** argv)
   
   {
     clist * id_list;
-    unsigned int i;
     clistiter * iter;
     
     id_list = mailprivacy_smime_encryption_id_list(privacy, msg);

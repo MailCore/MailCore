@@ -156,7 +156,10 @@ am_libimap_la_OBJECTS = mailimap_types.lo mailimap_types_helper.lo \
 	annotatemore.lo annotatemore_parser.lo annotatemore_sender.lo \
 	annotatemore_types.lo acl.lo acl_parser.lo acl_sender.lo \
 	acl_types.lo uidplus.lo uidplus_sender.lo uidplus_types.lo \
-	uidplus_parser.lo idle.lo
+	uidplus_parser.lo idle.lo quota.lo quota_parser.lo \
+	quota_sender.lo quota_types.lo namespace.lo \
+	namespace_parser.lo namespace_sender.lo namespace_types.lo \
+	xlist.lo
 libimap_la_OBJECTS = $(am_libimap_la_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/depcomp
@@ -339,7 +342,10 @@ etpaninclude_HEADERS = \
 	annotatemore.h annotatemore_types.h \
 	acl.h acl_types.h \
 	uidplus.h uidplus_types.h \
-	idle.h
+	quota.h quota_parser.h quota_sender.h quota_types.h \
+	idle.h \
+	namespace.h namespace_parser.h namespace_sender.h namespace_types.h \
+	xlist.h
 
 AM_CPPFLAGS = -I$(top_builddir)/include \
 	-I$(top_srcdir)/src/data-types
@@ -368,7 +374,10 @@ libimap_la_SOURCES = \
 	uidplus_sender.h uidplus_sender.c \
 	uidplus_types.c \
 	uidplus_parser.h uidplus_parser.c \
-	idle.c
+	idle.c \
+	quota.c quota_parser.c quota_sender.c quota_types.c \
+	namespace.c namespace_parser.c namespace_sender.c namespace_types.c \
+	xlist.c
 
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
@@ -442,10 +451,19 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mailimap_ssl.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mailimap_types.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mailimap_types_helper.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/namespace.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/namespace_parser.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/namespace_sender.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/namespace_types.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/quota.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/quota_parser.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/quota_sender.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/quota_types.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/uidplus.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/uidplus_parser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/uidplus_sender.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/uidplus_types.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xlist.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailimap_sender.h,v 1.14 2006/10/20 00:13:30 hoa Exp $
+ * $Id: mailimap_sender.h,v 1.15 2010/11/28 17:01:26 hoa Exp $
  */
 
 #ifndef MAILIMAP_SENDER_H
@@ -154,6 +154,11 @@ int
 mailimap_literal_data_send(mailstream * fd, const char * literal, uint32_t len,
 			   size_t progr_rate,
 			   progress_function * progr_fun);
+
+int
+mailimap_literal_data_send_with_context(mailstream * fd, const char * literal, uint32_t len,
+                                        mailprogress_function * progr_fun,
+                                        void * context);
 
 int mailimap_starttls_send(mailstream * fd);
 

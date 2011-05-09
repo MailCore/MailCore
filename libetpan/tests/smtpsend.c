@@ -228,8 +228,10 @@ int send_message(char *data, size_t len, char**rcpts) {
 
 int main(int argc, char **argv) {
   struct mem_message message;
-  int indx, r;
+  int r;
 
+#if HAVE_GETOPT_LONG
+  int indx;
   static struct option long_options[] = {
     {"server",   1, 0, 's'},
     {"port",     1, 0, 'p'},
@@ -239,9 +241,15 @@ int main(int argc, char **argv) {
     {"tls",      0, 0, 'S'},
     {"no-esmtp", 0, 0, 'E'},
   };
+#endif
 
   while(1) {
-    if ((r = getopt_long(argc, argv, "s:p:u:v:f:SE", long_options, &indx)) < 0)
+#if HAVE_GETOPT_LONG
+	r = getopt_long(argc, argv, "s:p:u:v:f:SE", long_options, &indx);
+#else
+	r = getopt(argc, argv, "s:p:u:v:f:SE");
+#endif
+    if (r < 0)
       break;
     switch (r) {
     case 's':

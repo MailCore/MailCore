@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailpop3.h,v 1.18 2008/02/20 22:15:53 hoa Exp $
+ * $Id: mailpop3.h,v 1.19 2010/04/05 12:56:44 hoa Exp $
  */
 
 #ifndef MAILPOP3_H
@@ -73,7 +73,7 @@ LIBETPAN_EXPORT
 int mailpop3_pass(mailpop3 * f, const char * password);
 
 LIBETPAN_EXPORT
-void mailpop3_list(mailpop3 * f, carray ** result);
+int mailpop3_list(mailpop3 * f, carray ** result);
 
 LIBETPAN_EXPORT
 int mailpop3_retr(mailpop3 * f, unsigned int indx, char ** result,

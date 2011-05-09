@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailmime_types_helper.c,v 1.28 2008/01/14 17:13:53 hoa Exp $
+ * $Id: mailmime_types_helper.c,v 1.30 2011/04/30 17:24:21 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -169,7 +169,7 @@ mailmime_fields_new_with_data(struct mailmime_mechanism * encoding,
 
   if (encoding != NULL) {
     field = mailmime_field_new(MAILMIME_FIELD_TRANSFER_ENCODING,
-			       NULL, encoding, NULL, NULL, 0, NULL, NULL);
+			       NULL, encoding, NULL, NULL, 0, NULL, NULL, NULL);
     if (field == NULL)
       goto free;
 
@@ -183,7 +183,7 @@ mailmime_fields_new_with_data(struct mailmime_mechanism * encoding,
 
   if (id != NULL) {
     field = mailmime_field_new(MAILMIME_FIELD_ID,
-			       NULL, NULL, id, NULL, 0, NULL, NULL);
+			       NULL, NULL, id, NULL, 0, NULL, NULL, NULL);
     if (field == NULL)
       goto free;
 
@@ -197,7 +197,7 @@ mailmime_fields_new_with_data(struct mailmime_mechanism * encoding,
 
   if (description != NULL) {
     field = mailmime_field_new(MAILMIME_FIELD_DESCRIPTION,
-			       NULL, NULL, NULL, description, 0, NULL, NULL);
+			       NULL, NULL, NULL, description, 0, NULL, NULL, NULL);
     if (field == NULL)
       goto free;
 
@@ -211,7 +211,7 @@ mailmime_fields_new_with_data(struct mailmime_mechanism * encoding,
 
   if (disposition != NULL) {
     field = mailmime_field_new(MAILMIME_FIELD_DISPOSITION,
-			       NULL, NULL, NULL, NULL, 0, disposition, NULL);
+			       NULL, NULL, NULL, NULL, 0, disposition, NULL, NULL);
     if (field == NULL)
       goto free;
 
@@ -225,7 +225,7 @@ mailmime_fields_new_with_data(struct mailmime_mechanism * encoding,
 
   if (language != NULL) {
     field = mailmime_field_new(MAILMIME_FIELD_DISPOSITION,
-			       NULL, NULL, NULL, NULL, 0, NULL, language);
+			       NULL, NULL, NULL, NULL, 0, NULL, language, NULL);
     if (field == NULL)
       goto free;
 
@@ -263,7 +263,7 @@ mailmime_fields_new_with_version(struct mailmime_mechanism * encoding,
     goto err;
 
   field = mailmime_field_new(MAILMIME_FIELD_VERSION,
-			     NULL, NULL, NULL, NULL, MIME_VERSION, NULL, NULL);
+			     NULL, NULL, NULL, NULL, MIME_VERSION, NULL, NULL, NULL);
   if (field == NULL)
     goto free;
 
@@ -1054,7 +1054,7 @@ struct mailmime * mailmime_multiple_new(const char * type)
   struct mailmime_content * content;
   struct mailmime * mp;
 
-  mime_fields = mailmime_fields_new_encoding(MAILMIME_MECHANISM_8BIT);
+  mime_fields = mailmime_fields_new_empty();
   if (mime_fields == NULL)
     goto err;
   
@@ -1317,6 +1317,10 @@ void mailmime_single_fields_init(struct mailmime_single_fields * single_fields,
 
     case MAILMIME_FIELD_LANGUAGE:
       single_fields->fld_language = field->fld_data.fld_language;
+      break;
+      
+    case MAILMIME_FIELD_LOCATION:
+      single_fields->fld_location = field->fld_data.fld_location;
       break;
     }
   }

@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mmapstring.c,v 1.25 2008/02/28 14:06:27 colinleroy Exp $
+ * $Id: mmapstring.c,v 1.26 2011/03/14 22:49:16 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -149,6 +149,9 @@ int mmap_string_unref(char * str)
   chashdatum data;
   int r;
 
+  if (str == NULL)
+    return -1;
+  
   MUTEX_LOCK(&mmapstring_lock);
 
   ht = mmapstring_hashtable;

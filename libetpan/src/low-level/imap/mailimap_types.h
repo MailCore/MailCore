@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailimap_types.h,v 1.32 2007/05/25 01:31:18 hoa Exp $
+ * $Id: mailimap_types.h,v 1.34 2011/01/06 00:09:52 hoa Exp $
  */
 
 /*
@@ -662,6 +662,7 @@ struct mailimap_body_ext_1part {
   char * bd_md5;   /* can be NULL */
   struct mailimap_body_fld_dsp * bd_disposition; /* can be NULL */
   struct mailimap_body_fld_lang * bd_language;   /* can be NULL */
+  char * bd_loc; /* can be NULL */
   
   clist * bd_extension_list; /* list of (struct mailimap_body_extension *) */
                                /* can be NULL */
@@ -671,6 +672,7 @@ struct mailimap_body_ext_1part *
 mailimap_body_ext_1part_new(char * bd_md5,
 			    struct mailimap_body_fld_dsp * bd_disposition,
 			    struct mailimap_body_fld_lang * bd_language,
+          char * bd_loc,
 			    clist * bd_extension_list);
 
 
@@ -695,6 +697,7 @@ struct mailimap_body_ext_mpart {
   struct mailimap_body_fld_param * bd_parameter; /* can be NULL */
   struct mailimap_body_fld_dsp * bd_disposition; /* can be NULL */
   struct mailimap_body_fld_lang * bd_language;   /* can be NULL */
+  char * bd_loc; /* can be NULL */
   clist * bd_extension_list; /* list of (struct mailimap_body_extension *) */
                                /* can be NULL */
 };
@@ -703,6 +706,7 @@ struct mailimap_body_ext_mpart *
 mailimap_body_ext_mpart_new(struct mailimap_body_fld_param * bd_parameter,
 			    struct mailimap_body_fld_dsp * bd_disposition,
 			    struct mailimap_body_fld_lang * bd_language,
+          char * bd_loc,
 			    clist * bd_extension_list);
 
 void
@@ -3015,6 +3019,8 @@ void mailimap_body_fld_id_free(char * body_fld_id);
 
 void mailimap_body_fld_md5_free(char * body_fld_md5);
 
+void mailimap_body_fld_loc_free(char * body_fld_loc);
+
 void mailimap_env_date_free(char * date);
 
 void mailimap_env_in_reply_to_free(char * in_reply_to);
@@ -3143,6 +3149,10 @@ struct mailimap {
   
   time_t imap_idle_timestamp;
   time_t imap_idle_maxdelay;
+
+  mailprogress_function * imap_body_progress_fun;
+  mailprogress_function * imap_items_progress_fun;
+  void * imap_progress_context;
 };
 
 typedef struct mailimap mailimap;

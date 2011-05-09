@@ -309,7 +309,7 @@ int newsfeed_update(struct newsfeed * feed, time_t last_update)
   struct newsfeed_parser_context * feed_ctx;
   unsigned int res;
   unsigned int timeout_value;
-  int response_code;
+  long response_code;
   
   if (feed->feed_url == NULL) {
     res = NEWSFEED_ERROR_BADURL;
@@ -401,7 +401,7 @@ int newsfeed_update(struct newsfeed * feed, time_t last_update)
   XML_ParserFree(feed_ctx->parser);
   free(feed_ctx);
   
-  feed->feed_response_code = response_code;
+  feed->feed_response_code = (int) response_code;
   
   return NEWSFEED_NO_ERROR;;
   

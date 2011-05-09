@@ -1,11 +1,11 @@
+/Makefile.am/1.1/Sun Jul 15 23:45:48 2007//
+/README.txt/1.2/Thu Jul 12 14:33:00 2007//
+/StdAfx.h/1.2/Thu Jun  1 09:12:02 2006//
+/build_headers.bat/1.1/Wed Jun  1 09:21:01 2005//
+/build_headers.list/1.7/Thu Jul 12 14:52:47 2007//
+/libetpan-config.h/1.3/Thu Jul 12 14:31:06 2007//
+/libetpan.sln/1.3/Tue Nov 16 20:46:35 2010//
 D/libetpan////
 D/readmsg////
 D/smtpsend////
-/Makefile.am/1.1/Wed Dec 16 19:49:10 2009//
-/README.txt/1.2/Wed Dec 16 19:49:10 2009//
-/StdAfx.h/1.2/Wed Dec 16 19:49:10 2009//
-/build_headers.bat/1.1/Wed Dec 16 19:49:10 2009//
-/build_headers.list/1.7/Wed Dec 16 19:49:10 2009//
-/libetpan-config.h/1.3/Wed Dec 16 19:49:10 2009//
-/libetpan.sln/1.2/Wed Dec 16 19:49:10 2009//
-/libetpan_version.h/1.21/Wed Dec 16 19:49:10 2009//
+/libetpan_version.h/1.22/Mon May  9 22:04:24 2011//

@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailsmtp.h,v 1.21 2007/07/26 23:14:02 hoa Exp $
+ * $Id: mailsmtp.h,v 1.23 2010/11/28 17:01:26 hoa Exp $
  */
 
 #ifndef MAILSMTP_H
@@ -105,6 +105,12 @@ int mailesmtp_mail(mailsmtp * session,
 		    const char * envid);
 
 LIBETPAN_EXPORT
+int mailesmtp_mail_size(mailsmtp * session,
+		    const char * from,
+		    int return_full,
+			const char * envid, size_t size);
+
+LIBETPAN_EXPORT
 int mailesmtp_rcpt(mailsmtp * session,
 		    const char * to,
 		    int notify,
@@ -131,6 +137,11 @@ int mailsmtp_noop(mailsmtp * session);
 LIBETPAN_EXPORT
 int mailsmtp_reset(mailsmtp * session);
 
+LIBETPAN_EXPORT
+void mailsmtp_set_progress_callback(mailsmtp * session,
+                                    mailprogress_function * progr_fun,
+                                    void * context);
+   
 #ifdef __cplusplus
 }
 #endif

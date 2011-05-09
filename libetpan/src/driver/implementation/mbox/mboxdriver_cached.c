@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mboxdriver_cached.c,v 1.56 2008/02/17 13:13:26 hoa Exp $
+ * $Id: mboxdriver_cached.c,v 1.58 2010/04/05 14:43:48 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -519,7 +519,11 @@ static int write_max_uid_value(mailsession * session)
     goto free_mmapstr;
   }
 
-  fwrite(mmapstr->str, 1, mmapstr->len, f);
+  r = fwrite(mmapstr->str, 1, mmapstr->len, f);
+  if ((size_t) r != mmapstr->len) {
+    res = MAIL_ERROR_FILE;
+    goto free_mmapstr;
+  }
 
   mmap_string_free(mmapstr);
   fclose(f);

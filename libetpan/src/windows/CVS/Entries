@@ -1,9 +1,9 @@
-/Makefile.am/1.3/Wed Dec 16 19:49:11 2009//
-/dirent.c/1.1/Wed Dec 16 19:49:11 2009//
-/inet_aton.c/1.1/Wed Dec 16 19:49:11 2009//
-/misc.c/1.1/Wed Dec 16 19:49:11 2009//
-/mmap.c/1.1/Wed Dec 16 19:49:11 2009//
-/time_r.c/1.2/Wed Dec 16 19:49:11 2009//
-/win_etpan.h/1.4/Wed Dec 16 19:49:11 2009//
-/win_init.cpp/1.2/Wed Dec 16 19:49:11 2009//
+/Makefile.am/1.3/Sat Dec 15 09:28:08 2007//
+/dirent.c/1.1/Wed Jun  1 09:25:09 2005//
+/inet_aton.c/1.1/Thu Jul 12 14:47:58 2007//
+/misc.c/1.1/Wed Jun  1 09:25:09 2005//
+/mmap.c/1.1/Wed Jun  1 09:25:09 2005//
+/time_r.c/1.2/Sat Oct 27 10:08:26 2007//
+/win_etpan.h/1.5/Tue Nov 16 20:46:35 2010//
+/win_init.cpp/1.2/Sun Jan 20 14:31:54 2008//
 D

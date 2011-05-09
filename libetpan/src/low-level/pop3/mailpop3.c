@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailpop3.c,v 1.32 2008/02/20 22:15:53 hoa Exp $
+ * $Id: mailpop3.c,v 1.36 2011/03/11 21:49:36 hoa Exp $
  */
 
 /*
@@ -145,8 +145,11 @@ int mailpop3_get_msg_info(mailpop3 * f, unsigned int indx,
 {
   carray * tab;
   struct mailpop3_msg_info * info;
+  int r;
 
-  mailpop3_list(f, &tab);
+  r = mailpop3_list(f, &tab);
+  if (r != MAILPOP3_NO_ERROR)
+	return r;
   
   if (tab == NULL)
     return MAILPOP3_ERROR_BAD_STATE;
@@ -272,6 +275,7 @@ void mailpop3_free(mailpop3 * f)
 #define RESPONSE_AUTH_CONT 1
 
 static int send_command(mailpop3 * f, char * command);
+static int send_command_private(mailpop3 * f, char * command, int can_be_published);
 
 static char * read_line(mailpop3 * f);
 
@@ -467,7 +471,7 @@ int mailpop3_apop(mailpop3 * f,
   /* send apop command */
   
   snprintf(command, POP3_STRING_SIZE, "APOP %s %s\r\n", user, md5string);
-  r = send_command(f, command);
+  r = send_command_private(f, command, 0);
   if (r == -1)
     return MAILPOP3_ERROR_STREAM;
 
@@ -496,7 +500,7 @@ int mailpop3_user(mailpop3 * f, const char * user)
   /* send user command */
     
   snprintf(command, POP3_STRING_SIZE, "USER %s\r\n", user);
-  r = send_command(f, command);
+  r = send_command_private(f, command, 0);
   if (r == -1)
     return MAILPOP3_ERROR_STREAM;
 
@@ -523,7 +527,7 @@ int mailpop3_pass(mailpop3 * f, const char * password)
   /* send password command */
 
   snprintf(command, POP3_STRING_SIZE, "PASS %s\r\n", password);
-  r = send_command(f, command);
+  r = send_command_private(f, command, 0);
   if (r == -1)
     return MAILPOP3_ERROR_STREAM;
 
@@ -625,20 +629,24 @@ static int mailpop3_do_list(mailpop3 * f)
 
 
 
-static void mailpop3_list_if_needed(mailpop3 * f)
+static int mailpop3_list_if_needed(mailpop3 * f)
 {
   if (f->pop3_msg_tab == NULL)
-    mailpop3_do_list(f);
+    return mailpop3_do_list(f);
+  return MAILPOP3_NO_ERROR;
 }
 
 /*
   mailpop3_list
 */
 
-void mailpop3_list(mailpop3 * f, carray ** result)
+int mailpop3_list(mailpop3 * f, carray ** result)
 {
-  mailpop3_list_if_needed(f);
-  * result = f->pop3_msg_tab;
+  int r;
+  r = mailpop3_list_if_needed(f);
+  if (r == MAILPOP3_NO_ERROR)
+    * result = f->pop3_msg_tab;
+  return r;
 }
 
 static inline struct mailpop3_msg_info *
@@ -1034,6 +1042,7 @@ static int parse_response(mailpop3 * f, char * response)
 
 
 
+#ifdef USE_SASL
 static int parse_auth(mailpop3 * f, char * response)
 {
   char * msg;
@@ -1062,6 +1071,7 @@ static int parse_auth(mailpop3 * f, char * response)
     return parse_response(f, response);
   }
 }
+#endif
 
 
 static int read_list(mailpop3 * f, carray ** result)
@@ -1270,8 +1280,14 @@ static char * read_multiline(mailpop3 * f, size_t size,
 
 static int send_command(mailpop3 * f, char * command)
 {
+  return send_command_private(f, command, 1);
+}
+
+static int send_command_private(mailpop3 * f, char * command, int can_be_published)
+{
   ssize_t r;
 
+  mailstream_set_privacy(f->pop3_stream, can_be_published);
   r = mailstream_write(f->pop3_stream, command, strlen(command));
   if (r == -1)
     return -1;

@@ -1,3 +1,490 @@
+2010-05-09 - libetpan-1.0cvs61 - hoa
+
+	* src/data-types/clist.h
+	   fixed macro.
+
+2010-05-09 - libetpan-1.0cvs60 - hoa
+
+	* src/low-level/imap/mailimap.c
+	   fixed crash.
+
+2010-05-09 - libetpan-1.0cvs59 - hoa
+
+	* src/low-level/imap/mailimap.c
+	   fixed memory leak when fetch fails.
+
+2010-05-04 - libetpan-1.0cvs58 - hoa
+
+	* src/data-types/mailstream_low.c
+	* src/data-types/mailstream_low.h
+	   fixed API. Consistent ownership.
+
+2010-05-03 - libetpan-1.0cvs57 - hoa
+
+	* src/low-level/imap/namespace_parser.c
+	   fixed clang reports.
+
+2010-05-03 - libetpan-1.0cvs56 - hoa
+
+	* src/engine/mailprivacy_gnupg.c
+	* src/engine/mailprivacy_smime.c
+	* src/low-level/imap/acl_parser.c
+	* src/low-level/mime/mailmime_content.c
+	* src/low-level/mime/mailmime_disposition.c
+	   fixed clang reports.
+
+2010-04-30 - libetpan-1.0cvs55 - hoa
+
+	* src/low-level/mime/mailmime_types_helper.c
+	   don't use Content-Transfer-Encoding for MIME multipart.
+
+2010-04-28 - libetpan-1.0cvs54 - hoa
+
+	* src/low-level/imap/namespace_parser.c
+	   fixed namespace parser failure.
+	   workaround for Courier-IMAP.
+
+2010-04-27 - libetpan-1.0cvs53 - hoa
+
+	* src/low-level/imap/mailimap_parser.c
+	   workaround for Yandex IMAP servers.
+
+2010-04-19 - libetpan-1.0cvs52 - hoa
+
+	* src/data-types/mailstream_low.[ch]
+	* src/data-types/mailstream_types.h
+	   identifier for stream connection (useful for logging).
+
+2010-04-15 - libetpan-1.0cvs51 - hoa
+
+	* configure.ac
+	   build for debian.
+
+2010-04-15 - libetpan-1.0cvs50 - hoa
+
+	* src/data-types/mailstream_socket.[ch]
+	   fixed function name.
+
+2010-04-15 - libetpan-1.0cvs49 - hoa
+
+	* src/data-types/mailstream_socket.[ch]
+	   can be configure to use read() for debugging purpose.
+
+2010-04-15 - libetpan-1.0cvs48 - hoa
+
+	* src/data-types/mailstream_socket.c
+	* src/data-types/mailstream_ssl.c
+	   fixed error handling of select().
+
+2010-04-11 - libetpan-1.0cvs47 - hoa
+
+	* src/low-level/imap/mailimap_parser.c
+   	   workaround for Zoho Mail IMAP implementation.
+
+2010-04-06 - libetpan-1.0cvs46 - hoa
+
+	* src/low-level/imf/mailimf.c
+	   fallback when parsing Content-ID of Message-ID.
+
+2010-04-02 - libetpan-1.0cvs45 - hoa
+
+	* src/low-level/imap/mailimap_parser.c
+	   fixed a crash.
+
+2010-03-30 - libetpan-1.0cvs44 - hoa
+
+	* src/low-level/imap/mailimap_extension.c
+	* src/low-level/imap/mailimap_extension_types.h
+	* src/low-level/imap/mailimap_parser.[ch]
+	* src/low-level/imap/xlist.[ch]
+	   fixed XLIST implementation.
+
+2010-03-30 - libetpan-1.0cvs43 - hoa
+
+	* src/low-level/imap/Makefile.am
+	* src/low-level/imap/xlist.c
+  	   implemented XLIST (available on Gmail and Zimbra).
+
+2010-03-29 - libetpan-1.0cvs42 - hoa
+
+	* src/data-types/charconv.c
+  	    korean charset workaround.
+
+2010-03-25 - libetpan-1.0cvs41 - hoa
+
+	* src/low-level/imap/mailimap_parser.c
+	   workaround for Mbox Mail for Mac.
+
+2010-03-25 - libetpan-1.0cvs40 - hoa
+
+	* src/low-level/imap/mailimap_parser.c
+	   workaround for Exchange (blank lines between response).
+
+2010-03-24 - libetpan-1.0cvs39 - hoa
+
+	* src/low-level/imap/mailimap_parser.c
+	   improved workaround for Exchange servers.
+
+2010-03-24 - libetpan-1.0cvs38 - hoa
+
+	* src/low-level/imap/mailimap_parser.c
+	   workaround for Exchange servers that fails providing conformance in regards to Content-Disposition.
+
+2010-03-16 - libetpan-1.0cvs37 - hoa
+
+	* src/low-level/imap/mailimap.c
+	* src/low-level/imap/mailimap_types.c
+	   fixed memory leaks.
+
+2010-03-15 - libetpan-1.0cvs36 - hoa
+
+	* src/data-types/charconv.c
+	   fixed charset conversation for hebrew (iso-8859-8-i and iso-8859-8-e)
+
+2010-03-14 - libetpan-1.0cvs35 - hoa
+
+	* src/data-types/mmapstring.c
+	   fixed a possible crash.
+
+2010-03-12 - libetpan-1.0cvs34 - hoa
+
+	* src/low-level/imf/mailimf.c
+	   fixed MIME Content-ID and Message-ID parser.
+
+2010-03-11 - libetpan-1.0cvs33 - hoa
+
+	* src/data-types/mailstream_low.c
+	   revert libetpan-1.0cvs32.
+
+2010-03-11 - libetpan-1.0cvs32 - hoa
+
+	* src/data-types/mailstream_low.c
+	   private log identifier is 3.
+
+2010-03-11 - libetpan-1.0cvs31 - hoa
+
+	* src/data-types/mailstream.[ch]
+	* src/data-types/mailstream_low.[ch]
+	* src/data-types/mailstream_types.h
+	* src/low-level/imap/mailimap.c
+	* src/low-level/nntp/newsnntp.c
+	* src/low-level/pop3/mailpop3.c
+	* src/low-level/smtp/mailsmtp.c
+	   authentication privacy.
+
+2010-03-10 - libetpan-1.0cvs30 - hoa
+
+	* src/low-level/smtp/mailsmtp.c
+	   support for broken AUTH advertisement.
+
+2010-03-07 - libetpan-1.0cvs29 - hoa
+
+	* src/low-level/smtp/mailsmtp.c
+	   handle SMTP error code for authentication error.
+
+2010-03-06 - libetpan-1.0cvs28 - hoa
+
+	* src/low-level/imap/mailimap_parser.c
+	   implemented workaround for exchange IMAP server (for multipart/signed).
+
+2010-03-04 - libetpan-1.0cvs27 - hoa
+
+	* src/low-level/imap/mailimap_parser.c
+	   implemented workaround for exchange IMAP server.
+
+2010-03-03 - libetpan-1.0cvs26 - hoa
+
+	* src/low-level/imap/namespace_types.c
+	   fixed memory leak.
+
+2010-02-28 - libetpan-1.0cvs25 - hoa
+
+	* src/low-level/smtp/mailsmtp.c
+	* src/low-level/smtp/mailsmtp_types.h
+	   implements SMTP authentication availability.
+
+2010-02-27 - libetpan-1.0cvs24 - hoa
+
+	* src/data-types/connect.c
+	* src/data-types/mailstream_ssl.c
+	   fixed build for win32.
+
+2010-02-27 - libetpan-1.0cvs23 - hoa
+
+	* src/low-level/smtp/mailsmtp.c
+	   fixed error check for SMTP.
+	
+2010-02-20 - libetpan-1.0cvs22 - hoa
+
+	* src/low-level/imap/namespace_parser.c
+	   fixed build.
+
+2010-02-20 - libetpan-1.0cvs21 - hoa
+
+	* src/low-level/imap/namespace_parser.c
+	   workaround Yahoo IMAP server.
+
+2010-02-20 - libetpan-1.0cvs20 - hoa
+
+	* src/low-level/imap/namespace.c
+	* src/low-level/imap/namespace_parser.c
+	   fixed parser.
+	   fixed crash.
+
+2010-02-19 - libetpan-1.0cvs19 - hoa
+
+	* configure.ac
+	* build-mac/libetpan.xcodeproj/project.pbxproj
+	* src/low-level/imap/Makefile.am
+	* src/low-level/imap/acl.h
+	* src/low-level/imap/annotatemore.h
+	* src/low-level/imap/mailimap.h
+	* src/low-level/imap/mailimap_extension.c
+	* src/low-level/imap/mailimap_extension_types.h
+	* src/low-level/imap/mailimap_parser.[ch]
+	* src/low-level/imap/quota.[ch]
+	* src/low-level/imap/quota_sender.h
+	* src/low-level/nntp/newsnntp.c
+	* src/low-level/imap/namespace.[ch]
+	* src/low-level/imap/namespace_parser.[ch]
+	* src/low-level/imap/namespace_sender.[ch]
+	* src/low-level/imap/namespace_types.[ch]
+	   implemented namespace.
+	   fixed build system.
+	   fixed some warnings.
+
+2010-01-06 - libetpan-1.0cvs18 - hoa
+
+	* src/driver/implementation/imap/imapdriver_tools.c
+	* src/engine/mailprivacy_tools.c
+	* src/low-level/imap/mailimap_parser.c
+	* src/low-level/imap/mailimap_types.[ch]
+	* src/low-level/mime/mailmime.[ch]
+	* src/low-level/mime/mailmime_types.[ch]
+	* src/low-level/mime/mailmime_types_helper.c
+	   support for Content-Location. breaks binary compatibility.
+
+2010-12-15 - libetpan-1.0cvs17 - hoa
+
+	* src/low-level/imap/mailimap_parser.c
+	   fixed memory leak.
+
+2010-12-05 - libetpan-1.0cvs16 - hoa
+
+	* src/data-types/charconv.c
+	   use GBK instead of GB2312 and GB_2312-80
+
+2010-11-30 - libetpan-1.0cvs15 - hoa
+
+	* src/low-level/imap/mailimap_parser.c
+	   fixed IMAP parser
+
+2010-11-28 - libetpan-1.0cvs14 - hoa
+
+	* src/data-types/mailstream_helper.[ch]
+	* src/data-types/mailstream_types.h
+	* src/low-level/imap/mailimap.[ch]
+	* src/low-level/imap/mailimap_parser.[ch]
+	* src/low-level/imap/mailimap_sender.[ch]
+	* src/low-level/imap/mailimap_types.h
+	* src/low-level/smtp/mailsmtp.[ch]
+	* src/low-level/smtp/mailsmtp_helper.[ch]
+	   improved progress report support for SMTP and IMAP.
+
+2010-11-16 - libetpan-1.0cvs13 - hoa
+
+	* src/low-level/mime/mailmime_decode.c
+	   backport a fix from etPanKit.
+
+2010-11-16 - libetpan-1.0cvs12 - hoa
+
+ 	* build-windows/libetpan.sln
+	* build-windows/libetpan/libetpan.vcproj
+	* build-windows/readmsg/readmsg.vcproj
+	* build-windows/smtpsend/smtpsend.vcproj
+	* src/data-types/carray.h
+	* src/data-types/chash.h
+	* src/data-types/mailstream_ssl.c
+	* src/windows/win_etpan.h
+	* tests/option-parser.c
+	   improved port for win32.
+
+2010-11-10 - libetpan-1.0cvs11 - hoa
+
+	* src/low-level/mime/mailmime_decode.c
+	   fixed decode of MIME header.
+
+2010-11-04 - libetpan-1.0cvs10 - hoa
+
+	* src/low-level/mime/mailmime_decode.c
+	   fixed parsing of MIME header encoding of headers.
+
+2010-10-21 - libetpan-1.0cvs9 - hoa
+
+	* src/low-level/imap/idle.c
+	   fixed function name. Thanks Michael Rasmussen.
+
+2010-09-15 - libetpan-1.0cvs8 - hoa
+
+	* src/low-level/imap/mailimap_types_helper.c
+	   fixed search.
+
+2010-09-05 - libetpan-1.0cvs7 - hoa
+
+	* src/low-level/imap/mailimap_parser.c
+	   create an empty list in case of empty multipart.
+
+2010-09-04 - libetpan-1.0cvs6 - hoa
+
+	* src/low-level/imap/mailimap_parser.c
+	   workaround Gmail IMAP bug: zero bodies in multipart.
+
+2010-09-03 - libetpan-1.0cvs5 - hoa
+
+	* build-windows/libetpan_version.h
+		update version.
+	* src/data-types/mailstream.[ch]
+	* src/data-types/mailstream_low.[ch]
+	* src/low-level/imap/mailimap_parser.c
+		report parse error.
+	* build-mac/update.sh
+		fixed mac update.
+	* src/data-types/connect.c
+		fixed memory leak.
+
+2010-07-27 - libetpan-1.0cvs4 - hoa
+
+	* src/low-level/smtp/mailsmtp_helper.c
+	    fixed size verification for RFC 1870.
+
+2010-07-27 - libetpan-1.0cvs3 - hoa
+
+	* src/low-level/smtp/mailsmtp.[ch]
+	* src/low-level/smtp/mailsmtp_helper.c
+	* src/low-level/smtp/mailsmtp_types.h
+	    implements RFC 1870 (SMTP SIZE).
+
+2010-07-22 - libetpan-1.0cvs2 - hoa
+
+	* src/low-level/imap/mailimap_sender.c
+	* src/low-level/imap/mailimap_types.c
+	    fixed date when appending.
+
+2010-05-30 - libetpan-1.0cvs1 - hoa
+
+	* src/low-level/imap/mailimap_parser.c
+	    IMAP parser issue in case quoted string contains a CRLF.
+
+2010-04-09 - libetpan-1.0 - hoa
+
+	* release 1.0
+
+2010-04-08 - libetpan-0.58cvs27 - hoa
+
+	* configure.ac
+	    Fixed --enable-debug flag in configure script.
+	    Support of Berkeley DB 4.8.
+	    Thanks to Tim Harder.
+
+2010-04-05 - libetpan-0.58cvs26 - hoa
+
+	* build-mac/update.sh
+	    fixed script.
+
+2010-04-05 - libetpan-0.58cvs25 - hoa
+
+	* src/engine/mailprivacy_tools.c
+	    fixed integration of patch (libetpan-0.58cvs22).
+	* src/low-level/imap/idle.c
+	    fixed error code.
+
+2010-04-05 - libetpan-0.58cvs24 - hoa
+
+	* src/low-level/imap/mailimap_sender.c
+	    fixed OR condition in IMAP SEARCH command.
+
+2010-04-05 - libetpan-0.58cvs23 - hoa
+
+	* src/driver/implementation/mbox/mboxdriver_cached.c
+	* src/driver/implementation/mh/mhdriver_cached.c
+	* src/driver/implementation/pop3/pop3driver.c
+	* src/driver/implementation/pop3/pop3driver_cached.c
+	* src/driver/implementation/pop3/pop3driver_tools.c
+	* src/engine/mailprivacy_tools.c
+	* src/low-level/imap/mailimap.c
+	* src/low-level/pop3/mailpop3.c
+	* tests/readmsg-simple.c
+	* tests/readmsg-uid.c
+	    fixed some other warnings.
+
+2010-04-05 - libetpan-0.58cvs22 - hoa
+
+	* src/data-types/maillock.c
+	* src/data-types/mailstream_cancel.c
+	* src/data-types/mailstream_low.c
+	* src/driver/implementation/db/dbdriver.c
+	* src/driver/implementation/imap/imapdriver.c
+	* src/driver/implementation/mbox/mboxdriver_cached.c
+	* src/driver/implementation/mh/mhdriver_cached.c
+	* src/driver/implementation/nntp/nntpdriver_cached.c
+	* src/driver/implementation/pop3/pop3driver.c
+	* src/engine/mailprivacy.c
+	* src/engine/mailprivacy_tools.c
+	* src/low-level/feed/newsfeed.c
+	* src/low-level/mbox/mailmbox.c
+	* src/low-level/nntp/newsnntp.c
+	* src/low-level/pop3/mailpop3.c
+	* src/low-level/smtp/mailsmtp.c
+	* tests/decrypt.c
+	* tests/readmsg-simple.c
+	* tests/readmsg-uid.c
+	* tests/smime.c
+	    fixed some warnings. Thanks to Didier Barvaux.
+
+2010-04-05 - libetpan-0.58cvs21 - hoa
+
+	* src/driver/implementation/imap/imapdriver.c
+	    fixed memory leak (2941557). Thanks to Juha Paananen.
+	
+	* src/low-level/imap/mailimap_types_helper.c
+	    fixed IMAP search (2941559). Thanks to Juha Paananen.
+
+2010-04-05 - libetpan-0.58cvs20 - hoa
+
+	* configure.ac
+	* src/driver/interface/mailstorage_tools.c
+	* tests/smtpsend.c
+	    improved support of Solaris 2.8 (2786623). Thanks to Thomas Wiegner.
+
+2010-04-05 - libetpan-0.58cvs19 - hoa
+
+	* build-mac/update.sh
+	    import of OpenSSL (prepare build for iPhone including OpenSSL)
+
+	* src/driver/implementation/pop3/pop3driver.c
+	* src/driver/implementation/pop3/pop3driver_cached.c
+	* src/driver/implementation/pop3/pop3driver_tools.c
+	* src/low-level/pop3/mailpop3.[ch]
+	    better error checking (2888850). Thanks to Alexander Shlemin.
+		API change.
+
+2010-03-21 - libetpan-0.58cvs18 - hoa
+
+	* src/data-types/mailstream.h
+	* src/data-types/mailstream_low.c
+	    log protocol by stream
+
+2010-01-17 - libetpan-0.58cvs17 - hoa
+
+	* build-mac/update.sh
+	* build-mac/libetpan.xcodeproj/project.pbxproj
+	    build mac with quota
+
+2010-01-14 - libetpan-0.58cvs16 - hoa
+
+	* src/low-level/imap/Makefile.am
+	    build with quota.
+
 2010-01-04 - libetpan-0.58cvs15 - hoa
 
 	* src/low-level/imap/mailimap_extension.c

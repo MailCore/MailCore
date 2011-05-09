@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailimap_sender.c,v 1.29 2006/10/20 00:13:30 hoa Exp $
+ * $Id: mailimap_sender.c,v 1.32 2010/11/28 17:01:26 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -203,13 +203,25 @@ static int mailimap_userid_send(mailstream * fd, const char * user);
 
 
 
+static inline int mailimap_sized_token_send_with_context(mailstream * fd, const char * atom,
+                                                         size_t len,
+                                                         mailprogress_function * progr_fun,
+                                                         void * context);
 
 static inline int mailimap_sized_token_send(mailstream * fd, const char * atom,
 				     size_t len)
 {
-  if (mailstream_send_data_crlf(fd, atom, len, 0, NULL) == -1)
-    return MAILIMAP_ERROR_STREAM;
+  return mailimap_sized_token_send_with_context(fd, atom, len, NULL, NULL);
+}
 
+static inline int mailimap_sized_token_send_with_context(mailstream * fd, const char * atom,
+                                                         size_t len,
+                                                         mailprogress_function * progr_fun,
+                                                         void * context)
+{
+  if (mailstream_send_data_crlf_with_context(fd, atom, len, progr_fun, context) == -1)
+    return MAILIMAP_ERROR_STREAM;
+  
   return MAILIMAP_NO_ERROR;
 }
 
@@ -907,7 +919,7 @@ mailimap_date_time_send(mailstream * fd,
   if (r != MAILIMAP_NO_ERROR)
     return r;
 
-  r = mailimap_date_year_send(fd, date_time->dt_month);
+  r = mailimap_date_year_send(fd, date_time->dt_year);
   if (r != MAILIMAP_NO_ERROR)
     return r;
 
@@ -932,6 +944,18 @@ mailimap_date_time_send(mailstream * fd,
     return r;
 
   r = mailimap_fixed_digit_send(fd, date_time->dt_sec, 2);
+  if (r != MAILIMAP_NO_ERROR)
+    return r;
+
+  r = mailimap_space_send(fd);
+  if (r != MAILIMAP_NO_ERROR)
+    return r;
+
+  r = mailimap_char_send(fd, '+');
+  if (r != MAILIMAP_NO_ERROR)
+    return r;
+
+  r = mailimap_fixed_digit_send(fd, date_time->dt_zone, 3);
   if (r != MAILIMAP_NO_ERROR)
     return r;
 
@@ -1499,15 +1523,22 @@ mailimap_literal_data_send(mailstream * fd, const char * literal, uint32_t len,
 			   size_t progr_rate,
 			   progress_function * progr_fun)
 {
-  int r;
-  
-  r = mailimap_sized_token_send(fd, literal, len);
-  if (r != MAILIMAP_NO_ERROR)
-    return r;
-
-  return MAILIMAP_NO_ERROR;
+  return mailimap_literal_data_send_with_context(fd, literal, len, NULL, NULL);
 }
 
+int
+mailimap_literal_data_send_with_context(mailstream * fd, const char * literal, uint32_t len,
+                                        mailprogress_function * progr_fun,
+                                        void * context)
+{
+  int r;
+  
+  r = mailimap_sized_token_send_with_context(fd, literal, len, progr_fun, context);
+  if (r != MAILIMAP_NO_ERROR)
+    return r;
+  
+  return MAILIMAP_NO_ERROR;
+}
 
 /*
 =>   login           = "LOGIN" SP userid SP password
@@ -2132,7 +2163,7 @@ static int mailimap_search_key_send(mailstream * fd,
     r = mailimap_search_key_send(fd, key->sk_data.sk_or.sk_or2);
 	if (r != MAILIMAP_NO_ERROR)
       return r;
-    return TRUE;
+    return MAILIMAP_NO_ERROR;
 
   case MAILIMAP_SEARCH_KEY_SENTBEFORE:
     r = mailimap_token_send(fd, "SENTBEFORE");

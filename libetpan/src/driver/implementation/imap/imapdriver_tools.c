@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: imapdriver_tools.c,v 1.36 2009/12/19 00:56:15 hoa Exp $
+ * $Id: imapdriver_tools.c,v 1.37 2011/01/06 00:09:52 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -751,6 +751,7 @@ static int
 imap_body_fields_to_mime_fields(struct mailimap_body_fields * body_fields,
     struct mailimap_body_fld_dsp * imap_dsp,
     struct mailimap_body_fld_lang * imap_lang,
+    char * imap_loc,
     struct mailmime_fields ** result,
     uint32_t * pbody_size)
 {
@@ -762,6 +763,7 @@ imap_body_fields_to_mime_fields(struct mailimap_body_fields * body_fields,
   char * description;
   struct mailmime_disposition * dsp;
   struct mailmime_language * lang;
+  char * loc;
   int type;
   int r;
   int res;
@@ -786,7 +788,7 @@ imap_body_fields_to_mime_fields(struct mailimap_body_fields * body_fields,
       }
 
       mime_field = mailmime_field_new(type, NULL,
-          NULL, id, NULL, 0, NULL, NULL);
+          NULL, id, NULL, 0, NULL, NULL, NULL);
       if (mime_field == NULL) {
 	free(id);
 	res = MAIL_ERROR_MEMORY;
@@ -810,7 +812,7 @@ imap_body_fields_to_mime_fields(struct mailimap_body_fields * body_fields,
       }
 
       mime_field = mailmime_field_new(type, NULL,
-          NULL, NULL, description, 0, NULL, NULL);
+          NULL, NULL, description, 0, NULL, NULL, NULL);
       if (mime_field == NULL) {
 	free(description);
 	res = MAIL_ERROR_MEMORY;
@@ -870,7 +872,7 @@ imap_body_fields_to_mime_fields(struct mailimap_body_fields * body_fields,
       }
 
       mime_field = mailmime_field_new(type, NULL,
-          encoding, NULL, NULL, 0, NULL, NULL);
+          encoding, NULL, NULL, 0, NULL, NULL, NULL);
       if (mime_field == NULL) {
 	mailmime_mechanism_free(encoding);
 	res = MAIL_ERROR_MEMORY;
@@ -897,7 +899,7 @@ imap_body_fields_to_mime_fields(struct mailimap_body_fields * body_fields,
       type = MAILMIME_FIELD_DISPOSITION;
       
       mime_field = mailmime_field_new(type, NULL,
-				      NULL, NULL, NULL, 0, dsp, NULL);
+				      NULL, NULL, NULL, 0, dsp, NULL, NULL);
       if (mime_field == NULL) {
 	mailmime_disposition_free(dsp);
 	res = MAIL_ERROR_MEMORY;
@@ -931,7 +933,7 @@ imap_body_fields_to_mime_fields(struct mailimap_body_fields * body_fields,
       type = MAILMIME_FIELD_LANGUAGE;
 
       mime_field = mailmime_field_new(type, NULL,
-          NULL, NULL, NULL, 0, NULL, lang);
+          NULL, NULL, NULL, 0, NULL, lang, NULL);
       if (mime_field == NULL) {
         mailmime_language_free(lang);
         res = MAIL_ERROR_MEMORY;
@@ -947,6 +949,31 @@ imap_body_fields_to_mime_fields(struct mailimap_body_fields * body_fields,
     }
   }
 
+  if (imap_loc != NULL) {
+    type = MAILMIME_FIELD_LOCATION;
+    
+    loc = strdup(imap_loc);
+    if (loc == NULL) {
+      res = MAIL_ERROR_MEMORY;
+      goto free_list;
+    }
+    
+    mime_field = mailmime_field_new(type, NULL,
+                                    NULL, NULL, NULL, 0, NULL, NULL, loc);
+    if (mime_field == NULL) {
+      mailmime_location_free(loc);
+      res = MAIL_ERROR_MEMORY;
+      goto free_list;
+    }
+    
+    r = clist_append(list, mime_field);
+    if (r != 0) {
+      mailmime_field_free(mime_field);
+      res = MAIL_ERROR_MEMORY;
+      goto free_list;
+    }
+  }
+  
   mime_fields = mailmime_fields_new(list);
   if (mime_fields == NULL) {
     res = MAIL_ERROR_MEMORY;
@@ -990,10 +1017,11 @@ imap_body_type_basic_to_body(struct mailimap_body_type_basic *
     r = imap_body_fields_to_mime_fields(imap_type_basic->bd_fields,
         body_ext_1part->bd_disposition,
         body_ext_1part->bd_language,
+        body_ext_1part->bd_loc,
         &mime_fields, &mime_size);
   else
     r = imap_body_fields_to_mime_fields(imap_type_basic->bd_fields,
-        NULL, NULL,
+        NULL, NULL, NULL,
         &mime_fields, &mime_size);
   if (r != MAIL_NO_ERROR) {
     res = r;
@@ -1045,13 +1073,14 @@ imap_body_type_text_to_body(struct mailimap_body_type_text *
 
   if (body_ext_1part == NULL) {
     r = imap_body_fields_to_mime_fields(imap_type_text->bd_fields,
-        NULL, NULL,
+        NULL, NULL, NULL,
         &mime_fields, &mime_size);
   }
   else {
     r = imap_body_fields_to_mime_fields(imap_type_text->bd_fields,
         body_ext_1part->bd_disposition,
         body_ext_1part->bd_language,
+        body_ext_1part->bd_loc,
         &mime_fields, &mime_size);
   }
   if (r != MAIL_NO_ERROR) {
@@ -1232,12 +1261,12 @@ imap_body_type_msg_to_body(struct mailimap_body_type_msg *
   
   if (body_ext_1part != NULL) {
   	r = imap_body_fields_to_mime_fields(imap_type_msg->bd_fields,
-      	body_ext_1part->bd_disposition, body_ext_1part->bd_language,
+      	body_ext_1part->bd_disposition, body_ext_1part->bd_language, body_ext_1part->bd_loc,
       	&mime_fields, &mime_size);
   }
   else {
   	r = imap_body_fields_to_mime_fields(imap_type_msg->bd_fields,
-      	NULL, NULL,
+      	NULL, NULL, NULL,
       	&mime_fields, &mime_size);
   }
   if (r != MAIL_NO_ERROR) {
@@ -1381,6 +1410,7 @@ imap_body_type_mpart_to_body(struct mailimap_body_type_mpart *
     r = imap_body_fields_to_mime_fields(NULL,
         type_mpart->bd_ext_mpart->bd_disposition,
         type_mpart->bd_ext_mpart->bd_language,
+        type_mpart->bd_ext_mpart->bd_loc,
         &mime_fields, &mime_size);
   }
   if (r != MAIL_NO_ERROR) {

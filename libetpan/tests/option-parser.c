@@ -1,12 +1,14 @@
 #define _GNU_SOURCE
-#include "../config.h"
+#include "../config.h.in"
 #ifdef _MSC_VER
 #	include "../src/bsd/getopt.h"
 #else
 #	include <getopt.h>
 #endif
 
+#ifdef HAVE_UNISTD_H
 #include <unistd.h>
+#endif
 #include <stdlib.h>
 #include <string.h>
 #include <limits.h>

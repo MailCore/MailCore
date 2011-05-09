@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: maillock.c,v 1.18 2008/02/17 13:13:25 hoa Exp $
+ * $Id: maillock.c,v 1.19 2010/04/05 14:21:35 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -255,7 +255,7 @@ static int lock_common(const char * filename, int fd, short locktype)
     fd2 = open(lockfilename, O_WRONLY|O_EXCL|O_CREAT, 0);
     if (fd2 >= 0) {
       /* defeat lock checking programs which test pid */
-      write(fd2, "0", 2);
+      r = write(fd2, "0", 2);
       close(fd2);
       break;
     }

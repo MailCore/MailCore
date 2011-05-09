@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: pop3driver.c,v 1.43 2009/07/23 19:46:46 hoa Exp $
+ * $Id: pop3driver.c,v 1.46 2010/04/05 14:43:49 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -207,9 +207,6 @@ static int pop3driver_connect_stream(mailsession * session, mailstream * s)
 static int pop3driver_starttls(mailsession * session)
 {
   int r;
-  int fd;
-  mailstream_low * low;
-  mailstream_low * new_low;
   mailpop3 * pop3;
   struct pop3_session_state_data * data;
 
@@ -275,7 +272,10 @@ static int pop3driver_login(mailsession * session,
     break;
   }
 
-  mailpop3_list(get_pop3_session(session), &msg_tab);
+  if (r != MAILPOP3_NO_ERROR)
+	  return pop3driver_pop3_error_to_mail_error(r);
+
+  r = mailpop3_list(get_pop3_session(session), &msg_tab);
 
   return pop3driver_pop3_error_to_mail_error(r);
 }
@@ -321,8 +321,12 @@ static int pop3driver_messages_number(mailsession * session, const char * mb,
 				      uint32_t * result)
 {
   carray * msg_tab;
+  int r;
 
-  mailpop3_list(get_pop3_session(session), &msg_tab);
+  r = mailpop3_list(get_pop3_session(session), &msg_tab);
+  if (r != MAILPOP3_NO_ERROR) {
+	  return pop3driver_pop3_error_to_mail_error(r);
+  }
 
   * result = carray_count(msg_tab) -
     get_pop3_session(session)->pop3_deleted_count;

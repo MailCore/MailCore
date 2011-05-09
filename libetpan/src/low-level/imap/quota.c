@@ -66,7 +66,7 @@ int mailimap_quota_getquotaroot(mailimap * session,
   struct mailimap_quota_quotaroot_data * quotaroot_data = NULL;
   clist * quota_list = NULL;
 
-  if (session->imap_state != MAILIMAP_STATE_AUTHENTICATED)
+  if ((session->imap_state != MAILIMAP_STATE_AUTHENTICATED) && (session->imap_state != MAILIMAP_STATE_SELECTED))
     return MAILIMAP_ERROR_BAD_STATE;
 
   r = mailimap_send_current_tag(session);

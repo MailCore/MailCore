@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: pop3driver_tools.c,v 1.17 2008/02/20 22:15:51 hoa Exp $
+ * $Id: pop3driver_tools.c,v 1.19 2010/04/05 14:43:49 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -199,7 +199,10 @@ int pop3driver_size(mailsession * session, uint32_t indx,
 
   pop3 = session_get_pop3_session(session);
 
-  mailpop3_list(pop3, &msg_tab);
+  r = mailpop3_list(pop3, &msg_tab);
+  if (r != MAILPOP3_NO_ERROR) {
+	return pop3driver_pop3_error_to_mail_error(r);
+  }
 
   r = mailpop3_get_msg_info(pop3, indx, &info);
   switch (r) {
@@ -292,7 +295,11 @@ int pop3_get_messages_list(mailpop3 * pop3,
   int res;
   int r;
 
-  mailpop3_list(pop3, &msg_tab);
+  r = mailpop3_list(pop3, &msg_tab);
+  if (r != MAILPOP3_NO_ERROR) {
+    res = pop3driver_pop3_error_to_mail_error(r);
+    goto err;
+  }
 
   tab = carray_new(128);
   if (tab == NULL) {

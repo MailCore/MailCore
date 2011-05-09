@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailstream_socket.c,v 1.30 2008/02/10 16:43:31 hoa Exp $
+ * $Id: mailstream_socket.c,v 1.33 2011/04/15 10:43:31 hoa Exp $
  */
 
 #ifdef HAVE_CONFIG_H
@@ -69,13 +69,10 @@
 
 #include "mailstream_cancel.h"
 
-#if 0
-#define MAILSTREAM_SOCKET_READ
-#endif
-
 struct mailstream_socket_data {
   int fd;
   struct mailstream_cancel * cancel;
+  int use_read;
 };
 
 /* mailstream_low, socket */
@@ -112,6 +109,7 @@ static struct mailstream_socket_data * socket_data_new(int fd)
     goto err;
   
   socket_data->fd = fd;
+  socket_data->use_read = 0;
   socket_data->cancel = mailstream_cancel_new();
   if (socket_data->cancel == NULL)
     goto free;
@@ -238,7 +236,7 @@ static ssize_t mailstream_low_socket_read(mailstream_low * s,
     if (fd > max_fd)
       max_fd = fd;
     r = select(max_fd + 1, &fds_read, NULL,/* &fds_excp*/ NULL, &timeout);
-    if (r == 0)
+    if (r <= 0)
       return -1;
     
     cancelled = FD_ISSET(fd, &fds_read);
@@ -255,11 +253,12 @@ static ssize_t mailstream_low_socket_read(mailstream_low * s,
       return 0;
   }
   
-#ifdef MAILSTREAM_SOCKET_READ
-  return read(socket_data->fd, buf, count);
-#else
-  return recv(socket_data->fd, buf, count, 0);
-#endif
+  if (socket_data->use_read) {
+    return read(socket_data->fd, buf, count);
+  }
+  else {
+    return recv(socket_data->fd, buf, count, 0);
+  }
 }
 
 static ssize_t mailstream_low_socket_write(mailstream_low * s,
@@ -308,7 +307,7 @@ static ssize_t mailstream_low_socket_write(mailstream_low * s,
     if (fd > max_fd)
       max_fd = fd;
     r = select(max_fd + 1, &fds_read, &fds_write, /*&fds_excp */ NULL, &timeout);
-    if (r == 0)
+    if (r <= 0)
       return -1;
 
     cancelled = FD_ISSET(fd, &fds_read);
@@ -358,4 +357,14 @@ static void mailstream_low_socket_cancel(mailstream_low * s)
 
   socket_data = (struct mailstream_socket_data *) s->data;
   mailstream_cancel_notify(socket_data->cancel);
+}
+
+void mailstream_socket_set_use_read(mailstream * stream, int use_read)
+{
+  struct mailstream_socket_data * socket_data;
+  mailstream_low * low;
+  
+  low = mailstream_get_low(stream);
+  socket_data = (struct mailstream_socket_data *) low->data;
+  socket_data->use_read = use_read;
 }

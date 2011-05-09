@@ -30,7 +30,7 @@
  */
 
 /*
- * $Id: mailstream_helper.h,v 1.12 2004/11/21 21:53:31 hoa Exp $
+ * $Id: mailstream_helper.h,v 1.13 2010/11/28 17:01:26 hoa Exp $
  */
 
 #ifndef MAILSTREAM_HELPER_H
@@ -63,10 +63,20 @@ int mailstream_send_data_crlf(mailstream * s, const char * message,
     size_t progr_rate,
     progress_function * progr_fun);
 
+int mailstream_send_data_crlf_with_context(mailstream * s, const char * message,
+                                           size_t size,
+                                           mailprogress_function * progr_fun,
+                                           void * context);
+
 int mailstream_send_data(mailstream * s, const char * message,
 			  size_t size,
 			  size_t progr_rate,
 			  progress_function * progr_fun);
+
+int mailstream_send_data_with_context(mailstream * s, const char * message,
+                                      size_t size,
+                                      mailprogress_function * progr_fun,
+                                      void * context);
 
 size_t mailstream_get_data_crlf_size(const char * message, size_t size);
 
