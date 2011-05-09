@@ -473,6 +473,11 @@ char * etpan_encode_mime_header(char * phrase)
 	return [myParsedMIME render];
 }
 
+- (NSString *)messageAsEmlx {
+    NSString *rendered = [self render];
+    return rendered;
+}
+
 
 - (struct mailmessage *)messageStruct {
 	return myMessage;

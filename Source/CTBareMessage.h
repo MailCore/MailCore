@@ -42,6 +42,6 @@
 @property unsigned int flags;
 
 - (id)init;
-- (unsigned int)hash;
+- (NSUInteger)hash;
 - (BOOL)isEqual:(id)anObject;
 @end

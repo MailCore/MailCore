@@ -242,6 +242,8 @@
 */
 - (NSString *)render;
 
+- (NSString *)messageAsEmlx;
+
 /* Intended for advanced use only */
 - (struct mailmessage *)messageStruct;
 @end
