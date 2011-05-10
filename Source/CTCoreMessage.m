@@ -480,11 +480,20 @@ char * etpan_encode_mime_header(char * phrase)
     [emlx appendData:[[NSString stringWithFormat:@"%-10d\n", msgContentAsData.length] dataUsingEncoding:NSUTF8StringEncoding]];
     [emlx appendData:msgContentAsData];
 
+
+	struct mail_flags *flagsStruct = myMessage->msg_flags;
+    int flags = 0;
+	if (flagsStruct != NULL) {
+		flags |= (flagsStruct->fl_flags & CTFlagSeen);
+		flags |= (flagsStruct->fl_flags & CTFlagDeleted) << 1;
+		flags |= (flagsStruct->fl_flags & CTFlagAnswered) << 2;
+		flags |= (flagsStruct->fl_flags & CTFlagFlagged) << 4;
+		flags |= (flagsStruct->fl_flags & CTFlagForwarded) << 7;
+    }
+
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:[NSNumber numberWithInt:0] forKey:@"date-sent"];
-    [dictionary setValue:[NSNumber numberWithInt:0] forKey:@"flags"];
-    [dictionary setValue:@"" forKey:@"original-mailbox"];
-    [dictionary setValue:@"" forKey:@"remote-id"];
+    [dictionary setValue:[NSNumber numberWithInt:flags] forKey:@"flags"];
     [dictionary setValue:[self subject] forKey:@"subject"];
 
     NSError *error;
@@ -503,7 +512,11 @@ char * etpan_encode_mime_header(char * phrase)
     if (r == 0) {
         nsresult = [[NSString alloc] initWithCString:result encoding:NSUTF8StringEncoding];
     } else {
-        NSLog(@"error: %d", r);
+		NSException *exception = [NSException
+			        exceptionWithName:CTUnknownError
+			        reason:[NSString stringWithFormat:@"Error number: %d",r]
+			        userInfo:nil];
+		[exception raise];
     }
     mailimap_msg_att_rfc822_free(result);
     return [nsresult autorelease];
