@@ -505,9 +505,7 @@ char * etpan_encode_mime_header(char * phrase)
     } else {
         NSLog(@"error: %d", r);
     }
-    if (result) {
-        free(result);
-    }
+    mailimap_msg_att_rfc822_free(result);
     return [nsresult autorelease];
 }
 
