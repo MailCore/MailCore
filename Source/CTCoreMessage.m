@@ -545,7 +545,7 @@ char * etpan_encode_mime_header(char * phrase)
     }
 
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary setValue:[NSNumber numberWithInt:0] forKey:@"date-sent"];
+    [dictionary setValue:[NSNumber numberWithDouble:[[self senderDate] timeIntervalSince1970]] forKey:@"date-sent"];
     [dictionary setValue:[NSNumber numberWithUnsignedLongLong:flags] forKey:@"flags"];
     [dictionary setValue:[self subject] forKey:@"subject"];
 
