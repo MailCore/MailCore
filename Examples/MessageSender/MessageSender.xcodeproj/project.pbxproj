@@ -12,9 +12,40 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		F805A72009D7CD7D0055EFC3 /* MyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F805A71F09D7CD7D0055EFC3 /* MyController.m */; };
+		F847C8FA137A38A9003271CF /* MailCore.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F847C8F3137A389A003271CF /* MailCore.framework */; };
 		F856BE2413779C2000D9C2ED /* MailCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F856BE2313779C2000D9C2ED /* MailCore.framework */; };
-		F856BE2613779C4400D9C2ED /* MailCore.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F856BE2513779C4400D9C2ED /* MailCore.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F847C8F2137A389A003271CF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F847C8E5137A3899003271CF /* MailCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216 /* MailCore.framework */;
+			remoteInfo = MailCore;
+		};
+		F847C8F4137A389A003271CF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F847C8E5137A3899003271CF /* MailCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F82D7C810F48AC8500ADA65C /* Tests.octest */;
+			remoteInfo = Tests;
+		};
+		F847C8F6137A389A003271CF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F847C8E5137A3899003271CF /* MailCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8618B5710DADB5C00C41188 /* libmailcore.a */;
+			remoteInfo = "MailCore iPhone";
+		};
+		F847C8F8137A38A1003271CF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F847C8E5137A3899003271CF /* MailCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* MailCore */;
+			remoteInfo = MailCore;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		F805A83009D7CDB80055EFC3 /* CopyFiles */ = {
@@ -23,7 +54,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F856BE2613779C4400D9C2ED /* MailCore.framework in CopyFiles */,
+				F847C8FA137A38A9003271CF /* MailCore.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,8 +73,8 @@
 		8D1107320486CEB800E47090 /* MessageSender.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MessageSender.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F805A71E09D7CD7D0055EFC3 /* MyController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MyController.h; sourceTree = "<group>"; };
 		F805A71F09D7CD7D0055EFC3 /* MyController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MyController.m; sourceTree = "<group>"; };
+		F847C8E5137A3899003271CF /* MailCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MailCore.xcodeproj; path = ../../MailCore.xcodeproj; sourceTree = SOURCE_ROOT; };
 		F856BE2313779C2000D9C2ED /* MailCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MailCore.framework; path = ../../build/Debug/MailCore.framework; sourceTree = "<group>"; };
-		F856BE2513779C4400D9C2ED /* MailCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MailCore.framework; path = ../../build/Debug/MailCore.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +129,7 @@
 		29B97314FDCFA39411CA2CEA /* MessageSender */ = {
 			isa = PBXGroup;
 			children = (
-				F856BE2513779C4400D9C2ED /* MailCore.framework */,
+				F847C8E5137A3899003271CF /* MailCore.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -136,6 +167,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F847C8E6137A3899003271CF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F847C8F3137A389A003271CF /* MailCore.framework */,
+				F847C8F5137A389A003271CF /* Tests.octest */,
+				F847C8F7137A389A003271CF /* libmailcore.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -151,6 +192,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				F847C8F9137A38A1003271CF /* PBXTargetDependency */,
 			);
 			name = MessageSender;
 			productInstallPath = "$(HOME)/Applications";
@@ -172,12 +214,42 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* MessageSender */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = F847C8E6137A3899003271CF /* Products */;
+					ProjectRef = F847C8E5137A3899003271CF /* MailCore.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* MessageSender */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		F847C8F3137A389A003271CF /* MailCore.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MailCore.framework;
+			remoteRef = F847C8F2137A389A003271CF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F847C8F5137A389A003271CF /* Tests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Tests.octest;
+			remoteRef = F847C8F4137A389A003271CF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F847C8F7137A389A003271CF /* libmailcore.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libmailcore.a;
+			remoteRef = F847C8F6137A389A003271CF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8D1107290486CEB800E47090 /* Resources */ = {
@@ -202,6 +274,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F847C8F9137A38A1003271CF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MailCore;
+			targetProxy = F847C8F8137A38A1003271CF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
