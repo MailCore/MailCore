@@ -245,7 +245,15 @@
 */
 - (NSString *)render;
 
+/*!
+    @abstract   Returns the message in the format Mail.app uses, Emlx. This format stores the message
+                headers, body, and flags.
+*/
 - (NSData *)messageAsEmlx;
+
+/*!
+    @abstract   Fetches from the server the rfc822 content of the message, which is the headers and the message body.
+*/
 - (NSString *)rfc822;
 
 /* Intended for advanced use only */
