@@ -482,18 +482,21 @@ char * etpan_encode_mime_header(char * phrase)
 
 
 	struct mail_flags *flagsStruct = myMessage->msg_flags;
-    int flags = 0;
+    uint64 flags = 0;
 	if (flagsStruct != NULL) {
-		flags |= (flagsStruct->fl_flags & CTFlagSeen);
-		flags |= (flagsStruct->fl_flags & CTFlagDeleted) << 1;
-		flags |= (flagsStruct->fl_flags & CTFlagAnswered) << 2;
-		flags |= (flagsStruct->fl_flags & CTFlagFlagged) << 4;
-		flags |= (flagsStruct->fl_flags & CTFlagForwarded) << 7;
+        BOOL seen = (flagsStruct->fl_flags & CTFlagSeen) > 0;
+		flags |= seen << 0;
+        BOOL answered = (flagsStruct->fl_flags & CTFlagAnswered) > 0;
+		flags |= answered << 2;
+        BOOL flagged = (flagsStruct->fl_flags & CTFlagFlagged) > 0;
+		flags |= flagged << 4;
+        BOOL forwarded = (flagsStruct->fl_flags & CTFlagForwarded) > 0;
+		flags |= forwarded << 8;
     }
 
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:[NSNumber numberWithInt:0] forKey:@"date-sent"];
-    [dictionary setValue:[NSNumber numberWithInt:flags] forKey:@"flags"];
+    [dictionary setValue:[NSNumber numberWithUnsignedLongLong:flags] forKey:@"flags"];
     [dictionary setValue:[self subject] forKey:@"subject"];
 
     NSError *error;
