@@ -41,10 +41,12 @@
 	BOOL mAttached;
 	BOOL mFetched;
 	NSString *mFilename;
+    NSString *mContentId;
 }
 @property BOOL attached;
 @property BOOL fetched;
 @property(retain) NSString *filename;
+@property(retain) NSString *contentId;
 @property(retain) NSData *data; 
 
 + (id)mimeSinglePartWithData:(NSData *)data;

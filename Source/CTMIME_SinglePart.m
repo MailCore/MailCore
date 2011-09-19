@@ -37,6 +37,7 @@
 @implementation CTMIME_SinglePart
 @synthesize attached=mAttached;
 @synthesize filename=mFilename;
+@synthesize contentId=mContentId;
 @synthesize data=mData;
 @synthesize fetched=mFetched;
 
@@ -74,11 +75,31 @@
 			
 			if (mMimeFields->fld_disposition_filename != NULL) {
 				self.filename = [NSString stringWithCString:mMimeFields->fld_disposition_filename encoding:NSUTF8StringEncoding];
+                
+                if (mMimeFields->fld_id != NULL)
+                    self.contentId = [NSString stringWithCString:mMimeFields->fld_id encoding:NSUTF8StringEncoding]; 
+                
 				NSString* lowercaseName = [self.filename lowercaseString];
-				if([lowercaseName hasSuffix:@".pdf"] ||
-					[lowercaseName hasSuffix:@".jpg"] ||
-					[lowercaseName hasSuffix:@".png"] ||
-					[lowercaseName hasSuffix:@".gif"]) { // hack by gabor
+				if([lowercaseName hasSuffix:@".xls"] ||
+					[lowercaseName hasSuffix:@".xlsx"] ||
+					[lowercaseName hasSuffix:@".key.zip"] ||
+                    [lowercaseName hasSuffix:@".numbers.zip"] ||
+                    [lowercaseName hasSuffix:@".pages.zip"] ||
+                    [lowercaseName hasSuffix:@".pdf"] ||
+                    [lowercaseName hasSuffix:@".ppt"] ||
+                    [lowercaseName hasSuffix:@".doc"] ||
+                    [lowercaseName hasSuffix:@".docx"] ||
+                    [lowercaseName hasSuffix:@".rtf"] ||
+                    [lowercaseName hasSuffix:@".rtfd.zip"] ||
+                    [lowercaseName hasSuffix:@".key"] ||
+                    [lowercaseName hasSuffix:@".numbers"] ||
+                    [lowercaseName hasSuffix:@".pages"] ||
+                    [lowercaseName hasSuffix:@".png"] ||
+                    [lowercaseName hasSuffix:@".gif"] ||
+                    [lowercaseName hasSuffix:@".png"] ||
+                    [lowercaseName hasSuffix:@".jpg"] ||
+                    [lowercaseName hasSuffix:@".jpeg"] ||
+                    [lowercaseName hasSuffix:@".tiff"]) { // hack by gabor, improved by waseem, based on http://developer.apple.com/iphone/library/qa/qa2008/qa1630.html
 					self.attached = YES;
 				}
 			}
@@ -162,6 +183,7 @@
 	mailmime_single_fields_free(mMimeFields);
 	[mData release];
 	[mFilename release];
+    [mContentId release];
 	//The structs are held by CTCoreMessage so we don't have to free them
 	[super dealloc];
 }

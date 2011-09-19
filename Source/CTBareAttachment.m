@@ -76,6 +76,10 @@
 	return [attach autorelease];
 }
 
+- (CTMIME_SinglePart *)part {
+    return mMIMEPart;
+}
+
 - (void)dealloc {
 	[mMIMEPart release];
 	[mFilename release];

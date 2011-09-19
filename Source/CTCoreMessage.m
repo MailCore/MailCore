@@ -138,6 +138,21 @@ char * etpan_encode_mime_header(char * phrase)
 	return result;
 }
 
+- (BOOL)hasHtmlBody {
+    CTMIME* mime = myParsedMIME;
+    
+    if ([mime isKindOfClass:[CTMIME_TextPart class]]) {
+        if ([mime.contentType isEqualToString:@"text/html"]) {
+            return YES;
+		}
+    }
+    else if ([mime isKindOfClass:[CTMIME_MultiPart class]]) {
+        return YES;
+    }
+    
+    return NO;
+}
+
 - (NSString *)htmlBody {
 	// added by Gabor
 	NSMutableString *result = [NSMutableString string];
