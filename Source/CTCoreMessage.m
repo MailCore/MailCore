@@ -138,11 +138,12 @@ char * etpan_encode_mime_header(char * phrase)
 	return result;
 }
 
-- (BOOL)hasHtmlBody {
-    CTMIME* mime = myParsedMIME;
-    
-    if ([mime isKindOfClass:[CTMIME_TextPart class]]) {
-        if ([mime.contentType rangeOfString:@"text/html"].location != NSNotFound) {
+- (BOOL)hasHtmlBody:(CTMIME *)mime {
+    if ([mime isKindOfClass:[CTMIME_MessagePart class]]) {
+        return [self hasHtmlBody:[mime content]];
+	}
+    else if ([mime isKindOfClass:[CTMIME_TextPart class]]) {
+        if ([[mime.contentType lowercaseString] rangeOfString:@"text/html"].location != NSNotFound) {
             return YES;
 		}
     }
@@ -151,6 +152,12 @@ char * etpan_encode_mime_header(char * phrase)
     }
     
     return NO;
+}
+
+- (BOOL)hasHtmlBody {
+    CTMIME* mime = myParsedMIME;
+    
+    return [self hasHtmlBody:mime];
 }
 
 - (NSString *)htmlBody {
@@ -189,7 +196,7 @@ char * etpan_encode_mime_header(char * phrase)
 		[self _buildUpBodyText:[mime content] result:result];
 	}
 	else if ([mime isKindOfClass:[CTMIME_TextPart class]]) {
-		if ([mime.contentType isEqualToString:@"text/plain"]) {
+		if ([[mime.contentType lowercaseString] rangeOfString:@"text/plain"].location != NSNotFound) {
 			[(CTMIME_TextPart *)mime fetchPart];
 			NSString* y = [mime content];
 			if(y != nil) {
@@ -215,7 +222,7 @@ char * etpan_encode_mime_header(char * phrase)
 		[self _buildUpHtmlBodyText:[mime content] result:result];
 	}
 	else if ([mime isKindOfClass:[CTMIME_TextPart class]]) {
-        if ([mime.contentType rangeOfString:@"text/html"].location != NSNotFound) {
+        if ([[mime.contentType lowercaseString] rangeOfString:@"text/html"].location != NSNotFound) {
 			[(CTMIME_TextPart *)mime fetchPart];
 			NSString* y = [mime content];
 			if(y != nil) {
@@ -577,7 +584,7 @@ char * etpan_encode_mime_header(char * phrase)
 
 
 	struct mail_flags *flagsStruct = myMessage->msg_flags;
-    long long flags = 0;
+    uint64_t flags = 0;
 	if (flagsStruct != NULL) {
         BOOL seen = (flagsStruct->fl_flags & CTFlagSeen) > 0;
 		flags |= seen << 0;
@@ -685,7 +692,7 @@ char * etpan_encode_mime_header(char * phrase)
 	const char *addressName;
 	const char *addressEmail;
 
-	while(address = [objEnum nextObject]) {
+	while((address = [objEnum nextObject])) {
 		addressName = [[address name] cStringUsingEncoding:NSUTF8StringEncoding];
 		addressEmail = [[address email] cStringUsingEncoding:NSUTF8StringEncoding];
 		err =  mailimf_mailbox_list_add_mb(imfList, strdup(addressName), strdup(addressEmail));
@@ -729,7 +736,7 @@ char * etpan_encode_mime_header(char * phrase)
 	const char *addressName;
 	const char *addressEmail;
 
-	while(address = [objEnum nextObject]) {
+	while((address = [objEnum nextObject])) {
 		addressName = [[address name] cStringUsingEncoding:NSUTF8StringEncoding];
 		addressEmail = [[address email] cStringUsingEncoding:NSUTF8StringEncoding];
 		err =  mailimf_address_list_add_mb(imfList, strdup(addressName), strdup(addressEmail));
