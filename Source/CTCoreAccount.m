@@ -111,6 +111,39 @@
 		connected = YES;
 }
 
+- (void)idle {
+    int err = mailimap_idle([self session]);
+    
+    if (err != 0) {
+		NSException *exception = [NSException
+                                  exceptionWithName:CTUnknownError
+                                  reason:[NSString stringWithFormat:@"Error number: %d", err]
+                                  userInfo:nil];
+		[exception raise];
+    }
+}
+
+- (NSString*)read {
+    char * buf = mailimap_read_line([self session]);
+    
+    if (buf == NULL) {
+        return nil;
+    }
+    
+    return [NSString stringWithCString:buf encoding:NSUTF8StringEncoding];
+}
+
+- (void)done {
+    int err = mailimap_idle_done([self session]);
+    
+    if (err != 0) {
+		NSException *exception = [NSException
+                                  exceptionWithName:CTUnknownError
+                                  reason:[NSString stringWithFormat:@"Error number: %d", err]
+                                  userInfo:nil];
+		[exception raise];
+    }
+}
 
 - (void)disconnect {
 	connected = NO;

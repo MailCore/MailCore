@@ -92,6 +92,22 @@
 */
 - (void)disconnect;
 
+
+/*!
+     @abstract	Sends the idle command to the server.
+ */
+- (void)idle;
+
+/*!
+    @abstract	Blocks the connection until data arrives.
+ */
+- (NSString*)read;
+
+/*!
+    @abstract	Sends the done command to the server.
+ */
+- (void)done;
+
 /* Intended for advanced use only */
 - (mailimap *)session;
 - (struct mailstorage *)storageStruct;
