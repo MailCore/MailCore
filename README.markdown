@@ -1,11 +1,12 @@
-     __    __     ______     __     __         ______     ______     ______     ______    
-    /\ "-./  \   /\  __ \   /\ \   /\ \       /\  ___\   /\  __ \   /\  == \   /\  ___\   
-    \ \ \-./\ \  \ \  __ \  \ \ \  \ \ \____  \ \ \____  \ \ \/\ \  \ \  __<   \ \  __\   
-     \ \_\ \ \_\  \ \_\ \_\  \ \_\  \ \_____\  \ \_____\  \ \_____\  \ \_\ \_\  \ \_____\ 
-      \/_/  \/_/   \/_/\/_/   \/_/   \/_____/   \/_____/   \/_____/   \/_/ /_/   \/_____/ 
+ __    __     ______     __     __         ______     ______     ______     ______    
+/\ "-./  \   /\  __ \   /\ \   /\ \       /\  ___\   /\  __ \   /\  == \   /\  ___\   
+\ \ \-./\ \  \ \  __ \  \ \ \  \ \ \____  \ \ \____  \ \ \/\ \  \ \  __<   \ \  __\   
+ \ \_\ \ \_\  \ \_\ \_\  \ \_\  \ \_____\  \ \_____\  \ \_____\  \ \_\ \_\  \ \_____\ 
+  \/_/  \/_/   \/_/\/_/   \/_/   \/_____/   \/_____/   \/_____/   \/_/ /_/   \/_____/ 
                                                                                       
 
-== Getting Started ==
+Getting Started
+---------------
 
 First checkout the code and pulldown the required dependencies as submodules:
 
@@ -17,7 +18,8 @@ First checkout the code and pulldown the required dependencies as submodules:
 
 Now open up MailCore.xcodeproj and build either the iOS static library or the Mac OS X framework depending on your needs.
 
-== Contact ==
+Contact
+-------
 
 If you have any questions contact me:
 
