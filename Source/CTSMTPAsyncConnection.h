@@ -6,7 +6,7 @@
 //  Copyright 2010 NotOptimal.net. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 #import <libetpan/libetpan.h>
 #import "MailCoreTypes.h"
 

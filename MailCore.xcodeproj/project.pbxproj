@@ -53,7 +53,6 @@
 		F8483E4C09CE7C2800B80440 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8483E4B09CE7C2800B80440 /* libcrypto.dylib */; };
 		F858CC490C51DE6B00EF1B3D /* CTBareMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = F858CC470C51DE6B00EF1B3D /* CTBareMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F858CC4A0C51DE6B00EF1B3D /* CTBareMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F858CC480C51DE6B00EF1B3D /* CTBareMessage.m */; };
-		F8618D0910DAE1C000C41188 /* libetpan-iphone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F890D39A10CEECD50039817C /* libetpan-iphone.a */; };
 		F8618D0D10DAE1E600C41188 /* CTSMTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = F81B885B0A74AA7100143DF6 /* CTSMTPConnection.m */; };
 		F8618D0E10DAE1E600C41188 /* CTSMTP.m in Sources */ = {isa = PBXBuildFile; fileRef = F88CA0CD0BF7A7B00055AC29 /* CTSMTP.m */; };
 		F8618D0F10DAE1E600C41188 /* CTESMTP.m in Sources */ = {isa = PBXBuildFile; fileRef = F88CA0D30BF7AC0B0055AC29 /* CTESMTP.m */; };
@@ -83,6 +82,7 @@
 		F890D39F10CEED640039817C /* libetpan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F890D39810CEECD50039817C /* libetpan.a */; };
 		F8A70EEF0C4059E100D1D694 /* JRLog.h in Headers */ = {isa = PBXBuildFile; fileRef = F8A70EED0C4059E100D1D694 /* JRLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8A70EF00C4059E100D1D694 /* JRLog.m in Sources */ = {isa = PBXBuildFile; fileRef = F8A70EEE0C4059E100D1D694 /* JRLog.m */; };
+		F8B245CE144BAC15002B56DA /* libstatic libetpan iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8B245CA144BABA4002B56DA /* libstatic libetpan iOS.a */; };
 		F8DFABF010541804003D3CC1 /* libetpan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8DFAB0410541708003D3CC1 /* libetpan.framework */; };
 /* End PBXBuildFile section */
 
@@ -93,13 +93,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = MailCore;
-		};
-		F8618D0B10DAE1CB00C41188 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F890D38D10CEECD50039817C /* libetpan.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = C6DC64B010829E8300FA050B;
-			remoteInfo = "static libetpan iphone";
 		};
 		F890D39510CEECD50039817C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -115,19 +108,26 @@
 			remoteGlobalIDString = C69AB10A10546FE500F32FBD;
 			remoteInfo = "static libetpan";
 		};
-		F890D39910CEECD50039817C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F890D38D10CEECD50039817C /* libetpan.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C6DC660510829E8300FA050B;
-			remoteInfo = "static libetpan iphone";
-		};
 		F890D39C10CEED080039817C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F890D38D10CEECD50039817C /* libetpan.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = C69AB10910546FE500F32FBD;
 			remoteInfo = "static libetpan";
+		};
+		F8B245C9144BABA4002B56DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F890D38D10CEECD50039817C /* libetpan.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8B2455E144B8C48002B56DA;
+			remoteInfo = "static libetpan iOS";
+		};
+		F8B245CC144BAC04002B56DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F890D38D10CEECD50039817C /* libetpan.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F8B244B6144B8C48002B56DA;
+			remoteInfo = "static libetpan iOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -244,7 +244,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8618D0910DAE1C000C41188 /* libetpan-iphone.a in Frameworks */,
+				F8B245CE144BAC15002B56DA /* libstatic libetpan iOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,7 +414,7 @@
 			children = (
 				F890D39610CEECD50039817C /* libetpan.framework */,
 				F890D39810CEECD50039817C /* libetpan.a */,
-				F890D39A10CEECD50039817C /* libetpan-iphone.a */,
+				F8B245CA144BABA4002B56DA /* libstatic libetpan iOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -497,9 +497,9 @@
 			productReference = F82D7C810F48AC8500ADA65C /* Tests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
-		F8618B5610DADB5C00C41188 /* MailCore iPhone */ = {
+		F8618B5610DADB5C00C41188 /* MailCore iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F8618B5B10DADB8300C41188 /* Build configuration list for PBXNativeTarget "MailCore iPhone" */;
+			buildConfigurationList = F8618B5B10DADB8300C41188 /* Build configuration list for PBXNativeTarget "MailCore iOS" */;
 			buildPhases = (
 				F8618B5410DADB5C00C41188 /* Sources */,
 				F8618B5510DADB5C00C41188 /* Frameworks */,
@@ -507,9 +507,9 @@
 			buildRules = (
 			);
 			dependencies = (
-				F8618D0C10DAE1CB00C41188 /* PBXTargetDependency */,
+				F8B245CD144BAC04002B56DA /* PBXTargetDependency */,
 			);
-			name = "MailCore iPhone";
+			name = "MailCore iOS";
 			productName = "MailCore iPhone";
 			productReference = F8618B5710DADB5C00C41188 /* libmailcore.a */;
 			productType = "com.apple.product-type.library.static";
@@ -539,7 +539,7 @@
 			targets = (
 				8DC2EF4F0486A6940098B216 /* MailCore */,
 				F82D7C800F48AC8500ADA65C /* Tests */,
-				F8618B5610DADB5C00C41188 /* MailCore iPhone */,
+				F8618B5610DADB5C00C41188 /* MailCore iOS */,
 			);
 		};
 /* End PBXProject section */
@@ -559,11 +559,11 @@
 			remoteRef = F890D39710CEECD50039817C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		F890D39A10CEECD50039817C /* libetpan-iphone.a */ = {
+		F8B245CA144BABA4002B56DA /* libstatic libetpan iOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = "libetpan-iphone.a";
-			remoteRef = F890D39910CEECD50039817C /* PBXContainerItemProxy */;
+			path = "libstatic libetpan iOS.a";
+			remoteRef = F8B245C9144BABA4002B56DA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -702,15 +702,15 @@
 			target = 8DC2EF4F0486A6940098B216 /* MailCore */;
 			targetProxy = F82D7D220F48ACDA00ADA65C /* PBXContainerItemProxy */;
 		};
-		F8618D0C10DAE1CB00C41188 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "static libetpan iphone";
-			targetProxy = F8618D0B10DAE1CB00C41188 /* PBXContainerItemProxy */;
-		};
 		F890D39D10CEED080039817C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "static libetpan";
 			targetProxy = F890D39C10CEED080039817C /* PBXContainerItemProxy */;
+		};
+		F8B245CD144BAC04002B56DA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "static libetpan iOS";
+			targetProxy = F8B245CC144BAC04002B56DA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -725,7 +725,6 @@
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/OpenSourceProjects/libetpan-0.58/build-mac/build/Release\"";
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -740,7 +739,6 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_2)",
 				);
-				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/OpenSourceProjects/build\"";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-seg1addr",
@@ -761,7 +759,6 @@
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/OpenSourceProjects/libetpan-0.58/build-mac/build/Release\"";
 				FRAMEWORK_VERSION = A;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
@@ -774,7 +771,6 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_2)",
 				);
-				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/OpenSourceProjects/build\"";
 				OTHER_LDFLAGS = (
 					"-seg1addr",
 					0xb0000000,
@@ -942,7 +938,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F8618B5B10DADB8300C41188 /* Build configuration list for PBXNativeTarget "MailCore iPhone" */ = {
+		F8618B5B10DADB8300C41188 /* Build configuration list for PBXNativeTarget "MailCore iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F8618B5810DADB5C00C41188 /* Debug */,
