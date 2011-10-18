@@ -1,0 +1,525 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F851FBB3144D134C003F58D4 /* libetpan_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F851FBB2144D133D003F58D4 /* libetpan_ios.a */; };
+		F851FBBB144D1391003F58D4 /* libsasl2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F851FBBA144D1382003F58D4 /* libsasl2.a */; };
+		F851FBC6144D13B8003F58D4 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F851FBC5144D13A5003F58D4 /* libcrypto.a */; };
+		F8919583144D0BF000EADD16 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8919582144D0BF000EADD16 /* UIKit.framework */; };
+		F8919585144D0BF000EADD16 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8919584144D0BF000EADD16 /* Foundation.framework */; };
+		F8919587144D0BF000EADD16 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8919586144D0BF000EADD16 /* CoreGraphics.framework */; };
+		F891958D144D0BF000EADD16 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F891958B144D0BF000EADD16 /* InfoPlist.strings */; };
+		F891958F144D0BF000EADD16 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F891958E144D0BF000EADD16 /* main.m */; };
+		F8919593144D0BF000EADD16 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F8919592144D0BF000EADD16 /* AppDelegate.m */; };
+		F8919596144D0BF000EADD16 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8919595144D0BF000EADD16 /* ViewController.m */; };
+		F8919599144D0BF000EADD16 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8919597144D0BF000EADD16 /* ViewController_iPhone.xib */; };
+		F891959C144D0BF000EADD16 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F891959A144D0BF000EADD16 /* ViewController_iPad.xib */; };
+		F89195D0144D0CAB00EADD16 /* libmailcore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F89195CC144D0C8900EADD16 /* libmailcore.a */; };
+		F89195D7144D0EFA00EADD16 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F89195D6144D0EF900EADD16 /* libiconv.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F851FBAD144D133D003F58D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F851FBA7144D133D003F58D4 /* libetpan.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
+			remoteInfo = libetpan;
+		};
+		F851FBAF144D133D003F58D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F851FBA7144D133D003F58D4 /* libetpan.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C69AB10A10546FE500F32FBD;
+			remoteInfo = "static libetpan";
+		};
+		F851FBB1144D133D003F58D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F851FBA7144D133D003F58D4 /* libetpan.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8B2455E144B8C48002B56DA;
+			remoteInfo = "static libetpan iOS";
+		};
+		F851FBB9144D1382003F58D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F851FBB4144D1381003F58D4 /* Cyrus SASL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = sasl2;
+		};
+		F851FBC2144D13A5003F58D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F851FBBC144D13A4003F58D4 /* openssl.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = ssl;
+		};
+		F851FBC4144D13A5003F58D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F851FBBC144D13A4003F58D4 /* openssl.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A0511C5A127770FD00DE46C4;
+			remoteInfo = crypto;
+		};
+		F89195C7144D0C8900EADD16 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F89195B2144D0C8800EADD16 /* MailCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
+			remoteInfo = MailCore;
+		};
+		F89195C9144D0C8900EADD16 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F89195B2144D0C8800EADD16 /* MailCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F82D7C810F48AC8500ADA65C;
+			remoteInfo = Tests;
+		};
+		F89195CB144D0C8900EADD16 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F89195B2144D0C8800EADD16 /* MailCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8618B5710DADB5C00C41188;
+			remoteInfo = "MailCore iOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F851FBA7144D133D003F58D4 /* libetpan.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libetpan.xcodeproj; path = "../../../libetpan/build-mac/libetpan.xcodeproj"; sourceTree = "<group>"; };
+		F851FBB4144D1381003F58D4 /* Cyrus SASL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Cyrus SASL.xcodeproj"; path = "../../../iOSPorts/ports/security/cyrus-sasl/Cyrus SASL.xcodeproj"; sourceTree = "<group>"; };
+		F851FBBC144D13A4003F58D4 /* openssl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openssl.xcodeproj; path = ../../../iOSPorts/ports/security/openssl/openssl.xcodeproj; sourceTree = "<group>"; };
+		F891957E144D0BF000EADD16 /* MessageSender.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MessageSender.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8919582144D0BF000EADD16 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F8919584144D0BF000EADD16 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F8919586144D0BF000EADD16 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F891958A144D0BF000EADD16 /* MessageSender-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MessageSender-Info.plist"; sourceTree = "<group>"; };
+		F891958C144D0BF000EADD16 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F891958E144D0BF000EADD16 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F8919590144D0BF000EADD16 /* MessageSender-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MessageSender-Prefix.pch"; sourceTree = "<group>"; };
+		F8919591144D0BF000EADD16 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F8919592144D0BF000EADD16 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F8919594144D0BF000EADD16 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		F8919595144D0BF000EADD16 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F8919598144D0BF000EADD16 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
+		F891959B144D0BF000EADD16 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		F89195B2144D0C8800EADD16 /* MailCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MailCore.xcodeproj; path = ../../../MailCore.xcodeproj; sourceTree = "<group>"; };
+		F89195D6144D0EF900EADD16 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		F89195D8144D0F0200EADD16 /* libsasl2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsasl2.a; path = "../../../iOSPorts/ports/security/cyrus-sasl/build/Debug-iphoneos/libsasl2.a"; sourceTree = "<group>"; };
+		F89195DA144D0F1000EADD16 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "../../../iOSPorts/ports/security/openssl/build/Debug-iphoneos/libcrypto.a"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F891957B144D0BF000EADD16 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F851FBC6144D13B8003F58D4 /* libcrypto.a in Frameworks */,
+				F851FBBB144D1391003F58D4 /* libsasl2.a in Frameworks */,
+				F851FBB3144D134C003F58D4 /* libetpan_ios.a in Frameworks */,
+				F89195D7144D0EFA00EADD16 /* libiconv.dylib in Frameworks */,
+				F89195D0144D0CAB00EADD16 /* libmailcore.a in Frameworks */,
+				F8919583144D0BF000EADD16 /* UIKit.framework in Frameworks */,
+				F8919585144D0BF000EADD16 /* Foundation.framework in Frameworks */,
+				F8919587144D0BF000EADD16 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F851FBA8144D133D003F58D4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F851FBAE144D133D003F58D4 /* libetpan.framework */,
+				F851FBB0144D133D003F58D4 /* libetpan_mac.a */,
+				F851FBB2144D133D003F58D4 /* libetpan_ios.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F851FBB5144D1381003F58D4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F851FBBA144D1382003F58D4 /* libsasl2.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F851FBBD144D13A4003F58D4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F851FBC3144D13A5003F58D4 /* libssl.a */,
+				F851FBC5144D13A5003F58D4 /* libcrypto.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F8919573144D0BEF00EADD16 = {
+			isa = PBXGroup;
+			children = (
+				F851FBBC144D13A4003F58D4 /* openssl.xcodeproj */,
+				F851FBB4144D1381003F58D4 /* Cyrus SASL.xcodeproj */,
+				F851FBA7144D133D003F58D4 /* libetpan.xcodeproj */,
+				F89195B2144D0C8800EADD16 /* MailCore.xcodeproj */,
+				F8919588144D0BF000EADD16 /* MessageSender */,
+				F8919581144D0BF000EADD16 /* Frameworks */,
+				F891957F144D0BF000EADD16 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F891957F144D0BF000EADD16 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F891957E144D0BF000EADD16 /* MessageSender.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F8919581144D0BF000EADD16 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F89195DA144D0F1000EADD16 /* libcrypto.a */,
+				F89195D8144D0F0200EADD16 /* libsasl2.a */,
+				F89195D6144D0EF900EADD16 /* libiconv.dylib */,
+				F8919582144D0BF000EADD16 /* UIKit.framework */,
+				F8919584144D0BF000EADD16 /* Foundation.framework */,
+				F8919586144D0BF000EADD16 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F8919588144D0BF000EADD16 /* MessageSender */ = {
+			isa = PBXGroup;
+			children = (
+				F8919591144D0BF000EADD16 /* AppDelegate.h */,
+				F8919592144D0BF000EADD16 /* AppDelegate.m */,
+				F8919594144D0BF000EADD16 /* ViewController.h */,
+				F8919595144D0BF000EADD16 /* ViewController.m */,
+				F8919597144D0BF000EADD16 /* ViewController_iPhone.xib */,
+				F891959A144D0BF000EADD16 /* ViewController_iPad.xib */,
+				F8919589144D0BF000EADD16 /* Supporting Files */,
+			);
+			path = MessageSender;
+			sourceTree = "<group>";
+		};
+		F8919589144D0BF000EADD16 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F891958A144D0BF000EADD16 /* MessageSender-Info.plist */,
+				F891958B144D0BF000EADD16 /* InfoPlist.strings */,
+				F891958E144D0BF000EADD16 /* main.m */,
+				F8919590144D0BF000EADD16 /* MessageSender-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F89195B3144D0C8800EADD16 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F89195C8144D0C8900EADD16 /* MailCore.framework */,
+				F89195CA144D0C8900EADD16 /* Tests.octest */,
+				F89195CC144D0C8900EADD16 /* libmailcore.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F891957D144D0BF000EADD16 /* MessageSender */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F891959F144D0BF000EADD16 /* Build configuration list for PBXNativeTarget "MessageSender" */;
+			buildPhases = (
+				F891957A144D0BF000EADD16 /* Sources */,
+				F891957B144D0BF000EADD16 /* Frameworks */,
+				F891957C144D0BF000EADD16 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MessageSender;
+			productName = MessageSender;
+			productReference = F891957E144D0BF000EADD16 /* MessageSender.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F8919575144D0BEF00EADD16 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = F8919578144D0BEF00EADD16 /* Build configuration list for PBXProject "MessageSender" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F8919573144D0BEF00EADD16;
+			productRefGroup = F891957F144D0BF000EADD16 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = F851FBB5144D1381003F58D4 /* Products */;
+					ProjectRef = F851FBB4144D1381003F58D4 /* Cyrus SASL.xcodeproj */;
+				},
+				{
+					ProductGroup = F851FBA8144D133D003F58D4 /* Products */;
+					ProjectRef = F851FBA7144D133D003F58D4 /* libetpan.xcodeproj */;
+				},
+				{
+					ProductGroup = F89195B3144D0C8800EADD16 /* Products */;
+					ProjectRef = F89195B2144D0C8800EADD16 /* MailCore.xcodeproj */;
+				},
+				{
+					ProductGroup = F851FBBD144D13A4003F58D4 /* Products */;
+					ProjectRef = F851FBBC144D13A4003F58D4 /* openssl.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				F891957D144D0BF000EADD16 /* MessageSender */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		F851FBAE144D133D003F58D4 /* libetpan.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = libetpan.framework;
+			remoteRef = F851FBAD144D133D003F58D4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F851FBB0144D133D003F58D4 /* libetpan_mac.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libetpan_mac.a;
+			remoteRef = F851FBAF144D133D003F58D4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F851FBB2144D133D003F58D4 /* libetpan_ios.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libetpan_ios.a;
+			remoteRef = F851FBB1144D133D003F58D4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F851FBBA144D1382003F58D4 /* libsasl2.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libsasl2.a;
+			remoteRef = F851FBB9144D1382003F58D4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F851FBC3144D13A5003F58D4 /* libssl.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libssl.a;
+			remoteRef = F851FBC2144D13A5003F58D4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F851FBC5144D13A5003F58D4 /* libcrypto.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libcrypto.a;
+			remoteRef = F851FBC4144D13A5003F58D4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F89195C8144D0C8900EADD16 /* MailCore.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MailCore.framework;
+			remoteRef = F89195C7144D0C8900EADD16 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F89195CA144D0C8900EADD16 /* Tests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Tests.octest;
+			remoteRef = F89195C9144D0C8900EADD16 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F89195CC144D0C8900EADD16 /* libmailcore.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libmailcore.a;
+			remoteRef = F89195CB144D0C8900EADD16 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F891957C144D0BF000EADD16 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F891958D144D0BF000EADD16 /* InfoPlist.strings in Resources */,
+				F8919599144D0BF000EADD16 /* ViewController_iPhone.xib in Resources */,
+				F891959C144D0BF000EADD16 /* ViewController_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F891957A144D0BF000EADD16 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F891958F144D0BF000EADD16 /* main.m in Sources */,
+				F8919593144D0BF000EADD16 /* AppDelegate.m in Sources */,
+				F8919596144D0BF000EADD16 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F891958B144D0BF000EADD16 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F891958C144D0BF000EADD16 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F8919597144D0BF000EADD16 /* ViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F8919598144D0BF000EADD16 /* en */,
+			);
+			name = ViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		F891959A144D0BF000EADD16 /* ViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F891959B144D0BF000EADD16 /* en */,
+			);
+			name = ViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F891959D144D0BF000EADD16 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F891959E144D0BF000EADD16 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F89195A0144D0BF000EADD16 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MessageSender/MessageSender-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../../libetpan/build-mac/include",
+					"$(SRCROOT)/../../../Source",
+				);
+				INFOPLIST_FILE = "MessageSender/MessageSender-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../iOSPorts/ports/security/cyrus-sasl/build/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../../../iOSPorts/ports/security/openssl/build/Debug-iphoneos\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F89195A1144D0BF000EADD16 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MessageSender/MessageSender-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../../libetpan/build-mac/include",
+					"$(SRCROOT)/../../../Source",
+				);
+				INFOPLIST_FILE = "MessageSender/MessageSender-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../iOSPorts/ports/security/cyrus-sasl/build/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../../../iOSPorts/ports/security/openssl/build/Debug-iphoneos\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F8919578144D0BEF00EADD16 /* Build configuration list for PBXProject "MessageSender" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F891959D144D0BF000EADD16 /* Debug */,
+				F891959E144D0BF000EADD16 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F891959F144D0BF000EADD16 /* Build configuration list for PBXNativeTarget "MessageSender" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F89195A0144D0BF000EADD16 /* Debug */,
+				F89195A1144D0BF000EADD16 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F8919575144D0BEF00EADD16 /* Project object */;
+}

@@ -79,10 +79,10 @@
 		F88CA0CF0BF7A7B00055AC29 /* CTSMTP.m in Sources */ = {isa = PBXBuildFile; fileRef = F88CA0CD0BF7A7B00055AC29 /* CTSMTP.m */; };
 		F88CA0D40BF7AC0B0055AC29 /* CTESMTP.h in Headers */ = {isa = PBXBuildFile; fileRef = F88CA0D20BF7AC0B0055AC29 /* CTESMTP.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F88CA0D50BF7AC0B0055AC29 /* CTESMTP.m in Sources */ = {isa = PBXBuildFile; fileRef = F88CA0D30BF7AC0B0055AC29 /* CTESMTP.m */; };
-		F890D39F10CEED640039817C /* libetpan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F890D39810CEECD50039817C /* libetpan.a */; };
+		F890D39F10CEED640039817C /* libetpan_mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F890D39810CEECD50039817C /* libetpan_mac.a */; };
 		F8A70EEF0C4059E100D1D694 /* JRLog.h in Headers */ = {isa = PBXBuildFile; fileRef = F8A70EED0C4059E100D1D694 /* JRLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8A70EF00C4059E100D1D694 /* JRLog.m in Sources */ = {isa = PBXBuildFile; fileRef = F8A70EEE0C4059E100D1D694 /* JRLog.m */; };
-		F8B245CE144BAC15002B56DA /* libstatic libetpan iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8B245CA144BABA4002B56DA /* libstatic libetpan iOS.a */; };
+		F8B245CE144BAC15002B56DA /* libetpan_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8B245CA144BABA4002B56DA /* libetpan_ios.a */; };
 		F8DFABF010541804003D3CC1 /* libetpan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8DFAB0410541708003D3CC1 /* libetpan.framework */; };
 /* End PBXBuildFile section */
 
@@ -222,7 +222,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F890D39F10CEED640039817C /* libetpan.a in Frameworks */,
+				F890D39F10CEED640039817C /* libetpan_mac.a in Frameworks */,
 				8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */,
 				F8483E4109CE7B9000B80440 /* libssl.dylib in Frameworks */,
 				F8483E4309CE7B9C00B80440 /* libiconv.dylib in Frameworks */,
@@ -244,7 +244,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8B245CE144BAC15002B56DA /* libstatic libetpan iOS.a in Frameworks */,
+				F8B245CE144BAC15002B56DA /* libetpan_ios.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,8 +413,8 @@
 			isa = PBXGroup;
 			children = (
 				F890D39610CEECD50039817C /* libetpan.framework */,
-				F890D39810CEECD50039817C /* libetpan.a */,
-				F8B245CA144BABA4002B56DA /* libstatic libetpan iOS.a */,
+				F890D39810CEECD50039817C /* libetpan_mac.a */,
+				F8B245CA144BABA4002B56DA /* libetpan_ios.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -552,17 +552,17 @@
 			remoteRef = F890D39510CEECD50039817C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		F890D39810CEECD50039817C /* libetpan.a */ = {
+		F890D39810CEECD50039817C /* libetpan_mac.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libetpan.a;
+			path = libetpan_mac.a;
 			remoteRef = F890D39710CEECD50039817C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		F8B245CA144BABA4002B56DA /* libstatic libetpan iOS.a */ = {
+		F8B245CA144BABA4002B56DA /* libetpan_ios.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = "libstatic libetpan iOS.a";
+			path = libetpan_ios.a;
 			remoteRef = F8B245C9144BABA4002B56DA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
