@@ -10,7 +10,7 @@ Getting Started
 
 First checkout the code and pulldown the required dependencies as submodules:
 
-    git clone git@github.com:mronge/MailCore.git
+    git clone https://github.com/mronge/MailCore.git
     git submodule init
     cd MailCore/
     git submodule init
