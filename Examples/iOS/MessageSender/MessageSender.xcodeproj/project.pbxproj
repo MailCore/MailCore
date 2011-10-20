@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F81524F5144FA4A5007ABA9C /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F851FBC3144D13A5003F58D4 /* libssl.a */; };
 		F851FBB3144D134C003F58D4 /* libetpan_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F851FBB2144D133D003F58D4 /* libetpan_ios.a */; };
 		F851FBBB144D1391003F58D4 /* libsasl2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F851FBBA144D1382003F58D4 /* libsasl2.a */; };
 		F851FBC6144D13B8003F58D4 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F851FBC5144D13A5003F58D4 /* libcrypto.a */; };
@@ -118,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F81524F5144FA4A5007ABA9C /* libssl.a in Frameworks */,
 				F851FBC6144D13B8003F58D4 /* libcrypto.a in Frameworks */,
 				F851FBBB144D1391003F58D4 /* libsasl2.a in Frameworks */,
 				F851FBB3144D134C003F58D4 /* libetpan_ios.a in Frameworks */,
