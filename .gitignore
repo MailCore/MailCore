@@ -2,3 +2,4 @@ build
 *~
 xcuserdata
 .DS_Store
+include/

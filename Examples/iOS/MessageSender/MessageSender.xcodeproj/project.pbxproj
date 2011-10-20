@@ -466,7 +466,7 @@
 				GCC_PREFIX_HEADER = "MessageSender/MessageSender-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../../../libetpan/build-mac/include",
-					"$(SRCROOT)/../../../Source",
+					"$(SRCROOT)/../../../include",
 				);
 				INFOPLIST_FILE = "MessageSender/MessageSender-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
@@ -487,7 +487,7 @@
 				GCC_PREFIX_HEADER = "MessageSender/MessageSender-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../../../libetpan/build-mac/include",
-					"$(SRCROOT)/../../../Source",
+					"$(SRCROOT)/../../../include",
 				);
 				INFOPLIST_FILE = "MessageSender/MessageSender-Info.plist";
 				LIBRARY_SEARCH_PATHS = (

@@ -7,8 +7,6 @@
 //
 
 #import "ViewController.h"
-#import "CTCoreMessage.h"
-#import "CTSMTPConnection.h"
 
 @implementation ViewController
 

@@ -80,6 +80,28 @@
 		F88CA0D40BF7AC0B0055AC29 /* CTESMTP.h in Headers */ = {isa = PBXBuildFile; fileRef = F88CA0D20BF7AC0B0055AC29 /* CTESMTP.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F88CA0D50BF7AC0B0055AC29 /* CTESMTP.m in Sources */ = {isa = PBXBuildFile; fileRef = F88CA0D30BF7AC0B0055AC29 /* CTESMTP.m */; };
 		F890D39F10CEED640039817C /* libetpan_mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F890D39810CEECD50039817C /* libetpan_mac.a */; };
+		F8A2FAB2144FA83700C03DB4 /* MailCore.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F81B885C0A74AA7100143DF6 /* MailCore.h */; };
+		F8A2FAB3144FA84C00C03DB4 /* CTCoreAttachment.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F81E266C0C6ED4E100B3FBAC /* CTCoreAttachment.h */; };
+		F8A2FAB4144FA85100C03DB4 /* CTCoreAccount.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F81B88500A74AA7100143DF6 /* CTCoreAccount.h */; };
+		F8A2FAB5144FA85300C03DB4 /* CTCoreAddress.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F81B88520A74AA7100143DF6 /* CTCoreAddress.h */; };
+		F8A2FAB6144FA85600C03DB4 /* CTCoreFolder.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F81B88540A74AA7100143DF6 /* CTCoreFolder.h */; };
+		F8A2FAB7144FA85900C03DB4 /* CTCoreMessage.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F81B88560A74AA7100143DF6 /* CTCoreMessage.h */; };
+		F8A2FAB8144FA85C00C03DB4 /* CTBareMessage.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F858CC470C51DE6B00EF1B3D /* CTBareMessage.h */; };
+		F8A2FAB9144FA85E00C03DB4 /* CTBareAttachment.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */; };
+		F8A2FABA144FA86300C03DB4 /* MailCoreUtilities.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F88804D50B4243C000D400E7 /* MailCoreUtilities.h */; };
+		F8A2FABB144FA86600C03DB4 /* MailCoreTypes.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F81B885D0A74AA7100143DF6 /* MailCoreTypes.h */; };
+		F8A2FABC144FA86900C03DB4 /* CTMIMEFactory.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8245A2F0C04089D005E08A8 /* CTMIMEFactory.h */; };
+		F8A2FABD144FA86B00C03DB4 /* CTMIME_MessagePart.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F81A8AD20C03FC3B002F780A /* CTMIME_MessagePart.h */; };
+		F8A2FABE144FA86D00C03DB4 /* CTMIME_MultiPart.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F81A8AD40C03FC3B002F780A /* CTMIME_MultiPart.h */; };
+		F8A2FABF144FA86F00C03DB4 /* CTMIME_SinglePart.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F81A8AD60C03FC3B002F780A /* CTMIME_SinglePart.h */; };
+		F8A2FAC0144FA87100C03DB4 /* CTMIME_TextPart.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F81A8AD80C03FC3B002F780A /* CTMIME_TextPart.h */; };
+		F8A2FAC1144FA87300C03DB4 /* CTMIME.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F81A8ADA0C03FC3B002F780A /* CTMIME.h */; };
+		F8A2FAC2144FA87400C03DB4 /* CTMIME_Enumerator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8430BAF0C72B16000753941 /* CTMIME_Enumerator.h */; };
+		F8A2FAC3144FA87800C03DB4 /* CTSMTPConnection.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F81B885A0A74AA7100143DF6 /* CTSMTPConnection.h */; };
+		F8A2FAC4144FA87B00C03DB4 /* CTSMTPAsyncConnection.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2D538B42119803A6000AB4A2 /* CTSMTPAsyncConnection.h */; };
+		F8A2FAC5144FA87D00C03DB4 /* CTSMTP.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F88CA0CC0BF7A7B00055AC29 /* CTSMTP.h */; };
+		F8A2FAC6144FA88100C03DB4 /* CTESMTP.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F88CA0D20BF7AC0B0055AC29 /* CTESMTP.h */; };
+		F8A2FAC7144FA88F00C03DB4 /* JRLog.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8A70EED0C4059E100D1D694 /* JRLog.h */; };
 		F8A70EEF0C4059E100D1D694 /* JRLog.h in Headers */ = {isa = PBXBuildFile; fileRef = F8A70EED0C4059E100D1D694 /* JRLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8A70EF00C4059E100D1D694 /* JRLog.m in Sources */ = {isa = PBXBuildFile; fileRef = F8A70EEE0C4059E100D1D694 /* JRLog.m */; };
 		F8B245CE144BAC15002B56DA /* libetpan_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8B245CA144BABA4002B56DA /* libetpan_ios.a */; };
@@ -132,12 +154,34 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		F89614140A79D30A00F93E26 /* CopyFiles */ = {
+		F8A2FAA9144FA7BA00C03DB4 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 6;
+			dstPath = "$(SRCROOT)/include/MailCore";
+			dstSubfolderSpec = 0;
 			files = (
+				F8A2FAC3144FA87800C03DB4 /* CTSMTPConnection.h in CopyFiles */,
+				F8A2FAC7144FA88F00C03DB4 /* JRLog.h in CopyFiles */,
+				F8A2FAC1144FA87300C03DB4 /* CTMIME.h in CopyFiles */,
+				F8A2FAC2144FA87400C03DB4 /* CTMIME_Enumerator.h in CopyFiles */,
+				F8A2FAC0144FA87100C03DB4 /* CTMIME_TextPart.h in CopyFiles */,
+				F8A2FABF144FA86F00C03DB4 /* CTMIME_SinglePart.h in CopyFiles */,
+				F8A2FABE144FA86D00C03DB4 /* CTMIME_MultiPart.h in CopyFiles */,
+				F8A2FABC144FA86900C03DB4 /* CTMIMEFactory.h in CopyFiles */,
+				F8A2FAB2144FA83700C03DB4 /* MailCore.h in CopyFiles */,
+				F8A2FABD144FA86B00C03DB4 /* CTMIME_MessagePart.h in CopyFiles */,
+				F8A2FABA144FA86300C03DB4 /* MailCoreUtilities.h in CopyFiles */,
+				F8A2FAC6144FA88100C03DB4 /* CTESMTP.h in CopyFiles */,
+				F8A2FABB144FA86600C03DB4 /* MailCoreTypes.h in CopyFiles */,
+				F8A2FAB9144FA85E00C03DB4 /* CTBareAttachment.h in CopyFiles */,
+				F8A2FAB8144FA85C00C03DB4 /* CTBareMessage.h in CopyFiles */,
+				F8A2FAB7144FA85900C03DB4 /* CTCoreMessage.h in CopyFiles */,
+				F8A2FAC5144FA87D00C03DB4 /* CTSMTP.h in CopyFiles */,
+				F8A2FAB6144FA85600C03DB4 /* CTCoreFolder.h in CopyFiles */,
+				F8A2FAB5144FA85300C03DB4 /* CTCoreAddress.h in CopyFiles */,
+				F8A2FAC4144FA87B00C03DB4 /* CTSMTPAsyncConnection.h in CopyFiles */,
+				F8A2FAB3144FA84C00C03DB4 /* CTCoreAttachment.h in CopyFiles */,
+				F8A2FAB4144FA85100C03DB4 /* CTCoreAccount.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,7 +509,7 @@
 				8DC2EF540486A6940098B216 /* Sources */,
 				8DC2EF560486A6940098B216 /* Frameworks */,
 				F848422D09CFACA000B80440 /* ShellScript */,
-				F89614140A79D30A00F93E26 /* CopyFiles */,
+				F8A2FAA9144FA7BA00C03DB4 /* CopyFiles */,
 			);
 			buildRules = (
 			);
