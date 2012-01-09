@@ -118,7 +118,7 @@
 */
 - (void)setBody:(NSString *)body;
 
-- (void) setHTMLBody:(NSString *)body
+- (void)setHTMLBody:(NSString *)body;
 
 - (NSArray *)attachments;
 - (void)addAttachment:(CTCoreAttachment *)attachment;
