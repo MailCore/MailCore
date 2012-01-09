@@ -39,6 +39,7 @@
 #import "CTMIME_MultiPart.h"
 #import "CTMIME_SinglePart.h"
 #import "CTBareAttachment.h"
+#import "CTMIME_HtmlPart.h"
 
 @interface CTCoreMessage (Private)
 - (CTCoreAddress *)_addressFromMailbox:(struct mailimf_mailbox *)mailbox;
@@ -144,6 +145,18 @@ char * etpan_encode_mime_header(char * phrase)
 	return result;
 }
 
+- (NSString *)editableHtmlBody{
+    //added by KK
+    NSMutableString *result = [NSMutableString string];
+	[self _buildUpHtmlBodyText:myParsedMIME result:result];
+    NSString *str = [NSString stringWithFormat:@"<div id = 'myDiv' contentEditable>"];
+    str = [str stringByAppendingFormat:@"%@",[NSString stringWithString:result]];
+    str = [str stringByAppendingString:@"</div>"];
+    //Used For Getting changed content
+    str = [str stringByAppendingString:@"<script type = 'text/javascript'> function getHtmlContent() { return document.getElementById('myDiv').innerHTML;}</script>"];
+	return str;
+}
+
 - (NSString *)bodyPreferringPlainText {
     NSString *body = [self body];
     if ([body length] == 0) {
@@ -220,6 +233,14 @@ char * etpan_encode_mime_header(char * phrase)
 		myParsedMIME = [messagePart retain];
 		[oldMIME release];		
 	}
+}
+
+- (void) setHTMLBody:(NSString *)body{
+    CTMIME *oldMIME = myParsedMIME;
+	CTMIME_HtmlPart *text = [CTMIME_HtmlPart mimeTextPartWithString:body];
+    CTMIME_MessagePart *messagePart = [CTMIME_MessagePart mimeMessagePartWithContent:text];
+    myParsedMIME = [messagePart retain];
+    [oldMIME release];	
 }
 
 - (NSArray *)attachments {

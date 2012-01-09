@@ -68,7 +68,7 @@
 	struct mailmime_parameter *param;
 	int r;
     
-	/* text/plain part */
+	/* text/html part */
 	//TODO this needs to be changed, something other than 8BIT should be used
 	mime_fields = mailmime_fields_new_encoding(MAILMIME_MECHANISM_8BIT);
 	assert(mime_fields != NULL);

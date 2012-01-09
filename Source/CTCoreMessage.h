@@ -102,6 +102,11 @@
  */
 - (NSString *)htmlBody;
 
+/*!
+ @abstract	This method returns the editable html body as an NSString.
+ */
+- (NSString *)editableHtmlBody;
+
 /*!  @abstract Returns a message body as an NSString. First attempts
                to retrieve a plain text body, if that fails then
                tries for an HTML body.
@@ -112,6 +117,8 @@
 	@abstract	This method sets the message body. Plaintext only please!
 */
 - (void)setBody:(NSString *)body;
+
+- (void) setHTMLBody:(NSString *)body
 
 - (NSArray *)attachments;
 - (void)addAttachment:(CTCoreAttachment *)attachment;
