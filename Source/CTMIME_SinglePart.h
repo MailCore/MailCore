@@ -32,6 +32,8 @@
 #import <Foundation/Foundation.h>
 #import "CTMIME.h"
 
+typedef void (^CTProgressBlock)(size_t curr, size_t max);
+
 @interface CTMIME_SinglePart : CTMIME {
 	struct mailmime *mMime;
 	struct mailmessage *mMessage;
@@ -47,9 +49,11 @@
 @property BOOL fetched;
 @property(retain) NSString *filename;
 @property(retain) NSString *contentId;
-@property(retain) NSData *data; 
+@property(retain) NSData *data;
+@property(readonly) size_t size;
 
 + (id)mimeSinglePartWithData:(NSData *)data;
 - (id)initWithData:(NSData *)data;
 - (void)fetchPart;
+- (void)fetchPartWithProgress:(CTProgressBlock)block;
 @end

@@ -30,8 +30,8 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "CTMIME_SinglePart.h"
 
-@class CTMIME_SinglePart;
 @class CTCoreAttachment;
 
 //TODO Document me
@@ -47,4 +47,5 @@
 -(NSString*)decodedFilename;
 - (id)initWithMIMESinglePart:(CTMIME_SinglePart *)part;
 - (CTCoreAttachment *)fetchFullAttachment;
+- (CTCoreAttachment *)fetchFullAttachmentWithProgress:(CTProgressBlock)block;
 @end

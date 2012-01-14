@@ -70,9 +70,13 @@
 }
 
 - (CTCoreAttachment *)fetchFullAttachment {
-	[mMIMEPart fetchPart];
+    return [self fetchFullAttachmentWithProgress:^(size_t curr, size_t max) {}];
+}
+
+- (CTCoreAttachment *)fetchFullAttachmentWithProgress:(CTProgressBlock)block {
+    [mMIMEPart fetchPartWithProgress:block];
 	CTCoreAttachment *attach = [[CTCoreAttachment alloc] initWithData:mMIMEPart.data
-								 contentType:self.contentType filename:self.filename];
+                                                          contentType:self.contentType filename:self.filename];
 	return [attach autorelease];
 }
 
