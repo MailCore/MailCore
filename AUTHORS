@@ -11,6 +11,7 @@ Contributors:
     * Gabor Cselle - For tons of contributions, especially iPhone support and bug fixes
     * Juan Leon - For adding async SMTP support
     * Matthew R. Miller - For move message support and date utilities
+	* Kaustubh Kabra - For HTML mail support
 	
 Thanks to:
 

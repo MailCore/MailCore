@@ -73,7 +73,7 @@
 
 /*!
 	@abstract Used to instantiate a message object based off a string
-            	that contains a valid MIME message
+                that contains a valid MIME message
 */
 - (id)initWithString:(NSString *)msgData;
 
@@ -98,13 +98,14 @@
 - (NSString *)body;
 
 /*!
- @abstract	This method returns the html body as an NSString.
+    @abstract	This method returns the html body as an NSString.
  */
 - (NSString *)htmlBody;
 
 /*!
- @abstract	This method returns the editable html body as an NSString.
- */
+    @abstract	This method returns the editable html body as an NSString. For use
+                with WebViews only.
+*/
 - (NSString *)editableHtmlBody;
 
 /*!  @abstract Returns a message body as an NSString. First attempts
@@ -118,6 +119,9 @@
 */
 - (void)setBody:(NSString *)body;
 
+/*!
+    @abstract	Use this method to set the body if you have HTML content.
+*/
 - (void)setHTMLBody:(NSString *)body;
 
 - (NSArray *)attachments;
@@ -133,28 +137,28 @@
 */
 - (void)setSubject:(NSString *)subject;
 
-/*! returns the timezone of the sender of the message (got from the Date field timezone attribute) */
+/*! @abstract   Returns the timezone of the sender of the message (got from the Date field timezone attribute) */
 - (NSTimeZone*)senderTimeZone;
 
-/*! @abstract returns the date as given in the Date mail field (no timezone is applied) */
+/*! @abstract   Returns the date as given in the Date mail field (no timezone is applied) */
 - (NSDate *)senderDate; 
 
-/*! @abstract returns the date in the Date field converted to GMT */
+/*! @abstract   Returns the date in the Date field converted to GMT */
 - (NSDate *)sentDateGMT; 
 
 /*!
-    @abstract returns the date in the Date field converted to the local timezone
-    the local timezone is the one set in the device running this code
+    @abstract   Returns the date in the Date field converted to the local timezone
+                the local timezone is the one set in the device running this code
  */
 - (NSDate *)sentDateLocalTimeZone; 
 
 /*!
- @abstract	Returns YES if the message is unread.
+    @abstract	Returns YES if the message is unread.
  */
 - (BOOL)isUnread;
 
 /*!
- @abstract	Returns YES if the message is recent and unread.
+    @abstract	Returns YES if the message is recent and unread.
 */
 - (BOOL)isNew;
 
