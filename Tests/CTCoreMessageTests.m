@@ -79,7 +79,7 @@
 
 - (void)testSubjectOnData {
 	CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:[NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/kiwi-dev/1167196014.6158_0.theronge.com:2,Sab"]];
-	[msg fetchBody];
+	[msg fetchBodyStructure];
 	STAssertEqualObjects(@"[Kiwi-dev] Revision 16", [msg subject], @"");
 	NSRange notFound = NSMakeRange(NSNotFound, 0);
 	STAssertTrue(!NSEqualRanges([[msg body] rangeOfString:@"Kiwi-dev mailing list"],notFound), @"Body sanity check failed!");
@@ -170,7 +170,7 @@
 - (void)testAttachments {
 	CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:
 				[NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/mime-tests/png_attachment"]];
-	[msg fetchBody];
+	[msg fetchBodyStructure];
 	NSArray *attachments = [msg attachments];
 	STAssertTrue([attachments count] == 1, @"Count should have been 1");
 	STAssertEqualObjects([[attachments objectAtIndex:0] filename], @"Picture 1.png", @"Incorrect filename");

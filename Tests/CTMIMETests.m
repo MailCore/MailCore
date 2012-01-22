@@ -87,7 +87,7 @@ const NSString *filePrefix = @"/Users/mronge/Projects/MailCore/";
 			continue;
 		CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:[NSString stringWithFormat:@"%@TestData/kiwi-dev/%@",filePrefix,file]];
 		NSLog([msg subject]);
-		[msg fetchBody];
+		[msg fetchBodyStructure];
 		NSString *stuff = [msg body];
 		[stuff length]; //Get the warning to shutup about stuff not being used
 		[msg release];

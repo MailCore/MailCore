@@ -82,13 +82,7 @@
 */
 - (id)init;
 
-/*!
-	@abstract	This method fetches the message body off of the server, and places
-				it in a local data structure which can later be returned by the
-				method body. This method require that an active MailCore network
-				connection is present.
-*/
-- (int)fetchBody;
+- (int)fetchBodyStructure;
 
 /*!
 	@abstract	This method returns the parsed message body as an NSString.
