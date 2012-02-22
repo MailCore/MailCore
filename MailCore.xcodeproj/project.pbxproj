@@ -72,6 +72,29 @@
 		F8618D1D10DAE1E600C41188 /* CTBareAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */; };
 		F8618D1E10DAE1E600C41188 /* MailCoreUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F88804D60B4243C000D400E7 /* MailCoreUtilities.m */; };
 		F8618D1F10DAE1EB00C41188 /* JRLog.m in Sources */ = {isa = PBXBuildFile; fileRef = F8A70EEE0C4059E100D1D694 /* JRLog.m */; };
+		F86B542314F476170080FB8F /* CTSMTPConnection.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F81B885A0A74AA7100143DF6 /* CTSMTPConnection.h */; };
+		F86B542414F4761C0080FB8F /* CTSMTPAsyncConnection.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2D538B42119803A6000AB4A2 /* CTSMTPAsyncConnection.h */; };
+		F86B542514F4761E0080FB8F /* CTSMTP.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F88CA0CC0BF7A7B00055AC29 /* CTSMTP.h */; };
+		F86B542614F476200080FB8F /* CTESMTP.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F88CA0D20BF7AC0B0055AC29 /* CTESMTP.h */; };
+		F86B542714F476250080FB8F /* CTMIME_HtmlPart.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8EC5B0114C37F60006AF4D3 /* CTMIME_HtmlPart.h */; };
+		F86B542814F476280080FB8F /* CTMIMEFactory.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8245A2F0C04089D005E08A8 /* CTMIMEFactory.h */; };
+		F86B542914F4762A0080FB8F /* CTMIME_MessagePart.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F81A8AD20C03FC3B002F780A /* CTMIME_MessagePart.h */; };
+		F86B542A14F4762C0080FB8F /* CTMIME_MultiPart.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F81A8AD40C03FC3B002F780A /* CTMIME_MultiPart.h */; };
+		F86B542B14F4762E0080FB8F /* CTMIME_SinglePart.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F81A8AD60C03FC3B002F780A /* CTMIME_SinglePart.h */; };
+		F86B542C14F4762F0080FB8F /* CTMIME_TextPart.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F81A8AD80C03FC3B002F780A /* CTMIME_TextPart.h */; };
+		F86B542D14F476320080FB8F /* CTMIME.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F81A8ADA0C03FC3B002F780A /* CTMIME.h */; };
+		F86B542E14F476330080FB8F /* CTMIME_Enumerator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8430BAF0C72B16000753941 /* CTMIME_Enumerator.h */; };
+		F86B542F14F476350080FB8F /* CTCoreAttachment.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F81E266C0C6ED4E100B3FBAC /* CTCoreAttachment.h */; };
+		F86B543014F476390080FB8F /* CTCoreAddress.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F81B88520A74AA7100143DF6 /* CTCoreAddress.h */; };
+		F86B543114F4763F0080FB8F /* CTCoreAccount.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F81B88500A74AA7100143DF6 /* CTCoreAccount.h */; };
+		F86B543214F476420080FB8F /* CTCoreFolder.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F81B88540A74AA7100143DF6 /* CTCoreFolder.h */; };
+		F86B543314F476480080FB8F /* CTCoreMessage.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F81B88560A74AA7100143DF6 /* CTCoreMessage.h */; };
+		F86B543414F4764C0080FB8F /* CTBareMessage.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F858CC470C51DE6B00EF1B3D /* CTBareMessage.h */; };
+		F86B543514F4764E0080FB8F /* CTBareAttachment.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */; };
+		F86B543614F476500080FB8F /* MailCoreUtilities.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F88804D50B4243C000D400E7 /* MailCoreUtilities.h */; };
+		F86B543714F476530080FB8F /* MailCore.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F81B885C0A74AA7100143DF6 /* MailCore.h */; };
+		F86B543814F476540080FB8F /* MailCoreTypes.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F81B885D0A74AA7100143DF6 /* MailCoreTypes.h */; };
+		F86B543914F476560080FB8F /* JRLog.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8A70EED0C4059E100D1D694 /* JRLog.h */; };
 		F88804620B42018500D400E7 /* libsasl2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F88804610B42018500D400E7 /* libsasl2.dylib */; };
 		F88804D70B4243C000D400E7 /* MailCoreUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = F88804D50B4243C000D400E7 /* MailCoreUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F88804D80B4243C000D400E7 /* MailCoreUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F88804D60B4243C000D400E7 /* MailCoreUtilities.m */; };
@@ -157,6 +180,38 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		F86B542214F475DE0080FB8F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(SRCROOT)/include/MailCore";
+			dstSubfolderSpec = 0;
+			files = (
+				F86B543914F476560080FB8F /* JRLog.h in CopyFiles */,
+				F86B543814F476540080FB8F /* MailCoreTypes.h in CopyFiles */,
+				F86B543714F476530080FB8F /* MailCore.h in CopyFiles */,
+				F86B543614F476500080FB8F /* MailCoreUtilities.h in CopyFiles */,
+				F86B543514F4764E0080FB8F /* CTBareAttachment.h in CopyFiles */,
+				F86B543414F4764C0080FB8F /* CTBareMessage.h in CopyFiles */,
+				F86B543314F476480080FB8F /* CTCoreMessage.h in CopyFiles */,
+				F86B543214F476420080FB8F /* CTCoreFolder.h in CopyFiles */,
+				F86B543114F4763F0080FB8F /* CTCoreAccount.h in CopyFiles */,
+				F86B543014F476390080FB8F /* CTCoreAddress.h in CopyFiles */,
+				F86B542F14F476350080FB8F /* CTCoreAttachment.h in CopyFiles */,
+				F86B542E14F476330080FB8F /* CTMIME_Enumerator.h in CopyFiles */,
+				F86B542D14F476320080FB8F /* CTMIME.h in CopyFiles */,
+				F86B542C14F4762F0080FB8F /* CTMIME_TextPart.h in CopyFiles */,
+				F86B542B14F4762E0080FB8F /* CTMIME_SinglePart.h in CopyFiles */,
+				F86B542A14F4762C0080FB8F /* CTMIME_MultiPart.h in CopyFiles */,
+				F86B542914F4762A0080FB8F /* CTMIME_MessagePart.h in CopyFiles */,
+				F86B542814F476280080FB8F /* CTMIMEFactory.h in CopyFiles */,
+				F86B542714F476250080FB8F /* CTMIME_HtmlPart.h in CopyFiles */,
+				F86B542314F476170080FB8F /* CTSMTPConnection.h in CopyFiles */,
+				F86B542414F4761C0080FB8F /* CTSMTPAsyncConnection.h in CopyFiles */,
+				F86B542514F4761E0080FB8F /* CTSMTP.h in CopyFiles */,
+				F86B542614F476200080FB8F /* CTESMTP.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F8A2FAA9144FA7BA00C03DB4 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -555,6 +610,7 @@
 			buildPhases = (
 				F8618B5410DADB5C00C41188 /* Sources */,
 				F8618B5510DADB5C00C41188 /* Frameworks */,
+				F86B542214F475DE0080FB8F /* CopyFiles */,
 			);
 			buildRules = (
 			);
