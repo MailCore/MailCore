@@ -248,10 +248,10 @@ smtpProgress( size_t aCurrent, size_t aTotal )
     {
         if( mSMTP->stream )
         {
-			mailstream_cancel(mSMTP->stream);
-			mailstream_close(mSMTP->stream);
-			mSMTP->stream = NULL;
-		}
+            mailstream_cancel(mSMTP->stream);
+            mailstream_close(mSMTP->stream);
+            mSMTP->stream = NULL;
+        }
         mailsmtp_free(mSMTP);
         mSMTP = NULL;
     }
