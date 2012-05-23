@@ -41,6 +41,7 @@
 	NSString *filePathExt = [path pathExtension];
 	
 	NSString *contentType = nil;
+  //TODO: This won't work on iOS
 	NSDictionary *contentTypes = [NSDictionary dictionaryWithContentsOfFile:CTContentTypesPath];
 	for (NSString *key in [contentTypes allKeys]) {
 		NSArray *fileExtensions = [contentTypes objectForKey:key];
