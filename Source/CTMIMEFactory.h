@@ -31,6 +31,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import <libetpan/libetpan.h>
+
 @class CTMIME, CTMIME_SinglePart;
 
 @interface CTMIMEFactory : NSObject {

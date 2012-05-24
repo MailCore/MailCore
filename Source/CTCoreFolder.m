@@ -35,6 +35,11 @@
 #import "CTCoreAccount.h"
 #import "MailCoreTypes.h"
 #import "CTBareMessage.h"
+#import "MailCoreUtilities.h"
+
+// Implementation is in imapdriver_tools.c
+int imap_flags_to_flags(struct mailimap_msg_att_dynamic * att_dyn,
+                        struct mail_flags ** result);
 
 @interface CTCoreFolder (Private)
 @end

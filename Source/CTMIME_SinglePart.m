@@ -33,6 +33,7 @@
 
 #import <libetpan/libetpan.h>
 #import "MailCoreTypes.h"
+#import "MailCoreUtilities.h"
 
 
 static inline struct imap_session_state_data *
@@ -183,12 +184,10 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
 }
 
 - (struct mailmime *)buildMIMEStruct {
-	struct mailmime_mechanism * encoding;
 	struct mailmime_fields *mime_fields;
 	struct mailmime *mime_sub;
 	struct mailmime_content *content;
 	int r;
-    struct mailmime_disposition * disposition;
 
 	if( mFilename )
     {

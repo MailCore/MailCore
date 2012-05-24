@@ -34,6 +34,7 @@
 #import "CTCoreAddress.h"
 #import "CTCoreMessage.h"
 #import "MailCoreTypes.h"
+#import "MailCoreUtilities.h"
 
 #include <sys/types.h>
 #include <sys/socket.h>

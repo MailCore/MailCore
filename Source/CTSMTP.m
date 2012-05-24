@@ -33,6 +33,7 @@
 #import "CTCoreAddress.h"
 #import "CTCoreMessage.h"
 #import "MailCoreTypes.h"
+#import "MailCoreUtilities.h"
 
 @implementation CTSMTP
 - (id)initWithResource:(mailsmtp *)smtp {

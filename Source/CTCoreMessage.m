@@ -393,11 +393,11 @@ char * etpan_encode_mime_header(char * phrase)
     
     NSDate *date = [self senderDate];
     
-    return [date addTimeInterval:timezoneOffsetInSeconds * -1];
+    return [date dateByAddingTimeInterval:timezoneOffsetInSeconds * -1];
 }
 
 - (NSDate*)sentDateLocalTimeZone {
-    return [[self sentDateGMT] addTimeInterval:[[NSTimeZone localTimeZone] secondsFromGMT]];
+    return [[self sentDateGMT] dateByAddingTimeInterval:[[NSTimeZone localTimeZone] secondsFromGMT]];
 }
 
 - (BOOL)isUnread {

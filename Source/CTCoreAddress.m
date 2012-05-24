@@ -31,6 +31,7 @@
 
 
 #import "CTCoreAddress.h"
+#import "MailCoreUtilities.h"
 
 @implementation CTCoreAddress
 + (id)address {
@@ -66,17 +67,7 @@
 
 
 -(NSString*)decodedName {
-	// added by Gabor
-	
-	if (StringStartsWith(self.name, @"=?ISO-8859-1?Q?")) {
-		NSString* newName = [self.name substringFromIndex:[@"=?ISO-8859-1?Q?" length]];
-		newName = [newName stringByReplacingOccurrencesOfString:@"?=" withString:@""];
-		newName = [newName stringByReplacingOccurrencesOfString:@"__" withString:@" "];
-		newName = [newName stringByReplacingOccurrencesOfString:@"=" withString:@"%"];		
-		newName = [newName stringByReplacingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding];
-		return newName;
-	}
-	return self.name;
+    return MailCoreDecodeMIMEPhrase((char *)[self.name UTF8String]);
 }
 
 - (NSString *)name {
