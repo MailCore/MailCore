@@ -31,6 +31,7 @@
 
 #import "MailCoreUtilities.h"
 #import "JRLog.h"
+#import "MailCoreTypes.h"
 
 /* direction is 1 for send, 0 for receive, -1 when it does not apply */
 void mailcore_logger(int direction, const char * str, size_t size) {
@@ -89,4 +90,28 @@ BOOL StringStartsWith(NSString *string, NSString *subString) {
 	
 	NSString* comp = [string substringToIndex:[subString length]];
 	return [comp isEqualToString:subString];
+}
+
+NSString *MailCoreDecodeMIMEPhrase(char *data) {
+    int err;
+    size_t currToken = 0;
+    char *decodedSubject;
+    NSString *result;
+
+    if (*data != '\0') {
+        err = mailmime_encoded_phrase_parse(DEST_CHARSET, data, strlen(data),
+                                            &currToken, DEST_CHARSET, &decodedSubject);
+        
+        if (err != MAILIMF_NO_ERROR) {
+            if (decodedSubject == NULL)
+                free(decodedSubject);
+            return nil;
+        }
+    } else {
+        return @"";
+    }
+
+    result = [NSString stringWithCString:decodedSubject encoding:NSUTF8StringEncoding];
+    free(decodedSubject);
+    return result;
 }

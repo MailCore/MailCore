@@ -43,3 +43,5 @@ void IfTrue_RaiseException(bool value, NSString *exceptionName, NSString *except
 void RaiseException(NSString *exceptionName, NSString *exceptionDesc);
 
 BOOL StringStartsWith(NSString *string, NSString *subString);
+
+NSString *MailCoreDecodeMIMEPhrase(char *data);

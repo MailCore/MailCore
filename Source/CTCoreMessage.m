@@ -40,6 +40,7 @@
 #import "CTMIME_SinglePart.h"
 #import "CTBareAttachment.h"
 #import "CTMIME_HtmlPart.h"
+#import "MailCoreUtilities.h"
 
 @interface CTCoreMessage (Private)
 - (CTCoreAddress *)_addressFromMailbox:(struct mailimf_mailbox *)mailbox;
@@ -49,7 +50,6 @@
 - (struct mailimf_address_list *)_IMFAddressListFromAddresssList:(NSSet *)addresses;
 - (void)_buildUpBodyText:(CTMIME *)mime result:(NSMutableString *)result;
 - (void)_buildUpHtmlBodyText:(CTMIME *)mime result:(NSMutableString *)result;
-- (NSString *)_decodeMIMEPhrase:(char *)data;
 @end
 
 //TODO Add encode of subjects/from/to
@@ -318,7 +318,7 @@ char * etpan_encode_mime_header(char * phrase)
 - (NSString *)subject {
 	if (myFields->fld_subject == NULL)
 		return @"";
-	NSString *decodedSubject = [self _decodeMIMEPhrase:myFields->fld_subject->sbj_value];
+	NSString *decodedSubject = MailCoreDecodeMIMEPhrase(myFields->fld_subject->sbj_value);
 	if (decodedSubject == nil)
 		return @"";
 	return decodedSubject;
@@ -656,7 +656,7 @@ char * etpan_encode_mime_header(char * phrase)
 		return address;
     }
 	if (mailbox->mb_display_name != NULL) {
-		NSString *decodedName = [self _decodeMIMEPhrase:mailbox->mb_display_name];
+		NSString *decodedName = MailCoreDecodeMIMEPhrase(mailbox->mb_display_name);
 		if (decodedName == nil) {
 			decodedName = @"";
         }
@@ -746,31 +746,6 @@ char * etpan_encode_mime_header(char * phrase)
 		assert(err == 0);
 	}
 	return imfList;
-}
-
-- (NSString *)_decodeMIMEPhrase:(char *)data {
-	int err;
-	size_t currToken = 0;
-	char *decodedSubject;
-	NSString *result;
-	
-	if (*data != '\0') {
-		err = mailmime_encoded_phrase_parse(DEST_CHARSET, data, strlen(data),
-			&currToken, DEST_CHARSET, &decodedSubject);
-			
-		if (err != MAILIMF_NO_ERROR) {
-			if (decodedSubject == NULL)
-				free(decodedSubject);
-			return nil;
-		}
-	}
-	else {
-		return @"";
-	}
-		
-	result = [NSString stringWithCString:decodedSubject encoding:NSUTF8StringEncoding];
-	free(decodedSubject);
-	return result;
 }
 
 @end

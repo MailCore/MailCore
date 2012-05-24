@@ -87,6 +87,18 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
 				if (disp->dsp_type != NULL) {
 					self.attached = (disp->dsp_type->dsp_type == 
 										MAILMIME_DISPOSITION_TYPE_ATTACHMENT);
+
+					if (self.attached)
+					{
+						// MWA workaround for bug where specific emails look like this:
+						// Content-Type: application/vnd.ms-excel; name="=?UTF-8?B?TVhBVC0zMTFfcGFja2xpc3QxMTA0MDAueGxz?="
+						// Content-Disposition: attachment
+						// - usually they look like -
+						// Content-Type: image/jpeg; name="photo.JPG"
+						// Content-Disposition: attachment; filename="photo.JPG"
+						if (mMimeFields->fld_disposition_filename == NULL && mMimeFields->fld_content_name != NULL)
+							mMimeFields->fld_disposition_filename = mMimeFields->fld_content_name;
+					}
 				}
 			}
 			

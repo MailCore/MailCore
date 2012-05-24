@@ -269,4 +269,5 @@
 /* Intended for advanced use only */
 - (struct mailmessage *)messageStruct;
 - (mailimap *)imapSession;
+
 @end
