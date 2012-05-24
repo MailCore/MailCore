@@ -384,6 +384,15 @@ char * etpan_encode_mime_header(char * phrase)
 	return NO;
 }
 
+- (BOOL)isStarred {
+	struct mail_flags *flags = myMessage->msg_flags;
+	if (flags != NULL) {
+		BOOL flag_starred = (flags->fl_flags & MAIL_FLAG_FLAGGED);
+		return flag_starred;
+	}
+	return NO;
+}
+
 - (BOOL)isNew {
 	struct mail_flags *flags = myMessage->msg_flags;
 	if (flags != NULL) {

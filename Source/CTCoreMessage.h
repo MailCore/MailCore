@@ -163,6 +163,11 @@
 - (BOOL)isNew;
 
 /*!
+ @abstract	Returns YES if the message is starred (flagged in IMAP terms).
+ */
+- (BOOL)isStarred;
+
+/*!
 	@abstract A machine readable ID that is guaranteed unique by the
 	host that generated the messaeg
 */
