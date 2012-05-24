@@ -22,6 +22,7 @@
 		F891959C144D0BF000EADD16 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F891959A144D0BF000EADD16 /* ViewController_iPad.xib */; };
 		F89195D0144D0CAB00EADD16 /* libmailcore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F89195CC144D0C8900EADD16 /* libmailcore.a */; };
 		F89195D7144D0EFA00EADD16 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F89195D6144D0EF900EADD16 /* libiconv.dylib */; };
+		F8B6D589156EE4BB008DE9EB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8B6D588156EE4BB008DE9EB /* CFNetwork.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,13 +32,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
 			remoteInfo = libetpan;
-		};
-		F851FBAF144D133D003F58D4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F851FBA7144D133D003F58D4 /* libetpan.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C69AB10A10546FE500F32FBD;
-			remoteInfo = "static libetpan";
 		};
 		F851FBB1144D133D003F58D4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -88,6 +82,13 @@
 			remoteGlobalIDString = F8618B5710DADB5C00C41188;
 			remoteInfo = "MailCore iOS";
 		};
+		F8B6D57F156EE463008DE9EB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F851FBA7144D133D003F58D4 /* libetpan.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8B6D4CC156EE0B6008DE9EB;
+			remoteInfo = "static libetpan Mac";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +113,7 @@
 		F89195D6144D0EF900EADD16 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		F89195D8144D0F0200EADD16 /* libsasl2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsasl2.a; path = "../../../iOSPorts/ports/security/cyrus-sasl/build/Debug-iphoneos/libsasl2.a"; sourceTree = "<group>"; };
 		F89195DA144D0F1000EADD16 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "../../../iOSPorts/ports/security/openssl/build/Debug-iphoneos/libcrypto.a"; sourceTree = "<group>"; };
+		F8B6D588156EE4BB008DE9EB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8B6D589156EE4BB008DE9EB /* CFNetwork.framework in Frameworks */,
 				F81524F5144FA4A5007ABA9C /* libssl.a in Frameworks */,
 				F851FBC6144D13B8003F58D4 /* libcrypto.a in Frameworks */,
 				F851FBBB144D1391003F58D4 /* libsasl2.a in Frameworks */,
@@ -138,8 +141,8 @@
 			isa = PBXGroup;
 			children = (
 				F851FBAE144D133D003F58D4 /* libetpan.framework */,
-				F851FBB0144D133D003F58D4 /* libetpan_mac.a */,
 				F851FBB2144D133D003F58D4 /* libetpan_ios.a */,
+				F8B6D580156EE463008DE9EB /* libetpan_mac.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -164,6 +167,7 @@
 		F8919573144D0BEF00EADD16 = {
 			isa = PBXGroup;
 			children = (
+				F8B6D588156EE4BB008DE9EB /* CFNetwork.framework */,
 				F851FBBC144D13A4003F58D4 /* openssl.xcodeproj */,
 				F851FBB4144D1381003F58D4 /* Cyrus SASL.xcodeproj */,
 				F851FBA7144D133D003F58D4 /* libetpan.xcodeproj */,
@@ -301,13 +305,6 @@
 			remoteRef = F851FBAD144D133D003F58D4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		F851FBB0144D133D003F58D4 /* libetpan_mac.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libetpan_mac.a;
-			remoteRef = F851FBAF144D133D003F58D4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		F851FBB2144D133D003F58D4 /* libetpan_ios.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -355,6 +352,13 @@
 			fileType = archive.ar;
 			path = libmailcore.a;
 			remoteRef = F89195CB144D0C8900EADD16 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F8B6D580156EE463008DE9EB /* libetpan_mac.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libetpan_mac.a;
+			remoteRef = F8B6D57F156EE463008DE9EB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

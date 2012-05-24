@@ -46,19 +46,19 @@
 	id msg;
 	
 	while(msg = [objEnum nextObject]) {
-		[msg fetchBody];
+		[msg fetchBodyStructure];
 		[messagesProxy addObject:msg];
 	}
 }
 
 
-- (NSMutableSet *)messages
+- (NSMutableArray *)messages
 {
 	return myMessages;
 }
 
 
-- (void)setMessages:(NSMutableSet *)messages
+- (void)setMessages:(NSMutableArray *)messages
 {
 	[messages retain];
 	[myMessages release];

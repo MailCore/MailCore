@@ -118,6 +118,10 @@ char * etpan_encode_mime_header(char * phrase)
 
 
 - (int)fetchBodyStructure {
+    if (myMessage == NULL) {
+        return -1;
+    }
+    
 	int err;
 	struct mailmime *dummyMime;
 	//Retrieve message mime and message field

@@ -12,9 +12,9 @@
 	IBOutlet id useTLS;
 
 	CTCoreAccount	*myAccount;
-	NSMutableSet	*myMessages;
+	NSMutableArray	*myMessages;
 }
 - (IBAction)connect:(id)sender;
-- (NSMutableSet *)messages;
-- (void)setMessages:(NSMutableSet *)messages;
+- (NSMutableArray *)messages;
+- (void)setMessages:(NSMutableArray *)messages;
 @end
