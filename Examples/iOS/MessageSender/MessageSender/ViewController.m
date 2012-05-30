@@ -21,13 +21,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    
+    // Do any additional setup after loading the view, typically from a nib.
+
     CTCoreMessage *msg = [[CTCoreMessage alloc] init];
 
 //	[CTSMTPConnection sendMessage:msg server:[server stringValue] username:[username stringValue]
 //                         password:[password stringValue] port:[port intValue] useTLS:tls useAuth:auth];
-	[msg release];
+    [msg release];
 }
 
 - (void)viewDidUnload
@@ -49,12 +49,12 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-	[super viewWillDisappear:animated];
+    [super viewWillDisappear:animated];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-	[super viewDidDisappear:animated];
+    [super viewDidDisappear:animated];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

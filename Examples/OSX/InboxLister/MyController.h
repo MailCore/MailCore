@@ -9,10 +9,10 @@
     IBOutlet id port;
     IBOutlet id server;
     IBOutlet id username;
-	IBOutlet id useTLS;
+    IBOutlet id useTLS;
 
-	CTCoreAccount	*myAccount;
-	NSMutableArray	*myMessages;
+    CTCoreAccount	*myAccount;
+    NSMutableArray	*myMessages;
 }
 - (IBAction)connect:(id)sender;
 - (NSMutableArray *)messages;

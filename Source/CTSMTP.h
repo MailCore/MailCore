@@ -33,13 +33,13 @@
 #import <libetpan/libetpan.h>
 
 /*!
-	@class	CTSMTP
-	This class is used internally by CTSMTPConnection for SMTP connections, clients
-	should not use this directly.
+    @class	CTSMTP
+    This class is used internally by CTSMTPConnection for SMTP connections, clients
+    should not use this directly.
 */
 
 @interface CTSMTP : NSObject {
-	mailsmtp *mySMTP; /* This resource is created and freed by CTSMTPConnection */
+    mailsmtp *mySMTP; /* This resource is created and freed by CTSMTPConnection */
 }
 - (id)initWithResource:(mailsmtp *)smtp;
 - (void)connectToServer:(NSString *)server port:(unsigned int)port;

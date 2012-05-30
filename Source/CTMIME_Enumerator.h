@@ -36,7 +36,7 @@
 //TODO Document me
 // Breadth first
 @interface CTMIME_Enumerator : NSEnumerator {
-	NSMutableArray *mToVisit;
+    NSMutableArray *mToVisit;
 }
 - (id)initWithMIME:(CTMIME *)mime;
 

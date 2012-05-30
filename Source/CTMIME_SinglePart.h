@@ -35,14 +35,14 @@
 typedef void (^CTProgressBlock)(size_t curr, size_t max);
 
 @interface CTMIME_SinglePart : CTMIME {
-	struct mailmime *mMime;
-	struct mailmessage *mMessage;
-	struct mailmime_single_fields *mMimeFields;	
+    struct mailmime *mMime;
+    struct mailmessage *mMessage;
+    struct mailmime_single_fields *mMimeFields;
 
-	NSData *mData;
-	BOOL mAttached;
-	BOOL mFetched;
-	NSString *mFilename;
+    NSData *mData;
+    BOOL mAttached;
+    BOOL mFetched;
+    NSString *mFilename;
     NSString *mContentId;
 }
 @property BOOL attached;

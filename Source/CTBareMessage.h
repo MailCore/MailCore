@@ -35,8 +35,8 @@
 //TODO Document me
 //TODO Eventually CTCoreMessage should inherit from this
 @interface CTBareMessage : NSObject {
-	NSString *mUid;
-	unsigned int mFlags;
+    NSString *mUid;
+    unsigned int mFlags;
 }
 @property(retain) NSString *uid;
 @property unsigned int flags;

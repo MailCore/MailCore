@@ -34,8 +34,8 @@
 
 
 @interface CTMIME_MessagePart : CTMIME {
-	CTMIME *myMessageContent;
-	struct mailimf_fields *myFields;
+    CTMIME *myMessageContent;
+    struct mailimf_fields *myFields;
 }
 + (id)mimeMessagePartWithContent:(CTMIME *)mime;
 - (id)initWithContent:(CTMIME *)messageContent;

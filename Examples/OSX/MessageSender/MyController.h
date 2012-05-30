@@ -9,10 +9,10 @@
     IBOutlet id port;
     IBOutlet id server;
     IBOutlet id username;
-	IBOutlet id useAuth;
-	IBOutlet id useTLS;
+    IBOutlet id useAuth;
+    IBOutlet id useTLS;
 
-	CTCoreMessage *myMessage;
+    CTCoreMessage *myMessage;
 }
 - (IBAction)sendMessage:(id)sender;
 - (NSString *)to;

@@ -33,7 +33,7 @@
 #import <libetpan/libetpan.h>
 
 /*!
-	@abstract Enables logging of all streams, data is output to standard out.
+    @abstract Enables logging of all streams, data is output to standard out.
 */
 void MailCoreEnableLogging();
 void MailCoreDisableLogging();

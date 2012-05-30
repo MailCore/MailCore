@@ -33,61 +33,61 @@
 #import <libetpan/libetpan.h>
 
 /*!
-	@class	CTCoreMessage
-	CTCoreMessage is how you work with messages. The easiest way to instantiate a CTCoreMessage
-	is to first setup a CTCoreAccount object and then get a CTCoreFolder object and then use it's 
-	convience method messageWithUID: to get a message object you can work with.
-	
-	Anything that begins with "fetch", requires that an active network connection is present.
+    @class	CTCoreMessage
+    CTCoreMessage is how you work with messages. The easiest way to instantiate a CTCoreMessage
+    is to first setup a CTCoreAccount object and then get a CTCoreFolder object and then use it's
+    convience method messageWithUID: to get a message object you can work with.
+
+    Anything that begins with "fetch", requires that an active network connection is present.
 */
 
 @class CTCoreFolder, CTCoreAddress, CTCoreAttachment, CTMIME;
 
 @interface CTCoreMessage : NSObject {
-	struct mailmessage *myMessage;
-	struct mailimf_single_fields *myFields;
-	CTMIME *myParsedMIME;
-	NSUInteger mySequenceNumber;
+    struct mailmessage *myMessage;
+    struct mailimf_single_fields *myFields;
+    CTMIME *myParsedMIME;
+    NSUInteger mySequenceNumber;
 }
 @property(retain) CTMIME *mime;
 
 //TODO Parse this stuff: message_id, inReplyTo, references, comments, keywords, headers
 
 /*!
-	@abstract	Used to instantiate an empty message object.
+    @abstract	Used to instantiate an empty message object.
 */
 - (id)init;
 
 /*!
-	@abstract	Used to instantiate a message object with the contents of a mailmessage struct
-				(a LibEtPan type). The mailmessage struct does not include any body information,
-				so after calling this method the message will have a body which is NULL.
+    @abstract	Used to instantiate a message object with the contents of a mailmessage struct
+                (a LibEtPan type). The mailmessage struct does not include any body information,
+                so after calling this method the message will have a body which is NULL.
 */
 - (id)initWithMessageStruct:(struct mailmessage *)message;
 
 /*!
-	@abstract	Used to instantiate a message object based off the contents of a file on disk.
-				The file on disk must be a valid MIME message.
+    @abstract	Used to instantiate a message object based off the contents of a file on disk.
+                The file on disk must be a valid MIME message.
 */
 - (id)initWithFileAtPath:(NSString *)path;
 
 /*!
-	@abstract Used to instantiate a message object based off a string
+    @abstract Used to instantiate a message object based off a string
                 that contains a valid MIME message
 */
 - (id)initWithString:(NSString *)msgData;
 
 /*
-	@abstract	Creates an empty message
+    @abstract	Creates an empty message
 */
 - (id)init;
 
 - (int)fetchBodyStructure;
 
 /*!
-	@abstract	This method returns the parsed message body as an NSString.
-				This attempts to return a plain text body and skips HTML. If
-				a plaintext body isn't found the HTML body is returned.
+    @abstract	This method returns the parsed message body as an NSString.
+                This attempts to return a plain text body and skips HTML. If
+                a plaintext body isn't found the HTML body is returned.
 */
 - (NSString *)body;
 
@@ -109,7 +109,7 @@
 - (NSString *)bodyPreferringPlainText;
 
 /*!
-	@abstract	This method sets the message body. Plaintext only please!
+    @abstract	This method sets the message body. Plaintext only please!
 */
 - (void)setBody:(NSString *)body;
 
@@ -122,12 +122,12 @@
 - (void)addAttachment:(CTCoreAttachment *)attachment;
 
 /*!
-	@abstract	Returns the subject of the message.
+    @abstract	Returns the subject of the message.
 */
 - (NSString *)subject;
 
 /*!
-	@abstract	Will set the subject of the message, use this when composing e-mail.
+    @abstract	Will set the subject of the message, use this when composing e-mail.
 */
 - (void)setSubject:(NSString *)subject;
 
@@ -162,18 +162,18 @@
 - (BOOL)isStarred;
 
 /*!
-	@abstract A machine readable ID that is guaranteed unique by the
-	host that generated the messaeg
+    @abstract A machine readable ID that is guaranteed unique by the
+    host that generated the messaeg
 */
 - (NSString *)messageId;
 
 /*!
-	@abstract	Returns an NSString containing the messages UID.
+    @abstract	Returns an NSString containing the messages UID.
 */
 - (NSString *)uid;
 
 /*!
-	@abstract	Returns the message sequence number, this number cannot be used across sessions
+    @abstract	Returns the message sequence number, this number cannot be used across sessions
 */
 - (NSUInteger)sequenceNumber;
 
@@ -183,75 +183,75 @@
 - (NSUInteger)messageSize;
 
 /*!
-	@abstract	Set the message sequence number, this will NOT set any thing on the server.
-				This is used to assign sequence numbers after retrieving the message list.
+    @abstract	Set the message sequence number, this will NOT set any thing on the server.
+                This is used to assign sequence numbers after retrieving the message list.
 */
 - (void)setSequenceNumber:(NSUInteger)sequenceNumber;
 
 /*!
-	@abstract	Parses the from list, the result is an NSSet containing CTCoreAddress's
+    @abstract	Parses the from list, the result is an NSSet containing CTCoreAddress's
 */
 - (NSSet *)from;
 
 /*!
-	@abstract	Sets the message's from addresses
-	@param		addresses A NSSet containing CTCoreAddress's
+    @abstract	Sets the message's from addresses
+    @param		addresses A NSSet containing CTCoreAddress's
 */
 - (void)setFrom:(NSSet *)addresses;
 
 /*!
-	@abstract	Returns the sender, which isn't always the actual person who sent the message, it's usually the 
-				address of the machine that sent the message. In reality, this method isn't very useful, use from: instead.
+    @abstract	Returns the sender, which isn't always the actual person who sent the message, it's usually the
+                address of the machine that sent the message. In reality, this method isn't very useful, use from: instead.
 */
 - (CTCoreAddress *)sender;
 
 /*!
-	@abstract	Returns the list of people the message was sent to, returns an NSSet containing CTAddress's.
+    @abstract	Returns the list of people the message was sent to, returns an NSSet containing CTAddress's.
 */
 - (NSSet *)to;
 
 /*!
-	@abstract	Sets the message's to addresses
-	@param		addresses A NSSet containing CTCoreAddress's
+    @abstract	Sets the message's to addresses
+    @param		addresses A NSSet containing CTCoreAddress's
 */
 - (void)setTo:(NSSet *)addresses;
 
 /*!
-	@abstract	Returns the list of people the message was cced to, returns an NSSet containing CTAddress's.
+    @abstract	Returns the list of people the message was cced to, returns an NSSet containing CTAddress's.
 */
 - (NSSet *)cc;
 
 /*!
-	@abstract	Sets the message's cc addresses
-	@param		addresses A NSSet containing CTCoreAddress's
+    @abstract	Sets the message's cc addresses
+    @param		addresses A NSSet containing CTCoreAddress's
 */
 - (void)setCc:(NSSet *)addresses;
 
 /*!
-	@abstract	Returns the list of people the message was bcced to, returns an NSSet containing CTAddress's.
+    @abstract	Returns the list of people the message was bcced to, returns an NSSet containing CTAddress's.
 */
 - (NSSet *)bcc;
 
 /*!
-	@abstract	Sets the message's bcc addresses
-	@param		addresses A NSSet containing CTCoreAddress's
+    @abstract	Sets the message's bcc addresses
+    @param		addresses A NSSet containing CTCoreAddress's
 */
 - (void)setBcc:(NSSet *)addresses;
 
 /*!
-	@abstract	Returns the list of people the message was in reply-to, returns an NSSet containing CTAddress's.
+    @abstract	Returns the list of people the message was in reply-to, returns an NSSet containing CTAddress's.
 */
 - (NSSet *)replyTo;
 
 /*!
-	@abstract	Sets the message's reply to addresses
-	@param		addresses A NSSet containing CTCoreAddress's
+    @abstract	Sets the message's reply to addresses
+    @param		addresses A NSSet containing CTCoreAddress's
 */
 - (void)setReplyTo:(NSSet *)addresses;
 
 /*!
-	@abstract	Returns the message rendered as the appropriate MIME and IMF content. Use this only if you
-				want the raw encoding of the message.
+    @abstract	Returns the message rendered as the appropriate MIME and IMF content. Use this only if you
+                want the raw encoding of the message.
 */
 - (NSString *)render;
 

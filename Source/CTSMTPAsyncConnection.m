@@ -70,17 +70,17 @@ smtpProgress( size_t aCurrent, size_t aTotal )
                                                         [NSNumber numberWithInt:aPort], @"port",
                                                         [NSNumber numberWithBool:aTls], @"tls",
                                                         [NSNumber numberWithBool:aAuth], @"auth", nil] retain];
-		
+
         //save clients from themselves (they could be leaking us - no dealloc)
         [[NSNotificationCenter defaultCenter] removeObserver:self];
-    	[[NSNotificationCenter defaultCenter] addObserver:self 
+        [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(threadWillExitHandler:) 
-                                      	             name:NSThreadWillExitNotification 
+                                                     name:NSThreadWillExitNotification
                                                    object:nil];
     }
     return self;
 }               
-              
+
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -98,22 +98,22 @@ smtpProgress( size_t aCurrent, size_t aTotal )
 
 - (void)sendMessageInBackgroundAndNotify:(CTCoreMessage*)aMessage
 {
-	//TODO: convert to exceptions?
+    //TODO: convert to exceptions?
     if( aMessage == nil )
     {
-    	NSLog(@"CTCoreMessage param cannot be nil");
+        NSLog(@"CTCoreMessage param cannot be nil");
         return;
     }
 
-	if ( mMailThread != nil && [mMailThread isExecuting] )
+    if ( mMailThread != nil && [mMailThread isExecuting] )
     {
-		NSLog(@"Can only send one message at a time, we're busy, sheesh.");
-		return;
+        NSLog(@"Can only send one message at a time, we're busy, sheesh.");
+        return;
     }
-    
+
     NSAssert( mMailThread == nil, @"Invalid smtp thread state" );
-	
-	self.message = aMessage;
+
+    self.message = aMessage;
 
     //start thread:
     mMailThread = [NSThread alloc];
@@ -123,13 +123,13 @@ smtpProgress( size_t aCurrent, size_t aTotal )
 
 - (void)cancel
 {
-	if( ![mMailThread isExecuting] || [mMailThread isCancelled] )
+    if( ![mMailThread isExecuting] || [mMailThread isCancelled] )
     {
-    	return;
+        return;
     }
-	//mark thread as cancelled
+    //mark thread as cancelled
     [mMailThread cancel];
-	//cancel libetpan smtp stream
+    //cancel libetpan smtp stream
     mailstream_cancel(mSMTP->stream);
     mailstream_close(mSMTP->stream);
     mSMTP->stream = NULL;
@@ -139,7 +139,7 @@ smtpProgress( size_t aCurrent, size_t aTotal )
 
 - (BOOL)isBusy
 {
-	return ( mMailThread != nil && [mMailThread isExecuting] );
+    return ( mMailThread != nil && [mMailThread isExecuting] );
 }
 
 @end
@@ -150,55 +150,55 @@ smtpProgress( size_t aCurrent, size_t aTotal )
 {
     NSAutoreleasePool* thePool = [[NSAutoreleasePool alloc] init];
     void (*progFxn)(size_t, size_t) = &smtpProgress;
-  	mSMTP = NULL;
-	mSMTP = mailsmtp_new(30, progFxn);
-	assert(mSMTP != NULL);
-	mSMTPObj = [[CTESMTP alloc] initWithResource:mSMTP];
+    mSMTP = NULL;
+    mSMTP = mailsmtp_new(30, progFxn);
+    assert(mSMTP != NULL);
+    mSMTPObj = [[CTESMTP alloc] initWithResource:mSMTP];
 
-	NSDictionary* theSettings = self.serverSettings;
+    NSDictionary* theSettings = self.serverSettings;
 
-	@try 
+    @try
     {
-		[mSMTPObj connectToServer:[theSettings objectForKey:@"server"] 
+        [mSMTPObj connectToServer:[theSettings objectForKey:@"server"]
                              port:[[theSettings objectForKey:@"port"] unsignedIntValue]];
-		if ([mSMTPObj helo] == false) {
-			/* The server didn't support ESMTP, so switching to STMP */
-			[mSMTPObj release];
-			mSMTPObj = [[CTSMTP alloc] initWithResource:mSMTP];
-			[mSMTPObj helo];
-		}
-		if ([(NSNumber*)[theSettings objectForKey:@"tls"] boolValue] )
-			[mSMTPObj startTLS];
-		if ([(NSNumber*)[theSettings objectForKey:@"auth"] boolValue])
-			[mSMTPObj authenticateWithUsername:[theSettings objectForKey:@"username"] 
+        if ([mSMTPObj helo] == false) {
+            /* The server didn't support ESMTP, so switching to STMP */
+            [mSMTPObj release];
+            mSMTPObj = [[CTSMTP alloc] initWithResource:mSMTP];
+            [mSMTPObj helo];
+        }
+        if ([(NSNumber*)[theSettings objectForKey:@"tls"] boolValue] )
+            [mSMTPObj startTLS];
+        if ([(NSNumber*)[theSettings objectForKey:@"auth"] boolValue])
+            [mSMTPObj authenticateWithUsername:[theSettings objectForKey:@"username"]
                                       password:[theSettings objectForKey:@"password"] 
                                         server:[theSettings objectForKey:@"server"]];
 
-		CTCoreMessage* theMessage = self.message;
+        CTCoreMessage* theMessage = self.message;
         [mSMTPObj setFrom:[[[theMessage from] anyObject] email]];
 
-		NSMutableSet *rcpts = [NSMutableSet set];
-		[rcpts unionSet:[theMessage to]];
-		[rcpts unionSet:[theMessage bcc]];
-		[rcpts unionSet:[theMessage cc]];
-		[mSMTPObj setRecipients:rcpts];
-	 
-     	//send
-		int theReturn = [mSMTPObj setData:[theMessage render] raiseExceptions:NO];
-		if( theReturn == MAILSMTP_NO_ERROR )
+        NSMutableSet *rcpts = [NSMutableSet set];
+        [rcpts unionSet:[theMessage to]];
+        [rcpts unionSet:[theMessage bcc]];
+        [rcpts unionSet:[theMessage cc]];
+        [mSMTPObj setRecipients:rcpts];
+
+        //send
+        int theReturn = [mSMTPObj setData:[theMessage render] raiseExceptions:NO];
+        if( theReturn == MAILSMTP_NO_ERROR )
         {
-        	mStatus = CTSMTPAsyncSuccess;
+            mStatus = CTSMTPAsyncSuccess;
         } 
         else if( theReturn == MAILSMTP_ERROR_STREAM && [mMailThread isCancelled] )
         {
-        	//libetpan was cancelled from another thread
+            //libetpan was cancelled from another thread
             mStatus = CTSMTPAsyncCanceled;
         }
         else
         {
-        	mStatus = CTSMTPAsyncError;
+            mStatus = CTSMTPAsyncError;
         }
-	}
+    }
     @catch (NSException* aException) 
     {
         mStatus = CTSMTPAsyncError;
@@ -217,25 +217,25 @@ smtpProgress( size_t aCurrent, size_t aTotal )
     unsigned int theProgress = [aProgress unsignedIntValue];
     if( theProgress > mLastProgress )
     {
- 		mLastProgress = theProgress;
-    	//call delegate
+        mLastProgress = theProgress;
+        //call delegate
         if( mDelegate )
         {
-			[mDelegate smtpProgress:mLastProgress];
+            [mDelegate smtpProgress:mLastProgress];
         }
     }
 }
 
 - (void)threadWillExitHandler:(NSNotification*)aNote
 {
-	if( [aNote object] != mMailThread )
+    if( [aNote object] != mMailThread )
     {
-    	return;
+        return;
     }
     if( mDelegate )
     {
-    	[mDelegate smtpDidFinishSendingMessage:mStatus];
-	}
+        [mDelegate smtpDidFinishSendingMessage:mStatus];
+    }
     [self cleanupAfterThread];
 }
 

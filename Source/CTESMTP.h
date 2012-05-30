@@ -33,9 +33,9 @@
 #import "CTSMTP.h"
 
 /*!
-	@class	CTESMTP
-	This class is used internally by CTSMTPConnection for ESMTP connections, clients
-	should not use this directly.
+    @class	CTESMTP
+    This class is used internally by CTSMTPConnection for ESMTP connections, clients
+    should not use this directly.
 */
 
 

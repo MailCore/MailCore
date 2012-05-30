@@ -42,22 +42,22 @@
 @synthesize filename=mFilename;
 
 - (id)initWithMIMESinglePart:(CTMIME_SinglePart *)part {
-	self = [super init];
-	if (self) {
-		mMIMEPart = [part retain];
-		self.filename = mMIMEPart.filename;
-		self.contentType = mMIMEPart.contentType;
-	}
-	return self;
+    self = [super init];
+    if (self) {
+        mMIMEPart = [part retain];
+        self.filename = mMIMEPart.filename;
+        self.contentType = mMIMEPart.contentType;
+    }
+    return self;
 }
 
 -(NSString*)decodedFilename {
-	return MailCoreDecodeMIMEPhrase((char *)[self.filename UTF8String]);
+    return MailCoreDecodeMIMEPhrase((char *)[self.filename UTF8String]);
 }
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"ContentType: %@\tFilename: %@",
-				self.contentType, self.filename];
+    return [NSString stringWithFormat:@"ContentType: %@\tFilename: %@",
+                self.contentType, self.filename];
 }
 
 - (CTCoreAttachment *)fetchFullAttachment {
@@ -66,9 +66,9 @@
 
 - (CTCoreAttachment *)fetchFullAttachmentWithProgress:(CTProgressBlock)block {
     [mMIMEPart fetchPartWithProgress:block];
-	CTCoreAttachment *attach = [[CTCoreAttachment alloc] initWithData:mMIMEPart.data
+    CTCoreAttachment *attach = [[CTCoreAttachment alloc] initWithData:mMIMEPart.data
                                                           contentType:self.contentType filename:self.filename];
-	return [attach autorelease];
+    return [attach autorelease];
 }
 
 - (CTMIME_SinglePart *)part {
@@ -76,9 +76,9 @@
 }
 
 - (void)dealloc {
-	[mMIMEPart release];
-	[mFilename release];
-	[mContentType release];
-	[super dealloc];
+    [mMIMEPart release];
+    [mFilename release];
+    [mContentType release];
+    [super dealloc];
 }
 @end

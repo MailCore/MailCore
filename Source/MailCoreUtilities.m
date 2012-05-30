@@ -35,26 +35,26 @@
 
 /* direction is 1 for send, 0 for receive, -1 when it does not apply */
 void mailcore_logger(int direction, const char * str, size_t size) {
-	char *str2 = malloc(size+1);
-	strncpy(str2,str,size);
-	str2[size] = 0;
-	id self = nil; // Work around for using JRLogInfo in a C function
-	if (direction == 1) {
-		JRLogInfo(@"Client: %s\n", str2);
-	}
-	else if (direction == 0) {
-		JRLogInfo(@"Server: %s\n", str2);
-	}
-	else {
-		JRLogInfo(@"%s\n", str2);
-	}
-	free(str2);
+    char *str2 = malloc(size+1);
+    strncpy(str2,str,size);
+    str2[size] = 0;
+    id self = nil; // Work around for using JRLogInfo in a C function
+    if (direction == 1) {
+        JRLogInfo(@"Client: %s\n", str2);
+    }
+    else if (direction == 0) {
+        JRLogInfo(@"Server: %s\n", str2);
+    }
+    else {
+        JRLogInfo(@"%s\n", str2);
+    }
+    free(str2);
 }
 
 
 void MailCoreEnableLogging() {
-	mailstream_debug = 1;
-	mailstream_logger = mailcore_logger;
+    mailstream_debug = 1;
+    mailstream_logger = mailcore_logger;
 }
 
 void MailCoreDisableLogging() {
@@ -63,33 +63,33 @@ void MailCoreDisableLogging() {
 }
 
 void IfFalse_RaiseException(bool value, NSString *exceptionName, NSString *exceptionDesc) {
-	if (!value)
-		RaiseException(exceptionName, exceptionDesc);
+    if (!value)
+        RaiseException(exceptionName, exceptionDesc);
 }
 
 
 void IfTrue_RaiseException(bool value, NSString *exceptionName, NSString *exceptionDesc) {
-	if (value)
-		RaiseException(exceptionName, exceptionDesc);
+    if (value)
+        RaiseException(exceptionName, exceptionDesc);
 }
 
 
 void RaiseException(NSString *exceptionName, NSString *exceptionDesc) {
-	NSException *exception = [NSException
-		        exceptionWithName:exceptionName
-		        reason:exceptionDesc
-		        userInfo:nil];
-	[exception raise];
+    NSException *exception = [NSException
+                exceptionWithName:exceptionName
+                reason:exceptionDesc
+                userInfo:nil];
+    [exception raise];
 }
 
 // From Gabor
 BOOL StringStartsWith(NSString *string, NSString *subString) {
-	if([string length] < [subString length]) {
-		return NO;
-	}
-	
-	NSString* comp = [string substringToIndex:[subString length]];
-	return [comp isEqualToString:subString];
+    if([string length] < [subString length]) {
+        return NO;
+    }
+
+    NSString* comp = [string substringToIndex:[subString length]];
+    return [comp isEqualToString:subString];
 }
 
 NSString *MailCoreDecodeMIMEPhrase(char *data) {
@@ -101,7 +101,7 @@ NSString *MailCoreDecodeMIMEPhrase(char *data) {
     if (*data != '\0') {
         err = mailmime_encoded_phrase_parse(DEST_CHARSET, data, strlen(data),
                                             &currToken, DEST_CHARSET, &decodedSubject);
-        
+
         if (err != MAILIMF_NO_ERROR) {
             if (decodedSubject == NULL)
                 free(decodedSubject);

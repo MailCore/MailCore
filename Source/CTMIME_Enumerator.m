@@ -28,7 +28,7 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
- 
+
 #import "CTMIME_Enumerator.h"
 
 #import "CTMIME.h"
@@ -37,48 +37,48 @@
 
 @implementation CTMIME_Enumerator
 - (id)initWithMIME:(CTMIME *)mime {
-	self = [super init];
-	if (self) {
-		mToVisit = [[NSMutableArray alloc] init];
-		[mToVisit addObject:mime];
-	}
-	return self;
+    self = [super init];
+    if (self) {
+        mToVisit = [[NSMutableArray alloc] init];
+        [mToVisit addObject:mime];
+    }
+    return self;
 }
 
 - (NSArray *)allObjects {
-	NSMutableArray *objects = [NSMutableArray array];
-	
-	id obj;
-	while ((obj = [self nextObject])) {
-		[objects addObject:obj];
-	}
-	return objects;
+    NSMutableArray *objects = [NSMutableArray array];
+
+    id obj;
+    while ((obj = [self nextObject])) {
+        [objects addObject:obj];
+    }
+    return objects;
 }
 
 - (id)nextObject {
-	if ([mToVisit count] == 0) {
-		return nil;
-	}
-	
-	id mime = [mToVisit objectAtIndex:0];
-	if ([mime isKindOfClass:[CTMIME_MessagePart class]]) {
-		if ([mime content] != nil) {
-			[mToVisit addObject:[mime content]];
-		}
-	}
-	else if ([mime isKindOfClass:[CTMIME_MultiPart class]]) {
-		NSEnumerator *enumer = [[mime content] objectEnumerator];
-		CTMIME *subpart;
-		while ((subpart = [enumer nextObject])) {
-			[mToVisit addObject:subpart];
-		}
-	}
-	[mToVisit removeObjectAtIndex:0];
-	return mime;
+    if ([mToVisit count] == 0) {
+        return nil;
+    }
+
+    id mime = [mToVisit objectAtIndex:0];
+    if ([mime isKindOfClass:[CTMIME_MessagePart class]]) {
+        if ([mime content] != nil) {
+            [mToVisit addObject:[mime content]];
+        }
+    }
+    else if ([mime isKindOfClass:[CTMIME_MultiPart class]]) {
+        NSEnumerator *enumer = [[mime content] objectEnumerator];
+        CTMIME *subpart;
+        while ((subpart = [enumer nextObject])) {
+            [mToVisit addObject:subpart];
+        }
+    }
+    [mToVisit removeObjectAtIndex:0];
+    return mime;
 }
 
 - (void)dealloc {
-	[mToVisit release];
-	[super dealloc];
+    [mToVisit release];
+    [super dealloc];
 }
 @end

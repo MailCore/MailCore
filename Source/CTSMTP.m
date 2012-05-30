@@ -37,79 +37,79 @@
 
 @implementation CTSMTP
 - (id)initWithResource:(mailsmtp *)smtp {
-	self = [super init];
-	if (self) {
-		mySMTP = smtp;
-	}
-	return self;
+    self = [super init];
+    if (self) {
+        mySMTP = smtp;
+    }
+    return self;
 }
 
 
 - (void)connectToServer:(NSString *)server port:(unsigned int)port {
-	/* first open the stream */
-	int ret = mailsmtp_socket_connect([self resource], [server cStringUsingEncoding:NSUTF8StringEncoding], port);
-	IfTrue_RaiseException(ret != MAILSMTP_NO_ERROR, CTSMTPSocket, CTSMTPSocketDesc);
+    /* first open the stream */
+    int ret = mailsmtp_socket_connect([self resource], [server cStringUsingEncoding:NSUTF8StringEncoding], port);
+    IfTrue_RaiseException(ret != MAILSMTP_NO_ERROR, CTSMTPSocket, CTSMTPSocketDesc);
 }
 
 
 - (bool)helo {
-	/*  The server doesn't support esmtp, so try regular smtp */
-	int ret = mailsmtp_helo([self resource]);
-	IfTrue_RaiseException(ret != MAILSMTP_NO_ERROR, CTSMTPHello, CTSMTPHelloDesc);
-	return YES; /* The server supports helo so return YES */
+    /*  The server doesn't support esmtp, so try regular smtp */
+    int ret = mailsmtp_helo([self resource]);
+    IfTrue_RaiseException(ret != MAILSMTP_NO_ERROR, CTSMTPHello, CTSMTPHelloDesc);
+    return YES; /* The server supports helo so return YES */
 }
 
 
 - (void)startTLS {
-	//TODO Raise exception
+    //TODO Raise exception
 }
 
 
 - (void)authenticateWithUsername:(NSString *)username password:(NSString *)password server:(NSString *)server {
-	//TODO Raise exception
+    //TODO Raise exception
 }
 
 
 - (void)setFrom:(NSString *)fromAddress {
-	int ret = mailsmtp_mail([self resource], [fromAddress cStringUsingEncoding:NSUTF8StringEncoding]);
-	IfTrue_RaiseException(ret != MAILSMTP_NO_ERROR, CTSMTPFrom, CTSMTPFromDesc);
+    int ret = mailsmtp_mail([self resource], [fromAddress cStringUsingEncoding:NSUTF8StringEncoding]);
+    IfTrue_RaiseException(ret != MAILSMTP_NO_ERROR, CTSMTPFrom, CTSMTPFromDesc);
 }
 
 
 - (void)setRecipients:(id)recipients {
-	NSEnumerator *objEnum = [recipients objectEnumerator];
-	CTCoreAddress *rcpt;
-	while(rcpt = [objEnum nextObject]) {
-		[self setRecipientAddress:[rcpt email]];
-	}
+    NSEnumerator *objEnum = [recipients objectEnumerator];
+    CTCoreAddress *rcpt;
+    while(rcpt = [objEnum nextObject]) {
+        [self setRecipientAddress:[rcpt email]];
+    }
 }
 
 
 - (void)setRecipientAddress:(NSString *)recAddress {
-	int ret = mailsmtp_rcpt([self resource], [recAddress cStringUsingEncoding:NSUTF8StringEncoding]);
-	IfTrue_RaiseException(ret != MAILSMTP_NO_ERROR, CTSMTPRecipients, CTSMTPRecipientsDesc);
+    int ret = mailsmtp_rcpt([self resource], [recAddress cStringUsingEncoding:NSUTF8StringEncoding]);
+    IfTrue_RaiseException(ret != MAILSMTP_NO_ERROR, CTSMTPRecipients, CTSMTPRecipientsDesc);
 }
 
 
 - (void)setData:(NSString *)data {
-	[self setData:data raiseExceptions:YES];
+    [self setData:data raiseExceptions:YES];
 }
 
 - (int)setData:(NSString *)data raiseExceptions:(BOOL)aShouldRaise {
-	NSData *dataObj = [data dataUsingEncoding:NSUTF8StringEncoding];
-	int ret = mailsmtp_data([self resource]);
-	if(aShouldRaise){
-	    IfTrue_RaiseException(ret != MAILSMTP_NO_ERROR, CTSMTPData, CTSMTPDataDesc);
-  	}
+    NSData *dataObj = [data dataUsingEncoding:NSUTF8StringEncoding];
+    int ret = mailsmtp_data([self resource]);
+    if(aShouldRaise){
+        IfTrue_RaiseException(ret != MAILSMTP_NO_ERROR, CTSMTPData, CTSMTPDataDesc);
+    }
     ret = mailsmtp_data_message([self resource], [dataObj bytes], [dataObj length]);
-	if(aShouldRaise){
-	    IfTrue_RaiseException(ret != MAILSMTP_NO_ERROR, CTSMTPData, CTSMTPDataDesc);
-	}
+    if(aShouldRaise){
+        IfTrue_RaiseException(ret != MAILSMTP_NO_ERROR, CTSMTPData, CTSMTPDataDesc);
+    }
     return ret;
 }
 
 
 - (mailsmtp *)resource {
-	return mySMTP;
+    return mySMTP;
 }
 @end

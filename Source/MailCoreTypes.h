@@ -28,7 +28,7 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
- 
+
 #define DEST_CHARSET "UTF-8"
 #define CTContentTypesPath @"/System/Library/Frameworks/Foundation.framework/Resources/types.plist"
 
@@ -60,10 +60,10 @@
 
 #define CTMemoryError	   			@"MemoryError"
 #define CTMemoryErrorDesc  			@"Memory could not be allocated."
-                           
+
 #define CTLoginError	   			@"LoginError"
 #define CTLoginErrorDesc   			@"Error logging into account."
-                           
+
 #define CTUnknownError	   			@"UnknownError"
 
 #define	CTMessageNotFound			@"MessageNotFound"

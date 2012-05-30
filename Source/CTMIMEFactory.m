@@ -42,47 +42,47 @@
 
 @implementation CTMIMEFactory
 + (CTMIME *)createMIMEWithMIMEStruct:(struct mailmime *)mime 
-						  forMessage:(struct mailmessage *)message {
-	if (mime == nil) {
-		RaiseException(CTMIMEParseError, CTMIMEParseErrorDesc);
-		return nil;
-	}
-	
-	switch (mime->mm_type) {
-		case MAILMIME_SINGLE:
-			return [CTMIMEFactory createMIMESinglePartWithMIMEStruct:mime
-														  forMessage:message];
-			break;
-		case MAILMIME_MULTIPLE:
-			return [[[CTMIME_MultiPart alloc] initWithMIMEStruct:mime
-													 forMessage:message] autorelease];
-			break;
-		case MAILMIME_MESSAGE:
-			return [[[CTMIME_MessagePart alloc] initWithMIMEStruct:mime
-														forMessage:message] autorelease];
-			break;
-	}
-	return NULL;
+                          forMessage:(struct mailmessage *)message {
+    if (mime == nil) {
+        RaiseException(CTMIMEParseError, CTMIMEParseErrorDesc);
+        return nil;
+    }
+
+    switch (mime->mm_type) {
+        case MAILMIME_SINGLE:
+            return [CTMIMEFactory createMIMESinglePartWithMIMEStruct:mime
+                                                          forMessage:message];
+            break;
+        case MAILMIME_MULTIPLE:
+            return [[[CTMIME_MultiPart alloc] initWithMIMEStruct:mime
+                                                     forMessage:message] autorelease];
+            break;
+        case MAILMIME_MESSAGE:
+            return [[[CTMIME_MessagePart alloc] initWithMIMEStruct:mime
+                                                        forMessage:message] autorelease];
+            break;
+    }
+    return NULL;
 }
 
 + (CTMIME_SinglePart *)createMIMESinglePartWithMIMEStruct:(struct mailmime *)mime 
-											   forMessage:(struct mailmessage *)message {
-	struct mailmime_type *aType = mime->mm_content_type->ct_type;
-	if (aType->tp_type != MAILMIME_TYPE_DISCRETE_TYPE) {
-		/* What do you do with a composite single part? */
-		return nil;
-	}
-	CTMIME_SinglePart *content = nil;
-	switch (aType->tp_data.tp_discrete_type->dt_type) {
-		case MAILMIME_DISCRETE_TYPE_TEXT:
-			content = [[CTMIME_TextPart alloc] initWithMIMEStruct:mime 
-													   forMessage:message];
-			break;
-		default:
-			content = [[CTMIME_SinglePart alloc] initWithMIMEStruct:mime 
-														 forMessage:message];
-			break;
-	}
-	return [content autorelease];
+                                               forMessage:(struct mailmessage *)message {
+    struct mailmime_type *aType = mime->mm_content_type->ct_type;
+    if (aType->tp_type != MAILMIME_TYPE_DISCRETE_TYPE) {
+        /* What do you do with a composite single part? */
+        return nil;
+    }
+    CTMIME_SinglePart *content = nil;
+    switch (aType->tp_data.tp_discrete_type->dt_type) {
+        case MAILMIME_DISCRETE_TYPE_TEXT:
+            content = [[CTMIME_TextPart alloc] initWithMIMEStruct:mime
+                                                       forMessage:message];
+            break;
+        default:
+            content = [[CTMIME_SinglePart alloc] initWithMIMEStruct:mime
+                                                         forMessage:message];
+            break;
+    }
+    return [content autorelease];
 }
 @end 
