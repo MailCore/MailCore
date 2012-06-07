@@ -46,6 +46,7 @@
     CTCoreAccount *myAccount;
     NSString *myPath;
     BOOL connected;
+    NSError *lastError;
 }
 
 /*!
@@ -66,12 +67,6 @@
 */
 - (void)disconnect;
 
-/*
-    Implementation is in alpha.
-*/
-//TODO Document Me!
-- (NSSet *)messageObjectsFromIndex:(unsigned int)start toIndex:(unsigned int)end;
-
 /*!
     @abstract	This will return the message from this folder with the UID that was passed in. If the message
                 can't be found, nil is returned
@@ -81,10 +76,11 @@
 */
 - (CTCoreMessage *)messageWithUID:(NSString *)uid;
 
+- (NSArray *)messageObjectsFromIndex:(unsigned int)start toIndex:(unsigned int)end withFetchAttributes:(NSArray *)attrs;
 
-//TODO Document me!
-//TODO Attributes is ignore, fix me!
-- (NSSet *)messageListWithFetchAttributes:(NSArray *)attributes;
+- (NSSet *)messageObjectsFromIndex:(unsigned int)start toIndex:(unsigned int)end DEPRECATED_ATTRIBUTE;
+
+- (NSSet *)messageListWithFetchAttributes:(NSArray *)attributes DEPRECATED_ATTRIBUTE;
 
 /*!
     @abstract	This validates the passed in UID. The server can at times change the set of UID's for a folder. So
@@ -106,7 +102,6 @@
 
 //FIXME What is this?
 - (void)check;
-
 
 /*!
     @abstract	The folder name.

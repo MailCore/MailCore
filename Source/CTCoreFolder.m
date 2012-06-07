@@ -29,17 +29,18 @@
  * SUCH DAMAGE.
  */
 
-#import "CTCoreFolder.h"
 #import <libetpan/libetpan.h>
+#import <libetpan/imapdriver_tools.h>
+
+#import "CTCoreFolder.h"
 #import "CTCoreMessage.h"
 #import "CTCoreAccount.h"
 #import "MailCoreTypes.h"
 #import "CTBareMessage.h"
 #import "MailCoreUtilities.h"
 
-// Implementation is in imapdriver_tools.c
-int imap_flags_to_flags(struct mailimap_msg_att_dynamic * att_dyn,
-                        struct mail_flags ** result);
+int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result,
+                        mailsession * session, mailmessage_driver * driver);
 
 @interface CTCoreFolder (Private)
 @end
@@ -193,15 +194,12 @@ int imap_flags_to_flags(struct mailimap_msg_att_dynamic * att_dyn,
 
 
 - (NSUInteger)sequenceNumberForUID:(NSString *)uid {
-    //TODO check UID validity
-    //TODO factor out this duplicate code
-
     int r;
     struct mailimap_fetch_att * fetch_att;
     struct mailimap_fetch_type * fetch_type;
     struct mailimap_set * set;
     clist * fetch_result;
-    //TODO factor this out
+
     NSUInteger uidnum = (unsigned int)[[[uid componentsSeparatedByString:@"-"] objectAtIndex:1] doubleValue];
 
     [self connect];
@@ -238,6 +236,193 @@ int imap_flags_to_flags(struct mailimap_msg_att_dynamic * att_dyn,
     }
     mailimap_fetch_list_free(fetch_result);
     return sequenceNumber;
+}
+
+// We always fetch UID, RFC822.Size, InternalDate and Flags
+- (NSArray *)messageObjectsForSet:(struct mailimap_set *)set fetchAttributes:(NSArray *)fetchAttributes {
+    [self connect];
+
+    NSMutableArray *messages = [NSMutableArray array];
+
+    int r;
+    struct mailimap_fetch_att * fetch_att;
+    struct mailimap_fetch_type * fetch_type;
+    struct mailmessage_list * env_list;
+
+    clist * fetch_result;
+
+    fetch_type = mailimap_fetch_type_new_fetch_att_list_empty();
+    // Always fetch UID
+    fetch_att = mailimap_fetch_att_new_uid();
+    r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
+    if (r != MAILIMAP_NO_ERROR) {
+        mailimap_fetch_att_free(fetch_att);
+        mailimap_fetch_type_free(fetch_type);
+        return nil;
+    }
+
+    // Always fetch flags
+    fetch_att = mailimap_fetch_att_new_flags();
+    r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
+    if (r != MAILIMAP_NO_ERROR) {
+        mailimap_fetch_att_free(fetch_att);
+        mailimap_fetch_type_free(fetch_type);
+        return nil;
+    }
+
+    // Always fetch RFC822.Size
+    fetch_att = mailimap_fetch_att_new_rfc822_size();
+    r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
+    if (r != MAILIMAP_NO_ERROR) {
+        mailimap_fetch_att_free(fetch_att);
+        mailimap_fetch_type_free(fetch_type);
+        return nil;
+    }
+
+    // Always fetch InternalDate
+    fetch_att = mailimap_fetch_att_new_internaldate();
+    r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
+    if (r != MAILIMAP_NO_ERROR) {
+        mailimap_fetch_att_free(fetch_att);
+        mailimap_fetch_type_free(fetch_type);
+        return nil;
+    }
+
+    // We only fetch the body structure if requested
+    if ([fetchAttributes containsObject:CTFetchAttrBodyStructure]) {
+        fetch_att = mailimap_fetch_att_new_bodystructure();
+        r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
+        if (r != MAILIMAP_NO_ERROR) {
+            mailimap_fetch_att_free(fetch_att);
+            mailimap_fetch_type_free(fetch_type);
+            return nil;
+        }
+    }
+
+    // We only fetch envelope if requested
+    if ([fetchAttributes containsObject:CTFetchAttrEnvelope]) {
+        r = imap_add_envelope_fetch_att(fetch_type);
+        if (r != MAIL_NO_ERROR) {
+            mailimap_fetch_type_free(fetch_type);
+            return nil;
+        }
+    }
+
+    r = mailimap_fetch([self imapSession], set, fetch_type, &fetch_result);
+    if (r != MAIL_NO_ERROR) {
+        NSException *exception = [NSException
+                                  exceptionWithName:CTUnknownError
+                                  reason:[NSString stringWithFormat:@"Error number: %d",r]
+                                  userInfo:nil];
+        [exception raise];
+    }
+
+    mailimap_fetch_type_free(fetch_type);
+    mailimap_set_free(set);
+
+    if (r != MAILIMAP_NO_ERROR)
+        return nil; //Add exception
+
+    env_list = NULL;
+    r = uid_list_to_env_list(fetch_result, &env_list, [self folderSession], imap_message_driver);
+    r = mailfolder_get_envelopes_list(myFolder, env_list);
+    if (r != MAIL_NO_ERROR) {
+        if ( env_list != NULL )
+            mailmessage_list_free(env_list);
+        NSException *exception = [NSException
+                                  exceptionWithName:CTUnknownError
+                                  reason:[NSString stringWithFormat:@"Error number: %d",r]
+                                  userInfo:nil];
+        [exception raise];
+    }
+
+    // Parsing of MIME bodies
+    int len = carray_count(env_list->msg_tab);
+
+    clistiter *fetchResultIter = clist_begin(fetch_result);
+    for(int i=0; i<len; i++) {
+        struct mailimf_fields * fields;
+        struct mailmime * new_body;
+        struct mailmime_content * content_message;
+        struct mailmime * body;
+
+        struct mailmessage * msg = carray_get(env_list->msg_tab, i);
+        struct mailimap_msg_att *msg_att = (struct mailimap_msg_att *)clist_content(fetchResultIter);
+        if (msg_att == nil)
+            return nil;
+
+        uint32_t uid = 0;
+        char * references = NULL;
+        size_t ref_size = 0;
+        struct mailimap_body * imap_body = NULL;
+        struct mailimap_envelope * envelope = NULL;
+
+        r = imap_get_msg_att_info(msg_att, &uid, &envelope, &references, &ref_size, NULL, &imap_body);
+        if (r != MAIL_NO_ERROR) {
+            mailimap_fetch_list_free(fetch_result);
+            return nil;
+        }
+
+        if (imap_body == NULL) {
+            mailimap_fetch_list_free(fetch_result);
+            return nil;
+        }
+
+        r = imap_body_to_body(imap_body, &body);
+        if (r != MAIL_NO_ERROR) {
+            mailimap_fetch_list_free(fetch_result);
+            return nil;
+        }
+
+        fields = NULL;
+        if (envelope != NULL) {
+            r = imap_env_to_fields(envelope, references, ref_size, &fields);
+            if (r != MAIL_NO_ERROR) {
+                mailmime_free(body);
+                mailimap_fetch_list_free(fetch_result);
+                return nil;
+            }
+        }
+
+        content_message = mailmime_get_content_message();
+        if (content_message == NULL) {
+            if (fields != NULL)
+                mailimf_fields_free(fields);
+            mailmime_free(body);
+            mailimap_fetch_list_free(fetch_result);
+            return nil;
+        }
+
+        new_body = mailmime_new(MAILMIME_MESSAGE, NULL,
+                                0, NULL, content_message,
+                                NULL, NULL, NULL, NULL, fields, body);
+
+        if (new_body == NULL) {
+            mailmime_content_free(content_message);
+            if (fields != NULL)
+                mailimf_fields_free(fields);
+            mailmime_free(body);
+            mailimap_fetch_list_free(fetch_result);
+            return nil;
+        }
+
+        CTCoreMessage* msgObject = [[CTCoreMessage alloc] initWithMessageStruct:msg];
+        [msgObject setSequenceNumber:msg_att->att_number];
+        [msgObject setBodyStructure:new_body];
+        [messages addObject:msgObject];
+        [msgObject release];
+
+        fetchResultIter = clist_next(fetchResultIter);
+    }
+
+    if (env_list != NULL) {
+        //I am only freeing the message array because the messages themselves are in use
+        carray_free(env_list->msg_tab);
+        free(env_list);
+    }
+    mailimap_fetch_list_free(fetch_result);
+
+    return messages;
 }
 
 - (NSSet *)messageListWithFetchAttributes:(NSArray *)attributes {
@@ -333,95 +518,23 @@ int imap_flags_to_flags(struct mailimap_msg_att_dynamic * att_dyn,
     return messages;
 }
 
-
-- (NSSet *)messageObjectsFromIndex:(unsigned int)start toIndex:(unsigned int)end {
-    struct mailmessage_list * env_list;
-    int r;
-    struct mailimap_fetch_att * fetch_att;
-    struct mailimap_fetch_type * fetch_type;
-    struct mailimap_set * set;
-    clist * fetch_result;
-
-    [self connect];
-    set = mailimap_set_new_interval(start, end);
-    if (set == NULL)
-        return nil;
-
-    fetch_type = mailimap_fetch_type_new_fetch_att_list_empty();
-    fetch_att = mailimap_fetch_att_new_uid();
-    r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
-    if (r != MAILIMAP_NO_ERROR) {
-        mailimap_fetch_att_free(fetch_att);
-        return nil;
-    }
-
-    fetch_att = mailimap_fetch_att_new_rfc822_size();
-    if (fetch_att == NULL) {
-        mailimap_fetch_type_free(fetch_type);
-        return nil;
-    }
-
-    r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
-    if (r != MAILIMAP_NO_ERROR) {
-        mailimap_fetch_att_free(fetch_att);
-        mailimap_fetch_type_free(fetch_type);
-        return nil;
-    }
-
-    r = mailimap_fetch([self imapSession], set, fetch_type, &fetch_result);
-    if (r != MAIL_NO_ERROR) {
-        NSException *exception = [NSException
-                    exceptionWithName:CTUnknownError
-                    reason:[NSString stringWithFormat:@"Error number: %d",r]
-                    userInfo:nil];
-        [exception raise];
-    }
-
-    mailimap_fetch_type_free(fetch_type);
+- (NSArray *)messageObjectsFromIndex:(unsigned int)start toIndex:(unsigned int)end withFetchAttributes:(NSArray *)attrs {
+    struct mailimap_set *set = mailimap_set_new_interval(start, end);
+    NSArray *results = [self messageObjectsForSet:set fetchAttributes:attrs];
     mailimap_set_free(set);
-
-    if (r != MAILIMAP_NO_ERROR)
-        return nil; //Add exception
-
-    env_list = NULL;
-    r = uid_list_to_env_list(fetch_result, &env_list, [self folderSession], imap_message_driver);
-    r = mailfolder_get_envelopes_list(myFolder, env_list);
-    if (r != MAIL_NO_ERROR) {
-        if ( env_list != NULL )
-            mailmessage_list_free(env_list);
-        NSException *exception = [NSException
-                    exceptionWithName:CTUnknownError
-                    reason:[NSString stringWithFormat:@"Error number: %d",r]
-                    userInfo:nil];
-        [exception raise];
-    }
-
-    int len = carray_count(env_list->msg_tab);
-    int i;
-    CTCoreMessage *msgObject;
-    struct mailmessage *msg;
-    clistiter *fetchResultIter = clist_begin(fetch_result);
-    NSMutableSet *messages = [NSMutableSet set];
-    for(i=0; i<len; i++) {
-        msg = carray_get(env_list->msg_tab, i);
-        msgObject = [[CTCoreMessage alloc] initWithMessageStruct:msg];
-        struct mailimap_msg_att *msg_att = (struct mailimap_msg_att *)clist_content(fetchResultIter);
-        if(msg_att != nil) {
-            [msgObject setSequenceNumber:msg_att->att_number];
-            [messages addObject:msgObject];
-        }
-        [msgObject release];
-        fetchResultIter = clist_next(fetchResultIter);
-    }
-    if ( env_list != NULL ) {
-        //I am only freeing the message array because the messages themselves are in use
-        carray_free(env_list->msg_tab);
-        free(env_list);
-    }
-    mailimap_fetch_list_free(fetch_result);
-    return messages;
+    return results;
 }
 
+- (NSSet *)messageObjectsFromIndex:(unsigned int)start toIndex:(unsigned int)end
+{
+    struct mailimap_set *set = mailimap_set_new_interval(start, end);
+    NSArray *results = [self messageObjectsForSet:set fetchAttributes:nil];
+    mailimap_set_free(set);
+    if (results) {
+        return [NSSet setWithArray:results];
+    }
+    return nil;
+}
 
 - (CTCoreMessage *)messageWithUID:(NSString *)uid {
     int err;
@@ -566,7 +679,7 @@ int imap_flags_to_flags(struct mailimap_msg_att_dynamic * att_dyn,
 
 /* From Libetpan source */
 //TODO Can these things be made public in libetpan?
-int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result, 
+int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result,
                         mailsession * session, mailmessage_driver * driver) {
     clistiter * cur;
     struct mailmessage_list * env_list;
