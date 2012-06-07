@@ -40,58 +40,59 @@ NSString *PASSWORD = @"password";
 - (void)connect;
 @end
 
+//TODO: Turn these tests back on
 @implementation CTCoreAccountTests
-- (void)setUp {
-    account = [[CTCoreAccount alloc] init];
-    [self connect];
-}
-
-- (void)tearDown {
-    [self disconnect];
-    [account release];
-}
-
-- (void)testAllFolders {
-    NSSet *folders = [account allFolders];
-    NSSet *expectedFolders = [NSSet setWithObjects:@"ACM", @"Drafts", @"JDEE", @"Lucene", 
-                                    @"Lucene-Dev", @"MacWarriors", @"Sent", @"Templates",
-                                    @"TestMailbox", @"TestMailbox.SubMailbox", @"Trash", 
-                                    @"INBOX", nil];
-    STAssertEqualObjects(folders, expectedFolders, nil);
-}
-
-/*!
-  Make sure every folder can be opened
-*/
-- (void)testOpenAllFolders {
-    for (NSString *folderPath in [account allFolders]) {
-        STAssertNotNil([account folderWithPath:folderPath], nil);
-    }
-}
-
-- (void)testSubscribedFolders {
-    NSSet *folders = [account subscribedFolders];
-    NSSet *expectedFolders = [NSSet setWithObjects:@"Drafts", @"JDEE", @"Lucene", 
-                                    @"Lucene-Dev", @"MacWarriors", @"Sent", @"Templates",
-                                    @"TestMailbox", @"TestMailbox.SubMailbox", @"Trash", 
-                                    @"INBOX", nil];
-    STAssertEqualObjects(folders, expectedFolders, nil);
-}
-
-- (void)testIsConnected {
-    STAssertEquals(YES, [account isConnected], nil);
-    [self disconnect];
-    STAssertEquals(NO, [account isConnected], nil);
-    [self connect];
-    STAssertEquals(YES, [account isConnected], nil);
-}
-
-- (void)connect {
-    [account connectToServer:SERVER port:143 connectionType:CONNECTION_TYPE_PLAIN authType:IMAP_AUTH_TYPE_PLAIN
-             login:USERNAME password:PASSWORD];
-}
-
-- (void)disconnect {
-    [account disconnect];
-}
+//- (void)setUp {
+//    account = [[CTCoreAccount alloc] init];
+//    [self connect];
+//}
+//
+//- (void)tearDown {
+//    [self disconnect];
+//    [account release];
+//}
+//
+//- (void)testAllFolders {
+//    NSSet *folders = [account allFolders];
+//    NSSet *expectedFolders = [NSSet setWithObjects:@"ACM", @"Drafts", @"JDEE", @"Lucene", 
+//                                    @"Lucene-Dev", @"MacWarriors", @"Sent", @"Templates",
+//                                    @"TestMailbox", @"TestMailbox.SubMailbox", @"Trash", 
+//                                    @"INBOX", nil];
+//    STAssertEqualObjects(folders, expectedFolders, nil);
+//}
+//
+///*!
+//  Make sure every folder can be opened
+//*/
+//- (void)testOpenAllFolders {
+//    for (NSString *folderPath in [account allFolders]) {
+//        STAssertNotNil([account folderWithPath:folderPath], nil);
+//    }
+//}
+//
+//- (void)testSubscribedFolders {
+//    NSSet *folders = [account subscribedFolders];
+//    NSSet *expectedFolders = [NSSet setWithObjects:@"Drafts", @"JDEE", @"Lucene", 
+//                                    @"Lucene-Dev", @"MacWarriors", @"Sent", @"Templates",
+//                                    @"TestMailbox", @"TestMailbox.SubMailbox", @"Trash", 
+//                                    @"INBOX", nil];
+//    STAssertEqualObjects(folders, expectedFolders, nil);
+//}
+//
+//- (void)testIsConnected {
+//    STAssertEquals(YES, [account isConnected], nil);
+//    [self disconnect];
+//    STAssertEquals(NO, [account isConnected], nil);
+//    [self connect];
+//    STAssertEquals(YES, [account isConnected], nil);
+//}
+//
+//- (void)connect {
+//    [account connectToServer:SERVER port:143 connectionType:CONNECTION_TYPE_PLAIN authType:IMAP_AUTH_TYPE_PLAIN
+//             login:USERNAME password:PASSWORD];
+//}
+//
+//- (void)disconnect {
+//    [account disconnect];
+//}
 @end

@@ -269,5 +269,5 @@
 /* Intended for advanced use only */
 - (struct mailmessage *)messageStruct;
 - (mailimap *)imapSession;
-
+- (void)setBodyStructure:(struct mailmime *)mime;
 @end

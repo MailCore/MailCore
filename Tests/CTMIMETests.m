@@ -86,7 +86,7 @@ const NSString *filePrefix = @"/Users/mronge/Projects/MailCore/";
 		if (!NSEqualRanges([file rangeOfString:@".svn"],notFound))
 			continue;
 		CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:[NSString stringWithFormat:@"%@TestData/kiwi-dev/%@",filePrefix,file]];
-		NSLog([msg subject]);
+		NSLog(@"%@", [msg subject]);
 		[msg fetchBodyStructure];
 		NSString *stuff = [msg body];
 		[stuff length]; //Get the warning to shutup about stuff not being used

@@ -152,9 +152,13 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
         size_t fetchedDataLen;
         int r;
 
-        mailimap_set_progress_callback(get_imap_session(mMessage), &download_progress_callback, NULL, block);  
+        if (mMessage->msg_session != NULL) {
+            mailimap_set_progress_callback(get_imap_session(mMessage), &download_progress_callback, NULL, block);  
+        }
         r = mailmessage_fetch_section(mMessage, mMime, &fetchedData, &fetchedDataLen);
-        mailimap_set_progress_callback(get_imap_session(mMessage), NULL, NULL, NULL); 
+        if (mMessage->msg_session != NULL) {
+            mailimap_set_progress_callback(get_imap_session(mMessage), NULL, NULL, NULL); 
+        }
         if (r != MAIL_NO_ERROR) {
             mailmessage_fetch_result_free(mMessage, fetchedData);
             RaiseException(CTMIMEParseError, CTMIMEParseErrorDesc);

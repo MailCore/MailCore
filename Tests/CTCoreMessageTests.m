@@ -154,10 +154,9 @@
 }
 
 - (void)testSentDate {
-	NSCalendarDate *sentDate = [myRealMsg sentDate];
-	NSCalendarDate *actualDate = [[NSCalendarDate alloc] initWithString:@"2006-12-26 21:06:49 -0800"];
+	NSDate *sentDate = [myRealMsg senderDate];
+	NSDate *actualDate = [NSDate dateWithTimeIntervalSince1970:1167196009];
 	STAssertEqualObjects(sentDate, actualDate, @"Date's should be equal!");
-	[actualDate release];
 }
 
 - (void)testSettingFromTwice {

@@ -32,12 +32,12 @@
 #define DEST_CHARSET "UTF-8"
 #define CTContentTypesPath @"/System/Library/Frameworks/Foundation.framework/Resources/types.plist"
 
+/** Constants for fetching messages **/
 
-/* ========================= */
-/* = List of Message Flags = */
-/* ========================= */
+#define CTFetchAttrBodyStructure    @"bodystructure"
+#define CTFetchAttrEnvelope         @"envelope"
 
-//TODO Turn these into extern's, not defines
+/** List of Message Flags **/
 
 #define CTFlagNew			MAIL_FLAG_NEW
 #define CTFlagSeen			MAIL_FLAG_SEEN
@@ -47,10 +47,7 @@
 #define CTFlagForwarded		MAIL_FLAG_FORWARDED
 #define CTFlagCancelled 	MAIL_FLAG_CANCELLED
 
-
-/* =========================== */
-/* = List of Exception Types = */
-/* =========================== */
+/** List of Exception Types **/
 
 #define CTMIMEParseError			@"MIMEParserError"
 #define CTMIMEParseErrorDesc		@"An error occured during MIME parsing."
