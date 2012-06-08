@@ -31,15 +31,6 @@
 
 #import "CTCoreAccountTests.h"
 
-NSString *SERVER = @"192.168.1.106";
-NSString *USERNAME = @"test";
-NSString *PASSWORD = @"password";
-
-@interface CTCoreAccountTests (CTCoreAccountTestsPrivate)
-- (void)disconnect;
-- (void)connect;
-@end
-
 //TODO: Turn these tests back on
 @implementation CTCoreAccountTests
 //- (void)setUp {
@@ -54,9 +45,9 @@ NSString *PASSWORD = @"password";
 //
 //- (void)testAllFolders {
 //    NSSet *folders = [account allFolders];
-//    NSSet *expectedFolders = [NSSet setWithObjects:@"ACM", @"Drafts", @"JDEE", @"Lucene", 
+//    NSSet *expectedFolders = [NSSet setWithObjects:@"ACM", @"Drafts", @"JDEE", @"Lucene",
 //                                    @"Lucene-Dev", @"MacWarriors", @"Sent", @"Templates",
-//                                    @"TestMailbox", @"TestMailbox.SubMailbox", @"Trash", 
+//                                    @"TestMailbox", @"TestMailbox.SubMailbox", @"Trash",
 //                                    @"INBOX", nil];
 //    STAssertEqualObjects(folders, expectedFolders, nil);
 //}
@@ -72,9 +63,9 @@ NSString *PASSWORD = @"password";
 //
 //- (void)testSubscribedFolders {
 //    NSSet *folders = [account subscribedFolders];
-//    NSSet *expectedFolders = [NSSet setWithObjects:@"Drafts", @"JDEE", @"Lucene", 
+//    NSSet *expectedFolders = [NSSet setWithObjects:@"Drafts", @"JDEE", @"Lucene",
 //                                    @"Lucene-Dev", @"MacWarriors", @"Sent", @"Templates",
-//                                    @"TestMailbox", @"TestMailbox.SubMailbox", @"Trash", 
+//                                    @"TestMailbox", @"TestMailbox.SubMailbox", @"Trash",
 //                                    @"INBOX", nil];
 //    STAssertEqualObjects(folders, expectedFolders, nil);
 //}

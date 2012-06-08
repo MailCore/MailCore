@@ -142,6 +142,8 @@
 		F8EC5B0314C37F60006AF4D3 /* CTMIME_HtmlPart.h in Headers */ = {isa = PBXBuildFile; fileRef = F8EC5B0114C37F60006AF4D3 /* CTMIME_HtmlPart.h */; };
 		F8EC5B0414C37F60006AF4D3 /* CTMIME_HtmlPart.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EC5B0214C37F60006AF4D3 /* CTMIME_HtmlPart.m */; };
 		F8EC5B0514C37F60006AF4D3 /* CTMIME_HtmlPart.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EC5B0214C37F60006AF4D3 /* CTMIME_HtmlPart.m */; };
+		F8EC5B0514C37F60006AF4D5 /* CTConnectedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EC5B0514C37F60006AF4D4 /* CTConnectedTest.m */; };
+		F8EC5B0514C37F60006AF4D8 /* CTCoreFolderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EC5B0514C37F60006AF4D7 /* CTCoreFolderTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -388,6 +390,10 @@
 		F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTCoreMessageTests.m; path = Tests/CTCoreMessageTests.m; sourceTree = "<group>"; };
 		F8EC5B0114C37F60006AF4D3 /* CTMIME_HtmlPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTMIME_HtmlPart.h; path = Source/CTMIME_HtmlPart.h; sourceTree = "<group>"; };
 		F8EC5B0214C37F60006AF4D3 /* CTMIME_HtmlPart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTMIME_HtmlPart.m; path = Source/CTMIME_HtmlPart.m; sourceTree = "<group>"; };
+		F8EC5B0514C37F60006AF4D4 /* CTConnectedTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTConnectedTest.m; path = Tests/CTConnectedTest.m; sourceTree = "<group>"; };
+		F8EC5B0514C37F60006AF4D6 /* CTConnectedTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTConnectedTest.h; path = Tests/CTConnectedTest.h; sourceTree = "<group>"; };
+		F8EC5B0514C37F60006AF4D7 /* CTCoreFolderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTCoreFolderTests.m; path = Tests/CTCoreFolderTests.m; sourceTree = "<group>"; };
+		F8EC5B0514C37F60006AF4D9 /* CTCoreFolderTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTCoreFolderTests.h; path = Tests/CTCoreFolderTests.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -581,9 +587,13 @@
 		F85A18AF09C7D8F200305C06 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				F8EC5B0514C37F60006AF4D4 /* CTConnectedTest.m */,
+				F8EC5B0514C37F60006AF4D6 /* CTConnectedTest.h */,
 				F8DFCF5215801A5000C01975 /* Supporting Files */,
 				F81A8AEB0C03FC58002F780A /* CTMIMETests.h */,
 				F81A8AEC0C03FC58002F780A /* CTMIMETests.m */,
+				F8EC5B0514C37F60006AF4D9 /* CTCoreFolderTests.h */,
+				F8EC5B0514C37F60006AF4D7 /* CTCoreFolderTests.m */,
 				F8EADFB30B3BB178000C8371 /* CTCoreMessageTests.h */,
 				F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */,
 				F8EA76110C1141C1004F85D8 /* CTCoreAddressTests.h */,
@@ -960,6 +970,8 @@
 				F88863071581021F0088CF38 /* CTCoreAttachmentTests.m in Sources */,
 				F8886308158102220088CF38 /* CTBareMessageTests.m in Sources */,
 				F888630B158102550088CF38 /* CTCoreAccountTests.m in Sources */,
+				F8EC5B0514C37F60006AF4D5 /* CTConnectedTest.m in Sources */,
+				F8EC5B0514C37F60006AF4D8 /* CTCoreFolderTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

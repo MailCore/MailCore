@@ -66,14 +66,14 @@
 */
 - (CTCoreFolder *)folderWithPath:(NSString *)path;
 
-
 /*!
     @abstract	This method initiates the connection to the server.
     @param		server The address of the server.
     @param		port The port to connect to.
     @param		connnectionType What kind of connection to use, it can be one of these three values:
-                CONNECTION_TYPE_PLAIN, CONNECTION_TYPE_STARTTLS, CONNECTION_TYPE_TRY_STARTTLS, CONNECTION_TYPE_TLS
-    @param		authType The authentication type, only IMAP_AUTH_TYPE_PLAIN is currently supported
+                CTConnectionTypePlain, CTConnectionTypeStartTLS, CTConnectionTypeTryStartTLS, CTConnectionTypeTLS.
+                See MailCoreTypes.h for more information
+    @param		authType The authentication type, only CTImapAuthTypePlain is currently supported
     @param		login The username to connect with.
     @param		password The password to use to connect.
 */

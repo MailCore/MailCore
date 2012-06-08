@@ -31,6 +31,7 @@
 
 #import <Foundation/Foundation.h>
 #import <libetpan/libetpan.h>
+#import "MailCoreTypes.h"
 
 /*!
     @class	CTCoreFolder
@@ -76,7 +77,21 @@
 */
 - (CTCoreMessage *)messageWithUID:(NSString *)uid;
 
-- (NSArray *)messageObjectsFromIndex:(unsigned int)start toIndex:(unsigned int)end withFetchAttributes:(NSArray *)attrs;
+/*!
+    @abstract   Use this method to download message lists from the server. This method take fetch attributes
+                which configure what is fetched. Fetch attributes can be combined so you fetch all the message data at
+                once, or select which pieces you want for your app. You can also fetch just the default attributes which
+                will be as fast as possible.
+    @param      start The message index to start from, starts with 1 and NOT 0 (IMAP starts with 1 that way, sorry)
+    @param      end The ending message index, or if you'd like to fetch to the end of the message list pass in 0
+    @param      attrs This controls what is fetched. Pass in CTFetchAttrDefaultsOnly to fetch the minimum possible, this
+                includes the UID, RFC822.size, and flags. The defaults are always fetched, even when you don't pass in this flag.
+                Use CTFetchAttrBodyStructure to also fetch the body structure of the message. This prevents a future round trip
+                done by [CTCoreMessage fetchBodyStructure], if it sees you already have the body structure it won't re-fetch it.
+                Use CTFetchAttrEnvelope if you'd like to fetch the subject, to, from, cc, bcc, sender, date etc. You can
+                also fetch both the envelope and body structure by passing in CTFetchAttrEnvelope | CTFetchAttrBodyStructure
+*/
+- (NSArray *)messageObjectsFromIndex:(unsigned int)start toIndex:(unsigned int)end withFetchAttributes:(CTFetchAttributes)attrs;
 
 - (NSSet *)messageObjectsFromIndex:(unsigned int)start toIndex:(unsigned int)end DEPRECATED_ATTRIBUTE;
 

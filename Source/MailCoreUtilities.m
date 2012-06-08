@@ -38,15 +38,14 @@ void mailcore_logger(int direction, const char * str, size_t size) {
     char *str2 = malloc(size+1);
     strncpy(str2,str,size);
     str2[size] = 0;
-    id self = nil; // Work around for using JRLogInfo in a C function
     if (direction == 1) {
-        JRLogInfo(@"Client: %s\n", str2);
+        printf("%s\n", str2);
     }
     else if (direction == 0) {
-        JRLogInfo(@"Server: %s\n", str2);
+        printf("%s\n", str2);
     }
     else {
-        JRLogInfo(@"%s\n", str2);
+        printf("%s\n", str2);
     }
     free(str2);
 }

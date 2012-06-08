@@ -29,13 +29,32 @@
  * SUCH DAMAGE.
  */
 
+#import <libetpan/libetpan.h>
+
 #define DEST_CHARSET "UTF-8"
 #define CTContentTypesPath @"/System/Library/Frameworks/Foundation.framework/Resources/types.plist"
 
 /** Constants for fetching messages **/
 
-#define CTFetchAttrBodyStructure    @"bodystructure"
-#define CTFetchAttrEnvelope         @"envelope"
+typedef enum
+{
+    CTFetchAttrDefaultsOnly     = 0,
+    CTFetchAttrBodyStructure    = 1 << 0,
+    CTFetchAttrEnvelope         = 1 << 1,
+} CTFetchAttributes;
+
+/** Connection Constants **/
+
+/* when the connection is plain text */
+#define CTConnectionTypePlain       CONNECTION_TYPE_PLAIN
+/* when the connection is first plain, then, we want to switch to TLS (secure connection) */
+#define CTConnectionTypeStartTLS    CONNECTION_TYPE_STARTTLS
+/* the connection is first plain, then, we will try to switch to TLS */
+#define CTConnectionTypeTryStartTLS CONNECTION_TYPE_TRY_STARTTLS
+/* the connection is over TLS */
+#define CTConnectionTypeTLS         CONNECTION_TYPE_TLS
+
+#define CTImapAuthTypePlain         IMAP_AUTH_TYPE_PLAIN
 
 /** List of Message Flags **/
 
@@ -98,6 +117,8 @@
 
 #define	CTSMTPData					@"SMTPData"
 #define	CTSMTPDataDesc				@"An error occured while sending message data."
+
+/** Async SMTP Status **/
 
 typedef enum 
 {

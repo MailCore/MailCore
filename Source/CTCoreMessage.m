@@ -136,12 +136,7 @@ char * etpan_encode_mime_header(char * phrase)
 }
 
 - (void)setBodyStructure:(struct mailmime *)mime {
-    if (myFields != NULL)
-        mailimf_single_fields_free(myFields);
-
-    myFields = mailimf_single_fields_new(mime->mm_data.mm_message.mm_fields);
     myMessage->msg_mime = mime;
-
     myParsedMIME = [[CTMIMEFactory createMIMEWithMIMEStruct:[self messageStruct]->msg_mime
                                                  forMessage:[self messageStruct]] retain];
 }
@@ -184,7 +179,7 @@ char * etpan_encode_mime_header(char * phrase)
     return result;
 }
 
-- (NSString *)editableHtmlBody{
+- (NSString *)editableHtmlBody {
     //added by KK
     NSMutableString *result = [NSMutableString string];
     [self _buildUpHtmlBodyText:myParsedMIME result:result];
@@ -274,7 +269,7 @@ char * etpan_encode_mime_header(char * phrase)
     }
 }
 
-- (void) setHTMLBody:(NSString *)body{
+- (void)setHTMLBody:(NSString *)body{
     CTMIME *oldMIME = myParsedMIME;
     CTMIME_HtmlPart *text = [CTMIME_HtmlPart mimeTextPartWithString:body];
     CTMIME_MessagePart *messagePart = [CTMIME_MessagePart mimeMessagePartWithContent:text];
@@ -328,16 +323,14 @@ char * etpan_encode_mime_header(char * phrase)
     }
 }
 
-
 - (NSString *)subject {
     if (myFields->fld_subject == NULL)
-        return @"";
+        return nil;
     NSString *decodedSubject = MailCoreDecodeMIMEPhrase(myFields->fld_subject->sbj_value);
     if (decodedSubject == nil)
-        return @"";
+        return nil;
     return decodedSubject;
 }
-
 
 - (void)setSubject:(NSString *)subject {
     struct mailimf_subject *subjectStruct;
@@ -367,14 +360,12 @@ char * etpan_encode_mime_header(char * phrase)
 }
 
 - (NSDate *)senderDate {
-
     if ( myFields->fld_orig_date == NULL) {
         return [NSDate distantPast];
-    }
-    else {
+    } else {
         struct mailimf_date_time *d;
 
-        if((d = [self libetpanDateTime]) == NULL)
+        if ((d = [self libetpanDateTime]) == NULL)
             return nil;
 
         NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
@@ -469,7 +460,7 @@ char * etpan_encode_mime_header(char * phrase)
 
 - (NSSet *)from {
     if (myFields->fld_from == NULL)
-        return [NSSet set]; //Return just an empty set
+        return nil;
 
     return [self _addressListFromMailboxList:myFields->fld_from->frm_mb_list];
 }
@@ -485,7 +476,7 @@ char * etpan_encode_mime_header(char * phrase)
 
 - (CTCoreAddress *)sender {
     if (myFields->fld_sender == NULL)
-        return [CTCoreAddress address];
+        return nil;
 
     return [self _addressFromMailbox:myFields->fld_sender->snd_mb];
 }
@@ -493,7 +484,7 @@ char * etpan_encode_mime_header(char * phrase)
 
 - (NSSet *)to {
     if (myFields->fld_to == NULL)
-        return [NSSet set];
+        return nil;
     else
         return [self _addressListFromIMFAddressList:myFields->fld_to->to_addr_list];
 }
@@ -513,7 +504,7 @@ char * etpan_encode_mime_header(char * phrase)
 
 - (NSSet *)cc {
     if (myFields->fld_cc == NULL)
-        return [NSSet set];
+        return nil;
     else
         return [self _addressListFromIMFAddressList:myFields->fld_cc->cc_addr_list];
 }
@@ -532,7 +523,7 @@ char * etpan_encode_mime_header(char * phrase)
 
 - (NSSet *)bcc {
     if (myFields->fld_bcc == NULL)
-        return [NSSet set];
+        return nil;
     else
         return [self _addressListFromIMFAddressList:myFields->fld_bcc->bcc_addr_list];
 }
@@ -551,7 +542,7 @@ char * etpan_encode_mime_header(char * phrase)
 
 - (NSSet *)replyTo {
     if (myFields->fld_reply_to == NULL)
-        return [NSSet set];
+        return nil;
     else
         return [self _addressListFromIMFAddressList:myFields->fld_reply_to->rt_addr_list];
 }

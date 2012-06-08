@@ -17,6 +17,16 @@ First checkout the code and pulldown the required dependencies as submodules:
 
 Now open up MailCore.xcodeproj and build either the iOS static library or the Mac OS X framework depending on your needs.
 
+Upgrading from previous version
+-------
+TODO:Fill this out, right now these are just notes
+
+- Not backwards compatible
+- fetchBody -> fetchBodyStructure
+- New method for fetching message lists
+- Moved to NSError
+- Message to, from, sender, bcc, cc, subject are nil when not downloaded or message doesn't have them
+
 Contact
 -------
 
