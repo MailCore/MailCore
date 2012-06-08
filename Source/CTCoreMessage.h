@@ -270,4 +270,5 @@
 - (struct mailmessage *)messageStruct;
 - (mailimap *)imapSession;
 - (void)setBodyStructure:(struct mailmime *)mime;
+- (void)setFields:(struct mailimf_fields *)fields;
 @end

@@ -24,6 +24,7 @@ TODO:Fill this out, right now these are just notes
 - Not backwards compatible
 - fetchBody -> fetchBodyStructure
 - New method for fetching message lists
+- Both - (NSSet *)messageObjectsFromIndex:(unsigned int)start toIndex:(unsigned int)end and - (NSSet *)messageListWithFetchAttributes:(NSArray *)attributes are gone.
 - Moved to NSError
 - Message to, from, sender, bcc, cc, subject are nil when not downloaded or message doesn't have them
 

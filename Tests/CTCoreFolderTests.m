@@ -95,7 +95,6 @@
 }
 
 - (void)testFetchEverything {
-    MailCoreEnableLogging();
     NSArray *messages = [self.folder messageObjectsFromIndex:1 toIndex:0 withFetchAttributes:CTFetchAttrEnvelope | CTFetchAttrBodyStructure];
     STAssertTrue(messages.count == 6, @"");
     CTCoreMessage *msg = [messages objectAtIndex:0];

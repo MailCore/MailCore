@@ -133,13 +133,11 @@
 }
 
 - (void)testEmptyBcc {
-	STAssertTrue([myRealMsg bcc] != nil, @"Shouldn't have been nil");
-	STAssertTrue([[myRealMsg bcc] count] == 0, @"There shouldn't be any bcc's");
+	STAssertTrue([myRealMsg bcc] == nil, @"Shouldn't have been nil");
 }
 
 - (void)testEmptyCc {
-	STAssertTrue([myRealMsg cc] != nil, @"Shouldn't have been nil");
-	STAssertTrue([[myRealMsg cc] count] == 0, @"There shouldn't be any cc's");
+	STAssertTrue([myRealMsg cc] == nil, @"Shouldn't have been nil");
 }
 
 - (void)testSender {

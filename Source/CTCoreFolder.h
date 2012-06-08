@@ -93,10 +93,6 @@
 */
 - (NSArray *)messageObjectsFromIndex:(unsigned int)start toIndex:(unsigned int)end withFetchAttributes:(CTFetchAttributes)attrs;
 
-- (NSSet *)messageObjectsFromIndex:(unsigned int)start toIndex:(unsigned int)end DEPRECATED_ATTRIBUTE;
-
-- (NSSet *)messageListWithFetchAttributes:(NSArray *)attributes DEPRECATED_ATTRIBUTE;
-
 /*!
     @abstract	This validates the passed in UID. The server can at times change the set of UID's for a folder. So
                 you should verify that the server is still using the same set when connecting.

@@ -36,7 +36,6 @@
 #import "CTCoreMessage.h"
 #import "CTCoreAccount.h"
 #import "MailCoreTypes.h"
-#import "CTBareMessage.h"
 #import "MailCoreUtilities.h"
 
 int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result,
@@ -380,12 +379,11 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
             return nil;
         }
 
-        if (fields != NULL) {
-            msg->msg_fields = fields;
-        }
-
         CTCoreMessage* msgObject = [[CTCoreMessage alloc] initWithMessageStruct:msg];
         [msgObject setSequenceNumber:msg_att->att_number];
+        if (fields != NULL) {
+            [msgObject setFields:fields];
+        }
         if (attrs & CTFetchAttrBodyStructure) {
             [msgObject setBodyStructure:new_body];
         }
@@ -405,113 +403,10 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     return messages;
 }
 
-- (NSSet *)messageListWithFetchAttributes:(NSArray *)attributes {
-    int r;
-    struct mailimap_fetch_att * fetch_att;
-    struct mailimap_fetch_type * fetch_type;
-    struct mailimap_set * set;
-    clist * fetch_result;
-
-    [self connect];
-    set = mailimap_set_new_interval(1, 0);
-    if (set == NULL)
-        return nil;
-
-    fetch_type = mailimap_fetch_type_new_fetch_att_list_empty();
-    fetch_att = mailimap_fetch_att_new_uid();
-    r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
-    if (r != MAILIMAP_NO_ERROR) {
-        mailimap_fetch_att_free(fetch_att);
-        return nil;
-    }
-
-    fetch_att = mailimap_fetch_att_new_flags();
-    if (fetch_att == NULL) {
-        mailimap_fetch_type_free(fetch_type);
-        return nil;
-    }
-
-    r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
-    if (r != MAILIMAP_NO_ERROR) {
-        mailimap_fetch_att_free(fetch_att);
-        mailimap_fetch_type_free(fetch_type);
-        return nil;
-    }
-
-    r = mailimap_fetch([self imapSession], set, fetch_type, &fetch_result);
-    if (r != MAIL_NO_ERROR) {
-        NSException *exception = [NSException
-                    exceptionWithName:CTUnknownError
-                    reason:[NSString stringWithFormat:@"Error number: %d",r]
-                    userInfo:nil];
-        [exception raise];
-    }
-
-    mailimap_fetch_type_free(fetch_type);
-    mailimap_set_free(set);
-
-    if (r != MAILIMAP_NO_ERROR)
-        return nil; //Add exception
-
-    NSMutableSet *messages = [NSMutableSet set];
-    NSUInteger uidValidity = [self uidValidity];
-    clistiter *iter;
-    for(iter = clist_begin(fetch_result); iter != NULL; iter = clist_next(iter)) {
-        CTBareMessage *msg = [[CTBareMessage alloc] init];
-
-        struct mailimap_msg_att *msg_att = clist_content(iter);
-        clistiter * item_cur;
-        uint32_t uid;
-        struct mail_flags *flags;
-
-        uid = 0;
-        for(item_cur = clist_begin(msg_att->att_list); item_cur != NULL;
-            item_cur = clist_next(item_cur)) {
-            struct mailimap_msg_att_item * item;
-
-            NSString *str;
-            item = clist_content(item_cur);
-            switch (item->att_type) {
-                case MAILIMAP_MSG_ATT_ITEM_STATIC:
-                switch (item->att_data.att_static->att_type) {
-                    case MAILIMAP_MSG_ATT_UID:
-                    str = [[NSString alloc] initWithFormat:@"%d-%d", uidValidity,
-                                        item->att_data.att_static->att_data.att_uid];
-                    msg.uid = str;
-                    [str release];
-                    break;
-                }
-                break;
-                case MAILIMAP_MSG_ATT_ITEM_DYNAMIC:
-                r = imap_flags_to_flags(item->att_data.att_dyn, &flags);
-                if (r == MAIL_NO_ERROR) {
-                    msg.flags = flags->fl_flags;
-                }
-                mail_flags_free(flags);
-                break;
-            }
-        }
-        [messages addObject:msg];
-        [msg release];
-    }
-    mailimap_fetch_list_free(fetch_result);
-    return messages;
-}
-
 - (NSArray *)messageObjectsFromIndex:(unsigned int)start toIndex:(unsigned int)end withFetchAttributes:(CTFetchAttributes)attrs {
     struct mailimap_set *set = mailimap_set_new_interval(start, end);
     NSArray *results = [self messageObjectsForSet:set fetchAttributes:attrs];
     return results;
-}
-
-- (NSSet *)messageObjectsFromIndex:(unsigned int)start toIndex:(unsigned int)end
-{
-    struct mailimap_set *set = mailimap_set_new_interval(start, end);
-    NSArray *results = [self messageObjectsForSet:set fetchAttributes:CTFetchAttrDefaultsOnly];
-    if (results) {
-        return [NSSet setWithArray:results];
-    }
-    return nil;
 }
 
 - (CTCoreMessage *)messageWithUID:(NSString *)uid {

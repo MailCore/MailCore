@@ -52,17 +52,6 @@
 - (void)_buildUpHtmlBodyText:(CTMIME *)mime result:(NSMutableString *)result;
 @end
 
-//TODO Add encode of subjects/from/to
-//TODO Add decode of to/from ...
-/*
-char * etpan_encode_mime_header(char * phrase)
-{
-  return
-    etpan_make_quoted_printable(DEFAULT_DISPLAY_CHARSET,
-        phrase);
-}
-*/
-
 @implementation CTCoreMessage
 @synthesize mime=myParsedMIME;
 
@@ -139,6 +128,12 @@ char * etpan_encode_mime_header(char * phrase)
     myMessage->msg_mime = mime;
     myParsedMIME = [[CTMIMEFactory createMIMEWithMIMEStruct:[self messageStruct]->msg_mime
                                                  forMessage:[self messageStruct]] retain];
+}
+
+- (void)setFields:(struct mailimf_fields *)fields {
+    if (myFields != NULL)
+        mailimf_single_fields_free(myFields);
+    myFields = mailimf_single_fields_new(fields);
 }
 
 - (NSString *)body {
