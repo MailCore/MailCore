@@ -40,41 +40,65 @@
 
 //TODO Add more descriptive error messages using mailsmtp_strerror
 @implementation CTSMTPConnection
-+ (void)sendMessage:(CTCoreMessage *)message server:(NSString *)server username:(NSString *)username
-                    password:(NSString *)password port:(unsigned int)port useTLS:(BOOL)tls useAuth:(BOOL)auth {
++ (BOOL)sendMessage:(CTCoreMessage *)message server:(NSString *)server username:(NSString *)username
+                    password:(NSString *)password port:(unsigned int)port useTLS:(BOOL)tls useAuth:(BOOL)auth error:(NSError **)error {
+    BOOL success;
     mailsmtp *smtp = NULL;
     smtp = mailsmtp_new(0, NULL);
-    assert(smtp != NULL);
+    *error = nil;
 
     CTSMTP *smtpObj = [[CTESMTP alloc] initWithResource:smtp];
-    @try {
-        [smtpObj connectToServer:server port:port];
-        if ([smtpObj helo] == false) {
-            /* The server didn't support ESMTP, so switching to STMP */
-            [smtpObj release];
-            smtpObj = [[CTSMTP alloc] initWithResource:smtp];
-            [smtpObj helo];
-        }
-        if (tls)
-            [smtpObj startTLS];
-        if (auth)
-            [smtpObj authenticateWithUsername:username password:password server:server];
-
-        [smtpObj setFrom:[[[message from] anyObject] email]];
-
-        /* recipients */
-        NSMutableSet *rcpts = [NSMutableSet set];
-        [rcpts unionSet:[message to]];
-        [rcpts unionSet:[message bcc]];
-        [rcpts unionSet:[message cc]];
-        [smtpObj setRecipients:rcpts];
-
-        /* data */
-        [smtpObj setData:[message render]];
+    success = [smtpObj connectToServer:server port:port];
+    if (!success) {
+        goto error;
     }
-    @finally {
+    if ([smtpObj helo] == NO) {
+        /* The server didn't support ESMTP, so switching to STMP */
         [smtpObj release];
-        mailsmtp_free(smtp);
+        smtpObj = [[CTSMTP alloc] initWithResource:smtp];
+        success = [smtpObj helo];
+        if (!success) {
+            goto error;
+        }
     }
+    if (tls) {
+        success = [smtpObj startTLS];
+        if (!success) {
+            goto error;
+        }
+    }
+    if (auth) {
+        [smtpObj authenticateWithUsername:username password:password server:server];
+        if (!success) {
+            goto error;
+        }
+    }
+
+    success = [smtpObj setFrom:[[[message from] anyObject] email]];
+    if (!success) {
+        goto error;
+    }
+
+    /* recipients */
+    NSMutableSet *rcpts = [NSMutableSet set];
+    [rcpts unionSet:[message to]];
+    [rcpts unionSet:[message bcc]];
+    [rcpts unionSet:[message cc]];
+    success = [smtpObj setRecipients:rcpts];
+    if (!success) {
+        goto error;
+    }
+
+    /* data */
+    success = [smtpObj setData:[message render]];
+    if (!success) {
+        goto error;
+    }
+    return YES;
+error:
+    *error = smtpObj.lastError;
+    [smtpObj release];
+    mailsmtp_free(smtp);
+    return NO;
 }
 @end

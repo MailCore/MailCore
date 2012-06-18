@@ -93,23 +93,13 @@
     /* text/plain part */
     //TODO this needs to be changed, something other than 8BIT should be used
     mime_fields = mailmime_fields_new_encoding(MAILMIME_MECHANISM_8BIT);
-    assert(mime_fields != NULL);
-
     content = mailmime_content_new_with_str("text/plain");
-    assert(content != NULL);
-
     param = mailmime_parameter_new(strdup("charset"), strdup(DEST_CHARSET));
-    assert(param != NULL);
-
     r = clist_append(content->ct_parameters, param);
-    assert(r >= 0);
-
     mime_sub = mailmime_new_empty(content, mime_fields);
-    assert(mime_sub != NULL);
     NSString *str = [self content];
     //TODO is strdup necessary?
     r = mailmime_set_body_text(mime_sub, strdup([str cStringUsingEncoding:NSUTF8StringEncoding]), [str length]);
-    assert(r == MAILIMF_NO_ERROR);
     return mime_sub;
 }
 @end

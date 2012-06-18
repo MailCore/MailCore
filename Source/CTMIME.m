@@ -108,7 +108,6 @@
 
     mailmime_write_mem(str, &col, [self buildMIMEStruct]);
     err = mmap_string_ref(str);
-    assert(err == 0);
     resultStr = [[NSString alloc] initWithBytes:str->str length:str->len
                     encoding:NSUTF8StringEncoding];
     mmap_string_free(str);

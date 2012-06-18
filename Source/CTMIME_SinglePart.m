@@ -52,12 +52,16 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
     block(current, maximum);
 }
 
+@interface CTMIME_SinglePart ()
+@end
+
 @implementation CTMIME_SinglePart
 @synthesize attached=mAttached;
 @synthesize filename=mFilename;
 @synthesize contentId=mContentId;
 @synthesize data=mData;
 @synthesize fetched=mFetched;
+@synthesize lastError;
 
 + (id)mimeSinglePartWithData:(NSData *)data {
     return [[[CTMIME_SinglePart alloc] initWithData:data] autorelease];
@@ -139,7 +143,7 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
     return self;
 }
 
-- (void)fetchPartWithProgress:(CTProgressBlock)block {
+- (BOOL)fetchPartWithProgress:(CTProgressBlock)block {
     if (self.fetched == NO) {
         struct mailmime_single_fields *mimeFields = NULL;
 
@@ -161,7 +165,8 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
         }
         if (r != MAIL_NO_ERROR) {
             mailmessage_fetch_result_free(mMessage, fetchedData);
-            RaiseException(CTMIMEParseError, CTMIMEParseErrorDesc);
+            self.lastError = MailCoreCreateErrorFromCode(r);
+            return NO;
         }
 
 
@@ -172,7 +177,8 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
                                     encoding, &result, &result_len);
         if (r != MAILIMF_NO_ERROR) {
             mailmime_decoded_part_free(result);
-            RaiseException(CTMIMEParseError, CTMIMEParseErrorDesc);
+            self.lastError = MailCoreCreateErrorFromCode(r);
+            return NO;
         }
         NSData *data = [NSData dataWithBytes:result length:result_len];
         mailmessage_fetch_result_free(mMessage, fetchedData);
@@ -181,10 +187,11 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
         self.data = data;
         self.fetched = YES;
     }
+    return YES;
 }
 
-- (void)fetchPart {
-    [self fetchPartWithProgress:^(size_t curr, size_t max){}];
+- (BOOL)fetchPart {
+    return [self fetchPartWithProgress:^(size_t curr, size_t max){}];
 }
 
 - (struct mailmime *)buildMIMEStruct {
@@ -193,28 +200,18 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
     struct mailmime_content *content;
     int r;
 
-    if( mFilename )
-    {
+    if (mFilename) {
         mime_fields = mailmime_fields_new_filename( MAILMIME_DISPOSITION_TYPE_ATTACHMENT, 
                                                     (char *)[mFilename cStringUsingEncoding:NSUTF8StringEncoding], 
                                                     MAILMIME_MECHANISM_BASE64 ); 
-    }
-    else 
-    {
+    } else {
         mime_fields = mailmime_fields_new_encoding(MAILMIME_MECHANISM_BASE64);
     }
-
-    assert(mime_fields != NULL);
-
     content = mailmime_content_new_with_str([self.contentType cStringUsingEncoding:NSUTF8StringEncoding]);
-    assert(content != NULL);
-
     mime_sub = mailmime_new_empty(content, mime_fields);
-    assert(mime_sub != NULL);
 
     // Add Data
     r = mailmime_set_body_text(mime_sub, (char *)[self.data bytes], [self.data length]);
-    assert(r == MAILIMF_NO_ERROR);
     return mime_sub;
 }
 
@@ -231,6 +228,7 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
     [mData release];
     [mFilename release];
     [mContentId release];
+    self.lastError = nil;
     //The structs are held by CTCoreMessage so we don't have to free them
     [super dealloc];
 }

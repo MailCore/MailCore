@@ -92,20 +92,24 @@ static int fill_local_ip_port(mailstream * stream, char * local_ip_port, size_t 
 }
 
 @implementation CTESMTP
-- (bool)helo {
+
+- (BOOL)helo {
     int ret = mailesmtp_ehlo([self resource]);
     /* Return false if the server doesn't implement ehlo */
     return (ret != MAILSMTP_ERROR_NOT_IMPLEMENTED);
 }
 
 
-- (void)startTLS {
+- (BOOL)startTLS {
     mailstream_low * low;
     int fd;
     mailstream_low * new_low;
 
     int ret = mailesmtp_starttls([self resource]);
-    IfTrue_RaiseException(ret != MAILSMTP_NO_ERROR, CTSMTPTLS, CTSMTPTLSDesc);
+    if (ret != MAIL_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromCode(ret);
+        return NO;
+    }
 
     low = mailstream_get_low([self resource]->stream);
     fd = mailstream_low_get_fd(low);
@@ -114,11 +118,15 @@ static int fill_local_ip_port(mailstream * stream, char * local_ip_port, size_t 
     mailstream_set_low([self resource]->stream, new_low);
 
     ret = mailesmtp_ehlo([self resource]);
-    IfTrue_RaiseException(ret != MAILSMTP_NO_ERROR, CTSMTPHello, CTSMTPHelloDesc);
+    if (ret != MAIL_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromCode(ret);
+        return NO;
+    }
+    return YES;
 }
 
 
-- (void)authenticateWithUsername:(NSString *)username password:(NSString *)password server:(NSString *)server {
+- (BOOL)authenticateWithUsername:(NSString *)username password:(NSString *)password server:(NSString *)server {
     char *cUsername = (char *)[username cStringUsingEncoding:NSUTF8StringEncoding];
     char *cPassword = (char *)[password cStringUsingEncoding:NSUTF8StringEncoding];
     char *cServer = (char *)[server cStringUsingEncoding:NSUTF8StringEncoding];
@@ -158,19 +166,31 @@ static int fill_local_ip_port(mailstream * stream, char * local_ip_port, size_t 
  */		
     ret = mailesmtp_auth_sasl([self resource], "PLAIN", cServer, local_ip_port, remote_ip_port,
                             cUsername, cUsername, cPassword, cServer);
-    IfTrue_RaiseException(ret != MAILSMTP_NO_ERROR, CTSMTPLogin, CTSMTPLoginDesc);
+    if (ret != MAIL_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromCode(ret);
+        return NO;
+    }
+    return YES;
 }
 
 
-- (void)setFrom:(NSString *)fromAddress {
+- (BOOL)setFrom:(NSString *)fromAddress {
     int ret = mailesmtp_mail([self resource], [fromAddress cStringUsingEncoding:NSUTF8StringEncoding], 1, "MailCoreSMTP");
-    IfTrue_RaiseException(ret != MAILSMTP_NO_ERROR, CTSMTPFrom, CTSMTPFromDesc);
+    if (ret != MAIL_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromCode(ret);
+        return NO;
+    }
+    return YES;
 }
 
 
-- (void)setRecipientAddress:(NSString *)recAddress {
+- (BOOL)setRecipientAddress:(NSString *)recAddress {
     int ret = mailesmtp_rcpt([self resource], [recAddress cStringUsingEncoding:NSUTF8StringEncoding],
                         MAILSMTP_DSN_NOTIFY_FAILURE|MAILSMTP_DSN_NOTIFY_DELAY,NULL);
-    IfTrue_RaiseException(ret != MAILSMTP_NO_ERROR, CTSMTPRecipients, CTSMTPRecipientsDesc);
+    if (ret != MAIL_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromCode(ret);
+        return NO;
+    }
+    return YES;
 }
 @end

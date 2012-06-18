@@ -84,10 +84,8 @@
     NSEnumerator *enumer = [myContentList objectEnumerator];
 
     CTMIME *part;
-    int r;
     while ((part = [enumer nextObject])) {
-        r = mailmime_smart_add_part(mime, [part buildMIMEStruct]);
-        assert(r == 0);
+        mailmime_smart_add_part(mime, [part buildMIMEStruct]);
     }
     return mime;
 }

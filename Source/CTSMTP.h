@@ -40,16 +40,21 @@
 
 @interface CTSMTP : NSObject {
     mailsmtp *mySMTP; /* This resource is created and freed by CTSMTPConnection */
+    NSError *lastError;
 }
+/*!
+    @abstract If an error occurred (nil or return of NO) call this method to get the error
+ */
+@property(nonatomic, retain) NSError *lastError;
+
 - (id)initWithResource:(mailsmtp *)smtp;
-- (void)connectToServer:(NSString *)server port:(unsigned int)port;
-- (bool)helo;
-- (void)startTLS;
-- (void)authenticateWithUsername:(NSString *)username password:(NSString *)password server:(NSString *)server;
-- (void)setFrom:(NSString *)fromAddress;
-- (void)setRecipients:(id)recipients;
-- (void)setRecipientAddress:(NSString *)recAddress;
-- (void)setData:(NSString *)data;
-- (int)setData:(NSString *)data raiseExceptions:(BOOL)aShouldRaise;
+- (BOOL)connectToServer:(NSString *)server port:(unsigned int)port;
+- (BOOL)helo;
+- (BOOL)startTLS;
+- (BOOL)authenticateWithUsername:(NSString *)username password:(NSString *)password server:(NSString *)server;
+- (BOOL)setFrom:(NSString *)fromAddress;
+- (BOOL)setRecipients:(id)recipients;
+- (BOOL)setRecipientAddress:(NSString *)recAddress;
+- (BOOL)setData:(NSString *)data;
 - (mailsmtp *)resource;
 @end

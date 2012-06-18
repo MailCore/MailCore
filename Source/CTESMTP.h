@@ -42,9 +42,9 @@
 @interface CTESMTP : CTSMTP {
 
 }
-- (bool)helo;
-- (void)startTLS;
-- (void)authenticateWithUsername:(NSString *)username password:(NSString *)password server:(NSString *)server;
-- (void)setFrom:(NSString *)fromAddress;
-- (void)setRecipientAddress:(NSString *)recAddress;
+- (BOOL)helo;
+- (BOOL)startTLS;
+- (BOOL)authenticateWithUsername:(NSString *)username password:(NSString *)password server:(NSString *)server;
+- (BOOL)setFrom:(NSString *)fromAddress;
+- (BOOL)setRecipientAddress:(NSString *)recAddress;
 @end

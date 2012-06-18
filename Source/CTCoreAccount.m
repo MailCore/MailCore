@@ -32,12 +32,15 @@
 #import "CTCoreAccount.h"
 #import "CTCoreFolder.h"
 #import "MailCoreTypes.h"
+#import "MailCoreUtilities.h"
 
-@interface CTCoreAccount (Private)
+@interface CTCoreAccount ()
 @end
 
 
 @implementation CTCoreAccount
+@synthesize lastError;
+
 - (id)init {
     self = [super init];
     if (self) {
@@ -52,17 +55,19 @@
 - (void)dealloc {
     mailstorage_disconnect(myStorage);
     mailstorage_free(myStorage);
+    self.lastError = nil;
     [super dealloc];
 }
 
+- (NSError *)lastError {
+    return lastError;
+}
 
 - (BOOL)isConnected {
     return connected;
 }
 
-
-//TODO, should I use the cache?
-- (void)connectToServer:(NSString *)server port:(int)port 
+- (BOOL)connectToServer:(NSString *)server port:(int)port
         connectionType:(int)conType authType:(int)authType
         login:(NSString *)login password:(NSString *)password {
     int err = 0;
@@ -84,44 +89,28 @@
                                      (char *)[password cStringUsingEncoding:NSUTF8StringEncoding], NULL,
                                      imap_cached, NULL);
 
-    if (err != MAIL_NO_ERROR) {
-        NSException *exception = [NSException
-                exceptionWithName:CTMemoryError
-                reason:CTMemoryErrorDesc
-                userInfo:nil];
-        [exception raise];
+    if (err != MAILIMAP_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromCode(err);
+        return NO;
     }
 
     err = mailstorage_connect(myStorage);
-    if (err == MAIL_ERROR_LOGIN) {
-        NSException *exception = [NSException
-                exceptionWithName:CTLoginError
-                reason:CTLoginErrorDesc
-                userInfo:nil];
-        [exception raise];
+    if (err != MAILIMAP_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromCode(err);
+        return NO;
     }
-    else if (err != MAIL_NO_ERROR) {
-        NSException *exception = [NSException
-                exceptionWithName:CTUnknownError
-                reason:[NSString stringWithFormat:@"Error number: %d",err]
-                userInfo:nil];
-        [exception raise];
-    }
-    else {
-        connected = YES;
-    }
+    connected = YES;
+    return YES;
 }
 
-- (void)idle {
+- (BOOL)idle {
     int err = mailimap_idle([self session]);
 
-    if (err != 0) {
-        NSException *exception = [NSException
-                                  exceptionWithName:CTUnknownError
-                                  reason:[NSString stringWithFormat:@"Error number: %d", err]
-                                  userInfo:nil];
-        [exception raise];
+    if (err != MAILIMAP_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromCode(err);
+        return NO;
     }
+    return YES;
 }
 
 - (NSString*)read {
@@ -134,21 +123,21 @@
     return [NSString stringWithCString:buf encoding:NSUTF8StringEncoding];
 }
 
-- (void)done {
+- (BOOL)done {
     int err = mailimap_idle_done([self session]);
 
-    if (err != 0) {
-        NSException *exception = [NSException
-                                  exceptionWithName:CTUnknownError
-                                  reason:[NSString stringWithFormat:@"Error number: %d", err]
-                                  userInfo:nil];
-        [exception raise];
+    if (err != MAILIMAP_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromCode(err);
+        return NO;
     }
+    return YES;
 }
 
 - (void)disconnect {
-    connected = NO;
-    mailstorage_disconnect(myStorage);
+    if (connected) {
+        connected = NO;
+        mailstorage_disconnect(myStorage);
+    }
 }
 
 - (CTCoreFolder *)folderWithPath:(NSString *)path {
@@ -194,19 +183,9 @@
 
     //Fill the subscribed folder array
     err = mailimap_lsub([self session], "", "*", &subscribedList);
-    if (err != MAIL_NO_ERROR) {
-        NSException *exception = [NSException
-                    exceptionWithName:CTUnknownError
-                    reason:[NSString stringWithFormat:@"Error number: %d",err]
-                    userInfo:nil];
-        [exception raise];
-    }
-    else if (clist_isempty(subscribedList)) {
-        NSException *exception = [NSException
-                    exceptionWithName:CTNoSubscribedFolders
-                    reason:CTNoSubscribedFoldersDesc
-                    userInfo:nil];
-        [exception raise];
+    if (err != MAILIMAP_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromCode(err);
+        return nil;
     }
     for(cur = clist_begin(subscribedList); cur != NULL; cur = cur->next) {
         mailboxStruct = cur->data;
@@ -232,21 +211,9 @@
     //Now, fill the all folders array
     //TODO Fix this so it doesn't use *
     err = mailimap_list([self session], "", "*", &allList);
-    if (err != MAIL_NO_ERROR)
-    {
-        NSException *exception = [NSException
-                    exceptionWithName:CTUnknownError
-                    reason:[NSString stringWithFormat:@"Error number: %d",err]
-                    userInfo:nil];
-        [exception raise];
-    }
-    else if (clist_isempty(allList))
-    {
-        NSException *exception = [NSException
-                    exceptionWithName:CTNoFolders
-                    reason:CTNoFoldersDesc
-                    userInfo:nil];
-        [exception raise];
+    if (err != MAILIMAP_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromCode(err);
+        return nil;
     }
     for(cur = clist_begin(allList); cur != NULL; cur = cur->next)
     {

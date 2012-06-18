@@ -41,10 +41,12 @@
 int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result,
                         mailsession * session, mailmessage_driver * driver);
 
-@interface CTCoreFolder (Private)
+@interface CTCoreFolder ()
 @end
 
 @implementation CTCoreFolder
+@synthesize lastError;
+
 - (id)initWithPath:(NSString *)path inAccount:(CTCoreAccount *)account; {
     struct mailstorage *storage = (struct mailstorage *)[account storageStruct];
     self = [super init];
@@ -54,7 +56,9 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
         connected = NO;
         myAccount = [account retain];
         myFolder = mailfolder_new(storage, (char *)[myPath cStringUsingEncoding:NSUTF8StringEncoding], NULL);
-        assert(myFolder != NULL);
+        if (!myFolder) {
+            return nil;
+        }
     }
     return self;
 }
@@ -67,24 +71,31 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     mailfolder_free(myFolder);
     [myAccount release];
     [myPath release];
+    self.lastError = nil;
     [super dealloc];
 }
 
 
-- (void)connect {
+- (BOOL)connect {
     int err = MAIL_NO_ERROR;
     err =  mailfolder_connect(myFolder);
-    IfTrue_RaiseException(err != MAILIMAP_NO_ERROR, CTUnknownError,
-        [NSString stringWithFormat:@"Error number: %d",err]);
+    if (err != MAILIMAP_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromCode(err);
+        return NO;
+    }
     connected = YES;
+    return YES;
 }
 
 
 - (void)disconnect {
-    if(connected)
+    if (connected)
         mailfolder_disconnect(myFolder);
 }
 
+- (NSError *)lastError {
+    return lastError;
+}
 
 - (NSString *)name {
     //Get the last part of the path
@@ -98,66 +109,105 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
 }
 
 
-- (void)setPath:(NSString *)path; {
+- (BOOL)setPath:(NSString *)path; {
     int err;
     const char *newPath = [path cStringUsingEncoding:NSUTF8StringEncoding];
     const char *oldPath = [myPath cStringUsingEncoding:NSUTF8StringEncoding];
 
-    [self connect];
-    [self unsubscribe];
+    BOOL success = [self connect];
+    if (!success) {
+        return NO;
+    }
+
+    success = [self unsubscribe];
+    if (!success) {
+        return NO;
+    }
     err =  mailimap_rename([myAccount session], oldPath, newPath);
-    IfTrue_RaiseException(err != MAILIMAP_NO_ERROR, CTUnknownError,
-        [NSString stringWithFormat:@"Error number: %d",err]);
+    if (err != MAILIMAP_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromCode(err);
+        return NO;
+    }
     [path retain];
     [myPath release];
     myPath = path;
-    [self subscribe];
+    success = [self subscribe];
+    return success;
 }
 
 
-- (void)create {
+- (BOOL)create {
     int err;
     const char *path = [myPath cStringUsingEncoding:NSUTF8StringEncoding];
 
     err =  mailimap_create([myAccount session], path);
-    IfTrue_RaiseException(err != MAILIMAP_NO_ERROR, CTUnknownError,
-        [NSString stringWithFormat:@"Error number: %d",err]);
-    [self connect];
-    [self subscribe];
+    if (err != MAILIMAP_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromCode(err);
+        return NO;
+    }
+    BOOL success = [self connect];
+    if (!success) {
+        return NO;
+    }
+    success = [self subscribe];
+    return success;
 }
 
 
-- (void)delete {
+- (BOOL)delete {
     int err;
     const char *path = [myPath cStringUsingEncoding:NSUTF8StringEncoding];
 
-    [self connect];
-    [self unsubscribe];
+    BOOL success = [self connect];
+    if (!success) {
+        return NO;
+    }
+
+    success = [self unsubscribe];
+    if (!success) {
+        return NO;
+    }
     err =  mailimap_delete([myAccount session], path);
-    IfTrue_RaiseException(err != MAILIMAP_NO_ERROR, CTUnknownError,
-        [NSString stringWithFormat:@"Error number: %d",err]);
+    if (err != MAILIMAP_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromCode(err);
+        return NO;
+    }
+    return YES;
 }
 
 
-- (void)subscribe {
+- (BOOL)subscribe {
     int err;
     const char *path = [myPath cStringUsingEncoding:NSUTF8StringEncoding];
 
-    [self connect];
+    BOOL success = [self connect];
+    if (!success) {
+        return NO;
+    }
     err =  mailimap_subscribe([myAccount session], path);
-    IfTrue_RaiseException(err != MAILIMAP_NO_ERROR, CTUnknownError,
-        [NSString stringWithFormat:@"Error number: %d",err]);
+    err =  mailimap_unsubscribe([myAccount session], path);
+    if (err != MAILIMAP_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromCode(err);
+        return NO;
+    }
+    return YES;
 }
 
 
-- (void)unsubscribe {
+- (BOOL)unsubscribe {
     int err;
     const char *path = [myPath cStringUsingEncoding:NSUTF8StringEncoding];
 
-    [self connect];
+    BOOL success = [self connect];
+    if (!success) {
+        return NO;
+    }
     err =  mailimap_unsubscribe([myAccount session], path);
-    IfTrue_RaiseException(err != MAILIMAP_NO_ERROR, CTUnknownError,
-        [NSString stringWithFormat:@"Error number: %d",err]);
+    if (err != MAILIMAP_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromCode(err);
+        return NO;
+    }
+    return YES;
 }
 
 
@@ -184,15 +234,21 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
 }
 
 
-- (void)check {
-    [self connect];
+- (BOOL)check {
+    BOOL success = [self connect];
+    if (!success) {
+        return NO;
+    }
     int err = mailfolder_check(myFolder);
-    IfTrue_RaiseException(err != MAILIMAP_NO_ERROR, CTUnknownError,
-        [NSString stringWithFormat:@"Error number: %d",err]);
+    if (err != MAILIMAP_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromCode(err);
+        return NO;
+    }
+    return YES;
 }
 
 
-- (NSUInteger)sequenceNumberForUID:(NSString *)uid {
+- (BOOL)sequenceNumberForUID:(NSString *)uid sequenceNumber:(NSUInteger *)sequenceNumber {
     int r;
     struct mailimap_fetch_att * fetch_att;
     struct mailimap_fetch_type * fetch_type;
@@ -201,45 +257,50 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
 
     NSUInteger uidnum = (unsigned int)[[[uid componentsSeparatedByString:@"-"] objectAtIndex:1] doubleValue];
 
-    [self connect];
+    BOOL success = [self connect];
+    if (!success) {
+        return NO;
+    }
     set = mailimap_set_new_single(uidnum);
-    if (set == NULL)
-        return 0;
+    if (set == NULL) {
+        self.lastError = MailCoreCreateErrorFromCode(MAIL_ERROR_MEMORY);
+        return NO;
+    }
 
     fetch_type = mailimap_fetch_type_new_fetch_att_list_empty();
     fetch_att = mailimap_fetch_att_new_uid();
     r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
     if (r != MAILIMAP_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromCode(r);
         mailimap_fetch_att_free(fetch_att);
-        return 0;
+        return NO;
     }
 
     r = mailimap_uid_fetch([self imapSession], set, fetch_type, &fetch_result);
-    if (r != MAIL_NO_ERROR) {
-        NSException *exception = [NSException
-                    exceptionWithName:CTUnknownError
-                    reason:[NSString stringWithFormat:@"Error number: %d",r]
-                    userInfo:nil];
-        [exception raise];
+    if (r != MAILIMAP_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromCode(r);
+        return NO;
     }
 
     mailimap_fetch_type_free(fetch_type);
     mailimap_set_free(set);
 
-    if (r != MAILIMAP_NO_ERROR)
-        return 0; //Add exception
-    NSUInteger sequenceNumber = 0;
     if (!clist_isempty(fetch_result)) {
         struct mailimap_msg_att *msg_att = (struct mailimap_msg_att *)clist_nth_data(fetch_result, 0);
-        sequenceNumber = msg_att->att_number;
+        *sequenceNumber = msg_att->att_number;
+    } else {
+        *sequenceNumber = 0;
     }
     mailimap_fetch_list_free(fetch_result);
-    return sequenceNumber;
+    return YES;
 }
 
 // We always fetch UID, RFC822.Size, and Flags
 - (NSArray *)messageObjectsForSet:(struct mailimap_set *)set fetchAttributes:(CTFetchAttributes)attrs {
-    [self connect];
+    BOOL success = [self connect];
+    if (!success) {
+        return nil;
+    }
 
     NSMutableArray *messages = [NSMutableArray array];
 
@@ -257,6 +318,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     if (r != MAILIMAP_NO_ERROR) {
         mailimap_fetch_att_free(fetch_att);
         mailimap_fetch_type_free(fetch_type);
+        self.lastError = MailCoreCreateErrorFromCode(r);
         return nil;
     }
 
@@ -266,6 +328,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     if (r != MAILIMAP_NO_ERROR) {
         mailimap_fetch_att_free(fetch_att);
         mailimap_fetch_type_free(fetch_type);
+        self.lastError = MailCoreCreateErrorFromCode(r);
         return nil;
     }
 
@@ -275,6 +338,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     if (r != MAILIMAP_NO_ERROR) {
         mailimap_fetch_att_free(fetch_att);
         mailimap_fetch_type_free(fetch_type);
+        self.lastError = MailCoreCreateErrorFromCode(r);
         return nil;
     }
 
@@ -285,6 +349,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
         if (r != MAILIMAP_NO_ERROR) {
             mailimap_fetch_att_free(fetch_att);
             mailimap_fetch_type_free(fetch_type);
+            self.lastError = MailCoreCreateErrorFromCode(r);
             return nil;
         }
     }
@@ -294,17 +359,15 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
         r = imap_add_envelope_fetch_att(fetch_type);
         if (r != MAIL_NO_ERROR) {
             mailimap_fetch_type_free(fetch_type);
+            self.lastError = MailCoreCreateErrorFromCode(r);
             return nil;
         }
     }
 
     r = mailimap_fetch([self imapSession], set, fetch_type, &fetch_result);
     if (r != MAIL_NO_ERROR) {
-        NSException *exception = [NSException
-                                  exceptionWithName:CTUnknownError
-                                  reason:[NSString stringWithFormat:@"Error number: %d",r]
-                                  userInfo:nil];
-        [exception raise];
+        self.lastError = MailCoreCreateErrorFromCode(r);
+        return nil;
     }
 
     mailimap_fetch_type_free(fetch_type);
@@ -312,6 +375,10 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
 
     env_list = NULL;
     r = uid_list_to_env_list(fetch_result, &env_list, [self folderSession], imap_message_driver);
+    if (r != MAIL_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromCode(r);
+        return nil;
+    }
 
     // Parsing of MIME bodies
     int len = carray_count(env_list->msg_tab);
@@ -325,8 +392,10 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
 
         struct mailmessage * msg = carray_get(env_list->msg_tab, i);
         struct mailimap_msg_att *msg_att = (struct mailimap_msg_att *)clist_content(fetchResultIter);
-        if (msg_att == nil)
+        if (msg_att == nil) {
+            self.lastError = MailCoreCreateErrorFromCode(MAIL_ERROR_MEMORY);
             return nil;
+        }
 
         uint32_t uid = 0;
         char * references = NULL;
@@ -337,6 +406,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
         r = imap_get_msg_att_info(msg_att, &uid, &envelope, &references, &ref_size, NULL, &imap_body);
         if (r != MAIL_NO_ERROR) {
             mailimap_fetch_list_free(fetch_result);
+            self.lastError = MailCoreCreateErrorFromCode(r);
             return nil;
         }
 
@@ -344,6 +414,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
             r = imap_body_to_body(imap_body, &body);
             if (r != MAIL_NO_ERROR) {
                 mailimap_fetch_list_free(fetch_result);
+                self.lastError = MailCoreCreateErrorFromCode(r);
                 return nil;
             }
         }
@@ -353,6 +424,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
             if (r != MAIL_NO_ERROR) {
                 mailmime_free(body);
                 mailimap_fetch_list_free(fetch_result);
+                self.lastError = MailCoreCreateErrorFromCode(r);
                 return nil;
             }
         }
@@ -363,6 +435,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
                 mailimf_fields_free(fields);
             mailmime_free(body);
             mailimap_fetch_list_free(fetch_result);
+            self.lastError = MailCoreCreateErrorFromCode(MAIL_ERROR_MEMORY);
             return nil;
         }
 
@@ -376,6 +449,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
                 mailimf_fields_free(fields);
             mailmime_free(body);
             mailimap_fetch_list_free(fetch_result);
+            self.lastError = MailCoreCreateErrorFromCode(MAIL_ERROR_MEMORY);
             return nil;
         }
 
@@ -413,36 +487,26 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     int err;
     struct mailmessage *msgStruct;
 
-    [self connect];
-    err = mailfolder_get_message_by_uid([self folderStruct], [uid cStringUsingEncoding:NSUTF8StringEncoding], &msgStruct);
-    if (err == MAIL_ERROR_MSG_NOT_FOUND) {
+    BOOL success = [self connect];
+    if (!success) {
         return nil;
     }
-    else if (err != MAIL_NO_ERROR) {
-        NSException *exception = [NSException
-                    exceptionWithName:CTUnknownError
-                    reason:[NSString stringWithFormat:@"Error number: %d",err]
-                    userInfo:nil];
-        [exception raise];
+    err = mailfolder_get_message_by_uid([self folderStruct], [uid cStringUsingEncoding:NSUTF8StringEncoding], &msgStruct);
+    if (err != MAIL_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromCode(err);
+        return nil;
     }
     err = mailmessage_fetch_envelope(msgStruct,&(msgStruct->msg_fields));
     if (err != MAIL_NO_ERROR) {
-        NSException *exception = [NSException
-                    exceptionWithName:CTUnknownError
-                    reason:[NSString stringWithFormat:@"Error number: %d",err]
-                    userInfo:nil];
-        [exception raise];
+        self.lastError = MailCoreCreateErrorFromCode(err);
+        return nil;
     }
-
     //TODO Fix me, i'm missing alot of things that aren't being downloaded,
     // I just hacked this in here for the mean time
     err = mailmessage_get_flags(msgStruct, &(msgStruct->msg_flags));
     if (err != MAIL_NO_ERROR) {
-        NSException *exception = [NSException
-                    exceptionWithName:CTUnknownError
-                    reason:[NSString stringWithFormat:@"Error number: %d",err]
-                    userInfo:nil];
-        [exception raise];
+        self.lastError = MailCoreCreateErrorFromCode(err);
+        return nil;
     }
     return [[[CTCoreMessage alloc] initWithMessageStruct:msgStruct] autorelease];
 }
@@ -455,78 +519,114 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     By not including these methods, CTCoreMessage doesn't depend on CTCoreFolder anymore. CTCoreFolder
     already depends on CTCoreMessage so we aren't adding any dependencies here. */
 
-- (unsigned int)flagsForMessage:(CTCoreMessage *)msg {
+- (BOOL)flagsForMessage:(CTCoreMessage *)msg flags:(NSUInteger *)flags {
+    BOOL success = [self connect];
+    if (!success) {
+        return NO;
+    }
+
+    self.lastError = nil;
     int err;
     struct mail_flags *flagStruct;
     err = mailmessage_get_flags([msg messageStruct], &flagStruct);
-    if (err != MAILIMAP_NO_ERROR) {
-        NSException *exception = [NSException
-                    exceptionWithName:CTUnknownError
-                    reason:[NSString stringWithFormat:@"Error number: %d",err]
-                    userInfo:nil];
-        [exception raise];
+    if (err != MAIL_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromCode(err);
+        return NO;
     }
-    return flagStruct->fl_flags;
+    *flags = flagStruct->fl_flags;
+    return YES;
 }
 
 
-- (void)setFlags:(unsigned int)flags forMessage:(CTCoreMessage *)msg {
-    int err;
+- (BOOL)setFlags:(unsigned int)flags forMessage:(CTCoreMessage *)msg {
+    BOOL success = [self connect];
+    if (!success) {
+        return NO;
+    }
 
+    int err;
     [msg messageStruct]->msg_flags->fl_flags=flags;
     err = mailmessage_check([msg messageStruct]);
-    IfTrue_RaiseException(err != MAILIMAP_NO_ERROR, CTUnknownError,
-        [NSString stringWithFormat:@"Error number: %d",err]);
-    [self check];
+    if (err != MAIL_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromCode(err);
+        return NO;
+    }
+    return [self check];
 }
 
 
-- (void)expunge {
+- (BOOL)expunge {
     int err;
-    [self connect];
+    BOOL success = [self connect];
+    if (!success) {
+        return NO;
+    }
     err = mailfolder_expunge(myFolder);
-    IfTrue_RaiseException(err != MAILIMAP_NO_ERROR, CTUnknownError,
-        [NSString stringWithFormat:@"Error number: %d",err]);
+    if (err != MAIL_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromCode(err);
+        return NO;
+    }
+    return YES;
 }
 
-- (void)copyMessage: (NSString *)path forMessage:(CTCoreMessage *)msg {
-    [self connect];
+- (BOOL)copyMessage:(CTCoreMessage *)msg toPath:(NSString *)path {
+    BOOL success = [self connect];
+    if (!success) {
+        return NO;
+    }
 
     const char *mbPath = [path cStringUsingEncoding:NSUTF8StringEncoding];
     NSString *uid = [msg uid];
     NSUInteger uidnum = (unsigned int)[[[uid componentsSeparatedByString:@"-"] objectAtIndex:1] doubleValue];
     int err = mailsession_copy_message([self folderSession], uidnum, mbPath);
-    IfTrue_RaiseException(err != MAILIMAP_NO_ERROR, CTUnknownError,
-        [NSString stringWithFormat:@"Error number: %d",err]);
+    if (err != MAIL_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromCode(err);
+        return NO;
+    }
+    return YES;
 }
 
-- (void)moveMessage: (NSString *)path forMessage:(CTCoreMessage *)msg {
-    [self connect];
+- (BOOL)moveMessage:(CTCoreMessage *)msg toPath:(NSString *)path {
+    BOOL success = [self connect];
+    if (!success) {
+        return NO;
+    }
 
     const char *mbPath = [path cStringUsingEncoding:NSUTF8StringEncoding];
     NSString *uid = [msg uid];
     NSUInteger uidnum = (unsigned int)[[[uid componentsSeparatedByString:@"-"] objectAtIndex:1] doubleValue];
     int err = mailsession_move_message([self folderSession], uidnum, mbPath);
-    IfTrue_RaiseException(err != MAILIMAP_NO_ERROR, CTUnknownError,
-                          [NSString stringWithFormat:@"Error number: %d",err]);
+    if (err != MAIL_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromCode(err);
+        return NO;
+    }
+    return YES;
 }
 
-- (NSUInteger)unreadMessageCount {
-    unsigned int unseenCount = 0;
+- (BOOL)unreadMessageCount:(NSUInteger *)unseenCount {
     unsigned int junk;
     int err;
 
-    [self connect];
-    err =  mailfolder_status(myFolder, &junk, &junk, &unseenCount);
-    IfTrue_RaiseException(err != MAILIMAP_NO_ERROR, CTUnknownError,
-        [NSString stringWithFormat:@"Error number: %d",err]);
-    return unseenCount;
+    BOOL success = [self connect];
+    if (!success) {
+        return NO;
+    }
+    err =  mailfolder_status(myFolder, &junk, &junk, unseenCount);
+    if (err != MAIL_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromCode(err);
+        return NO;
+    }
+    return YES;
 }
 
 
-- (NSUInteger)totalMessageCount {
-    [self connect];
-    return [self imapSession]->imap_selection_info->sel_exists;
+- (BOOL)totalMessageCount:(NSUInteger *)totalCount {
+    BOOL success = [self connect];
+    if (!success) {
+        return NO;
+    }
+    *totalCount =  [self imapSession]->imap_selection_info->sel_exists;
+    return YES;
 }
 
 

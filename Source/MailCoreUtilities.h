@@ -38,10 +38,11 @@
 void MailCoreEnableLogging();
 void MailCoreDisableLogging();
 
-void IfFalse_RaiseException(bool value, NSString *exceptionName, NSString *exceptionDesc);
-void IfTrue_RaiseException(bool value, NSString *exceptionName, NSString *exceptionDesc);
-void RaiseException(NSString *exceptionName, NSString *exceptionDesc);
+NSError* MailCoreCreateError(int errcode, NSString *description);
 
-BOOL StringStartsWith(NSString *string, NSString *subString);
+/*!
+    @abstract Translates the LibEtPan error code into NSError with error description
+ */
+NSError* MailCoreCreateErrorFromCode(int errcode);
 
 NSString *MailCoreDecodeMIMEPhrase(char *data);

@@ -42,7 +42,7 @@
 #import "CTMIME_HtmlPart.h"
 #import "MailCoreUtilities.h"
 
-@interface CTCoreMessage (Private)
+@interface CTCoreMessage ()
 - (CTCoreAddress *)_addressFromMailbox:(struct mailimf_mailbox *)mailbox;
 - (NSSet *)_addressListFromMailboxList:(struct mailimf_mailbox_list *)mailboxList;
 - (struct mailimf_mailbox_list *)_mailboxListFromAddressList:(NSSet *)addresses;
@@ -53,7 +53,7 @@
 @end
 
 @implementation CTCoreMessage
-@synthesize mime=myParsedMIME;
+@synthesize mime=myParsedMIME, lastError;
 
 - (id)init {
     [super init];
@@ -87,7 +87,9 @@
     struct mailmime *dummyMime;
     /* mailmessage_get_bodystructure will fill the mailmessage struct for us */
     err = mailmessage_get_bodystructure(msg, &dummyMime);
-    assert(err == 0);
+    if (err != MAIL_NO_ERROR) {
+        return nil;
+    }
     return [self initWithMessageStruct:msg];
 }
 
@@ -100,28 +102,32 @@
     if (myFields != NULL) {
         mailimf_single_fields_free(myFields);
     }
+    self.lastError = nil;
     [myParsedMIME release];
     [super dealloc];
 }
 
+- (NSError *)lastError {
+    return lastError;
+}
 
-
-- (int)fetchBodyStructure {
+- (BOOL)fetchBodyStructure {
     if (myMessage == NULL) {
-        return -1;
+        return NO;
     }
 
     int err;
     struct mailmime *dummyMime;
     //Retrieve message mime and message field
     err = mailmessage_get_bodystructure(myMessage, &dummyMime);
-    if(err != 0) { // added by gabor
-        return err;
+    if (err != MAIL_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromCode(err);
+        return NO;
     }
     myParsedMIME = [[CTMIMEFactory createMIMEWithMIMEStruct:[self messageStruct]->msg_mime
                         forMessage:[self messageStruct]] retain];
 
-    return 0;
+    return YES;
 }
 
 - (void)setBodyStructure:(struct mailmime *)mime {
@@ -163,7 +169,6 @@
 
 - (BOOL)hasHtmlBody {
     CTMIME* mime = myParsedMIME;
-
     return [self hasHtmlBody:mime];
 }
 
@@ -172,18 +177,6 @@
     NSMutableString *result = [NSMutableString string];
     [self _buildUpHtmlBodyText:myParsedMIME result:result];
     return result;
-}
-
-- (NSString *)editableHtmlBody {
-    //added by KK
-    NSMutableString *result = [NSMutableString string];
-    [self _buildUpHtmlBodyText:myParsedMIME result:result];
-    NSString *str = [NSString stringWithFormat:@"<div id = 'myDiv' contentEditable>"];
-    str = [str stringByAppendingFormat:@"%@",[NSString stringWithString:result]];
-    str = [str stringByAppendingString:@"</div>"];
-    //Used For Getting changed content
-    str = [str stringByAppendingString:@"<script type = 'text/javascript'> function getHtmlContent() { return document.getElementById('myDiv').innerHTML;}</script>"];
-    return str;
 }
 
 - (NSString *)bodyPreferringPlainText {
@@ -617,14 +610,11 @@
     char *result = NULL;
     NSString *nsresult;
     int r = mailimap_fetch_rfc822([self imapSession], [self sequenceNumber], &result);
-    if (r == 0) {
+    if (r == MAIL_NO_ERROR) {
         nsresult = [[NSString alloc] initWithCString:result encoding:NSUTF8StringEncoding];
     } else {
-        NSException *exception = [NSException
-                    exceptionWithName:CTUnknownError
-                    reason:[NSString stringWithFormat:@"Error number: %d",r]
-                    userInfo:nil];
-        [exception raise];
+        self.lastError = MailCoreCreateErrorFromCode(r);
+        return nil;
     }
     mailimap_msg_att_rfc822_free(result);
     return [nsresult autorelease];

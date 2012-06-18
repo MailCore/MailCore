@@ -44,7 +44,6 @@
 + (CTMIME *)createMIMEWithMIMEStruct:(struct mailmime *)mime 
                           forMessage:(struct mailmessage *)message {
     if (mime == nil) {
-        RaiseException(CTMIMEParseError, CTMIMEParseErrorDesc);
         return nil;
     }
 

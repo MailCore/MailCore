@@ -45,15 +45,20 @@ typedef void (^CTProgressBlock)(size_t curr, size_t max);
     NSString *mFilename;
     NSString *mContentId;
 }
-@property BOOL attached;
-@property BOOL fetched;
-@property(retain) NSString *filename;
-@property(retain) NSString *contentId;
-@property(retain) NSData *data;
-@property(readonly) size_t size;
+@property(nonatomic) BOOL attached;
+@property(nonatomic) BOOL fetched;
+@property(nonatomic, retain) NSString *filename;
+@property(nonatomic, retain) NSString *contentId;
+@property(nonatomic, retain) NSData *data;
+@property(nonatomic, readonly) size_t size;
+
+/*!
+    @abstract If an error occurred (nil or return of NO) call this method to get the error
+ */
+@property(nonatomic, retain) NSError *lastError;
 
 + (id)mimeSinglePartWithData:(NSData *)data;
 - (id)initWithData:(NSData *)data;
-- (void)fetchPart;
-- (void)fetchPartWithProgress:(CTProgressBlock)block;
+- (BOOL)fetchPart;
+- (BOOL)fetchPartWithProgress:(CTProgressBlock)block;
 @end

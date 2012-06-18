@@ -36,7 +36,7 @@
     @class	CTCoreMessage
     CTCoreMessage is how you work with messages. The easiest way to instantiate a CTCoreMessage
     is to first setup a CTCoreAccount object and then get a CTCoreFolder object and then use it's
-    convience method messageWithUID: to get a message object you can work with.
+    convenience method messageWithUID: to get a message object you can work with.
 
     Anything that begins with "fetch", requires that an active network connection is present.
 */
@@ -48,10 +48,17 @@
     struct mailimf_single_fields *myFields;
     CTMIME *myParsedMIME;
     NSUInteger mySequenceNumber;
+    NSError *lastError;
 }
-@property(retain) CTMIME *mime;
+/*!
+    @abstract If an error occurred (nil or return of NO) call this method to get the error
+ */
+@property(nonatomic, retain) NSError *lastError;
 
-//TODO Parse this stuff: message_id, inReplyTo, references, comments, keywords, headers
+/*!
+    @abstract   If the body structure has been fetched, this will contain the MIME structure
+ */
+@property(retain) CTMIME *mime;
 
 /*!
     @abstract	Used to instantiate an empty message object.
@@ -82,7 +89,17 @@
 */
 - (id)init;
 
-- (int)fetchBodyStructure;
+/*!
+    @abstract   If a method returns nil or in the case of a BOOL returns NO, call this to get the error that occured
+ */
+- (NSError *)lastError;
+
+/*!
+    @abstract   If the messages body structure hasn't been downloaded already it will be fetched from the server.
+                The body structure is needed to get attachments or the message body
+    @return     Return YES on success, NO on error. Call method lastError to get error if one occurred
+ */
+- (BOOL)fetchBodyStructure;
 
 /*!
     @abstract	This method returns the parsed message body as an NSString.
@@ -95,12 +112,6 @@
     @abstract	This method returns the html body as an NSString.
  */
 - (NSString *)htmlBody;
-
-/*!
-    @abstract	This method returns the editable html body as an NSString. For use
-                with WebViews only.
-*/
-- (NSString *)editableHtmlBody;
 
 /*!  @abstract Returns a message body as an NSString. First attempts
                to retrieve a plain text body, if that fails then
@@ -163,7 +174,7 @@
 
 /*!
     @abstract A machine readable ID that is guaranteed unique by the
-    host that generated the messaeg
+    host that generated the message
 */
 - (NSString *)messageId;
 
@@ -263,6 +274,7 @@
 
 /*!
     @abstract   Fetches from the server the rfc822 content of the message, which is the headers and the message body.
+    @return     Return nil on error. Call method lastError to get error if one occurred
 */
 - (NSString *)rfc822;
 

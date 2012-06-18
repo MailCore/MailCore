@@ -49,6 +49,10 @@
     BOOL connected;
     NSError *lastError;
 }
+/*!
+    @abstract If an error occurred (nil or return of NO) call this method to get the error
+ */
+@property(nonatomic, retain) NSError *lastError;
 
 /*!
     @abstract	This method is used to initialize a folder. This method or the
@@ -59,8 +63,9 @@
 
 /*!
     @abstract	This initiates the connection after the folder has been initalized.
+    @return     Return YES on success, NO on error. Call method lastError to get error if one occurred
 */
-- (void)connect;
+- (BOOL)connect;
 
 /*!
     @abstract	This method terminates the connection, make sure you don't have any message
@@ -90,6 +95,7 @@
                 done by [CTCoreMessage fetchBodyStructure], if it sees you already have the body structure it won't re-fetch it.
                 Use CTFetchAttrEnvelope if you'd like to fetch the subject, to, from, cc, bcc, sender, date etc. You can
                 also fetch both the envelope and body structure by passing in CTFetchAttrEnvelope | CTFetchAttrBodyStructure
+    @return     Returns a NSArray of CTCoreMessage's. Returns nil on error
 */
 - (NSArray *)messageObjectsFromIndex:(unsigned int)start toIndex:(unsigned int)end withFetchAttributes:(CTFetchAttributes)attrs;
 
@@ -106,13 +112,19 @@
                 It does not perform UID validation, and the sequence ID is only
                 valid per session.
     @param		The uid for the message
-    @return		> 1 if successful, 0 on err
+    @return     Return YES on success, NO on error. Call method lastError to get error if one occurred
 */
-- (NSUInteger)sequenceNumberForUID:(NSString *)uid;
+- (BOOL)sequenceNumberForUID:(NSString *)uid sequenceNumber:(NSUInteger *)sequenceNumber;
 
 
-//FIXME What is this?
-- (void)check;
+/*!
+    @abstract   From IMAP RFC: "The CHECK command requests a checkpoint of the currently selected mailbox.
+                A checkpoint refers to any implementation-dependent housekeeping associated
+                with the mailbox (e.g., resolving the server's in-memory state of the mailbox
+                with the state on its disk) that is not normally executed as part of each command."
+    @return     Return YES on success, NO on error. Call method lastError to get error if one occurred
+ */
+- (BOOL)check;
 
 /*!
     @abstract	The folder name.
@@ -128,44 +140,51 @@
     @abstract	This will change the path of the folder. Use this method to rename the folder on the server
                 or to move the folder on the server.
     @param		path The new path for the folder as an NSString.
+    @return     Return YES on success, NO on error. Call method lastError to get error if one occurred
 */
-- (void)setPath:(NSString *)path;
+- (BOOL)setPath:(NSString *)path;
 
 /*!
     @abstract	If the folder doesn't exist on the server this method will create it. Make sure the pathname
                 has been set first.
+    @return     Return YES on success, NO on error. Call method lastError to get error if one occurred
 */
-- (void)create;
+- (BOOL)create;
 
 /*!
     @abstract	This method will remove the folder and any messages contained within from the server.
                 Be careful when using this method because there is no way to undo.
+    @return     Return YES on success, NO on error. Call method lastError to get error if one occurred
 */
-- (void)delete;
+- (BOOL)delete;
 
 /*!
     @abstract	The folder will be listed as subscribed on the server.
+    @return     Return YES on success, NO on error. Call method lastError to get error if one occurred
 */
-- (void)subscribe;
+- (BOOL)subscribe;
 
 /*!
     @abstract	The folder will be listed as unsubscribed.
+    @return     Return YES on success, NO on error. Call method lastError to get error if one occurred
 */
-- (void)unsubscribe;
+- (BOOL)unsubscribe;
 
 /*!
-    @abstract	Returns the message flags. You must AND/OR using the defines constants.
+    @abstract	Retrieves the message flags. You must AND/OR using the defines constants.
                 Here is a list of message flags:
                 CTFlagNew, CTFlagSeen, CTFlagFlagged, CTFlagDeleted,
                 CTFlagAnswered, CTFlagForwarded.
+    @return     Return YES on success, NO on error. Call method lastError to get error if one occurred
 */
-- (unsigned int)flagsForMessage:(CTCoreMessage *)msg;
+- (BOOL)flagsForMessage:(CTCoreMessage *)msg flags:(NSUInteger *)flags;
 
 /*!
     @abstract	Sets the message's flags on the server, take a look at the
                 documentation for flagsForMessage:
+    @return     Return YES on success, NO on error. Call method lastError to get error if one occurred
 */
-- (void)setFlags:(unsigned int)flags forMessage:(CTCoreMessage *)msg;
+- (BOOL)setFlags:(unsigned int)flags forMessage:(CTCoreMessage *)msg;
 
 /*!
     @astract	Deletes all messages contained in the folder that are marked for
@@ -173,32 +192,35 @@
                 you need to set the message flag CTFlagDeleted to CTFlagSet, and
                 then when you call expunge on the folder the message is contained
                 in, it will be deleted.
+    @return     Return YES on success, NO on error. Call method lastError to get error if one occurred
 */
-- (void)expunge;
+- (BOOL)expunge;
 
 /*!
- @abstract	Copies a message to a folder
+    @abstract	Copies a message to a folder
+    @return     Return YES on success, NO on error. Call method lastError to get error if one occurred
  */
-- (void)copyMessage: (NSString *)path forMessage:(CTCoreMessage *)msg;
+- (BOOL)copyMessage:(CTCoreMessage *)msg toPath:(NSString *)path;
 
 /*!
- @abstract	Moves a message to a folder
+    @abstract	Moves a message to a folder
+    @return     Return YES on success, NO on error. Call method lastError to get error if one occurred
  */
-- (void)moveMessage: (NSString *)path forMessage:(CTCoreMessage *)msg;
+- (BOOL)moveMessage:(CTCoreMessage *)msg toPath:(NSString *)path;
 
 /*!
     @abstract	Returns the number of unread messages. This causes a round trip to the server, as it fetches
                 the count for each call.
-    @result		A NSUInteger containing the number of unread messages.
+    @return     Return YES on success, NO on error. Call method lastError to get error if one occurred
 */
-- (NSUInteger)unreadMessageCount;
+- (BOOL)unreadMessageCount:(NSUInteger *)unseenCount;
 
 /*!
     @abstract	Returns the number of messages in the folder. The count was retrieved when the folder connection was
                 established, so to refresh the count you must disconnect and reconnect.
-    @result		A NSUInteger containing the number of messages.
+    @return     Return YES on success, NO on error. Call method lastError to get error if one occurred
 */
-- (NSUInteger)totalMessageCount;
+- (BOOL)totalMessageCount:(NSUInteger *)totalCount;
 
 /*!
     @abstract	Returns the uid validity value for the folder

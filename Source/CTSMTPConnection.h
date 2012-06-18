@@ -53,7 +53,9 @@
     @param		port The port to use, the standard port is 25
     @param		useTLS Pass in YES, if you want to use SSL/TLS
     @param		useAuth Pass in YES if you would like to use SASL authentication
+    @param      error Will contain an error when the method returns NO
+    @result     Returns YES on success, NO on error
 */
-+ (void)sendMessage:(CTCoreMessage *)message server:(NSString *)server username:(NSString *)username
-                    password:(NSString *)password port:(unsigned int)port useTLS:(BOOL)tls useAuth:(BOOL)auth;
++ (BOOL)sendMessage:(CTCoreMessage *)message server:(NSString *)server username:(NSString *)username
+                    password:(NSString *)password port:(unsigned int)port useTLS:(BOOL)tls useAuth:(BOOL)auth error:(NSError **)error;
 @end

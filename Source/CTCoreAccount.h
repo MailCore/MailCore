@@ -42,20 +42,25 @@
 
 @class CTCoreFolder;
 
-@interface CTCoreAccount : NSObject {	
-    struct mailstorage	*myStorage;
-    BOOL				connected;
+@interface CTCoreAccount : NSObject {
+    struct mailstorage *myStorage;
+    BOOL connected;
+    NSError *lastError;
 }
+/*!
+    @abstract If an error occurred (nil or return of NO) call this method to get the error
+ */
+@property(nonatomic, retain) NSError *lastError;
 
 /*!
     @abstract	Retrieves the list of all the available folders from the server.
-    @result		Returns a NSSet which contains NSStrings of the folders pathnames.
+    @result		Returns a NSSet which contains NSStrings of the folders pathnames, nil on error
 */
 - (NSSet *)allFolders;
 
 /*!
     @abstract	Retrieves a list of only the subscribed folders from the server.
-    @result		Returns a NSSet which contains NSStrings of the folders pathnames.
+    @result		Returns a NSSet which contains NSStrings of the folders pathnames, nil on error
 */
 - (NSSet *)subscribedFolders;
 
@@ -76,8 +81,9 @@
     @param		authType The authentication type, only CTImapAuthTypePlain is currently supported
     @param		login The username to connect with.
     @param		password The password to use to connect.
+    @return     Return YES on success, NO on error. Call method lastError to get error if one occurred
 */
-- (void)connectToServer:(NSString *)server port:(int)port connectionType:(int)conType authType:(int)authType 
+- (BOOL)connectToServer:(NSString *)server port:(int)port connectionType:(int)conType authType:(int)authType
                         login:(NSString *)login password:(NSString *)password;
 
 /*!
@@ -94,19 +100,22 @@
 
 
 /*!
-     @abstract	Sends the idle command to the server.
+    @abstract	Sends the idle command to the server.
+    @return     Return YES on success, NO on error. Call method lastError to get error if one occurred
  */
-- (void)idle;
+- (BOOL)idle;
 
 /*!
     @abstract	Blocks the connection until data arrives.
+    @return     Returns nil on error
  */
-- (NSString*)read;
+- (NSString *)read;
 
 /*!
     @abstract	Sends the done command to the server.
+    @return     Return YES on success, NO on error. Call method lastError to get error if one occurred
  */
-- (void)done;
+- (BOOL)done;
 
 /* Intended for advanced use only */
 - (mailimap *)session;

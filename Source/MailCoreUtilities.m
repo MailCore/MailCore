@@ -61,34 +61,186 @@ void MailCoreDisableLogging() {
     mailstream_logger = nil;
 }
 
-void IfFalse_RaiseException(bool value, NSString *exceptionName, NSString *exceptionDesc) {
-    if (!value)
-        RaiseException(exceptionName, exceptionDesc);
+NSError* MailCoreCreateError(int errcode, NSString *description) {
+    NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
+    [errorDetail setValue:description forKey:NSLocalizedDescriptionKey];
+    return [NSError errorWithDomain:@"mailcore" code:errcode userInfo:errorDetail];
 }
 
-
-void IfTrue_RaiseException(bool value, NSString *exceptionName, NSString *exceptionDesc) {
-    if (value)
-        RaiseException(exceptionName, exceptionDesc);
-}
-
-
-void RaiseException(NSString *exceptionName, NSString *exceptionDesc) {
-    NSException *exception = [NSException
-                exceptionWithName:exceptionName
-                reason:exceptionDesc
-                userInfo:nil];
-    [exception raise];
-}
-
-// From Gabor
-BOOL StringStartsWith(NSString *string, NSString *subString) {
-    if([string length] < [subString length]) {
-        return NO;
+NSError* MailCoreCreateErrorFromCode(int errcode) {
+    NSString *description = @"";
+    switch (errcode) {
+        case MAILIMAP_ERROR_BAD_STATE:
+            description = @"Bad state";
+            break;
+        case MAILIMAP_ERROR_STREAM:
+            description = @"Stream error"; // Used to be @"Lost connection"
+            break;
+        case MAILIMAP_ERROR_PARSE:
+            description = @"Parse error";
+            break;
+        case MAILIMAP_ERROR_CONNECTION_REFUSED:
+            description = @"Connection refused";
+            break;
+        case MAILIMAP_ERROR_MEMORY:
+            description = @"Memory Error";
+            break;
+        case MAILIMAP_ERROR_FATAL:
+            description = @"IMAP connection lost"; // I renamed this to calm users
+            break;
+        case MAILIMAP_ERROR_PROTOCOL:
+            description = @"Protocol Error";
+            break;
+        case MAILIMAP_ERROR_DONT_ACCEPT_CONNECTION:
+            description = @"Connection not accepted";
+            break;
+        case MAILIMAP_ERROR_APPEND:
+            description = @"Append error";
+            break;
+        case MAILIMAP_ERROR_NOOP:
+            description = @"NOOP error";
+            break;
+        case MAILIMAP_ERROR_LOGOUT:
+            description = @"Logout error";
+            break;
+        case MAILIMAP_ERROR_CAPABILITY:
+            description = @"Capability error";
+            break;
+        case MAILIMAP_ERROR_CHECK:
+            description = @"Check command error";
+            break;
+        case MAILIMAP_ERROR_CLOSE:
+            description = @"Close command error";
+            break;
+        case MAILIMAP_ERROR_EXPUNGE:
+            description = @"Expunge command error";
+            break;
+        case MAILIMAP_ERROR_COPY:
+            description = @"Copy command error";
+            break;
+        case MAILIMAP_ERROR_UID_COPY:
+            description = @"UID copy command error";
+            break;
+        case MAILIMAP_ERROR_CREATE:
+            description = @"Create command error";
+            break;
+        case MAILIMAP_ERROR_DELETE:
+            description = @"Delete error";
+            break;
+        case MAILIMAP_ERROR_EXAMINE:
+            description = @"Examine command error";
+            break;
+        case MAILIMAP_ERROR_FETCH:
+            description = @"Fetch command error";
+            break;
+        case MAILIMAP_ERROR_UID_FETCH:
+            description = @"UID fetch command error";
+            break;
+        case MAILIMAP_ERROR_LIST:
+            description = @"List command error";
+            break;
+        case MAILIMAP_ERROR_LOGIN:
+            description = @"Login error";
+            break;
+        case MAILIMAP_ERROR_LSUB:
+            description = @"Lsub error";
+            break;
+        case MAILIMAP_ERROR_RENAME:
+            description = @"Rename error";
+            break;
+        case MAILIMAP_ERROR_SEARCH:
+            description = @"Search error";
+            break;
+        case MAILIMAP_ERROR_UID_SEARCH:
+            description = @"Uid search error";
+            break;
+        case MAILIMAP_ERROR_SELECT:
+            description = @"Select cmnd error";
+            break;
+        case MAILIMAP_ERROR_STATUS:
+            description = @"Status cmnd error";
+            break;
+        case MAILIMAP_ERROR_STORE:
+            description = @"Store cmnd error";
+            break;
+        case MAILIMAP_ERROR_UID_STORE:
+            description = @"Uid store cmd error";
+            break;
+        case MAILIMAP_ERROR_SUBSCRIBE:
+            description = @"Subscribe error";
+            break;
+        case MAILIMAP_ERROR_UNSUBSCRIBE:
+            description = @"Unsubscribe error";
+            break;
+        case MAILIMAP_ERROR_STARTTLS:
+            description = @"StartTLS error";
+            break;
+        case MAILIMAP_ERROR_INVAL:
+            description = @"Inval cmd error";
+            break;
+        case MAILIMAP_ERROR_EXTENSION:
+            description = @"Extension error";
+            break;
+        case MAILIMAP_ERROR_SASL:
+            description = @"SASL error";
+            break;
+        case MAILIMAP_ERROR_SSL:
+            description = @"SSL error";
+            break;
+        // the following are from maildriver_errors.h
+        case MAIL_ERROR_PROTOCOL:
+            description = @"Protocol error";
+            break;
+        case MAIL_ERROR_CAPABILITY:
+            description = @"Capability error";
+            break;
+        case MAIL_ERROR_CLOSE:
+            description = @"Close error";
+            break;
+        case MAIL_ERROR_FATAL:
+            description = @"Fatal error";
+            break;
+        case MAIL_ERROR_READONLY:
+            description = @"Readonly error";
+            break;
+        case MAIL_ERROR_NO_APOP:
+            description = @"No APOP error";
+            break;
+        case MAIL_ERROR_COMMAND_NOT_SUPPORTED:
+            description = @"Cmd not supported";
+            break;
+        case MAIL_ERROR_NO_PERMISSION:
+            description = @"No permission";
+            break;
+        case MAIL_ERROR_PROGRAM_ERROR:
+            description = @"Program error";
+            break;
+        case MAIL_ERROR_SUBJECT_NOT_FOUND:
+            description = @"Subject not found";
+            break;
+        case MAIL_ERROR_CHAR_ENCODING_FAILED:
+            description = @"Encoding failed";
+            break;
+        case MAIL_ERROR_SEND:
+            description = @"Send error";
+            break;
+        case MAIL_ERROR_COMMAND:
+            description = @"Command error";
+            break;
+        case MAIL_ERROR_SYSTEM:
+            description = @"System error";
+            break;
+        case MAIL_ERROR_UNABLE:
+            description = @"Unable error";
+            break;
+        case MAIL_ERROR_FOLDER:
+            description = @"Folder errror";
+            break;
+        default:
+            description = [NSString stringWithFormat:@"Error: %@", exp];
+            break;
     }
-
-    NSString* comp = [string substringToIndex:[subString length]];
-    return [comp isEqualToString:subString];
+    return MailCoreCreateError(errcode, description);
 }
 
 NSString *MailCoreDecodeMIMEPhrase(char *data) {
