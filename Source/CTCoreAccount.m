@@ -95,7 +95,10 @@
     }
 
     err = mailstorage_connect(myStorage);
-    if (err != MAILIMAP_NO_ERROR) {
+    if (err == MAIL_ERROR_LOGIN) {
+        self.lastError = MailCoreCreateError(err, @"Invalid username or password");
+        return NO;
+    } else if (err != MAILIMAP_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromCode(err);
         return NO;
     }
