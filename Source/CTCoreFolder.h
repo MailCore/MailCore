@@ -86,8 +86,8 @@
                 which configure what is fetched. Fetch attributes can be combined so you fetch all the message data at
                 once, or select which pieces you want for your app. You can also fetch just the default attributes which
                 will be as fast as possible.
-    @param      start The message index to start from, starts with 1 and NOT 0 (IMAP starts with 1 that way, sorry)
-    @param      end The ending message index, or if you'd like to fetch to the end of the message list pass in 0
+    @param      start The message sequence number to start from, starts with 1 and NOT 0 (IMAP starts with 1 that way, sorry)
+    @param      end The ending message sequence number, or if you'd like to fetch to the end of the message list pass in 0
     @param      attrs This controls what is fetched. Pass in CTFetchAttrDefaultsOnly to fetch the minimum possible, this
                 includes the UID, RFC822.size, and flags. The defaults are always fetched, even when you don't pass in this flag.
                 Use CTFetchAttrBodyStructure to also fetch the body structure of the message. This prevents a future round trip
@@ -98,6 +98,21 @@
 */
 - (NSArray *)messagesFromSequenceNumber:(NSUInteger)startNum to:(NSUInteger)endNum withFetchAttributes:(CTFetchAttributes)attrs;
 
+/*!
+    @abstract   Use this method to download message lists from the server. This method uses UID ranges to determine
+                which messages to download, while messagesFromSequenceNumber:to:withFetchAttributes: uses sequence numbers.
+                This method take fetch attributes which configure what is fetched. Fetch attributes can be combined so
+                you fetch all the message data at once, or select which pieces you want.
+    @param      start The message sequence number to start from, starts with 1 and NOT 0 (IMAP starts with 1 that way, sorry)
+    @param      end The ending message sequence number, or if you'd like to fetch to the end of the message list pass in 0
+    @param      attrs This controls what is fetched. Pass in CTFetchAttrDefaultsOnly to fetch the minimum possible, this
+                includes the UID, RFC822.size, and flags. The defaults are always fetched, even when you don't pass in this flag.
+                Use CTFetchAttrBodyStructure to also fetch the body structure of the message. This prevents a future round trip
+                done by [CTCoreMessage fetchBodyStructure], if it sees you already have the body structure it won't re-fetch it.
+                Use CTFetchAttrEnvelope if you'd like to fetch the subject, to, from, cc, bcc, sender, date etc. You can
+                also fetch both the envelope and body structure by passing in CTFetchAttrEnvelope | CTFetchAttrBodyStructure
+    @return     Returns a NSArray of CTCoreMessage's. Returns nil on error
+*/
 - (NSArray *)messagesFromUID:(NSUInteger)startUID to:(NSUInteger)endUID withFetchAttributes:(CTFetchAttributes)attrs;
 
 /*!

@@ -28,6 +28,7 @@ TODO:Fill this out, right now these are just notes
 - Moved to NSError
 - Message to, from, sender, bcc, cc, subject are nil when not downloaded or message doesn't have them
 - Changed how UID is stored, now just an integer, UID validity is separate
+- isUIDValid is gone
 
 
 Contact
