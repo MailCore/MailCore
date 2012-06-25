@@ -215,14 +215,6 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     return myFolder;
 }
 
-
-- (BOOL)isUIDValid:(NSString *)uid {
-    uint32_t uidvalidity, check_uidvalidity;
-    uidvalidity = [self uidValidity];
-    check_uidvalidity = (uint32_t)[[[uid componentsSeparatedByString:@"-"] objectAtIndex:0] doubleValue];
-    return (uidvalidity == check_uidvalidity);
-}
-
 - (NSUInteger)uidValidity {
     [self connect];
     mailimap *imapSession;
@@ -233,6 +225,15 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     return 0;
 }
 
+- (NSUInteger)uidNext  {
+    [self connect];
+    mailimap *imapSession;
+    imapSession = [self imapSession];
+    if (imapSession->imap_selection_info != NULL) {
+        return imapSession->imap_selection_info->sel_uidnext;
+    }
+    return 0;
+}
 
 - (BOOL)check {
     BOOL success = [self connect];
@@ -248,20 +249,18 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
 }
 
 
-- (BOOL)sequenceNumberForUID:(NSString *)uid sequenceNumber:(NSUInteger *)sequenceNumber {
+- (BOOL)sequenceNumberForUID:(NSUInteger)uid sequenceNumber:(NSUInteger *)sequenceNumber {
     int r;
     struct mailimap_fetch_att * fetch_att;
     struct mailimap_fetch_type * fetch_type;
     struct mailimap_set * set;
     clist * fetch_result;
 
-    NSUInteger uidnum = (unsigned int)[[[uid componentsSeparatedByString:@"-"] objectAtIndex:1] doubleValue];
-
     BOOL success = [self connect];
     if (!success) {
         return NO;
     }
-    set = mailimap_set_new_single(uidnum);
+    set = mailimap_set_new_single(uid);
     if (set == NULL) {
         self.lastError = MailCoreCreateErrorFromCode(MAIL_ERROR_MEMORY);
         return NO;
@@ -296,7 +295,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
 }
 
 // We always fetch UID, RFC822.Size, and Flags
-- (NSArray *)messageObjectsForSet:(struct mailimap_set *)set fetchAttributes:(CTFetchAttributes)attrs {
+- (NSArray *)messagesForSet:(struct mailimap_set *)set fetchAttributes:(CTFetchAttributes)attrs uidFetch:(BOOL)uidFetch {
     BOOL success = [self connect];
     if (!success) {
         return nil;
@@ -364,7 +363,11 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
         }
     }
 
-    r = mailimap_fetch([self imapSession], set, fetch_type, &fetch_result);
+    if (uidFetch) {
+        r = mailimap_uid_fetch([self imapSession], set, fetch_type, &fetch_result);
+    } else {
+        r = mailimap_fetch([self imapSession], set, fetch_type, &fetch_result);
+    }
     if (r != MAIL_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromCode(r);
         return nil;
@@ -477,21 +480,30 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     return messages;
 }
 
-- (NSArray *)messageObjectsFromIndex:(unsigned int)start toIndex:(unsigned int)end withFetchAttributes:(CTFetchAttributes)attrs {
-    struct mailimap_set *set = mailimap_set_new_interval(start, end);
-    NSArray *results = [self messageObjectsForSet:set fetchAttributes:attrs];
+- (NSArray *)messagesFromSequenceNumber:(NSUInteger)startNum to:(NSUInteger)endNum withFetchAttributes:(CTFetchAttributes)attrs {
+    struct mailimap_set *set = mailimap_set_new_interval(startNum, endNum);
+    NSArray *results = [self messagesForSet:set fetchAttributes:attrs uidFetch:NO];
     return results;
 }
 
-- (CTCoreMessage *)messageWithUID:(NSString *)uid {
+- (NSArray *)messagesFromUID:(NSUInteger)startUID to:(NSUInteger)endUID withFetchAttributes:(CTFetchAttributes)attrs {
+    struct mailimap_set *set = mailimap_set_new_interval(startUID, endUID);
+    NSArray *results = [self messagesForSet:set fetchAttributes:attrs uidFetch:YES];
+    return results;
+}
+
+- (CTCoreMessage *)messageWithUID:(NSUInteger)uid {
     int err;
     struct mailmessage *msgStruct;
+    char uidString[100];
+
+    sprintf(uidString, "%d", uid);
 
     BOOL success = [self connect];
     if (!success) {
         return nil;
     }
-    err = mailfolder_get_message_by_uid([self folderStruct], [uid cStringUsingEncoding:NSUTF8StringEncoding], &msgStruct);
+    err = mailfolder_get_message_by_uid([self folderStruct], uidString, &msgStruct);
     if (err != MAIL_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromCode(err);
         return nil;
@@ -576,9 +588,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     }
 
     const char *mbPath = [path cStringUsingEncoding:NSUTF8StringEncoding];
-    NSString *uid = [msg uid];
-    NSUInteger uidnum = (unsigned int)[[[uid componentsSeparatedByString:@"-"] objectAtIndex:1] doubleValue];
-    int err = mailsession_copy_message([self folderSession], uidnum, mbPath);
+    int err = mailsession_copy_message([self folderSession], [msg uid], mbPath);
     if (err != MAIL_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromCode(err);
         return NO;
@@ -593,9 +603,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     }
 
     const char *mbPath = [path cStringUsingEncoding:NSUTF8StringEncoding];
-    NSString *uid = [msg uid];
-    NSUInteger uidnum = (unsigned int)[[[uid componentsSeparatedByString:@"-"] objectAtIndex:1] doubleValue];
-    int err = mailsession_move_message([self folderSession], uidnum, mbPath);
+    int err = mailsession_move_message([self folderSession], [msg uid], mbPath);
     if (err != MAIL_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromCode(err);
         return NO;

@@ -179,9 +179,9 @@
 - (NSString *)messageId;
 
 /*!
-    @abstract	Returns an NSString containing the messages UID.
+    @abstract	Returns an NSUInteger containing the messages UID. This number is unique across sessions
 */
-- (NSString *)uid;
+- (NSUInteger)uid;
 
 /*!
     @abstract	Returns the message sequence number, this number cannot be used across sessions

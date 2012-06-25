@@ -76,11 +76,10 @@
 /*!
     @abstract	This will return the message from this folder with the UID that was passed in. If the message
                 can't be found, nil is returned
-    @param		uid The uid as an NSString for the message to retrieve.
     @result		A CTMessage object is returned which can be used to get further information and perform operations
                 on the message.
 */
-- (CTCoreMessage *)messageWithUID:(NSString *)uid;
+- (CTCoreMessage *)messageWithUID:(NSUInteger)uid;
 
 /*!
     @abstract   Use this method to download message lists from the server. This method take fetch attributes
@@ -97,24 +96,18 @@
                 also fetch both the envelope and body structure by passing in CTFetchAttrEnvelope | CTFetchAttrBodyStructure
     @return     Returns a NSArray of CTCoreMessage's. Returns nil on error
 */
-- (NSArray *)messageObjectsFromIndex:(unsigned int)start toIndex:(unsigned int)end withFetchAttributes:(CTFetchAttributes)attrs;
+- (NSArray *)messagesFromSequenceNumber:(NSUInteger)startNum to:(NSUInteger)endNum withFetchAttributes:(CTFetchAttributes)attrs;
+
+- (NSArray *)messagesFromUID:(NSUInteger)startUID to:(NSUInteger)endUID withFetchAttributes:(CTFetchAttributes)attrs;
 
 /*!
-    @abstract	This validates the passed in UID. The server can at times change the set of UID's for a folder. So
-                you should verify that the server is still using the same set when connecting.
-    @param		uid The UID to verify.
-    @return		YES if the UID is valid.
-*/
-- (BOOL)isUIDValid:(NSString *)uid;
-
-/*!
-    @abstract	Pulls the sequence number for the messag with the specified uid.
+    @abstract	Pulls the sequence number for the message with the specified uid.
                 It does not perform UID validation, and the sequence ID is only
                 valid per session.
     @param		The uid for the message
     @return     Return YES on success, NO on error. Call method lastError to get error if one occurred
 */
-- (BOOL)sequenceNumberForUID:(NSString *)uid sequenceNumber:(NSUInteger *)sequenceNumber;
+- (BOOL)sequenceNumberForUID:(NSUInteger)uid sequenceNumber:(NSUInteger *)sequenceNumber;
 
 
 /*!
@@ -223,10 +216,16 @@
 - (BOOL)totalMessageCount:(NSUInteger *)totalCount;
 
 /*!
-    @abstract	Returns the uid validity value for the folder
-    @result		An integer containing the uid validity
+    @abstract	Returns the uid validity value for the folder, which can be used to determine if the
+                local cached UID's are still valid, or if the server has changed UID's
 */
 - (NSUInteger)uidValidity;
+
+/*!
+    @abstract	Returns the uid next value for the folder. The next message added to the mailbox
+                will be assigned a UID greater than or equal to uidNext
+*/
+- (NSUInteger)uidNext;
 
 /* Intended for advanced use only */
 - (struct mailfolder *)folderStruct;

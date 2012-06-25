@@ -29,6 +29,7 @@
  * SUCH DAMAGE.
  */
 
+#import <libetpan/libetpan.h>
 #import "CTCoreMessage.h"
 #import "CTCoreFolder.h"
 #import "MailCoreTypes.h"
@@ -173,7 +174,6 @@
 }
 
 - (NSString *)htmlBody {
-    // added by Gabor
     NSMutableString *result = [NSMutableString string];
     [self _buildUpHtmlBodyText:myParsedMIME result:result];
     return result;
@@ -429,8 +429,14 @@
     return nil;
 }
 
-- (NSString *)uid {
-    return [NSString stringWithCString:myMessage->msg_uid encoding:NSUTF8StringEncoding];
+- (NSUInteger)uid {
+    if (myMessage->msg_uid) {
+        NSString *uidString = [[NSString alloc] initWithCString:myMessage->msg_uid encoding:NSASCIIStringEncoding];
+        NSUInteger uid = (NSUInteger)[[[uidString componentsSeparatedByString:@"-"] objectAtIndex:0] intValue];
+        [uidString release];
+        return uid;
+    }
+    return 0;
 }
 
 - (NSUInteger)messageSize {
