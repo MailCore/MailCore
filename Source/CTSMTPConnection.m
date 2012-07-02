@@ -45,7 +45,6 @@
     BOOL success;
     mailsmtp *smtp = NULL;
     smtp = mailsmtp_new(0, NULL);
-    *error = nil;
 
     CTSMTP *smtpObj = [[CTESMTP alloc] initWithResource:smtp];
     success = [smtpObj connectToServer:server port:port];
@@ -94,6 +93,7 @@
     if (!success) {
         goto error;
     }
+    [smtpObj release];
     return YES;
 error:
     *error = smtpObj.lastError;
