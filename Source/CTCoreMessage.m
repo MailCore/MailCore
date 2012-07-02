@@ -432,7 +432,7 @@
 - (NSUInteger)uid {
     if (myMessage->msg_uid) {
         NSString *uidString = [[NSString alloc] initWithCString:myMessage->msg_uid encoding:NSASCIIStringEncoding];
-        NSUInteger uid = (NSUInteger)[[[uidString componentsSeparatedByString:@"-"] objectAtIndex:0] intValue];
+        NSUInteger uid = (NSUInteger)[[[uidString componentsSeparatedByString:@"-"] objectAtIndex:1] intValue];
         [uidString release];
         return uid;
     }
