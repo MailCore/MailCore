@@ -443,6 +443,13 @@
     return [self messageStruct]->msg_size;
 }
 
+- (NSUInteger)flags {
+    if (myMessage != NULL && myMessage->msg_flags != NULL) {
+        return myMessage->msg_flags->fl_flags;
+    }
+    return 0;
+}
+
 - (NSUInteger)sequenceNumber {
     return mySequenceNumber;
 }

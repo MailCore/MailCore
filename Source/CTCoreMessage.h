@@ -189,9 +189,15 @@
 - (NSUInteger)sequenceNumber;
 
 /*!
- @abstract	Returns the message size
+    @abstract	Returns the message size in bytes
  */
 - (NSUInteger)messageSize;
+
+/*!
+    @abstract   Returns the message flags. The flags contain if there user has replied, forwarded, read, delete etc.
+                See MailCoreTypes.h for a list of constants
+ */
+- (NSUInteger)flags;
 
 /*!
     @abstract	Set the message sequence number, this will NOT set any thing on the server.

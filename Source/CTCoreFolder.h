@@ -192,7 +192,7 @@
                 documentation for flagsForMessage:
     @return     Return YES on success, NO on error. Call method lastError to get error if one occurred
 */
-- (BOOL)setFlags:(unsigned int)flags forMessage:(CTCoreMessage *)msg;
+- (BOOL)setFlags:(NSUInteger)flags forMessage:(CTCoreMessage *)msg;
 
 /*!
     @astract	Deletes all messages contained in the folder that are marked for

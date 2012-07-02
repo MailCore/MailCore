@@ -38,6 +38,8 @@
 #import "MailCoreTypes.h"
 #import "MailCoreUtilities.h"
 
+//int imap_fetch_result_to_envelop_list(clist * fetch_result, struct mailmessage_list * env_list);
+//
 int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result,
                         mailsession * session, mailmessage_driver * driver);
 
@@ -382,6 +384,11 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
         self.lastError = MailCoreCreateErrorFromCode(r);
         return nil;
     }
+    r = imap_fetch_result_to_envelop_list(fetch_result, env_list);
+    if (r != MAIL_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromCode(r);
+        return nil;
+    }
 
     // Parsing of MIME bodies
     int len = carray_count(env_list->msg_tab);
@@ -550,7 +557,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
 }
 
 
-- (BOOL)setFlags:(unsigned int)flags forMessage:(CTCoreMessage *)msg {
+- (BOOL)setFlags:(NSUInteger)flags forMessage:(CTCoreMessage *)msg {
     BOOL success = [self connect];
     if (!success) {
         return NO;
