@@ -5,7 +5,7 @@
       \/_/  \/_/   \/_/\/_/   \/_/   \/_____/   \/_____/   \/_____/   \/_/ /_/   \/_____/ 
                                                                                       
 
-#Getting the code
+##Getting the code
 
 First checkout the code and pulldown the required dependencies as submodules:
 
@@ -16,13 +16,13 @@ First checkout the code and pulldown the required dependencies as submodules:
 
 Now open up MailCore.xcodeproj and build either the iOS static library or the Mac OS X framework depending on your needs.
 
-#Website
+##Website
 
 The official site contains documentation, FAQs, and step by step instructions on how to include MailCore
 
 http://www.libmailcore.com
 
-# Migrating to Version 1.0 [migrating]
+## Migrating to Version 1.0
 
 The latest version of MailCore is no longer backwards compatible with earlier versions. I tried to keep backwards compatibility, but it became too complex, sorry :(
 
@@ -38,6 +38,5 @@ Here are a list of major changes:
 - `- (BOOL)isUIDValid:(NSString *)uid` has been removed. Instead check your uid validity value manually
 
 Thanks,
-Matt Ronge
-@mronge
-mronge@mronge.com
+
+Matt Ronge 
