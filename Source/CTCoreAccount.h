@@ -32,12 +32,10 @@
 #import <Foundation/Foundation.h>
 #import <libetpan/libetpan.h>
 
-/*!
-    @class CTCoreAccount
-    CTCoreAccount is the base class with which you establish a connection to the
-    IMAP server. After establishing a connection with CTCoreAccount you can access
-    all of the folders (I use the term folder instead of mailbox) on the server.
-    All methods throw an exception on failure.
+/**
+ CTCoreAccount is the base class with which you establish a connection to the
+ IMAP server. After establishing a connection with CTCoreAccount you can access
+ all of the folders (I use the term folder instead of mailbox) on the server.
 */
 
 @class CTCoreFolder;
@@ -47,74 +45,73 @@
     BOOL connected;
     NSError *lastError;
 }
-/*!
-    @abstract If an error occurred (nil or return of NO) call this method to get the error
- */
+/**
+ If an error occurred (nil or return of NO) call this method to get the error
+*/
 @property(nonatomic, retain) NSError *lastError;
 
-/*!
-    @abstract	Retrieves the list of all the available folders from the server.
-    @result		Returns a NSSet which contains NSStrings of the folders pathnames, nil on error
+/**
+ Retrieves the list of all the available folders from the server.
+ @return Returns a NSSet which contains NSStrings of the folders pathnames, nil on error
 */
 - (NSSet *)allFolders;
 
-/*!
-    @abstract	Retrieves a list of only the subscribed folders from the server.
-    @result		Returns a NSSet which contains NSStrings of the folders pathnames, nil on error
+/**
+ Retrieves a list of only the subscribed folders from the server.
+ @return Returns a NSSet which contains NSStrings of the folders pathnames, nil on error
 */
 - (NSSet *)subscribedFolders;
 
-/*!
-    @abstract	If you have the path of a folder on the server use this method to retrieve just the one folder.
-    @param		path A NSString specifying the path of the folder to retrieve from the server.
-    @result		Returns a CTCoreFolder.
+/**
+ If you have the path of a folder on the server use this method to retrieve just the one folder.
+ @param path A NSString specifying the path of the folder to retrieve from the server.
+ @return Returns a CTCoreFolder.
 */
 - (CTCoreFolder *)folderWithPath:(NSString *)path;
 
-/*!
-    @abstract	This method initiates the connection to the server.
-    @param		server The address of the server.
-    @param		port The port to connect to.
-    @param		connnectionType What kind of connection to use, it can be one of these three values:
-                CTConnectionTypePlain, CTConnectionTypeStartTLS, CTConnectionTypeTryStartTLS, CTConnectionTypeTLS.
-                See MailCoreTypes.h for more information
-    @param		authType The authentication type, only CTImapAuthTypePlain is currently supported
-    @param		login The username to connect with.
-    @param		password The password to use to connect.
-    @return     Return YES on success, NO on error. Call method lastError to get error if one occurred
+/**
+ This method initiates the connection to the server.
+ @param server The address of the server.
+ @param port The port to connect to.
+ @param connnectionType What kind of connection to use, it can be one of these three values:
+ CTConnectionTypePlain, CTConnectionTypeStartTLS, CTConnectionTypeTryStartTLS, CTConnectionTypeTLS. See MailCoreTypes.h for more information
+ @param authType The authentication type, only CTImapAuthTypePlain is currently supported
+ @param login The username to connect with.
+ @param password The password to use to connect.
+ @return Return YES on success, NO on error. Call method lastError to get error if one occurred
 */
 - (BOOL)connectToServer:(NSString *)server port:(int)port connectionType:(int)conType authType:(int)authType
                         login:(NSString *)login password:(NSString *)password;
 
-/*!
-    @abstract	This method returns the current connection status.
-    @result		Returns YES or NO as the status of the connection.
+/**
+ This method returns the current connection status.
+ @return Returns YES or NO as the status of the connection.
 */
 - (BOOL)isConnected;
 
-/*!
-    @abstract	Terminates the connection. If you terminate this connection it will also affect the
-                connectivity of CTCoreFolders and CTMessages that rely on this account.
+/**
+ Terminates the connection. If you terminate this connection it will also affect the
+ connectivity of CTCoreFolders and CTMessages that rely on this account.
 */
 - (void)disconnect;
 
 
-/*!
-    @abstract	Sends the idle command to the server.
-    @return     Return YES on success, NO on error. Call method lastError to get error if one occurred
- */
+/**
+ Sends the idle command to the server.
+ @return Return YES on success, NO on error. Call method lastError to get error if one occurred
+*/
 - (BOOL)idle;
 
-/*!
-    @abstract	Blocks the connection until data arrives.
-    @return     Returns nil on error
- */
+/**
+ Blocks the connection until data arrives.
+ @return Returns nil on error
+*/
 - (NSString *)read;
 
-/*!
-    @abstract	Sends the done command to the server.
-    @return     Return YES on success, NO on error. Call method lastError to get error if one occurred
- */
+/**
+ Sends the done command to the server.
+ @return Return YES on success, NO on error. Call method lastError to get error if one occurred
+*/
 - (BOOL)done;
 
 /* Intended for advanced use only */

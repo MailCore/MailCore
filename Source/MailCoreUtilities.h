@@ -32,16 +32,16 @@
 #import <Foundation/Foundation.h>
 #import <libetpan/libetpan.h>
 
-/*!
-    @abstract Enables logging of all streams, data is output to standard out.
+/**
+     Enables logging of all streams, data is output to standard out.
 */
 void MailCoreEnableLogging();
 void MailCoreDisableLogging();
 
 NSError* MailCoreCreateError(int errcode, NSString *description);
 
-/*!
-    @abstract Translates the LibEtPan error code into NSError with error description
+/**
+     Translates the LibEtPan error code into NSError with error description
  */
 NSError* MailCoreCreateErrorFromCode(int errcode);
 

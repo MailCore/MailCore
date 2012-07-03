@@ -652,7 +652,6 @@
     return data->imap_session;
 }
 
-/*********************************** myprivates ***********************************/
 - (CTCoreAddress *)_addressFromMailbox:(struct mailimf_mailbox *)mailbox; {
     CTCoreAddress *address = [CTCoreAddress address];
     if (mailbox == NULL) {

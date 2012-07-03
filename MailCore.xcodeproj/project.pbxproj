@@ -64,7 +64,6 @@
 		F8618D1C10DAE1E600C41188 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		F8618D1D10DAE1E600C41188 /* CTBareAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */; };
 		F8618D1E10DAE1E600C41188 /* MailCoreUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F88804D60B4243C000D400E7 /* MailCoreUtilities.m */; };
-		F8618D1F10DAE1EB00C41188 /* JRLog.m in Sources */ = {isa = PBXBuildFile; fileRef = F8A70EEE0C4059E100D1D694 /* JRLog.m */; };
 		F86B542314F476170080FB8F /* CTSMTPConnection.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F81B885A0A74AA7100143DF6 /* CTSMTPConnection.h */; };
 		F86B542414F4761C0080FB8F /* CTSMTPAsyncConnection.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2D538B42119803A6000AB4A2 /* CTSMTPAsyncConnection.h */; };
 		F86B542514F4761E0080FB8F /* CTSMTP.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F88CA0CC0BF7A7B00055AC29 /* CTSMTP.h */; };
@@ -86,7 +85,6 @@
 		F86B543614F476500080FB8F /* MailCoreUtilities.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F88804D50B4243C000D400E7 /* MailCoreUtilities.h */; };
 		F86B543714F476530080FB8F /* MailCore.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F81B885C0A74AA7100143DF6 /* MailCore.h */; };
 		F86B543814F476540080FB8F /* MailCoreTypes.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F81B885D0A74AA7100143DF6 /* MailCoreTypes.h */; };
-		F86B543914F476560080FB8F /* JRLog.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8A70EED0C4059E100D1D694 /* JRLog.h */; };
 		F88804620B42018500D400E7 /* libsasl2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F88804610B42018500D400E7 /* libsasl2.dylib */; };
 		F88804D70B4243C000D400E7 /* MailCoreUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = F88804D50B4243C000D400E7 /* MailCoreUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F88804D80B4243C000D400E7 /* MailCoreUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F88804D60B4243C000D400E7 /* MailCoreUtilities.m */; };
@@ -126,9 +124,6 @@
 		F8A2FAC4144FA87B00C03DB4 /* CTSMTPAsyncConnection.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2D538B42119803A6000AB4A2 /* CTSMTPAsyncConnection.h */; };
 		F8A2FAC5144FA87D00C03DB4 /* CTSMTP.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F88CA0CC0BF7A7B00055AC29 /* CTSMTP.h */; };
 		F8A2FAC6144FA88100C03DB4 /* CTESMTP.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F88CA0D20BF7AC0B0055AC29 /* CTESMTP.h */; };
-		F8A2FAC7144FA88F00C03DB4 /* JRLog.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8A70EED0C4059E100D1D694 /* JRLog.h */; };
-		F8A70EEF0C4059E100D1D694 /* JRLog.h in Headers */ = {isa = PBXBuildFile; fileRef = F8A70EED0C4059E100D1D694 /* JRLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F8A70EF00C4059E100D1D694 /* JRLog.m in Sources */ = {isa = PBXBuildFile; fileRef = F8A70EEE0C4059E100D1D694 /* JRLog.m */; };
 		F8B245CE144BAC15002B56DA /* libetpan_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8B245CA144BABA4002B56DA /* libetpan_ios.a */; };
 		F8B6D4F0156EE189008DE9EB /* libetpan_mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8B6D4EC156EE173008DE9EB /* libetpan_mac.a */; };
 		F8DFCF4C15801A5000C01975 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8DFCF4B15801A5000C01975 /* SenTestingKit.framework */; };
@@ -244,7 +239,6 @@
 			dstPath = "$(SRCROOT)/include/MailCore";
 			dstSubfolderSpec = 0;
 			files = (
-				F86B543914F476560080FB8F /* JRLog.h in CopyFiles */,
 				F86B543814F476540080FB8F /* MailCoreTypes.h in CopyFiles */,
 				F86B543714F476530080FB8F /* MailCore.h in CopyFiles */,
 				F86B543614F476500080FB8F /* MailCoreUtilities.h in CopyFiles */,
@@ -276,7 +270,6 @@
 			dstSubfolderSpec = 0;
 			files = (
 				F8A2FAC3144FA87800C03DB4 /* CTSMTPConnection.h in CopyFiles */,
-				F8A2FAC7144FA88F00C03DB4 /* JRLog.h in CopyFiles */,
 				F8A2FAC1144FA87300C03DB4 /* CTMIME.h in CopyFiles */,
 				F8A2FAC2144FA87400C03DB4 /* CTMIME_Enumerator.h in CopyFiles */,
 				F8A2FAC0144FA87100C03DB4 /* CTMIME_TextPart.h in CopyFiles */,
@@ -327,7 +320,7 @@
 		F81B88530A74AA7100143DF6 /* CTCoreAddress.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = CTCoreAddress.m; path = Source/CTCoreAddress.m; sourceTree = SOURCE_ROOT; };
 		F81B88540A74AA7100143DF6 /* CTCoreFolder.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = CTCoreFolder.h; path = Source/CTCoreFolder.h; sourceTree = SOURCE_ROOT; };
 		F81B88550A74AA7100143DF6 /* CTCoreFolder.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = CTCoreFolder.m; path = Source/CTCoreFolder.m; sourceTree = SOURCE_ROOT; };
-		F81B88560A74AA7100143DF6 /* CTCoreMessage.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = CTCoreMessage.h; path = Source/CTCoreMessage.h; sourceTree = SOURCE_ROOT; };
+		F81B88560A74AA7100143DF6 /* CTCoreMessage.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = CTCoreMessage.h; path = Source/CTCoreMessage.h; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		F81B88570A74AA7100143DF6 /* CTCoreMessage.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = CTCoreMessage.m; path = Source/CTCoreMessage.m; sourceTree = SOURCE_ROOT; };
 		F81B885A0A74AA7100143DF6 /* CTSMTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = CTSMTPConnection.h; path = Source/CTSMTPConnection.h; sourceTree = "<group>"; };
 		F81B885B0A74AA7100143DF6 /* CTSMTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = CTSMTPConnection.m; path = Source/CTSMTPConnection.m; sourceTree = "<group>"; };
@@ -363,8 +356,6 @@
 		F88CA0D20BF7AC0B0055AC29 /* CTESMTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTESMTP.h; path = Source/CTESMTP.h; sourceTree = "<group>"; };
 		F88CA0D30BF7AC0B0055AC29 /* CTESMTP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTESMTP.m; path = Source/CTESMTP.m; sourceTree = "<group>"; };
 		F890D38D10CEECD50039817C /* libetpan.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libetpan.xcodeproj; path = "libetpan/build-mac/libetpan.xcodeproj"; sourceTree = SOURCE_ROOT; };
-		F8A70EED0C4059E100D1D694 /* JRLog.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = JRLog.h; path = Source/JRLog.h; sourceTree = "<group>"; };
-		F8A70EEE0C4059E100D1D694 /* JRLog.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = JRLog.m; path = Source/JRLog.m; sourceTree = "<group>"; };
 		F8D31A3109C524EA00468234 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F8DFAB0410541708003D3CC1 /* libetpan.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libetpan.framework; path = "OpenSourceProjects/libetpan-0.58/build-mac/build/Release/libetpan.framework"; sourceTree = "<group>"; };
 		F8DFCF4915801A5000C01975 /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -527,8 +518,6 @@
 		32C88DFF0371C24200C91783 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				F8A70EED0C4059E100D1D694 /* JRLog.h */,
-				F8A70EEE0C4059E100D1D694 /* JRLog.m */,
 				F81B88710A74AAD800143DF6 /* MailCore_Prefix.pch */,
 				F8D31A3109C524EA00468234 /* main.m */,
 			);
@@ -667,7 +656,6 @@
 				F81A8AE20C03FC3B002F780A /* CTMIME_TextPart.h in Headers */,
 				F81A8AE40C03FC3B002F780A /* CTMIME.h in Headers */,
 				F8245A6D0C041C8C005E08A8 /* CTMIMEFactory.h in Headers */,
-				F8A70EEF0C4059E100D1D694 /* JRLog.h in Headers */,
 				F81E266A0C6ED35C00B3FBAC /* CTBareAttachment.h in Headers */,
 				F81E266E0C6ED4E100B3FBAC /* CTCoreAttachment.h in Headers */,
 				F8430BB10C72B16000753941 /* CTMIME_Enumerator.h in Headers */,
@@ -908,7 +896,6 @@
 				F81A8AE30C03FC3B002F780A /* CTMIME_TextPart.m in Sources */,
 				F81A8AE50C03FC3B002F780A /* CTMIME.m in Sources */,
 				F8245A700C041C91005E08A8 /* CTMIMEFactory.m in Sources */,
-				F8A70EF00C4059E100D1D694 /* JRLog.m in Sources */,
 				F858CC4A0C51DE6B00EF1B3D /* (null) in Sources */,
 				F81E266B0C6ED35C00B3FBAC /* CTBareAttachment.m in Sources */,
 				F81E266F0C6ED4E100B3FBAC /* CTCoreAttachment.m in Sources */,
@@ -922,7 +909,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8618D1F10DAE1EB00C41188 /* JRLog.m in Sources */,
 				F8618D0D10DAE1E600C41188 /* CTSMTPConnection.m in Sources */,
 				F8618D0E10DAE1E600C41188 /* CTSMTP.m in Sources */,
 				F8618D0F10DAE1E600C41188 /* CTESMTP.m in Sources */,

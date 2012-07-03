@@ -53,9 +53,9 @@ typedef void (^CTProgressBlock)(size_t curr, size_t max);
 @property(nonatomic, retain) NSData *data;
 @property(nonatomic, readonly) size_t size;
 
-/*!
-    @abstract If an error occurred (nil or return of NO) call this method to get the error
- */
+/*
+ If an error occurred (nil or return of NO) call this method to get the error
+*/
 @property(nonatomic, retain) NSError *lastError;
 
 + (id)mimeSinglePartWithData:(NSData *)data;

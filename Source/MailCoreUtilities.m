@@ -30,7 +30,6 @@
  */
 
 #import "MailCoreUtilities.h"
-#import "JRLog.h"
 #import "MailCoreTypes.h"
 
 /* direction is 1 for send, 0 for receive, -1 when it does not apply */

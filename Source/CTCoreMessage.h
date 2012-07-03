@@ -32,13 +32,12 @@
 #import <Foundation/Foundation.h>
 #import <libetpan/libetpan.h>
 
-/*!
-    @class	CTCoreMessage
-    CTCoreMessage is how you work with messages. The easiest way to instantiate a CTCoreMessage
-    is to first setup a CTCoreAccount object and then get a CTCoreFolder object and then use it's
-    convenience method messageWithUID: to get a message object you can work with.
+/**
+ CTCoreMessage is how you work with messages. The easiest way to instantiate a CTCoreMessage
+ is to first setup a CTCoreAccount object and then get a CTCoreFolder object and then use it's
+ convenience method messageWithUID: to get a message object you can work with.
 
-    Anything that begins with "fetch", requires that an active network connection is present.
+ Anything that begins with "fetch", requires that an active network connection is present.
 */
 
 @class CTCoreFolder, CTCoreAddress, CTCoreAttachment, CTMIME;
@@ -50,237 +49,265 @@
     NSUInteger mySequenceNumber;
     NSError *lastError;
 }
-/*!
-    @abstract If an error occurred (nil or return of NO) call this method to get the error
- */
+/**
+ If an error occurred (nil or return of NO) call this method to get the error
+*/
 @property(nonatomic, retain) NSError *lastError;
 
-/*!
-    @abstract   If the body structure has been fetched, this will contain the MIME structure
- */
+/**
+ If the body structure has been fetched, this will contain the MIME structure
+*/
 @property(retain) CTMIME *mime;
 
-/*!
-    @abstract	Used to instantiate an empty message object.
+/**
+ Used to instantiate an empty message object.
 */
 - (id)init;
 
-/*!
-    @abstract	Used to instantiate a message object with the contents of a mailmessage struct
-                (a LibEtPan type). The mailmessage struct does not include any body information,
-                so after calling this method the message will have a body which is NULL.
+/**
+ Used to instantiate a message object with the contents of a mailmessage struct
+ (a LibEtPan type). The mailmessage struct does not include any body information,
+ so after calling this method the message will have a body which is NULL.
 */
 - (id)initWithMessageStruct:(struct mailmessage *)message;
 
-/*!
-    @abstract	Used to instantiate a message object based off the contents of a file on disk.
-                The file on disk must be a valid MIME message.
+/**
+ Used to instantiate a message object based off the contents of a file on disk.
+ The file on disk must be a valid MIME message.
 */
 - (id)initWithFileAtPath:(NSString *)path;
 
-/*!
-    @abstract Used to instantiate a message object based off a string
-                that contains a valid MIME message
+/**
+ Used to instantiate a message object based off a string
+ that contains a valid MIME message
 */
 - (id)initWithString:(NSString *)msgData;
 
 /*
-    @abstract	Creates an empty message
+ Creates an empty message
 */
 - (id)init;
 
-/*!
-    @abstract   If a method returns nil or in the case of a BOOL returns NO, call this to get the error that occured
- */
+/**
+ If a method returns nil or in the case of a BOOL returns NO, call this to get the error that occured
+*/
 - (NSError *)lastError;
 
-/*!
-    @abstract   If the messages body structure hasn't been downloaded already it will be fetched from the server.
-                The body structure is needed to get attachments or the message body
-    @return     Return YES on success, NO on error. Call method lastError to get error if one occurred
- */
+/**
+ If the messages body structure hasn't been downloaded already it will be fetched from the server.
+
+ The body structure is needed to get attachments or the message body
+ @return Return YES on success, NO on error. Call method lastError to get error if one occurred
+*/
 - (BOOL)fetchBodyStructure;
 
-/*!
-    @abstract	This method returns the parsed message body as an NSString.
-                This attempts to return a plain text body and skips HTML. If
-                a plaintext body isn't found the HTML body is returned.
+/**
+ This method returns the parsed message body as an NSString.
+
+ This attempts to return a plain text body and skips HTML. If
+ a plaintext body isn't found the HTML body is returned.
 */
 - (NSString *)body;
 
-/*!
-    @abstract	This method returns the html body as an NSString.
- */
+/**
+ This method returns the html body as an NSString.
+*/
 - (NSString *)htmlBody;
 
-/*!  @abstract Returns a message body as an NSString. First attempts
-               to retrieve a plain text body, if that fails then
-               tries for an HTML body.
- */
+/**  
+ Returns a message body as an NSString. 
+
+ First attempts to retrieve a plain text body, if that fails then
+ tries for an HTML body.
+*/
 - (NSString *)bodyPreferringPlainText;
 
-/*!
-    @abstract	This method sets the message body. Plaintext only please!
+/**
+ This method sets the message body. Plaintext only please!
 */
 - (void)setBody:(NSString *)body;
 
-/*!
-    @abstract	Use this method to set the body if you have HTML content.
+/**
+ Use this method to set the body if you have HTML content.
 */
 - (void)setHTMLBody:(NSString *)body;
 
+/**
+ A list of attachments this message has
+*/
 - (NSArray *)attachments;
+
+/**
+ Add an attachment to the message.
+ 
+ Only used when sending e-mail
+*/
 - (void)addAttachment:(CTCoreAttachment *)attachment;
 
-/*!
-    @abstract	Returns the subject of the message.
+/**
+ Returns the subject of the message.
 */
 - (NSString *)subject;
 
-/*!
-    @abstract	Will set the subject of the message, use this when composing e-mail.
+/**
+ Will set the subject of the message, use this when composing e-mail.
 */
 - (void)setSubject:(NSString *)subject;
 
-/*! @abstract   Returns the timezone of the sender of the message (got from the Date field timezone attribute) */
+/**
+ Returns the timezone of the sender of the message (got from the Date field timezone attribute)
+*/
 - (NSTimeZone*)senderTimeZone;
 
-/*! @abstract   Returns the date as given in the Date mail field (no timezone is applied) */
+/**
+ Returns the date as given in the Date mail field (no timezone is applied)
+*/
 - (NSDate *)senderDate; 
 
-/*! @abstract   Returns the date in the Date field converted to GMT */
+/**
+ Returns the date in the Date field converted to GMT
+*/
 - (NSDate *)sentDateGMT; 
 
-/*!
-    @abstract   Returns the date in the Date field converted to the local timezone
-                the local timezone is the one set in the device running this code
- */
+/**
+Returns the date in the Date field converted to the local timezone
+    
+The local timezone is the one set in the device running this code
+*/
 - (NSDate *)sentDateLocalTimeZone; 
 
-/*!
-    @abstract	Returns YES if the message is unread.
- */
+/**
+ Returns YES if the message is unread.
+*/
 - (BOOL)isUnread;
 
-/*!
-    @abstract	Returns YES if the message is recent and unread.
+/**
+ Returns YES if the message is recent and unread.
 */
 - (BOOL)isNew;
 
-/*!
- @abstract	Returns YES if the message is starred (flagged in IMAP terms).
- */
+/**
+ Returns YES if the message is starred (flagged in IMAP terms).
+*/
 - (BOOL)isStarred;
 
-/*!
-    @abstract A machine readable ID that is guaranteed unique by the
-    host that generated the message
+/**
+ A machine readable ID that is guaranteed unique by the
+ host that generated the message
 */
 - (NSString *)messageId;
 
-/*!
-    @abstract	Returns an NSUInteger containing the messages UID. This number is unique across sessions
+/**
+ Returns an NSUInteger containing the messages UID. This number is unique across sessions
 */
 - (NSUInteger)uid;
 
-/*!
-    @abstract	Returns the message sequence number, this number cannot be used across sessions
+/**
+ Returns the message sequence number, this number cannot be used across sessions
 */
 - (NSUInteger)sequenceNumber;
 
-/*!
-    @abstract	Returns the message size in bytes
- */
+/**
+ Returns the message size in bytes
+*/
 - (NSUInteger)messageSize;
 
-/*!
-    @abstract   Returns the message flags. The flags contain if there user has replied, forwarded, read, delete etc.
-                See MailCoreTypes.h for a list of constants
- */
+/**
+ Returns the message flags.
+ 
+ The flags contain if there user has replied, forwarded, read, delete etc.
+ See MailCoreTypes.h for a list of constants
+*/
 - (NSUInteger)flags;
 
-/*!
-    @abstract	Set the message sequence number, this will NOT set any thing on the server.
-                This is used to assign sequence numbers after retrieving the message list.
+/**
+ Set the message sequence number.
+ 
+ This will NOT set any thing on the server.
+ This is used to assign sequence numbers after retrieving the message list.
 */
 - (void)setSequenceNumber:(NSUInteger)sequenceNumber;
 
-/*!
-    @abstract	Parses the from list, the result is an NSSet containing CTCoreAddress's
+/**
+ Parses the from list, the result is an NSSet containing CTCoreAddress's
 */
 - (NSSet *)from;
 
-/*!
-    @abstract	Sets the message's from addresses
-    @param		addresses A NSSet containing CTCoreAddress's
+/**
+ Sets the message's from addresses
+ @param addresses A NSSet containing CTCoreAddress's
 */
 - (void)setFrom:(NSSet *)addresses;
 
-/*!
-    @abstract	Returns the sender, which isn't always the actual person who sent the message, it's usually the
-                address of the machine that sent the message. In reality, this method isn't very useful, use from: instead.
+/**
+ Returns the sender.
+ 
+ The sender which isn't always the actual person who sent the message, it's usually the
+ address of the machine that sent the message. In reality, this method isn't very useful, use from: instead.
 */
 - (CTCoreAddress *)sender;
 
-/*!
-    @abstract	Returns the list of people the message was sent to, returns an NSSet containing CTAddress's.
+/**
+ Returns the list of people the message was sent to, returns an NSSet containing CTAddress's.
 */
 - (NSSet *)to;
 
-/*!
-    @abstract	Sets the message's to addresses
-    @param		addresses A NSSet containing CTCoreAddress's
+/**
+ Sets the message's to addresses
+ @param addresses A NSSet containing CTCoreAddress's
 */
 - (void)setTo:(NSSet *)addresses;
 
-/*!
-    @abstract	Returns the list of people the message was cced to, returns an NSSet containing CTAddress's.
+/**
+ Returns the list of people the message was cced to, returns an NSSet containing CTAddress's.
 */
 - (NSSet *)cc;
 
-/*!
-    @abstract	Sets the message's cc addresses
-    @param		addresses A NSSet containing CTCoreAddress's
+/**
+ Sets the message's cc addresses
+ @param addresses A NSSet containing CTCoreAddress's
 */
 - (void)setCc:(NSSet *)addresses;
 
-/*!
-    @abstract	Returns the list of people the message was bcced to, returns an NSSet containing CTAddress's.
+/**
+ Returns the list of people the message was bcced to, returns an NSSet containing CTAddress's.
 */
 - (NSSet *)bcc;
 
-/*!
-    @abstract	Sets the message's bcc addresses
-    @param		addresses A NSSet containing CTCoreAddress's
+/**
+ Sets the message's bcc addresses
+ @param addresses A NSSet containing CTCoreAddress's
 */
 - (void)setBcc:(NSSet *)addresses;
 
-/*!
-    @abstract	Returns the list of people the message was in reply-to, returns an NSSet containing CTAddress's.
+/**
+ Returns the list of people the message was in reply-to, returns an NSSet containing CTAddress's.
 */
 - (NSSet *)replyTo;
 
-/*!
-    @abstract	Sets the message's reply to addresses
-    @param		addresses A NSSet containing CTCoreAddress's
+/**
+ Sets the message's reply to addresses
+ @param addresses A NSSet containing CTCoreAddress's
 */
 - (void)setReplyTo:(NSSet *)addresses;
 
-/*!
-    @abstract	Returns the message rendered as the appropriate MIME and IMF content. Use this only if you
-                want the raw encoding of the message.
+/**
+ Returns the message rendered as the appropriate MIME and IMF content.
+ 
+ Use this only if you want the raw encoding of the message.
 */
 - (NSString *)render;
 
-/*!
-    @abstract   Returns the message in the format Mail.app uses, Emlx. This format stores the message
-                headers, body, and flags.
+/**
+ Returns the message in the format Mail.app uses, Emlx. 
+ 
+ This format stores the message headers, body, and flags.
 */
 - (NSData *)messageAsEmlx;
 
-/*!
-    @abstract   Fetches from the server the rfc822 content of the message, which is the headers and the message body.
-    @return     Return nil on error. Call method lastError to get error if one occurred
+/**
+ Fetches from the server the rfc822 content of the message, which are the headers and the message body.
+ @return Return nil on error. Call method lastError to get error if one occurred
 */
 - (NSString *)rfc822;
 

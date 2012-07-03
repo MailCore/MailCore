@@ -32,19 +32,18 @@
 #import <Foundation/Foundation.h>
 #import <libetpan/libetpan.h>
 
-/*!
-    @class	CTSMTP
-    This class is used internally by CTSMTPConnection for SMTP connections, clients
-    should not use this directly.
+/*
+ This class is used internally by CTSMTPConnection for SMTP connections, clients
+ should not use this directly.
 */
 
 @interface CTSMTP : NSObject {
     mailsmtp *mySMTP; /* This resource is created and freed by CTSMTPConnection */
     NSError *lastError;
 }
-/*!
-    @abstract If an error occurred (nil or return of NO) call this method to get the error
- */
+/*
+ If an error occurred (nil or return of NO) call this method to get the error
+*/
 @property(nonatomic, retain) NSError *lastError;
 
 - (id)initWithResource:(mailsmtp *)smtp;
