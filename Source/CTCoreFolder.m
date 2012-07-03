@@ -504,7 +504,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     struct mailmessage *msgStruct;
     char uidString[100];
 
-    sprintf(uidString, "%d", uid);
+    sprintf(uidString, "%d", (uint32_t)uid);
 
     BOOL success = [self connect];
     if (!success) {
@@ -626,7 +626,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     if (!success) {
         return NO;
     }
-    err =  mailfolder_status(myFolder, &junk, &junk, unseenCount);
+    err =  mailfolder_status(myFolder, &junk, &junk, (uint32_t *)unseenCount);
     if (err != MAIL_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromCode(err);
         return NO;

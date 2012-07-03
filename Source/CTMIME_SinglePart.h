@@ -44,6 +44,7 @@ typedef void (^CTProgressBlock)(size_t curr, size_t max);
     BOOL mFetched;
     NSString *mFilename;
     NSString *mContentId;
+    NSError *lastError;
 }
 @property(nonatomic) BOOL attached;
 @property(nonatomic) BOOL fetched;
