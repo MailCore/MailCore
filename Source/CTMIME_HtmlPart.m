@@ -100,8 +100,8 @@
     mime_sub = mailmime_new_empty(content, mime_fields);
     assert(mime_sub != NULL);
     NSString *str = [self content];
-    //TODO is strdup necessary?
-    r = mailmime_set_body_text(mime_sub, strdup([str cStringUsingEncoding:NSUTF8StringEncoding]), [str length]);
+    NSData * data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    r = mailmime_set_body_text(mime_sub, strdup([data bytes]), [data length]);
     return mime_sub;
 }
 
