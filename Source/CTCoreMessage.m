@@ -588,7 +588,7 @@
     NSString *msgContent = [[self rfc822] stringByReplacingOccurrencesOfString:@"\r\n" withString:@"\n"];
     NSData *msgContentAsData = [msgContent dataUsingEncoding:NSUTF8StringEncoding];
     NSMutableData *emlx = [NSMutableData data];
-    [emlx appendData:[[NSString stringWithFormat:@"%-10d\n", msgContentAsData.length] dataUsingEncoding:NSUTF8StringEncoding]];
+    [emlx appendData:[[NSString stringWithFormat:@"%-10d\n", (uint32_t)msgContentAsData.length] dataUsingEncoding:NSUTF8StringEncoding]];
     [emlx appendData:msgContentAsData];
 
 
