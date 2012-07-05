@@ -236,7 +236,7 @@ NSError* MailCoreCreateErrorFromCode(int errcode) {
             description = @"Folder errror";
             break;
         default:
-            description = [NSString stringWithFormat:@"Error: %@", exp];
+            description = [NSString stringWithFormat:@"Error: %d", errcode];
             break;
     }
     return MailCoreCreateError(errcode, description);
