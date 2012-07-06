@@ -413,54 +413,56 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
         struct mailimap_body * imap_body = NULL;
         struct mailimap_envelope * envelope = NULL;
 
-        r = imap_get_msg_att_info(msg_att, &uid, &envelope, &references, &ref_size, NULL, &imap_body);
-        if (r != MAIL_NO_ERROR) {
-            mailimap_fetch_list_free(fetch_result);
-            self.lastError = MailCoreCreateErrorFromCode(r);
-            return nil;
-        }
-
-        if (imap_body != NULL) {
-            r = imap_body_to_body(imap_body, &body);
+        if (attrs & CTFetchAttrBodyStructure) {
+            r = imap_get_msg_att_info(msg_att, &uid, &envelope, &references, &ref_size, NULL, &imap_body);
             if (r != MAIL_NO_ERROR) {
                 mailimap_fetch_list_free(fetch_result);
                 self.lastError = MailCoreCreateErrorFromCode(r);
                 return nil;
             }
-        }
 
-        if (envelope != NULL) {
-            r = imap_env_to_fields(envelope, references, ref_size, &fields);
-            if (r != MAIL_NO_ERROR) {
+            if (imap_body != NULL) {
+                r = imap_body_to_body(imap_body, &body);
+                if (r != MAIL_NO_ERROR) {
+                    mailimap_fetch_list_free(fetch_result);
+                    self.lastError = MailCoreCreateErrorFromCode(r);
+                    return nil;
+                }
+            }
+
+            if (envelope != NULL) {
+                r = imap_env_to_fields(envelope, references, ref_size, &fields);
+                if (r != MAIL_NO_ERROR) {
+                    mailmime_free(body);
+                    mailimap_fetch_list_free(fetch_result);
+                    self.lastError = MailCoreCreateErrorFromCode(r);
+                    return nil;
+                }
+            }
+
+            content_message = mailmime_get_content_message();
+            if (content_message == NULL) {
+                if (fields != NULL)
+                    mailimf_fields_free(fields);
                 mailmime_free(body);
                 mailimap_fetch_list_free(fetch_result);
-                self.lastError = MailCoreCreateErrorFromCode(r);
+                self.lastError = MailCoreCreateErrorFromCode(MAIL_ERROR_MEMORY);
                 return nil;
             }
-        }
 
-        content_message = mailmime_get_content_message();
-        if (content_message == NULL) {
-            if (fields != NULL)
-                mailimf_fields_free(fields);
-            mailmime_free(body);
-            mailimap_fetch_list_free(fetch_result);
-            self.lastError = MailCoreCreateErrorFromCode(MAIL_ERROR_MEMORY);
-            return nil;
-        }
+            new_body = mailmime_new(MAILMIME_MESSAGE, NULL,
+                                    0, NULL, content_message,
+                                    NULL, NULL, NULL, NULL, fields, body);
 
-        new_body = mailmime_new(MAILMIME_MESSAGE, NULL,
-                                0, NULL, content_message,
-                                NULL, NULL, NULL, NULL, fields, body);
-
-        if (new_body == NULL) {
-            mailmime_content_free(content_message);
-            if (fields != NULL)
-                mailimf_fields_free(fields);
-            mailmime_free(body);
-            mailimap_fetch_list_free(fetch_result);
-            self.lastError = MailCoreCreateErrorFromCode(MAIL_ERROR_MEMORY);
-            return nil;
+            if (new_body == NULL) {
+                mailmime_content_free(content_message);
+                if (fields != NULL)
+                    mailimf_fields_free(fields);
+                mailmime_free(body);
+                mailimap_fetch_list_free(fetch_result);
+                self.lastError = MailCoreCreateErrorFromCode(MAIL_ERROR_MEMORY);
+                return nil;
+            }
         }
 
         CTCoreMessage* msgObject = [[CTCoreMessage alloc] initWithMessageStruct:msg];
