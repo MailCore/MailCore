@@ -506,7 +506,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     struct mailmessage *msgStruct;
     char uidString[100];
 
-    sprintf(uidString, "%d", (uint32_t)uid);
+    sprintf(uidString, "%d-%d", (uint32_t)[self uidValidity], (uint32_t)uid);
 
     BOOL success = [self connect];
     if (!success) {
