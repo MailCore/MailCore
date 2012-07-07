@@ -179,10 +179,12 @@
     return result;
 }
 
-- (NSString *)bodyPreferringPlainText {
+- (NSString *)bodyPreferringPlainText:(BOOL *)isHTML {
     NSString *body = [self body];
+    *isHTML = NO;
     if ([body length] == 0) {
         body = [self htmlBody];
+        *isHTML = YES;
     }
     return body;
 }

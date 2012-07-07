@@ -102,10 +102,9 @@
 - (BOOL)fetchBodyStructure;
 
 /**
- This method returns the parsed message body as an NSString.
+ This method returns the parsed plain text message body as an NSString.
 
- This attempts to return a plain text body and skips HTML. If
- a plaintext body isn't found the HTML body is returned.
+ If a plaintext body isn't found an empty string is returned
 */
 - (NSString *)body;
 
@@ -117,10 +116,12 @@
 /**  
  Returns a message body as an NSString. 
 
+ @param isHTML Pass in a BOOL pointer that will be set to YES if an HTML body is loaded
+
  First attempts to retrieve a plain text body, if that fails then
  tries for an HTML body.
 */
-- (NSString *)bodyPreferringPlainText;
+- (NSString *)bodyPreferringPlainText:(BOOL *)isHTML;
 
 /**
  This method sets the message body. Plaintext only please!
