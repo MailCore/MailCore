@@ -165,7 +165,7 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
         }
         if (r != MAIL_NO_ERROR) {
             mailmessage_fetch_result_free(mMessage, fetchedData);
-            self.lastError = MailCoreCreateErrorFromCode(r);
+            self.lastError = MailCoreCreateErrorFromIMAPCode(r);
             return NO;
         }
 
@@ -177,7 +177,7 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
                                     encoding, &result, &result_len);
         if (r != MAILIMF_NO_ERROR) {
             mailmime_decoded_part_free(result);
-            self.lastError = MailCoreCreateErrorFromCode(r);
+            self.lastError = MailCoreCreateError(r, @"Error parsing the message");
             return NO;
         }
         NSData *data = [NSData dataWithBytes:result length:result_len];

@@ -101,4 +101,45 @@ error:
     mailsmtp_free(smtp);
     return NO;
 }
+
++ (BOOL)canConnectToServer:(NSString *)server username:(NSString *)username password:(NSString *)password
+                      port:(unsigned int)port useTLS:(BOOL)tls useAuth:(BOOL)auth error:(NSError **)error {
+  BOOL success;
+  mailsmtp *smtp = NULL;
+  smtp = mailsmtp_new(0, NULL);
+  
+  CTSMTP *smtpObj = [[CTESMTP alloc] initWithResource:smtp];
+  success = [smtpObj connectToServer:server port:port];
+  if (!success) {
+    goto error;
+  }
+  if ([smtpObj helo] == NO) {
+    /* The server didn't support ESMTP, so switching to STMP */
+    [smtpObj release];
+    smtpObj = [[CTSMTP alloc] initWithResource:smtp];
+    success = [smtpObj helo];
+    if (!success) {
+      goto error;
+    }
+  }
+  if (tls) {
+    success = [smtpObj startTLS];
+    if (!success) {
+      goto error;
+    }
+  }
+  if (auth) {
+    [smtpObj authenticateWithUsername:username password:password server:server];
+    if (!success) {
+      goto error;
+    }
+  }
+  [smtpObj release];
+  return YES;
+error:
+  *error = smtpObj.lastError;
+  [smtpObj release];
+  mailsmtp_free(smtp);
+  return NO;
+}
 @end

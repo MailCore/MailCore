@@ -82,7 +82,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     int err = MAIL_NO_ERROR;
     err =  mailfolder_connect(myFolder);
     if (err != MAILIMAP_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(err);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
     }
     connected = YES;
@@ -127,7 +127,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     }
     err =  mailimap_rename([myAccount session], oldPath, newPath);
     if (err != MAILIMAP_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(err);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
     }
     [path retain];
@@ -144,7 +144,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
 
     err =  mailimap_create([myAccount session], path);
     if (err != MAILIMAP_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(err);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
     }
     BOOL success = [self connect];
@@ -171,7 +171,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     }
     err =  mailimap_delete([myAccount session], path);
     if (err != MAILIMAP_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(err);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
     }
     return YES;
@@ -189,7 +189,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     err =  mailimap_subscribe([myAccount session], path);
     err =  mailimap_unsubscribe([myAccount session], path);
     if (err != MAILIMAP_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(err);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
     }
     return YES;
@@ -206,7 +206,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     }
     err =  mailimap_unsubscribe([myAccount session], path);
     if (err != MAILIMAP_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(err);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
     }
     return YES;
@@ -244,7 +244,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     }
     int err = mailfolder_check(myFolder);
     if (err != MAILIMAP_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(err);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
     }
     return YES;
@@ -264,7 +264,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     }
     set = mailimap_set_new_single(uid);
     if (set == NULL) {
-        self.lastError = MailCoreCreateErrorFromCode(MAIL_ERROR_MEMORY);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(MAIL_ERROR_MEMORY);
         return NO;
     }
 
@@ -272,14 +272,14 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     fetch_att = mailimap_fetch_att_new_uid();
     r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
     if (r != MAILIMAP_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(r);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
         mailimap_fetch_att_free(fetch_att);
         return NO;
     }
 
     r = mailimap_uid_fetch([self imapSession], set, fetch_type, &fetch_result);
     if (r != MAILIMAP_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(r);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
         return NO;
     }
 
@@ -319,7 +319,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     if (r != MAILIMAP_NO_ERROR) {
         mailimap_fetch_att_free(fetch_att);
         mailimap_fetch_type_free(fetch_type);
-        self.lastError = MailCoreCreateErrorFromCode(r);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
         return nil;
     }
 
@@ -329,7 +329,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     if (r != MAILIMAP_NO_ERROR) {
         mailimap_fetch_att_free(fetch_att);
         mailimap_fetch_type_free(fetch_type);
-        self.lastError = MailCoreCreateErrorFromCode(r);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
         return nil;
     }
 
@@ -339,7 +339,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     if (r != MAILIMAP_NO_ERROR) {
         mailimap_fetch_att_free(fetch_att);
         mailimap_fetch_type_free(fetch_type);
-        self.lastError = MailCoreCreateErrorFromCode(r);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
         return nil;
     }
 
@@ -350,7 +350,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
         if (r != MAILIMAP_NO_ERROR) {
             mailimap_fetch_att_free(fetch_att);
             mailimap_fetch_type_free(fetch_type);
-            self.lastError = MailCoreCreateErrorFromCode(r);
+            self.lastError = MailCoreCreateErrorFromIMAPCode(r);
             return nil;
         }
     }
@@ -360,7 +360,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
         r = imap_add_envelope_fetch_att(fetch_type);
         if (r != MAIL_NO_ERROR) {
             mailimap_fetch_type_free(fetch_type);
-            self.lastError = MailCoreCreateErrorFromCode(r);
+            self.lastError = MailCoreCreateErrorFromIMAPCode(r);
             return nil;
         }
     }
@@ -371,7 +371,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
         r = mailimap_fetch([self imapSession], set, fetch_type, &fetch_result);
     }
     if (r != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(r);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
         return nil;
     }
 
@@ -381,12 +381,12 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     env_list = NULL;
     r = uid_list_to_env_list(fetch_result, &env_list, [self folderSession], imap_message_driver);
     if (r != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(r);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
         return nil;
     }
     r = imap_fetch_result_to_envelop_list(fetch_result, env_list);
     if (r != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(r);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
         return nil;
     }
 
@@ -403,7 +403,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
         struct mailmessage * msg = carray_get(env_list->msg_tab, i);
         struct mailimap_msg_att *msg_att = (struct mailimap_msg_att *)clist_content(fetchResultIter);
         if (msg_att == nil) {
-            self.lastError = MailCoreCreateErrorFromCode(MAIL_ERROR_MEMORY);
+            self.lastError = MailCoreCreateErrorFromIMAPCode(MAIL_ERROR_MEMORY);
             return nil;
         }
 
@@ -417,7 +417,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
             r = imap_get_msg_att_info(msg_att, &uid, &envelope, &references, &ref_size, NULL, &imap_body);
             if (r != MAIL_NO_ERROR) {
                 mailimap_fetch_list_free(fetch_result);
-                self.lastError = MailCoreCreateErrorFromCode(r);
+                self.lastError = MailCoreCreateErrorFromIMAPCode(r);
                 return nil;
             }
 
@@ -425,7 +425,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
                 r = imap_body_to_body(imap_body, &body);
                 if (r != MAIL_NO_ERROR) {
                     mailimap_fetch_list_free(fetch_result);
-                    self.lastError = MailCoreCreateErrorFromCode(r);
+                    self.lastError = MailCoreCreateErrorFromIMAPCode(r);
                     return nil;
                 }
             }
@@ -435,7 +435,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
                 if (r != MAIL_NO_ERROR) {
                     mailmime_free(body);
                     mailimap_fetch_list_free(fetch_result);
-                    self.lastError = MailCoreCreateErrorFromCode(r);
+                    self.lastError = MailCoreCreateErrorFromIMAPCode(r);
                     return nil;
                 }
             }
@@ -446,7 +446,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
                     mailimf_fields_free(fields);
                 mailmime_free(body);
                 mailimap_fetch_list_free(fetch_result);
-                self.lastError = MailCoreCreateErrorFromCode(MAIL_ERROR_MEMORY);
+                self.lastError = MailCoreCreateErrorFromIMAPCode(MAIL_ERROR_MEMORY);
                 return nil;
             }
 
@@ -460,7 +460,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
                     mailimf_fields_free(fields);
                 mailmime_free(body);
                 mailimap_fetch_list_free(fetch_result);
-                self.lastError = MailCoreCreateErrorFromCode(MAIL_ERROR_MEMORY);
+                self.lastError = MailCoreCreateErrorFromIMAPCode(MAIL_ERROR_MEMORY);
                 return nil;
             }
         }
@@ -514,19 +514,19 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     }
     err = mailfolder_get_message_by_uid([self folderStruct], uidString, &msgStruct);
     if (err != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(err);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return nil;
     }
     err = mailmessage_fetch_envelope(msgStruct,&(msgStruct->msg_fields));
     if (err != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(err);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return nil;
     }
     //TODO Fix me, i'm missing alot of things that aren't being downloaded,
     // I just hacked this in here for the mean time
     err = mailmessage_get_flags(msgStruct, &(msgStruct->msg_flags));
     if (err != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(err);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return nil;
     }
     return [[[CTCoreMessage alloc] initWithMessageStruct:msgStruct] autorelease];
@@ -551,7 +551,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     struct mail_flags *flagStruct;
     err = mailmessage_get_flags([msg messageStruct], &flagStruct);
     if (err != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(err);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
     }
     *flags = flagStruct->fl_flags;
@@ -569,7 +569,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     [msg messageStruct]->msg_flags->fl_flags=flags;
     err = mailmessage_check([msg messageStruct]);
     if (err != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(err);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
     }
     return [self check];
@@ -584,7 +584,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     }
     err = mailfolder_expunge(myFolder);
     if (err != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(err);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
     }
     return YES;
@@ -599,7 +599,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     const char *mbPath = [path cStringUsingEncoding:NSUTF8StringEncoding];
     int err = mailsession_copy_message([self folderSession], [msg uid], mbPath);
     if (err != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(err);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
     }
     return YES;
@@ -614,7 +614,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     const char *mbPath = [path cStringUsingEncoding:NSUTF8StringEncoding];
     int err = mailsession_move_message([self folderSession], [msg uid], mbPath);
     if (err != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(err);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
     }
     return YES;
@@ -630,7 +630,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     }
     err =  mailfolder_status(myFolder, &junk, &junk, (uint32_t *)unseenCount);
     if (err != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(err);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
     }
     return YES;

@@ -107,7 +107,7 @@ static int fill_local_ip_port(mailstream * stream, char * local_ip_port, size_t 
 
     int ret = mailesmtp_starttls([self resource]);
     if (ret != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(ret);
+        self.lastError = MailCoreCreateErrorFromSMTPCode(ret);
         return NO;
     }
 
@@ -119,7 +119,7 @@ static int fill_local_ip_port(mailstream * stream, char * local_ip_port, size_t 
 
     ret = mailesmtp_ehlo([self resource]);
     if (ret != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(ret);
+        self.lastError = MailCoreCreateErrorFromSMTPCode(ret);
         return NO;
     }
     return YES;
@@ -167,7 +167,7 @@ static int fill_local_ip_port(mailstream * stream, char * local_ip_port, size_t 
     ret = mailesmtp_auth_sasl([self resource], "PLAIN", cServer, local_ip_port, remote_ip_port,
                             cUsername, cUsername, cPassword, cServer);
     if (ret != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(ret);
+        self.lastError = MailCoreCreateErrorFromSMTPCode(ret);
         return NO;
     }
     return YES;
@@ -177,7 +177,7 @@ static int fill_local_ip_port(mailstream * stream, char * local_ip_port, size_t 
 - (BOOL)setFrom:(NSString *)fromAddress {
     int ret = mailesmtp_mail([self resource], [fromAddress cStringUsingEncoding:NSUTF8StringEncoding], 1, "MailCoreSMTP");
     if (ret != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(ret);
+        self.lastError = MailCoreCreateErrorFromSMTPCode(ret);
         return NO;
     }
     return YES;
@@ -188,7 +188,7 @@ static int fill_local_ip_port(mailstream * stream, char * local_ip_port, size_t 
     int ret = mailesmtp_rcpt([self resource], [recAddress cStringUsingEncoding:NSUTF8StringEncoding],
                         MAILSMTP_DSN_NOTIFY_FAILURE|MAILSMTP_DSN_NOTIFY_DELAY,NULL);
     if (ret != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(ret);
+        self.lastError = MailCoreCreateErrorFromSMTPCode(ret);
         return NO;
     }
     return YES;

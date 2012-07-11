@@ -55,7 +55,7 @@
     /* first open the stream */
     int ret = mailsmtp_socket_connect([self resource], [server cStringUsingEncoding:NSUTF8StringEncoding], port);
     if (ret != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(ret);
+        self.lastError = MailCoreCreateErrorFromSMTPCode(ret);
         return NO;
     }
     return YES;
@@ -65,7 +65,7 @@
     /*  The server doesn't support esmtp, so try regular smtp */
     int ret = mailsmtp_helo([self resource]);
     if (ret != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(ret);
+        self.lastError = MailCoreCreateErrorFromSMTPCode(ret);
         return NO;
     }
     return YES; /* The server supports helo so return YES */
@@ -82,7 +82,7 @@
 - (BOOL)setFrom:(NSString *)fromAddress {
     int ret = mailsmtp_mail([self resource], [fromAddress cStringUsingEncoding:NSUTF8StringEncoding]);
     if (ret != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(ret);
+        self.lastError = MailCoreCreateErrorFromSMTPCode(ret);
         return NO;
     }
     return YES;
@@ -105,7 +105,7 @@
 - (BOOL)setRecipientAddress:(NSString *)recAddress {
     int ret = mailsmtp_rcpt([self resource], [recAddress cStringUsingEncoding:NSUTF8StringEncoding]);
     if (ret != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(ret);
+        self.lastError = MailCoreCreateErrorFromSMTPCode(ret);
         return NO;
     }
     return YES;
@@ -115,12 +115,12 @@
     NSData *dataObj = [data dataUsingEncoding:NSUTF8StringEncoding];
     int ret = mailsmtp_data([self resource]);
     if (ret != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(ret);
+        self.lastError = MailCoreCreateErrorFromSMTPCode(ret);
         return NO;
     }
     ret = mailsmtp_data_message([self resource], [dataObj bytes], [dataObj length]);
     if (ret != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(ret);
+        self.lastError = MailCoreCreateErrorFromSMTPCode(ret);
         return NO;
     }
     return YES;

@@ -122,7 +122,7 @@
     //Retrieve message mime and message field
     err = mailmessage_get_bodystructure(myMessage, &dummyMime);
     if (err != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(err);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
     }
     myParsedMIME = [[CTMIMEFactory createMIMEWithMIMEStruct:[self messageStruct]->msg_mime
@@ -628,7 +628,7 @@
     if (r == MAIL_NO_ERROR) {
         nsresult = [[NSString alloc] initWithCString:result encoding:NSUTF8StringEncoding];
     } else {
-        self.lastError = MailCoreCreateErrorFromCode(r);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
         return nil;
     }
     mailimap_msg_att_rfc822_free(result);

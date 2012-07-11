@@ -90,7 +90,7 @@
                                      imap_cached, NULL);
 
     if (err != MAILIMAP_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(err);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
     }
 
@@ -99,7 +99,7 @@
         self.lastError = MailCoreCreateError(err, @"Invalid username or password");
         return NO;
     } else if (err != MAILIMAP_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(err);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
     }
     connected = YES;
@@ -110,7 +110,7 @@
     int err = mailimap_idle([self session]);
 
     if (err != MAILIMAP_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(err);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
     }
     return YES;
@@ -130,7 +130,7 @@
     int err = mailimap_idle_done([self session]);
 
     if (err != MAILIMAP_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(err);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
     }
     return YES;
@@ -187,7 +187,7 @@
     //Fill the subscribed folder array
     err = mailimap_lsub([self session], "", "*", &subscribedList);
     if (err != MAILIMAP_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(err);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return nil;
     }
     for(cur = clist_begin(subscribedList); cur != NULL; cur = cur->next) {
@@ -215,7 +215,7 @@
     //TODO Fix this so it doesn't use *
     err = mailimap_list([self session], "", "*", &allList);
     if (err != MAILIMAP_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromCode(err);
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return nil;
     }
     for(cur = clist_begin(allList); cur != NULL; cur = cur->next)

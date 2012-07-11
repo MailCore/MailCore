@@ -66,7 +66,16 @@ NSError* MailCoreCreateError(int errcode, NSString *description) {
     return [NSError errorWithDomain:@"mailcore" code:errcode userInfo:errorDetail];
 }
 
-NSError* MailCoreCreateErrorFromCode(int errcode) {
+NSError* MailCoreCreateErrorFromSMTPCode(int errcode) {
+    const char *errStr = mailsmtp_strerror(errcode);
+    NSString *description = @"Unknown error";
+    if (errStr) {
+        description = [[NSString alloc] initWithCString:errStr encoding:NSUTF8StringEncoding];
+    }
+    return MailCoreCreateError(errcode, description);
+}
+
+NSError* MailCoreCreateErrorFromIMAPCode(int errcode) {
     NSString *description = @"";
     switch (errcode) {
         case MAILIMAP_ERROR_BAD_STATE:
