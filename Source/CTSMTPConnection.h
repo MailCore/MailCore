@@ -32,7 +32,7 @@
 #import <Foundation/Foundation.h>
 
 /**
- This is not a class you instantiate! It has only one class method, and that is all you need to send e-mail.
+ This is not a class you instantiate! It has only two class methods, and that is all you need to send e-mail.
  First use CTCoreMessage to compose an e-mail and then pass the e-mail to the method sendMessage: with
  the necessary server settings and CTSMTPConnection will send the message.
 */
