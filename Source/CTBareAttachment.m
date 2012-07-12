@@ -29,7 +29,6 @@
  * SUCH DAMAGE.
  */
 
-#import <MailCore/MailCore.h>
 #import "CTBareAttachment.h"
 
 #import "MailCoreUtilities.h"

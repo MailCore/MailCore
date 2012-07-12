@@ -342,7 +342,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MessageSender/MessageSender-Prefix.pch";
-				HEADER_SEARCH_PATHS = ../../include;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "MessageSender/MessageSender-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -354,7 +354,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MessageSender/MessageSender-Prefix.pch";
-				HEADER_SEARCH_PATHS = ../../include;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "MessageSender/MessageSender-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

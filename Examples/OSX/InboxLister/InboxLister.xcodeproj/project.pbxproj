@@ -165,8 +165,8 @@
 			isa = PBXGroup;
 			children = (
 				F8A2FAE4144FAA8E00C03DB4 /* MailCore.framework */,
-				F8A2FAE6144FAA8E00C03DB4 /* Tests.octest */,
 				F8A2FAE8144FAA8E00C03DB4 /* libmailcore.a */,
+				F8A2FAE6144FAA8E00C03DB4 /* Tests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";

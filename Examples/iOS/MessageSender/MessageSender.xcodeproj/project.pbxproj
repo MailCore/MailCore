@@ -228,8 +228,8 @@
 			isa = PBXGroup;
 			children = (
 				F89195C8144D0C8900EADD16 /* MailCore.framework */,
-				F89195CA144D0C8900EADD16 /* Tests.octest */,
 				F89195CC144D0C8900EADD16 /* libmailcore.a */,
+				F89195CA144D0C8900EADD16 /* Tests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -468,16 +468,8 @@
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MessageSender/MessageSender-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/../../../libetpan/build-mac/include",
-					"$(SRCROOT)/../../../include",
-				);
+				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../include\"";
 				INFOPLIST_FILE = "MessageSender/MessageSender-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../../iOSPorts/ports/security/cyrus-sasl/build/Debug-iphoneos\"",
-					"\"$(SRCROOT)/../../../iOSPorts/ports/security/openssl/build/Debug-iphoneos\"",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -489,16 +481,8 @@
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MessageSender/MessageSender-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/../../../libetpan/build-mac/include",
-					"$(SRCROOT)/../../../include",
-				);
+				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../include\"";
 				INFOPLIST_FILE = "MessageSender/MessageSender-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../../iOSPorts/ports/security/cyrus-sasl/build/Debug-iphoneos\"",
-					"\"$(SRCROOT)/../../../iOSPorts/ports/security/openssl/build/Debug-iphoneos\"",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
