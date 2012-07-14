@@ -24,31 +24,40 @@
 - (IBAction)connect:(id)sender
 {
     NSLog(@"Connecting...");
-
-    if ([useTLS state] == NSOnState )
-    {
-        [myAccount connectToServer:[server stringValue] port:[port intValue] connectionType:CONNECTION_TYPE_TLS
-                authType:IMAP_AUTH_TYPE_PLAIN login:[username stringValue] password:[password stringValue]];
+    
+    int portNumber = [port intValue];
+    BOOL ssl = [useTLS state] == NSOnState;
+    
+    [myAccount connectToServer:[server stringValue]
+                          port:portNumber > 0 ? portNumber : 993
+                connectionType:ssl ? CONNECTION_TYPE_TLS : CONNECTION_TYPE_PLAIN
+                      authType:IMAP_AUTH_TYPE_PLAIN
+                         login:[username stringValue]
+                      password:[password stringValue]];
+    
+    if(![myAccount isConnected]) {
+        NSLog(@"NOT CONNECTED!");
+        // return;
     }
-    else
-    {
-        [myAccount connectToServer:[server stringValue] port:[port intValue] connectionType:CONNECTION_TYPE_PLAIN
-                authType:IMAP_AUTH_TYPE_PLAIN login:[username stringValue] password:[password stringValue]];
-    }
+    
+    // NSLog(@"Folders %@", [myAccount allFolders]);
+    
     CTCoreFolder *inbox = [myAccount folderWithPath:@"INBOX"];
     NSLog(@"INBOX %@", inbox);
     // set the toIndex to 0 so all messages are loaded
-    NSSet *messageSet = [inbox messageObjectsFromIndex:1 toIndex:0];
-    NSLog(@"Done getting list of messages...");
-
+    NSArray *messageSet = [inbox messagesFromSequenceNumber:1 to:0 withFetchAttributes:CTFetchAttrEnvelope];
+    NSLog(@"Done getting list of messages... %@", messageSet);
+    
     NSMutableSet *messagesProxy = [self mutableSetValueForKey:@"messages"];
     NSEnumerator *objEnum = [messageSet objectEnumerator];
     id msg;
-
+    
     while(msg = [objEnum nextObject]) {
         [msg fetchBodyStructure];
         [messagesProxy addObject:msg];
     }
+    
+    [myAccount disconnect];
 }
 
 
