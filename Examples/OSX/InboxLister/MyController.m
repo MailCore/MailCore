@@ -36,8 +36,8 @@
                       password:[password stringValue]];
     
     if(![myAccount isConnected]) {
-        NSLog(@"NOT CONNECTED!");
-        // return;
+        NSRunCriticalAlertPanel(@"Connection Error", @"Please check your connection details and try again.", @"OK", nil, nil);
+        return;
     }
     
     // NSLog(@"Folders %@", [myAccount allFolders]);
