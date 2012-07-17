@@ -1,18 +1,19 @@
 Primary Authors:
 
-	* Matt Ronge
-	
+    * Matt Ronge
+    
 Contributors:
-	
-	* Stefano Barbato - For a patch that fixes a memory leak
+    
+    * Stefano Barbato - For a patch that fixes a memory leak
     * Jaremy Creechley - Added support for sending attachments
-	* Julián Romero - For a patch that adds unicode support for addresses
-	* Kyle Van Essen - For a patch that fixes a flags memory leak
+    * Julián Romero - For a patch that adds unicode support for addresses
+    * Kyle Van Essen - For a patch that fixes a flags memory leak
     * Gabor Cselle - For tons of contributions, especially iPhone support and bug fixes
     * Juan Leon - For adding async SMTP support
     * Matthew R. Miller - For move message support and date utilities
-	* Kaustubh Kabra - For HTML mail support
-	
+    * Kaustubh Kabra - For HTML mail support
+    * Dirk Holtwick - For updating the examples
+    
 Thanks to:
 
-	* Dinh Viet Hoa - For writing libetpan, which made MailCore possible
+    * Dinh Viet Hoa - For writing libetpan, which made MailCore possible
