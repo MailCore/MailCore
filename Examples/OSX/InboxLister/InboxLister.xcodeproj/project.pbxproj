@@ -304,6 +304,7 @@
 				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = InboxLister;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
@@ -321,6 +322,7 @@
 				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = InboxLister;
 				WRAPPER_EXTENSION = app;
 			};
