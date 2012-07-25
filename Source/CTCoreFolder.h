@@ -51,7 +51,9 @@
 /**
  If an error occurred (nil or return of NO) call this method to get the error
 */
-@property(nonatomic, retain) NSError *lastError;
+@property (nonatomic, retain) NSError *lastError;
+
+@property (nonatomic, retain) CTCoreAccount *parentAccount;
 
 /**
  This method is used to initialize a folder. This method or the

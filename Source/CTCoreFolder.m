@@ -47,7 +47,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
 @end
 
 @implementation CTCoreFolder
-@synthesize lastError;
+@synthesize lastError, parentAccount=myAccount;
 
 - (id)initWithPath:(NSString *)path inAccount:(CTCoreAccount *)account; {
     struct mailstorage *storage = (struct mailstorage *)[account storageStruct];
@@ -466,6 +466,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
         }
 
         CTCoreMessage* msgObject = [[CTCoreMessage alloc] initWithMessageStruct:msg];
+        msgObject.parentFolder = self;
         [msgObject setSequenceNumber:msg_att->att_number];
         if (fields != NULL) {
             [msgObject setFields:fields];
@@ -529,7 +530,9 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
         self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return nil;
     }
-    return [[[CTCoreMessage alloc] initWithMessageStruct:msgStruct] autorelease];
+    CTCoreMessage *msg = [[[CTCoreMessage alloc] initWithMessageStruct:msgStruct] autorelease];
+    msg.parentFolder = self;
+    return msg;
 }
 
 /*	Why are flagsForMessage: and setFlags:forMessage: in CTCoreFolder instead of CTCoreMessage?
