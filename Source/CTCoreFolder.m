@@ -593,14 +593,14 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     return YES;
 }
 
-- (BOOL)copyMessage:(CTCoreMessage *)msg toPath:(NSString *)path {
+- (BOOL)copyMessageWithUID:(NSUInteger)uid toPath:(NSString *)path {
     BOOL success = [self connect];
     if (!success) {
         return NO;
     }
 
     const char *mbPath = [path cStringUsingEncoding:NSUTF8StringEncoding];
-    int err = mailsession_copy_message([self folderSession], [msg uid], mbPath);
+    int err = mailsession_copy_message([self folderSession], uid, mbPath);
     if (err != MAIL_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
@@ -608,14 +608,14 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     return YES;
 }
 
-- (BOOL)moveMessage:(CTCoreMessage *)msg toPath:(NSString *)path {
+- (BOOL)moveMessageWithUID:(NSUInteger)uid toPath:(NSString *)path {
     BOOL success = [self connect];
     if (!success) {
         return NO;
     }
 
     const char *mbPath = [path cStringUsingEncoding:NSUTF8StringEncoding];
-    int err = mailsession_move_message([self folderSession], [msg uid], mbPath);
+    int err = mailsession_move_message([self folderSession], uid, mbPath);
     if (err != MAIL_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
