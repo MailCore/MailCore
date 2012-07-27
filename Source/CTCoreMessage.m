@@ -54,7 +54,7 @@
 @end
 
 @implementation CTCoreMessage
-@synthesize mime=myParsedMIME, lastError;
+@synthesize mime=myParsedMIME, lastError, parentFolder;
 
 - (id)init {
     [super init];
@@ -104,6 +104,7 @@
         mailimf_single_fields_free(myFields);
     }
     self.lastError = nil;
+    self.parentFolder = nil;
     [myParsedMIME release];
     [super dealloc];
 }

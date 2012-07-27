@@ -51,7 +51,9 @@
 /**
  If an error occurred (nil or return of NO) call this method to get the error
 */
-@property(nonatomic, retain) NSError *lastError;
+@property (nonatomic, retain) NSError *lastError;
+
+@property (nonatomic, retain) CTCoreAccount *parentAccount;
 
 /**
  This method is used to initialize a folder. This method or the
@@ -212,13 +214,13 @@
  Copies a message to a folder
  @return Return YES on success, NO on error. Call method lastError to get error if one occurred
 */
-- (BOOL)copyMessage:(CTCoreMessage *)msg toPath:(NSString *)path;
+- (BOOL)copyMessageWithUID:(NSUInteger)uid toPath:(NSString *)path;
 
 /**
  Moves a message to a folder
  @return Return YES on success, NO on error. Call method lastError to get error if one occurred
 */
-- (BOOL)moveMessage:(CTCoreMessage *)msg toPath:(NSString *)path;
+- (BOOL)moveMessageWithUID:(NSUInteger)uid toPath:(NSString *)path;
 
 /**
  Returns the number of unread messages. This causes a round trip to the server, as it fetches

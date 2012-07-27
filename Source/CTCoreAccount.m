@@ -192,9 +192,25 @@
     }
     for(cur = clist_begin(subscribedList); cur != NULL; cur = cur->next) {
         mailboxStruct = cur->data;
-        mailboxName = mailboxStruct->mb_name;
-        mailboxNameObject = [NSString stringWithCString:mailboxName encoding:NSUTF8StringEncoding];
-        [subscribedFolders addObject:mailboxNameObject];
+        struct mailimap_mbx_list_flags *flags = mailboxStruct->mb_flag;
+        BOOL selectable = YES;
+        if (flags) {
+            selectable = !(flags->mbf_type==MAILIMAP_MBX_LIST_FLAGS_SFLAG && flags->mbf_sflag==MAILIMAP_MBX_LIST_SFLAG_NOSELECT);
+        }
+        
+        if (selectable) {
+            mailboxName = mailboxStruct->mb_name;
+            mailboxNameObject = [NSString stringWithCString:mailboxName encoding:NSUTF8StringEncoding];
+            
+            // Replace the delimiter with /, in MailCore we always use / as the delimiter
+            // One potential problem is if the user has a / in their folder name....
+            if (mailboxStruct->mb_delimiter) {
+                NSString *delimiter = [NSString stringWithFormat:@"%c", mailboxStruct->mb_delimiter];
+                mailboxNameObject = [mailboxNameObject stringByReplacingOccurrencesOfString:delimiter withString:@"/"];
+                
+            }
+            [subscribedFolders addObject:mailboxNameObject];
+        }
     }
     mailimap_list_result_free(subscribedList);
     return subscribedFolders;
@@ -221,9 +237,24 @@
     for(cur = clist_begin(allList); cur != NULL; cur = cur->next)
     {
         mailboxStruct = cur->data;
-        mailboxName = mailboxStruct->mb_name;
-        mailboxNameObject = [NSString stringWithCString:mailboxName encoding:NSUTF8StringEncoding];
-        [allFolders addObject:mailboxNameObject];
+        struct mailimap_mbx_list_flags *flags = mailboxStruct->mb_flag;
+        BOOL selectable = YES;
+        if (flags) {
+            selectable = !(flags->mbf_type==MAILIMAP_MBX_LIST_FLAGS_SFLAG && flags->mbf_sflag==MAILIMAP_MBX_LIST_SFLAG_NOSELECT);
+        }
+        if (selectable) {
+            mailboxName = mailboxStruct->mb_name;
+            mailboxNameObject = [NSString stringWithCString:mailboxName encoding:NSUTF8StringEncoding];
+            
+            // Replace the delimiter with /, in MailCore we always use / as the delimiter
+            // One potential problem is if the user has a / in their folder name....
+            if (mailboxStruct->mb_delimiter) {
+                NSString *delimiter = [NSString stringWithFormat:@"%c", mailboxStruct->mb_delimiter];
+                mailboxNameObject = [mailboxNameObject stringByReplacingOccurrencesOfString:delimiter withString:@"/"];
+                
+            }
+            [allFolders addObject:mailboxNameObject];
+        }
     }
     mailimap_list_result_free(allList);
     return allFolders;
