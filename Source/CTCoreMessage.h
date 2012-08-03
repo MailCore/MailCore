@@ -48,6 +48,7 @@
     CTMIME *myParsedMIME;
     NSUInteger mySequenceNumber;
     NSError *lastError;
+    CTCoreFolder *parentFolder;
 }
 /**
  If an error occurred (nil or return of NO) call this method to get the error
