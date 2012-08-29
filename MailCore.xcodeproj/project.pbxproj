@@ -88,7 +88,6 @@
 		F88804D80B4243C000D400E7 /* MailCoreUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F88804D60B4243C000D400E7 /* MailCoreUtilities.m */; };
 		F8886306158101A50088CF38 /* libmailcore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8618B5710DADB5C00C41188 /* libmailcore.a */; };
 		F88863071581021F0088CF38 /* CTCoreAttachmentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F81E272E0C6EDC6A00B3FBAC /* CTCoreAttachmentTests.m */; };
-		F8886308158102220088CF38 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		F888630A1581023C0088CF38 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F88863091581023C0088CF38 /* libiconv.dylib */; };
 		F888630B158102550088CF38 /* CTCoreAccountTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F82D7D430F49279400ADA65C /* CTCoreAccountTests.m */; };
 		F888630C158102660088CF38 /* CTCoreAddressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EA76120C1141C1004F85D8 /* CTCoreAddressTests.m */; };
@@ -881,7 +880,6 @@
 				F888630D158102680088CF38 /* CTCoreMessageTests.m in Sources */,
 				F888630C158102660088CF38 /* CTCoreAddressTests.m in Sources */,
 				F88863071581021F0088CF38 /* CTCoreAttachmentTests.m in Sources */,
-				F8886308158102220088CF38 /* (null) in Sources */,
 				F888630B158102550088CF38 /* CTCoreAccountTests.m in Sources */,
 				F8EC5B0514C37F60006AF4D5 /* CTConnectedTest.m in Sources */,
 				F8EC5B0514C37F60006AF4D8 /* CTCoreFolderTests.m in Sources */,
@@ -980,6 +978,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: LIFFFT";
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1004,6 +1003,7 @@
 					0xb0000000,
 				);
 				PRODUCT_NAME = MailCore;
+				PROVISIONING_PROFILE = "181A22E2-412D-4C2C-944E-D8F3D52BD2AE";
 				STRIP_INSTALLED_PRODUCT = YES;
 				WRAPPER_EXTENSION = framework;
 			};
@@ -1062,11 +1062,13 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: LIFFFT";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ONLY_ACTIVE_ARCH = NO;
 				PRIVATE_HEADERS_FOLDER_PATH = ../../include/MailCore/Private;
 				PRODUCT_NAME = mailcore;
+				PROVISIONING_PROFILE = "181A22E2-412D-4C2C-944E-D8F3D52BD2AE";
 				PUBLIC_HEADERS_FOLDER_PATH = ../../include/MailCore;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
