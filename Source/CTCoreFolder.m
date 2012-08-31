@@ -212,6 +212,19 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     return YES;
 }
 
+- (BOOL) appendMessage: (CTCoreMessage *) msg
+{
+    int err = MAILIMAP_NO_ERROR;
+    NSString *msgStr = [msg render];
+    if (![self connect])
+        return NO;
+    err = mailsession_append_message ([self folderSession],
+                                      [msgStr cStringUsingEncoding: NSUTF8StringEncoding],
+                                      [msgStr lengthOfBytesUsingEncoding: NSUTF8StringEncoding]);
+    if (MAILIMAP_NO_ERROR != err)
+        self.lastError = MailCoreCreateErrorFromIMAPCode (err);
+    return MAILIMAP_NO_ERROR == err;
+}
 
 - (struct mailfolder *)folderStruct {
     return myFolder;
