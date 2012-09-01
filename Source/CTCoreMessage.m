@@ -505,6 +505,12 @@
         myFields->fld_to = mailimf_to_new(imf);
 }
 
+- (NSSet *)inReplyTo {
+    if (myFields->fld_in_reply_to == NULL)
+        return nil;
+    else
+        return [self _stringSetFromClist:myFields->fld_in_reply_to->mid_list];
+}
 
 - (NSSet *)cc {
     if (myFields->fld_cc == NULL)
@@ -751,6 +757,22 @@
         assert(err == 0);
     }
     return imfList;
+}
+
+- (NSSet *)_stringSetFromClist:(clist *)list {
+    clistiter *iter;
+    NSMutableSet *stringSet = [NSMutableSet set];
+	char *string;
+	
+    if(list == NULL)
+        return stringSet;
+	
+    for(iter = clist_begin(list); iter != NULL; iter = clist_next(iter)) {
+        string = clist_content(iter);
+		[stringSet addObject:[[NSString alloc] initWithUTF8String:string]];
+    }
+	
+    return stringSet;
 }
 
 @end
