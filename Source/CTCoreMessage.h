@@ -263,6 +263,11 @@ The local timezone is the one set in the device running this code
 - (void)setTo:(NSSet *)addresses;
 
 /**
+Return the list of messageIds from the in-reply-to field
+ */
+- (NSSet *)inReplyTo;
+
+/**
  Returns the list of people the message was cced to, returns an NSSet containing CTAddress's.
 */
 - (NSSet *)cc;
