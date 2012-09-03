@@ -106,11 +106,13 @@
     int err = 0;
     NSString *resultStr;
 
-    mailmime_write_mem(str, &col, [self buildMIMEStruct]);
+    struct mailmime *mime = [self buildMIMEStruct];
+    mailmime_write_mem(str, &col, mime);
     err = mmap_string_ref(str);
     resultStr = [[NSString alloc] initWithBytes:str->str length:str->len
                     encoding:NSUTF8StringEncoding];
     mmap_string_free(str);
+    mailmime_free(mime);
     return [resultStr autorelease];
 }
 
