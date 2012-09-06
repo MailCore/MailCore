@@ -85,11 +85,6 @@
 */
 - (id)initWithString:(NSString *)msgData;
 
-/*
- Creates an empty message
-*/
-- (id)init;
-
 /**
  If a method returns nil or in the case of a BOOL returns NO, call this to get the error that occured
 */
