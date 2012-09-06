@@ -319,4 +319,5 @@ The local timezone is the one set in the device running this code
 - (mailimap *)imapSession;
 - (void)setBodyStructure:(struct mailmime *)mime;
 - (void)setFields:(struct mailimf_fields *)fields;
+- (BOOL)hasHtmlBody;
 @end

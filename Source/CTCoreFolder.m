@@ -578,7 +578,6 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     return [self check];
 }
 
-
 - (BOOL)expunge {
     int err;
     BOOL success = [self connect];
