@@ -512,6 +512,39 @@
         return [self _stringSetFromClist:myFields->fld_in_reply_to->mid_list];
 }
 
+
+- (void)setInReplyTo:(NSSet *)messageIds {
+	struct mailimf_in_reply_to *imf = mailimf_in_reply_to_new([self _clistFromStringSet:messageIds]);
+
+    if (myFields->fld_in_reply_to != NULL) {
+        mailimf_in_reply_to_free(myFields->fld_in_reply_to);
+        myFields->fld_in_reply_to = imf;
+    }
+    else
+		myFields->fld_in_reply_to = imf;
+}
+
+
+- (NSSet *)references {
+    if (myFields->fld_references == NULL)
+        return nil;
+    else
+        return [self _stringSetFromClist:myFields->fld_references->mid_list];
+}
+
+
+- (void)setReferences:(NSSet *)messageIds {
+    struct mailimf_references *imf = mailimf_references_new([self _clistFromStringSet:messageIds]);
+
+    if (myFields->fld_references != NULL) {
+        mailimf_references_free(myFields->fld_references);
+        myFields->fld_references = imf;
+    }
+    else
+		myFields->fld_references = imf;
+}
+
+
 - (NSSet *)cc {
     if (myFields->fld_cc == NULL)
         return nil;
@@ -773,6 +806,16 @@
     }
 	
     return stringSet;
+}
+
+- (clist *)_clistFromStringSet:(NSSet *)strings {
+	clist * str_list = clist_new();
+
+	for (NSString *str in [strings allObjects]) {
+		clist_append(str_list, strdup([str UTF8String]));
+	}
+
+	return str_list;
 }
 
 @end

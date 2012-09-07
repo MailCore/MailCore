@@ -268,6 +268,23 @@ Return the list of messageIds from the in-reply-to field
 - (NSSet *)inReplyTo;
 
 /**
+ Sets the message's in-reply-to messageIds
+ @param messageIds A NSSet containing NSString messageId's
+*/
+- (void)setInReplyTo:(NSSet *)messageIds;
+
+/**
+Return the list of messageIds from the references field
+ */
+- (NSSet *)references;
+
+/**
+ Sets the message's references
+ @param messageIds A NSSet containing NSString messageId's
+*/
+- (void)setReferences:(NSSet *)messageIds;
+
+/**
  Returns the list of people the message was cced to, returns an NSSet containing CTAddress's.
 */
 - (NSSet *)cc;
