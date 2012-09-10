@@ -60,6 +60,7 @@
     self = [super init];
     if (self) {
         myContentList = [[NSMutableArray alloc] init];
+        self.contentType = @"multipart/mixed";
     }
     return self;
 }
@@ -78,8 +79,7 @@
 }
 
 - (struct mailmime *)buildMIMEStruct {
-    //TODO make this smarter so it builds different types other than multipart/mixed
-    struct mailmime *mime = mailmime_multiple_new("multipart/mixed");
+    struct mailmime *mime = mailmime_multiple_new([self.contentType UTF8String]);
 
     NSEnumerator *enumer = [myContentList objectEnumerator];
 
