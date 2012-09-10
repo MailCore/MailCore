@@ -67,10 +67,20 @@ NSError* MailCoreCreateError(int errcode, NSString *description) {
 }
 
 NSError* MailCoreCreateErrorFromSMTPCode(int errcode) {
-    const char *errStr = mailsmtp_strerror(errcode);
     NSString *description = @"Unknown error";
-    if (errStr) {
-        description = [[NSString alloc] initWithCString:errStr encoding:NSUTF8StringEncoding];
+    
+    switch (errcode) {
+        case MAILSMTP_ERROR_AUTH_LOGIN:
+            description = @"Invalid username or password";
+            break;
+            
+        default: {
+            const char *errStr = mailsmtp_strerror(errcode);
+            if (errStr) {
+                description = [[NSString alloc] initWithCString:errStr encoding:NSUTF8StringEncoding];
+            }
+            break;
+        }
     }
     return MailCoreCreateError(errcode, description);
 }

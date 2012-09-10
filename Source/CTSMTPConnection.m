@@ -67,7 +67,7 @@
         }
     }
     if (auth) {
-        [smtpObj authenticateWithUsername:username password:password server:server];
+        success = [smtpObj authenticateWithUsername:username password:password server:server];
         if (!success) {
             goto error;
         }
@@ -129,7 +129,7 @@ error:
     }
   }
   if (auth) {
-    [smtpObj authenticateWithUsername:username password:password server:server];
+    success = [smtpObj authenticateWithUsername:username password:password server:server];
     if (!success) {
       goto error;
     }
