@@ -140,11 +140,6 @@
 - (BOOL)check;
 
 /**
- The folder name.
-*/
-- (NSString *)name;
-
-/**
  The entire path of folder.
 */
 - (NSString *)path;
