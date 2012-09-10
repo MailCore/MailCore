@@ -43,16 +43,6 @@
 #import "CTMIME_HtmlPart.h"
 #import "MailCoreUtilities.h"
 
-@interface CTCoreMessage ()
-- (CTCoreAddress *)_addressFromMailbox:(struct mailimf_mailbox *)mailbox;
-- (NSSet *)_addressListFromMailboxList:(struct mailimf_mailbox_list *)mailboxList;
-- (struct mailimf_mailbox_list *)_mailboxListFromAddressList:(NSSet *)addresses;
-- (NSSet *)_addressListFromIMFAddressList:(struct mailimf_address_list *)imfList;
-- (struct mailimf_address_list *)_IMFAddressListFromAddresssList:(NSSet *)addresses;
-- (void)_buildUpBodyText:(CTMIME *)mime result:(NSMutableString *)result;
-- (void)_buildUpHtmlBodyText:(CTMIME *)mime result:(NSMutableString *)result;
-@end
-
 @implementation CTCoreMessage
 @synthesize mime=myParsedMIME, lastError, parentFolder;
 
@@ -505,16 +495,16 @@
         myFields->fld_to = mailimf_to_new(imf);
 }
 
-- (NSSet *)inReplyTo {
+- (NSArray *)inReplyTo {
     if (myFields->fld_in_reply_to == NULL)
         return nil;
     else
-        return [self _stringSetFromClist:myFields->fld_in_reply_to->mid_list];
+        return [self _stringArrayFromClist:myFields->fld_in_reply_to->mid_list];
 }
 
 
-- (void)setInReplyTo:(NSSet *)messageIds {
-	struct mailimf_in_reply_to *imf = mailimf_in_reply_to_new([self _clistFromStringSet:messageIds]);
+- (void)setInReplyTo:(NSArray *)messageIds {
+	struct mailimf_in_reply_to *imf = mailimf_in_reply_to_new([self _clistFromStringArray:messageIds]);
 
     if (myFields->fld_in_reply_to != NULL) {
         mailimf_in_reply_to_free(myFields->fld_in_reply_to);
@@ -525,16 +515,16 @@
 }
 
 
-- (NSSet *)references {
+- (NSArray *)references {
     if (myFields->fld_references == NULL)
         return nil;
     else
-        return [self _stringSetFromClist:myFields->fld_references->mid_list];
+        return [self _stringArrayFromClist:myFields->fld_references->mid_list];
 }
 
 
-- (void)setReferences:(NSSet *)messageIds {
-    struct mailimf_references *imf = mailimf_references_new([self _clistFromStringSet:messageIds]);
+- (void)setReferences:(NSArray *)messageIds {
+    struct mailimf_references *imf = mailimf_references_new([self _clistFromStringArray:messageIds]);
 
     if (myFields->fld_references != NULL) {
         mailimf_references_free(myFields->fld_references);
@@ -792,9 +782,9 @@
     return imfList;
 }
 
-- (NSSet *)_stringSetFromClist:(clist *)list {
+- (NSArray *)_stringArrayFromClist:(clist *)list {
     clistiter *iter;
-    NSMutableSet *stringSet = [NSMutableSet set];
+    NSMutableArray *stringSet = [NSMutableArray array];
 	char *string;
 	
     if(list == NULL)
@@ -808,10 +798,10 @@
     return stringSet;
 }
 
-- (clist *)_clistFromStringSet:(NSSet *)strings {
+- (clist *)_clistFromStringArray:(NSArray *)strings {
 	clist * str_list = clist_new();
 
-	for (NSString *str in [strings allObjects]) {
+	for (NSString *str in strings) {
 		clist_append(str_list, strdup([str UTF8String]));
 	}
 
