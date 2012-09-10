@@ -588,7 +588,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
         self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
     }
-    return [self check];
+    return YES;
 }
 
 
