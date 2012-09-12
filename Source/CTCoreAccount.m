@@ -39,7 +39,7 @@
 
 
 @implementation CTCoreAccount
-@synthesize lastError;
+@synthesize lastError, pathDelimiter;
 
 - (id)init {
     self = [super init];
