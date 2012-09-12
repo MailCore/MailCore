@@ -39,3 +39,9 @@
 #import <libetpan/libetpan.h>
 #import "MailCoreTypes.h"
 #import "MailCoreUtilities.h"
+#import "CTMIME_HtmlPart.h"
+#import "CTMIME_MessagePart.h"
+#import "CTMIME_MultiPart.h"
+#import "CTMIME_SinglePart.h"
+#import "CTMIME_TextPart.h"
+#import "CTMIME.h"
