@@ -379,21 +379,22 @@
     }
 }
 
+/* NSDates do not have timezones.
+   Timezones only come into play as you render NSDates for the user
+   http://stackoverflow.com/questions/1268509/convert-utc-nsdate-to-local-timezone-objective-c
+*/
+
 - (NSDate *)sentDateGMT {
     struct mailimf_date_time *d;
 
     if((d = [self libetpanDateTime]) == NULL)
         return nil;
 
-    NSInteger timezoneOffsetInSeconds = 3600*d->dt_zone/100;
-
-    NSDate *date = [self senderDate];
-
-    return [date dateByAddingTimeInterval:timezoneOffsetInSeconds * -1];
+    return [self senderDate];
 }
 
 - (NSDate*)sentDateLocalTimeZone {
-    return [[self sentDateGMT] dateByAddingTimeInterval:[[NSTimeZone localTimeZone] secondsFromGMT]];
+    return [self sentDateGMT];
 }
 
 - (BOOL)isUnread {

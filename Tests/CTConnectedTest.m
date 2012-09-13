@@ -35,15 +35,15 @@
 
 @implementation CTConnectedTest {
 }
-@synthesize account, folder;
-NSString *SERVER = @"imap.gmail.com";
-NSString *USERNAME = @"mailcoretests@gmail.com";
-NSString *PASSWORD = @"MailCoreRockz";
+@synthesize account, folder, credentials;
 
 - (void)setUp {
+    self.credentials = [NSDictionary dictionaryWithContentsOfFile:@"TestData/account.plist"];
+    STAssertNotNil(self.credentials, @"These tests will fail anyway if they can't connect");
+    
     self.account = [[CTCoreAccount alloc] init];
     [self connect];
-    self.folder = [self.account folderWithPath:@"Test"];
+    self.folder = [self.account folderWithPath:[self.credentials valueForKey:@"path"]];
     [self.folder connect];
 }
 
@@ -60,8 +60,25 @@ NSString *PASSWORD = @"MailCoreRockz";
 }
 
 - (void)connect {
-    [self.account connectToServer:SERVER port:993 connectionType:CTConnectionTypeTLS authType:CTImapAuthTypePlain
-             login:USERNAME password:PASSWORD];
+    NSString *server = [self.credentials valueForKey:@"server"];
+    int port = [[self.credentials objectForKey:@"port"] intValue];
+    NSString *username = [self.credentials valueForKey:@"username"];
+    NSString *password = [self.credentials valueForKey:@"password"];
+
+    STAssertFalse([server isEqualToString:@"server"], @"You need to provide your own account info");
+    STAssertFalse([username isEqualToString:@"username"], @"You need to provide your own account info");
+    STAssertFalse([password isEqualToString:@"password"], @"You need to provide your own account info");
+    /* Once you've provided your own account info, create a folder with six messages in it.
+       The path key in the account.plist should point to this directory, and you're ready! */
+    
+                   
+    BOOL success = [self.account connectToServer:server port:port connectionType:CTConnectionTypeTLS authType:CTImapAuthTypePlain
+            login:username password:password];
+    
+    STAssertTrue(success, @"should successfully connect to email account");
+    if (!success) {
+        NSLog(@"!!!!!!! Can't connect to account !!!!!!! Error: %@", [[self.account lastError] localizedDescription]);
+    }
 }
 
 - (void)disconnect {

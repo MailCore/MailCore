@@ -151,11 +151,30 @@
 	STAssertEqualObjects(addr, [replyTo anyObject], @"The only address object should have been kiwi-dev@lists.theronge.com");
 }
 
+
+// NSDates do not have timezones attached to them. All of these methods should return the same value
+
+- (void)testSentDateGMT {
+    // these are equivalent: Tue, 26 Dec 2006 21:06:49 -0800 (PST) and Wed, 27 Dec 2006 05:06:49 GMT
+	
+    NSTimeInterval sentSince1970 = [[myRealMsg sentDateGMT] timeIntervalSince1970];
+    NSTimeInterval actualSince1970 = 1167196009;
+    
+	STAssertEquals(sentSince1970, actualSince1970, @"Dates should be equal!");
+}
+
 - (void)testSentDate {
-    // Is this right?? I'm super confused by this time zone stuff
-	NSDate *sentDate = [myRealMsg sentDateGMT];
-	NSDate *actualDate = [NSDate dateWithTimeIntervalSince1970:1167217609];
-	STAssertEqualObjects(sentDate, actualDate, @"Date's should be equal!");
+    NSTimeInterval sentSince1970 = [[myRealMsg senderDate] timeIntervalSince1970];
+    NSTimeInterval actualSince1970 = 1167196009;
+    
+	STAssertEquals(sentSince1970, actualSince1970, @"Dates should be equal!");
+}
+
+- (void)sentDateLocalTimeZone {
+    NSTimeInterval sentSince1970 = [[myRealMsg sentDateLocalTimeZone] timeIntervalSince1970];
+    NSTimeInterval actualSince1970 = 1167196009;
+    
+	STAssertEquals(sentSince1970, actualSince1970, @"Dates should be equal!");
 }
 
 - (void)testSettingFromTwice {

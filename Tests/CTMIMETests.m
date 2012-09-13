@@ -41,7 +41,7 @@
 #import "CTMIME_TextPart.h"
 #import "CTMIME_Enumerator.h"
 
-const NSString *filePrefix = @"/Users/mronge/Projects/MailCore/";
+const NSString *filePrefix = @"./";
 
 @implementation CTMIMETests
 - (void)testMIMETextPart {

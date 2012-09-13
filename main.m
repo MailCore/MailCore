@@ -45,7 +45,7 @@
 
 #import "CTMIMEFactory.h"
 
-const NSString *filePrefix = @"/Users/local/Projects/MailCore/";
+const NSString *filePrefix = @"./";
 
 int main( int argc, char *argv[ ] )
 {
