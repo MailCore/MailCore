@@ -11,6 +11,8 @@
 		2D538B46119803A6000AB4A2 /* CTSMTPAsyncConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D538B43119803A6000AB4A2 /* CTSMTPAsyncConnection.m */; };
 		2D538B48119803E2000AB4A2 /* CTSMTPAsyncConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D538B43119803A6000AB4A2 /* CTSMTPAsyncConnection.m */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
+		AD2A76F415F0478A005B3841 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD2A76EC15F0478A005B3841 /* libOCMock.a */; };
+		AD2A76F815F047B9005B3841 /* libOCMock.a in Resources */ = {isa = PBXBuildFile; fileRef = AD2A76F715F047B9005B3841 /* libOCMock.a */; };
 		F81A8ADC0C03FC3B002F780A /* CTMIME_MessagePart.h in Headers */ = {isa = PBXBuildFile; fileRef = F81A8AD20C03FC3B002F780A /* CTMIME_MessagePart.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F81A8ADD0C03FC3B002F780A /* CTMIME_MessagePart.m in Sources */ = {isa = PBXBuildFile; fileRef = F81A8AD30C03FC3B002F780A /* CTMIME_MessagePart.m */; };
 		F81A8ADE0C03FC3B002F780A /* CTMIME_MultiPart.h in Headers */ = {isa = PBXBuildFile; fileRef = F81A8AD40C03FC3B002F780A /* CTMIME_MultiPart.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -288,7 +290,15 @@
 		2D538B42119803A6000AB4A2 /* CTSMTPAsyncConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTSMTPAsyncConnection.h; path = Source/CTSMTPAsyncConnection.h; sourceTree = SOURCE_ROOT; };
 		2D538B43119803A6000AB4A2 /* CTSMTPAsyncConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTSMTPAsyncConnection.m; path = Source/CTSMTPAsyncConnection.m; sourceTree = SOURCE_ROOT; };
 		8DC2EF5B0486A6940098B216 /* MailCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MailCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AD2A76F715F047B9005B3841 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = ../../Stacks/StacksTests/libOCMock.a; sourceTree = "<group>"; };
+<<<<<<< HEAD
+=======
+		AD2A76EC15F0478A005B3841 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOCMock.a; sourceTree = "<group>"; };
+		AD2A76EE15F0478A005B3841 /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
+		AD2A76EF15F0478A005B3841 /* OCMArg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMArg.h; sourceTree = "<group>"; };
+		AD2A76F015F0478A005B3841 /* OCMConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMConstraint.h; sourceTree = "<group>"; };
+		AD2A76F115F0478A005B3841 /* OCMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMock.h; sourceTree = "<group>"; };
+		AD2A76F215F0478A005B3841 /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
+		AD2A76F315F0478A005B3841 /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };	
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		F81A8AD20C03FC3B002F780A /* CTMIME_MessagePart.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = CTMIME_MessagePart.h; path = Source/CTMIME_MessagePart.h; sourceTree = "<group>"; };
 		F81A8AD30C03FC3B002F780A /* CTMIME_MessagePart.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = CTMIME_MessagePart.m; path = Source/CTMIME_MessagePart.m; sourceTree = "<group>"; };
@@ -474,6 +484,7 @@
 				F8DFCF4C15801A5000C01975 /* SenTestingKit.framework in Frameworks */,
 				F8DFCF4E15801A5000C01975 /* UIKit.framework in Frameworks */,
 				F8DFCF5015801A5000C01975 /* Foundation.framework in Frameworks */,
+				AD2A76F415F0478A005B3841 /* libOCMock.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,6 +596,19 @@
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
+		AD2A76ED15F0478A005B3841 /* OCMock */ = {
+			isa = PBXGroup;
+			children = (
+				AD2A76EE15F0478A005B3841 /* NSNotificationCenter+OCMAdditions.h */,
+				AD2A76EF15F0478A005B3841 /* OCMArg.h */,
+				AD2A76F015F0478A005B3841 /* OCMConstraint.h */,
+				AD2A76F115F0478A005B3841 /* OCMock.h */,
+				AD2A76F215F0478A005B3841 /* OCMockObject.h */,
+				AD2A76F315F0478A005B3841 /* OCMockRecorder.h */,
+			);
+			path = OCMock;
+			sourceTree = "<group>";
+		};
 		F81E26720C6ED56000B3FBAC /* MIME */ = {
 			isa = PBXGroup;
 			children = (
@@ -626,7 +650,8 @@
 		F85A18AF09C7D8F200305C06 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				AD2A76F715F047B9005B3841 /* libOCMock.a */,
+				AD2A76EC15F0478A005B3841 /* libOCMock.a */,
+				AD2A76ED15F0478A005B3841 /* OCMock */,
 				F8EC5B0514C37F60006AF4D4 /* CTConnectedTest.m */,
 				F8EC5B0514C37F60006AF4D6 /* CTConnectedTest.h */,
 				F8DFCF5215801A5000C01975 /* Supporting Files */,
@@ -1086,6 +1111,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8DFCF5615801A5000C01975 /* InfoPlist.strings in Resources */,
+				AD2A76F815F047B9005B3841 /* libOCMock.a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1276,6 +1302,7 @@
 					"$(LIBRARY_SEARCH_PATHS)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_2)",
+					"\"/Volumes/OCMock 2.0.1/iOS\"",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -1311,6 +1338,7 @@
 					"$(LIBRARY_SEARCH_PATHS)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_2)",
+					"\"/Volumes/OCMock 2.0.1/iOS\"",
 				);
 				OTHER_LDFLAGS = (
 					"-seg1addr",
@@ -1417,6 +1445,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/iOSPorts/ports/security/cyrus-sasl/build/Debug-iphoneos\"",
+					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1444,6 +1473,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/iOSPorts/ports/security/cyrus-sasl/build/Debug-iphoneos\"",
+					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
