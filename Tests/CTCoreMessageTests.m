@@ -70,9 +70,18 @@
     STAssertTrue([body rangeOfString:@"Kiwi-dev mailing list"].location != NSNotFound, @"Should find substring in body");
 }
 
-- (void)testGetsHTMLBody {
+- (void)testGetsHTMLBodyWithProperty {
     NSString *body = [myRealMsg htmlBody];
     NSLog(@"Body of the message: %@", body);
+    STAssertTrue([body rangeOfString:@"All methods which rely on"].location != NSNotFound, @"Should find substring in body");
+}
+
+- (void)testGetsHTMLBody {
+    BOOL isHTML;
+    NSString *body = [myRealMsg bodyPreferringHTML:&isHTML];
+
+    NSLog(@"Body of the message: %@", body);
+    STAssertTrue(isHTML, @"Response should be HTML");
     STAssertTrue([body rangeOfString:@"All methods which rely on"].location != NSNotFound, @"Should find substring in body");
 }
 
