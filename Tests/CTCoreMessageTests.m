@@ -55,6 +55,26 @@
 	STAssertEqualObjects(@"20061227050649.BEDF0B8563@theronge.com", [myRealMsg messageId], @"");
 }
 
+- (void)testGetsTextBodyWithProperty {
+    NSString *body = [myRealMsg body];
+    NSLog(@"Body of the message: %@", body);
+    STAssertTrue([body rangeOfString:@"Kiwi-dev mailing list"].location != NSNotFound, @"Should find substring in body");
+}
+
+- (void)testGetsTextBody {
+    BOOL isHTML;
+    NSString *body = [myRealMsg bodyPreferringPlainText:&isHTML];
+    
+    NSLog(@"Body of the message: %@", body);
+    STAssertFalse(isHTML, @"Response should not be HTML");
+    STAssertTrue([body rangeOfString:@"Kiwi-dev mailing list"].location != NSNotFound, @"Should find substring in body");
+}
+
+- (void)testGetsHTMLBody {
+    NSString *body = [myRealMsg htmlBody];
+    NSLog(@"Body of the message: %@", body);
+    STAssertTrue([body rangeOfString:@"All methods which rely on"].location != NSNotFound, @"Should find substring in body");
+}
 
 - (void)testReallyLongSubject {
 	NSString *reallyLongStr = @"faldskjfalkdjfal;skdfjl;ksdjfl;askjdflsadjkfsldfkjlsdfjkldskfjlsdkfjlskdfjslkdfjsdlkfjsdlfkjsdlfkjsdlfkjsdlkfjsdlfkjsdlfkjsldfjksldkfjsldkfjsdlfkjdslfjdsflkjdsflkjdsfldskjfsdlkfjsdlkfjdslkfjsdlkfjdslfkjfaldskjfalkdjfal;skdfjl;ksdjfl;askjdflsadjkfsldfkjlsdfjkldskfjlsdkfjlskdfjslkdfjsdlkfjsdlfkjsdlfkjsdlfkjsdlkfjsdlfkjsdlfkjsldfjksldkfjsldkfjsdlfkjdslfjdsflkjdsflkjdsfldskjfsdlkfjsdlkfjdslkfjsdlkfjdslfkjfaldskjfalkdjfal;skdfjl;ksdjfl;askjdflsadjkfsldfkjlsdfjkldskfjlsdkfjlskdfjslkdfjsdlkfjsdlfkjsdlfkjsdlfkjsdlkfjsdlfkjsdlfkjsldfjksldkfjsldkfjsdlfkjdslfjdsflkjdsflkjdsfldskjfsdlkfjsdlkfjdslkfjsdlkfjdslfkjaskjdflsadjkfsldfkjlsdfjkldskfjlsdkfjlskdfjslkdfjsdlkfjsdlfkjsdlfkjsdlfkjsdlkfjsdlfkjsdlfkjsldfjksldkfjsldkfjsdlfkjdslfjdsflkjdsflkjdsfldskjfsdlkfjsdlkfjdslkfjsdlkfjdslfkjaskjdflsadjkfsldfkjlsdfjkldskfjlsdkfjlskdfjslkdfjsdlkfjsdlfkjsdlfkjsdlfkjsdlkfjsdlfkjsdlfkjsldfjksldkfjsldkfjsdlfkjdslfjdsflkjdsflkjdsfldskjfsdlkfjsdlkfjdslkfjsdlkfjdslfkj";
