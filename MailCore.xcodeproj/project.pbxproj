@@ -113,7 +113,6 @@
 		F8EC5B0514C37F60006AF4D3 /* CTMIME_HtmlPart.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EC5B0214C37F60006AF4D3 /* CTMIME_HtmlPart.m */; };
 		F8EC5B0514C37F60006AF4D5 /* CTConnectedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EC5B0514C37F60006AF4D4 /* CTConnectedTest.m */; };
 		F8EC5B0514C37F60006AF4D8 /* CTCoreFolderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EC5B0514C37F60006AF4D7 /* CTCoreFolderTests.m */; };
-		F9E0BA9E16028CBB008CAD38 /* account.plist in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA5416028CBB008CAD38 /* account.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -817,9 +816,9 @@
 			productReference = F8618B5710DADB5C00C41188 /* libmailcore.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		F8DFCF4815801A5000C01975 /* MailCoreTests */ = {
+		F8DFCF4815801A5000C01975 /* Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F8DFCF5B15801A5000C01975 /* Build configuration list for PBXNativeTarget "MailCoreTests" */;
+			buildConfigurationList = F8DFCF5B15801A5000C01975 /* Build configuration list for PBXNativeTarget "Tests" */;
 			buildPhases = (
 				F8DFCF4415801A5000C01975 /* Sources */,
 				F8DFCF4515801A5000C01975 /* Frameworks */,
@@ -835,7 +834,7 @@
 				F88863051581019F0088CF38 /* PBXTargetDependency */,
 				F8DFCF7F15801B8200C01975 /* PBXTargetDependency */,
 			);
-			name = MailCoreTests;
+			name = Tests;
 			productName = Tests;
 			productReference = F8DFCF4915801A5000C01975 /* Tests.octest */;
 			productType = "com.apple.product-type.bundle";
@@ -876,7 +875,7 @@
 			targets = (
 				8DC2EF4F0486A6940098B216 /* MailCore */,
 				F8618B5610DADB5C00C41188 /* MailCore iOS */,
-				F8DFCF4815801A5000C01975 /* MailCoreTests */,
+				F8DFCF4815801A5000C01975 /* Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -931,7 +930,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9E0BA9E16028CBB008CAD38 /* account.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1213,6 +1211,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1230,13 +1229,12 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: LIFFFT";
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ONLY_ACTIVE_ARCH = NO;
 				PRIVATE_HEADERS_FOLDER_PATH = ../../include/MailCore/Private;
 				PRODUCT_NAME = mailcore;
-				PROVISIONING_PROFILE = "181A22E2-412D-4C2C-944E-D8F3D52BD2AE";
 				PUBLIC_HEADERS_FOLDER_PATH = ../../include/MailCore;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1338,7 +1336,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F8DFCF5B15801A5000C01975 /* Build configuration list for PBXNativeTarget "MailCoreTests" */ = {
+		F8DFCF5B15801A5000C01975 /* Build configuration list for PBXNativeTarget "Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F8DFCF5C15801A5000C01975 /* Debug */,

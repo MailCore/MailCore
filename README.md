@@ -18,9 +18,9 @@ Now open up MailCore.xcodeproj and build either the iOS static library or the Ma
 
 ## Running Tests
 
-TestData/account.plist will be required to run the CTConnectedTest/CTCoreFolder tests - see the top of Tests/CTConnectedTest.m for instructions on creating this file. You can turn these network-dependent tests off via Edit Scheme in XCode - deslect both of these classes in the Test section. Tests will run substantially faster.
+TestData/account.plist will be required to run the CTConnectedTest/CTCoreFolder tests - see the top of Tests/CTConnectedTest.m for instructions on creating this file. You can turn these network-dependent tests off via Edit Scheme in XCode - deslect both of these classes in the Test action section, inside the Tests target. Tests will run substantially faster.
 
-If the big Test button doesn't work for the project, you can again Edit Scheme and choose the MailCoreTests target for Test.
+If the big Test button doesn't work for the project, you can again Edit Scheme, select the Test and choose the Tests target for the Test action.
 
 Happy testing!
 
