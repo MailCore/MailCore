@@ -11,8 +11,6 @@
 		2D538B46119803A6000AB4A2 /* CTSMTPAsyncConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D538B43119803A6000AB4A2 /* CTSMTPAsyncConnection.m */; };
 		2D538B48119803E2000AB4A2 /* CTSMTPAsyncConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D538B43119803A6000AB4A2 /* CTSMTPAsyncConnection.m */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
-		AD2A76F415F0478A005B3841 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD2A76EC15F0478A005B3841 /* libOCMock.a */; };
-		AD2A76F815F047B9005B3841 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		F81A8ADC0C03FC3B002F780A /* CTMIME_MessagePart.h in Headers */ = {isa = PBXBuildFile; fileRef = F81A8AD20C03FC3B002F780A /* CTMIME_MessagePart.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F81A8ADD0C03FC3B002F780A /* CTMIME_MessagePart.m in Sources */ = {isa = PBXBuildFile; fileRef = F81A8AD30C03FC3B002F780A /* CTMIME_MessagePart.m */; };
 		F81A8ADE0C03FC3B002F780A /* CTMIME_MultiPart.h in Headers */ = {isa = PBXBuildFile; fileRef = F81A8AD40C03FC3B002F780A /* CTMIME_MultiPart.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -116,77 +114,6 @@
 		F8EC5B0514C37F60006AF4D5 /* CTConnectedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EC5B0514C37F60006AF4D4 /* CTConnectedTest.m */; };
 		F8EC5B0514C37F60006AF4D8 /* CTCoreFolderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EC5B0514C37F60006AF4D7 /* CTCoreFolderTests.m */; };
 		F9E0BA9E16028CBB008CAD38 /* account.plist in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA5416028CBB008CAD38 /* account.plist */; };
-		F9E0BA9F16028CBB008CAD38 /* DSC_6193.tif in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA5516028CBB008CAD38 /* DSC_6193.tif */; };
-		F9E0BAA016028CBB008CAD38 /* DSC_6201.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA5616028CBB008CAD38 /* DSC_6201.jpg */; };
-		F9E0BAA116028CBB008CAD38 /* DSC_6202.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA5716028CBB008CAD38 /* DSC_6202.png */; };
-		F9E0BAA216028CBB008CAD38 /* DSC_6204.NEF in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA5816028CBB008CAD38 /* DSC_6204.NEF */; };
-		F9E0BAA316028CBB008CAD38 /* .imap.index in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA5A16028CBB008CAD38 /* .imap.index */; };
-		F9E0BAA416028CBB008CAD38 /* .imap.index.data in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA5B16028CBB008CAD38 /* .imap.index.data */; };
-		F9E0BAA516028CBB008CAD38 /* .imap.index.log in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA5C16028CBB008CAD38 /* .imap.index.log */; };
-		F9E0BAA616028CBB008CAD38 /* .imap.index.tree in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA5D16028CBB008CAD38 /* .imap.index.tree */; };
-		F9E0BAA716028CBB008CAD38 /* 1154249474.M828763P19100V0000000000000022I011B11DE_0.randymail-a10,S=4412:2,Sab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA5E16028CBB008CAD38 /* 1154249474.M828763P19100V0000000000000022I011B11DE_0.randymail-a10,S=4412:2,Sab */; };
-		F9E0BAA816028CBB008CAD38 /* 1154249474.M860357P19100V0000000000000022I011B11E0_1.randymail-a10,S=5598:2,RSa in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA5F16028CBB008CAD38 /* 1154249474.M860357P19100V0000000000000022I011B11E0_1.randymail-a10,S=5598:2,RSa */; };
-		F9E0BAA916028CBB008CAD38 /* 1154249474.M876098P19100V0000000000000022I011B11E2_2.randymail-a10,S=2418:2,STab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA6016028CBB008CAD38 /* 1154249474.M876098P19100V0000000000000022I011B11E2_2.randymail-a10,S=2418:2,STab */; };
-		F9E0BAAA16028CBB008CAD38 /* 1154290419.M17359P2066V0000000000000022I011B11DF_0.randymail-a10,S=5980:2,Sa in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA6116028CBB008CAD38 /* 1154290419.M17359P2066V0000000000000022I011B11DF_0.randymail-a10,S=5980:2,Sa */; };
-		F9E0BAAB16028CBB008CAD38 /* 1154290419.M32454P2066V0000000000000022I011B11E3_1.randymail-a10,S=4425:2,Sa in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA6216028CBB008CAD38 /* 1154290419.M32454P2066V0000000000000022I011B11E3_1.randymail-a10,S=4425:2,Sa */; };
-		F9E0BAAC16028CBB008CAD38 /* 1154380877.30924_0.randymail-mx1:2,RSa in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA6316028CBB008CAD38 /* 1154380877.30924_0.randymail-mx1:2,RSa */; };
-		F9E0BAAD16028CBB008CAD38 /* 1154388779.4284_0.randymail-mx2:2,Sa in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA6416028CBB008CAD38 /* 1154388779.4284_0.randymail-mx2:2,Sa */; };
-		F9E0BAAE16028CBB008CAD38 /* 1155069886.28510_0.randymail-mx2:2,Sab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA6516028CBB008CAD38 /* 1155069886.28510_0.randymail-mx2:2,Sab */; };
-		F9E0BAAF16028CBB008CAD38 /* 1155110343.23201_0.randymail-mx2:2,Sab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA6616028CBB008CAD38 /* 1155110343.23201_0.randymail-mx2:2,Sab */; };
-		F9E0BAB016028CBB008CAD38 /* 1155111086.24271_0.randymail-mx2:2,Sab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA6716028CBB008CAD38 /* 1155111086.24271_0.randymail-mx2:2,Sab */; };
-		F9E0BAB116028CBB008CAD38 /* 1155182040.13131_0.randymail-mx1:2,Sab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA6816028CBB008CAD38 /* 1155182040.13131_0.randymail-mx1:2,Sab */; };
-		F9E0BAB216028CBB008CAD38 /* 1155249330.32755_0.randymail-mx2:2,Sa in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA6916028CBB008CAD38 /* 1155249330.32755_0.randymail-mx2:2,Sa */; };
-		F9E0BAB316028CBB008CAD38 /* 1155249429.505_0.randymail-mx2:2,Sab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA6A16028CBB008CAD38 /* 1155249429.505_0.randymail-mx2:2,Sab */; };
-		F9E0BAB416028CBB008CAD38 /* 1155335626.14069_0.randymail-mx1:2,RSa in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA6B16028CBB008CAD38 /* 1155335626.14069_0.randymail-mx1:2,RSa */; };
-		F9E0BAB516028CBB008CAD38 /* 1155336162.23613_0.randymail-mx2:2,RSa in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA6C16028CBB008CAD38 /* 1155336162.23613_0.randymail-mx2:2,RSa */; };
-		F9E0BAB616028CBB008CAD38 /* 1155462890.14347_0.randymail-mx2:2,Sab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA6D16028CBB008CAD38 /* 1155462890.14347_0.randymail-mx2:2,Sab */; };
-		F9E0BAB716028CBB008CAD38 /* 1155534075.10912_0.randymail-mx1:2,Sa in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA6E16028CBB008CAD38 /* 1155534075.10912_0.randymail-mx1:2,Sa */; };
-		F9E0BAB816028CBB008CAD38 /* 1155580473.28509_0.randymail-mx2:2,Sa in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA6F16028CBB008CAD38 /* 1155580473.28509_0.randymail-mx2:2,Sa */; };
-		F9E0BAB916028CBB008CAD38 /* 1155586353.23469_0.randymail-mx1:2,Sa in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA7016028CBB008CAD38 /* 1155586353.23469_0.randymail-mx1:2,Sa */; };
-		F9E0BABA16028CBB008CAD38 /* 1155587179.18876_0.randymail-mx2:2,Sab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA7116028CBB008CAD38 /* 1155587179.18876_0.randymail-mx2:2,Sab */; };
-		F9E0BABB16028CBB008CAD38 /* 1155613620.4228_0.randymail-mx2:2,Sab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA7216028CBB008CAD38 /* 1155613620.4228_0.randymail-mx2:2,Sab */; };
-		F9E0BABC16028CBB008CAD38 /* 1155614333.8711_0.randymail-mx2:2,Sab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA7316028CBB008CAD38 /* 1155614333.8711_0.randymail-mx2:2,Sab */; };
-		F9E0BABD16028CBB008CAD38 /* 1155617550.15283_0.randymail-mx2:2,Sab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA7416028CBB008CAD38 /* 1155617550.15283_0.randymail-mx2:2,Sab */; };
-		F9E0BABE16028CBB008CAD38 /* 1156102086.9365_0.randymail-mx1:2,RSa in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA7516028CBB008CAD38 /* 1156102086.9365_0.randymail-mx1:2,RSa */; };
-		F9E0BABF16028CBB008CAD38 /* 1156280041.22281_0.randymail-mx1:2,Sa in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA7616028CBB008CAD38 /* 1156280041.22281_0.randymail-mx1:2,Sa */; };
-		F9E0BAC016028CBB008CAD38 /* 1156635703.M165806P20846V000000000000001BI0235919E_0.randymail-a6,S=2654:2,STa in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA7716028CBB008CAD38 /* 1156635703.M165806P20846V000000000000001BI0235919E_0.randymail-a6,S=2654:2,STa */; };
-		F9E0BAC116028CBB008CAD38 /* 1156635703.M192540P20846V000000000000001BI023591A2_1.randymail-a6,S=2376:2,STa in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA7816028CBB008CAD38 /* 1156635703.M192540P20846V000000000000001BI023591A2_1.randymail-a6,S=2376:2,STa */; };
-		F9E0BAC216028CBB008CAD38 /* 1156635703.M208031P20846V000000000000001BI02491D26_2.randymail-a6,S=19656:2,STa in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA7916028CBB008CAD38 /* 1156635703.M208031P20846V000000000000001BI02491D26_2.randymail-a6,S=19656:2,STa */; };
-		F9E0BAC316028CBB008CAD38 /* 1156635703.M242388P20846V000000000000001BI02491D28_3.randymail-a6,S=3067:2,STab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA7A16028CBB008CAD38 /* 1156635703.M242388P20846V000000000000001BI02491D28_3.randymail-a6,S=3067:2,STab */; };
-		F9E0BAC416028CBB008CAD38 /* 1156635703.M265626P20846V000000000000001BI02491D2A_4.randymail-a6,S=2836:2,STab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA7B16028CBB008CAD38 /* 1156635703.M265626P20846V000000000000001BI02491D2A_4.randymail-a6,S=2836:2,STab */; };
-		F9E0BAC516028CBB008CAD38 /* 1156635703.M283115P20846V000000000000001BI02491D2C_5.randymail-a6,S=31306:2,STab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA7C16028CBB008CAD38 /* 1156635703.M283115P20846V000000000000001BI02491D2C_5.randymail-a6,S=31306:2,STab */; };
-		F9E0BAC616028CBB008CAD38 /* 1156635703.M305354P20846V000000000000001BI02491D2E_6.randymail-a6,S=2373:2,RSTab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA7D16028CBB008CAD38 /* 1156635703.M305354P20846V000000000000001BI02491D2E_6.randymail-a6,S=2373:2,RSTab */; };
-		F9E0BAC716028CBB008CAD38 /* 1156823584.25273_0.randymail-mx2:2,Sa in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA7E16028CBB008CAD38 /* 1156823584.25273_0.randymail-mx2:2,Sa */; };
-		F9E0BAC816028CBB008CAD38 /* 1161745591.14841_0.randymail-mx2:2,Sab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA7F16028CBB008CAD38 /* 1161745591.14841_0.randymail-mx2:2,Sab */; };
-		F9E0BAC916028CBB008CAD38 /* 1162094633.15211_0.randymail-mx2:2,RSab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA8016028CBB008CAD38 /* 1162094633.15211_0.randymail-mx2:2,RSab */; };
-		F9E0BACA16028CBB008CAD38 /* 1162350339.11914_0.randymail-mx1:2,Sa in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA8116028CBB008CAD38 /* 1162350339.11914_0.randymail-mx1:2,Sa */; };
-		F9E0BACB16028CBB008CAD38 /* 1162350938.23991_0.randymail-mx2:2,Sab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA8216028CBB008CAD38 /* 1162350938.23991_0.randymail-mx2:2,Sab */; };
-		F9E0BACC16028CBB008CAD38 /* 1162361054.22514_0.randymail-mx2:2,Sab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA8316028CBB008CAD38 /* 1162361054.22514_0.randymail-mx2:2,Sab */; };
-		F9E0BACD16028CBB008CAD38 /* 1162361611.11435_0.randymail-mx1:2,Sa in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA8416028CBB008CAD38 /* 1162361611.11435_0.randymail-mx1:2,Sa */; };
-		F9E0BACE16028CBB008CAD38 /* 1162457503.11860_0.randymail-mx2:2,Sa in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA8516028CBB008CAD38 /* 1162457503.11860_0.randymail-mx2:2,Sa */; };
-		F9E0BACF16028CBB008CAD38 /* 1162506757.14837_0.randymail-mx1:2,Sab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA8616028CBB008CAD38 /* 1162506757.14837_0.randymail-mx1:2,Sab */; };
-		F9E0BAD016028CBB008CAD38 /* 1166680363.22060_0.theronge.com:2,Sab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA8716028CBB008CAD38 /* 1166680363.22060_0.theronge.com:2,Sab */; };
-		F9E0BAD116028CBB008CAD38 /* 1166680363.22062_0.theronge.com:2,Sab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA8816028CBB008CAD38 /* 1166680363.22062_0.theronge.com:2,Sab */; };
-		F9E0BAD216028CBB008CAD38 /* 1166680363.22063_0.theronge.com:2,Sab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA8916028CBB008CAD38 /* 1166680363.22063_0.theronge.com:2,Sab */; };
-		F9E0BAD316028CBB008CAD38 /* 1166681786.23319_0.theronge.com:2,Sab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA8A16028CBB008CAD38 /* 1166681786.23319_0.theronge.com:2,Sab */; };
-		F9E0BAD416028CBB008CAD38 /* 1166682315.23915_0.theronge.com:2,RSab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA8B16028CBB008CAD38 /* 1166682315.23915_0.theronge.com:2,RSab */; };
-		F9E0BAD516028CBB008CAD38 /* 1166682365.23945_0.theronge.com:2,Sab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA8C16028CBB008CAD38 /* 1166682365.23945_0.theronge.com:2,Sab */; };
-		F9E0BAD616028CBB008CAD38 /* 1166766837.4734_0.theronge.com:2,Sab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA8D16028CBB008CAD38 /* 1166766837.4734_0.theronge.com:2,Sab */; };
-		F9E0BAD716028CBB008CAD38 /* 1166768396.5961_0.theronge.com:2,Sab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA8E16028CBB008CAD38 /* 1166768396.5961_0.theronge.com:2,Sab */; };
-		F9E0BAD816028CBB008CAD38 /* 1166770273.7660_0.theronge.com:2,Sab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA8F16028CBB008CAD38 /* 1166770273.7660_0.theronge.com:2,Sab */; };
-		F9E0BAD916028CBB008CAD38 /* 1166771565.8638_0.theronge.com:2,Sab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA9016028CBB008CAD38 /* 1166771565.8638_0.theronge.com:2,Sab */; };
-		F9E0BADA16028CBB008CAD38 /* 1167181192.26659_0.theronge.com:2,Sab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA9116028CBB008CAD38 /* 1167181192.26659_0.theronge.com:2,Sab */; };
-		F9E0BADB16028CBB008CAD38 /* 1167181240.26913_0.theronge.com:2,Sab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA9216028CBB008CAD38 /* 1167181240.26913_0.theronge.com:2,Sab */; };
-		F9E0BADC16028CBB008CAD38 /* 1167196014.6158_0.theronge.com:2,Sab in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA9316028CBB008CAD38 /* 1167196014.6158_0.theronge.com:2,Sab */; };
-		F9E0BADD16028CBB008CAD38 /* delivery-status1 in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA9516028CBB008CAD38 /* delivery-status1 */; };
-		F9E0BADE16028CBB008CAD38 /* delivery-status2 in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA9616028CBB008CAD38 /* delivery-status2 */; };
-		F9E0BADF16028CBB008CAD38 /* delivery-status3 in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA9716028CBB008CAD38 /* delivery-status3 */; };
-		F9E0BAE016028CBB008CAD38 /* html-body in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA9816028CBB008CAD38 /* html-body */; };
-		F9E0BAE116028CBB008CAD38 /* html-body-no-text in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA9916028CBB008CAD38 /* html-body-no-text */; };
-		F9E0BAE216028CBB008CAD38 /* imagetest in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA9A16028CBB008CAD38 /* imagetest */; };
-		F9E0BAE316028CBB008CAD38 /* png_attachment in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA9B16028CBB008CAD38 /* png_attachment */; };
-		F9E0BAE416028CBB008CAD38 /* Picture 1.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA9C16028CBB008CAD38 /* Picture 1.png */; };
-		F9E0BAE516028CBB008CAD38 /* smtp_session_1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F9E0BA9D16028CBB008CAD38 /* smtp_session_1.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -290,13 +217,6 @@
 		2D538B42119803A6000AB4A2 /* CTSMTPAsyncConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTSMTPAsyncConnection.h; path = Source/CTSMTPAsyncConnection.h; sourceTree = SOURCE_ROOT; };
 		2D538B43119803A6000AB4A2 /* CTSMTPAsyncConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTSMTPAsyncConnection.m; path = Source/CTSMTPAsyncConnection.m; sourceTree = SOURCE_ROOT; };
 		8DC2EF5B0486A6940098B216 /* MailCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MailCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AD2A76EC15F0478A005B3841 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOCMock.a; sourceTree = "<group>"; };
-		AD2A76EE15F0478A005B3841 /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
-		AD2A76EF15F0478A005B3841 /* OCMArg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMArg.h; sourceTree = "<group>"; };
-		AD2A76F015F0478A005B3841 /* OCMConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMConstraint.h; sourceTree = "<group>"; };
-		AD2A76F115F0478A005B3841 /* OCMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMock.h; sourceTree = "<group>"; };
-		AD2A76F215F0478A005B3841 /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
-		AD2A76F315F0478A005B3841 /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		F81A8AD20C03FC3B002F780A /* CTMIME_MessagePart.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = CTMIME_MessagePart.h; path = Source/CTMIME_MessagePart.h; sourceTree = "<group>"; };
 		F81A8AD30C03FC3B002F780A /* CTMIME_MessagePart.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = CTMIME_MessagePart.m; path = Source/CTMIME_MessagePart.m; sourceTree = "<group>"; };
@@ -438,7 +358,6 @@
 		F9E0BA9516028CBB008CAD38 /* delivery-status1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "delivery-status1"; sourceTree = "<group>"; };
 		F9E0BA9616028CBB008CAD38 /* delivery-status2 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "delivery-status2"; sourceTree = "<group>"; };
 		F9E0BA9716028CBB008CAD38 /* delivery-status3 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "delivery-status3"; sourceTree = "<group>"; };
-		F9E0BA9816028CBB008CAD38 /* html-body */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "html-body"; sourceTree = "<group>"; };
 		F9E0BA9916028CBB008CAD38 /* html-body-no-text */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "html-body-no-text"; sourceTree = "<group>"; };
 		F9E0BA9A16028CBB008CAD38 /* imagetest */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = imagetest; sourceTree = "<group>"; };
 		F9E0BA9B16028CBB008CAD38 /* png_attachment */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = png_attachment; sourceTree = "<group>"; };
@@ -482,7 +401,6 @@
 				F8DFCF4C15801A5000C01975 /* SenTestingKit.framework in Frameworks */,
 				F8DFCF4E15801A5000C01975 /* UIKit.framework in Frameworks */,
 				F8DFCF5015801A5000C01975 /* Foundation.framework in Frameworks */,
-				AD2A76F415F0478A005B3841 /* libOCMock.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,19 +512,6 @@
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
-		AD2A76ED15F0478A005B3841 /* OCMock */ = {
-			isa = PBXGroup;
-			children = (
-				AD2A76EE15F0478A005B3841 /* NSNotificationCenter+OCMAdditions.h */,
-				AD2A76EF15F0478A005B3841 /* OCMArg.h */,
-				AD2A76F015F0478A005B3841 /* OCMConstraint.h */,
-				AD2A76F115F0478A005B3841 /* OCMock.h */,
-				AD2A76F215F0478A005B3841 /* OCMockObject.h */,
-				AD2A76F315F0478A005B3841 /* OCMockRecorder.h */,
-			);
-			path = OCMock;
-			sourceTree = "<group>";
-		};
 		F81E26720C6ED56000B3FBAC /* MIME */ = {
 			isa = PBXGroup;
 			children = (
@@ -648,8 +553,6 @@
 		F85A18AF09C7D8F200305C06 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				AD2A76EC15F0478A005B3841 /* libOCMock.a */,
-				AD2A76ED15F0478A005B3841 /* OCMock */,
 				F8EC5B0514C37F60006AF4D4 /* CTConnectedTest.m */,
 				F8EC5B0514C37F60006AF4D6 /* CTConnectedTest.h */,
 				F8DFCF5215801A5000C01975 /* Supporting Files */,
@@ -804,7 +707,6 @@
 				F9E0BA9516028CBB008CAD38 /* delivery-status1 */,
 				F9E0BA9616028CBB008CAD38 /* delivery-status2 */,
 				F9E0BA9716028CBB008CAD38 /* delivery-status3 */,
-				F9E0BA9816028CBB008CAD38 /* html-body */,
 				F9E0BA9916028CBB008CAD38 /* html-body-no-text */,
 				F9E0BA9A16028CBB008CAD38 /* imagetest */,
 				F9E0BA9B16028CBB008CAD38 /* png_attachment */,
@@ -1030,77 +932,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9E0BA9E16028CBB008CAD38 /* account.plist in Resources */,
-				F9E0BA9F16028CBB008CAD38 /* DSC_6193.tif in Resources */,
-				F9E0BAA016028CBB008CAD38 /* DSC_6201.jpg in Resources */,
-				F9E0BAA116028CBB008CAD38 /* DSC_6202.png in Resources */,
-				F9E0BAA216028CBB008CAD38 /* DSC_6204.NEF in Resources */,
-				F9E0BAA316028CBB008CAD38 /* .imap.index in Resources */,
-				F9E0BAA416028CBB008CAD38 /* .imap.index.data in Resources */,
-				F9E0BAA516028CBB008CAD38 /* .imap.index.log in Resources */,
-				F9E0BAA616028CBB008CAD38 /* .imap.index.tree in Resources */,
-				F9E0BAA716028CBB008CAD38 /* 1154249474.M828763P19100V0000000000000022I011B11DE_0.randymail-a10,S=4412:2,Sab in Resources */,
-				F9E0BAA816028CBB008CAD38 /* 1154249474.M860357P19100V0000000000000022I011B11E0_1.randymail-a10,S=5598:2,RSa in Resources */,
-				F9E0BAA916028CBB008CAD38 /* 1154249474.M876098P19100V0000000000000022I011B11E2_2.randymail-a10,S=2418:2,STab in Resources */,
-				F9E0BAAA16028CBB008CAD38 /* 1154290419.M17359P2066V0000000000000022I011B11DF_0.randymail-a10,S=5980:2,Sa in Resources */,
-				F9E0BAAB16028CBB008CAD38 /* 1154290419.M32454P2066V0000000000000022I011B11E3_1.randymail-a10,S=4425:2,Sa in Resources */,
-				F9E0BAAC16028CBB008CAD38 /* 1154380877.30924_0.randymail-mx1:2,RSa in Resources */,
-				F9E0BAAD16028CBB008CAD38 /* 1154388779.4284_0.randymail-mx2:2,Sa in Resources */,
-				F9E0BAAE16028CBB008CAD38 /* 1155069886.28510_0.randymail-mx2:2,Sab in Resources */,
-				F9E0BAAF16028CBB008CAD38 /* 1155110343.23201_0.randymail-mx2:2,Sab in Resources */,
-				F9E0BAB016028CBB008CAD38 /* 1155111086.24271_0.randymail-mx2:2,Sab in Resources */,
-				F9E0BAB116028CBB008CAD38 /* 1155182040.13131_0.randymail-mx1:2,Sab in Resources */,
-				F9E0BAB216028CBB008CAD38 /* 1155249330.32755_0.randymail-mx2:2,Sa in Resources */,
-				F9E0BAB316028CBB008CAD38 /* 1155249429.505_0.randymail-mx2:2,Sab in Resources */,
-				F9E0BAB416028CBB008CAD38 /* 1155335626.14069_0.randymail-mx1:2,RSa in Resources */,
-				F9E0BAB516028CBB008CAD38 /* 1155336162.23613_0.randymail-mx2:2,RSa in Resources */,
-				F9E0BAB616028CBB008CAD38 /* 1155462890.14347_0.randymail-mx2:2,Sab in Resources */,
-				F9E0BAB716028CBB008CAD38 /* 1155534075.10912_0.randymail-mx1:2,Sa in Resources */,
-				F9E0BAB816028CBB008CAD38 /* 1155580473.28509_0.randymail-mx2:2,Sa in Resources */,
-				F9E0BAB916028CBB008CAD38 /* 1155586353.23469_0.randymail-mx1:2,Sa in Resources */,
-				F9E0BABA16028CBB008CAD38 /* 1155587179.18876_0.randymail-mx2:2,Sab in Resources */,
-				F9E0BABB16028CBB008CAD38 /* 1155613620.4228_0.randymail-mx2:2,Sab in Resources */,
-				F9E0BABC16028CBB008CAD38 /* 1155614333.8711_0.randymail-mx2:2,Sab in Resources */,
-				F9E0BABD16028CBB008CAD38 /* 1155617550.15283_0.randymail-mx2:2,Sab in Resources */,
-				F9E0BABE16028CBB008CAD38 /* 1156102086.9365_0.randymail-mx1:2,RSa in Resources */,
-				F9E0BABF16028CBB008CAD38 /* 1156280041.22281_0.randymail-mx1:2,Sa in Resources */,
-				F9E0BAC016028CBB008CAD38 /* 1156635703.M165806P20846V000000000000001BI0235919E_0.randymail-a6,S=2654:2,STa in Resources */,
-				F9E0BAC116028CBB008CAD38 /* 1156635703.M192540P20846V000000000000001BI023591A2_1.randymail-a6,S=2376:2,STa in Resources */,
-				F9E0BAC216028CBB008CAD38 /* 1156635703.M208031P20846V000000000000001BI02491D26_2.randymail-a6,S=19656:2,STa in Resources */,
-				F9E0BAC316028CBB008CAD38 /* 1156635703.M242388P20846V000000000000001BI02491D28_3.randymail-a6,S=3067:2,STab in Resources */,
-				F9E0BAC416028CBB008CAD38 /* 1156635703.M265626P20846V000000000000001BI02491D2A_4.randymail-a6,S=2836:2,STab in Resources */,
-				F9E0BAC516028CBB008CAD38 /* 1156635703.M283115P20846V000000000000001BI02491D2C_5.randymail-a6,S=31306:2,STab in Resources */,
-				F9E0BAC616028CBB008CAD38 /* 1156635703.M305354P20846V000000000000001BI02491D2E_6.randymail-a6,S=2373:2,RSTab in Resources */,
-				F9E0BAC716028CBB008CAD38 /* 1156823584.25273_0.randymail-mx2:2,Sa in Resources */,
-				F9E0BAC816028CBB008CAD38 /* 1161745591.14841_0.randymail-mx2:2,Sab in Resources */,
-				F9E0BAC916028CBB008CAD38 /* 1162094633.15211_0.randymail-mx2:2,RSab in Resources */,
-				F9E0BACA16028CBB008CAD38 /* 1162350339.11914_0.randymail-mx1:2,Sa in Resources */,
-				F9E0BACB16028CBB008CAD38 /* 1162350938.23991_0.randymail-mx2:2,Sab in Resources */,
-				F9E0BACC16028CBB008CAD38 /* 1162361054.22514_0.randymail-mx2:2,Sab in Resources */,
-				F9E0BACD16028CBB008CAD38 /* 1162361611.11435_0.randymail-mx1:2,Sa in Resources */,
-				F9E0BACE16028CBB008CAD38 /* 1162457503.11860_0.randymail-mx2:2,Sa in Resources */,
-				F9E0BACF16028CBB008CAD38 /* 1162506757.14837_0.randymail-mx1:2,Sab in Resources */,
-				F9E0BAD016028CBB008CAD38 /* 1166680363.22060_0.theronge.com:2,Sab in Resources */,
-				F9E0BAD116028CBB008CAD38 /* 1166680363.22062_0.theronge.com:2,Sab in Resources */,
-				F9E0BAD216028CBB008CAD38 /* 1166680363.22063_0.theronge.com:2,Sab in Resources */,
-				F9E0BAD316028CBB008CAD38 /* 1166681786.23319_0.theronge.com:2,Sab in Resources */,
-				F9E0BAD416028CBB008CAD38 /* 1166682315.23915_0.theronge.com:2,RSab in Resources */,
-				F9E0BAD516028CBB008CAD38 /* 1166682365.23945_0.theronge.com:2,Sab in Resources */,
-				F9E0BAD616028CBB008CAD38 /* 1166766837.4734_0.theronge.com:2,Sab in Resources */,
-				F9E0BAD716028CBB008CAD38 /* 1166768396.5961_0.theronge.com:2,Sab in Resources */,
-				F9E0BAD816028CBB008CAD38 /* 1166770273.7660_0.theronge.com:2,Sab in Resources */,
-				F9E0BAD916028CBB008CAD38 /* 1166771565.8638_0.theronge.com:2,Sab in Resources */,
-				F9E0BADA16028CBB008CAD38 /* 1167181192.26659_0.theronge.com:2,Sab in Resources */,
-				F9E0BADB16028CBB008CAD38 /* 1167181240.26913_0.theronge.com:2,Sab in Resources */,
-				F9E0BADC16028CBB008CAD38 /* 1167196014.6158_0.theronge.com:2,Sab in Resources */,
-				F9E0BADD16028CBB008CAD38 /* delivery-status1 in Resources */,
-				F9E0BADE16028CBB008CAD38 /* delivery-status2 in Resources */,
-				F9E0BADF16028CBB008CAD38 /* delivery-status3 in Resources */,
-				F9E0BAE016028CBB008CAD38 /* html-body in Resources */,
-				F9E0BAE116028CBB008CAD38 /* html-body-no-text in Resources */,
-				F9E0BAE216028CBB008CAD38 /* imagetest in Resources */,
-				F9E0BAE316028CBB008CAD38 /* png_attachment in Resources */,
-				F9E0BAE416028CBB008CAD38 /* Picture 1.png in Resources */,
-				F9E0BAE516028CBB008CAD38 /* smtp_session_1.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1109,7 +940,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8DFCF5615801A5000C01975 /* InfoPlist.strings in Resources */,
-				AD2A76F815F047B9005B3841 /* (null) in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1300,7 +1130,6 @@
 					"$(LIBRARY_SEARCH_PATHS)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_2)",
-					"\"/Volumes/OCMock 2.0.1/iOS\"",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -1336,7 +1165,6 @@
 					"$(LIBRARY_SEARCH_PATHS)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_2)",
-					"\"/Volumes/OCMock 2.0.1/iOS\"",
 				);
 				OTHER_LDFLAGS = (
 					"-seg1addr",

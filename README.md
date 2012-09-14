@@ -16,6 +16,14 @@ First checkout the code and pulldown the required dependencies as submodules:
 
 Now open up MailCore.xcodeproj and build either the iOS static library or the Mac OS X framework depending on your needs.
 
+## Running Tests
+
+TestData/account.plist will be required to run the CTConnectedTest/CTCoreFolder tests - see the top of Tests/CTConnectedTest.m for instructions on creating this file. You can turn these network-dependent tests off via Edit Scheme in XCode - deslect both of these classes in the Test section. Tests will run substantially faster.
+
+If the big Test button doesn't work for the project, you can again Edit Scheme and choose the MailCoreTests target for Test.
+
+Happy testing!
+
 ##Website
 
 The official site contains documentation, FAQs, and step by step instructions on how to include MailCore

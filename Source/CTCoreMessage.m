@@ -175,6 +175,9 @@
 }
 
 - (NSString *)htmlBody {
+    if (myFields == NULL || myParsedMIME == nil) {
+        [self fetchBodyStructure];
+    }
     NSMutableString *result = [NSMutableString string];
     [self _buildUpHtmlBodyText:myParsedMIME result:result];
     return result;
@@ -190,6 +193,15 @@
     return body;
 }
 
+- (NSString *)bodyPreferringHTML:(BOOL *)isHTML {
+    NSString *htmlBody = [self htmlBody];
+    *isHTML = YES;
+    if ([htmlBody length] == 0) {
+        htmlBody = [self body];
+        *isHTML = NO;
+    }
+    return htmlBody;
+}
 
 - (void)_buildUpBodyText:(CTMIME *)mime result:(NSMutableString *)result {
     if (mime == nil)

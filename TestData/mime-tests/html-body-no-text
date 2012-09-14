@@ -1,0 +1,84 @@
+Delivered-To: scott.nonnenberg@gmail.com
+Received: by 10.49.58.225 with SMTP id u1csp118505qeq;
+        Fri, 31 Aug 2012 19:39:13 -0700 (PDT)
+Received: by 10.182.197.73 with SMTP id is9mr9513518obc.32.1346467152563;
+        Fri, 31 Aug 2012 19:39:12 -0700 (PDT)
+Return-Path: <bounces+36803-1358-scott.nonnenberg=gmail.com@email.mindbodyonline.com>
+Received: from o1.email.mindbodyonline.com (o1.email.mindbodyonline.com. [74.63.234.202])
+        by mx.google.com with SMTP id tg7si7191107obb.168.2012.08.31.19.39.12;
+        Fri, 31 Aug 2012 19:39:12 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounces+36803-1358-scott.nonnenberg=gmail.com@email.mindbodyonline.com designates 74.63.234.202 as permitted sender) client-ip=74.63.234.202;
+Authentication-Results: mx.google.com; spf=pass (google.com: domain of bounces+36803-1358-scott.nonnenberg=gmail.com@email.mindbodyonline.com designates 74.63.234.202 as permitted sender) smtp.mail=bounces+36803-1358-scott.nonnenberg=gmail.com@email.mindbodyonline.com; dkim=pass header.i=@mindbodyonline.com
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=mindbodyonline.com; h=from
+	:to:reply-to:subject:date:message-id:mime-version:content-type;
+	 s=smtpapi; bh=3h6R9tq00cf7X6xHpr6G4h9w4bE=; b=Dzk6STqfrvmS+uiDT
+	xfRGwKZzPVAMu3Svu6bIoUBPOUOFBYSZQfI63W9C0B+ZWLtzd9UITeY/zLegXT8o
+	dwnuhqS0L99uA1cderjUNqfz0h9V94JpkvOXWjE4DUpuRYJav4me5MRGIdqQPEn1
+	APFxN49he2KAtbv8KGfhYCylhw=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=mindbodyonline.com; h=from
+	:to:reply-to:subject:date:message-id:mime-version:content-type;
+	 q=dns; s=smtpapi; b=eg51IGJswjsINbRHMp7tY3/PkajwoV9XJ55tgd/p96k
+	VX2w78akPwj6olJ5wWoId/JoXK3aaWYwGA2XW0ScjKUDLzt+CM0TBYmD9JHBzYRl
+	0jI/ieIiTuz4EI7lidghZiNuhM60bMJx94O+bv3G6odFOxA8IyNSkn8Fk1GEYf8k
+	=
+Received: by 10.16.69.96 with SMTP id mf29.32139.504175502
+        Fri, 31 Aug 2012 21:39:12 -0500 (CDT)
+Received: from CLISRV0106.DW1.SLO.MBO (unknown [10.60.208.15])
+	by mi13 (SG) with ESMTP id 5041754f.5e95.271c444
+	Fri, 31 Aug 2012 21:39:11 -0500 (CST)
+From: "=?UTF-8?B?NWZvY3Vz?=" <automatedemail@mindbodyonline.com>
+To: Scott.nonnenberg@gmail.com
+Reply-To: "=?UTF-8?B?NWZvY3Vz?=" <info@5focus.com>
+Subject: =?UTF-8?B?NWZvY3VzIEFwcG9pbnRtZW50?=
+Date: Fri, 31 Aug 2012 19:39:11 -0700
+Message-ID: <20120831-19391158-1188@CLISRV0106.DW1.SLO.MBO>
+X-MBO-SITEID:3415
+X-MBO-CLIENTID:100002729
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+	boundary="--=FF2B1DCA53974F77A6D3_9742_E25C_6942"
+X-Sendgrid-EID: 68sot0L5LYTt9kNFkkkMwStkea+SO9f89Qav7uAgBPQwVA82VgRm5RtB4CDPLPyI35HobNAtiHUifLX0faABirBJhIJhralXasqxeRW8/HL5jl3xGVEb67lLyUU/MVUCnbU12Ko94hYFJ1brgD9aSL7Cc8ZO5Dz7OcuJlIVdDdKkpTiw7DY/WR2VO+eAn54M
+X-Sendgrid-ID: Q/czpuGVIE/j6ic37+mAjKJebWTSg2PSVDA4UtOhMDvhQ8iHLlCYIIohFtHU832/G+TPEgvN2HF2HWzNKncEIQ==
+
+----=FF2B1DCA53974F77A6D3_9742_E25C_6942
+Content-Type: text/html;charset="UTF-8"
+Content-Transfer-Encoding: Quoted-Printable
+
+This confirms your appointment with Adina DeSantis at 5focus  from 6:00pm  =
+to 7:00pm  on Friday, 9/21/2012 for a Theraputic Exercises Theraputic Exerc=
+ises 60 min session.=0D<br />=0D<br />Please arrive at least 10 minutes bef=
+ore your appointment start time.=0D<br />=0D<br />Appointments may be cance=
+lled online, or by calling (206) 631-2818 at least 24 hours in advance.=0D<=
+br />=0D<br />We encourage you to visit our website, or come by to visit th=
+e studio and meet our team.=0D<br />=0D<br />Thank You!=0D<br />=0D<br />5f=
+ocus Staff=0D<br />=0D<br />Web: <a href=3D"http://email.mindbodyonline.com=
+/wf/click?upn=3DCoGoCKR4F4zdyEJlafvy5KlwdLcHtUG48x32bqewM1M-3D_Q-2FczpuGVIE=
+-2Fj6ic37-2BmAjKJebWTSg2PSVDA4UtOhMDvhQ8iHLlCYIIohFtHU832-2FqnBumm1Zf4n72pC=
+qebuqK-2FUQ3VNG22rqi6uNoo9-2B7p1Ah3lSXsLss73x8lza9EGe4-2B7Y2iqjxOgT8WBEyy50=
+bR55oEdjD4Zd7tjnhtm82won4eKUSKIMYScVW5Jcm5iVcmEEW64uMuWhLDF1WQubPjCFmnwInjZ=
+dyiMgUcgub6ra1pVxhlNs8cnK84FYjIiq">http://www.5focus.com</a>=0D<br />Phone:=
+ (206) 631-2818
+<img src=3D"http://email.mindbodyonline.com/wf/open?upn=3DQ-2FczpuGVIE-2Fj6=
+ic37-2BmAjKJebWTSg2PSVDA4UtOhMDvhQ8iHLlCYIIohFtHU832-2FqnBumm1Zf4n72pCqebuq=
+K-2FUQ3VNG22rqi6uNoo9-2B7p1Ah3lSXsLss73x8lza9EGe4-2B7Y2iqjxOgT8WBEyy50beUNH=
+BDqOQ4uauYt-2B3Y-2BX6R0fwxFcKX1gtCksNmo511LJ1ns34CYj-2FG8DqwWZK8-2BRK5jFFDt=
+FS5tRbxTMQ39nvru5tpgjVrf2iHtarJPaLWI" alt=3D"">=0D
+
+----=FF2B1DCA53974F77A6D3_9742_E25C_6942
+Content-Type: application/octet-stream;name="Appt3415-100002729.ics"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;filename="Appt3415-100002729.ics"
+
+QkVHSU46VkNBTEVOREFSClZFUlNJT046Mi4wCkJFR0lOOlZFVkVOVApEVFNU
+QVJUOjIwMTIwOTIxVDE4MDAwMApEVEVORDoyMDEyMDkyMVQxOTAwMDAKTE9D
+QVRJT047RU5DT0RJTkc9UVVPVEVELVBSSU5UQUJMRTo1Zm9jdXMKREVTQ1JJ
+UFRJT046U2NvdHQgTm9ubmVuYmVyZyBoYXMgVGhlcmFwdXRpYyBFeGVyY2lz
+ZXMgNjAgbWluIHNlc3Npb24gc2NoZWR1bGVkIHdpdGggQWRpbmEgRGVTYW50
+aXMgYXQgMTAwOSA4dGggQXZlbnVlIE4uIFNlYXR0bGUsIFdBIDk4MTA5LCAg
+bG9jYXRlZCBhdCA1Zm9jdXMuIFBsZWFzZSBnbyB0byBodHRwOi8vY2xpZW50
+cy5taW5kYm9keW9ubGluZS5jb20vd3MuYXNwP3N0dWRpb2lkPTM0MTUgdG8g
+Y2FuY2VsLCBvciBjYWxsICgyMDYpIDYzMS0yODE4LgpTVU1NQVJZO0VOQ09E
+SU5HPVFVT1RFRC1QUklOVEFCTEU6VGhlcmFwdXRpYyBFeGVyY2lzZXMgNjAg
+bWluClBSSU9SSVRZOjMKRU5EOlZFVkVOVApFTkQ6VkNBTEVOREFSCg==
+
+----=FF2B1DCA53974F77A6D3_9742_E25C_6942--

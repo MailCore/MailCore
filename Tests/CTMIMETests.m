@@ -56,6 +56,21 @@ const NSString *filePrefix = @"./";
 	[msg release];
 }
 
+- (void)testNoPlainText {
+	CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:[NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/mime-tests/html-body-no-text"]];
+
+	CTMIME *mime = [CTMIMEFactory createMIMEWithMIMEStruct:[msg messageStruct]->msg_mime forMessage:[msg messageStruct]];
+	STAssertTrue([mime isKindOfClass:[CTMIME_MessagePart class]],@"Outmost MIME type should be Message but it's not!");
+
+	STAssertTrue([[mime content] isKindOfClass:[CTMIME_MultiPart class]],@"Incorrect MIME structure found!");
+
+	NSArray *multiPartContent = [[mime content] content];
+	STAssertTrue([multiPartContent count] == 2, @"Incorrect MIME structure found!");
+	STAssertTrue([[multiPartContent objectAtIndex:0] isKindOfClass:[CTMIME_TextPart class]], @"Incorrect MIME structure found!");
+	STAssertTrue([[multiPartContent objectAtIndex:1] isKindOfClass:[CTMIME_SinglePart class]], @"Incorrect MIME structure found!");
+	[msg release];
+}
+
 - (void)testSmallMIME {
 	CTMIME_TextPart *text1 = [CTMIME_TextPart mimeTextPartWithString:@"Hello there!"];
 	CTMIME_TextPart *text2 = [CTMIME_TextPart mimeTextPartWithString:@"This is part 2"];
@@ -86,7 +101,7 @@ const NSString *filePrefix = @"./";
 		if (!NSEqualRanges([file rangeOfString:@".svn"],notFound))
 			continue;
 		CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:[NSString stringWithFormat:@"%@TestData/kiwi-dev/%@",filePrefix,file]];
-		NSLog(@"%@", [msg subject]);
+		//NSLog(@"%@", [msg subject]);
 		[msg fetchBodyStructure];
 		NSString *stuff = [msg body];
 		[stuff length]; //Get the warning to shutup about stuff not being used

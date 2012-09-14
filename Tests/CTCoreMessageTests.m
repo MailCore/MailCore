@@ -39,6 +39,7 @@
 - (void)setUp {
 	myMsg = [[CTCoreMessage alloc] init];
 	myRealMsg = [[CTCoreMessage alloc] initWithFileAtPath:[NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/kiwi-dev/1167196014.6158_0.theronge.com:2,Sab"]];
+    myNoPlainTextMsg = [[CTCoreMessage alloc] initWithFileAtPath:[NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/mime-tests/html-body-no-text"]];
 }
 
 - (void)tearDown {
@@ -55,6 +56,39 @@
 	STAssertEqualObjects(@"20061227050649.BEDF0B8563@theronge.com", [myRealMsg messageId], @"");
 }
 
+- (void)testGetsTextBodyWithProperty {
+    NSString *body = [myRealMsg body];
+
+    STAssertTrue([body rangeOfString:@"Kiwi-dev mailing list"].location != NSNotFound, @"Should find substring in body");
+}
+
+- (void)testGetsTextBody {
+    BOOL isHTML;
+    NSString *body = [myRealMsg bodyPreferringPlainText:&isHTML];
+    
+    STAssertFalse(isHTML, @"Response should not be HTML");
+    STAssertTrue([body rangeOfString:@"Kiwi-dev mailing list"].location != NSNotFound, @"Should find substring in body");
+}
+
+- (void)testGetsHTMLBodyWithProperty {
+    NSString *body = [myRealMsg htmlBody];
+
+    STAssertTrue([body rangeOfString:@"All methods which rely on"].location != NSNotFound, @"Should find substring in body");
+}
+
+- (void)testGetsHTMLBody {
+    BOOL isHTML;
+    NSString *body = [myRealMsg bodyPreferringHTML:&isHTML];
+
+    STAssertTrue(isHTML, @"Response should be HTML");
+    STAssertTrue([body rangeOfString:@"All methods which rely on"].location != NSNotFound, @"Should find substring in body");
+}
+
+- (void)testGetsHTMLBodyWithPropertyNoText {
+    NSString *body = [myNoPlainTextMsg htmlBody];
+
+    STAssertTrue([body rangeOfString:@"This confirms your appointment"].location != NSNotFound, @"Should find substring in body");
+}
 
 - (void)testReallyLongSubject {
 	NSString *reallyLongStr = @"faldskjfalkdjfal;skdfjl;ksdjfl;askjdflsadjkfsldfkjlsdfjkldskfjlsdkfjlskdfjslkdfjsdlkfjsdlfkjsdlfkjsdlfkjsdlkfjsdlfkjsdlfkjsldfjksldkfjsldkfjsdlfkjdslfjdsflkjdsflkjdsfldskjfsdlkfjsdlkfjdslkfjsdlkfjdslfkjfaldskjfalkdjfal;skdfjl;ksdjfl;askjdflsadjkfsldfkjlsdfjkldskfjlsdkfjlskdfjslkdfjsdlkfjsdlfkjsdlfkjsdlfkjsdlkfjsdlfkjsdlfkjsldfjksldkfjsldkfjsdlfkjdslfjdsflkjdsflkjdsfldskjfsdlkfjsdlkfjdslkfjsdlkfjdslfkjfaldskjfalkdjfal;skdfjl;ksdjfl;askjdflsadjkfsldfkjlsdfjkldskfjlsdkfjlskdfjslkdfjsdlkfjsdlfkjsdlfkjsdlfkjsdlkfjsdlfkjsdlfkjsldfjksldkfjsldkfjsdlfkjdslfjdsflkjdsflkjdsfldskjfsdlkfjsdlkfjdslkfjsdlkfjdslfkjaskjdflsadjkfsldfkjlsdfjkldskfjlsdkfjlskdfjslkdfjsdlkfjsdlfkjsdlfkjsdlfkjsdlkfjsdlfkjsdlfkjsldfjksldkfjsldkfjsdlfkjdslfjdsflkjdsflkjdsfldskjfsdlkfjsdlkfjdslkfjsdlkfjdslfkjaskjdflsadjkfsldfkjlsdfjkldskfjlsdkfjlskdfjslkdfjsdlkfjsdlfkjsdlfkjsdlfkjsdlkfjsdlfkjsdlfkjsldfjksldkfjsldkfjsdlfkjdslfjdsflkjdsflkjdsfldskjfsdlkfjsdlkfjdslkfjsdlkfjdslfkj";

@@ -39,22 +39,25 @@
 
 /* Create a TestData/account.plist file to make these tests work. Start with this:
  
- <?xml version="1.0" encoding="UTF-8"?>
- <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
- <plist version="1.0">
- <dict>
-     <key>username</key>
-     <string>username</string>
-     <key>password</key>
-     <string>password</string>
-     <key>server</key>
-     <string>server</string>
-     <key>port</key>
-     <integer>993</integer>
-     <key>path</key>
-     <string>MailCoreTests</string>
- </dict>
- </plist>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>username</key>
+    <string>username</string>
+    <key>password</key>
+    <string>password</string>
+    <key>server</key>
+    <string>server</string>
+    <key>port</key>
+    <integer>993</integer>
+    <key>path</key>
+    <string>MailCoreTests</string>
+</dict>
+</plist>
+
+Because account.plist is included in the .gitignore file, your credentials won't be added
+to source control.
 
 */
 - (void)setUp {
