@@ -39,6 +39,7 @@
 - (void)setUp {
 	myMsg = [[CTCoreMessage alloc] init];
 	myRealMsg = [[CTCoreMessage alloc] initWithFileAtPath:[NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/kiwi-dev/1167196014.6158_0.theronge.com:2,Sab"]];
+    myNoPlainTextMsg = [[CTCoreMessage alloc] initWithFileAtPath:[NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/mime-tests/html-body-no-text"]];
 }
 
 - (void)tearDown {
@@ -57,7 +58,7 @@
 
 - (void)testGetsTextBodyWithProperty {
     NSString *body = [myRealMsg body];
-    NSLog(@"Body of the message: %@", body);
+
     STAssertTrue([body rangeOfString:@"Kiwi-dev mailing list"].location != NSNotFound, @"Should find substring in body");
 }
 
@@ -65,14 +66,13 @@
     BOOL isHTML;
     NSString *body = [myRealMsg bodyPreferringPlainText:&isHTML];
     
-    NSLog(@"Body of the message: %@", body);
     STAssertFalse(isHTML, @"Response should not be HTML");
     STAssertTrue([body rangeOfString:@"Kiwi-dev mailing list"].location != NSNotFound, @"Should find substring in body");
 }
 
 - (void)testGetsHTMLBodyWithProperty {
     NSString *body = [myRealMsg htmlBody];
-    NSLog(@"Body of the message: %@", body);
+
     STAssertTrue([body rangeOfString:@"All methods which rely on"].location != NSNotFound, @"Should find substring in body");
 }
 
@@ -80,9 +80,14 @@
     BOOL isHTML;
     NSString *body = [myRealMsg bodyPreferringHTML:&isHTML];
 
-    NSLog(@"Body of the message: %@", body);
     STAssertTrue(isHTML, @"Response should be HTML");
     STAssertTrue([body rangeOfString:@"All methods which rely on"].location != NSNotFound, @"Should find substring in body");
+}
+
+- (void)testGetsHTMLBodyWithPropertyNoText {
+    NSString *body = [myNoPlainTextMsg htmlBody];
+
+    STAssertTrue([body rangeOfString:@"This confirms your appointment"].location != NSNotFound, @"Should find substring in body");
 }
 
 - (void)testReallyLongSubject {

@@ -35,6 +35,7 @@
 @interface CTCoreMessageTests : SenTestCase {
 	CTCoreMessage *myMsg; 
 	CTCoreMessage *myRealMsg;
+	CTCoreMessage *myNoPlainTextMsg;
 }
 
 @end

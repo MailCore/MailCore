@@ -358,7 +358,6 @@
 		F9E0BA9516028CBB008CAD38 /* delivery-status1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "delivery-status1"; sourceTree = "<group>"; };
 		F9E0BA9616028CBB008CAD38 /* delivery-status2 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "delivery-status2"; sourceTree = "<group>"; };
 		F9E0BA9716028CBB008CAD38 /* delivery-status3 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "delivery-status3"; sourceTree = "<group>"; };
-		F9E0BA9816028CBB008CAD38 /* html-body */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "html-body"; sourceTree = "<group>"; };
 		F9E0BA9916028CBB008CAD38 /* html-body-no-text */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "html-body-no-text"; sourceTree = "<group>"; };
 		F9E0BA9A16028CBB008CAD38 /* imagetest */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = imagetest; sourceTree = "<group>"; };
 		F9E0BA9B16028CBB008CAD38 /* png_attachment */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = png_attachment; sourceTree = "<group>"; };
@@ -708,7 +707,6 @@
 				F9E0BA9516028CBB008CAD38 /* delivery-status1 */,
 				F9E0BA9616028CBB008CAD38 /* delivery-status2 */,
 				F9E0BA9716028CBB008CAD38 /* delivery-status3 */,
-				F9E0BA9816028CBB008CAD38 /* html-body */,
 				F9E0BA9916028CBB008CAD38 /* html-body-no-text */,
 				F9E0BA9A16028CBB008CAD38 /* imagetest */,
 				F9E0BA9B16028CBB008CAD38 /* png_attachment */,
