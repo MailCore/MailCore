@@ -224,7 +224,10 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
 }
 
 - (NSUInteger)uidValidity {
-    [self connect];
+    BOOL success = [self connect];
+    if (!success) {
+        return 0;
+    }
     mailimap *imapSession;
     imapSession = [self imapSession];
     if (imapSession->imap_selection_info != NULL) {
@@ -234,7 +237,10 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
 }
 
 - (NSUInteger)uidNext  {
-    [self connect];
+    BOOL success = [self connect];
+    if (!success) {
+        return 0;
+    }
     mailimap *imapSession;
     imapSession = [self imapSession];
     if (imapSession->imap_selection_info != NULL) {
