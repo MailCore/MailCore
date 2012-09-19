@@ -267,7 +267,7 @@ NSString *MailCoreDecodeMIMEPhrase(char *data) {
     char *decodedSubject;
     NSString *result;
 
-    if (*data != '\0') {
+    if (data && *data != '\0') {
         err = mailmime_encoded_phrase_parse(DEST_CHARSET, data, strlen(data),
                                             &currToken, DEST_CHARSET, &decodedSubject);
 
