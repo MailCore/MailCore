@@ -39,7 +39,7 @@
 
 
 @implementation CTCoreAccount
-@synthesize lastError;
+@synthesize lastError, pathDelimiter;
 
 - (id)init {
     self = [super init];
@@ -56,6 +56,7 @@
     mailstorage_disconnect(myStorage);
     mailstorage_free(myStorage);
     self.lastError = nil;
+    self.pathDelimiter = nil;
     [super dealloc];
 }
 
@@ -201,13 +202,11 @@
         if (selectable) {
             mailboxName = mailboxStruct->mb_name;
             mailboxNameObject = [NSString stringWithCString:mailboxName encoding:NSUTF8StringEncoding];
-            
-            // Replace the delimiter with /, in MailCore we always use / as the delimiter
-            // One potential problem is if the user has a / in their folder name....
+
             if (mailboxStruct->mb_delimiter) {
-                NSString *delimiter = [NSString stringWithFormat:@"%c", mailboxStruct->mb_delimiter];
-                mailboxNameObject = [mailboxNameObject stringByReplacingOccurrencesOfString:delimiter withString:@"/"];
-                
+                self.pathDelimiter = [NSString stringWithFormat:@"%c", mailboxStruct->mb_delimiter];
+            } else {
+                self.pathDelimiter = @"/";
             }
             [subscribedFolders addObject:mailboxNameObject];
         }
@@ -246,12 +245,10 @@
             mailboxName = mailboxStruct->mb_name;
             mailboxNameObject = [NSString stringWithCString:mailboxName encoding:NSUTF8StringEncoding];
             
-            // Replace the delimiter with /, in MailCore we always use / as the delimiter
-            // One potential problem is if the user has a / in their folder name....
             if (mailboxStruct->mb_delimiter) {
-                NSString *delimiter = [NSString stringWithFormat:@"%c", mailboxStruct->mb_delimiter];
-                mailboxNameObject = [mailboxNameObject stringByReplacingOccurrencesOfString:delimiter withString:@"/"];
-                
+                self.pathDelimiter = [NSString stringWithFormat:@"%c", mailboxStruct->mb_delimiter];
+            } else {
+                self.pathDelimiter = @"/";
             }
             [allFolders addObject:mailboxNameObject];
         }

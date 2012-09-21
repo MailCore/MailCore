@@ -99,13 +99,6 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     return lastError;
 }
 
-- (NSString *)name {
-    //Get the last part of the path
-    NSArray *pathParts = [myPath componentsSeparatedByString:@"."];
-    return [pathParts objectAtIndex:[pathParts count]-1];
-}
-
-
 - (NSString *)path {
     return myPath;
 }
@@ -231,7 +224,10 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
 }
 
 - (NSUInteger)uidValidity {
-    [self connect];
+    BOOL success = [self connect];
+    if (!success) {
+        return 0;
+    }
     mailimap *imapSession;
     imapSession = [self imapSession];
     if (imapSession->imap_selection_info != NULL) {
@@ -241,7 +237,10 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
 }
 
 - (NSUInteger)uidNext  {
-    [self connect];
+    BOOL success = [self connect];
+    if (!success) {
+        return 0;
+    }
     mailimap *imapSession;
     imapSession = [self imapSession];
     if (imapSession->imap_selection_info != NULL) {
@@ -588,7 +587,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
         self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
     }
-    return [self check];
+    return YES;
 }
 
 

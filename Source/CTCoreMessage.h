@@ -86,11 +86,6 @@
 */
 - (id)initWithString:(NSString *)msgData;
 
-/*
- Creates an empty message
-*/
-- (id)init;
-
 /**
  If a method returns nil or in the case of a BOOL returns NO, call this to get the error that occured
 */
@@ -263,9 +258,26 @@ The local timezone is the one set in the device running this code
 - (void)setTo:(NSSet *)addresses;
 
 /**
-Return the list of messageIds from the in-reply-to field
- */
-- (NSSet *)inReplyTo;
+ Return the list of messageIds from the in-reply-to field
+*/
+- (NSArray *)inReplyTo;
+
+/**
+ Sets the message's in-reply-to messageIds
+ @param messageIds A NSArray containing NSString messageId's
+*/
+- (void)setInReplyTo:(NSArray *)messageIds;
+
+/**
+ Return the list of messageIds from the references field
+*/
+- (NSArray *)references;
+
+/**
+ Sets the message's references
+ @param messageIds A NSArray containing NSString messageId's
+*/
+- (void)setReferences:(NSArray *)messageIds;
 
 /**
  Returns the list of people the message was cced to, returns an NSSet containing CTAddress's.
