@@ -201,8 +201,11 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
     int r;
 
     if (mFilename) {
+        char *charData = (char *)[mFilename cStringUsingEncoding:NSUTF8StringEncoding];
+        char *dupeData = malloc(strlen(charData));
+        strcpy(dupeData, charData);
         mime_fields = mailmime_fields_new_filename( MAILMIME_DISPOSITION_TYPE_ATTACHMENT, 
-                                                    (char *)[mFilename cStringUsingEncoding:NSUTF8StringEncoding], 
+                                                    dupeData,
                                                     MAILMIME_MECHANISM_BASE64 ); 
     } else {
         mime_fields = mailmime_fields_new_encoding(MAILMIME_MECHANISM_BASE64);
