@@ -11,8 +11,7 @@ First checkout the code and pulldown the required dependencies as submodules:
 
     git clone https://github.com/mronge/MailCore.git
     cd MailCore/
-    git submodule init
-    git submodule update
+    git submodule update --update
 
 Now open up MailCore.xcodeproj and build either the iOS static library or the Mac OS X framework depending on your needs.
 
