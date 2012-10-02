@@ -502,6 +502,51 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     return messages;
 }
 
+
+- (NSSet *)uidsOfUnreadMessages {
+    int r;
+    struct mailimap_search_key * search_key;
+    clist * fetch_result;
+    // this is ridiculous, but it's the API apparently
+    search_key = mailimap_search_key_new(MAILIMAP_SEARCH_KEY_UNSEEN,
+                                         NULL, NULL, NULL, NULL, NULL,
+                                         NULL, NULL, NULL, NULL, NULL,
+                                         NULL, NULL, NULL, NULL, 0,
+                                         NULL, NULL, NULL, NULL, NULL,
+                                         NULL, 0, NULL, NULL, NULL);
+    if (search_key == NULL) {
+        return nil;
+    }
+
+    r = mailimap_uid_search([self imapSession], NULL, search_key, &fetch_result);
+
+    mailimap_search_key_free(search_key);
+
+    if (r != MAIL_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
+        return nil;
+    }
+
+    NSMutableSet *set = [NSMutableSet setWithCapacity:clist_count(fetch_result)];
+    clistiter *iter;
+    for(iter = clist_begin(fetch_result); iter != NULL; iter = clist_next(iter)) {
+        uint32_t *uid = clist_content(iter);
+        [set addObject:@(*uid)];
+    }
+    return set;
+}
+
+
+-(NSArray *) messageObjectsWithUIDs:(NSSet *) uids withFetchAttributes:(CTFetchAttributes)attrs {
+    clist *uid_list = clist_new();
+    for (NSNumber *boxedUid in uids) {
+        NSUInteger uidInteger = [boxedUid unsignedIntegerValue];
+        clist_append(uid_list, &uidInteger);
+    }
+    struct mailimap_set *uid_set = mailimap_set_new(uid_list);
+    return [self messagesForSet:uid_set fetchAttributes:attrs uidFetch:YES];
+}
+
 - (NSArray *)messagesFromSequenceNumber:(NSUInteger)startNum to:(NSUInteger)endNum withFetchAttributes:(CTFetchAttributes)attrs {
     struct mailimap_set *set = mailimap_set_new_interval(startNum, endNum);
     NSArray *results = [self messagesForSet:set fetchAttributes:attrs uidFetch:NO];
