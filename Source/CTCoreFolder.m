@@ -517,16 +517,16 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     if (search_key == NULL) {
         return nil;
     }
-
+    
     r = mailimap_uid_search([self imapSession], NULL, search_key, &fetch_result);
-
+    
     mailimap_search_key_free(search_key);
-
+    
     if (r != MAIL_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromIMAPCode(r);
         return nil;
     }
-
+    
     NSMutableSet *set = [NSMutableSet setWithCapacity:clist_count(fetch_result)];
     clistiter *iter;
     for(iter = clist_begin(fetch_result); iter != NULL; iter = clist_next(iter)) {
@@ -538,12 +538,11 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
 
 
 -(NSArray *) messageObjectsWithUIDs:(NSSet *) uids withFetchAttributes:(CTFetchAttributes)attrs {
-    clist *uid_list = clist_new();
+    struct mailimap_set *uid_set = mailimap_set_new_empty();
+    
     for (NSNumber *boxedUid in uids) {
-        NSUInteger uidInteger = [boxedUid unsignedIntegerValue];
-        clist_append(uid_list, &uidInteger);
+        mailimap_set_add_single(uid_set, [boxedUid unsignedIntegerValue]);
     }
-    struct mailimap_set *uid_set = mailimap_set_new(uid_list);
     return [self messagesForSet:uid_set fetchAttributes:attrs uidFetch:YES];
 }
 
