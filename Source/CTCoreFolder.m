@@ -587,6 +587,11 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
         self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
     }
+    err = mailfolder_check(myFolder);
+    if (err != MAIL_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
+        return NO;
+    }
     return YES;
 }
 
