@@ -89,11 +89,17 @@
     struct mailmime *mime_sub;
     struct mailmime_content *content;
     struct mailmime_parameter *param;
+    struct mailmime_disposition *disposition;
+    struct mailmime_mechanism *encoding;
+    
     int r;
 
     /* text/html part */
-    //TODO this needs to be changed, something other than 8BIT should be used
-    mime_fields = mailmime_fields_new_encoding(MAILMIME_MECHANISM_8BIT);
+    encoding = mailmime_mechanism_new(MAILMIME_MECHANISM_QUOTED_PRINTABLE, NULL);
+    disposition = mailmime_disposition_new_with_data(MAILMIME_DISPOSITION_TYPE_INLINE, NULL, NULL, NULL, NULL, -1);
+    mime_fields = mailmime_fields_new_with_data(encoding, NULL, NULL, disposition, NULL);
+    
+    
     content = mailmime_content_new_with_str("text/html");
     param = mailmime_parameter_new(strdup("charset"), strdup(DEST_CHARSET));
     r = clist_append(content->ct_parameters, param);
