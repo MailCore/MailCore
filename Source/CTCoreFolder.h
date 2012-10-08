@@ -118,6 +118,17 @@
 */
 - (NSArray *)messagesFromUID:(NSUInteger)startUID to:(NSUInteger)endUID withFetchAttributes:(CTFetchAttributes)attrs;
 
+
+/**
+ Returns the list of UIDs of unread messages
+ */
+- (NSSet *)uidsOfUnreadMessages;
+
+
+/* fetches the messages with UIDs in the set
+ */
+-(NSArray *) messageObjectsWithUIDs:(NSSet *) uids withFetchAttributes:(CTFetchAttributes)attrs;
+
 /**
  Pulls the sequence number for the message with the specified uid.
  It does not perform UID validation, and the sequence ID is only
