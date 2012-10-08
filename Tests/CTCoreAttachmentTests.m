@@ -35,7 +35,7 @@
 @implementation CTCoreAttachmentTests
 - (void)testJPEG {
 	NSString *path = [NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/DSC_6201.jpg"];
-	CTCoreAttachment *attach = [[CTCoreAttachment alloc] initWithContentsOfFile:path];
+    CTCoreAttachment *attach = [[CTCoreAttachment alloc] initWithContentsOfFile:path];
 	STAssertEqualObjects(@"image/jpeg", [attach contentType], @"The content-type should have been image/jpeg");
 	STAssertTrue([attach data] != nil, @"Data should not have been nil");
 	[attach release];

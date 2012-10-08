@@ -165,6 +165,9 @@
 }
 
 - (NSString *)htmlBody {
+    if (myFields == NULL || myParsedMIME == nil) {
+        [self fetchBodyStructure];
+    }
     NSMutableString *result = [NSMutableString string];
     [self _buildUpHtmlBodyText:myParsedMIME result:result];
     return result;
@@ -180,6 +183,15 @@
     return body;
 }
 
+- (NSString *)bodyPreferringHTML:(BOOL *)isHTML {
+    NSString *htmlBody = [self htmlBody];
+    *isHTML = YES;
+    if ([htmlBody length] == 0) {
+        htmlBody = [self body];
+        *isHTML = NO;
+    }
+    return htmlBody;
+}
 
 - (void)_buildUpBodyText:(CTMIME *)mime result:(NSMutableString *)result {
     if (mime == nil)
@@ -369,21 +381,22 @@
     }
 }
 
+/* NSDates do not have timezones.
+   Timezones only come into play as you render NSDates for the user
+   http://stackoverflow.com/questions/1268509/convert-utc-nsdate-to-local-timezone-objective-c
+*/
+
 - (NSDate *)sentDateGMT {
     struct mailimf_date_time *d;
 
     if((d = [self libetpanDateTime]) == NULL)
         return nil;
 
-    NSInteger timezoneOffsetInSeconds = 3600*d->dt_zone/100;
-
-    NSDate *date = [self senderDate];
-
-    return [date dateByAddingTimeInterval:timezoneOffsetInSeconds * -1];
+    return [self senderDate];
 }
 
 - (NSDate*)sentDateLocalTimeZone {
-    return [[self sentDateGMT] dateByAddingTimeInterval:[[NSTimeZone localTimeZone] secondsFromGMT]];
+    return [self sentDateGMT];
 }
 
 - (BOOL)isUnread {

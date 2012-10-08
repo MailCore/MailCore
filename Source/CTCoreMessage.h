@@ -122,6 +122,16 @@
 - (NSString *)bodyPreferringPlainText:(BOOL *)isHTML;
 
 /**
+ Returns a message body as an NSString.
+
+ @param isHTML Pass in a BOOL pointer that will be set to YES if an HTML body is loaded
+
+ First attempts to retrieve an HTML body, if that fails then
+ tries for a plan text body.
+ */
+- (NSString *)bodyPreferringHTML:(BOOL *)isHTML;
+
+/**
  This method sets the message body. Plaintext only please!
 */
 - (void)setBody:(NSString *)body;
@@ -337,4 +347,5 @@ The local timezone is the one set in the device running this code
 - (mailimap *)imapSession;
 - (void)setBodyStructure:(struct mailmime *)mime;
 - (void)setFields:(struct mailimf_fields *)fields;
+- (BOOL)hasHtmlBody;
 @end

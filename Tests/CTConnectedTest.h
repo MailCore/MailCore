@@ -36,6 +36,9 @@
 @class CTCoreFolder;
 
 @interface CTConnectedTest : SenTestCase
+
 @property (nonatomic, strong) CTCoreAccount *account;
 @property (nonatomic, strong) CTCoreFolder  *folder;
-@end
+@property (nonatomic, strong) NSDictionary  *credentials;
+
+  @end

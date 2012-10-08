@@ -39,6 +39,7 @@
 - (void)setUp {
 	myMsg = [[CTCoreMessage alloc] init];
 	myRealMsg = [[CTCoreMessage alloc] initWithFileAtPath:[NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/kiwi-dev/1167196014.6158_0.theronge.com:2,Sab"]];
+    myNoPlainTextMsg = [[CTCoreMessage alloc] initWithFileAtPath:[NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/mime-tests/html-body-no-text"]];
 }
 
 - (void)tearDown {
@@ -55,6 +56,39 @@
 	STAssertEqualObjects(@"20061227050649.BEDF0B8563@theronge.com", [myRealMsg messageId], @"");
 }
 
+- (void)testGetsTextBodyWithProperty {
+    NSString *body = [myRealMsg body];
+
+    STAssertTrue([body rangeOfString:@"Kiwi-dev mailing list"].location != NSNotFound, @"Should find substring in body");
+}
+
+- (void)testGetsTextBody {
+    BOOL isHTML;
+    NSString *body = [myRealMsg bodyPreferringPlainText:&isHTML];
+    
+    STAssertFalse(isHTML, @"Response should not be HTML");
+    STAssertTrue([body rangeOfString:@"Kiwi-dev mailing list"].location != NSNotFound, @"Should find substring in body");
+}
+
+- (void)testGetsHTMLBodyWithProperty {
+    NSString *body = [myRealMsg htmlBody];
+
+    STAssertTrue([body rangeOfString:@"All methods which rely on"].location != NSNotFound, @"Should find substring in body");
+}
+
+- (void)testGetsHTMLBody {
+    BOOL isHTML;
+    NSString *body = [myRealMsg bodyPreferringHTML:&isHTML];
+
+    STAssertTrue(isHTML, @"Response should be HTML");
+    STAssertTrue([body rangeOfString:@"All methods which rely on"].location != NSNotFound, @"Should find substring in body");
+}
+
+- (void)testGetsHTMLBodyWithPropertyNoText {
+    NSString *body = [myNoPlainTextMsg htmlBody];
+
+    STAssertTrue([body rangeOfString:@"This confirms your appointment"].location != NSNotFound, @"Should find substring in body");
+}
 
 - (void)testReallyLongSubject {
 	NSString *reallyLongStr = @"faldskjfalkdjfal;skdfjl;ksdjfl;askjdflsadjkfsldfkjlsdfjkldskfjlsdkfjlskdfjslkdfjsdlkfjsdlfkjsdlfkjsdlfkjsdlkfjsdlfkjsdlfkjsldfjksldkfjsldkfjsdlfkjdslfjdsflkjdsflkjdsfldskjfsdlkfjsdlkfjdslkfjsdlkfjdslfkjfaldskjfalkdjfal;skdfjl;ksdjfl;askjdflsadjkfsldfkjlsdfjkldskfjlsdkfjlskdfjslkdfjsdlkfjsdlfkjsdlfkjsdlfkjsdlkfjsdlfkjsdlfkjsldfjksldkfjsldkfjsdlfkjdslfjdsflkjdsflkjdsfldskjfsdlkfjsdlkfjdslkfjsdlkfjdslfkjfaldskjfalkdjfal;skdfjl;ksdjfl;askjdflsadjkfsldfkjlsdfjkldskfjlsdkfjlskdfjslkdfjsdlkfjsdlfkjsdlfkjsdlfkjsdlkfjsdlfkjsdlfkjsldfjksldkfjsldkfjsdlfkjdslfjdsflkjdsflkjdsfldskjfsdlkfjsdlkfjdslkfjsdlkfjdslfkjaskjdflsadjkfsldfkjlsdfjkldskfjlsdkfjlskdfjslkdfjsdlkfjsdlfkjsdlfkjsdlfkjsdlkfjsdlfkjsdlfkjsldfjksldkfjsldkfjsdlfkjdslfjdsflkjdsflkjdsfldskjfsdlkfjsdlkfjdslkfjsdlkfjdslfkjaskjdflsadjkfsldfkjlsdfjkldskfjlsdkfjlskdfjslkdfjsdlkfjsdlfkjsdlfkjsdlfkjsdlkfjsdlfkjsdlfkjsldfjksldkfjsldkfjsdlfkjdslfjdsflkjdsflkjdsfldskjfsdlkfjsdlkfjdslkfjsdlkfjdslfkj";
@@ -151,11 +185,30 @@
 	STAssertEqualObjects(addr, [replyTo anyObject], @"The only address object should have been kiwi-dev@lists.theronge.com");
 }
 
+
+// NSDates do not have timezones attached to them. All of these methods should return the same value
+
+- (void)testSentDateGMT {
+    // these are equivalent: Tue, 26 Dec 2006 21:06:49 -0800 (PST) and Wed, 27 Dec 2006 05:06:49 GMT
+	
+    NSTimeInterval sentSince1970 = [[myRealMsg sentDateGMT] timeIntervalSince1970];
+    NSTimeInterval actualSince1970 = 1167196009;
+    
+	STAssertEquals(sentSince1970, actualSince1970, @"Dates should be equal!");
+}
+
 - (void)testSentDate {
-    // Is this right?? I'm super confused by this time zone stuff
-	NSDate *sentDate = [myRealMsg sentDateGMT];
-	NSDate *actualDate = [NSDate dateWithTimeIntervalSince1970:1167217609];
-	STAssertEqualObjects(sentDate, actualDate, @"Date's should be equal!");
+    NSTimeInterval sentSince1970 = [[myRealMsg senderDate] timeIntervalSince1970];
+    NSTimeInterval actualSince1970 = 1167196009;
+    
+	STAssertEquals(sentSince1970, actualSince1970, @"Dates should be equal!");
+}
+
+- (void)sentDateLocalTimeZone {
+    NSTimeInterval sentSince1970 = [[myRealMsg sentDateLocalTimeZone] timeIntervalSince1970];
+    NSTimeInterval actualSince1970 = 1167196009;
+    
+	STAssertEquals(sentSince1970, actualSince1970, @"Dates should be equal!");
 }
 
 - (void)testSettingFromTwice {

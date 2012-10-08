@@ -52,8 +52,10 @@
     STAssertNil([msg bcc], @"We have no envelope so should be nil");
 
     // This will force another download of message body data, checking to make sure it works
-    NSString *body = [msg bodyPreferringPlainText];
-    STAssertTrue(body.length > 0, @"");
+    BOOL isHTML;
+    NSString *body = [msg bodyPreferringPlainText:&isHTML];
+    STAssertTrue(body.length > 0, @"length is above 0");
+    STAssertFalse(isHTML, @"is not HTML");
 }
 
 - (void)testFetchEnvelope {
@@ -70,8 +72,10 @@
     STAssertNotNil([msg from], @"We DO HAVE AN envelope so shouldn't be nil");
 
     // This will force another download of message body data, checking to make sure it works
-    NSString *body = [msg bodyPreferringPlainText];
+    BOOL isHTML;
+    NSString *body = [msg bodyPreferringPlainText:&isHTML];
     STAssertTrue(body.length > 0, @"");
+    STAssertFalse(isHTML, @"is not HTML");
 }
 
 - (void)testFetchEnvelopeUsingUIDFetch {
@@ -88,8 +92,10 @@
     STAssertNotNil([msg from], @"We DO HAVE AN envelope so shouldn't be nil");
 
     // This will force another download of message body data, checking to make sure it works
-    NSString *body = [msg bodyPreferringPlainText];
+    BOOL isHTML;
+    NSString *body = [msg bodyPreferringPlainText:&isHTML];
     STAssertTrue(body.length > 0, @"");
+    STAssertFalse(isHTML, @"is not HTML");
 }
 
 - (void)testFetchBodyStructure {
@@ -108,8 +114,10 @@
     STAssertNil([msg bcc], @"We have no envelope so should be nil");
 
     // A second call to fetch the body structure shouldn't be needed, we only need to fetch body
-    NSString *body = [msg bodyPreferringPlainText];
+    BOOL isHTML;
+    NSString *body = [msg bodyPreferringPlainText:&isHTML];
     STAssertTrue(body.length > 0, @"");
+    STAssertFalse(isHTML, @"is not HTML");
 }
 
 - (void)testFetchEverything {
@@ -126,7 +134,9 @@
     STAssertNotNil([msg from], @"We DO HAVE AN envelope so shouldn't be nil");
 
     // A second call to fetch the body structure shouldn't be needed, we only need to fetch body
-    NSString *body = [msg bodyPreferringPlainText];
+    BOOL isHTML;
+    NSString *body = [msg bodyPreferringPlainText:&isHTML];
     STAssertTrue(body.length > 0, @"");
+    STAssertFalse(isHTML, @"is not HTML");
 }
 @end
