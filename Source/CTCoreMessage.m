@@ -792,7 +792,9 @@
 	
     for(iter = clist_begin(list); iter != NULL; iter = clist_next(iter)) {
         string = clist_content(iter);
-		[stringSet addObject:[[NSString alloc] initWithUTF8String:string]];
+        NSString *strObj = [[NSString alloc] initWithUTF8String:string];
+		[stringSet addObject:strObj];
+        [strObj release];
     }
 	
     return stringSet;
