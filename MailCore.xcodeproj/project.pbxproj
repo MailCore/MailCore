@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F369D03162DF5030043A3ED /* CTXlistResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F369D01162DF5030043A3ED /* CTXlistResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0F369D04162DF5030043A3ED /* CTXlistResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F369D02162DF5030043A3ED /* CTXlistResult.m */; };
 		2D538B45119803A6000AB4A2 /* CTSMTPAsyncConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D538B42119803A6000AB4A2 /* CTSMTPAsyncConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2D538B46119803A6000AB4A2 /* CTSMTPAsyncConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D538B43119803A6000AB4A2 /* CTSMTPAsyncConnection.m */; };
 		2D538B48119803E2000AB4A2 /* CTSMTPAsyncConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D538B43119803A6000AB4A2 /* CTSMTPAsyncConnection.m */; };
@@ -212,6 +214,8 @@
 /* Begin PBXFileReference section */
 		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		0867D6A5FE840307C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		0F369D01162DF5030043A3ED /* CTXlistResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTXlistResult.h; path = Source/CTXlistResult.h; sourceTree = "<group>"; };
+		0F369D02162DF5030043A3ED /* CTXlistResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTXlistResult.m; path = Source/CTXlistResult.m; sourceTree = "<group>"; };
 		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		2D538B42119803A6000AB4A2 /* CTSMTPAsyncConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTSMTPAsyncConnection.h; path = Source/CTSMTPAsyncConnection.h; sourceTree = SOURCE_ROOT; };
 		2D538B43119803A6000AB4A2 /* CTSMTPAsyncConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTSMTPAsyncConnection.m; path = Source/CTSMTPAsyncConnection.m; sourceTree = SOURCE_ROOT; };
@@ -398,6 +402,8 @@
 				F81B88570A74AA7100143DF6 /* CTCoreMessage.m */,
 				F81E26680C6ED35C00B3FBAC /* CTBareAttachment.h */,
 				F81E26690C6ED35C00B3FBAC /* CTBareAttachment.m */,
+				0F369D01162DF5030043A3ED /* CTXlistResult.h */,
+				0F369D02162DF5030043A3ED /* CTXlistResult.m */,
 				F88804D50B4243C000D400E7 /* MailCoreUtilities.h */,
 				F88804D60B4243C000D400E7 /* MailCoreUtilities.m */,
 				F81B885C0A74AA7100143DF6 /* MailCore.h */,
@@ -576,6 +582,7 @@
 				F8430BB10C72B16000753941 /* CTMIME_Enumerator.h in Headers */,
 				2D538B45119803A6000AB4A2 /* CTSMTPAsyncConnection.h in Headers */,
 				F8EC5B0314C37F60006AF4D3 /* CTMIME_HtmlPart.h in Headers */,
+				0F369D03162DF5030043A3ED /* CTXlistResult.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -843,6 +850,7 @@
 				F8430BB20C72B16000753941 /* CTMIME_Enumerator.m in Sources */,
 				2D538B46119803A6000AB4A2 /* CTSMTPAsyncConnection.m in Sources */,
 				F8EC5B0414C37F60006AF4D3 /* CTMIME_HtmlPart.m in Sources */,
+				0F369D04162DF5030043A3ED /* CTXlistResult.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
