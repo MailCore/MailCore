@@ -56,8 +56,6 @@
         [msg fetchBodyStructure];
         [messagesProxy addObject:msg];
     }
-    
-    [myAccount disconnect];
 }
 
 
