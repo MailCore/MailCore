@@ -132,6 +132,11 @@
 - (void)setHTMLBody:(NSString *)body;
 
 /**
+ The Gmail-specific X-GM-THRID (thread id)
+*/
+- (NSNumber *)threadId;
+
+/**
  A list of attachments this message has
 */
 - (NSArray *)attachments;
