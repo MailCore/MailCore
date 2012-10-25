@@ -29,4 +29,9 @@
     [_flags addObject:flag];
 }
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@ - %@", name, _flags];
+}
+
 @end
