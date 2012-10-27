@@ -356,7 +356,45 @@ static const int BUFFER_SIZE = 1024;
         return nil;
     }
 
-    // Always fetch flags
+    // Always fetch labels if available
+    if (mailimap_has_xgmlabels([self imapSession])) {
+        NSLog(@"Gmail Enabled - Retrieving XGMLABELS");
+        fetch_att = mailimap_fetch_att_new_xgmlabels();
+        r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
+        if (r != MAILIMAP_NO_ERROR) {
+            mailimap_fetch_att_free(fetch_att);
+            mailimap_fetch_type_free(fetch_type);
+            self.lastError = MailCoreCreateErrorFromIMAPCode(r);
+            return nil;
+        }
+    }
+
+    // Always fetch thread id if available
+    if (mailimap_has_xgmthrid([self imapSession])) {
+        NSLog(@"Gmail Enabled - Retrieving XGMTHRID");
+        fetch_att = mailimap_fetch_att_new_xgmthrid();
+        r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
+        if (r != MAILIMAP_NO_ERROR) {
+            mailimap_fetch_att_free(fetch_att);
+            mailimap_fetch_type_free(fetch_type);
+            self.lastError = MailCoreCreateErrorFromIMAPCode(r);
+            NSLog(@"Got error: %@", self.lastError);
+            return nil;
+        }
+    }
+
+/*     NSLog(@"Gmail Enabled - Retrieving XGMMSGID");
+     fetch_att = mailimap_fetch_att_new_xgmmsgid();
+     r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
+     if (r != MAILIMAP_NO_ERROR) {
+         mailimap_fetch_att_free(fetch_att);
+         mailimap_fetch_type_free(fetch_type);
+         self.lastError = MailCoreCreateErrorFromIMAPCode(r);
+         NSLog(@"Got error: %@", self.lastError);
+         return nil;
+    }*/
+
+     // Always fetch flags
     fetch_att = mailimap_fetch_att_new_flags();
     r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
     if (r != MAILIMAP_NO_ERROR) {
@@ -752,6 +790,24 @@ static const int BUFFER_SIZE = 1024;
     return data->imap_session;
 }
 
+- (NSArray *)_stringArrayFromClist:(clist *)list {
+    clistiter *iter;
+    NSMutableArray *stringSet = [NSMutableArray array];
+	char *string;
+	
+    if(list == NULL)
+        return stringSet;
+	
+    for(iter = clist_begin(list); iter != NULL; iter = clist_next(iter)) {
+        string = clist_content(iter);
+        NSString *strObj = [[NSString alloc] initWithUTF8String:string];
+		[stringSet addObject:strObj];
+        [strObj release];
+    }
+	
+    return stringSet;
+}
+
 /* From Libetpan source */
 //TODO Can these things be made public in libetpan?
 int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result,
@@ -775,6 +831,10 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
         clistiter * item_cur;
         uint32_t uid;
         size_t size;
+        char * msg_gmthrid;
+//        unsigned long long msg_gmthrid;
+//        unsigned long long msg_gmmsgid;
+        clist * msg_gmlabels = clist_new();
 
         msg_att = clist_content(cur);
         uid = 0;
@@ -783,9 +843,11 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
             struct mailimap_msg_att_item * item;
 
             item = clist_content(item_cur);
+
             switch (item->att_type) {
                 case MAILIMAP_MSG_ATT_ITEM_STATIC:
-                switch (item->att_data.att_static->att_type) {
+
+                    switch (item->att_data.att_static->att_type) {
                     case MAILIMAP_MSG_ATT_UID:
                         uid = item->att_data.att_static->att_data.att_uid;
                     break;
@@ -793,6 +855,23 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
                     case MAILIMAP_MSG_ATT_RFC822_SIZE:
                         size = item->att_data.att_static->att_data.att_rfc822_size;
                     break;
+                }
+                break;
+
+                case MAILIMAP_MSG_ATT_ITEM_EXTENSION: {
+                    switch (item->att_data.att_extension_data->ext_extension->ext_id) {
+                        case MAILIMAP_EXTENSION_XGMLABELS: {
+                            struct mailimap_msg_att_xgmlabels * att = item->att_data.att_extension_data->ext_data;
+                            clist_concat(msg_gmlabels, att->att_labels);
+                            break;
+                        }
+                        case MAILIMAP_EXTENSION_XGMTHRID: {
+                            msg_gmthrid = item->att_data.att_extension_data->ext_data;
+
+                            NSLog(@"xyz thread id! %s", msg_gmthrid);
+                            break;
+                        }
+                    }
                 }
                 break;
             }
@@ -809,6 +888,9 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
             res = r;
             goto free_msg;
         }
+
+        clist_concat(msg->msg_gmlabels, msg_gmlabels);
+        clist_free(msg_gmlabels);
 
         r = carray_add(tab, msg, NULL);
         if (r < 0) {

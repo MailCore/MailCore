@@ -259,31 +259,26 @@
 }
 
 - (NSNumber *) threadId {
-    clist * fetch_result;
-    struct mailimap_set *uid_set = mailimap_set_new_empty();
-    mailimap_set_add_single(uid_set, [self uid]);
-
-    int r = mailimap_fetch_xgmthrid([self imapSession], uid_set, &fetch_result);
-    if (r != MAILIMAP_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-        NSLog(@"ERROR: %@", self.lastError);
-        return @0;
-    }
-    mailimap_set_free(uid_set);
-
-    NSLog(@"Found %@", fetch_result);
-
-    if (fetch_result == nil)
-        return @0;
-
-    NSLog(@"Found %d results", clist_count(fetch_result));
-//    NSMutableSet *set = [NSMutableSet setWithCapacity:clist_count(fetch_result)];
-    clistiter *iter;
-    for(iter = clist_begin(fetch_result); iter != NULL; iter = clist_next(iter)) {
-        return [NSNumber numberWithUnsignedLongLong:*(uint64_t *)clist_content(iter)];
+    if (myMessage->msg_gmthrid) {
+        NSString *thridString = [[NSString alloc] initWithCString:myMessage->msg_gmthrid encoding:NSASCIIStringEncoding];
+        NSLog(@"Found threadId: %@", thridString);
+        NSUInteger thrid = (NSUInteger)[[[thridString componentsSeparatedByString:@"-"] objectAtIndex:1] intValue];
+        [thridString release];
+        return [NSNumber numberWithUnsignedInteger:thrid];
     }
 
     return @0;
+}
+
+/**
+ The Gmail-specific x-gm-labels (labels)
+ */
+- (NSSet *) gmailLabels {
+    if (myMessage->msg_gmlabels) {
+        return [NSSet setWithArray:[self _stringArrayFromClist:myMessage->msg_gmlabels]];
+    }
+
+    return nil;
 }
 
 - (NSArray *)attachments {

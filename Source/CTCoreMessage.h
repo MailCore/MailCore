@@ -137,6 +137,11 @@
 - (NSNumber *)threadId;
 
 /**
+ The Gmail-specific x-gm-labels (labels)
+ */
+- (NSSet *) gmailLabels;
+
+/**
  A list of attachments this message has
 */
 - (NSArray *)attachments;
