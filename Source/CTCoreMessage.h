@@ -134,7 +134,7 @@
 /**
  The Gmail-specific X-GM-THRID (thread id)
 */
-- (NSNumber *)threadId;
+- (NSString *) gmailThreadId;
 
 /**
  The Gmail-specific x-gm-labels (labels)

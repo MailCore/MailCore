@@ -356,10 +356,9 @@ static const int BUFFER_SIZE = 1024;
         return nil;
     }
 
-    // Always fetch labels if available
-    if (mailimap_has_xgmlabels([self imapSession])) {
-        NSLog(@"Gmail Enabled - Retrieving XGMLABELS");
-        fetch_att = mailimap_fetch_att_new_xgmlabels();
+    // Always fetch thread id if available
+    if (mailimap_has_xgmthrid([self imapSession])) {
+        fetch_att = mailimap_fetch_att_new_xgmthrid();
         r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
         if (r != MAILIMAP_NO_ERROR) {
             mailimap_fetch_att_free(fetch_att);
@@ -369,16 +368,14 @@ static const int BUFFER_SIZE = 1024;
         }
     }
 
-    // Always fetch thread id if available
-    if (mailimap_has_xgmthrid([self imapSession])) {
-        NSLog(@"Gmail Enabled - Retrieving XGMTHRID");
-        fetch_att = mailimap_fetch_att_new_xgmthrid();
+    // Always fetch labels if available
+    if (mailimap_has_xgmlabels([self imapSession])) {
+        fetch_att = mailimap_fetch_att_new_xgmlabels();
         r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
         if (r != MAILIMAP_NO_ERROR) {
             mailimap_fetch_att_free(fetch_att);
             mailimap_fetch_type_free(fetch_type);
             self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-            NSLog(@"Got error: %@", self.lastError);
             return nil;
         }
     }
@@ -448,7 +445,7 @@ static const int BUFFER_SIZE = 1024;
 
     mailimap_fetch_type_free(fetch_type);
     mailimap_set_free(set);
-
+    
     env_list = NULL;
     r = uid_list_to_env_list(fetch_result, &env_list, [self folderSession], imap_message_driver);
     if (r != MAIL_NO_ERROR) {
@@ -460,7 +457,7 @@ static const int BUFFER_SIZE = 1024;
         self.lastError = MailCoreCreateErrorFromIMAPCode(r);
         return nil;
     }
-
+    
     // Parsing of MIME bodies
     int len = carray_count(env_list->msg_tab);
 
@@ -535,7 +532,7 @@ static const int BUFFER_SIZE = 1024;
                 return nil;
             }
         }
-
+        
         CTCoreMessage* msgObject = [[CTCoreMessage alloc] initWithMessageStruct:msg];
         msgObject.parentFolder = self;
         [msgObject setSequenceNumber:msg_att->att_number];
@@ -831,9 +828,8 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
         clistiter * item_cur;
         uint32_t uid;
         size_t size;
-        char * msg_gmthrid;
-//        unsigned long long msg_gmthrid;
-//        unsigned long long msg_gmmsgid;
+        char * msg_gmthrid = NULL;
+        char * msg_gmmsgid = NULL;
         clist * msg_gmlabels = clist_new();
 
         msg_att = clist_content(cur);
@@ -866,9 +862,16 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
                             break;
                         }
                         case MAILIMAP_EXTENSION_XGMTHRID: {
-                            msg_gmthrid = item->att_data.att_extension_data->ext_data;
-
-                            NSLog(@"xyz thread id! %s", msg_gmthrid);
+                            if (item->att_data.att_extension_data->ext_type == MAILIMAP_XGMTHRID_TYPE_THRID) {
+                                msg_gmthrid = (char *)item->att_data.att_extension_data->ext_data;
+                            }
+                            break;
+                        }
+                        case MAILIMAP_EXTENSION_XGMMSGID: {
+                            // FIXME This doesn't work.  Parse error.  See xgmmsgid.c
+                            if (item->att_data.att_extension_data->ext_type == MAILIMAP_XGMMSGID_TYPE_MSGID) {
+                                msg_gmmsgid = (char *)item->att_data.att_extension_data->ext_data;
+                            }
                             break;
                         }
                     }
@@ -888,6 +891,10 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
             res = r;
             goto free_msg;
         }
+
+
+        if (msg_gmthrid != NULL)
+            msg->msg_gmthrid = msg_gmthrid;
 
         clist_concat(msg->msg_gmlabels, msg_gmlabels);
         clist_free(msg_gmlabels);

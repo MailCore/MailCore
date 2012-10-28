@@ -258,21 +258,14 @@
     [oldMIME release];	
 }
 
-- (NSNumber *) threadId {
+- (NSString *) gmailThreadId {
     if (myMessage->msg_gmthrid) {
         NSString *thridString = [[NSString alloc] initWithCString:myMessage->msg_gmthrid encoding:NSASCIIStringEncoding];
-        NSLog(@"Found threadId: %@", thridString);
-        NSUInteger thrid = (NSUInteger)[[[thridString componentsSeparatedByString:@"-"] objectAtIndex:1] intValue];
-        [thridString release];
-        return [NSNumber numberWithUnsignedInteger:thrid];
+        return thridString;
     }
-
-    return @0;
+    return nil;
 }
 
-/**
- The Gmail-specific x-gm-labels (labels)
- */
 - (NSSet *) gmailLabels {
     if (myMessage->msg_gmlabels) {
         return [NSSet setWithArray:[self _stringArrayFromClist:myMessage->msg_gmlabels]];
