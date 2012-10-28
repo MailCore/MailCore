@@ -120,6 +120,11 @@
 
 
 /**
+ Returns the list of UIDs of Gmail RAW search results
+ */
+- (NSSet *)uidsOfGmailSearchResults:(NSString *)criteria;
+
+/**
  Returns the list of UIDs of unread messages
  */
 - (NSSet *)uidsOfUnreadMessages;

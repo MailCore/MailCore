@@ -558,6 +558,34 @@ static const int BUFFER_SIZE = 1024;
     return messages;
 }
 
+- (NSSet *)uidsOfGmailSearchResults:(NSString *)criteria {
+    int r;
+    clist * fetch_result;
+
+    BOOL success = [self connect];
+    if (!success) {
+        return nil;
+    }
+
+    if (!mailimap_has_extension([self imapSession], "X-GM-EXT-1")) {
+        self.lastError = MailCoreCreateErrorFromIMAPCode(MAILIMAP_ERROR_EXTENSION);
+        return nil;
+    }
+
+    r = mailimap_uid_search([self imapSession], [criteria UTF8String], nil, NULL, &fetch_result);
+    if (r != MAIL_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
+        return nil;
+    }
+
+    NSMutableSet *set = [NSMutableSet setWithCapacity:clist_count(fetch_result)];
+    clistiter *iter;
+    for(iter = clist_begin(fetch_result); iter != NULL; iter = clist_next(iter)) {
+        uint32_t *uid = clist_content(iter);
+        [set addObject:@(*uid)];
+    }
+    return set;
+}
 
 - (NSSet *)uidsOfUnreadMessages {
     int r;
@@ -574,7 +602,7 @@ static const int BUFFER_SIZE = 1024;
         return nil;
     }
     
-    r = mailimap_uid_search([self imapSession], NULL, search_key, &fetch_result);
+    r = mailimap_uid_search([self imapSession], NULL, NULL, search_key, &fetch_result);
     
     mailimap_search_key_free(search_key);
     
@@ -591,7 +619,6 @@ static const int BUFFER_SIZE = 1024;
     }
     return set;
 }
-
 
 -(NSArray *) messageObjectsWithUIDs:(NSSet *) uids withFetchAttributes:(CTFetchAttributes)attrs {
     struct mailimap_set *uid_set = mailimap_set_new_empty();
