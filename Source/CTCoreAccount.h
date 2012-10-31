@@ -108,6 +108,8 @@
 - (CTIdleResult)idle;
 - (void)cancelIdle;
 
+- (NSSet *)capabilities;
+
 @property BOOL idling;
 
 

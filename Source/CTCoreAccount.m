@@ -190,6 +190,41 @@
     }
 }
 
+- (NSSet *)capabilities {
+    NSMutableSet *capabilitiesSet = [NSMutableSet set];
+    
+    int r;
+    struct mailimap_capability_data *capabilities;
+    
+    r = mailimap_capability(self.session, &capabilities);
+    if (r != MAILIMAP_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
+        return nil;
+    }
+
+    for(clistiter * cur = clist_begin(capabilities->cap_list); cur != NULL ; cur = cur->next) {
+        struct mailimap_capability *capability;
+        NSString *name;
+        
+        capability = clist_content(cur);
+        name = nil;
+        switch (capability->cap_type) {
+            case MAILIMAP_CAPABILITY_AUTH_TYPE:
+                name = [@"AUTH=" stringByAppendingString:[NSString stringWithUTF8String:capability->cap_data.cap_auth_type]];
+                break;
+            case MAILIMAP_CAPABILITY_NAME:
+                name = [NSString stringWithUTF8String:capability->cap_data.cap_name];
+                break;
+        }
+        if (name != nil) {
+            [capabilitiesSet addObject:name];
+        }
+    }
+    mailimap_capability_data_free(capabilities);
+    
+    return capabilitiesSet;
+}
+
 - (void)disconnect {
     if (connected) {
         connected = NO;
