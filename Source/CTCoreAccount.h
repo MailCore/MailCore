@@ -31,6 +31,7 @@
 
 #import <Foundation/Foundation.h>
 #import <libetpan/libetpan.h>
+#import "MailCoreTypes.h"
 
 /**
  CTCoreAccount is the base class with which you establish a connection to the
@@ -45,6 +46,8 @@
     BOOL connected;
     NSError *lastError;
     NSString *pathDelimiter;
+    
+    int idlePipe[2];
 }
 /**
  If an error occurred (nil or return of NO) call this method to get the error
@@ -101,21 +104,12 @@
 
 /**
  Sends the idle command to the server.
- @return Return YES on success, NO on error. Call method lastError to get error if one occurred
 */
-- (BOOL)idle;
+- (CTIdleResult)idle;
+- (void)cancelIdle;
 
-/**
- Blocks the connection until data arrives.
- @return Returns nil on error
-*/
-- (NSString *)read;
+@property BOOL idling;
 
-/**
- Sends the done command to the server.
- @return Return YES on success, NO on error. Call method lastError to get error if one occurred
-*/
-- (BOOL)done;
 
 /* Intended for advanced use only */
 - (mailimap *)session;

@@ -43,6 +43,16 @@ typedef enum
     CTFetchAttrEnvelope         = 1 << 1,
 } CTFetchAttributes;
 
+/** Constants for IDLE **/
+
+typedef enum
+{
+    CTIdleNewData = 0,
+    CTIdleTimeout,
+    CTIdleCancelled,
+    CTIdleError,
+} CTIdleResult;
+
 /** Connection Constants **/
 
 /* when the connection is plain text */
