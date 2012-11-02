@@ -34,10 +34,6 @@
 #import "MailCoreTypes.h"
 #import "MailCoreUtilities.h"
 
-#include <unistd.h>
-
-#define IDLE_TIMEOUT (28 * 60)
-
 @interface CTCoreAccount ()
 @end
 
@@ -109,85 +105,6 @@
     }
     connected = YES;
     return YES;
-}
-
-- (CTIdleResult)idle {
-    NSAssert(!self.idling, @"Can't call idle when we are already idling!");
-    
-    CTIdleResult result = CTIdleError;
-    int r = 0;
-    
-    self.idling = YES;
-    pipe(idlePipe);
-    
-    self.session->imap_selection_info->sel_exists = 0;
-    r = mailimap_idle(self.session);
-    if (r != MAILIMAP_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-        result = CTIdleError;
-    }
-    
-    if (r == MAILIMAP_NO_ERROR && self.session->imap_selection_info->sel_exists == 0) {
-        int fd;
-        int maxfd;
-        fd_set readfds;
-        struct timeval delay;
-        
-        fd = mailimap_idle_get_fd(self.session);
-        
-        FD_ZERO(&readfds);
-        FD_SET(fd, &readfds);
-        FD_SET(idlePipe[0], &readfds);
-        maxfd = fd;
-        if (idlePipe[0] > maxfd) {
-            maxfd = idlePipe[0];
-        }
-        delay.tv_sec = IDLE_TIMEOUT;
-        delay.tv_usec = 0;
-        
-        r = select(maxfd + 1, &readfds, NULL, NULL, &delay);
-        if (r == 0) {
-            result = CTIdleTimeout;
-        } else if (r == -1) {
-            // select error condition, just ignore this
-        } else {
-            if (FD_ISSET(fd, &readfds)) {
-                // The server sent something down
-                 result = CTIdleNewData;
-            } else if (FD_ISSET(idlePipe[0], &readfds)) {
-                // the idle was explicitly cancelled
-                char ch;
-                read(idlePipe[0], &ch, 1);
-                result = CTIdleCancelled;
-            }
-        }
-    } else if (r == MAILIMAP_NO_ERROR) {
-        result = CTIdleNewData;
-    }
-    
-    r = mailimap_idle_done(self.session);
-    if (r != MAILIMAP_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-        result = CTIdleError;
-    }
-    
-    close(idlePipe[1]);
-    close(idlePipe[0]);
-    idlePipe[1] = -1;
-    idlePipe[0] = -1;
-    self.idling = NO;
-    
-    return result;
-}
-
-- (void)cancelIdle {
-    if (self.idling) {
-        int r;
-        char c;
-        
-        c = 0;
-        r = write(idlePipe[1], &c, 1);
-    }
 }
 
 - (NSSet *)capabilities {

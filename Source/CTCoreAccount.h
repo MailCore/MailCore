@@ -46,8 +46,6 @@
     BOOL connected;
     NSError *lastError;
     NSString *pathDelimiter;
-    
-    int idlePipe[2];
 }
 /**
  If an error occurred (nil or return of NO) call this method to get the error
@@ -101,17 +99,7 @@
 */
 - (void)disconnect;
 
-
-/**
- Sends the idle command to the server.
-*/
-- (CTIdleResult)idle;
-- (void)cancelIdle;
-
 - (NSSet *)capabilities;
-
-@property BOOL idling;
-
 
 /* Intended for advanced use only */
 - (mailimap *)session;

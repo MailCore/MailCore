@@ -47,6 +47,9 @@
     NSString *myPath;
     BOOL connected;
     NSError *lastError;
+    
+    BOOL idling;
+    int idlePipe[2];
 }
 /**
  If an error occurred (nil or return of NO) call this method to get the error
@@ -152,6 +155,14 @@
  @return Return YES on success, NO on error. Call method lastError to get error if one occurred
 */
 - (BOOL)setPath:(NSString *)path;
+
+/**
+ Sends the idle command to the server.
+ */
+- (CTIdleResult)idleWithTimeout:(NSUInteger)timeout;
+- (void)cancelIdle;
+@property (atomic) BOOL idling;
+
 
 /**
  If the folder doesn't exist on the server this method will create it. Make sure the pathname
