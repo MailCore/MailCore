@@ -108,34 +108,39 @@
     return YES;
 }
 
-- (BOOL)idle {
-    int err = mailimap_idle([self session]);
-
-    if (err != MAILIMAP_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
-        return NO;
-    }
-    return YES;
-}
-
-- (NSString*)read {
-    char * buf = mailimap_read_line([self session]);
-
-    if (buf == NULL) {
+- (NSSet *)capabilities {
+    NSMutableSet *capabilitiesSet = [NSMutableSet set];
+    
+    int r;
+    struct mailimap_capability_data *capabilities;
+    
+    r = mailimap_capability(self.session, &capabilities);
+    if (r != MAILIMAP_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
         return nil;
     }
 
-    return [NSString stringWithCString:buf encoding:NSUTF8StringEncoding];
-}
-
-- (BOOL)done {
-    int err = mailimap_idle_done([self session]);
-
-    if (err != MAILIMAP_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
-        return NO;
+    for(clistiter * cur = clist_begin(capabilities->cap_list); cur != NULL ; cur = cur->next) {
+        struct mailimap_capability *capability;
+        NSString *name;
+        
+        capability = clist_content(cur);
+        name = nil;
+        switch (capability->cap_type) {
+            case MAILIMAP_CAPABILITY_AUTH_TYPE:
+                name = [@"AUTH=" stringByAppendingString:[NSString stringWithUTF8String:capability->cap_data.cap_auth_type]];
+                break;
+            case MAILIMAP_CAPABILITY_NAME:
+                name = [NSString stringWithUTF8String:capability->cap_data.cap_name];
+                break;
+        }
+        if (name != nil) {
+            [capabilitiesSet addObject:name];
+        }
     }
-    return YES;
+    mailimap_capability_data_free(capabilities);
+    
+    return capabilitiesSet;
 }
 
 - (void)disconnect {

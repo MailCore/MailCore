@@ -31,6 +31,7 @@
 
 #import <Foundation/Foundation.h>
 #import <libetpan/libetpan.h>
+#import "MailCoreTypes.h"
 
 /**
  CTCoreAccount is the base class with which you establish a connection to the
@@ -104,24 +105,7 @@
 */
 - (void)disconnect;
 
-
-/**
- Sends the idle command to the server.
- @return Return YES on success, NO on error. Call method lastError to get error if one occurred
-*/
-- (BOOL)idle;
-
-/**
- Blocks the connection until data arrives.
- @return Returns nil on error
-*/
-- (NSString *)read;
-
-/**
- Sends the done command to the server.
- @return Return YES on success, NO on error. Call method lastError to get error if one occurred
-*/
-- (BOOL)done;
+- (NSSet *)capabilities;
 
 /* Intended for advanced use only */
 - (mailimap *)session;
