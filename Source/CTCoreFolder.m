@@ -46,10 +46,10 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
 @interface CTCoreFolder ()
 @end
 
-static const int BUFFER_SIZE = 1024;
+static const int MAX_PATH_SIZE = 1024;
 
 @implementation CTCoreFolder {
-    char buffer[BUFFER_SIZE];
+    char buffer[MAX_PATH_SIZE];
 }
 @synthesize lastError, parentAccount=myAccount;
 
@@ -83,7 +83,7 @@ static const int BUFFER_SIZE = 1024;
 
 
 - (char*)pathToBuffer:(NSString *)path {
-    if (CFStringGetCString((CFStringRef)myPath, buffer, BUFFER_SIZE, kCFStringEncodingUTF7_IMAP)) {
+    if (CFStringGetCString((CFStringRef)myPath, buffer, MAX_PATH_SIZE, kCFStringEncodingUTF7_IMAP)) {
         return buffer;
     }
     else {
