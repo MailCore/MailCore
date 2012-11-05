@@ -1007,7 +1007,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
 
 
         if (msg_gmthrid != NULL)
-            msg->msg_gmthrid = msg_gmthrid;
+            msg->msg_gmthrid = strdup(msg_gmthrid);
 
         clist_concat(msg->msg_gmlabels, msg_gmlabels);
         clist_free(msg_gmlabels);
