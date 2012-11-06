@@ -135,6 +135,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
 
 - (CTIdleResult)idleWithTimeout:(NSUInteger)timeout {
     NSAssert(!self.idling, @"Can't call idle when we are already idling!");
+    self.lastError = nil;
     
     BOOL success = [self connect];
     if (!success) {
@@ -145,7 +146,10 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     int r = 0;
     
     self.idling = YES;
-    pipe(idlePipe);
+    r = pipe(idlePipe);
+    if (r == -1) {
+        return CTIdleError;
+    }
     
     self.imapSession->imap_selection_info->sel_exists = 0;
     r = mailimap_idle(self.imapSession);
@@ -197,13 +201,13 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
         self.lastError = MailCoreCreateErrorFromIMAPCode(r);
         result = CTIdleError;
     }
-    
+
+    self.idling = NO;
     close(idlePipe[1]);
     close(idlePipe[0]);
     idlePipe[1] = -1;
     idlePipe[0] = -1;
-    self.idling = NO;
-    
+
     return result;
 }
 

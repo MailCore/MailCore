@@ -47,7 +47,7 @@
 @synthesize mime=myParsedMIME, lastError, parentFolder;
 
 - (id)init {
-    [super init];
+    self = [super init];
     if (self) {
         struct mailimf_fields *fields = mailimf_fields_new_empty();
         myFields = mailimf_single_fields_new(fields);

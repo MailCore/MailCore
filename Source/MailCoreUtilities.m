@@ -77,7 +77,7 @@ NSError* MailCoreCreateErrorFromSMTPCode(int errcode) {
         default: {
             const char *errStr = mailsmtp_strerror(errcode);
             if (errStr) {
-                description = [[NSString alloc] initWithCString:errStr encoding:NSUTF8StringEncoding];
+                description = [[[NSString alloc] initWithCString:errStr encoding:NSUTF8StringEncoding] autorelease];
             }
             break;
         }
