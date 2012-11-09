@@ -93,6 +93,10 @@
     if (!success) {
         goto error;
     }
+    
+    mailsmtp_quit(smtp);
+    mailsmtp_free(smtp);
+    
     [smtpObj release];
     return YES;
 error:
@@ -134,6 +138,10 @@ error:
       goto error;
     }
   }
+
+  mailsmtp_quit(smtp);
+  mailsmtp_free(smtp);
+    
   [smtpObj release];
   return YES;
 error:
