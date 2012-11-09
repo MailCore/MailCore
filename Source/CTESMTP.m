@@ -101,21 +101,11 @@ static int fill_local_ip_port(mailstream * stream, char * local_ip_port, size_t 
 
 
 - (BOOL)startTLS {
-    mailstream_low * low;
-    int fd;
-    mailstream_low * new_low;
-
-    int ret = mailesmtp_starttls([self resource]);
+    int ret = mailsmtp_socket_starttls([self resource]);
     if (ret != MAIL_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromSMTPCode(ret);
         return NO;
     }
-
-    low = mailstream_get_low([self resource]->stream);
-    fd = mailstream_low_get_fd(low);
-    new_low = mailstream_low_tls_open(fd);
-    mailstream_low_free(low);
-    mailstream_set_low([self resource]->stream, new_low);
 
     ret = mailesmtp_ehlo([self resource]);
     if (ret != MAIL_NO_ERROR) {
@@ -152,19 +142,18 @@ static int fill_local_ip_port(mailstream * stream, char * local_ip_port, size_t 
         remote_ip_port = NULL;
     else
         remote_ip_port = remote_ip_port_buf;
- /*
-    in most case, login = auth_name = user@domain
-    and realm = server hostname full qualified domain name
 
-    int mailesmtp_auth_sasl(mailsmtp * session, const char * auth_type,
-        const char * server_fqdn,
-        const char * local_ip_port,
-        const char * remote_ip_port,
-        const char * login, const char * auth_name,
-        const char * password, const char * realm);
-
- */		
-    ret = mailesmtp_auth_sasl([self resource], "PLAIN", cServer, local_ip_port, remote_ip_port,
+    char *authType = "PLAIN";
+    mailsmtp *session = [self resource];
+    if (session->auth & MAILSMTP_AUTH_CHECKED) {
+        // If the server doesn't support PLAIN but does support the older LOGIN,
+        // fall back to LOGIN. This can happen with older servers like Exchange 2003
+        if (!(session->auth & MAILSMTP_AUTH_PLAIN) && session->auth & MAILSMTP_AUTH_LOGIN) {
+            authType = "LOGIN";
+        }
+    }
+    
+    ret = mailesmtp_auth_sasl(session, authType, cServer, local_ip_port, remote_ip_port,
                             cUsername, cUsername, cPassword, cServer);
     if (ret != MAIL_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromSMTPCode(ret);
