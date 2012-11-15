@@ -116,16 +116,21 @@
         self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
     }
+    
+    CTMIME *oldMIME = myParsedMIME;
     myParsedMIME = [[CTMIMEFactory createMIMEWithMIMEStruct:[self messageStruct]->msg_mime
                         forMessage:[self messageStruct]] retain];
+    [oldMIME release];
 
     return YES;
 }
 
 - (void)setBodyStructure:(struct mailmime *)mime {
+    CTMIME *oldMIME = myParsedMIME;
     myMessage->msg_mime = mime;
     myParsedMIME = [[CTMIMEFactory createMIMEWithMIMEStruct:[self messageStruct]->msg_mime
                                                  forMessage:[self messageStruct]] retain];
+    [oldMIME release];
 }
 
 - (void)setFields:(struct mailimf_fields *)fields {
