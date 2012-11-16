@@ -47,6 +47,13 @@
     return self;
 }
 
+- (void)dealloc
+{
+    self.name = nil;
+    [_flags release];
+    [super dealloc];
+}
+
 - (void)addFlag:(NSString *)flag
 {
     [_flags addObject:flag];

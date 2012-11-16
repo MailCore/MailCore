@@ -322,6 +322,6 @@
         }
     }
     mailimap_list_result_free(allList);
-    return [allFolders autorelease];
+    return allFolders;
 }
 @end
