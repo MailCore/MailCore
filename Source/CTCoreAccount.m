@@ -211,6 +211,7 @@
                 self.pathDelimiter = @"/";
             }
             [subscribedFolders addObject:mailboxNameObject];
+            [mailboxNameObject release];
         }
     }
     mailimap_list_result_free(subscribedList);
@@ -254,6 +255,7 @@
                 self.pathDelimiter = @"/";
             }
             [allFolders addObject:mailboxNameObject];
+            [mailboxNameObject release];
         }
     }
     mailimap_list_result_free(allList);
@@ -303,6 +305,7 @@
             
             listResult = [[CTXlistResult alloc] init];
             [listResult setName:mailboxNameObject];
+            [mailboxNameObject release];
             
             if (flags) {
                 for (flagIter = clist_begin(flags->mbf_oflags); flagIter != NULL; flagIter = flagIter->next) {
@@ -310,13 +313,15 @@
                     flagName = oflagStruct->of_flag_ext;
                     flagNameObject = (NSString *)CFStringCreateWithCString(NULL, flagName, kCFStringEncodingUTF7_IMAP);
                     [listResult addFlag:flagNameObject];
+                    [flagNameObject release];
                 }
             }
             
             [allFolders addObject:listResult];
+            [listResult release];
         }
     }
     mailimap_list_result_free(allList);
-    return allFolders;
+    return [allFolders autorelease];
 }
 @end

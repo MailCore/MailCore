@@ -46,11 +46,10 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
 @interface CTCoreFolder ()
 @end
 
-static const int BUFFER_SIZE = 1024;
+static const int MAX_PATH_SIZE = 1024;
 
-@implementation CTCoreFolder {
-    char buffer[BUFFER_SIZE];
-}
+@implementation CTCoreFolder
+
 @synthesize lastError, parentAccount=myAccount;
 
 - (id)initWithPath:(NSString *)path inAccount:(CTCoreAccount *)account; {
@@ -61,7 +60,9 @@ static const int BUFFER_SIZE = 1024;
         myPath = [path retain];
         connected = NO;
         myAccount = [account retain];
-        myFolder = mailfolder_new(storage, [self pathToBuffer:myPath], NULL);
+        
+        char buffer[MAX_PATH_SIZE];
+        myFolder = mailfolder_new(storage, [self getUTF7String:buffer fromString:myPath], NULL);
         if (!myFolder) {
             return nil;
         }
@@ -82,8 +83,8 @@ static const int BUFFER_SIZE = 1024;
 }
 
 
-- (char*)pathToBuffer:(NSString *)path {
-    if (CFStringGetCString((CFStringRef)myPath, buffer, BUFFER_SIZE, kCFStringEncodingUTF7_IMAP)) {
+- (const char *)getUTF7String:(char *)buffer fromString:(NSString *)str {
+    if (CFStringGetCString((CFStringRef)str, buffer, MAX_PATH_SIZE, kCFStringEncodingUTF7_IMAP)) {
         return buffer;
     }
     else {
@@ -113,6 +114,9 @@ static const int BUFFER_SIZE = 1024;
     return lastError;
 }
 
+- (NSString *)path {
+    return myPath;
+}
 
 - (BOOL)setPath:(NSString *)path; {
     int err;
@@ -127,13 +131,13 @@ static const int BUFFER_SIZE = 1024;
         return NO;
     }
     
-    char *newPath = strdup([self pathToBuffer:path]);
-    char *oldPath = strdup([self pathToBuffer:myPath]);
+    char newPath[MAX_PATH_SIZE];
+    [self getUTF7String:newPath fromString:path];
+    
+    char oldPath[MAX_PATH_SIZE];
+    [self getUTF7String:newPath fromString:myPath];
     
     err =  mailimap_rename([myAccount session], oldPath, newPath);
-    
-    free(newPath);
-    free(oldPath);
     
     if (err != MAILIMAP_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromIMAPCode(err);
@@ -151,7 +155,9 @@ static const int BUFFER_SIZE = 1024;
 
 - (BOOL)create {
     int err;
-    const char *path = [self pathToBuffer:myPath];
+    
+    char path[MAX_PATH_SIZE];
+    [self getUTF7String:path fromString:myPath];
 
     err =  mailimap_create([myAccount session], path);
     if (err != MAILIMAP_NO_ERROR) {
@@ -169,7 +175,9 @@ static const int BUFFER_SIZE = 1024;
 
 - (BOOL)delete {
     int err;
-    const char *path = [self pathToBuffer:myPath];
+    
+    char path[MAX_PATH_SIZE];
+    [self getUTF7String:path fromString:myPath];
 
     BOOL success = [self connect];
     if (!success) {
@@ -191,7 +199,9 @@ static const int BUFFER_SIZE = 1024;
 
 - (BOOL)subscribe {
     int err;
-    const char *path = [self pathToBuffer:myPath];
+    
+    char path[MAX_PATH_SIZE];
+    [self getUTF7String:path fromString:myPath];
 
     BOOL success = [self connect];
     if (!success) {
@@ -209,7 +219,9 @@ static const int BUFFER_SIZE = 1024;
 
 - (BOOL)unsubscribe {
     int err;
-    const char *path = [self pathToBuffer:myPath];
+    
+    char path[MAX_PATH_SIZE];
+    [self getUTF7String:path fromString:myPath];
 
     BOOL success = [self connect];
     if (!success) {

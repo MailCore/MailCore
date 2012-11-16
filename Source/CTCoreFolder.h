@@ -140,6 +140,11 @@
 - (BOOL)check;
 
 /**
+ The entire path of the folder.
+*/
+- (NSString *)path;
+
+/**
  This will change the path of the folder.
  
  Use this method to rename the folder on the server or to move the folder on the server.
