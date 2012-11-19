@@ -332,6 +332,12 @@ The local timezone is the one set in the device running this code
 */
 - (NSString *)rfc822;
 
+/**
+ Fetches from the server the rfc822 content of the message headers.
+ @return Return nil on error. Call method lastError to get error if one occurred
+ */
+- (NSString *)rfc822Header;
+
 /* Intended for advanced use only */
 - (struct mailmessage *)messageStruct;
 - (mailimap *)imapSession;

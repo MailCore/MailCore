@@ -49,6 +49,8 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
 @interface CTCoreFolder ()
 @end
 
+static const int MAX_PATH_SIZE = 1024;
+
 @implementation CTCoreFolder
 @synthesize lastError, parentAccount=myAccount, idling;
 
@@ -60,7 +62,9 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
         myPath = [path retain];
         connected = NO;
         myAccount = [account retain];
-        myFolder = mailfolder_new(storage, (char *)[myPath cStringUsingEncoding:NSUTF8StringEncoding], NULL);
+        
+        char buffer[MAX_PATH_SIZE];
+        myFolder = mailfolder_new(storage, [self getUTF7String:buffer fromString:myPath], NULL);
         if (!myFolder) {
             return nil;
         }
@@ -78,6 +82,16 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     [myPath release];
     self.lastError = nil;
     [super dealloc];
+}
+
+
+- (const char *)getUTF7String:(char *)buffer fromString:(NSString *)str {
+    if (CFStringGetCString((CFStringRef)str, buffer, MAX_PATH_SIZE, kCFStringEncodingUTF7_IMAP)) {
+        return buffer;
+    }
+    else {
+        return NULL;
+    }
 }
 
 
@@ -106,11 +120,8 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     return myPath;
 }
 
-
 - (BOOL)setPath:(NSString *)path; {
     int err;
-    const char *newPath = [path cStringUsingEncoding:NSUTF8StringEncoding];
-    const char *oldPath = [myPath cStringUsingEncoding:NSUTF8StringEncoding];
 
     BOOL success = [self connect];
     if (!success) {
@@ -121,14 +132,24 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     if (!success) {
         return NO;
     }
+    
+    char newPath[MAX_PATH_SIZE];
+    [self getUTF7String:newPath fromString:path];
+    
+    char oldPath[MAX_PATH_SIZE];
+    [self getUTF7String:newPath fromString:myPath];
+    
     err =  mailimap_rename([myAccount session], oldPath, newPath);
+    
     if (err != MAILIMAP_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
     }
+    
     [path retain];
     [myPath release];
     myPath = path;
+    
     success = [self subscribe];
     return success;
 }
@@ -223,7 +244,9 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
 
 - (BOOL)create {
     int err;
-    const char *path = [myPath cStringUsingEncoding:NSUTF8StringEncoding];
+    
+    char path[MAX_PATH_SIZE];
+    [self getUTF7String:path fromString:myPath];
 
     err =  mailimap_create([myAccount session], path);
     if (err != MAILIMAP_NO_ERROR) {
@@ -241,7 +264,9 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
 
 - (BOOL)delete {
     int err;
-    const char *path = [myPath cStringUsingEncoding:NSUTF8StringEncoding];
+    
+    char path[MAX_PATH_SIZE];
+    [self getUTF7String:path fromString:myPath];
 
     BOOL success = [self connect];
     if (!success) {
@@ -263,7 +288,9 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
 
 - (BOOL)subscribe {
     int err;
-    const char *path = [myPath cStringUsingEncoding:NSUTF8StringEncoding];
+    
+    char path[MAX_PATH_SIZE];
+    [self getUTF7String:path fromString:myPath];
 
     BOOL success = [self connect];
     if (!success) {
@@ -281,7 +308,9 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
 
 - (BOOL)unsubscribe {
     int err;
-    const char *path = [myPath cStringUsingEncoding:NSUTF8StringEncoding];
+    
+    char path[MAX_PATH_SIZE];
+    [self getUTF7String:path fromString:myPath];
 
     BOOL success = [self connect];
     if (!success) {

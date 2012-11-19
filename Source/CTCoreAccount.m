@@ -31,6 +31,7 @@
 
 #import "CTCoreAccount.h"
 #import "CTCoreFolder.h"
+#import "CTXlistResult.h"
 #import "MailCoreTypes.h"
 #import "MailCoreUtilities.h"
 
@@ -206,7 +207,8 @@
         
         if (selectable) {
             mailboxName = mailboxStruct->mb_name;
-            mailboxNameObject = [NSString stringWithCString:mailboxName encoding:NSUTF8StringEncoding];
+            // Per RFC 3501, mailbox names must use 7-bit enconding (UTF-7).
+            mailboxNameObject = (NSString *)CFStringCreateWithCString(NULL, mailboxName, kCFStringEncodingUTF7_IMAP);
 
             if (mailboxStruct->mb_delimiter) {
                 self.pathDelimiter = [NSString stringWithFormat:@"%c", mailboxStruct->mb_delimiter];
@@ -214,6 +216,7 @@
                 self.pathDelimiter = @"/";
             }
             [subscribedFolders addObject:mailboxNameObject];
+            [mailboxNameObject release];
         }
     }
     mailimap_list_result_free(subscribedList);
@@ -248,7 +251,8 @@
         }
         if (selectable) {
             mailboxName = mailboxStruct->mb_name;
-            mailboxNameObject = [NSString stringWithCString:mailboxName encoding:NSUTF8StringEncoding];
+            // Per RFC 3501, mailbox names must use 7-bit enconding (UTF-7).
+            mailboxNameObject = (NSString *)CFStringCreateWithCString(NULL, mailboxName, kCFStringEncodingUTF7_IMAP);
             
             if (mailboxStruct->mb_delimiter) {
                 self.pathDelimiter = [NSString stringWithFormat:@"%c", mailboxStruct->mb_delimiter];
@@ -256,6 +260,70 @@
                 self.pathDelimiter = @"/";
             }
             [allFolders addObject:mailboxNameObject];
+            [mailboxNameObject release];
+        }
+    }
+    mailimap_list_result_free(allList);
+    return allFolders;
+}
+
+- (NSSet *)allFoldersExtended {
+    struct mailimap_mailbox_list * mailboxStruct;
+    struct mailimap_mbx_list_oflag * oflagStruct;
+    clist *allList;
+    clistiter *cur, *flagIter;
+    
+    NSString *mailboxNameObject;
+    char *mailboxName;
+    NSString *flagNameObject;
+    char *flagName;
+    int err;
+    
+    NSMutableSet *allFolders = [NSMutableSet set];
+    CTXlistResult *listResult;
+    
+    //Now, fill the all folders array
+    //TODO Fix this so it doesn't use *
+    err = mailimap_xlist([self session], "", "*", &allList);
+    if (err != MAILIMAP_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
+        return nil;
+    }
+    for(cur = clist_begin(allList); cur != NULL; cur = cur->next)
+    {
+        mailboxStruct = cur->data;
+        struct mailimap_mbx_list_flags *flags = mailboxStruct->mb_flag;
+        BOOL selectable = YES;
+        if (flags) {
+            selectable = !(flags->mbf_type==MAILIMAP_MBX_LIST_FLAGS_SFLAG && flags->mbf_sflag==MAILIMAP_MBX_LIST_SFLAG_NOSELECT);
+        }
+        if (selectable) {
+            mailboxName = mailboxStruct->mb_name;
+            // Per RFC 3501, mailbox names must use 7-bit enconding (UTF-7).
+            mailboxNameObject = (NSString *)CFStringCreateWithCString(NULL, mailboxName, kCFStringEncodingUTF7_IMAP);
+            
+            if (mailboxStruct->mb_delimiter) {
+                self.pathDelimiter = [NSString stringWithFormat:@"%c", mailboxStruct->mb_delimiter];
+            } else {
+                self.pathDelimiter = @"/";
+            }
+            
+            listResult = [[CTXlistResult alloc] init];
+            [listResult setName:mailboxNameObject];
+            [mailboxNameObject release];
+            
+            if (flags) {
+                for (flagIter = clist_begin(flags->mbf_oflags); flagIter != NULL; flagIter = flagIter->next) {
+                    oflagStruct = flagIter->data;
+                    flagName = oflagStruct->of_flag_ext;
+                    flagNameObject = (NSString *)CFStringCreateWithCString(NULL, flagName, kCFStringEncodingUTF7_IMAP);
+                    [listResult addFlag:flagNameObject];
+                    [flagNameObject release];
+                }
+            }
+            
+            [allFolders addObject:listResult];
+            [listResult release];
         }
     }
     mailimap_list_result_free(allList);

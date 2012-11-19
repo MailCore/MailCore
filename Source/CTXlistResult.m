@@ -1,7 +1,7 @@
 /*
  * MailCore
  *
- * Copyright (C) 2007 - Matt Ronge
+ * Copyright (C) 2012 - Kris Wong
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,58 +29,34 @@
  * SUCH DAMAGE.
  */
 
-#import "CTCoreAttachment.h"
-#import "MailCoreTypes.h"
+#import "CTXlistResult.h"
 
-
-@implementation CTCoreAttachment
-@synthesize data=mData;
-
-- (id)initWithContentsOfFile:(NSString *)path {
-    NSData *data = [NSData dataWithContentsOfFile:path];
-    NSString *filePathExt = [path pathExtension];
-
-    NSString *contentType = nil;
-    NSString *typesPath = [[NSBundle mainBundle] pathForResource:@"types" ofType:@"plist"];
-    NSDictionary *contentTypes = [NSDictionary dictionaryWithContentsOfFile:typesPath];
-    for (NSString *key in [contentTypes allKeys]) {
-        NSArray *fileExtensions = [contentTypes objectForKey:key];
-        for (NSString *ext in fileExtensions) {
-            if ([filePathExt isEqual:ext]) {
-                contentType = key;
-                break;
-            }
-        }
-        if (contentType != nil)
-            break;
-    }
-
-    // We couldn't find a content-type, set it to something generic
-    if (contentType == nil) {
-        contentType = @"application/octet-stream";
-    }
-
-    NSString *filename = [path lastPathComponent];
-    return [self initWithData:data contentType:contentType filename:filename];
+@implementation CTXlistResult
+{
+    NSMutableArray *_flags;
 }
 
-- (id)initWithData:(NSData *)data contentType:(NSString *)contentType 
-        filename:(NSString *)filename {
+@synthesize name, flags = _flags;
+
+- (id)init
+{
     self = [super init];
     if (self) {
-        self.data = data;
-        self.contentType = contentType;
-        self.filename = filename;
+        _flags = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
-- (BOOL)writeToFile:(NSString *)path {
-    return [mData writeToFile:path atomically:YES];
-}
-
-- (void)dealloc {
-    [mData release];
+- (void)dealloc
+{
+    self.name = nil;
+    [_flags release];
     [super dealloc];
 }
+
+- (void)addFlag:(NSString *)flag
+{
+    [_flags addObject:flag];
+}
+
 @end

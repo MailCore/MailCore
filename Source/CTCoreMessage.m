@@ -116,16 +116,21 @@
         self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
     }
+    
+    CTMIME *oldMIME = myParsedMIME;
     myParsedMIME = [[CTMIMEFactory createMIMEWithMIMEStruct:[self messageStruct]->msg_mime
                         forMessage:[self messageStruct]] retain];
+    [oldMIME release];
 
     return YES;
 }
 
 - (void)setBodyStructure:(struct mailmime *)mime {
+    CTMIME *oldMIME = myParsedMIME;
     myMessage->msg_mime = mime;
     myParsedMIME = [[CTMIMEFactory createMIMEWithMIMEStruct:[self messageStruct]->msg_mime
                                                  forMessage:[self messageStruct]] retain];
+    [oldMIME release];
 }
 
 - (void)setFields:(struct mailimf_fields *)fields {
@@ -665,6 +670,19 @@
     return [nsresult autorelease];
 }
 
+- (NSString *)rfc822Header {
+    char *result = NULL;
+    NSString *nsresult;
+    int r = mailimap_fetch_rfc822_header([self imapSession], [self sequenceNumber], &result);
+    if (r == MAIL_NO_ERROR) {
+        nsresult = [[NSString alloc] initWithCString:result encoding:NSUTF8StringEncoding];
+    } else {
+        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
+        return nil;
+    }
+    mailimap_msg_att_rfc822_free(result);
+    return [nsresult autorelease];
+}
 
 - (struct mailmessage *)messageStruct {
     return myMessage;

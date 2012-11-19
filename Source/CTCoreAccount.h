@@ -61,6 +61,13 @@
 - (NSSet *)allFolders;
 
 /**
+ Retrieves the list of all the available folders from the server using the extended list command (XLIST).
+ This is only supported by Gmail.
+ @return Returns a NSSet which contains CTXlistResults, nil on error
+ */
+- (NSSet *)allFoldersExtended;
+
+/**
  Retrieves a list of only the subscribed folders from the server.
  @return Returns a NSSet which contains NSStrings of the folders pathnames, nil on error
 */

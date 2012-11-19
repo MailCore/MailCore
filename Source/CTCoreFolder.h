@@ -143,7 +143,7 @@
 - (BOOL)check;
 
 /**
- The entire path of folder.
+ The entire path of the folder.
 */
 - (NSString *)path;
 
