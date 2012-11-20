@@ -41,13 +41,18 @@
 //TODO Add more descriptive error messages using mailsmtp_strerror
 @implementation CTSMTPConnection
 + (BOOL)sendMessage:(CTCoreMessage *)message server:(NSString *)server username:(NSString *)username
-                    password:(NSString *)password port:(unsigned int)port useTLS:(BOOL)tls useAuth:(BOOL)auth error:(NSError **)error {
+           password:(NSString *)password port:(unsigned int)port connectionType:(CTSMTPConnectionType)connectionType
+            useAuth:(BOOL)auth error:(NSError **)error {
     BOOL success;
     mailsmtp *smtp = NULL;
     smtp = mailsmtp_new(0, NULL);
 
     CTSMTP *smtpObj = [[CTESMTP alloc] initWithResource:smtp];
-    success = [smtpObj connectToServer:server port:port];
+    if (connectionType == CTSMTPConnectionTypeStartTLS || connectionType == CTSMTPConnectionTypePlain) {
+        success = [smtpObj connectToServer:server port:port];
+    } else if (connectionType == CTSMTPConnectionTypeTLS) {
+        success = [smtpObj connectWithTlsToServer:server port:port];
+    }
     if (!success) {
         goto error;
     }
@@ -60,7 +65,7 @@
             goto error;
         }
     }
-    if (tls) {
+    if (connectionType == CTSMTPConnectionTypeStartTLS) {
         success = [smtpObj startTLS];
         if (!success) {
             goto error;
@@ -107,13 +112,18 @@ error:
 }
 
 + (BOOL)canConnectToServer:(NSString *)server username:(NSString *)username password:(NSString *)password
-                      port:(unsigned int)port useTLS:(BOOL)tls useAuth:(BOOL)auth error:(NSError **)error {
+                      port:(unsigned int)port connectionType:(CTSMTPConnectionType)connectionType
+                   useAuth:(BOOL)auth error:(NSError **)error {
   BOOL success;
   mailsmtp *smtp = NULL;
   smtp = mailsmtp_new(0, NULL);
-  
+    
   CTSMTP *smtpObj = [[CTESMTP alloc] initWithResource:smtp];
-  success = [smtpObj connectToServer:server port:port];
+  if (connectionType == CTSMTPConnectionTypeStartTLS || connectionType == CTSMTPConnectionTypePlain) {
+     success = [smtpObj connectToServer:server port:port];
+  } else if (connectionType == CTSMTPConnectionTypeTLS) {
+     success = [smtpObj connectWithTlsToServer:server port:port];
+  }
   if (!success) {
     goto error;
   }
@@ -126,7 +136,7 @@ error:
       goto error;
     }
   }
-  if (tls) {
+  if (connectionType == CTSMTPConnectionTypeStartTLS) {
     success = [smtpObj startTLS];
     if (!success) {
       goto error;
