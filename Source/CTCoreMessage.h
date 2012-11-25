@@ -159,26 +159,9 @@
 - (void)setSubject:(NSString *)subject;
 
 /**
- Returns the timezone of the sender of the message (got from the Date field timezone attribute)
-*/
-- (NSTimeZone*)senderTimeZone;
-
-/**
- Returns the date as given in the Date mail field (no timezone is applied)
+ Returns the date as given in the Date mail field
 */
 - (NSDate *)senderDate; 
-
-/**
- Returns the date in the Date field converted to GMT
-*/
-- (NSDate *)sentDateGMT; 
-
-/**
-Returns the date in the Date field converted to the local timezone
-    
-The local timezone is the one set in the device running this code
-*/
-- (NSDate *)sentDateLocalTimeZone; 
 
 /**
  Returns YES if the message is unread.
