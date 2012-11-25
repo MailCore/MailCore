@@ -18,7 +18,10 @@
     [msg setBody:body.stringValue];
 
     BOOL auth = ([useAuth state] == NSOnState);
-    BOOL tls = ([useTLS state] == NSOnState);
+    CTSMTPConnectionType connectionType = CTSMTPConnectionTypePlain;
+    if ([useTLS state] == NSOnState) {
+        connectionType = CTSMTPConnectionTypeStartTLS;
+    }
     
     NSString *serverValue = server.stringValue;
     NSString *usernameValue = username.stringValue;
@@ -27,8 +30,14 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSError *error;
-        BOOL success = [CTSMTPConnection sendMessage:msg server:serverValue username:usernameValue
-                                            password:passwordValue port:portValue useTLS:tls useAuth:auth error:&error];
+        BOOL success = [CTSMTPConnection sendMessage:msg
+                                              server:serverValue
+                                            username:usernameValue
+                                            password:passwordValue
+                                                port:portValue
+                                      connectionType:connectionType
+                                             useAuth:auth
+                                               error:&error];
         if (!success) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [NSApp presentError:error];
