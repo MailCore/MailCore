@@ -48,6 +48,7 @@
 
 - (id)initWithResource:(mailsmtp *)smtp;
 - (BOOL)connectToServer:(NSString *)server port:(unsigned int)port;
+- (BOOL)connectWithTlsToServer:(NSString *)server port:(unsigned int)port;
 - (BOOL)helo;
 - (BOOL)startTLS;
 - (BOOL)authenticateWithUsername:(NSString *)username password:(NSString *)password server:(NSString *)server;

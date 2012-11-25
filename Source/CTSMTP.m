@@ -61,6 +61,16 @@
     return YES;
 }
 
+- (BOOL)connectWithTlsToServer:(NSString *)server port:(unsigned int)port {
+    /* first open the stream */
+    int ret = mailsmtp_ssl_connect([self resource], [server cStringUsingEncoding:NSUTF8StringEncoding], port);
+    if (ret != MAIL_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromSMTPCode(ret);
+        return NO;
+    }
+    return YES;
+}
+
 - (BOOL)helo {
     /*  The server doesn't support esmtp, so try regular smtp */
     int ret = mailsmtp_helo([self resource]);
