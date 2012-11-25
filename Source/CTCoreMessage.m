@@ -103,6 +103,13 @@
     return lastError;
 }
 
+- (BOOL)hasBodyStructure {
+    if (myParsedMIME == nil) {
+        return NO;
+    }
+    return YES;
+}
+
 - (BOOL)fetchBodyStructure {
     if (myMessage == NULL) {
         return NO;

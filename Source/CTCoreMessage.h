@@ -92,6 +92,11 @@
 - (NSError *)lastError;
 
 /**
+ Returns YES if this message body structure has been downloaded, and NO otherwise.
+ */
+- (BOOL)hasBodyStructure;
+
+/**
  If the messages body structure hasn't been downloaded already it will be fetched from the server.
 
  The body structure is needed to get attachments or the message body
