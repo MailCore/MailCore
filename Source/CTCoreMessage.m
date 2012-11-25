@@ -825,8 +825,7 @@
 	return str_list;
 }
 
-- (void)_releaseMailimfSingleFields:(struct mailimf_single_fields *)fields
-{
+- (void)_releaseMailimfSingleFields:(struct mailimf_single_fields *)fields {
     
     /**
      The LibEtPan API states:
@@ -834,8 +833,7 @@
      substructures will NOT be released. They should be released by the application.
      */
 
-    if (fields)
-    {
+    if (fields) {
         if (fields->fld_bcc) mailimf_bcc_free(fields->fld_bcc);
         if (fields->fld_cc) mailimf_cc_free(fields->fld_cc);
         if (fields->fld_comments) mailimf_comments_free(fields->fld_comments);
