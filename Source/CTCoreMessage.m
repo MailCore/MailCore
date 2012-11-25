@@ -90,9 +90,7 @@
         mailmessage_flush(myMessage);
         mailmessage_free(myMessage);
     }
-    if (myFields != NULL) {
-        mailimf_single_fields_free(myFields);
-    }
+    [self _releaseMailimfSingleFields: myFields];
     self.lastError = nil;
     self.parentFolder = nil;
     [myParsedMIME release];
@@ -134,8 +132,7 @@
 }
 
 - (void)setFields:(struct mailimf_fields *)fields {
-    if (myFields != NULL)
-        mailimf_single_fields_free(myFields);
+    [self _releaseMailimfSingleFields: myFields];
     myFields = mailimf_single_fields_new(fields);
 }
 
@@ -826,6 +823,34 @@
 	}
 
 	return str_list;
+}
+
+- (void)_releaseMailimfSingleFields:(struct mailimf_single_fields *)fields
+{
+    
+    /**
+     The LibEtPan API states:
+     mailimf_single_fields_free() frees memory used by the structure and
+     substructures will NOT be released. They should be released by the application.
+     */
+
+    if (fields)
+    {
+        if (fields->fld_bcc) mailimf_bcc_free(fields->fld_bcc);
+        if (fields->fld_cc) mailimf_cc_free(fields->fld_cc);
+        if (fields->fld_comments) mailimf_comments_free(fields->fld_comments);
+        if (fields->fld_from) mailimf_from_free(fields->fld_from);
+        if (fields->fld_in_reply_to) mailimf_in_reply_to_free(fields->fld_in_reply_to);
+        if (fields->fld_keywords) mailimf_keywords_free(fields->fld_keywords);
+        if (fields->fld_message_id) mailimf_message_id_free(fields->fld_message_id);
+        if (fields->fld_orig_date) mailimf_orig_date_free(fields->fld_orig_date);
+        if (fields->fld_references) mailimf_references_free(fields->fld_references);
+        if (fields->fld_reply_to) mailimf_reply_to_free(fields->fld_reply_to);
+        if (fields->fld_sender) mailimf_sender_free(fields->fld_sender);
+        if (fields->fld_subject) mailimf_subject_free(fields->fld_subject);
+        if (fields->fld_to) mailimf_to_free(fields->fld_to);
+        mailimf_single_fields_free(fields);
+    }
 }
 
 @end
