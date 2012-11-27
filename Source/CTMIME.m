@@ -112,6 +112,7 @@
     resultStr = [[NSString alloc] initWithBytes:str->str length:str->len
                     encoding:NSUTF8StringEncoding];
     mmap_string_free(str);
+    mime->mm_data.mm_message.mm_fields = NULL;
     mailmime_free(mime);
     return [resultStr autorelease];
 }

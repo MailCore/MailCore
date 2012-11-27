@@ -41,8 +41,8 @@
     NSString *filePathExt = [path pathExtension];
 
     NSString *contentType = nil;
-  //TODO: This won't work on iOS
-    NSDictionary *contentTypes = [NSDictionary dictionaryWithContentsOfFile:CTContentTypesPath];
+    NSString *typesPath = [[NSBundle mainBundle] pathForResource:@"types" ofType:@"plist"];
+    NSDictionary *contentTypes = [NSDictionary dictionaryWithContentsOfFile:typesPath];
     for (NSString *key in [contentTypes allKeys]) {
         NSArray *fileExtensions = [contentTypes objectForKey:key];
         for (NSString *ext in fileExtensions) {

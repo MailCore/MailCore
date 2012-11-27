@@ -47,7 +47,7 @@
 @synthesize mime=myParsedMIME, lastError, parentFolder;
 
 - (id)init {
-    [super init];
+    self = [super init];
     if (self) {
         struct mailimf_fields *fields = mailimf_fields_new_empty();
         myFields = mailimf_single_fields_new(fields);
@@ -103,6 +103,13 @@
     return lastError;
 }
 
+- (BOOL)hasBodyStructure {
+    if (myParsedMIME == nil) {
+        return NO;
+    }
+    return YES;
+}
+
 - (BOOL)fetchBodyStructure {
     if (myMessage == NULL) {
         return NO;
@@ -116,16 +123,21 @@
         self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
     }
+    
+    CTMIME *oldMIME = myParsedMIME;
     myParsedMIME = [[CTMIMEFactory createMIMEWithMIMEStruct:[self messageStruct]->msg_mime
                         forMessage:[self messageStruct]] retain];
+    [oldMIME release];
 
     return YES;
 }
 
 - (void)setBodyStructure:(struct mailmime *)mime {
+    CTMIME *oldMIME = myParsedMIME;
     myMessage->msg_mime = mime;
     myParsedMIME = [[CTMIMEFactory createMIMEWithMIMEStruct:[self messageStruct]->msg_mime
                                                  forMessage:[self messageStruct]] retain];
+    [oldMIME release];
 }
 
 - (void)setFields:(struct mailimf_fields *)fields {
@@ -366,6 +378,7 @@
             return nil;
 
         NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        calendar.timeZone = [self senderTimeZone];
         NSDateComponents *comps = [[NSDateComponents alloc] init];
 
         [comps setYear:d->dt_year];
@@ -375,31 +388,13 @@
         [comps setMinute:d->dt_min];
         [comps setSecond:d->dt_sec];
 
-        NSDate *messageDateNoTimezone = [calendar dateFromComponents:comps];
+        NSDate *messageDate = [calendar dateFromComponents:comps];
 
         [comps release];
         [calendar release];
 
-        // no timezone applied
-        return messageDateNoTimezone;
+        return messageDate;
     }
-}
-
-- (NSDate *)sentDateGMT {
-    struct mailimf_date_time *d;
-
-    if((d = [self libetpanDateTime]) == NULL)
-        return nil;
-
-    NSInteger timezoneOffsetInSeconds = 3600*d->dt_zone/100;
-
-    NSDate *date = [self senderDate];
-
-    return [date dateByAddingTimeInterval:timezoneOffsetInSeconds * -1];
-}
-
-- (NSDate*)sentDateLocalTimeZone {
-    return [[self sentDateGMT] dateByAddingTimeInterval:[[NSTimeZone localTimeZone] secondsFromGMT]];
 }
 
 - (BOOL)isUnread {
@@ -681,6 +676,19 @@
     return [nsresult autorelease];
 }
 
+- (NSString *)rfc822Header {
+    char *result = NULL;
+    NSString *nsresult;
+    int r = mailimap_fetch_rfc822_header([self imapSession], [self sequenceNumber], &result);
+    if (r == MAIL_NO_ERROR) {
+        nsresult = [[NSString alloc] initWithCString:result encoding:NSUTF8StringEncoding];
+    } else {
+        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
+        return nil;
+    }
+    mailimap_msg_att_rfc822_free(result);
+    return [nsresult autorelease];
+}
 
 - (struct mailmessage *)messageStruct {
     return myMessage;

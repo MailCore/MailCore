@@ -51,9 +51,7 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
 
 static const int MAX_PATH_SIZE = 1024;
 
-@implementation CTCoreFolder {
-    char buffer[MAX_PATH_SIZE];
-}
+@implementation CTCoreFolder
 @synthesize lastError, parentAccount=myAccount, idling;
 
 - (id)initWithPath:(NSString *)path inAccount:(CTCoreAccount *)account; {
@@ -64,7 +62,8 @@ static const int MAX_PATH_SIZE = 1024;
         myPath = [path retain];
         connected = NO;
         myAccount = [account retain];
-        myFolder = mailfolder_new(storage, [self pathToBuffer:myPath], NULL);
+        char buffer[MAX_PATH_SIZE];
+        myFolder = mailfolder_new(storage, [self getUTF7String:buffer fromString:myPath], NULL);
         if (!myFolder) {
             return nil;
         }
@@ -85,8 +84,8 @@ static const int MAX_PATH_SIZE = 1024;
 }
 
 
-- (char*)pathToBuffer:(NSString *)path {
-    if (CFStringGetCString((CFStringRef)myPath, buffer, MAX_PATH_SIZE, kCFStringEncodingUTF7_IMAP)) {
+- (const char *)getUTF7String:(char *)buffer fromString:(NSString *)str {
+    if (CFStringGetCString((CFStringRef)str, buffer, MAX_PATH_SIZE, kCFStringEncodingUTF7_IMAP)) {
         return buffer;
     }
     else {
@@ -133,14 +132,14 @@ static const int MAX_PATH_SIZE = 1024;
         return NO;
     }
     
-    char *newPath = strdup([self pathToBuffer:path]);
-    char *oldPath = strdup([self pathToBuffer:myPath]);
+    char newPath[MAX_PATH_SIZE];
+    [self getUTF7String:newPath fromString:path];
+    
+    char oldPath[MAX_PATH_SIZE];
+    [self getUTF7String:newPath fromString:myPath];
     
     err =  mailimap_rename([myAccount session], oldPath, newPath);
-    
-    free(newPath);
-    free(oldPath);
-    
+
     if (err != MAILIMAP_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return NO;
@@ -156,6 +155,7 @@ static const int MAX_PATH_SIZE = 1024;
 
 - (CTIdleResult)idleWithTimeout:(NSUInteger)timeout {
     NSAssert(!self.idling, @"Can't call idle when we are already idling!");
+    self.lastError = nil;
     
     BOOL success = [self connect];
     if (!success) {
@@ -166,7 +166,10 @@ static const int MAX_PATH_SIZE = 1024;
     int r = 0;
     
     self.idling = YES;
-    pipe(idlePipe);
+    r = pipe(idlePipe);
+    if (r == -1) {
+        return CTIdleError;
+    }
     
     self.imapSession->imap_selection_info->sel_exists = 0;
     r = mailimap_idle(self.imapSession);
@@ -218,13 +221,13 @@ static const int MAX_PATH_SIZE = 1024;
         self.lastError = MailCoreCreateErrorFromIMAPCode(r);
         result = CTIdleError;
     }
-    
+
+    self.idling = NO;
     close(idlePipe[1]);
     close(idlePipe[0]);
     idlePipe[1] = -1;
     idlePipe[0] = -1;
-    self.idling = NO;
-    
+
     return result;
 }
 
@@ -240,7 +243,9 @@ static const int MAX_PATH_SIZE = 1024;
 
 - (BOOL)create {
     int err;
-    const char *path = [self pathToBuffer:myPath];
+    
+    char path[MAX_PATH_SIZE];
+    [self getUTF7String:path fromString:myPath];
 
     err =  mailimap_create([myAccount session], path);
     if (err != MAILIMAP_NO_ERROR) {
@@ -258,7 +263,9 @@ static const int MAX_PATH_SIZE = 1024;
 
 - (BOOL)delete {
     int err;
-    const char *path = [self pathToBuffer:myPath];
+    
+    char path[MAX_PATH_SIZE];
+    [self getUTF7String:path fromString:myPath];
 
     BOOL success = [self connect];
     if (!success) {
@@ -280,7 +287,9 @@ static const int MAX_PATH_SIZE = 1024;
 
 - (BOOL)subscribe {
     int err;
-    const char *path = [self pathToBuffer:myPath];
+    
+    char path[MAX_PATH_SIZE];
+    [self getUTF7String:path fromString:myPath];
 
     BOOL success = [self connect];
     if (!success) {
@@ -298,7 +307,9 @@ static const int MAX_PATH_SIZE = 1024;
 
 - (BOOL)unsubscribe {
     int err;
-    const char *path = [self pathToBuffer:myPath];
+    
+    char path[MAX_PATH_SIZE];
+    [self getUTF7String:path fromString:myPath];
 
     BOOL success = [self connect];
     if (!success) {

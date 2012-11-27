@@ -92,6 +92,11 @@
 - (NSError *)lastError;
 
 /**
+ Returns YES if this message body structure has been downloaded, and NO otherwise.
+ */
+- (BOOL)hasBodyStructure;
+
+/**
  If the messages body structure hasn't been downloaded already it will be fetched from the server.
 
  The body structure is needed to get attachments or the message body
@@ -164,26 +169,9 @@
 - (void)setSubject:(NSString *)subject;
 
 /**
- Returns the timezone of the sender of the message (got from the Date field timezone attribute)
-*/
-- (NSTimeZone*)senderTimeZone;
-
-/**
- Returns the date as given in the Date mail field (no timezone is applied)
+ Returns the date as given in the Date mail field
 */
 - (NSDate *)senderDate; 
-
-/**
- Returns the date in the Date field converted to GMT
-*/
-- (NSDate *)sentDateGMT; 
-
-/**
-Returns the date in the Date field converted to the local timezone
-    
-The local timezone is the one set in the device running this code
-*/
-- (NSDate *)sentDateLocalTimeZone; 
 
 /**
  Returns YES if the message is unread.
@@ -341,6 +329,12 @@ The local timezone is the one set in the device running this code
  @return Return nil on error. Call method lastError to get error if one occurred
 */
 - (NSString *)rfc822;
+
+/**
+ Fetches from the server the rfc822 content of the message headers.
+ @return Return nil on error. Call method lastError to get error if one occurred
+ */
+- (NSString *)rfc822Header;
 
 /* Intended for advanced use only */
 - (struct mailmessage *)messageStruct;

@@ -310,6 +310,7 @@
             
             listResult = [[CTXlistResult alloc] init];
             [listResult setName:mailboxNameObject];
+            [mailboxNameObject release];
             
             if (flags) {
                 for (flagIter = clist_begin(flags->mbf_oflags); flagIter != NULL; flagIter = flagIter->next) {
