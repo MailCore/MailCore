@@ -382,7 +382,7 @@
 }
 
 - (BOOL)isUnread {
-    struct mail_flags *flags = myMessage->msg_flags;
+    struct mail_flags *flags = myMessage ? myMessage->msg_flags : NULL;
     if (flags != NULL) {
         BOOL flag_seen = (flags->fl_flags & MAIL_FLAG_SEEN);
         return !flag_seen;
@@ -391,7 +391,7 @@
 }
 
 - (BOOL)isStarred {
-    struct mail_flags *flags = myMessage->msg_flags;
+    struct mail_flags *flags = myMessage ? myMessage->msg_flags : NULL;
     if (flags != NULL) {
         BOOL flag_starred = (flags->fl_flags & MAIL_FLAG_FLAGGED);
         return flag_starred;
@@ -400,7 +400,7 @@
 }
 
 - (BOOL)isNew {
-    struct mail_flags *flags = myMessage->msg_flags;
+    struct mail_flags *flags = myMessage ? myMessage->msg_flags : NULL;
     if (flags != NULL) {
         BOOL flag_seen = (flags->fl_flags & MAIL_FLAG_SEEN);
         BOOL flag_new = (flags->fl_flags & MAIL_FLAG_NEW);
@@ -418,7 +418,7 @@
 }
 
 - (NSUInteger)uid {
-    if (myMessage->msg_uid) {
+    if (myMessage && myMessage->msg_uid) {
         NSString *uidString = [[NSString alloc] initWithCString:myMessage->msg_uid encoding:NSASCIIStringEncoding];
         NSUInteger uid = (NSUInteger)[[[uidString componentsSeparatedByString:@"-"] objectAtIndex:1] intValue];
         [uidString release];
@@ -619,7 +619,7 @@
     [emlx appendData:msgContentAsData];
 
 
-    struct mail_flags *flagsStruct = myMessage->msg_flags;
+    struct mail_flags *flagsStruct = myMessage ? myMessage->msg_flags : NULL;
     uint64_t flags = 0;
     if (flagsStruct != NULL) {
         BOOL seen = (flagsStruct->fl_flags & CTFlagSeen) > 0;
