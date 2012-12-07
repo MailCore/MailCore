@@ -15,8 +15,7 @@
 		2D538B46119803A6000AB4A2 /* CTSMTPAsyncConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D538B43119803A6000AB4A2 /* CTSMTPAsyncConnection.m */; };
 		2D538B48119803E2000AB4A2 /* CTSMTPAsyncConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D538B43119803A6000AB4A2 /* CTSMTPAsyncConnection.m */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
-		ABC0FB141638E6330094B17A /* CTXlistResult.h in Sources */ = {isa = PBXBuildFile; fileRef = 0F369D01162DF5030043A3ED /* CTXlistResult.h */; };
-		ABC0FB151638E6330094B17A /* CTXlistResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F369D02162DF5030043A3ED /* CTXlistResult.m */; };
+		AB3AF26F1671B82200BBC48F /* CTXlistResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F369D01162DF5030043A3ED /* CTXlistResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F81A8ADC0C03FC3B002F780A /* CTMIME_MessagePart.h in Headers */ = {isa = PBXBuildFile; fileRef = F81A8AD20C03FC3B002F780A /* CTMIME_MessagePart.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F81A8ADD0C03FC3B002F780A /* CTMIME_MessagePart.m in Sources */ = {isa = PBXBuildFile; fileRef = F81A8AD30C03FC3B002F780A /* CTMIME_MessagePart.m */; };
 		F81A8ADE0C03FC3B002F780A /* CTMIME_MultiPart.h in Headers */ = {isa = PBXBuildFile; fileRef = F81A8AD40C03FC3B002F780A /* CTMIME_MultiPart.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -602,6 +601,7 @@
 				F86B543514F4764E0080FB8F /* CTBareAttachment.h in Headers */,
 				F86B543314F476480080FB8F /* CTCoreMessage.h in Headers */,
 				F86B543214F476420080FB8F /* CTCoreFolder.h in Headers */,
+				AB3AF26F1671B82200BBC48F /* CTXlistResult.h in Headers */,
 				F86B543114F4763F0080FB8F /* CTCoreAccount.h in Headers */,
 				F86B543014F476390080FB8F /* CTCoreAddress.h in Headers */,
 				F86B542F14F476350080FB8F /* CTCoreAttachment.h in Headers */,
