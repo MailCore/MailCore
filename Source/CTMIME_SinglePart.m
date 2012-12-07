@@ -87,6 +87,10 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
 
         mMimeFields = mailmime_single_fields_new(mMime->mm_mime_fields, mMime->mm_content_type);
         if (mMimeFields != NULL) {
+            if (mMimeFields->fld_id != NULL) {
+                self.contentId = [NSString stringWithCString:mMimeFields->fld_id encoding:NSUTF8StringEncoding];
+            }
+            
             struct mailmime_disposition *disp = mMimeFields->fld_disposition;
             if (disp != NULL) {
                 if (disp->dsp_type != NULL) {
@@ -109,9 +113,6 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
 
             if (mMimeFields->fld_disposition_filename != NULL) {
                 self.filename = [NSString stringWithCString:mMimeFields->fld_disposition_filename encoding:NSUTF8StringEncoding];
-
-                if (mMimeFields->fld_id != NULL)
-                    self.contentId = [NSString stringWithCString:mMimeFields->fld_id encoding:NSUTF8StringEncoding]; 
 
                 NSString* lowercaseName = [self.filename lowercaseString];
                 if([lowercaseName hasSuffix:@".xls"] ||
