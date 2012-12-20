@@ -330,9 +330,15 @@ static const int MAX_PATH_SIZE = 1024;
     NSString *msgStr = [msg render];
     if (![self connect])
         return NO;
-    err = mailsession_append_message ([self folderSession],
+    
+    struct mail_flags *flags = mail_flags_new(MAIL_FLAG_SEEN, clist_new());
+    
+    err = mailsession_append_message_flags([self folderSession],
                                       [msgStr cStringUsingEncoding: NSUTF8StringEncoding],
-                                      [msgStr lengthOfBytesUsingEncoding: NSUTF8StringEncoding]);
+                                      [msgStr lengthOfBytesUsingEncoding: NSUTF8StringEncoding],
+                                      flags);
+    
+    mail_flags_free(flags);
     if (MAILIMAP_NO_ERROR != err)
         self.lastError = MailCoreCreateErrorFromIMAPCode (err);
     return MAILIMAP_NO_ERROR == err;
