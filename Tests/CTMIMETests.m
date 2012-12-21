@@ -41,11 +41,10 @@
 #import "CTMIME_TextPart.h"
 #import "CTMIME_Enumerator.h"
 
-const NSString *filePrefix = @"/Users/mronge/Projects/MailCore/";
-
 @implementation CTMIMETests
 - (void)testMIMETextPart {
-	CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:[NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/kiwi-dev/1167196014.6158_0.theronge.com:2,Sab"]];
+    NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"TestData/kiwi-dev/1167196014.6158_0.theronge.com:2,Sab" ofType:@""];
+	CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:filePath];
 	CTMIME *mime = [CTMIMEFactory createMIMEWithMIMEStruct:[msg messageStruct]->msg_mime forMessage:[msg messageStruct]];
 	STAssertTrue([mime isKindOfClass:[CTMIME_MessagePart class]],@"Outmost MIME type should be Message but it's not!");
 	STAssertTrue([[mime content] isKindOfClass:[CTMIME_MultiPart class]],@"Incorrect MIME structure found!");
@@ -85,7 +84,9 @@ const NSString *filePrefix = @"/Users/mronge/Projects/MailCore/";
 	while ((file = [dirEnumerator nextObject])) {
 		if (!NSEqualRanges([file rangeOfString:@".svn"],notFound))
 			continue;
-		CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:[NSString stringWithFormat:@"%@TestData/kiwi-dev/%@",filePrefix,file]];
+
+        NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:[NSString stringWithFormat:@"TestData/kiwi-dev/%@",file] ofType:@""];
+		CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:filePath];
 		NSLog(@"%@", [msg subject]);
 		[msg fetchBodyStructure];
 		NSString *stuff = [msg body];
@@ -95,7 +96,9 @@ const NSString *filePrefix = @"/Users/mronge/Projects/MailCore/";
 }
 
 - (void)testImageJPEGAttachment {
-	CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:[NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/mime-tests/imagetest"]];
+    NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"TestData/mime-tests/imagetest" ofType:@""];
+    CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:filePath];
+
 	CTMIME *mime = [CTMIMEFactory createMIMEWithMIMEStruct:[msg messageStruct]->msg_mime forMessage:[msg messageStruct]];
 	STAssertTrue([mime isKindOfClass:[CTMIME_MessagePart class]],@"Outmost MIME type should be Message but it's not!");
 	STAssertTrue([[mime content] isKindOfClass:[CTMIME_MultiPart class]],@"Incorrect MIME structure found!");
@@ -111,8 +114,9 @@ const NSString *filePrefix = @"/Users/mronge/Projects/MailCore/";
 }
 
 - (void)testImagePNGAttachment {
-	CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:
-				[NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/mime-tests/png_attachment"]];
+    NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"TestData/mime-tests/png_attachment" ofType:@""];
+	CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:filePath];
+
 	CTMIME *mime = [CTMIMEFactory createMIMEWithMIMEStruct:
 						[msg messageStruct]->msg_mime forMessage:[msg messageStruct]];
 	STAssertTrue([mime isKindOfClass:[CTMIME_MessagePart class]],
@@ -133,8 +137,9 @@ const NSString *filePrefix = @"/Users/mronge/Projects/MailCore/";
 }
 
 - (void)testEnumerator {
-	CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:
-				[NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/mime-tests/png_attachment"]];
+    NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"TestData/mime-tests/png_attachment" ofType:@""];
+    CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:filePath];
+
 	CTMIME *mime = [CTMIMEFactory createMIMEWithMIMEStruct:
 						[msg messageStruct]->msg_mime forMessage:[msg messageStruct]];
 	CTMIME_Enumerator *enumerator = [mime mimeEnumerator];
