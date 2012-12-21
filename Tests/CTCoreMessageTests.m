@@ -95,11 +95,11 @@
 	/* Do a few sanity checks on the str */
 	NSRange notFound = NSMakeRange(NSNotFound, 0);
 	STAssertTrue(!NSEqualRanges([str rangeOfString:@"Date:"],notFound), @"Render sanity check failed!");
-	STAssertTrue(!NSEqualRanges([str rangeOfString:@"Message-ID:"],notFound), @"Render sanity check failed!");	
-	STAssertTrue(!NSEqualRanges([str rangeOfString:@"MIME-Version: 1.0"],notFound), @"Render sanity check failed!");	
+	STAssertTrue(!NSEqualRanges([str rangeOfString:@"Message-ID:"],notFound), @"Render sanity check failed!");
+	STAssertTrue(!NSEqualRanges([str rangeOfString:@"MIME-Version: 1.0"],notFound), @"Render sanity check failed!");
 	STAssertTrue(!NSEqualRanges([str rangeOfString:@"test"],notFound), @"Render sanity check failed!");
-	STAssertTrue(!NSEqualRanges([str rangeOfString:@"Content-Transfer-Encoding:"],notFound), @"Render sanity check failed!");	
-	STAssertTrue(NSEqualRanges([str rangeOfString:@"not there"],notFound), @"Render sanity check failed!");	
+	STAssertTrue(!NSEqualRanges([str rangeOfString:@"Content-Transfer-Encoding:"],notFound), @"Render sanity check failed!");
+	STAssertTrue(NSEqualRanges([str rangeOfString:@"not there"],notFound), @"Render sanity check failed!");
 }
 
 - (void)testRenderWithToField {
@@ -110,7 +110,7 @@
 	/* Do a few sanity checks on the str */
 	NSRange notFound = NSMakeRange(NSNotFound, 0);
 	STAssertTrue(!NSEqualRanges([str rangeOfString:@"message"],notFound), @"Render sanity check failed!");
-	STAssertTrue(!NSEqualRanges([str rangeOfString:@"To: Matt <test@test.com>"],notFound), @"Render sanity check failed!");	
+	STAssertTrue(!NSEqualRanges([str rangeOfString:@"To: Matt <test@test.com>"],notFound), @"Render sanity check failed!");
 }
 
 - (void)testTo {
