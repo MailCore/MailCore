@@ -354,7 +354,7 @@
 
 - (NSDate *)senderDate {
     if ( myFields->fld_orig_date == NULL) {
-        return [NSDate distantPast];
+        return nil;
     } else {
         struct mailimf_date_time *d;
 
