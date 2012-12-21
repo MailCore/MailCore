@@ -47,6 +47,16 @@
 	[myRealMsg release];
 }
 
+- (void)testBody {
+    STAssertTrue([[myRealMsg body] rangeOfString:@"Kiwi-dev mailing list"].location != NSNotFound, @"Expect to pull out the right text");
+    NSLog(@"Body is %@", [myRealMsg body]);
+}
+
+- (void)testHtmlBody {
+    STAssertTrue([[myRealMsg htmlBody] rangeOfString:@"CTCoreMessage no longer depends"].location != NSNotFound, @"Expect to pull out the right text");
+    NSLog(@"Html body is %@", [myRealMsg htmlBody]);
+}
+
 - (void)testBasicSubject {
 	[myMsg setSubject:@"Test value1!"];
 	STAssertEqualObjects(@"Test value1!", [myMsg subject], @"Basic set and get of subject failed.");

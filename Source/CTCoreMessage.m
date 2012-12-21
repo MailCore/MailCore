@@ -177,6 +177,9 @@
 }
 
 - (NSString *)htmlBody {
+    if (myFields == NULL || myParsedMIME == nil) {
+        [self fetchBodyStructure];
+    }
     NSMutableString *result = [NSMutableString string];
     [self _buildUpHtmlBodyText:myParsedMIME result:result];
     return result;
