@@ -78,10 +78,14 @@
 
 - (void)testBruteForce {
 	// run it on a bunch of the files in the test data directory and see if we can get it to crash
-	NSDirectoryEnumerator *dirEnumerator = [[NSFileManager defaultManager] enumeratorAtPath:[filePrefix stringByAppendingString:@"TestData/kiwi-dev/"]];
-	NSString *file;
+    NSString *directory = [[NSBundle bundleForClass:[self class]] resourcePath];
+    NSString *filesDirectory = [directory stringByAppendingPathComponent:@"TestData/kiwi-dev/"];
+
+    NSError *error;
+    NSArray *directoryContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:filesDirectory error:&error];
+
 	NSRange notFound = NSMakeRange(NSNotFound, 0);
-	while ((file = [dirEnumerator nextObject])) {
+    for (NSString *file in directoryContents) {
 		if (!NSEqualRanges([file rangeOfString:@".svn"],notFound))
 			continue;
 
