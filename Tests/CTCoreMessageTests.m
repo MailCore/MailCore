@@ -38,12 +38,23 @@
 @implementation CTCoreMessageTests
 - (void)setUp {
 	myMsg = [[CTCoreMessage alloc] init];
-	myRealMsg = [[CTCoreMessage alloc] initWithFileAtPath:[NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/kiwi-dev/1167196014.6158_0.theronge.com:2,Sab"]];
+    NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"TestData/kiwi-dev/1167196014.6158_0.theronge.com:2,Sab" ofType:@""];
+	myRealMsg = [[CTCoreMessage alloc] initWithFileAtPath:filePath];
 }
 
 - (void)tearDown {
 	[myMsg release];
 	[myRealMsg release];
+}
+
+- (void)testBody {
+    STAssertTrue([[myRealMsg body] rangeOfString:@"Kiwi-dev mailing list"].location != NSNotFound, @"Expect to pull out the right text");
+    NSLog(@"Body is %@", [myRealMsg body]);
+}
+
+- (void)testHtmlBody {
+    STAssertTrue([[myRealMsg htmlBody] rangeOfString:@"CTCoreMessage no longer depends"].location != NSNotFound, @"Expect to pull out the right text");
+    NSLog(@"Html body is %@", [myRealMsg htmlBody]);
 }
 
 - (void)testBasicSubject {
@@ -78,7 +89,8 @@
 }
 
 - (void)testSubjectOnData {
-	CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:[NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/kiwi-dev/1167196014.6158_0.theronge.com:2,Sab"]];
+    NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"TestData/kiwi-dev/1167196014.6158_0.theronge.com:2,Sab" ofType:@""];
+    CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:filePath];
 	[msg fetchBodyStructure];
 	STAssertEqualObjects(@"[Kiwi-dev] Revision 16", [msg subject], @"");
 	NSRange notFound = NSMakeRange(NSNotFound, 0);
@@ -93,11 +105,11 @@
 	/* Do a few sanity checks on the str */
 	NSRange notFound = NSMakeRange(NSNotFound, 0);
 	STAssertTrue(!NSEqualRanges([str rangeOfString:@"Date:"],notFound), @"Render sanity check failed!");
-	STAssertTrue(!NSEqualRanges([str rangeOfString:@"Message-ID:"],notFound), @"Render sanity check failed!");	
-	STAssertTrue(!NSEqualRanges([str rangeOfString:@"MIME-Version: 1.0"],notFound), @"Render sanity check failed!");	
+	STAssertTrue(!NSEqualRanges([str rangeOfString:@"Message-ID:"],notFound), @"Render sanity check failed!");
+	STAssertTrue(!NSEqualRanges([str rangeOfString:@"MIME-Version: 1.0"],notFound), @"Render sanity check failed!");
 	STAssertTrue(!NSEqualRanges([str rangeOfString:@"test"],notFound), @"Render sanity check failed!");
-	STAssertTrue(!NSEqualRanges([str rangeOfString:@"Content-Transfer-Encoding:"],notFound), @"Render sanity check failed!");	
-	STAssertTrue(NSEqualRanges([str rangeOfString:@"not there"],notFound), @"Render sanity check failed!");	
+	STAssertTrue(!NSEqualRanges([str rangeOfString:@"Content-Transfer-Encoding:"],notFound), @"Render sanity check failed!");
+	STAssertTrue(NSEqualRanges([str rangeOfString:@"not there"],notFound), @"Render sanity check failed!");
 }
 
 - (void)testRenderWithToField {
@@ -108,7 +120,7 @@
 	/* Do a few sanity checks on the str */
 	NSRange notFound = NSMakeRange(NSNotFound, 0);
 	STAssertTrue(!NSEqualRanges([str rangeOfString:@"message"],notFound), @"Render sanity check failed!");
-	STAssertTrue(!NSEqualRanges([str rangeOfString:@"To: Matt <test@test.com>"],notFound), @"Render sanity check failed!");	
+	STAssertTrue(!NSEqualRanges([str rangeOfString:@"To: Matt <test@test.com>"],notFound), @"Render sanity check failed!");
 }
 
 - (void)testTo {
@@ -126,7 +138,8 @@
 }
 
 - (void)testFromSpecialChar {
-	CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:[NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/kiwi-dev/1162094633.15211_0.randymail-mx2:2,RSab"]];
+    NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"TestData/kiwi-dev/1162094633.15211_0.randymail-mx2:2,RSab" ofType:@""];
+	CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:filePath];
 	CTCoreAddress *addr = [[msg from] anyObject];
 	STAssertEqualObjects(@"Joachim Mårtensson", [addr name], @"");
 	[msg release];
@@ -152,10 +165,19 @@
 }
 
 - (void)testSentDate {
-    // Is this right?? I'm super confused by this time zone stuff
-	NSDate *sentDate = [myRealMsg sentDateGMT];
-	NSDate *actualDate = [NSDate dateWithTimeIntervalSince1970:1167217609];
-	STAssertEqualObjects(sentDate, actualDate, @"Date's should be equal!");
+    NSTimeInterval sentSince1970 = [[myRealMsg senderDate] timeIntervalSince1970];
+
+    NSTimeInterval actualSince1970 = 1167196009;
+    /*
+      you can get this value by typing this into your browser console
+
+      > date = new Date('Tue, 26 Dec 2006 21:06:49 -0800 (PST)')
+      Tue Dec 26 2006 21:06:49 GMT-0800 (PST)
+      > date.getTime() / 1000
+      1167196009
+    */
+
+    STAssertEquals(sentSince1970, actualSince1970, @"Dates should be equal!");
 }
 
 - (void)testSettingFromTwice {
@@ -166,16 +188,17 @@
 }
 
 - (void)testAttachments {
-	CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:
-				[NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/mime-tests/png_attachment"]];
+    NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"TestData/mime-tests/png_attachment" ofType:@""];
+	CTCoreMessage *msg = [[CTCoreMessage alloc] initWithFileAtPath:filePath];
 	[msg fetchBodyStructure];
 	NSArray *attachments = [msg attachments];
 	STAssertTrue([attachments count] == 1, @"Count should have been 1");
 	STAssertEqualObjects([[attachments objectAtIndex:0] filename], @"Picture 1.png", @"Incorrect filename");
 	CTBareAttachment *bareAttach = [attachments objectAtIndex:0];
 	CTCoreAttachment *attach = [bareAttach fetchFullAttachment];
-	NSData *origData = [NSData dataWithContentsOfFile:
-						[NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/Picture 1.png"]];
+
+    filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"TestData/Picture 1" ofType:@"png"];
+	NSData *origData = [NSData dataWithContentsOfFile:filePath];
 	STAssertEqualObjects(origData, attach.data, @"Original data and attach data should be the same");
 	[msg release];
 }
