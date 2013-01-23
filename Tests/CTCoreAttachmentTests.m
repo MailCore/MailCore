@@ -34,32 +34,32 @@
 
 @implementation CTCoreAttachmentTests
 - (void)testJPEG {
-	NSString *path = [NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/DSC_6201.jpg"];
-	CTCoreAttachment *attach = [[CTCoreAttachment alloc] initWithContentsOfFile:path];
+    NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"TestData/DSC_6201" ofType:@"jpg"];
+	CTCoreAttachment *attach = [[CTCoreAttachment alloc] initWithContentsOfFile:filePath];
 	STAssertEqualObjects(@"image/jpeg", [attach contentType], @"The content-type should have been image/jpeg");
 	STAssertTrue([attach data] != nil, @"Data should not have been nil");
 	[attach release];
 }
 
 - (void)testPNG {
-	NSString *path = [NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/DSC_6202.png"];
-	CTCoreAttachment *attach = [[CTCoreAttachment alloc] initWithContentsOfFile:path];
+    NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"TestData/DSC_6202" ofType:@"png"];
+	CTCoreAttachment *attach = [[CTCoreAttachment alloc] initWithContentsOfFile:filePath];
 	STAssertEqualObjects(@"image/png", [attach contentType], @"The content-type should have been image/png");
 	STAssertTrue([attach data] != nil, @"Data should not have been nil");
 	[attach release];
 }
 
 - (void)testTIFF {
-	NSString *path = [NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/DSC_6193.tif"];
-	CTCoreAttachment *attach = [[CTCoreAttachment alloc] initWithContentsOfFile:path];
+    NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"TestData/DSC_6193" ofType:@"tif"];
+	CTCoreAttachment *attach = [[CTCoreAttachment alloc] initWithContentsOfFile:filePath];
 	STAssertEqualObjects(@"image/tiff", [attach contentType], @"The content-type should have been image/TIFF");
 	STAssertTrue([attach data] != nil, @"Data should not have been nil");
 	[attach release];
 }
 
 - (void)testNEF {
-	NSString *path = [NSString stringWithFormat:@"%@%@",filePrefix,@"TestData/DSC_6204.NEF"];
-	CTCoreAttachment *attach = [[CTCoreAttachment alloc] initWithContentsOfFile:path];
+    NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"TestData/DSC_6204" ofType:@"NEF"];
+	CTCoreAttachment *attach = [[CTCoreAttachment alloc] initWithContentsOfFile:filePath];
 	STAssertEqualObjects(@"application/octet-stream", [attach contentType], 
 		@"The content-type should have been application/octet-stream");
 	STAssertTrue([attach data] != nil, @"Data should not have been nil");

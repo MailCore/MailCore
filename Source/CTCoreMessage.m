@@ -177,6 +177,9 @@
 }
 
 - (NSString *)htmlBody {
+    if (myFields == NULL || myParsedMIME == nil) {
+        [self fetchBodyStructure];
+    }
     NSMutableString *result = [NSMutableString string];
     [self _buildUpHtmlBodyText:myParsedMIME result:result];
     return result;
@@ -354,7 +357,7 @@
 
 - (NSDate *)senderDate {
     if ( myFields->fld_orig_date == NULL) {
-        return [NSDate distantPast];
+        return nil;
     } else {
         struct mailimf_date_time *d;
 
