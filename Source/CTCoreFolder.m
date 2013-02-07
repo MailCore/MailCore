@@ -476,18 +476,18 @@ static const int MAX_PATH_SIZE = 1024;
             return nil;
         }
     }
-
-/*     NSLog(@"Gmail Enabled - Retrieving XGMMSGID");
-     fetch_att = mailimap_fetch_att_new_xgmmsgid();
-     r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
-     if (r != MAILIMAP_NO_ERROR) {
-         mailimap_fetch_att_free(fetch_att);
-         mailimap_fetch_type_free(fetch_type);
-         self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-         NSLog(@"Got error: %@", self.lastError);
-         return nil;
-    }*/
-
+ 
+    // Always fetch msgid if available
+    if (mailimap_has_xgmmsgid([self imapSession])) {
+        fetch_att = mailimap_fetch_att_new_xgmmsgid();
+        r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
+        if (r != MAILIMAP_NO_ERROR) {
+            mailimap_fetch_att_free(fetch_att);
+            mailimap_fetch_type_free(fetch_type);
+            self.lastError = MailCoreCreateErrorFromIMAPCode(r);
+            return nil;
+        }
+    }
      // Always fetch flags
     fetch_att = mailimap_fetch_att_new_flags();
     r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
@@ -1016,10 +1016,14 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
             goto free_msg;
         }
 
-
+        // set THRID in msg (mailmessage structure)
         if (msg_gmthrid != NULL)
             msg->msg_gmthrid = strdup(msg_gmthrid);
 
+        // set MSGID in msg (mailmessage structure)
+        if (msg_gmmsgid != NULL)
+            msg->msg_gmmsgid = strdup(msg_gmmsgid);
+        
         clist_concat(msg->msg_gmlabels, msg_gmlabels);
         clist_free(msg_gmlabels);
 

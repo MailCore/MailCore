@@ -137,6 +137,11 @@
 - (void)setHTMLBody:(NSString *)body;
 
 /**
+ The Gmail-specific X-GM-MSGID
+ */
+- (NSString *) gmailMsgId;
+
+/**
  The Gmail-specific X-GM-THRID (thread id)
 */
 - (NSString *) gmailThreadId;
