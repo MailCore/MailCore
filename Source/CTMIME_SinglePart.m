@@ -228,6 +228,9 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
     return 0;
 }
 
+- (struct mailmime_single_fields *)mimeFields {
+    return mMimeFields;
+}
 
 - (void)dealloc {
     mailmime_single_fields_free(mMimeFields);

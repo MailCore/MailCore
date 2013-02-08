@@ -62,4 +62,7 @@ typedef void (^CTProgressBlock)(size_t curr, size_t max);
 - (id)initWithData:(NSData *)data;
 - (BOOL)fetchPart;
 - (BOOL)fetchPartWithProgress:(CTProgressBlock)block;
+
+// Advanced use only
+- (struct mailmime_single_fields *)mimeFields;
 @end
