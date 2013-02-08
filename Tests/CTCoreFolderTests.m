@@ -43,7 +43,7 @@
     STAssertTrue([msg uid] > 0, @"We should have the UID");
     STAssertTrue([msg messageSize] > 0, @"We always download message size");
 
-    STAssertNil([msg sentDateGMT], @"We have no envelope so should be nil");
+    STAssertNil([msg senderDate], @"We have no envelope so should be nil");
     STAssertNil([msg subject], @"We have no envelope so should be nil");
     STAssertNil([msg to], @"We have no envelope so should be nil");
     STAssertNil([msg cc], @"We have no envelope so should be nil");
@@ -52,7 +52,7 @@
     STAssertNil([msg bcc], @"We have no envelope so should be nil");
 
     // This will force another download of message body data, checking to make sure it works
-    NSString *body = [msg bodyPreferringPlainText];
+    NSString *body = [msg body];
     STAssertTrue(body.length > 0, @"");
 }
 
@@ -63,14 +63,14 @@
     STAssertTrue([msg uid] > 0, @"We should have the UID");
     STAssertTrue([msg messageSize] > 0, @"We always download message size");
 
-    STAssertNotNil([msg sentDateGMT], @"We DO HAVE AN envelope so shouldn't be nil");
+    STAssertNotNil([msg senderDate], @"We DO HAVE AN envelope so shouldn't be nil");
     STAssertNotNil([msg subject], @"We DO HAVE AN envelope so shouldn't be nil");
     STAssertNotNil([msg to], @"We DO HAVE AN envelope so shouldn't be nil");
     STAssertNotNil([msg sender], @"We DO HAVE AN envelope so shouldn't be nil");
     STAssertNotNil([msg from], @"We DO HAVE AN envelope so shouldn't be nil");
 
     // This will force another download of message body data, checking to make sure it works
-    NSString *body = [msg bodyPreferringPlainText];
+    NSString *body = [msg body];
     STAssertTrue(body.length > 0, @"");
 }
 
@@ -81,14 +81,14 @@
     STAssertTrue([msg uid] > 0, @"We should have the UID");
     STAssertTrue([msg messageSize] > 0, @"We always download message size");
 
-    STAssertNotNil([msg sentDateGMT], @"We DO HAVE AN envelope so shouldn't be nil");
+    STAssertNotNil([msg senderDate], @"We DO HAVE AN envelope so shouldn't be nil");
     STAssertNotNil([msg subject], @"We DO HAVE AN envelope so shouldn't be nil");
     STAssertNotNil([msg to], @"We DO HAVE AN envelope so shouldn't be nil");
     STAssertNotNil([msg sender], @"We DO HAVE AN envelope so shouldn't be nil");
     STAssertNotNil([msg from], @"We DO HAVE AN envelope so shouldn't be nil");
 
     // This will force another download of message body data, checking to make sure it works
-    NSString *body = [msg bodyPreferringPlainText];
+    NSString *body = [msg body];
     STAssertTrue(body.length > 0, @"");
 }
 
@@ -99,7 +99,7 @@
     STAssertTrue([msg uid] > 0, @"We should have the UID");
     STAssertTrue([msg messageSize] > 0, @"We always download message size");
 
-    STAssertNil([msg sentDateGMT], @"We have no envelope so should be nil");
+    STAssertNil([msg senderDate], @"We have no envelope so should be nil");
     STAssertNil([msg subject], @"We have no envelope so should be nil");
     STAssertNil([msg to], @"We have no envelope so should be nil");
     STAssertNil([msg cc], @"We have no envelope so should be nil");
@@ -108,7 +108,7 @@
     STAssertNil([msg bcc], @"We have no envelope so should be nil");
 
     // A second call to fetch the body structure shouldn't be needed, we only need to fetch body
-    NSString *body = [msg bodyPreferringPlainText];
+    NSString *body = [msg body];
     STAssertTrue(body.length > 0, @"");
 }
 
@@ -119,14 +119,14 @@
     STAssertTrue([msg uid] > 0, @"We should have the UID");
     STAssertTrue([msg messageSize] > 0, @"We always download message size");
 
-    STAssertNotNil([msg sentDateGMT], @"We DO HAVE AN envelope so shouldn't be nil");
+    STAssertNotNil([msg senderDate], @"We DO HAVE AN envelope so shouldn't be nil");
     STAssertNotNil([msg subject], @"We DO HAVE AN envelope so shouldn't be nil");
     STAssertNotNil([msg to], @"We DO HAVE AN envelope so shouldn't be nil");
     STAssertNotNil([msg sender], @"We DO HAVE AN envelope so shouldn't be nil");
     STAssertNotNil([msg from], @"We DO HAVE AN envelope so shouldn't be nil");
 
     // A second call to fetch the body structure shouldn't be needed, we only need to fetch body
-    NSString *body = [msg bodyPreferringPlainText];
+    NSString *body = [msg body];
     STAssertTrue(body.length > 0, @"");
 }
 @end
