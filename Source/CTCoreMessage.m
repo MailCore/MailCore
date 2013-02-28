@@ -151,7 +151,10 @@
         [self fetchBodyStructure];
     }
     NSMutableString *result = [NSMutableString string];
-    [self _buildUpBodyText:myParsedMIME result:result];
+    BOOL success = [self _buildUpBodyText:myParsedMIME result:result];
+    if (!success) {
+        return nil;
+    }
     return result;
 }
 
@@ -181,7 +184,10 @@
         [self fetchBodyStructure];
     }
     NSMutableString *result = [NSMutableString string];
-    [self _buildUpHtmlBodyText:myParsedMIME result:result];
+    BOOL success = [self _buildUpHtmlBodyText:myParsedMIME result:result];
+    if (!success) {
+        return nil;
+    }
     return result;
 }
 
@@ -196,20 +202,24 @@
 }
 
 
-- (void)_buildUpBodyText:(CTMIME *)mime result:(NSMutableString *)result {
+- (BOOL)_buildUpBodyText:(CTMIME *)mime result:(NSMutableString *)result {
     if (mime == nil)
-        return;
+        return NO;
 
     if ([mime isKindOfClass:[CTMIME_MessagePart class]]) {
-        [self _buildUpBodyText:[mime content] result:result];
+        return [self _buildUpBodyText:[mime content] result:result];
     }
     else if ([mime isKindOfClass:[CTMIME_TextPart class]]) {
         if ([[mime.contentType lowercaseString] rangeOfString:@"text/plain"].location != NSNotFound) {
-            [(CTMIME_TextPart *)mime fetchPart];
-            NSString* y = [mime content];
-            if(y != nil) {
-                [result appendString:y];
+            BOOL success = [(CTMIME_TextPart *)mime fetchPart];
+            if (!success) {
+                return NO;
             }
+            NSString* y = [mime content];
+            if(y == nil) {
+                return NO;
+            }
+            [result appendString:y];
         }
     }
     else if ([mime isKindOfClass:[CTMIME_MultiPart class]]) {
@@ -217,25 +227,34 @@
         NSEnumerator *enumer = [[mime content] objectEnumerator];
         CTMIME *subpart;
         while ((subpart = [enumer nextObject])) {
-            [self _buildUpBodyText:subpart result:result];
+            BOOL success = [self _buildUpBodyText:subpart result:result];
+            if (!success) {
+                return NO;
+            }
         }
     }
+    return YES;
 }
 
-- (void)_buildUpHtmlBodyText:(CTMIME *)mime result:(NSMutableString *)result {
+- (BOOL)_buildUpHtmlBodyText:(CTMIME *)mime result:(NSMutableString *)result {
     if (mime == nil)
-        return;
+        return NO;
 
     if ([mime isKindOfClass:[CTMIME_MessagePart class]]) {
-        [self _buildUpHtmlBodyText:[mime content] result:result];
+        return [self _buildUpHtmlBodyText:[mime content] result:result];
     }
     else if ([mime isKindOfClass:[CTMIME_TextPart class]]) {
         if ([[mime.contentType lowercaseString] rangeOfString:@"text/html"].location != NSNotFound) {
-            [(CTMIME_TextPart *)mime fetchPart];
-            NSString* y = [mime content];
-            if(y != nil) {
-                [result appendString:y];
+            BOOL success = [(CTMIME_TextPart *)mime fetchPart];
+            if (!success) {
+                return NO;
             }
+            
+            NSString* y = [mime content];
+            if(y == nil) {
+                return NO;
+            }
+            [result appendString:y];
         }
     }
     else if ([mime isKindOfClass:[CTMIME_MultiPart class]]) {
@@ -243,9 +262,13 @@
         NSEnumerator *enumer = [[mime content] objectEnumerator];
         CTMIME *subpart;
         while ((subpart = [enumer nextObject])) {
-            [self _buildUpHtmlBodyText:subpart result:result];
+            BOOL success = [self _buildUpHtmlBodyText:subpart result:result];
+            if (!success) {
+                return NO;
+            }
         }
     }
+    return YES;
 }
 
 
