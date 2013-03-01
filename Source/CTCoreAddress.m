@@ -95,7 +95,7 @@
 
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<%@,%@>", [self name],[self email]];
+    return [NSString stringWithFormat:@"%@ <%@>", [self name],[self email]];
 }
 
 
