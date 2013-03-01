@@ -92,12 +92,12 @@
  This method take fetch attributes which configure what is fetched. Fetch attributes can be combined
  so you fetch all the message data at once, or select which pieces you want for your app. You can
  also fetch just the default attributes which will be as fast as possible. Pass in
- CTFetchAttrDefaultsOnly to attrs fetch the minimum possible, this includes the UID, RFC822.size, and
+ CTFetchAttrDefaultsOnly to attrs fetch the minimum possible, this includes the UID and
  flags. The defaults are always fetched, even when you don't pass in this flag.  Use
  CTFetchAttrBodyStructure to also fetch the body structure of the message. This prevents a future
  round trip done by [CTCoreMessage fetchBodyStructure], if it sees you already have the body
  structure it won't re-fetch it.  Use CTFetchAttrEnvelope if you'd like to fetch the subject, to,
- from, cc, bcc, sender, date etc. You can also fetch both the envelope and body structure by passing
+ from, cc, bcc, sender, date, size, etc. You can also fetch both the envelope and body structure by passing
  in CTFetchAttrEnvelope | CTFetchAttrBodyStructure
 
  

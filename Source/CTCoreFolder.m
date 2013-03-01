@@ -433,7 +433,7 @@ static const int MAX_PATH_SIZE = 1024;
     return YES;
 }
 
-// We always fetch UID, RFC822.Size, and Flags
+// We always fetch UID and Flags
 - (NSArray *)messagesForSet:(struct mailimap_set *)set fetchAttributes:(CTFetchAttributes)attrs uidFetch:(BOOL)uidFetch {
     BOOL success = [self connect];
     if (!success) {
@@ -470,14 +470,16 @@ static const int MAX_PATH_SIZE = 1024;
         return nil;
     }
 
-    // Always fetch RFC822.Size
-    fetch_att = mailimap_fetch_att_new_rfc822_size();
-    r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
-    if (r != MAILIMAP_NO_ERROR) {
-        mailimap_fetch_att_free(fetch_att);
-        mailimap_fetch_type_free(fetch_type);
-        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-        return nil;
+    // We only fetch RFC822.Size if the envelope is being fetched
+    if (attrs & CTFetchAttrEnvelope) {
+        fetch_att = mailimap_fetch_att_new_rfc822_size();
+        r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
+        if (r != MAILIMAP_NO_ERROR) {
+            mailimap_fetch_att_free(fetch_att);
+            mailimap_fetch_type_free(fetch_type);
+            self.lastError = MailCoreCreateErrorFromIMAPCode(r);
+            return nil;
+        }
     }
 
     // We only fetch the body structure if requested
