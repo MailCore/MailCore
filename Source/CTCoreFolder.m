@@ -137,7 +137,7 @@ static const int MAX_PATH_SIZE = 1024;
     [self getUTF7String:newPath fromString:path];
     
     char oldPath[MAX_PATH_SIZE];
-    [self getUTF7String:newPath fromString:myPath];
+    [self getUTF7String:oldPath fromString:myPath];
     
     err =  mailimap_rename([myAccount session], oldPath, newPath);
     
