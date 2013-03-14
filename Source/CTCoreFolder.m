@@ -743,7 +743,8 @@ static const int MAX_PATH_SIZE = 1024;
         return NO;
     }
 
-    const char *mbPath = [path cStringUsingEncoding:NSUTF8StringEncoding];
+    char mbPath[MAX_PATH_SIZE];
+    [self getUTF7String:mbPath fromString:path];
     int err = mailsession_copy_message([self folderSession], uid, mbPath);
     if (err != MAIL_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromIMAPCode(err);
@@ -758,7 +759,8 @@ static const int MAX_PATH_SIZE = 1024;
         return NO;
     }
 
-    const char *mbPath = [path cStringUsingEncoding:NSUTF8StringEncoding];
+    char mbPath[MAX_PATH_SIZE];
+    [self getUTF7String:mbPath fromString:path];
     int err = mailsession_move_message([self folderSession], uid, mbPath);
     if (err != MAIL_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromIMAPCode(err);
