@@ -41,11 +41,6 @@
 #include <unistd.h>
 
 
-//int imap_fetch_result_to_envelop_list(clist * fetch_result, struct mailmessage_list * env_list);
-//
-int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result,
-                        mailsession * session, mailmessage_driver * driver);
-
 @interface CTCoreFolder ()
 @end
 
@@ -453,30 +448,6 @@ static const int MAX_PATH_SIZE = 1024;
         return nil;
     }
 
-    // Always fetch thread id if available
-    if (mailimap_has_xgmthrid([self imapSession])) {
-        fetch_att = mailimap_fetch_att_new_xgmthrid();
-        r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
-        if (r != MAILIMAP_NO_ERROR) {
-            mailimap_fetch_att_free(fetch_att);
-            mailimap_fetch_type_free(fetch_type);
-            self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-            return nil;
-        }
-    }
-
-    // Always fetch labels if available
-    if (mailimap_has_xgmlabels([self imapSession])) {
-        fetch_att = mailimap_fetch_att_new_xgmlabels();
-        r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
-        if (r != MAILIMAP_NO_ERROR) {
-            mailimap_fetch_att_free(fetch_att);
-            mailimap_fetch_type_free(fetch_type);
-            self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-            return nil;
-        }
-    }
- 
     // Always fetch msgid if available
     if (mailimap_has_xgmmsgid([self imapSession])) {
         fetch_att = mailimap_fetch_att_new_xgmmsgid();
@@ -955,6 +926,8 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
         char * msg_gmthrid = NULL;
         char * msg_gmmsgid = NULL;
         clist * msg_gmlabels = clist_new();
+		char* rfc882;
+		rfc882 = NULL;
 
         msg_att = clist_content(cur);
         uid = 0;
@@ -975,6 +948,11 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
                     case MAILIMAP_MSG_ATT_RFC822_SIZE:
                         size = item->att_data.att_static->att_data.att_rfc822_size;
                     break;
+					case MAILIMAP_MSG_ATT_RFC822:
+						rfc882 = item->att_data.att_static->att_data.att_rfc822.att_content;
+						item->att_data.att_static->att_data.att_rfc822.att_content = NULL;
+						break;
+							
                 }
                 break;
 
@@ -1023,6 +1001,10 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
         // set MSGID in msg (mailmessage structure)
         if (msg_gmmsgid != NULL)
             msg->msg_gmmsgid = strdup(msg_gmmsgid);
+		
+		// set RFC822
+		msg->msg_user_data = rfc882;
+		
         
         clist_concat(msg->msg_gmlabels, msg_gmlabels);
         clist_free(msg_gmlabels);

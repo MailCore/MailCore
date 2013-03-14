@@ -272,7 +272,7 @@
 
 - (NSString *) gmailMsgId {
     if (myMessage->msg_gmmsgid) {
-        NSString *msgidString = [[NSString alloc] initWithCString:myMessage->msg_gmmsgid encoding:NSASCIIStringEncoding];
+        NSString *msgidString = [[[NSString alloc] initWithCString:myMessage->msg_gmmsgid encoding:NSASCIIStringEncoding] autorelease];
         return msgidString;
     }
     return nil;
@@ -280,7 +280,7 @@
 
 - (NSString *) gmailThreadId {
     if (myMessage->msg_gmthrid) {
-        NSString *thridString = [[NSString alloc] initWithCString:myMessage->msg_gmthrid encoding:NSASCIIStringEncoding];
+        NSString *thridString = [[[NSString alloc] initWithCString:myMessage->msg_gmthrid encoding:NSASCIIStringEncoding] autorelease];
         return thridString;
     }
     return nil;

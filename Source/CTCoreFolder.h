@@ -51,6 +51,11 @@
     BOOL idling;
     int idlePipe[2];
 }
+
+int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result,
+						 mailsession * session, mailmessage_driver * driver);
+
+
 /**
  If an error occurred (nil or return of NO) call this method to get the error
 */

@@ -16,6 +16,12 @@
 		2D538B48119803E2000AB4A2 /* CTSMTPAsyncConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D538B43119803A6000AB4A2 /* CTSMTPAsyncConnection.m */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 		AB3AF26F1671B82200BBC48F /* CTXlistResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F369D01162DF5030043A3ED /* CTXlistResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CD34686B16C51D71009C65BB /* CTCoreMessage+Extended.h in Headers */ = {isa = PBXBuildFile; fileRef = CD34686A16C51D71009C65BB /* CTCoreMessage+Extended.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CD34687116C51D8C009C65BB /* CTCoreMessage+Extended.m in Sources */ = {isa = PBXBuildFile; fileRef = CD34687016C51D8C009C65BB /* CTCoreMessage+Extended.m */; };
+		CD522D5516C46FDA00423A09 /* CTCoreAccount+Extended.h in Headers */ = {isa = PBXBuildFile; fileRef = CD522D5116C46FDA00423A09 /* CTCoreAccount+Extended.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CD522D5616C46FDA00423A09 /* CTCoreAccount+Extended.m in Sources */ = {isa = PBXBuildFile; fileRef = CD522D5216C46FDA00423A09 /* CTCoreAccount+Extended.m */; };
+		CD522D5716C46FDA00423A09 /* CTCoreFolder+Extended.h in Headers */ = {isa = PBXBuildFile; fileRef = CD522D5316C46FDA00423A09 /* CTCoreFolder+Extended.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CD522D5816C46FDA00423A09 /* CTCoreFolder+Extended.m in Sources */ = {isa = PBXBuildFile; fileRef = CD522D5416C46FDA00423A09 /* CTCoreFolder+Extended.m */; };
 		F81A8ADC0C03FC3B002F780A /* CTMIME_MessagePart.h in Headers */ = {isa = PBXBuildFile; fileRef = F81A8AD20C03FC3B002F780A /* CTMIME_MessagePart.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F81A8ADD0C03FC3B002F780A /* CTMIME_MessagePart.m in Sources */ = {isa = PBXBuildFile; fileRef = F81A8AD30C03FC3B002F780A /* CTMIME_MessagePart.m */; };
 		F81A8ADE0C03FC3B002F780A /* CTMIME_MultiPart.h in Headers */ = {isa = PBXBuildFile; fileRef = F81A8AD40C03FC3B002F780A /* CTMIME_MultiPart.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -224,6 +230,12 @@
 		2D538B42119803A6000AB4A2 /* CTSMTPAsyncConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTSMTPAsyncConnection.h; path = Source/CTSMTPAsyncConnection.h; sourceTree = SOURCE_ROOT; };
 		2D538B43119803A6000AB4A2 /* CTSMTPAsyncConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTSMTPAsyncConnection.m; path = Source/CTSMTPAsyncConnection.m; sourceTree = SOURCE_ROOT; };
 		8DC2EF5B0486A6940098B216 /* MailCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MailCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD34686A16C51D71009C65BB /* CTCoreMessage+Extended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CTCoreMessage+Extended.h"; sourceTree = "<group>"; };
+		CD34687016C51D8C009C65BB /* CTCoreMessage+Extended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CTCoreMessage+Extended.m"; sourceTree = "<group>"; };
+		CD522D5116C46FDA00423A09 /* CTCoreAccount+Extended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CTCoreAccount+Extended.h"; sourceTree = "<group>"; };
+		CD522D5216C46FDA00423A09 /* CTCoreAccount+Extended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CTCoreAccount+Extended.m"; sourceTree = "<group>"; };
+		CD522D5316C46FDA00423A09 /* CTCoreFolder+Extended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CTCoreFolder+Extended.h"; sourceTree = "<group>"; };
+		CD522D5416C46FDA00423A09 /* CTCoreFolder+Extended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CTCoreFolder+Extended.m"; sourceTree = "<group>"; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		F81A8AD20C03FC3B002F780A /* CTMIME_MessagePart.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = CTMIME_MessagePart.h; path = Source/CTMIME_MessagePart.h; sourceTree = "<group>"; };
 		F81A8AD30C03FC3B002F780A /* CTMIME_MessagePart.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = CTMIME_MessagePart.m; path = Source/CTMIME_MessagePart.m; sourceTree = "<group>"; };
@@ -393,6 +405,12 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CD34686A16C51D71009C65BB /* CTCoreMessage+Extended.h */,
+				CD34687016C51D8C009C65BB /* CTCoreMessage+Extended.m */,
+				CD522D5116C46FDA00423A09 /* CTCoreAccount+Extended.h */,
+				CD522D5216C46FDA00423A09 /* CTCoreAccount+Extended.m */,
+				CD522D5316C46FDA00423A09 /* CTCoreFolder+Extended.h */,
+				CD522D5416C46FDA00423A09 /* CTCoreFolder+Extended.m */,
 				F81E26810C6ED57400B3FBAC /* SMTP */,
 				F81E26720C6ED56000B3FBAC /* MIME */,
 				F81E266C0C6ED4E100B3FBAC /* CTCoreAttachment.h */,
@@ -566,9 +584,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				F81B885E0A74AA7100143DF6 /* CTCoreAccount.h in Headers */,
+				CD522D5516C46FDA00423A09 /* CTCoreAccount+Extended.h in Headers */,
 				F81B88600A74AA7100143DF6 /* CTCoreAddress.h in Headers */,
 				F81B88620A74AA7100143DF6 /* CTCoreFolder.h in Headers */,
+				CD522D5716C46FDA00423A09 /* CTCoreFolder+Extended.h in Headers */,
 				F81B88640A74AA7100143DF6 /* CTCoreMessage.h in Headers */,
+				CD34686B16C51D71009C65BB /* CTCoreMessage+Extended.h in Headers */,
 				F81B88680A74AA7100143DF6 /* CTSMTPConnection.h in Headers */,
 				F81B886A0A74AA7100143DF6 /* MailCore.h in Headers */,
 				F81B886B0A74AA7100143DF6 /* MailCoreTypes.h in Headers */,
@@ -858,6 +879,9 @@
 				2D538B46119803A6000AB4A2 /* CTSMTPAsyncConnection.m in Sources */,
 				F8EC5B0414C37F60006AF4D3 /* CTMIME_HtmlPart.m in Sources */,
 				0F369D04162DF5030043A3ED /* CTXlistResult.m in Sources */,
+				CD522D5616C46FDA00423A09 /* CTCoreAccount+Extended.m in Sources */,
+				CD522D5816C46FDA00423A09 /* CTCoreFolder+Extended.m in Sources */,
+				CD34687116C51D8C009C65BB /* CTCoreMessage+Extended.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1037,6 +1061,7 @@
 				HEADER_SEARCH_PATHS = "libetpan/build-mac/include/**";
 				LIBRARY_SEARCH_PATHS = "";
 				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -1053,6 +1078,7 @@
 				HEADER_SEARCH_PATHS = "libetpan/build-mac/include/**";
 				LIBRARY_SEARCH_PATHS = "";
 				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};

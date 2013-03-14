@@ -32,24 +32,21 @@
 #import "CTXlistResult.h"
 
 @implementation CTXlistResult
-{
-    NSMutableArray *_flags;
-}
 
-@synthesize name, flags = _flags;
+@synthesize name  = _name,
+			flags = _flags;
 
-- (id)init
-{
+- (id)init {
     self = [super init];
     if (self) {
-        _flags = [[NSMutableArray alloc] init];
+        _flags = [[NSMutableSet alloc] init];
     }
     return self;
 }
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%@ - %@", name, _flags];
+    return [NSString stringWithFormat:@"%@ - %@", _name, _flags];
 }
 
 - (void)dealloc

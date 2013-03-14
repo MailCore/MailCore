@@ -31,10 +31,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CTXlistResult : NSObject
+@interface CTXlistResult : NSObject {
+    NSMutableSet *_flags;
+    NSString *_name;
+}
 
 @property (nonatomic, retain) NSString *name;
-@property (nonatomic, strong, readonly) NSArray *flags;
+@property (nonatomic, strong, readonly) NSMutableSet *flags;
 
 - (void)addFlag:(NSString *)flag;
 
