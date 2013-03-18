@@ -1010,6 +1010,7 @@
 					0xb0000000,
 				);
 				PRODUCT_NAME = MailCore;
+				SDKROOT = macosx10.7;
 				WRAPPER_EXTENSION = framework;
 				ZERO_LINK = YES;
 			};
@@ -1044,6 +1045,7 @@
 					0xb0000000,
 				);
 				PRODUCT_NAME = MailCore;
+				SDKROOT = macosx10.7;
 				STRIP_INSTALLED_PRODUCT = YES;
 				WRAPPER_EXTENSION = framework;
 			};
