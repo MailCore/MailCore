@@ -15,6 +15,6 @@
 - (NSArray *) messagesFullFrom:(NSUInteger)startUID to:(NSUInteger)endUID;
 - (NSArray *) getUidsFromLastUID:(NSUInteger)UID;
 - (NSArray *) getAll_X_Gm_msgIds;
-- (BOOL) appendMessageSeen: (CTCoreMessage *) msg;
+- (long) appendMessageSeen: (CTCoreMessage *) msg;
 
 @end

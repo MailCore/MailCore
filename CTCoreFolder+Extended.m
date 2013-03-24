@@ -16,7 +16,7 @@
 #import "MailCoreUtilities.h"
 #import <libetpan/libetpan.h>
 #import <libetpan/mailimap_types.h>
-
+#import "libetpan_extensions.h"
 #include <unistd.h>
 
 @implementation CTCoreFolder (Extended)
@@ -485,12 +485,15 @@
 
 /*
   Append message to folder, setting INTERNALDATE to match date on the 
-  message itself, and setting the SEEN flag
+  message itself, and setting the SEEN flag.
+ 
+  Returns IMAP uid of messages created,
+  returns <= 0 on error
 */
-- (BOOL) appendMessageSeen: (CTCoreMessage *) msg
+- (long) appendMessageSeen: (CTCoreMessage *) msg
 {
     int err = MAILIMAP_NO_ERROR;
-    int res = NO;			// return status
+    int resultUid = 0;	// return status
     struct mailimap_flag_list *flag_list = NULL;
     struct mailimap_date_time *date_time = NULL;
     
@@ -525,7 +528,7 @@
     date_time = mailimap_date_time_new([components day], [components month], [components year],
 				       [components hour], [components minute], [components second], 0); // TODO using +0000 for all timezones
 	
-    err = mailimap_append(imap_session,
+    resultUid = gmailimap_append(imap_session,
 			  sess_data->imap_mailbox,
 			  flag_list,
 			  NULL, //date_time,  ** omit date for now - bug in mailimap_append_send formatting date
@@ -533,17 +536,15 @@
 			  [msgStr lengthOfBytesUsingEncoding: NSUTF8StringEncoding]);
  
     
-    if (MAILIMAP_NO_ERROR != err)
-        self.lastError = MailCoreCreateErrorFromIMAPCode (err);
-    else
-	res = YES;
+    if (resultUid < 0)	    // negative uid from gmailimap_append
+        self.lastError = MailCoreCreateErrorFromIMAPCode (-resultUid); // means error
     
 cleanup:
     if (flag_list != NULL)
 	mailimap_flag_list_free(flag_list);
     if (date_time != NULL)
 	mailimap_date_time_free(date_time);
-    return res;
+    return resultUid;
 
 }
  
