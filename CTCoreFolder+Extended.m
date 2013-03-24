@@ -15,6 +15,7 @@
 #import "MailCoreTypes.h"
 #import "MailCoreUtilities.h"
 #import <libetpan/libetpan.h>
+#import <libetpan/mailimap_types.h>
 
 #include <unistd.h>
 
@@ -482,6 +483,69 @@
     return messages;
 }
 
+/*
+  Append message to folder, setting INTERNALDATE to match date on the 
+  message itself, and setting the SEEN flag
+*/
+- (BOOL) appendMessageSeen: (CTCoreMessage *) msg
+{
+    int err = MAILIMAP_NO_ERROR;
+    int res = NO;			// return status
+    struct mailimap_flag_list *flag_list = NULL;
+    struct mailimap_date_time *date_time = NULL;
+    
+    NSString *msgStr = [msg render];	// 
+    if (![self connect])
+        return NO;
+    
+    NSLog(@"appendMessageSeen %@: %@",[msg gmailMsgId], [msg subject]); // DEBUG
+
+    // Note: mailsession_append_message does not expose the date_time arg,
+    //  so we are bypassing the mailsession layer and calling directly to
+    //	mailimap_append. This assumes that the connection type is IMAP, which
+    //	is all we support anyway
+    
+    // Locate IMAP session data from the generic session
+    struct imap_session_state_data *sess_data = (struct imap_session_state_data *)[self folderSession]->sess_data;
+    mailimap *imap_session = sess_data->imap_session;
+    
+    flag_list = mailimap_flag_list_new_empty();
+    if (flag_list == NULL) {
+	NSLog(@"mailimap_flag_list_new_empty failed");
+	goto cleanup;
+    }
+    err = mailimap_flag_list_add(flag_list, mailimap_flag_new_seen());
+    if (err != MAILIMAP_NO_ERROR) {
+	NSLog(@"mailimap_flag_list_add failed");
+	goto cleanup;
+    }
+    
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSHourCalendarUnit | NSMinuteCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit | NSTimeZoneCalendarUnit
+                                                                   fromDate:[msg senderDate]];
+    date_time = mailimap_date_time_new([components day], [components month], [components year],
+				       [components hour], [components minute], [components second], 0); // TODO using +0000 for all timezones
+	
+    err = mailimap_append(imap_session,
+			  sess_data->imap_mailbox,
+			  flag_list,
+			  NULL, //date_time,  ** omit date for now - bug in mailimap_append_send formatting date
+			  [msgStr cStringUsingEncoding: NSUTF8StringEncoding],
+			  [msgStr lengthOfBytesUsingEncoding: NSUTF8StringEncoding]);
+ 
+    
+    if (MAILIMAP_NO_ERROR != err)
+        self.lastError = MailCoreCreateErrorFromIMAPCode (err);
+    else
+	res = YES;
+    
+cleanup:
+    if (flag_list != NULL)
+	mailimap_flag_list_free(flag_list);
+    if (date_time != NULL)
+	mailimap_date_time_free(date_time);
+    return res;
+
+}
  
  
  
