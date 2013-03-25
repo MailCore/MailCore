@@ -18,5 +18,9 @@ long gmailimap_append(mailimap * session, const char * mailbox,
 		     struct mailimap_flag_list * flag_list,
 		     struct mailimap_date_time * date_time,
 		     const char * literal, size_t literal_size);
-
+int gmailimap_append_send(mailstream * fd,
+			  const char * mailbox,
+			  struct mailimap_flag_list * flag_list,
+			  struct mailimap_date_time * date_time,
+			  size_t literal_size);
 #endif

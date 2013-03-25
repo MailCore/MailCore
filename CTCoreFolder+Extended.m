@@ -17,6 +17,7 @@
 #import <libetpan/libetpan.h>
 #import <libetpan/mailimap_types.h>
 #import "libetpan_extensions.h"
+#import "timeutils.h"
 #include <unistd.h>
 
 @implementation CTCoreFolder (Extended)
@@ -523,15 +524,19 @@
 	goto cleanup;
     }
     
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSHourCalendarUnit | NSMinuteCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit | NSTimeZoneCalendarUnit
-                                                                   fromDate:[msg senderDate]];
+    // Get date from message, extract components, using curent timezone
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSHourCalendarUnit | NSMinuteCalendarUnit |
+				    NSSecondCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit | NSTimeZoneCalendarUnit
+				    fromDate:[msg senderDate]];
+    // build date_time struct from components
     date_time = mailimap_date_time_new([components day], [components month], [components year],
-				       [components hour], [components minute], [components second], 0); // TODO using +0000 for all timezones
+				       [components hour], [components minute], [components second],
+				       get_current_timezone_offset());
 	
     resultUid = gmailimap_append(imap_session,
 			  sess_data->imap_mailbox,
 			  flag_list,
-			  NULL, //date_time,  ** omit date for now - bug in mailimap_append_send formatting date
+			  date_time, 
 			  [msgStr cStringUsingEncoding: NSUTF8StringEncoding],
 			  [msgStr lengthOfBytesUsingEncoding: NSUTF8StringEncoding]);
  
@@ -549,5 +554,23 @@ cleanup:
 }
  
  
- 
+static int get_current_timezone_offset(void)
+{
+    struct tm gmt;
+    struct tm lt;
+    int off;
+    time_t t;
+    
+    t = time(NULL);
+    
+    if (gmtime_r(&t, &gmt) == NULL)
+	return 0;
+    
+    if (localtime_r(&t, &lt) == NULL)
+	return 0;
+    
+    off = (mail_mkgmtime(&lt) - mail_mkgmtime(&gmt)) * 100 / (60 * 60);
+    
+    return off;
+}
 @end
