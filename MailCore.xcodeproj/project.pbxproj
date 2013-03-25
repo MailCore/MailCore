@@ -14,7 +14,7 @@
 		2D538B45119803A6000AB4A2 /* CTSMTPAsyncConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D538B42119803A6000AB4A2 /* CTSMTPAsyncConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2D538B46119803A6000AB4A2 /* CTSMTPAsyncConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D538B43119803A6000AB4A2 /* CTSMTPAsyncConnection.m */; };
 		2D538B48119803E2000AB4A2 /* CTSMTPAsyncConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D538B43119803A6000AB4A2 /* CTSMTPAsyncConnection.m */; };
-		6F9DD75716FEAFA200E926F2 /* libtpan_extensions.c in Sources */ = {isa = PBXBuildFile; fileRef = 6F9DD75516FEAFA200E926F2 /* libtpan_extensions.c */; };
+		6F9DD75716FEAFA200E926F2 /* libetpan_extensions.c in Sources */ = {isa = PBXBuildFile; fileRef = 6F9DD75516FEAFA200E926F2 /* libetpan_extensions.c */; };
 		6F9DD75816FEAFA200E926F2 /* libetpan_extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F9DD75616FEAFA200E926F2 /* libetpan_extensions.h */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 		AB3AF26F1671B82200BBC48F /* CTXlistResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F369D01162DF5030043A3ED /* CTXlistResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -231,7 +231,7 @@
 		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		2D538B42119803A6000AB4A2 /* CTSMTPAsyncConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTSMTPAsyncConnection.h; path = Source/CTSMTPAsyncConnection.h; sourceTree = SOURCE_ROOT; };
 		2D538B43119803A6000AB4A2 /* CTSMTPAsyncConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTSMTPAsyncConnection.m; path = Source/CTSMTPAsyncConnection.m; sourceTree = SOURCE_ROOT; };
-		6F9DD75516FEAFA200E926F2 /* libtpan_extensions.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = libtpan_extensions.c; sourceTree = "<group>"; };
+		6F9DD75516FEAFA200E926F2 /* libetpan_extensions.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = libetpan_extensions.c; sourceTree = "<group>"; };
 		6F9DD75616FEAFA200E926F2 /* libetpan_extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libetpan_extensions.h; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* MailCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MailCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD34686A16C51D71009C65BB /* CTCoreMessage+Extended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CTCoreMessage+Extended.h"; sourceTree = "<group>"; };
@@ -415,7 +415,7 @@
 				CD522D5216C46FDA00423A09 /* CTCoreAccount+Extended.m */,
 				CD522D5316C46FDA00423A09 /* CTCoreFolder+Extended.h */,
 				CD522D5416C46FDA00423A09 /* CTCoreFolder+Extended.m */,
-				6F9DD75516FEAFA200E926F2 /* libtpan_extensions.c */,
+				6F9DD75516FEAFA200E926F2 /* libetpan_extensions.c */,
 				6F9DD75616FEAFA200E926F2 /* libetpan_extensions.h */,
 				F81E26810C6ED57400B3FBAC /* SMTP */,
 				F81E26720C6ED56000B3FBAC /* MIME */,
@@ -889,7 +889,7 @@
 				CD522D5616C46FDA00423A09 /* CTCoreAccount+Extended.m in Sources */,
 				CD522D5816C46FDA00423A09 /* CTCoreFolder+Extended.m in Sources */,
 				CD34687116C51D8C009C65BB /* CTCoreMessage+Extended.m in Sources */,
-				6F9DD75716FEAFA200E926F2 /* libtpan_extensions.c in Sources */,
+				6F9DD75716FEAFA200E926F2 /* libetpan_extensions.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
