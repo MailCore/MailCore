@@ -29,32 +29,18 @@
  * SUCH DAMAGE.
  */
 
+
 #import <Foundation/Foundation.h>
+
+#import "MailCore.h"
 #import <libetpan/libetpan.h>
 
-/**
-     Enables logging of all streams, data is output to standard out.
-*/
-void MailCoreEnableLogging();
-void MailCoreDisableLogging();
 
-NSError* MailCoreCreateError(int errcode, NSString *description);
+@interface CTSearchKeyTransformer : NSObject
 
-/**
-    Translates the LibEtPan IMAP error code into NSError with error description
-*/
-NSError* MailCoreCreateErrorFromIMAPCode(int errcode);
+- (struct mailimap_search_key *)newSearchKeyFromPredicate:(NSPredicate *)predicate;
+- (struct mailimap_sort_key *)newSortKeyFromSortDescriptors:(NSArray *)sortDescriptors;
 
-/**
-    Translates a LibEtPan SMTP specific error code into an NSError with a description
-*/
-NSError* MailCoreCreateErrorFromSMTPCode(int errcode);
++ (CTSearchKeyTransformer *)defaultTransformer;
 
-NSString *MailCoreDecodeMIMEPhrase(char *data);
-
-NSArray * stringArrayFromClist(clist *list);
-clist *clistFromStringArray(NSArray *strings);
-
-struct mailimap_date * mailimap_dateFromDate(NSDate *date);
-struct mailimap_date * mailimap_dateFromDateComponents(NSDateComponents *dateComponents);
-
+@end
