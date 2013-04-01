@@ -641,6 +641,27 @@ static const int MAX_PATH_SIZE = 1024;
     return results;
 }
 
+- (NSArray *)messagesWithSequenceNumbers:(NSIndexSet *)sequenceNumbers
+                         fetchAttributes:(CTFetchAttributes)attrs {
+  struct mailimap_set *set = mailimap_set_new_empty();
+  [sequenceNumbers enumerateRangesUsingBlock:^(NSRange range, BOOL *stop) {
+    mailimap_set_add_interval(set, range.location, range.location + range.length - 1);
+  }];
+  
+  return [self messagesForSet:set fetchAttributes:attrs uidFetch:NO];
+  
+}
+
+- (NSArray *)messagesWithUIDs:(NSIndexSet *)uidNumbers
+              fetchAttributes:(CTFetchAttributes)attrs {
+  struct mailimap_set *set = mailimap_set_new_empty();
+  [uidNumbers enumerateRangesUsingBlock:^(NSRange range, BOOL *stop) {
+    mailimap_set_add_interval(set, range.location, range.location + range.length - 1);
+  }];
+  
+  return [self messagesForSet:set fetchAttributes:attrs uidFetch:YES];
+}
+
 - (CTCoreMessage *)messageWithUID:(NSUInteger)uid {
     int err;
     struct mailmessage *msgStruct;
