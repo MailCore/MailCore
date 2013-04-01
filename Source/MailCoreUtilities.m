@@ -284,3 +284,47 @@ NSString *MailCoreDecodeMIMEPhrase(char *data) {
     free(decodedSubject);
     return result;
 }
+
+NSArray * stringArrayFromClist(clist *list) {
+  clistiter *iter;
+  NSMutableArray *stringSet = [NSMutableArray array];
+	char *string;
+	
+  if(list == NULL)
+    return stringSet;
+	
+  for(iter = clist_begin(list); iter != NULL; iter = clist_next(iter)) {
+    string = clist_content(iter);
+    NSString *strObj = [[NSString alloc] initWithUTF8String:string];
+    [stringSet addObject:strObj];
+    [strObj release];
+  }
+	
+  return stringSet;
+}
+
+clist *clistFromStringArray(NSArray *strings) {
+	clist * str_list = clist_new();
+  
+	for (NSString *str in strings) {
+		clist_append(str_list, strdup([str UTF8String]));
+	}
+  
+	return str_list;
+}
+
+struct mailimap_date * mailimap_dateFromDate(NSDate *date) {
+  static NSCalendar *calendar;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+  });
+  
+  return mailimap_dateFromDateComponents([calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
+                                                     fromDate:date]);
+}
+
+struct mailimap_date * mailimap_dateFromDateComponents(NSDateComponents *dateComponents) {
+  return mailimap_date_new(dateComponents.day, dateComponents.month, dateComponents.year);
+}
+

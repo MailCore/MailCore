@@ -121,6 +121,34 @@
 */
 - (NSArray *)messagesFromUID:(NSUInteger)startUID to:(NSUInteger)endUID withFetchAttributes:(CTFetchAttributes)attrs;
 
+
+/**
+ Use this method get the message uids sorted by the sort descriptors and filtered with predicate.
+  
+ @param predicate The filtering predicate sent to IMAP server for filtering the messages.
+ @param sortDescrptors The descriptors sent to IMAP server for sorting message uid on server.
+ @param attrs This controls what is fetched.
+ @return Returns a NSArray of messages uid. Returns nil on error
+ */
+- (NSArray *)messagesUIDsMatchingPredicate:(NSPredicate *)predicate
+                           sortDescriptors:(NSArray *)sortDescriptors;
+
+
+/**
+ Use this method get the messages sorted by the sort descriptors and filtered with predicate.
+ 
+ @param predicate The filtering predicate sent to IMAP server for filtering the messages.
+ @param sortDescrptors The descriptors sent to IMAP server for sorting message uid on server.
+ @param attrs This controls what is fetched.
+ @return Returns a NSArray of CTCoreMessage's. Filtered with the predicate and sorted by the sort descriptors.
+ Returns nil on error
+ @see messagesUIDsMatchingPredicate:sortDescriptors:
+ */
+- (NSArray *)messagesMatchingPredicate:(NSPredicate *)predicate
+                       sortDescriptors:(NSArray *)sortDescriptors
+                   withFetchAttributes:(CTFetchAttributes)attrs;;
+
+
 /**
  Pulls the sequence number for the message with the specified uid.
  It does not perform UID validation, and the sequence ID is only

@@ -31,12 +31,14 @@
 
 #import <libetpan/libetpan.h>
 #import <libetpan/imapdriver_tools.h>
+#import <libetpan/mailimap_sort.h>
 
 #import "CTCoreFolder.h"
 #import "CTCoreMessage.h"
 #import "CTCoreAccount.h"
 #import "MailCoreTypes.h"
 #import "MailCoreUtilities.h"
+#import "CTSearchKeyTransformer.h"
 
 #include <unistd.h>
 
@@ -45,6 +47,8 @@
 //
 int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result,
                         mailsession * session, mailmessage_driver * driver);
+
+void mailimap_sort_key_free(struct mailimap_sort_key * key);
 
 @interface CTCoreFolder ()
 @end
@@ -641,13 +645,75 @@ static const int MAX_PATH_SIZE = 1024;
     return results;
 }
 
+- (NSArray *)messagesUIDsMatchingPredicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors {
+    BOOL success = [self connect];
+    if (!success) {
+        return nil;
+    }
+  
+    NSUInteger totalMessages = 0;
+    if ([self totalMessageCount:&totalMessages] && !totalMessages) {
+      return @[];
+    }
+  
+    NSMutableArray *messageUIDs = [NSMutableArray array];
+  
+    int r;
+    struct mailimap_sort_key * sort_key = [[CTSearchKeyTransformer defaultTransformer] newSortKeyFromSortDescriptors:sortDescriptors];
+    struct mailimap_search_key * search_key = [[CTSearchKeyTransformer defaultTransformer] newSearchKeyFromPredicate:predicate];
+    if (search_key == NULL) {
+      search_key = mailimap_search_key_new_all();
+    }
+    
+    clist * fetch_result;
+  
+    if (sort_key) {
+      r = mailimap_uid_sort([self imapSession], "UTF-8", sort_key, search_key, &fetch_result);
+    } else {
+      r = mailimap_uid_search([self imapSession], "UTF-8", search_key, &fetch_result);
+    }
+  
+    if (r != MAIL_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
+        return nil;
+    }
+    
+    mailimap_sort_key_free(sort_key);
+    
+    clistiter * cur;
+    for(cur = clist_begin(fetch_result); cur != NULL; cur = clist_next(cur)) {
+        uint32_t * msg_number = (uint32_t *)clist_content(cur);
+        if (msg_number == nil) {
+            self.lastError = MailCoreCreateErrorFromIMAPCode(MAIL_ERROR_MEMORY);
+            return nil;
+        }
+        
+        [messageUIDs addObject:[NSNumber numberWithInteger:*msg_number]];
+    }
+    
+    mailimap_sort_result_free(fetch_result);
+    
+    return [messageUIDs copy];
+}
+
+- (NSArray *)messagesMatchingPredicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors withFetchAttributes:(CTFetchAttributes)attrs {
+    NSArray *messageUIDs = [self messagesUIDsMatchingPredicate:predicate
+                                               sortDescriptors:sortDescriptors];
+    struct mailimap_set *set = mailimap_set_new_empty();
+    for (NSNumber *messageUID in messageUIDs) {
+      mailimap_set_add_single(set, messageUID.unsignedIntegerValue);
+    }
+  
+    return [self messagesForSet:set fetchAttributes:attrs uidFetch:YES];
+}
+
 - (CTCoreMessage *)messageWithUID:(NSUInteger)uid {
     int err;
     struct mailmessage *msgStruct;
     char uidString[100];
-
+    
     sprintf(uidString, "%d-%d", (uint32_t)[self uidValidity], (uint32_t)uid);
-
+    
     BOOL success = [self connect];
     if (!success) {
         return nil;
