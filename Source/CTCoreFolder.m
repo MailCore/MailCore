@@ -666,8 +666,13 @@ static const int MAX_PATH_SIZE = 1024;
     }
     
     clist * fetch_result;
-
-    r = mailimap_uid_sort([self imapSession], "UTF-8", sort_key, search_key, &fetch_result);
+  
+    if (sort_key) {
+      r = mailimap_uid_sort([self imapSession], "UTF-8", sort_key, search_key, &fetch_result);
+    } else {
+      r = mailimap_uid_search([self imapSession], "UTF-8", search_key, &fetch_result);
+    }
+  
     if (r != MAIL_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromIMAPCode(r);
         return nil;
