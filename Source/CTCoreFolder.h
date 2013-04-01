@@ -121,6 +121,35 @@
 */
 - (NSArray *)messagesFromUID:(NSUInteger)startUID to:(NSUInteger)endUID withFetchAttributes:(CTFetchAttributes)attrs;
 
+
+/**
+ Use this method to download message lists from the server.
+ 
+ This method uses sequence numbers indexset to determine which messages to download.
+ 
+ @param sequenceNumbers The indexset of sequence numbers to load.
+ @param attrs This controls what is fetched.
+ @return Returns a NSArray of CTCoreMessage's. Returns nil on error
+ @see messagesFromSequenceNumber:to:withFetchAttributes:
+ */
+- (NSArray *)messagesWithSequenceNumbers:(NSIndexSet *)sequenceNumbers
+                         fetchAttributes:(CTFetchAttributes)attrs;
+
+
+/**
+ Use this method to download message lists from the server.
+ 
+ This method uses uid numbers indexset to determine which messages to download.
+ 
+ @param uidNumbers The indexset of uid numbers to load.
+ @param attrs This controls what is fetched.
+ @return Returns a NSArray of CTCoreMessage's. Returns nil on error
+ @see messagesFromSequenceNumber:to:withFetchAttributes:
+ */
+- (NSArray *)messagesWithUIDs:(NSIndexSet *)uidNumbers
+              fetchAttributes:(CTFetchAttributes)attrs;
+
+
 /**
  Pulls the sequence number for the message with the specified uid.
  It does not perform UID validation, and the sequence ID is only
