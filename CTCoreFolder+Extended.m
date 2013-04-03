@@ -486,19 +486,22 @@
 
 /*
   Append message to folder, setting INTERNALDATE to match date on the 
-  message itself, and setting the SEEN flag.
+  message itself, and setting the SEEN flag. Note that both the parsed
+  and raw forms of the message are included.
  
   Returns IMAP uid of messages created,
   returns <= 0 on error
 */
-- (long) appendMessageSeen: (CTCoreMessage *) msg
+- (long) appendMessageSeen: (CTCoreMessage *) msg withString:(NSString *)msgStr
 {
     int err = MAILIMAP_NO_ERROR;
     int resultUid = 0;	// return status
     struct mailimap_flag_list *flag_list = NULL;
     struct mailimap_date_time *date_time = NULL;
     
-    NSString *msgStr = [msg render];	// 
+    // we were losing information by re-rendering here
+    //	      workaround to just use the raw bytes we started with
+   //  NSString *msgStr = [msg render];	//
     if (![self connect])
         return NO;
     
