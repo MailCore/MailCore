@@ -657,11 +657,16 @@
 
             struct mailimf_optional_field * priority = mailimf_optional_field_new("X-Priority", xPriorityValue);
             
-            struct mailimf_field * priorityField = mailimf_field_new(MAILIMF_FIELD_OPTIONAL_FIELD, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, priority);
+            struct mailimf_field * priorityField = mailimf_field_new(MAILIMF_FIELD_OPTIONAL_FIELD, NULL, NULL, NULL,
+                                                                     NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+                                                                     NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+                                                                     NULL, NULL, priority);
             mailimf_fields_add(fields, priorityField);
             
             priority = mailimf_optional_field_new("Priority", rfcPriorityValue);
-            priorityField = mailimf_field_new(MAILIMF_FIELD_OPTIONAL_FIELD, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, priority);
+            priorityField = mailimf_field_new(MAILIMF_FIELD_OPTIONAL_FIELD, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+                                              NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+                                              NULL, NULL, priority);
             
             mailimf_fields_add(fields, priorityField);
         }
@@ -736,7 +741,7 @@
 }
 
 - (void)setMailPriority:(CTCoreMessagePriority)priority {
-    self->mailPriority = priority;
+    mailPriority = priority;
 }
 
 - (struct mailmessage *)messageStruct {
