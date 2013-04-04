@@ -285,7 +285,7 @@ NSString *MailCoreDecodeMIMEPhrase(char *data) {
     return result;
 }
 
-NSArray * stringArrayFromClist(clist *list) {
+NSArray * MailCoreStringArrayFromClist(clist *list) {
   clistiter *iter;
   NSMutableArray *stringSet = [NSMutableArray array];
 	char *string;
@@ -303,7 +303,7 @@ NSArray * stringArrayFromClist(clist *list) {
   return stringSet;
 }
 
-clist *clistFromStringArray(NSArray *strings) {
+clist *MailCoreClistFromStringArray(NSArray *strings) {
 	clist * str_list = clist_new();
   
 	for (NSString *str in strings) {

@@ -466,7 +466,7 @@
 
 - (NSArray *)extionsionFlags {
   if (myMessage != NULL && myMessage->msg_flags != NULL) {
-    return stringArrayFromClist(myMessage->msg_flags->fl_extension);
+    return MailCoreStringArrayFromClist(myMessage->msg_flags->fl_extension);
   }
   return nil;
 }
@@ -527,12 +527,12 @@
     if (myFields->fld_in_reply_to == NULL)
         return nil;
     else
-        return stringArrayFromClist(myFields->fld_in_reply_to->mid_list);
+        return MailCoreStringArrayFromClist(myFields->fld_in_reply_to->mid_list);
 }
 
 
 - (void)setInReplyTo:(NSArray *)messageIds {
-	struct mailimf_in_reply_to *imf = mailimf_in_reply_to_new(clistFromStringArray(messageIds));
+	struct mailimf_in_reply_to *imf = mailimf_in_reply_to_new(MailCoreClistFromStringArray(messageIds));
 
     if (myFields->fld_in_reply_to != NULL) {
         mailimf_in_reply_to_free(myFields->fld_in_reply_to);
@@ -547,12 +547,12 @@
     if (myFields->fld_references == NULL)
         return nil;
     else
-        return stringArrayFromClist(myFields->fld_references->mid_list);
+        return MailCoreStringArrayFromClist(myFields->fld_references->mid_list);
 }
 
 
 - (void)setReferences:(NSArray *)messageIds {
-    struct mailimf_references *imf = mailimf_references_new(clistFromStringArray(messageIds));
+    struct mailimf_references *imf = mailimf_references_new(MailCoreClistFromStringArray(messageIds));
 
     if (myFields->fld_references != NULL) {
         mailimf_references_free(myFields->fld_references);

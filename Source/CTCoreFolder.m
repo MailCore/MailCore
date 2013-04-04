@@ -719,7 +719,7 @@ static const int MAX_PATH_SIZE = 1024;
     }
     
     int err;
-    clist *extensionFlags = clistFromStringArray(flags);
+    clist *extensionFlags = MailCoreClistFromStringArray(flags);
     if ([msg messageStruct]->msg_flags->fl_extension) {
         clist_free([msg messageStruct]->msg_flags->fl_extension);
         [msg messageStruct]->msg_flags->fl_extension = NULL;
@@ -756,7 +756,7 @@ static const int MAX_PATH_SIZE = 1024;
         *flags = flagStruct->fl_flags;
     }
     if (extensionFlags) {
-        NSArray *extionsionFlags = stringArrayFromClist(flagStruct->fl_extension);
+        NSArray *extionsionFlags = MailCoreStringArrayFromClist(flagStruct->fl_extension);
         *extensionFlags = extionsionFlags;
     }
     
@@ -771,7 +771,7 @@ static const int MAX_PATH_SIZE = 1024;
     
     int err;
     [msg messageStruct]->msg_flags->fl_flags = flags;
-    clist *extensions = clistFromStringArray(extensionFlags);
+    clist *extensions = MailCoreClistFromStringArray(extensionFlags);
     if ([msg messageStruct]->msg_flags->fl_extension) {
         clist_free([msg messageStruct]->msg_flags->fl_extension);
         [msg messageStruct]->msg_flags->fl_extension = NULL;
