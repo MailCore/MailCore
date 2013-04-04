@@ -505,7 +505,7 @@
     if (![self connect])
         return NO;
     
-    NSLog(@"appendMessageSeen %@: %@",[msg gmailMsgId], [msg subject]); // DEBUG
+    NSLog(@"appendMessageSeen %@", [msg subject]); // DEBUG
 
     // Note: mailsession_append_message does not expose the date_time arg,
     //  so we are bypassing the mailsession layer and calling directly to
