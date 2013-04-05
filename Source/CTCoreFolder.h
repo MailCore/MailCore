@@ -242,6 +242,31 @@
 - (BOOL)setFlags:(NSUInteger)flags forMessage:(CTCoreMessage *)msg;
 
 /**
+ Retrieves the message extension flags.
+ @return Return YES on success, NO on error. Call method lastError to get error if one occurred
+ */
+- (BOOL)extensionFlagsForMessage:(CTCoreMessage *)msg flags:(NSArray **)flags;
+
+/**
+ Sets the message's extension flags on the server.
+ @return Return YES on success, NO on error. Call method lastError to get error if one occurred
+ */
+- (BOOL)setExtensionFlags:(NSArray *)flags forMessage:(CTCoreMessage *)msg;
+
+/**
+ Retrieves the message's flags and extension flags, take a look at the
+ documentation for flagsForMessage:
+ @return Return YES on success, NO on error. Call method lastError to get error if one occurred
+ */
+- (BOOL)flagsForMessage:(CTCoreMessage *)msg flags:(NSUInteger *)flags extensionFlags:(NSArray **)extensionFlags;
+
+/**
+ Sets the message's flags and extension flags on the server.
+ @return Return YES on success, NO on error. Call method lastError to get error if one occurred
+ */
+- (BOOL)setFlags:(NSUInteger)flags extensionFlags:(NSArray *)extensionFlags forMessage:(CTCoreMessage *)msg;
+
+/**
  Deletes all messages contained in the folder that are marked for
  deletion. Deleting messages in IMAP is a little strange, first
  you need to set the message flag CTFlagDeleted to CTFlagSet, and

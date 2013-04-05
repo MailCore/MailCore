@@ -208,6 +208,14 @@
 - (NSUInteger)flags;
 
 /**
+ Returns the message extionsion flags.
+ 
+ The extension flags contain flags other than standard flags in flags property. This include "Draft" flag.
+ See MailCoreTypes.h for a list of constants
+ */
+- (NSArray *)extionsionFlags;
+
+/**
  Set the message sequence number.
  
  This will NOT set any thing on the server.

@@ -704,21 +704,7 @@ static const int MAX_PATH_SIZE = 1024;
     already depends on CTCoreMessage so we aren't adding any dependencies here. */
 
 - (BOOL)flagsForMessage:(CTCoreMessage *)msg flags:(NSUInteger *)flags {
-    BOOL success = [self connect];
-    if (!success) {
-        return NO;
-    }
-
-    self.lastError = nil;
-    int err;
-    struct mail_flags *flagStruct;
-    err = mailmessage_get_flags([msg messageStruct], &flagStruct);
-    if (err != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
-        return NO;
-    }
-    *flags = flagStruct->fl_flags;
-    return YES;
+    return [self flagsForMessage:msg flags:flags extensionFlags:NULL];
 }
 
 
@@ -743,6 +729,87 @@ static const int MAX_PATH_SIZE = 1024;
     return YES;
 }
 
+- (BOOL)extensionFlagsForMessage:(CTCoreMessage *)msg flags:(NSArray **)flags {
+    return [self flagsForMessage:msg flags:NULL extensionFlags:flags];
+}
+
+- (BOOL)setExtensionFlags:(NSArray *)flags forMessage:(CTCoreMessage *)msg {
+    BOOL success = [self connect];
+    if (!success) {
+        return NO;
+    }
+    
+    int err;
+    clist *extensionFlags = MailCoreClistFromStringArray(flags);
+    if ([msg messageStruct]->msg_flags->fl_extension) {
+        clist_free([msg messageStruct]->msg_flags->fl_extension);
+        [msg messageStruct]->msg_flags->fl_extension = NULL;
+    }
+    [msg messageStruct]->msg_flags->fl_extension = extensionFlags;
+    err = mailmessage_check([msg messageStruct]);
+    if (err != MAIL_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
+        return NO;
+    }
+    err = mailfolder_check(myFolder);
+    if (err != MAIL_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL)flagsForMessage:(CTCoreMessage *)msg flags:(NSUInteger *)flags extensionFlags:(NSArray **)extensionFlags {
+    BOOL success = [self connect];
+    if (!success) {
+        return NO;
+    }
+    
+    self.lastError = nil;
+    int err;
+    struct mail_flags *flagStruct;
+    err = mailmessage_get_flags([msg messageStruct], &flagStruct);
+    if (err != MAIL_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
+        return NO;
+    }
+    if (flags) {
+        *flags = flagStruct->fl_flags;
+    }
+    if (extensionFlags) {
+        NSArray *extionsionFlags = MailCoreStringArrayFromClist(flagStruct->fl_extension);
+        *extensionFlags = extionsionFlags;
+    }
+    
+    return YES;
+}
+
+- (BOOL)setFlags:(NSUInteger)flags extensionFlags:(NSArray *)extensionFlags forMessage:(CTCoreMessage *)msg {
+    BOOL success = [self connect];
+    if (!success) {
+        return NO;
+    }
+    
+    int err;
+    [msg messageStruct]->msg_flags->fl_flags = flags;
+    clist *extensions = MailCoreClistFromStringArray(extensionFlags);
+    if ([msg messageStruct]->msg_flags->fl_extension) {
+        clist_free([msg messageStruct]->msg_flags->fl_extension);
+        [msg messageStruct]->msg_flags->fl_extension = NULL;
+    }
+    [msg messageStruct]->msg_flags->fl_extension = extensions;
+    err = mailmessage_check([msg messageStruct]);
+    if (err != MAIL_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
+        return NO;
+    }
+    err = mailfolder_check(myFolder);
+    if (err != MAIL_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
+        return NO;
+    }
+    return YES;
+}
 
 - (BOOL)expunge {
     int err;
@@ -920,4 +987,6 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
     err:
         return res;
 }
+
+
 @end

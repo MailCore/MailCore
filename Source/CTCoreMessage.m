@@ -464,6 +464,13 @@
     return 0;
 }
 
+- (NSArray *)extionsionFlags {
+  if (myMessage != NULL && myMessage->msg_flags != NULL) {
+    return MailCoreStringArrayFromClist(myMessage->msg_flags->fl_extension);
+  }
+  return nil;
+}
+
 - (NSUInteger)sequenceNumber {
     return mySequenceNumber;
 }
@@ -520,12 +527,12 @@
     if (myFields->fld_in_reply_to == NULL)
         return nil;
     else
-        return [self _stringArrayFromClist:myFields->fld_in_reply_to->mid_list];
+        return MailCoreStringArrayFromClist(myFields->fld_in_reply_to->mid_list);
 }
 
 
 - (void)setInReplyTo:(NSArray *)messageIds {
-	struct mailimf_in_reply_to *imf = mailimf_in_reply_to_new([self _clistFromStringArray:messageIds]);
+	struct mailimf_in_reply_to *imf = mailimf_in_reply_to_new(MailCoreClistFromStringArray(messageIds));
 
     if (myFields->fld_in_reply_to != NULL) {
         mailimf_in_reply_to_free(myFields->fld_in_reply_to);
@@ -540,12 +547,12 @@
     if (myFields->fld_references == NULL)
         return nil;
     else
-        return [self _stringArrayFromClist:myFields->fld_references->mid_list];
+        return MailCoreStringArrayFromClist(myFields->fld_references->mid_list);
 }
 
 
 - (void)setReferences:(NSArray *)messageIds {
-    struct mailimf_references *imf = mailimf_references_new([self _clistFromStringArray:messageIds]);
+    struct mailimf_references *imf = mailimf_references_new(MailCoreClistFromStringArray(messageIds));
 
     if (myFields->fld_references != NULL) {
         mailimf_references_free(myFields->fld_references);
@@ -816,32 +823,5 @@
     return imfList;
 }
 
-- (NSArray *)_stringArrayFromClist:(clist *)list {
-    clistiter *iter;
-    NSMutableArray *stringSet = [NSMutableArray array];
-	char *string;
-	
-    if(list == NULL)
-        return stringSet;
-	
-    for(iter = clist_begin(list); iter != NULL; iter = clist_next(iter)) {
-        string = clist_content(iter);
-        NSString *strObj = [[NSString alloc] initWithUTF8String:string];
-		[stringSet addObject:strObj];
-        [strObj release];
-    }
-	
-    return stringSet;
-}
-
-- (clist *)_clistFromStringArray:(NSArray *)strings {
-	clist * str_list = clist_new();
-
-	for (NSString *str in strings) {
-		clist_append(str_list, strdup([str UTF8String]));
-	}
-
-	return str_list;
-}
 
 @end
