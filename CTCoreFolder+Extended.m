@@ -495,15 +495,16 @@
 - (long) appendMessageSeen: (CTCoreMessage *) msg withString:(NSString *)msgStr
 {
     int err = MAILIMAP_NO_ERROR;
-    int resultUid = 0;	// return status
+    int resultUid = 0;	// return status (0 = fail)
     struct mailimap_flag_list *flag_list = NULL;
     struct mailimap_date_time *date_time = NULL;
     
     // we were losing information by re-rendering here
     //	      workaround to just use the raw bytes we started with
    //  NSString *msgStr = [msg render];	//
-    if (![self connect])
-        return NO;
+    
+    if (![self connect])		// connect to folder if necessary
+        return -MAILIMAP_ERROR_STREAM;	// distinct error for "connection failed"
     
     NSLog(@"appendMessageSeen %@", [msg subject]); // DEBUG
 
