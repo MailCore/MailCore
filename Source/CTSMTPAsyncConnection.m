@@ -73,7 +73,7 @@ smtpProgress(size_t aCurrent, size_t aTotal) {
             username:(NSString *)aUsername
             password:(NSString *)aPassword
                 port:(unsigned int)aPort
-              useTLS:(BOOL)aTls
+      connectionType:(CTSMTPConnectionType)connectionType
              useAuth:(BOOL)aAuth
             delegate:(id <CTSMTPConnectionDelegate>)aDelegate {
 
@@ -90,7 +90,7 @@ smtpProgress(size_t aCurrent, size_t aTotal) {
                                                         aUsername, @"username",
                                                         aPassword, @"password",
                                                         [NSNumber numberWithInt:aPort], @"port",
-                                                        [NSNumber numberWithBool:aTls], @"tls",
+                                                        [NSNumber numberWithInt:connectionType], @"connectionType",
                                                         [NSNumber numberWithBool:aAuth], @"auth", nil] retain];
 
         //save clients from themselves (they could be leaking us - no dealloc)
@@ -169,9 +169,19 @@ smtpProgress(size_t aCurrent, size_t aTotal) {
     mSMTPObj = [[CTESMTP alloc] initWithResource:mSMTP];
 
     NSDictionary *theSettings = self.serverSettings;
-
-    success = [mSMTPObj connectToServer:[theSettings objectForKey:@"server"]
-        port:[[theSettings objectForKey:@"port"] unsignedIntValue]];
+    CTSMTPConnectionType connectionType = [[theSettings objectForKey:@"connectionType"] unsignedIntValue];
+    NSString*            server         = [theSettings objectForKey:@"server"];
+    unsigned int         port           = [[theSettings objectForKey:@"port"] unsignedIntValue];
+    BOOL                 auth           = [[theSettings objectForKey:@"auth"] boolValue];
+    NSString*            username       = [theSettings objectForKey:@"username"];
+    NSString*            password       = [theSettings objectForKey:@"password"];
+    
+    if (connectionType == CTSMTPConnectionTypeStartTLS || connectionType == CTSMTPConnectionTypePlain) {
+        success = [mSMTPObj connectToServer:server port:port];
+    } else if (connectionType == CTSMTPConnectionTypeTLS) {
+        success = [mSMTPObj connectWithTlsToServer:server port:port];
+    }
+    
     if (!success) {
         goto error;
     }
@@ -184,16 +194,16 @@ smtpProgress(size_t aCurrent, size_t aTotal) {
             goto error;
         }
     }
-    if ([(NSNumber *) [theSettings objectForKey:@"tls"] boolValue]) {
+
+    if (connectionType == CTSMTPConnectionTypeStartTLS) {
         success = [mSMTPObj startTLS];
         if (!success) {
             goto error;
         }
     }
-    if ([(NSNumber *) [theSettings objectForKey:@"auth"] boolValue]) {
-        success = [mSMTPObj authenticateWithUsername:[theSettings objectForKey:@"username"]
-            password:[theSettings objectForKey:@"password"]
-            server:[theSettings objectForKey:@"server"]];
+    
+    if (auth) {
+        success = [mSMTPObj authenticateWithUsername:username password:password server:server];
         if (!success) {
             goto error;
         }
