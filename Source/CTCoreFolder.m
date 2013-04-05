@@ -102,8 +102,10 @@ static const int MAX_PATH_SIZE = 1024;
 
 
 - (void)disconnect {
-    if (connected)
+    if (connected) {
         mailfolder_disconnect(myFolder);
+	connected = NO;
+    }
 }
 
 - (NSError *)lastError {
