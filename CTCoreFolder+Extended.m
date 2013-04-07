@@ -506,8 +506,6 @@
     if (![self connect])		// connect to folder if necessary
         return -MAILIMAP_ERROR_STREAM;	// distinct error for "connection failed"
     
-    NSLog(@"appendMessageSeen %@", [msg subject]); // DEBUG
-
     // Note: mailsession_append_message does not expose the date_time arg,
     //  so we are bypassing the mailsession layer and calling directly to
     //	mailimap_append. This assumes that the connection type is IMAP, which
