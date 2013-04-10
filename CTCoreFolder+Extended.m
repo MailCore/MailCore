@@ -369,10 +369,11 @@
 }
 
 
+// Get X-GM-MSGID for all messages
+//  Returns NSArray of messages, or nil on error
 
 -(NSArray *) getAll_X_Gm_msgIds {
     
-    struct mailimap_set *set = mailimap_set_new_interval(1, 0);
 	
     BOOL success = [self connect];
     if (!success) {
@@ -381,56 +382,45 @@
 	
     NSMutableArray *messages = [NSMutableArray array];
 	
-    int r;
-    struct mailimap_fetch_att * fetch_att;
-    struct mailimap_fetch_type * fetch_type;
-    struct mailmessage_list * env_list;
+    int r = MAILIMAP_NO_ERROR;	// IMAP response code
+    struct mailimap_fetch_att * fetch_att = NULL;
+    struct mailimap_fetch_type * fetch_type = NULL;
+    struct mailmessage_list * env_list = NULL;
+    struct mailimap_set *set = mailimap_set_new_interval(1, 0);
 	
-    clist * fetch_result;
+    clist * fetch_result = NULL;
 	
     fetch_type = mailimap_fetch_type_new_fetch_att_list_empty();
     // Always fetch UID
     fetch_att = mailimap_fetch_att_new_uid();
     r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
     if (r != MAILIMAP_NO_ERROR) {
-        mailimap_fetch_att_free(fetch_att);
-        mailimap_fetch_type_free(fetch_type);
-        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-        return nil;
+	goto cleanup;
     }
-	
+    fetch_att = NULL;
+    
     // Always fetch X-GM-MSGID (if available)
     if (mailimap_has_xgmmsgid([self imapSession])) {
         fetch_att = mailimap_fetch_att_new_xgmmsgid();
         r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
         if (r != MAILIMAP_NO_ERROR) {
-            mailimap_fetch_att_free(fetch_att);
-            mailimap_fetch_type_free(fetch_type);
-            self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-            return nil;
+	    goto cleanup;
         }
+	fetch_att = NULL;
     }
     
-	r = mailimap_uid_fetch([self imapSession], set, fetch_type, &fetch_result);
+    r = mailimap_uid_fetch([self imapSession], set, fetch_type, &fetch_result);
     if (r != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-		NSLog(@"Error: %@", self.lastError);
-        return nil;
+	goto cleanup;
     }
 	
-    mailimap_fetch_type_free(fetch_type);
-    mailimap_set_free(set);
-	
-    env_list = NULL;
     r = uid_list_to_env_list(fetch_result, &env_list, [self folderSession], imap_message_driver);
     if (r != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-        return nil;
+	goto cleanup;
     }
     r = imap_fetch_result_to_envelop_list(fetch_result, env_list);
     if (r != MAIL_NO_ERROR) {
-        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-        return nil;
+	goto cleanup;
     }
 	
 	
@@ -445,21 +435,19 @@
         struct mailmessage * msg = carray_get(env_list->msg_tab, i);
         struct mailimap_msg_att *msg_att = (struct mailimap_msg_att *)clist_content(fetchResultIter);
         if (msg_att == nil) {
-            self.lastError = MailCoreCreateErrorFromIMAPCode(MAIL_ERROR_MEMORY);
-            return nil;
+	    r = MAIL_ERROR_MEMORY;
+	    goto cleanup;
         }
 		
-		uint32_t uid = 0;
-		char * references = NULL;
-		size_t ref_size = 0;
-		struct mailimap_body * imap_body = NULL;
-		struct mailimap_envelope * envelope = NULL;
-		r = imap_get_msg_att_info(msg_att, &uid, &envelope, &references, &ref_size, NULL, &imap_body);
-		if (r != MAIL_NO_ERROR) {
-			mailimap_fetch_list_free(fetch_result);
-			self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-			return nil;
-		}
+	uint32_t uid = 0;
+	char * references = NULL;
+	size_t ref_size = 0;
+	struct mailimap_body * imap_body = NULL;
+	struct mailimap_envelope * envelope = NULL;
+	r = imap_get_msg_att_info(msg_att, &uid, &envelope, &references, &ref_size, NULL, &imap_body);
+	if (r != MAIL_NO_ERROR) {
+	    goto cleanup;
+	}
 		
 		
         CTCoreMessage* msgObject = [[CTCoreMessage alloc] initWithMessageStruct:msg];
@@ -474,25 +462,48 @@
         fetchResultIter = clist_next(fetchResultIter);
     }
 	
-    if (env_list != NULL) {
-        //I am only freeing the message array because the messages themselves are in use
-        carray_free(env_list->msg_tab);
-        free(env_list);
-    }
-    mailimap_fetch_list_free(fetch_result);
 	
+
+cleanup:    // clean up and return
+
+    if (set != NULL) {
+	mailimap_set_free(set); set = NULL;
+    }
+    if (fetch_att != NULL) {
+	mailimap_fetch_att_free(fetch_att); fetch_att = NULL;
+    }
+    if (fetch_type != NULL) {
+	mailimap_fetch_type_free(fetch_type); fetch_type = NULL;
+    }
+    if (fetch_result != NULL) {
+	mailimap_fetch_list_free(fetch_result); fetch_result = NULL;
+    }
+    if (env_list != NULL) {	
+        //I am only freeing the message array because the messages themselves are in use
+	// (they will be freed in -[CTCoreMessage dealloc])
+	carray_free(env_list->msg_tab);
+	free(env_list);
+	env_list = NULL;
+    }
+    if (r != MAIL_NO_ERROR) {	// if any error, set code, log, return nil
+	self.lastError = MailCoreCreateErrorFromIMAPCode(r);
+	NSLog(@"Error: %@", self.lastError);
+	[messages release];
+	messages = nil;
+    }
     return messages;
+
 }
 
 /*
-  Append message to folder, setting INTERNALDATE to match date on the 
+  Append message to folder, setting INTERNALDATE to match date on the
   message itself, and setting the SEEN flag. Note that both the parsed
   and raw forms of the message are included.
  
   Returns IMAP uid of messages created,
   returns <= 0 on error
 */
-- (long) appendMessageSeen: (CTCoreMessage *) msg withString:(NSString *)msgStr
+- (long) appendMessageSeen: (CTCoreMessage *) msg withData:(NSData *)msgData
 {
     int err = MAILIMAP_NO_ERROR;
     int resultUid = 0;	// return status (0 = fail)
@@ -539,8 +550,8 @@
 			  sess_data->imap_mailbox,
 			  flag_list,
 			  date_time, 
-			  [msgStr cStringUsingEncoding: NSUTF8StringEncoding],
-			  [msgStr lengthOfBytesUsingEncoding: NSUTF8StringEncoding]);
+			  [msgData bytes],
+			  [msgData length]);
  
     
     if (resultUid < 0)	    // negative uid from gmailimap_append

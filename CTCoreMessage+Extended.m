@@ -16,6 +16,20 @@
 
 @implementation CTCoreMessage (Extended)
 
+- (id)initWithData:(NSData *)msgData {
+    struct mailmessage *msg = data_message_init((char *)[msgData bytes],
+						[msgData length]);
+    int err;
+    struct mailmime *dummyMime;
+    /* mailmessage_get_bodystructure will fill the mailmessage struct for us */
+    err = mailmessage_get_bodystructure(msg, &dummyMime);
+    if (err != MAIL_NO_ERROR) {
+        return nil;
+    }
+    return [self initWithMessageStruct:msg];
+}
+
+
 - (BOOL)fetchMyMessage {
     if (myMessage == NULL) {
         return NO;
