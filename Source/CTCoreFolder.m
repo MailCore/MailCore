@@ -948,12 +948,14 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
                     break;
 
                     case MAILIMAP_MSG_ATT_RFC822_SIZE:
-                        size = item->att_data.att_static->att_data.att_rfc822_size;
+                 //       size = item->att_data.att_static->att_data.att_rfc822_size; -- use actual size from att_rfc822 instead
                     break;
-					case MAILIMAP_MSG_ATT_RFC822:
-						rfc882 = item->att_data.att_static->att_data.att_rfc822.att_content;
-						item->att_data.att_static->att_data.att_rfc822.att_content = NULL;
-						break;
+			    
+		    case MAILIMAP_MSG_ATT_RFC822:
+			    rfc882 = item->att_data.att_static->att_data.att_rfc822.att_content;
+			    size = item->att_data.att_static->att_data.att_rfc822.att_length;
+			    item->att_data.att_static->att_data.att_rfc822.att_content = NULL; // ownership passes to 'msg'; don't free
+			break;
 							
                 }
                 break;
