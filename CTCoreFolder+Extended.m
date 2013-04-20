@@ -488,7 +488,6 @@ cleanup:    // clean up and return
     if (r != MAIL_NO_ERROR) {	// if any error, set code, log, return nil
 	self.lastError = MailCoreCreateErrorFromIMAPCode(r);
 	NSLog(@"Error: %@", self.lastError);
-	[messages release];
 	messages = nil;
     }
     return messages;
