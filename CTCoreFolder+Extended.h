@@ -12,6 +12,7 @@
 @interface CTCoreFolder (Extended)
 
 //- (id)initWithPathKeepConnection:(NSString *)path inAccount:(CTCoreAccount *)account;
+- (void) setupTempDir;
 - (NSArray *) messagesFullFrom:(NSUInteger)startUID to:(NSUInteger)endUID;
 - (NSArray *) getUidsFromLastUID:(NSUInteger)UID;
 - (NSArray *) getAll_X_Gm_msgIds;

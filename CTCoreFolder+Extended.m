@@ -35,14 +35,18 @@
 }
 */
 
-- (NSArray *) messagesFullFrom:(NSUInteger)startUID to:(NSUInteger)endUID {
-	
+- (void) setupTempDir {
     /*
-	 SET Temporary Directory
-	 BugFix: Sandbox doesn't allow to access to /tmp default directory!
+     SET Temporary Directory
+     BugFix: Sandbox doesn't allow to access to /tmp default directory!
      */
     mmap_string_set_tmpdir((const char *) [NSTemporaryDirectory() cStringUsingEncoding:NSASCIIStringEncoding]);
     NSLog(@"Temporary Directory used: %@", NSTemporaryDirectory());
+    
+}
+
+- (NSArray *) messagesFullFrom:(NSUInteger)startUID to:(NSUInteger)endUID {
+	
 	
 	
 	struct mailimap_set *set = mailimap_set_new_interval(startUID, endUID);
