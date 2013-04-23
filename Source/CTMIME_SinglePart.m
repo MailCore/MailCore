@@ -113,6 +113,13 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
 
             if (mMimeFields->fld_disposition_filename != NULL) {
                 self.filename = [NSString stringWithCString:mMimeFields->fld_disposition_filename encoding:NSUTF8StringEncoding];
+                
+                // Check for RFC-2047 encoded filename
+                if ([self.filename hasPrefix:@"=?"] &&
+                    [self.filename hasSuffix:@"?="]) {
+                    char * encodedFileName = strdup([self.filename UTF8String]);
+                    self.filename = MailCoreDecodeMIMEPhrase(encodedFileName);
+                }
 
                 NSString* lowercaseName = [self.filename lowercaseString];
                 if([lowercaseName hasSuffix:@".xls"] ||
