@@ -38,16 +38,21 @@
 - (void) setupTempDir {
     /*
      SET Temporary Directory
-     BugFix: Sandbox doesn't allow to access to /tmp default directory!
+     BugFix: Sandbox doesn't allow to access to /tmp default Libetpan directory!
      */
-    mmap_string_set_tmpdir((const char *) [NSTemporaryDirectory() cStringUsingEncoding:NSASCIIStringEncoding]);
-    NSLog(@"Temporary Directory used: %@", NSTemporaryDirectory());
-    
+    @try {
+        const char * myTempDir = [NSTemporaryDirectory() fileSystemRepresentation];
+        // NSLog(@"Temporary Directory used: %s", myTempDir);
+        // Set Temporary Directory used by Libetpan
+        mmap_string_set_tmpdir((const char *) myTempDir);
+    }
+    @catch (NSException *ex) {
+        NSLog(@"Temporary Directory NIL! NSTemporaryDirectory: %@", NSTemporaryDirectory());
+        NSLog(@"setupTempDir exception: %@ - %@", [ex name],[ex description]);
+    }
 }
 
 - (NSArray *) messagesFullFrom:(NSUInteger)startUID to:(NSUInteger)endUID {
-	
-	
 	
 	struct mailimap_set *set = mailimap_set_new_interval(startUID, endUID);
 	
