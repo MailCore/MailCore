@@ -36,7 +36,12 @@
 @interface CTMIME_MessagePart : CTMIME {
     CTMIME *myMessageContent;
     struct mailimf_fields *myFields;
+    NSDictionary *myRFC822Headers;
 }
+
+@property (nonatomic, copy) NSString *filename;
+@property (nonatomic, readonly) NSDictionary *rfc822Headers;
+
 + (id)mimeMessagePartWithContent:(CTMIME *)mime;
 - (id)initWithContent:(CTMIME *)messageContent;
 - (void)setContent:(CTMIME *)aContent;

@@ -57,6 +57,7 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
 
 @implementation CTMIME_SinglePart
 @synthesize attached=mAttached;
+@synthesize inlined=mInlined;
 @synthesize filename=mFilename;
 @synthesize contentId=mContentId;
 @synthesize data=mData;
@@ -84,7 +85,7 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
         mMime = mime;
         mMessage = message;
         self.fetched = NO;
-
+        
         mMimeFields = mailmime_single_fields_new(mMime->mm_mime_fields, mMime->mm_content_type);
         if (mMimeFields != NULL) {
             if (mMimeFields->fld_id != NULL) {
@@ -95,52 +96,43 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
             if (disp != NULL) {
                 if (disp->dsp_type != NULL) {
                     self.attached = (disp->dsp_type->dsp_type ==
-                                        MAILMIME_DISPOSITION_TYPE_ATTACHMENT);
-
-                    if (self.attached)
-                    {
-                        // MWA workaround for bug where specific emails look like this:
-                        // Content-Type: application/vnd.ms-excel; name="=?UTF-8?B?TVhBVC0zMTFfcGFja2xpc3QxMTA0MDAueGxz?="
-                        // Content-Disposition: attachment
-                        // - usually they look like -
-                        // Content-Type: image/jpeg; name="photo.JPG"
-                        // Content-Disposition: attachment; filename="photo.JPG"
-                        if (mMimeFields->fld_disposition_filename == NULL && mMimeFields->fld_content_name != NULL)
-                            mMimeFields->fld_disposition_filename = mMimeFields->fld_content_name;
-                    }
+                                     MAILMIME_DISPOSITION_TYPE_ATTACHMENT ||
+                                     MAILMIME_DISPOSITION_TYPE_INLINE);
+                    self.inlined = (disp->dsp_type->dsp_type ==
+                                    MAILMIME_DISPOSITION_TYPE_INLINE);
                 }
             }
-
-            if (mMimeFields->fld_disposition_filename != NULL) {
-                self.filename = [NSString stringWithCString:mMimeFields->fld_disposition_filename encoding:NSUTF8StringEncoding];
-
-                NSString* lowercaseName = [self.filename lowercaseString];
-                if([lowercaseName hasSuffix:@".xls"] ||
-                    [lowercaseName hasSuffix:@".xlsx"] ||
-                    [lowercaseName hasSuffix:@".key.zip"] ||
-                    [lowercaseName hasSuffix:@".numbers.zip"] ||
-                    [lowercaseName hasSuffix:@".pages.zip"] ||
-                    [lowercaseName hasSuffix:@".pdf"] ||
-                    [lowercaseName hasSuffix:@".ppt"] ||
-                    [lowercaseName hasSuffix:@".doc"] ||
-                    [lowercaseName hasSuffix:@".docx"] ||
-                    [lowercaseName hasSuffix:@".rtf"] ||
-                    [lowercaseName hasSuffix:@".rtfd.zip"] ||
-                    [lowercaseName hasSuffix:@".key"] ||
-                    [lowercaseName hasSuffix:@".numbers"] ||
-                    [lowercaseName hasSuffix:@".pages"] ||
-                    [lowercaseName hasSuffix:@".png"] ||
-                    [lowercaseName hasSuffix:@".gif"] ||
-                    [lowercaseName hasSuffix:@".png"] ||
-                    [lowercaseName hasSuffix:@".jpg"] ||
-                    [lowercaseName hasSuffix:@".jpeg"] ||
-                    [lowercaseName hasSuffix:@".tiff"]) { // hack by gabor, improved by waseem, based on http://developer.apple.com/iphone/library/qa/qa2008/qa1630.html
+            
+            self.filename = MailCoreGetFileNameFromMIMEFields(mMimeFields);
+            
+            if ([self.filename length]) {
+                NSString* fileExtension = [self.filename pathExtension];
+                if ([fileExtension isEqualToString:@".xls"] ||
+                    [fileExtension isEqualToString:@".xlsx"] |
+                    [fileExtension isEqualToString:@".key.zip"] ||
+                    [fileExtension isEqualToString:@".pdf"] ||
+                    [fileExtension isEqualToString:@".ppt"] ||
+                    [fileExtension isEqualToString:@".doc"] ||
+                    [fileExtension isEqualToString:@".docx"] ||
+                    [fileExtension isEqualToString:@".rtf"] ||
+                    [fileExtension isEqualToString:@".tiff"] ||
+                    [fileExtension isEqualToString:@".key"] ||
+                    [fileExtension isEqualToString:@".numbers"] ||
+                    [fileExtension isEqualToString:@".pages"] ||
+                    [fileExtension isEqualToString:@".png"] ||
+                    [fileExtension isEqualToString:@".gif"] ||
+                    [fileExtension isEqualToString:@".png"] ||
+                    [fileExtension isEqualToString:@".jpg"] ||
+                    [fileExtension isEqualToString:@".jpeg"] ||
+                    [self.filename hasSuffix:@".numbers.zip"] ||
+                    [self.filename hasSuffix:@".pages.zip"] ||
+                    [self.filename hasSuffix:@".rtfd.zip"]) { // hack by gabor, improved by waseem, based on http://developer.apple.com/iphone/library/qa/qa2008/qa1630.html
                     self.attached = YES;
                 }
             }
-
         }
     }
+    
     return self;
 }
 

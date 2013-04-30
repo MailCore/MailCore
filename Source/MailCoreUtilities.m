@@ -261,7 +261,7 @@ NSError* MailCoreCreateErrorFromIMAPCode(int errcode) {
     return MailCoreCreateError(errcode, description);
 }
 
-NSString *MailCoreDecodeMIMEPhrase(char *data) {
+NSString *MailCoreDecodeMIMEPhrase(const char *data) {
     int err;
     size_t currToken = 0;
     char *decodedSubject;
@@ -283,6 +283,107 @@ NSString *MailCoreDecodeMIMEPhrase(char *data) {
     result = [NSString stringWithCString:decodedSubject encoding:NSUTF8StringEncoding];
     free(decodedSubject);
     return result;
+}
+
+NSString *MailCoreGetFileNameFromMIME(struct mailmime * mime) {
+  NSString *filename = nil;
+  struct mailmime_single_fields * mimeFields = mailmime_single_fields_new(mime->mm_mime_fields, mime->mm_content_type);
+  
+  if (mimeFields) {
+    filename = MailCoreGetFileNameFromMIMEFields(mimeFields);
+    
+    mailmime_single_fields_free(mimeFields);
+  }
+  
+  return filename;
+}
+
+NSString *MailCoreGetFileNameFromMIMEFields(struct mailmime_single_fields * mimeFields) {
+  NSString *filename = nil;
+  char * rawFilename = NULL;
+  if (mimeFields->fld_disposition_filename) {
+    rawFilename = mimeFields->fld_disposition_filename;
+  } else if (mimeFields->fld_content_name) {
+    rawFilename = mimeFields->fld_content_name;
+  }
+  
+  if (rawFilename) {
+    filename = [NSString stringWithCString:rawFilename
+                                  encoding:NSUTF8StringEncoding];
+    
+    // Check for RFC-2047 encoded filename
+    if ([filename hasPrefix:@"=?"] &&
+        [filename hasSuffix:@"?="]) {
+      filename = MailCoreDecodeMIMEPhrase([filename UTF8String]);
+    }
+  }
+  
+  return filename;
+}
+
+NSDictionary * MailCoreAddressRepresentationFromMailBox(struct mailimf_mailbox *mailbox) {
+  NSMutableDictionary *address = [NSMutableDictionary dictionaryWithCapacity:2];
+  address[@"email"] = [NSString stringWithUTF8String:mailbox->mb_addr_spec];
+  if (mailbox->mb_display_name) {
+    address[@"name"] = [NSString stringWithUTF8String:mailbox->mb_display_name];
+  }
+  
+  return [[address copy] autorelease];
+}
+
+NSDictionary * MailCoreAddressRepresentationFromGroup(struct mailimf_group *group) {
+  NSMutableDictionary *address = [NSMutableDictionary dictionaryWithCapacity:2];
+  address[@"groupname"] = [NSString stringWithUTF8String:group->grp_display_name];
+  if (group->grp_mb_list) {
+    address[@"addresses"] = MailCoreAddressRepresentationArrayFromMailBoxClist(group->grp_mb_list->mb_list);
+  }
+  
+  return [[address copy] autorelease];
+}
+
+NSDictionary * MailCoreAddressRepresentationFromAddress(struct mailimf_address *address) {
+  NSDictionary *addressRepresentation = nil;
+  if (address->ad_type == MAILIMF_ADDRESS_MAILBOX) {
+    addressRepresentation = MailCoreAddressRepresentationFromMailBox(address->ad_data.ad_mailbox);
+  } else if (address->ad_type == MAILIMF_ADDRESS_GROUP) {
+    addressRepresentation = MailCoreAddressRepresentationFromGroup(address->ad_data.ad_group);
+  }
+  
+  return addressRepresentation;
+}
+
+NSArray * MailCoreAddressRepresentationArrayFromMailBoxClist(clist *list) {
+  clistiter *iter;
+  NSMutableArray *addresses = [NSMutableArray array];
+	struct mailimf_mailbox *mailbox;
+	
+  if (list == NULL)
+    return addresses;
+	
+  for (iter = clist_begin(list); iter != NULL; iter = clist_next(iter)) {
+    mailbox = clist_content(iter);
+    NSDictionary *address = MailCoreAddressRepresentationFromMailBox(mailbox);
+    [addresses addObject:address];
+  }
+	
+  return [addresses copy];
+}
+
+NSArray * MailCoreAddressRepresentationArrayFromAddressClist(clist *list) {
+  clistiter *iter;
+  NSMutableArray *addresses = [NSMutableArray array];
+	struct mailimf_address *address;
+	
+  if (list == NULL)
+    return addresses;
+	
+  for (iter = clist_begin(list); iter != NULL; iter = clist_next(iter)) {
+    address = clist_content(iter);
+    NSDictionary *addressRepresentation = MailCoreAddressRepresentationFromAddress(address);
+    [addresses addObject:addressRepresentation];
+  }
+	
+  return [addresses copy];
 }
 
 NSArray * MailCoreStringArrayFromClist(clist *list) {
@@ -312,3 +413,47 @@ clist *MailCoreClistFromStringArray(NSArray *strings) {
   
 	return str_list;
 }
+
+NSDate * MailCoreDateFromMailIMAPDateTime(struct mailimf_date_time * datetime) {
+  static NSCalendar *calendar;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+  });
+  
+  NSDateComponents *component = [[NSDateComponents alloc] init];
+  component.day = datetime->dt_day;
+  component.month = datetime->dt_month;
+  component.year = datetime->dt_year;
+  component.hour = datetime->dt_hour;
+  component.minute = datetime->dt_min;
+  component.second = datetime->dt_sec;
+  component.day = datetime->dt_day;
+  component.timeZone = MailCoreTimeZoneFromDTTimeZone(datetime->dt_zone);
+  
+  return [calendar dateFromComponents:component];
+}
+
+NSTimeZone * MailCoreTimeZoneFromDTTimeZone(int timezone) {
+  NSInteger hour = timezone / 100;
+  NSInteger minute = timezone % 100;
+  
+  
+  return [NSTimeZone timeZoneForSecondsFromGMT:(hour * 3600) + (minute * 60)];
+}
+
+struct mailimap_date * mailimap_dateFromDate(NSDate *date) {
+  static NSCalendar *calendar;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+  });
+  
+  return mailimap_dateFromDateComponents([calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
+                                                     fromDate:date]);
+}
+
+struct mailimap_date * mailimap_dateFromDateComponents(NSDateComponents *dateComponents) {
+  return mailimap_date_new(dateComponents.day, dateComponents.month, dateComponents.year);
+}
+
