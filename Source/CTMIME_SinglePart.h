@@ -34,6 +34,13 @@
 
 typedef void (^CTProgressBlock)(size_t curr, size_t max);
 
+typedef NS_OPTIONS(NSUInteger, CTMIMEAttachmentType) {
+  CTMIMEAttachmentNonType = 0,
+  CTMIMEAttachmentAttachedType = 1 << 0,
+  CTMIMEAttachmentInlineType = 1 << 1
+};
+
+
 @interface CTMIME_SinglePart : CTMIME {
     struct mailmime *mMime;
     struct mailmessage *mMessage;
@@ -41,17 +48,20 @@ typedef void (^CTProgressBlock)(size_t curr, size_t max);
 
     NSData *mData;
     BOOL mAttached;
+    BOOL mInlined;
     BOOL mFetched;
     NSString *mFilename;
     NSString *mContentId;
     NSError *lastError;
 }
 @property(nonatomic) BOOL attached;
+@property(nonatomic, getter = isInlined) BOOL inlined;
 @property(nonatomic) BOOL fetched;
 @property(nonatomic, retain) NSString *filename;
 @property(nonatomic, retain) NSString *contentId;
 @property(nonatomic, retain) NSData *data;
 @property(nonatomic, readonly) size_t size;
+@property(nonatomic, readonly) CTMIMEAttachmentType attachmentType;
 
 /*
  If an error occurred (nil or return of NO) call this method to get the error

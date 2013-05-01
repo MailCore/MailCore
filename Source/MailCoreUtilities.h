@@ -50,8 +50,24 @@ NSError* MailCoreCreateErrorFromIMAPCode(int errcode);
 */
 NSError* MailCoreCreateErrorFromSMTPCode(int errcode);
 
-NSString *MailCoreDecodeMIMEPhrase(char *data);
+NSString *MailCoreDecodeMIMEPhrase(const char *data);
+
+NSString *MailCoreGetFileNameFromMIME(struct mailmime * mime);
+NSString *MailCoreGetFileNameFromMIMEFields(struct mailmime_single_fields * mime);
+NSString *MailCoreGetEMLFileNameFromMIME(struct mailmime * mime);
+
+NSDictionary * MailCoreAddressRepresentationFromMailBox(struct mailimf_mailbox *mailbox);
+NSDictionary * MailCoreAddressRepresentationFromAddress(struct mailimf_address *mailbox);
+NSDictionary * MailCoreAddressRepresentationFromGroup(struct mailimf_group *group);
+NSArray * MailCoreAddressRepresentationArrayFromMailBoxClist(clist *list);
+NSArray * MailCoreAddressRepresentationArrayFromAddressClist(clist *list);
 
 NSArray * MailCoreStringArrayFromClist(clist *list);
 clist *MailCoreClistFromStringArray(NSArray *strings);
+
+NSDate * MailCoreDateFromMailIMAPDateTime(struct mailimf_date_time * datetime);
+NSTimeZone * MailCoreTimeZoneFromDTTimeZone(int timezone);
+
+struct mailimap_date * mailimap_dateFromDate(NSDate *date);
+struct mailimap_date * mailimap_dateFromDateComponents(NSDateComponents *dateComponents);
 
