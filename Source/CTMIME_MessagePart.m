@@ -150,7 +150,9 @@
                                                          forMessage:message] retain];
         myFields = mime->mm_data.mm_message.mm_fields;
         
-        self.filename = MailCoreGetFileNameFromMIME(mime);
+        if (mime->mm_parent_type == MAILMIME_MULTIPLE) {
+            self.filename = MailCoreGetEMLFileNameFromMIME(mime);
+        }
     }
     return self;
 }
