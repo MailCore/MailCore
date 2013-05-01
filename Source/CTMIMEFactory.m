@@ -67,21 +67,24 @@
 + (CTMIME_SinglePart *)createMIMESinglePartWithMIMEStruct:(struct mailmime *)mime 
                                                forMessage:(struct mailmessage *)message {
     struct mailmime_type *aType = mime->mm_content_type->ct_type;
-    if (aType->tp_type != MAILMIME_TYPE_DISCRETE_TYPE) {
+    if (aType->tp_type != MAILMIME_TYPE_DISCRETE_TYPE &&
+        (aType->tp_type == MAILMIME_TYPE_COMPOSITE_TYPE && aType->tp_data.tp_composite_type->ct_type != MAILMIME_COMPOSITE_TYPE_MESSAGE)) {
         /* What do you do with a composite single part? */
         return nil;
     }
     CTMIME_SinglePart *content = nil;
-    switch (aType->tp_data.tp_discrete_type->dt_type) {
-        case MAILMIME_DISCRETE_TYPE_TEXT:
+    if ((aType->tp_type == MAILMIME_TYPE_DISCRETE_TYPE &&
+         aType->tp_data.tp_discrete_type->dt_type == MAILMIME_DISCRETE_TYPE_TEXT) ||
+        (aType->tp_type == MAILMIME_TYPE_COMPOSITE_TYPE &&
+         aType->tp_data.tp_composite_type->ct_type == MAILMIME_COMPOSITE_TYPE_MESSAGE)) {
             content = [[CTMIME_TextPart alloc] initWithMIMEStruct:mime
                                                        forMessage:message];
-            break;
-        default:
+        } else {
             content = [[CTMIME_SinglePart alloc] initWithMIMEStruct:mime
                                                          forMessage:message];
-            break;
-    }
+            
+        }
+    
     return [content autorelease];
 }
 @end 
