@@ -327,7 +327,7 @@ NSString *MailCoreGetEMLFileNameFromMIME(struct mailmime * mime) {
         struct mailmime *parentMime = mime->mm_parent;
         // If the parent mime is the report subtype, we will use the content description as the eml file name.
         if (parentMime && mime->mm_parent_type == MAILMIME_MULTIPLE &&
-            strcasecmp(mime->mm_content_type->ct_subtype, "REPORT") &&
+            strcasecmp(parentMime->mm_content_type->ct_subtype, "REPORT") == 0 &&
             mime->mm_mime_fields && mime->mm_mime_fields->fld_list) {
             
             clistiter *iter;
