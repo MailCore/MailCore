@@ -285,6 +285,13 @@
     //Now, fill the all folders array
     //TODO Fix this so it doesn't use *
     err = mailimap_xlist([self session], "", "*", &allList);
+    
+    //NOTE: Fallback to use the "LIST" defined in "IMAP4rev1" RFC 
+    //if server doesn't support "XLIST" command (eg. Yahoo)
+    if (err == MAILIMAP_ERROR_PROTOCOL && [[self capabilities] containsObject:@"IMAP4rev1"]) {
+        err = mailimap_list([self session], "", "*", &allList);
+    }
+    
     if (err != MAILIMAP_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromIMAPCode(err);
         return nil;
