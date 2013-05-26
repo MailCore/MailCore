@@ -408,21 +408,20 @@
 }
 
 - (BOOL)isUnread {
-    struct mail_flags *flags = myMessage ? myMessage->msg_flags : NULL;
-    if (flags != NULL) {
-        BOOL flag_seen = (flags->fl_flags & MAIL_FLAG_SEEN);
-        return !flag_seen;
-    }
-    return NO;
+    return ![self isFlagSet:MAIL_FLAG_SEEN withDefault:YES];
+}
+
+- (BOOL)isDeleted {
+    return [self isFlagSet:MAIL_FLAG_DELETED withDefault:NO];
 }
 
 - (BOOL)isStarred {
+    return [self isFlagSet:MAIL_FLAG_FLAGGED withDefault:NO];
+}
+
+- (BOOL)isFlagSet:(NSUInteger)flag withDefault:(BOOL)def {
     struct mail_flags *flags = myMessage ? myMessage->msg_flags : NULL;
-    if (flags != NULL) {
-        BOOL flag_starred = (flags->fl_flags & MAIL_FLAG_FLAGGED);
-        return flag_starred;
-    }
-    return NO;
+    return flags == NULL ? def : flags->fl_flags & flag;
 }
 
 - (BOOL)isNew {
