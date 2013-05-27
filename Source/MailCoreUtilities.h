@@ -32,6 +32,8 @@
 #import <Foundation/Foundation.h>
 #import <libetpan/libetpan.h>
 
+#define MailCoreErrorDomain @"mailcore"
+
 /**
      Enables logging of all streams, data is output to standard out.
 */
