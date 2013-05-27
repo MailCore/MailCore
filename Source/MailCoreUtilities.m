@@ -63,7 +63,7 @@ void MailCoreDisableLogging() {
 NSError* MailCoreCreateError(int errcode, NSString *description) {
     NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
     [errorDetail setValue:description forKey:NSLocalizedDescriptionKey];
-    return [NSError errorWithDomain:@"mailcore" code:errcode userInfo:errorDetail];
+    return [NSError errorWithDomain:MailCoreErrorDomain code:errcode userInfo:errorDetail];
 }
 
 NSError* MailCoreCreateErrorFromSMTPCode(int errcode) {
