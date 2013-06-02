@@ -42,6 +42,13 @@
 
 @class CTCoreFolder, CTCoreAddress, CTCoreAttachment, CTMIME;
 
+typedef enum {
+    CTCoreMessageUrgentPriority = 1,
+    CTCoreMessageNormalPriority = 2,
+    CTCoreMessageNonUrgentPriority
+} CTCoreMessagePriority;
+
+
 @interface CTCoreMessage : NSObject {
     struct mailmessage *myMessage;
     struct mailimf_single_fields *myFields;
@@ -49,6 +56,7 @@
     NSUInteger mySequenceNumber;
     NSError *lastError;
     CTCoreFolder *parentFolder;
+    CTCoreMessagePriority mailPriority;
 }
 /**
  If an error occurred (nil or return of NO) call this method to get the error
@@ -338,6 +346,13 @@
  @return Return nil on error. Call method lastError to get error if one occurred
  */
 - (NSString *)rfc822Header;
+
+
+/**
+ Sets the outgoing message's priority header value.
+ Support for Mail Prioirty header defined in IMAP 4021 and X-Prioirty header.
+ */
+- (void)setMailPriority:(CTCoreMessagePriority)priority;
 
 /* Intended for advanced use only */
 - (struct mailmessage *)messageStruct;
