@@ -164,6 +164,11 @@
 - (NSDate *)senderDate; 
 
 /**
+ Returns YES if the message is deleted.
+ */
+- (BOOL)isDeleted;
+
+/**
  Returns YES if the message is unread.
 */
 - (BOOL)isUnread;
