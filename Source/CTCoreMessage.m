@@ -408,21 +408,20 @@
 }
 
 - (BOOL)isUnread {
-    struct mail_flags *flags = myMessage ? myMessage->msg_flags : NULL;
-    if (flags != NULL) {
-        BOOL flag_seen = (flags->fl_flags & MAIL_FLAG_SEEN);
-        return !flag_seen;
-    }
-    return NO;
+    return ![self isFlagSet:MAIL_FLAG_SEEN withDefault:YES];
+}
+
+- (BOOL)isDeleted {
+    return [self isFlagSet:MAIL_FLAG_DELETED withDefault:NO];
 }
 
 - (BOOL)isStarred {
+    return [self isFlagSet:MAIL_FLAG_FLAGGED withDefault:NO];
+}
+
+- (BOOL)isFlagSet:(NSUInteger)flag withDefault:(BOOL)def {
     struct mail_flags *flags = myMessage ? myMessage->msg_flags : NULL;
-    if (flags != NULL) {
-        BOOL flag_starred = (flags->fl_flags & MAIL_FLAG_FLAGGED);
-        return flag_starred;
-    }
-    return NO;
+    return flags == NULL ? def : flags->fl_flags & flag;
 }
 
 - (BOOL)isNew {
@@ -462,6 +461,13 @@
         return myMessage->msg_flags->fl_flags;
     }
     return 0;
+}
+
+- (NSArray *)extionsionFlags {
+  if (myMessage != NULL && myMessage->msg_flags != NULL) {
+    return MailCoreStringArrayFromClist(myMessage->msg_flags->fl_extension);
+  }
+  return nil;
 }
 
 - (NSUInteger)sequenceNumber {
@@ -520,12 +526,12 @@
     if (myFields->fld_in_reply_to == NULL)
         return nil;
     else
-        return [self _stringArrayFromClist:myFields->fld_in_reply_to->mid_list];
+        return MailCoreStringArrayFromClist(myFields->fld_in_reply_to->mid_list);
 }
 
 
 - (void)setInReplyTo:(NSArray *)messageIds {
-	struct mailimf_in_reply_to *imf = mailimf_in_reply_to_new([self _clistFromStringArray:messageIds]);
+	struct mailimf_in_reply_to *imf = mailimf_in_reply_to_new(MailCoreClistFromStringArray(messageIds));
 
     if (myFields->fld_in_reply_to != NULL) {
         mailimf_in_reply_to_free(myFields->fld_in_reply_to);
@@ -540,12 +546,12 @@
     if (myFields->fld_references == NULL)
         return nil;
     else
-        return [self _stringArrayFromClist:myFields->fld_references->mid_list];
+        return MailCoreStringArrayFromClist(myFields->fld_references->mid_list);
 }
 
 
 - (void)setReferences:(NSArray *)messageIds {
-    struct mailimf_references *imf = mailimf_references_new([self _clistFromStringArray:messageIds]);
+    struct mailimf_references *imf = mailimf_references_new(MailCoreClistFromStringArray(messageIds));
 
     if (myFields->fld_references != NULL) {
         mailimf_references_free(myFields->fld_references);
@@ -629,9 +635,49 @@
         clist *references = (myFields->fld_references != NULL) ? (myFields->fld_references->mid_list) : NULL;
         char *subject = (myFields->fld_subject != NULL) ? (myFields->fld_subject->sbj_value) : NULL;
 
+        fields = mailimf_fields_new_with_data(from, sender, replyTo, to, cc, bcc, inReplyTo, references, subject);
+        
+        if (self->mailPriority != 0) {
+            char * xPriorityValue;
+            char * rfcPriorityValue;
+            switch (self->mailPriority) {
+                case CTCoreMessageUrgentPriority: {
+                    xPriorityValue = "1";
+                    rfcPriorityValue = "urgent";
+                    break;
+                }
+                case CTCoreMessageNormalPriority: {
+                    xPriorityValue = "3";
+                    rfcPriorityValue = "normal";
+                    break;
+                }
+                case CTCoreMessageNonUrgentPriority: {
+                    xPriorityValue = "5";
+                    rfcPriorityValue = "non-urgent";
+                    break;
+                }
+                    
+                default:
+                    break;
+            }
+
+            struct mailimf_optional_field * priority = mailimf_optional_field_new("X-Priority", xPriorityValue);
+            
+            struct mailimf_field * priorityField = mailimf_field_new(MAILIMF_FIELD_OPTIONAL_FIELD, NULL, NULL, NULL,
+                                                                     NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+                                                                     NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+                                                                     NULL, NULL, priority);
+            mailimf_fields_add(fields, priorityField);
+            
+            priority = mailimf_optional_field_new("Priority", rfcPriorityValue);
+            priorityField = mailimf_field_new(MAILIMF_FIELD_OPTIONAL_FIELD, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+                                              NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+                                              NULL, NULL, priority);
+            
+            mailimf_fields_add(fields, priorityField);
+        }
         //TODO uh oh, when this get freed it frees stuff in the CTCoreMessage
         //TODO Need to make sure that fields gets freed somewhere
-        fields = mailimf_fields_new_with_data(from, sender, replyTo, to, cc, bcc, inReplyTo, references, subject);
         [(CTMIME_MessagePart *)msgPart setIMFFields:fields];
     }
     return [myParsedMIME render];
@@ -698,6 +744,10 @@
     }
     mailimap_msg_att_rfc822_free(result);
     return [nsresult autorelease];
+}
+
+- (void)setMailPriority:(CTCoreMessagePriority)priority {
+    mailPriority = priority;
 }
 
 - (struct mailmessage *)messageStruct {
@@ -816,32 +866,5 @@
     return imfList;
 }
 
-- (NSArray *)_stringArrayFromClist:(clist *)list {
-    clistiter *iter;
-    NSMutableArray *stringSet = [NSMutableArray array];
-	char *string;
-	
-    if(list == NULL)
-        return stringSet;
-	
-    for(iter = clist_begin(list); iter != NULL; iter = clist_next(iter)) {
-        string = clist_content(iter);
-        NSString *strObj = [[NSString alloc] initWithUTF8String:string];
-		[stringSet addObject:strObj];
-        [strObj release];
-    }
-	
-    return stringSet;
-}
-
-- (clist *)_clistFromStringArray:(NSArray *)strings {
-	clist * str_list = clist_new();
-
-	for (NSString *str in strings) {
-		clist_append(str_list, strdup([str UTF8String]));
-	}
-
-	return str_list;
-}
 
 @end

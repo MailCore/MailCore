@@ -47,7 +47,7 @@
 @class CTSMTP;
 
 
-@interface CTSMTPAsyncConnection : NSObject 
+@interface CTSMTPAsyncConnection : NSObject
 {
     CTSMTP* mSMTPObj;
     mailsmtp* mSMTP;
@@ -63,11 +63,11 @@
 @property (retain) CTCoreMessage* message;
 @property (readonly) CTSMTPAsyncStatus status;
 
-- (id)initWithServer:(NSString *)aServer 
+- (id)initWithServer:(NSString *)aServer
             username:(NSString *)aUsername
-            password:(NSString *)aPassword 
-                port:(unsigned int)aPort 
-              useTLS:(BOOL)aTls 
+            password:(NSString *)aPassword
+                port:(unsigned int)aPort
+      connectionType:(CTSMTPConnectionType)connectionType
              useAuth:(BOOL)aAuth
             delegate:(id<CTSMTPConnectionDelegate>)aDelegate;
 

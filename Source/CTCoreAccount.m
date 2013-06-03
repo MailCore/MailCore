@@ -316,6 +316,9 @@
                 for (flagIter = clist_begin(flags->mbf_oflags); flagIter != NULL; flagIter = flagIter->next) {
                     oflagStruct = flagIter->data;
                     flagName = oflagStruct->of_flag_ext;
+                    if (flagName == NULL && oflagStruct->of_type == MAILIMAP_MBX_LIST_OFLAG_NOINFERIORS) {
+                      flagName = "NoInferiors";
+                    }
                     flagNameObject = (NSString *)CFStringCreateWithCString(NULL, flagName, kCFStringEncodingUTF7_IMAP);
                     [listResult addFlag:flagNameObject];
                     [flagNameObject release];

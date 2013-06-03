@@ -121,6 +121,35 @@
 */
 - (NSArray *)messagesFromUID:(NSUInteger)startUID to:(NSUInteger)endUID withFetchAttributes:(CTFetchAttributes)attrs;
 
+
+/**
+ Use this method to download message lists from the server.
+ 
+ This method uses sequence numbers indexset to determine which messages to download.
+ 
+ @param sequenceNumbers The indexset of sequence numbers to load.
+ @param attrs This controls what is fetched.
+ @return Returns a NSArray of CTCoreMessage's. Returns nil on error
+ @see messagesFromSequenceNumber:to:withFetchAttributes:
+ */
+- (NSArray *)messagesWithSequenceNumbers:(NSIndexSet *)sequenceNumbers
+                         fetchAttributes:(CTFetchAttributes)attrs;
+
+
+/**
+ Use this method to download message lists from the server.
+ 
+ This method uses uid numbers indexset to determine which messages to download.
+ 
+ @param uidNumbers The indexset of uid numbers to load.
+ @param attrs This controls what is fetched.
+ @return Returns a NSArray of CTCoreMessage's. Returns nil on error
+ @see messagesFromSequenceNumber:to:withFetchAttributes:
+ */
+- (NSArray *)messagesWithUIDs:(NSIndexSet *)uidNumbers
+              fetchAttributes:(CTFetchAttributes)attrs;
+
+
 /**
  Pulls the sequence number for the message with the specified uid.
  It does not perform UID validation, and the sequence ID is only
@@ -211,6 +240,31 @@
  @return Return YES on success, NO on error. Call method lastError to get error if one occurred
 */
 - (BOOL)setFlags:(NSUInteger)flags forMessage:(CTCoreMessage *)msg;
+
+/**
+ Retrieves the message extension flags.
+ @return Return YES on success, NO on error. Call method lastError to get error if one occurred
+ */
+- (BOOL)extensionFlagsForMessage:(CTCoreMessage *)msg flags:(NSArray **)flags;
+
+/**
+ Sets the message's extension flags on the server.
+ @return Return YES on success, NO on error. Call method lastError to get error if one occurred
+ */
+- (BOOL)setExtensionFlags:(NSArray *)flags forMessage:(CTCoreMessage *)msg;
+
+/**
+ Retrieves the message's flags and extension flags, take a look at the
+ documentation for flagsForMessage:
+ @return Return YES on success, NO on error. Call method lastError to get error if one occurred
+ */
+- (BOOL)flagsForMessage:(CTCoreMessage *)msg flags:(NSUInteger *)flags extensionFlags:(NSArray **)extensionFlags;
+
+/**
+ Sets the message's flags and extension flags on the server.
+ @return Return YES on success, NO on error. Call method lastError to get error if one occurred
+ */
+- (BOOL)setFlags:(NSUInteger)flags extensionFlags:(NSArray *)extensionFlags forMessage:(CTCoreMessage *)msg;
 
 /**
  Deletes all messages contained in the folder that are marked for

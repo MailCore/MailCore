@@ -63,7 +63,7 @@ void MailCoreDisableLogging() {
 NSError* MailCoreCreateError(int errcode, NSString *description) {
     NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
     [errorDetail setValue:description forKey:NSLocalizedDescriptionKey];
-    return [NSError errorWithDomain:@"mailcore" code:errcode userInfo:errorDetail];
+    return [NSError errorWithDomain:MailCoreErrorDomain code:errcode userInfo:errorDetail];
 }
 
 NSError* MailCoreCreateErrorFromSMTPCode(int errcode) {
@@ -283,4 +283,32 @@ NSString *MailCoreDecodeMIMEPhrase(char *data) {
     result = [NSString stringWithCString:decodedSubject encoding:NSUTF8StringEncoding];
     free(decodedSubject);
     return result;
+}
+
+NSArray * MailCoreStringArrayFromClist(clist *list) {
+  clistiter *iter;
+  NSMutableArray *stringSet = [NSMutableArray array];
+	char *string;
+	
+  if(list == NULL)
+    return stringSet;
+	
+  for(iter = clist_begin(list); iter != NULL; iter = clist_next(iter)) {
+    string = clist_content(iter);
+    NSString *strObj = [[NSString alloc] initWithUTF8String:string];
+    [stringSet addObject:strObj];
+    [strObj release];
+  }
+	
+  return stringSet;
+}
+
+clist *MailCoreClistFromStringArray(NSArray *strings) {
+	clist * str_list = clist_new();
+  
+	for (NSString *str in strings) {
+		clist_append(str_list, strdup([str UTF8String]));
+	}
+  
+	return str_list;
 }
