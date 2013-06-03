@@ -147,8 +147,8 @@ typedef NS_ENUM(NSInteger, CTSearchAttributeType){
                                                     NULL, NULL, 0, NULL, NULL, NULL, NULL,
                                                     NULL, NULL, 0, NULL, NULL, NULL);
     } else if ([key isEqualToString:@"KEYWORD"] || [key isEqualToString:@"UNKEYWORD"] ||
-               [key isEqualToString:@"CC"] || [key isEqualToString:@"BCC"] ||
-               [key isEqualToString:@"TO"] || [key isEqualToString:@"FROM"] ||
+               [key rangeOfString:@"CC"].location != NSNotFound || [key rangeOfString:@"BCC"].location != NSNotFound ||
+               [key rangeOfString:@"TO"].location != NSNotFound || [key rangeOfString:@"FROM"].location != NSNotFound ||
                [key isEqualToString:@"TEXT"] || [key isEqualToString:@"SUBJECT"] ||
                [key isEqualToString:@"BODY"]) {
       searchKey = CTSearchKeyworkKey;
@@ -158,13 +158,13 @@ typedef NS_ENUM(NSInteger, CTSearchAttributeType){
         search_key_function = &mailimap_search_key_new_keyword;
       } else if ([key isEqualToString:@"UNKEYWORD"]) {
         search_key_function = &mailimap_search_key_new_unkeyword;
-      } else if ([key isEqualToString:@"CC"]) {
+      } else if ([key rangeOfString:@"CC"].location != NSNotFound) {
         search_key_function = &mailimap_search_key_new_cc;
-      } else if ([key isEqualToString:@"BCC"]) {
+      } else if ([key rangeOfString:@"BCC"].location != NSNotFound) {
         search_key_function = &mailimap_search_key_new_bcc;
-      } else if ([key isEqualToString:@"TO"]) {
+      } else if ([key rangeOfString:@"TO"].location != NSNotFound) {
         search_key_function = &mailimap_search_key_new_to;
-      } else if ([key isEqualToString:@"FROM"]) {
+      } else if ([key rangeOfString:@"FROM"].location != NSNotFound) {
         search_key_function = &mailimap_search_key_new_from;
       } else if ([key isEqualToString:@"TEXT"]) {
         search_key_function = &mailimap_search_key_new_text;
