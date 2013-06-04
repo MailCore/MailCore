@@ -662,23 +662,23 @@ static const int MAX_PATH_SIZE = 1024;
     struct mailimap_sort_key * sort_key = [[CTSearchKeyTransformer defaultTransformer] newSortKeyFromSortDescriptors:sortDescriptors];
     struct mailimap_search_key * search_key = [[CTSearchKeyTransformer defaultTransformer] newSearchKeyFromPredicate:predicate];
     if (search_key == NULL) {
-      search_key = mailimap_search_key_new_all();
+        search_key = mailimap_search_key_new_all();
     }
     
     clist * fetch_result;
-  
+    
     if (sort_key) {
-      r = mailimap_uid_sort([self imapSession], "UTF-8", sort_key, search_key, &fetch_result);
+        r = mailimap_uid_sort([self imapSession], "UTF-8", sort_key, search_key, &fetch_result);
+        mailimap_sort_key_free(sort_key);
     } else {
-      r = mailimap_uid_search([self imapSession], "UTF-8", search_key, &fetch_result);
+        r = mailimap_uid_search([self imapSession], "UTF-8", search_key, &fetch_result);
     }
-  
+    
+    mailimap_search_key_free(search_key);
     if (r != MAIL_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromIMAPCode(r);
         return nil;
     }
-    
-    mailimap_sort_key_free(sort_key);
     
     clistiter * cur;
     for(cur = clist_begin(fetch_result); cur != NULL; cur = clist_next(cur)) {

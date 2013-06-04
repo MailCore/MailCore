@@ -384,6 +384,9 @@ typedef NS_ENUM(NSInteger, CTSearchAttributeType){
 }
 
 - (struct mailimap_sort_key *)newSortKeyFromSortDescriptors:(NSArray *)sortDescriptors {
+  if (![sortDescriptors count]) {
+    return NULL;
+  }
   struct mailimap_sort_key * sort_key = mailimap_sort_key_new_multiple_empty();
   for (NSSortDescriptor *sortDescriptor in sortDescriptors) {
     NSString *key = sortDescriptor.key.uppercaseString;
