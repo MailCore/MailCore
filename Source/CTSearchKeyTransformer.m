@@ -150,7 +150,7 @@ typedef NS_ENUM(NSInteger, CTSearchAttributeType){
                [key rangeOfString:@"CC"].location != NSNotFound || [key rangeOfString:@"BCC"].location != NSNotFound ||
                [key rangeOfString:@"TO"].location != NSNotFound || [key rangeOfString:@"FROM"].location != NSNotFound ||
                [key isEqualToString:@"TEXT"] || [key isEqualToString:@"SUBJECT"] ||
-               [key isEqualToString:@"BODY"]) {
+               [key rangeOfString:@"BODY"].location != NSNotFound || [key rangeOfString:@"CONTENT"].location != NSNotFound) {
       searchKey = CTSearchKeyworkKey;
       
       struct mailimap_search_key * (* search_key_function)(char *);
@@ -170,7 +170,7 @@ typedef NS_ENUM(NSInteger, CTSearchAttributeType){
         search_key_function = &mailimap_search_key_new_text;
       } else if ([key isEqualToString:@"SUBJECT"]) {
         search_key_function = &mailimap_search_key_new_subject;
-      } else if ([key isEqualToString:@"BODY"]) {
+      } else if ([key rangeOfString:@"BODY"].location != NSNotFound || [key rangeOfString:@"CONTENT"].location != NSNotFound) {
         search_key_function = &mailimap_search_key_new_body;
       }
       
