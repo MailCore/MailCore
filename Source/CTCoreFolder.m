@@ -336,9 +336,10 @@ static const int MAX_PATH_SIZE = 1024;
         return NO;
     
     struct mail_flags *flags = mail_flags_new(mailFlags | MAIL_FLAG_SEEN, MailCoreClistFromStringArray(extensionFlags));
-    
+    char mbPath[MAX_PATH_SIZE];
+    [self getUTF7String:mbPath fromString:[self path]];
     err = mailsession_append_message_flags([self folderSession],
-                                           [msgStr cStringUsingEncoding: NSUTF8StringEncoding],
+                                           mbPath,
                                            [msgStr lengthOfBytesUsingEncoding: NSUTF8StringEncoding],
                                            flags);
     
@@ -370,8 +371,10 @@ static const int MAX_PATH_SIZE = 1024;
     if (err == MAIL_NO_ERROR) {
         uint32_t uidvalidity = 0;
         uint32_t messageUID = 0;
+        char mbPath[MAX_PATH_SIZE];
+        [self getUTF7String:mbPath fromString:[self path]];
         err =  mailimap_uidplus_append([self imapSession],
-                                       [self.path cStringUsingEncoding:NSUTF8StringEncoding],
+                                       mbPath,
                                        flag_list,
                                        NULL,
                                        [msgStr cStringUsingEncoding: NSUTF8StringEncoding],
