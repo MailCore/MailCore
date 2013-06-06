@@ -303,6 +303,16 @@
 - (BOOL)totalMessageCount:(NSUInteger *)totalCount;
 
 /**
+ Pass in a pointer to a NSUInteger to get the number of unread messages. This causes a round trip to the server,
+ as it fetches the count for each call.
+ Pass in a pointer to a NSUInteger to get the number of messages in the folder. The count was retrieved
+ when the folder connection was established, so to refresh the count you must disconnect and reconnect.
+ Useful when you want to get both message count with one connection.
+ @return Return YES on success, NO on error. Call method lastError to get error if one occurred
+ */
+- (BOOL)getUnreadMessageCount:(NSUInteger *)unreadCount totalMessageCount:(NSUInteger *)totalCount;
+
+/**
  Returns the uid validity value for the folder, which can be used to determine if the
  local cached UID's are still valid, or if the server has changed UID's
 */

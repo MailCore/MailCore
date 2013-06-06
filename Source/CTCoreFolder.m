@@ -883,6 +883,32 @@ static const int MAX_PATH_SIZE = 1024;
     return YES;
 }
 
+- (BOOL)getUnreadMessageCount:(NSUInteger *)unreadCount totalMessageCount:(NSUInteger *)totalCount {
+  BOOL success = [self connect];
+  if (!success) {
+    return NO;
+  }
+
+  uint32_t unseenCount = 0;
+  unsigned int junk = 0;
+  int err =  mailfolder_status(myFolder, &junk, &junk, &unseenCount);
+  if (err != MAIL_NO_ERROR) {
+    self.lastError = MailCoreCreateErrorFromIMAPCode(err);
+    return NO;
+  }
+  
+  struct mailimap *imap = [self imapSession];
+  if (totalCount) {
+    *totalCount =  imap->imap_selection_info->sel_exists;
+  }
+  
+  if (unreadCount) {
+    *unreadCount = unseenCount;
+  }
+  
+  return YES;
+}
+
 
 - (mailsession *)folderSession; {
     return myFolder->fld_session;
