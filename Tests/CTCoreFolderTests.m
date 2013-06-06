@@ -32,13 +32,17 @@
 #import <MailCore/MailCore.h>
 #import "CTCoreFolderTests.h"
 
+// set expected number of messages in folder
+const int kExpectedFolderMessagesCount = 7;
+
 @implementation CTCoreFolderTests {
 
 }
 
 - (void)testFetchOnlyDefaults {
+    NSLog(@"testFetchOnlyDefaults");
     NSArray *messages = [self.folder messagesFromSequenceNumber:1 to:0 withFetchAttributes:CTFetchAttrDefaultsOnly];
-    STAssertTrue(messages.count == 6, @"");
+    STAssertEquals(kExpectedFolderMessagesCount, (int)messages.count, @"");
     CTCoreMessage *msg = [messages objectAtIndex:0];
     STAssertTrue([msg uid] > 0, @"We should have the UID");
     STAssertTrue([msg messageSize] > 0, @"We always download message size");
@@ -58,7 +62,7 @@
 
 - (void)testFetchEnvelope {
     NSArray *messages = [self.folder messagesFromSequenceNumber:1 to:0 withFetchAttributes:CTFetchAttrEnvelope];
-    STAssertTrue(messages.count == 6, @"");
+    STAssertEquals(kExpectedFolderMessagesCount, (int)messages.count, @"");
     CTCoreMessage *msg = [messages objectAtIndex:0];
     STAssertTrue([msg uid] > 0, @"We should have the UID");
     STAssertTrue([msg messageSize] > 0, @"We always download message size");
@@ -76,7 +80,7 @@
 
 - (void)testFetchEnvelopeUsingUIDFetch {
     NSArray *messages = [self.folder messagesFromUID:1 to:0 withFetchAttributes:CTFetchAttrEnvelope];
-    STAssertTrue(messages.count == 6, @"");
+    STAssertEquals(kExpectedFolderMessagesCount, (int)messages.count, @"");
     CTCoreMessage *msg = [messages objectAtIndex:0];
     STAssertTrue([msg uid] > 0, @"We should have the UID");
     STAssertTrue([msg messageSize] > 0, @"We always download message size");
@@ -93,14 +97,17 @@
 }
 
 - (void)testFetchBodyStructure {
+    NSLog(@"testFetchBodyStructure");
     NSArray *messages = [self.folder messagesFromSequenceNumber:1 to:0 withFetchAttributes:CTFetchAttrBodyStructure];
-    STAssertTrue(messages.count == 6, @"");
+    
+    STAssertEquals(kExpectedFolderMessagesCount, (int)messages.count, @"");
     CTCoreMessage *msg = [messages objectAtIndex:0];
     STAssertTrue([msg uid] > 0, @"We should have the UID");
     STAssertTrue([msg messageSize] > 0, @"We always download message size");
 
     STAssertNil([msg senderDate], @"We have no envelope so should be nil");
     STAssertNil([msg subject], @"We have no envelope so should be nil");
+    
     STAssertNil([msg to], @"We have no envelope so should be nil");
     STAssertNil([msg cc], @"We have no envelope so should be nil");
     STAssertNil([msg sender], @"We have no envelope so should be nil");
@@ -114,7 +121,7 @@
 
 - (void)testFetchEverything {
     NSArray *messages = [self.folder messagesFromSequenceNumber:1 to:0 withFetchAttributes:CTFetchAttrEnvelope | CTFetchAttrBodyStructure];
-    STAssertTrue(messages.count == 6, @"");
+    STAssertEquals(kExpectedFolderMessagesCount, (int)messages.count, @"");
     CTCoreMessage *msg = [messages objectAtIndex:0];
     STAssertTrue([msg uid] > 0, @"We should have the UID");
     STAssertTrue([msg messageSize] > 0, @"We always download message size");
