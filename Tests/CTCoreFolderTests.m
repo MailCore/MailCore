@@ -45,8 +45,8 @@ const int kExpectedFolderMessagesCount = 7;
     STAssertEquals(kExpectedFolderMessagesCount, (int)messages.count, @"");
     CTCoreMessage *msg = [messages objectAtIndex:0];
     STAssertTrue([msg uid] > 0, @"We should have the UID");
-    STAssertTrue([msg messageSize] > 0, @"We always download message size");
-
+    
+    STAssertNil([msg messageSize], @"We have no envelope so should be nil");
     STAssertNil([msg senderDate], @"We have no envelope so should be nil");
     STAssertNil([msg subject], @"We have no envelope so should be nil");
     STAssertNil([msg to], @"We have no envelope so should be nil");
@@ -65,7 +65,7 @@ const int kExpectedFolderMessagesCount = 7;
     STAssertEquals(kExpectedFolderMessagesCount, (int)messages.count, @"");
     CTCoreMessage *msg = [messages objectAtIndex:0];
     STAssertTrue([msg uid] > 0, @"We should have the UID");
-    STAssertTrue([msg messageSize] > 0, @"We always download message size");
+    STAssertTrue([msg messageSize] > 0, @"We DO HAVE AN envelope so should be > 0");
 
     STAssertNotNil([msg senderDate], @"We DO HAVE AN envelope so shouldn't be nil");
     STAssertNotNil([msg subject], @"We DO HAVE AN envelope so shouldn't be nil");
@@ -83,7 +83,7 @@ const int kExpectedFolderMessagesCount = 7;
     STAssertEquals(kExpectedFolderMessagesCount, (int)messages.count, @"");
     CTCoreMessage *msg = [messages objectAtIndex:0];
     STAssertTrue([msg uid] > 0, @"We should have the UID");
-    STAssertTrue([msg messageSize] > 0, @"We always download message size");
+    STAssertTrue([msg messageSize] > 0, @"We DO HAVE AN envelope so should be > 0");
 
     STAssertNotNil([msg senderDate], @"We DO HAVE AN envelope so shouldn't be nil");
     STAssertNotNil([msg subject], @"We DO HAVE AN envelope so shouldn't be nil");
@@ -103,11 +103,10 @@ const int kExpectedFolderMessagesCount = 7;
     STAssertEquals(kExpectedFolderMessagesCount, (int)messages.count, @"");
     CTCoreMessage *msg = [messages objectAtIndex:0];
     STAssertTrue([msg uid] > 0, @"We should have the UID");
-    STAssertTrue([msg messageSize] > 0, @"We always download message size");
-
+    
+    STAssertNil([msg messageSize], @"We have no envelope so should be nil");
     STAssertNil([msg senderDate], @"We have no envelope so should be nil");
     STAssertNil([msg subject], @"We have no envelope so should be nil");
-    
     STAssertNil([msg to], @"We have no envelope so should be nil");
     STAssertNil([msg cc], @"We have no envelope so should be nil");
     STAssertNil([msg sender], @"We have no envelope so should be nil");
@@ -124,8 +123,8 @@ const int kExpectedFolderMessagesCount = 7;
     STAssertEquals(kExpectedFolderMessagesCount, (int)messages.count, @"");
     CTCoreMessage *msg = [messages objectAtIndex:0];
     STAssertTrue([msg uid] > 0, @"We should have the UID");
-    STAssertTrue([msg messageSize] > 0, @"We always download message size");
-
+    STAssertTrue([msg messageSize] > 0, @"We DO HAVE AN envelope so should be > 0");
+    
     STAssertNotNil([msg senderDate], @"We DO HAVE AN envelope so shouldn't be nil");
     STAssertNotNil([msg subject], @"We DO HAVE AN envelope so shouldn't be nil");
     STAssertNotNil([msg to], @"We DO HAVE AN envelope so shouldn't be nil");
