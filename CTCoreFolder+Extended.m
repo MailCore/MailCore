@@ -14,6 +14,7 @@
 #import "CTCoreMessage.h"
 #import "MailCoreTypes.h"
 #import "MailCoreUtilities.h"
+#import "Logger.h"
 #import <libetpan/libetpan.h>
 #import <libetpan/mailimap_types.h>
 #import "libetpan_extensions.h"
@@ -41,8 +42,7 @@
      BugFix: Sandbox doesn't allow to access to /tmp default directory!
      */
     mmap_string_set_tmpdir((const char *) [NSTemporaryDirectory() cStringUsingEncoding:NSASCIIStringEncoding]);
-    NSLog(@"Temporary Directory used: %@", NSTemporaryDirectory());
-    
+
 }
 
 - (NSArray *) messagesFullFrom:(NSUInteger)startUID to:(NSUInteger)endUID {
@@ -302,7 +302,8 @@
 	r = mailimap_uid_fetch([self imapSession], set, fetch_type, &fetch_result);
     if (r != MAIL_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-		NSLog(@"Error: %@", self.lastError);
+	[Logger logTo:LOG_ERROR withMsg:
+	 [NSString stringWithFormat:@"Error: %@", self.lastError]];
         return nil;
     }
 	
@@ -491,7 +492,8 @@ cleanup:    // clean up and return
     }
     if (r != MAIL_NO_ERROR) {	// if any error, set code, log, return nil
 	self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-	NSLog(@"Error: %@", self.lastError);
+	[Logger logTo:LOG_DEBUG withMsg:
+	 [NSString stringWithFormat:@"Error: %@", self.lastError]];
 	messages = nil;
     }
     return messages;
@@ -531,12 +533,14 @@ cleanup:    // clean up and return
     
     flag_list = mailimap_flag_list_new_empty();
     if (flag_list == NULL) {
-	NSLog(@"mailimap_flag_list_new_empty failed");
+	[Logger logTo:LOG_DEBUG withMsg:@"mailimap_flag_list_new_empty failed"];
 	goto cleanup;
     }
     err = mailimap_flag_list_add(flag_list, mailimap_flag_new_seen());
     if (err != MAILIMAP_NO_ERROR) {
-	NSLog(@"mailimap_flag_list_add failed");
+	self.lastError = MailCoreCreateErrorFromIMAPCode(err);
+	[Logger logTo:LOG_DEBUG withMsg:
+	 [NSString stringWithFormat:@"mailimap_flag_list_add failed: %@", [self.lastError description]]];
 	goto cleanup;
     }
     
