@@ -55,3 +55,5 @@ NSString *MailCoreDecodeMIMEPhrase(char *data);
 NSArray * MailCoreStringArrayFromClist(clist *list);
 clist *MailCoreClistFromStringArray(NSArray *strings);
 
+NSString * MailCoreRFC822HeaderFromMailImapMsgAtt(struct mailimap_msg_att *msg_att) ;
+

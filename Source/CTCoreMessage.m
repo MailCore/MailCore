@@ -44,7 +44,7 @@
 #import "MailCoreUtilities.h"
 
 @implementation CTCoreMessage
-@synthesize mime=myParsedMIME, lastError, parentFolder;
+@synthesize mime=myParsedMIME, lastError, parentFolder, rfc822Header;
 
 - (id)init {
     self = [super init];
@@ -95,6 +95,7 @@
     }
     self.lastError = nil;
     self.parentFolder = nil;
+    self.rfc822Header = nil;
     [myParsedMIME release];
     [super dealloc];
 }
@@ -694,17 +695,23 @@
 }
 
 - (NSString *)rfc822Header {
-    char *result = NULL;
-    NSString *nsresult;
-    int r = mailimap_fetch_rfc822_header([self imapSession], [self sequenceNumber], &result);
-    if (r == MAIL_NO_ERROR) {
-        nsresult = [[NSString alloc] initWithCString:result encoding:NSUTF8StringEncoding];
-    } else {
-        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-        return nil;
+    if (!rfc822Header) {
+        char *result = NULL;
+        int r = mailimap_fetch_rfc822_header([self imapSession], [self sequenceNumber], &result);
+        if (r == MAIL_NO_ERROR) {
+            rfc822Header = [[NSString alloc] initWithCString:result encoding:NSUTF8StringEncoding];
+        } else {
+            self.lastError = MailCoreCreateErrorFromIMAPCode(r);
+            return nil;
+        }
+        mailimap_msg_att_rfc822_free(result);
     }
-    mailimap_msg_att_rfc822_free(result);
-    return [nsresult autorelease];
+    
+    return rfc822Header;
+}
+
+- (NSString *)localRFC822Header {
+    return self->rfc822Header;
 }
 
 - (struct mailmessage *)messageStruct {

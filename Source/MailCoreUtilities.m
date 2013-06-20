@@ -312,3 +312,29 @@ clist *MailCoreClistFromStringArray(NSArray *strings) {
   
 	return str_list;
 }
+
+NSString * MailCoreRFC822HeaderFromMailImapMsgAtt(struct mailimap_msg_att *msg_att) {
+    clistiter * item_cur;
+    char * rfc822HeaderString;
+    
+    for(item_cur = clist_begin(msg_att->att_list) ; item_cur != NULL ;
+        item_cur = clist_next(item_cur)) {
+        struct mailimap_msg_att_item * item;
+        
+        item = clist_content(item_cur);
+        
+        if (item->att_type == MAILIMAP_MSG_ATT_ITEM_STATIC &&
+            item->att_data.att_static->att_type == MAILIMAP_MSG_ATT_RFC822_HEADER) {
+            rfc822HeaderString = item->att_data.att_static->att_data.att_rfc822_header.att_content;
+            break;
+        }
+    }
+    
+    NSString *rfc822Header = nil;
+    if (rfc822HeaderString) {
+        rfc822Header = [NSString stringWithUTF8String:rfc822HeaderString];
+    }
+    
+    return rfc822Header;
+}
+

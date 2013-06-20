@@ -469,7 +469,7 @@ static const int MAX_PATH_SIZE = 1024;
         self.lastError = MailCoreCreateErrorFromIMAPCode(r);
         return nil;
     }
-
+    
     // We only fetch RFC822.Size if the envelope is being fetched
     if (attrs & CTFetchAttrEnvelope) {
         fetch_att = mailimap_fetch_att_new_rfc822_size();
@@ -503,6 +503,19 @@ static const int MAX_PATH_SIZE = 1024;
             return nil;
         }
     }
+    
+    // We only fetch RFC.822 Headers if requested
+    if (attrs & CTFetchAttrRFC822Headers) {
+        fetch_att = mailimap_fetch_att_new_rfc822_header();
+        r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
+        if (r != MAILIMAP_NO_ERROR) {
+            mailimap_fetch_att_free(fetch_att);
+            mailimap_fetch_type_free(fetch_type);
+            self.lastError = MailCoreCreateErrorFromIMAPCode(r);
+            return nil;
+        }
+    }
+
 
     if (uidFetch) {
         r = mailimap_uid_fetch([self imapSession], set, fetch_type, &fetch_result);
@@ -522,6 +535,7 @@ static const int MAX_PATH_SIZE = 1024;
     if (r != MAIL_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromIMAPCode(r);
         return nil;
+        
     }
     r = imap_fetch_result_to_envelop_list(fetch_result, env_list);
     if (r != MAIL_NO_ERROR) {
@@ -612,6 +626,9 @@ static const int MAX_PATH_SIZE = 1024;
         }
         if (attrs & CTFetchAttrBodyStructure) {
             [msgObject setBodyStructure:new_body];
+        }
+        if (attrs & CTFetchAttrRFC822Headers) {
+            msgObject.rfc822Header = MailCoreRFC822HeaderFromMailImapMsgAtt(msg_att);
         }
         [messages addObject:msgObject];
         [msgObject release];

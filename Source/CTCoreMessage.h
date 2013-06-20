@@ -49,6 +49,7 @@
     NSUInteger mySequenceNumber;
     NSError *lastError;
     CTCoreFolder *parentFolder;
+    NSString *rfc822Header;
 }
 /**
  If an error occurred (nil or return of NO) call this method to get the error
@@ -56,6 +57,9 @@
 @property (nonatomic, retain) NSError *lastError;
 
 @property (nonatomic, retain) CTCoreFolder *parentFolder;
+
+
+@property (nonatomic, copy) NSString *rfc822Header;
 
 /**
  If the body structure has been fetched, this will contain the MIME structure
@@ -333,6 +337,12 @@
  @return Return nil on error. Call method lastError to get error if one occurred
  */
 - (NSString *)rfc822Header;
+
+/**
+ return rfc822 content of the message headers that is store locally.
+ */
+- (NSString *)localRFC822Header;
+
 
 /* Intended for advanced use only */
 - (struct mailmessage *)messageStruct;
