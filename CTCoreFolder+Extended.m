@@ -14,7 +14,6 @@
 #import "CTCoreMessage.h"
 #import "MailCoreTypes.h"
 #import "MailCoreUtilities.h"
-#import "Logger.h"
 #import <libetpan/libetpan.h>
 #import <libetpan/mailimap_types.h>
 #import "libetpan_extensions.h"
@@ -48,8 +47,8 @@
         mmap_string_set_tmpdir((const char *) myTempDir);
     }
     @catch (NSException *ex) {
-        [Logger logTo:LOG_ERROR withMsg:[NSString stringWithFormat:@"Temporary Directory NIL! NSTemporaryDirectory: %@", NSTemporaryDirectory()]];
-        [Logger logTo:LOG_ERROR withMsg:[NSString stringWithFormat:@"setupTempDir exception: %@ - %@", [ex name],[ex description]]];
+		NSLog(@"ERROR - NSTemporaryDirectory: %@", NSTemporaryDirectory());        
+		NSLog(@"setupTempDir exception: %@ - %@", [ex name],[ex description]);
     }
 
 }
@@ -309,8 +308,6 @@
 	r = mailimap_uid_fetch([self imapSession], set, fetch_type, &fetch_result);
     if (r != MAIL_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-	[Logger logTo:LOG_ERROR withMsg:
-	 [NSString stringWithFormat:@"Error: %@", self.lastError]];
         return nil;
     }
 	
@@ -407,7 +404,7 @@
     fetch_att = mailimap_fetch_att_new_uid();
     r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
     if (r != MAILIMAP_NO_ERROR) {
-	goto cleanup;
+        goto cleanup;
     }
     fetch_att = NULL;
     
@@ -416,23 +413,23 @@
         fetch_att = mailimap_fetch_att_new_xgmmsgid();
         r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
         if (r != MAILIMAP_NO_ERROR) {
-	    goto cleanup;
+            goto cleanup;
         }
-	fetch_att = NULL;
+        fetch_att = NULL;
     }
     
     r = mailimap_uid_fetch([self imapSession], set, fetch_type, &fetch_result);
     if (r != MAIL_NO_ERROR) {
-	goto cleanup;
+        goto cleanup;
     }
 	
     r = uid_list_to_env_list(fetch_result, &env_list, [self folderSession], imap_message_driver);
     if (r != MAIL_NO_ERROR) {
-	goto cleanup;
+        goto cleanup;
     }
     r = imap_fetch_result_to_envelop_list(fetch_result, env_list);
     if (r != MAIL_NO_ERROR) {
-	goto cleanup;
+        goto cleanup;
     }
 	
 	
@@ -447,20 +444,19 @@
         struct mailmessage * msg = carray_get(env_list->msg_tab, i);
         struct mailimap_msg_att *msg_att = (struct mailimap_msg_att *)clist_content(fetchResultIter);
         if (msg_att == nil) {
-	    r = MAIL_ERROR_MEMORY;
-	    goto cleanup;
+            r = MAIL_ERROR_MEMORY;
+            goto cleanup;
         }
 		
-	uint32_t uid = 0;
-	char * references = NULL;
-	size_t ref_size = 0;
-	struct mailimap_body * imap_body = NULL;
-	struct mailimap_envelope * envelope = NULL;
-	r = imap_get_msg_att_info(msg_att, &uid, &envelope, &references, &ref_size, NULL, &imap_body);
-	if (r != MAIL_NO_ERROR) {
-	    goto cleanup;
-	}
-		
+        uint32_t uid = 0;
+        char * references = NULL;
+        size_t ref_size = 0;
+        struct mailimap_body * imap_body = NULL;
+        struct mailimap_envelope * envelope = NULL;
+        r = imap_get_msg_att_info(msg_att, &uid, &envelope, &references, &ref_size, NULL, &imap_body);
+        if (r != MAIL_NO_ERROR) {
+            goto cleanup;
+        }
 		
         CTCoreMessage* msgObject = [[CTCoreMessage alloc] initWithMessageStruct:msg];
         msgObject.parentFolder = self;
@@ -479,29 +475,27 @@
 cleanup:    // clean up and return
 
     if (set != NULL) {
-	mailimap_set_free(set); set = NULL;
+        mailimap_set_free(set); set = NULL;
     }
     if (fetch_att != NULL) {
-	mailimap_fetch_att_free(fetch_att); fetch_att = NULL;
+        mailimap_fetch_att_free(fetch_att); fetch_att = NULL;
     }
     if (fetch_type != NULL) {
-	mailimap_fetch_type_free(fetch_type); fetch_type = NULL;
+        mailimap_fetch_type_free(fetch_type); fetch_type = NULL;
     }
     if (fetch_result != NULL) {
-	mailimap_fetch_list_free(fetch_result); fetch_result = NULL;
+        mailimap_fetch_list_free(fetch_result); fetch_result = NULL;
     }
     if (env_list != NULL) {	
         //I am only freeing the message array because the messages themselves are in use
-	// (they will be freed in -[CTCoreMessage dealloc])
-	carray_free(env_list->msg_tab);
-	free(env_list);
-	env_list = NULL;
+        // (they will be freed in -[CTCoreMessage dealloc])
+        carray_free(env_list->msg_tab);
+        free(env_list);
+        env_list = NULL;
     }
     if (r != MAIL_NO_ERROR) {	// if any error, set code, log, return nil
-	self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-	[Logger logTo:LOG_DEBUG withMsg:
-	 [NSString stringWithFormat:@"Error: %@", self.lastError]];
-	messages = nil;
+        self.lastError = MailCoreCreateErrorFromIMAPCode(r);
+        messages = nil;
     }
     return messages;
 
@@ -540,15 +534,12 @@ cleanup:    // clean up and return
     
     flag_list = mailimap_flag_list_new_empty();
     if (flag_list == NULL) {
-	[Logger logTo:LOG_DEBUG withMsg:@"mailimap_flag_list_new_empty failed"];
-	goto cleanup;
+        goto cleanup;
     }
     err = mailimap_flag_list_add(flag_list, mailimap_flag_new_seen());
     if (err != MAILIMAP_NO_ERROR) {
-	self.lastError = MailCoreCreateErrorFromIMAPCode(err);
-	[Logger logTo:LOG_DEBUG withMsg:
-	 [NSString stringWithFormat:@"mailimap_flag_list_add failed: %@", [self.lastError description]]];
-	goto cleanup;
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
+        goto cleanup;
     }
     
     // Get date from message, extract components, using curent timezone
