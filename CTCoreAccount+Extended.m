@@ -79,8 +79,9 @@
 		//NSLog(@"%@", attr);
         
 		mailboxName = mailboxStruct->mb_name;
-		mailboxNameObject = [NSString stringWithCString:mailboxName encoding:NSUTF8StringEncoding];
-        
+		mailboxNameObject = (NSString *) CFStringCreateWithCString(NULL, mailboxName, kCFStringEncodingUTF7_IMAP);
+		[mailboxNameObject autorelease];
+
         //NSMutableArray* arr = [allFolders objectForKey:attr];
         //if (arr == nil) {
         //        arr = [NSMutableArray array];            
