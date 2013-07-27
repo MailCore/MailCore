@@ -223,9 +223,15 @@ smtpProgress(size_t aCurrent, size_t aTotal) {
     if (!success) {
         goto error;
     }
+    NSSet *tmpBcc = theMessage.bcc;
+    
+    // Temporarily wipe out BCC so it isn't sent with the message
+    theMessage.bcc = nil;
 
     //send
     success = [mSMTPObj setData:[theMessage render]];
+    
+    theMessage.bcc = tmpBcc;
     if (success) {
         mStatus = CTSMTPAsyncSuccess;
     } else if (success && [mMailThread isCancelled]) {

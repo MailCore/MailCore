@@ -92,9 +92,17 @@
     if (!success) {
         goto error;
     }
+    
+    NSSet *tmpBcc = message.bcc;
 
+    // Temporarily wipe out BCC so it isn't sent with the message
+    message.bcc = nil;
+    
     /* data */
     success = [smtpObj setData:[message render]];
+    
+    message.bcc = tmpBcc;
+    
     if (!success) {
         goto error;
     }
