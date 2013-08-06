@@ -94,8 +94,8 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
             struct mailmime_disposition *disp = mMimeFields->fld_disposition;
             if (disp != NULL) {
                 if (disp->dsp_type != NULL) {
-                    self.attached = (disp->dsp_type->dsp_type ==
-                                        MAILMIME_DISPOSITION_TYPE_ATTACHMENT);
+                    self.attached = (disp->dsp_type->dsp_type == MAILMIME_DISPOSITION_TYPE_ATTACHMENT ||
+                                     disp->dsp_type->dsp_type == MAILMIME_DISPOSITION_TYPE_INLINE);
 
                     if (self.attached)
                     {
@@ -113,32 +113,33 @@ static void download_progress_callback(size_t current, size_t maximum, void * co
 
             if (mMimeFields->fld_disposition_filename != NULL) {
                 self.filename = [NSString stringWithCString:mMimeFields->fld_disposition_filename encoding:NSUTF8StringEncoding];
-
-                NSString* lowercaseName = [self.filename lowercaseString];
-                if([lowercaseName hasSuffix:@".xls"] ||
-                    [lowercaseName hasSuffix:@".xlsx"] ||
-                    [lowercaseName hasSuffix:@".key.zip"] ||
-                    [lowercaseName hasSuffix:@".numbers.zip"] ||
-                    [lowercaseName hasSuffix:@".pages.zip"] ||
-                    [lowercaseName hasSuffix:@".pdf"] ||
-                    [lowercaseName hasSuffix:@".ppt"] ||
-                    [lowercaseName hasSuffix:@".doc"] ||
-                    [lowercaseName hasSuffix:@".docx"] ||
-                    [lowercaseName hasSuffix:@".rtf"] ||
-                    [lowercaseName hasSuffix:@".rtfd.zip"] ||
-                    [lowercaseName hasSuffix:@".key"] ||
-                    [lowercaseName hasSuffix:@".numbers"] ||
-                    [lowercaseName hasSuffix:@".pages"] ||
-                    [lowercaseName hasSuffix:@".png"] ||
-                    [lowercaseName hasSuffix:@".gif"] ||
-                    [lowercaseName hasSuffix:@".png"] ||
-                    [lowercaseName hasSuffix:@".jpg"] ||
-                    [lowercaseName hasSuffix:@".jpeg"] ||
-                    [lowercaseName hasSuffix:@".tiff"]) { // hack by gabor, improved by waseem, based on http://developer.apple.com/iphone/library/qa/qa2008/qa1630.html
-                    self.attached = YES;
-                }
+            } else if (mMimeFields->fld_location != NULL) {
+                self.filename = [NSString stringWithCString:mMimeFields->fld_location encoding:NSUTF8StringEncoding];
             }
 
+            NSString* lowercaseName = [self.filename lowercaseString];
+            if([lowercaseName hasSuffix:@".xls"] ||
+                [lowercaseName hasSuffix:@".xlsx"] ||
+                [lowercaseName hasSuffix:@".key.zip"] ||
+                [lowercaseName hasSuffix:@".numbers.zip"] ||
+                [lowercaseName hasSuffix:@".pages.zip"] ||
+                [lowercaseName hasSuffix:@".pdf"] ||
+                [lowercaseName hasSuffix:@".ppt"] ||
+                [lowercaseName hasSuffix:@".doc"] ||
+                [lowercaseName hasSuffix:@".docx"] ||
+                [lowercaseName hasSuffix:@".rtf"] ||
+                [lowercaseName hasSuffix:@".rtfd.zip"] ||
+                [lowercaseName hasSuffix:@".key"] ||
+                [lowercaseName hasSuffix:@".numbers"] ||
+                [lowercaseName hasSuffix:@".pages"] ||
+                [lowercaseName hasSuffix:@".png"] ||
+                [lowercaseName hasSuffix:@".gif"] ||
+                [lowercaseName hasSuffix:@".png"] ||
+                [lowercaseName hasSuffix:@".jpg"] ||
+                [lowercaseName hasSuffix:@".jpeg"] ||
+                [lowercaseName hasSuffix:@".tiff"]) { // hack by gabor, improved by waseem, based on http://developer.apple.com/iphone/library/qa/qa2008/qa1630.html
+                self.attached = YES;
+            }
         }
     }
     return self;
