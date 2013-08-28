@@ -265,10 +265,13 @@
 	
 }
 
-
 - (NSArray *) getUidsFromLastUID:(NSUInteger)UID {
+    return [self getUidsFromUID:UID to:0];
+}
+
+- (NSArray *) getUidsFromUID:(NSUInteger)from to:(NSUInteger)to {
 	
-    struct mailimap_set *set = mailimap_set_new_interval(UID, 0);
+    struct mailimap_set *set = mailimap_set_new_interval(from, to);
 	
     BOOL success = [self connect];
     if (!success) {
