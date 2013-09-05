@@ -314,7 +314,7 @@
 
 - (NSSet *) gmailLabels {
     if (myMessage->msg_gmlabels) {
-        return [NSSet setWithArray:[self _stringArrayFromClist:myMessage->msg_gmlabels]];
+        return [NSSet setWithArray:MailCoreStringArrayFromClist(myMessage->msg_gmlabels)];
     }
 
     return nil;
