@@ -379,8 +379,6 @@
 		0867D691FE84028FC02AAC07 /* MailCore */ = {
 			isa = PBXGroup;
 			children = (
-				CD016E7117D89F31008F8E36 /* Security.framework */,
-				CD016E6F17D89F00008F8E36 /* libz.dylib */,
 				F8886339158103460088CF38 /* openssl.xcodeproj */,
 				F888632D158102F50088CF38 /* Cyrus SASL.xcodeproj */,
 				F890D38D10CEECD50039817C /* libetpan.xcodeproj */,
@@ -458,7 +456,9 @@
 				F88804610B42018500D400E7 /* libsasl2.dylib */,
 				F8483E4B09CE7C2800B80440 /* libcrypto.dylib */,
 				F8483E4209CE7B9C00B80440 /* libiconv.dylib */,
+				CD016E6F17D89F00008F8E36 /* libz.dylib */,
 				F8483E4009CE7B9000B80440 /* libssl.dylib */,
+				CD016E7117D89F31008F8E36 /* Security.framework */,
 				1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
