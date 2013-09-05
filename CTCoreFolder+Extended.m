@@ -82,17 +82,15 @@
         return nil;
     }
 	
-    // Always fetch X-GM-MSGID (if available)
-    if (mailimap_has_xgmmsgid([self imapSession])) {
-        fetch_att = mailimap_fetch_att_new_xgmmsgid();
-        r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
-        if (r != MAILIMAP_NO_ERROR) {
-            mailimap_fetch_att_free(fetch_att);
-            mailimap_fetch_type_free(fetch_type);
-            self.lastError = MailCoreCreateErrorFromIMAPCode(r);
-            return nil;
-        }
-    }
+    // Always fetch X-GM-MSGID
+	fetch_att = mailimap_fetch_att_new_xgmmsgid();
+	r = mailimap_fetch_type_new_fetch_att_list_add(fetch_type, fetch_att);
+	if (r != MAILIMAP_NO_ERROR) {
+		mailimap_fetch_att_free(fetch_att);
+		mailimap_fetch_type_free(fetch_type);
+		self.lastError = MailCoreCreateErrorFromIMAPCode(r);
+		return nil;
+	}
 	
 	// Always fetch FLAGS
     fetch_att = mailimap_fetch_att_new_flags();
