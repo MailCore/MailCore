@@ -94,7 +94,7 @@ static const int MAX_PATH_SIZE = 1024;
 
 
 - (BOOL)getUTF7String:(char *)buffer fromString:(NSString *)str {
-    if (str == nil) {
+    if (str == nil || buffer == nil) {
         return NO;
     }
     
