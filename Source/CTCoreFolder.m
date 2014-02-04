@@ -858,7 +858,7 @@ static const int MAX_PATH_SIZE = 1024;
     }
 
     char mbPath[MAX_PATH_SIZE];
-    if (![self getUTF7String:mbPath fromString:myPath]) {
+    if (![self getUTF7String:mbPath fromString:path]) {
         self.lastError = MailCoreCreateStringConvError();
         return NO;
     }
@@ -877,7 +877,7 @@ static const int MAX_PATH_SIZE = 1024;
     }
 
     char mbPath[MAX_PATH_SIZE];
-    if (![self getUTF7String:mbPath fromString:myPath]) {
+    if (![self getUTF7String:mbPath fromString:path]) {
         self.lastError = MailCoreCreateStringConvError();
         return NO;
     }
