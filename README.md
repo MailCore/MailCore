@@ -78,7 +78,7 @@ Now open up MailCore.xcodeproj and build either the iOS static library or the Ma
 
 ## Consulting
 
-Consulting services are available via [Central Atomics](http://www.centralatomics.com). At Central Atomics we have years of experience working on email apps. If you need custom e-mail functionality developed, please get in touch via our website.
+Consulting services are available via [Astro HQ](http://www.astro-hq.com). At Astro HQ we have years of experience working on email apps. If you need custom e-mail functionality developed, please get in touch via our website.
 
 Thanks,
 
