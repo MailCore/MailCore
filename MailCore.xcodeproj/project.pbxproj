@@ -1014,7 +1014,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MailCore_Prefix.pch;
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libetpan/build-mac/include/**";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/libetpan/include/**";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -1029,6 +1029,7 @@
 				);
 				PRODUCT_NAME = MailCore;
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/libetpan/src/**";
 				WRAPPER_EXTENSION = framework;
 				ZERO_LINK = YES;
 			};
@@ -1050,7 +1051,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MailCore_Prefix.pch;
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libetpan/build-mac/include/**";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/libetpan/include/**";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -1065,6 +1066,7 @@
 				PRODUCT_NAME = MailCore;
 				SDKROOT = macosx;
 				STRIP_INSTALLED_PRODUCT = YES;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/libetpan/src/**";
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
