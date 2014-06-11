@@ -40,6 +40,10 @@
 
 #include <unistd.h>
 
+NSError* MailCoreCreateStringConvError() {
+    return MailCoreCreateError(1, @"Unable to convert folder name");
+}
+
 
 @interface CTCoreFolder ()
 @end
@@ -59,7 +63,11 @@ static const int MAX_PATH_SIZE = 1024;
         myAccount = [account retain];
 		
         char buffer[MAX_PATH_SIZE];
-        myFolder = mailfolder_new(storage, [self getUTF7String:buffer fromString:myPath], NULL);
+        if (![self getUTF7String:buffer fromString:myPath]) {
+            return nil;
+        }
+        
+        myFolder = mailfolder_new(storage, buffer, NULL);
         if (!myFolder) {
             return nil;
         }
@@ -80,13 +88,12 @@ static const int MAX_PATH_SIZE = 1024;
 }
 
 
-- (const char *)getUTF7String:(char *)buffer fromString:(NSString *)str {
-    if (CFStringGetCString((CFStringRef)str, buffer, MAX_PATH_SIZE, kCFStringEncodingUTF7_IMAP)) {
-        return buffer;
+- (BOOL)getUTF7String:(char *)buffer fromString:(NSString *)str {
+    if (str == nil || buffer == nil) {
+        return NO;
     }
-    else {
-        return NULL;
-    }
+    
+    return CFStringGetCString((CFStringRef)str, buffer, MAX_PATH_SIZE, kCFStringEncodingUTF7_IMAP);
 }
 
 
@@ -131,10 +138,17 @@ static const int MAX_PATH_SIZE = 1024;
     }
     
     char newPath[MAX_PATH_SIZE];
-    [self getUTF7String:newPath fromString:path];
+    if (![self getUTF7String:newPath fromString:path]) {
+        self.lastError = MailCoreCreateStringConvError();
+        return NO;
+    }
     
     char oldPath[MAX_PATH_SIZE];
     [self getUTF7String:oldPath fromString:myPath];
+    if (![self getUTF7String:oldPath fromString:myPath]) {
+        self.lastError = MailCoreCreateStringConvError();
+        return NO;
+    }
     
     err =  mailimap_rename([myAccount session], oldPath, newPath);
 
@@ -243,7 +257,10 @@ static const int MAX_PATH_SIZE = 1024;
     int err;
     
     char path[MAX_PATH_SIZE];
-    [self getUTF7String:path fromString:myPath];
+    if (![self getUTF7String:path fromString:myPath]) {
+        self.lastError = MailCoreCreateStringConvError();
+        return NO;
+    }
 
     err =  mailimap_create([myAccount session], path);
     if (err != MAILIMAP_NO_ERROR) {
@@ -263,7 +280,10 @@ static const int MAX_PATH_SIZE = 1024;
     int err;
     
     char path[MAX_PATH_SIZE];
-    [self getUTF7String:path fromString:myPath];
+    if (![self getUTF7String:path fromString:myPath]) {
+        self.lastError = MailCoreCreateStringConvError();
+        return NO;
+    }
 
     BOOL success = [self connect];
     if (!success) {
@@ -287,7 +307,10 @@ static const int MAX_PATH_SIZE = 1024;
     int err;
     
     char path[MAX_PATH_SIZE];
-    [self getUTF7String:path fromString:myPath];
+    if (![self getUTF7String:path fromString:myPath]) {
+        self.lastError = MailCoreCreateStringConvError();
+        return NO;
+    }
 
     BOOL success = [self connect];
     if (!success) {
@@ -307,7 +330,10 @@ static const int MAX_PATH_SIZE = 1024;
     int err;
     
     char path[MAX_PATH_SIZE];
-    [self getUTF7String:path fromString:myPath];
+    if (![self getUTF7String:path fromString:myPath]) {
+        self.lastError = MailCoreCreateStringConvError();
+        return NO;
+    }
 
     BOOL success = [self connect];
     if (!success) {
@@ -839,7 +865,10 @@ static const int MAX_PATH_SIZE = 1024;
     }
 
     char mbPath[MAX_PATH_SIZE];
-    [self getUTF7String:mbPath fromString:path];
+    if (![self getUTF7String:mbPath fromString:path]) {
+        self.lastError = MailCoreCreateStringConvError();
+        return NO;
+    }
     int err = mailsession_copy_message([self folderSession], uid, mbPath);
     if (err != MAIL_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromIMAPCode(err);
@@ -855,7 +884,10 @@ static const int MAX_PATH_SIZE = 1024;
     }
 
     char mbPath[MAX_PATH_SIZE];
-    [self getUTF7String:mbPath fromString:path];
+    if (![self getUTF7String:mbPath fromString:path]) {
+        self.lastError = MailCoreCreateStringConvError();
+        return NO;
+    }
     int err = mailsession_move_message([self folderSession], uid, mbPath);
     if (err != MAIL_NO_ERROR) {
         self.lastError = MailCoreCreateErrorFromIMAPCode(err);

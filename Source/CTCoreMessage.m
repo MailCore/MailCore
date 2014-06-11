@@ -537,7 +537,10 @@
 
 - (void)setTo:(NSSet *)addresses {
     struct mailimf_address_list *imf = [self _IMFAddressListFromAddresssList:addresses];
-
+    if (!imf) {
+        return;
+    }
+    
     if (myFields->fld_to != NULL) {
         mailimf_address_list_free(myFields->fld_to->to_addr_list);
         myFields->fld_to->to_addr_list = imf;
@@ -596,6 +599,10 @@
 
 - (void)setCc:(NSSet *)addresses {
     struct mailimf_address_list *imf = [self _IMFAddressListFromAddresssList:addresses];
+    if (!imf) {
+        return;
+    }
+    
     if (myFields->fld_cc != NULL) {
         mailimf_address_list_free(myFields->fld_cc->cc_addr_list);
         myFields->fld_cc->cc_addr_list = imf;
@@ -615,6 +622,10 @@
 
 - (void)setBcc:(NSSet *)addresses {
     struct mailimf_address_list *imf = [self _IMFAddressListFromAddresssList:addresses];
+    if (!imf) {
+        return;
+    }
+    
     if (myFields->fld_bcc != NULL) {
         mailimf_address_list_free(myFields->fld_bcc->bcc_addr_list);
         myFields->fld_bcc->bcc_addr_list = imf;
@@ -634,6 +645,10 @@
 
 - (void)setReplyTo:(NSSet *)addresses {
     struct mailimf_address_list *imf = [self _IMFAddressListFromAddresssList:addresses];
+    if (!imf) {
+        return;
+    }
+    
     if (myFields->fld_reply_to != NULL) {
         mailimf_address_list_free(myFields->fld_reply_to->rt_addr_list);
         myFields->fld_reply_to->rt_addr_list = imf;
@@ -873,6 +888,10 @@
 
 
 - (struct mailimf_address_list *)_IMFAddressListFromAddresssList:(NSSet *)addresses {
+    if (!addresses) {
+        return NULL;
+    }
+    
     struct mailimf_address_list *imfList = mailimf_address_list_new_empty();
 
     NSEnumerator *objEnum = [addresses objectEnumerator];

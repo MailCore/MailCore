@@ -110,10 +110,7 @@
 		F888630C158102660088CF38 /* CTCoreAddressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EA76120C1141C1004F85D8 /* CTCoreAddressTests.m */; };
 		F888630D158102680088CF38 /* CTCoreMessageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EADFB40B3BB178000C8371 /* CTCoreMessageTests.m */; };
 		F888630E1581026A0088CF38 /* CTMIMETests.m in Sources */ = {isa = PBXBuildFile; fileRef = F81A8AEC0C03FC58002F780A /* CTMIMETests.m */; };
-		F8886336158103080088CF38 /* libsasl2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8886333158102F50088CF38 /* libsasl2.a */; };
 		F8886338158103250088CF38 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8886337158103250088CF38 /* CFNetwork.framework */; };
-		F8886345158103500088CF38 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8886340158103460088CF38 /* libssl.a */; };
-		F8886346158103610088CF38 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8886342158103460088CF38 /* libcrypto.a */; };
 		F88CA0CE0BF7A7B00055AC29 /* CTSMTP.h in Headers */ = {isa = PBXBuildFile; fileRef = F88CA0CC0BF7A7B00055AC29 /* CTSMTP.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F88CA0CF0BF7A7B00055AC29 /* CTSMTP.m in Sources */ = {isa = PBXBuildFile; fileRef = F88CA0CD0BF7A7B00055AC29 /* CTSMTP.m */; };
 		F88CA0D40BF7AC0B0055AC29 /* CTESMTP.h in Headers */ = {isa = PBXBuildFile; fileRef = F88CA0D20BF7AC0B0055AC29 /* CTESMTP.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -172,48 +169,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = F8618B5610DADB5C00C41188;
 			remoteInfo = "MailCore iOS";
-		};
-		F8886332158102F50088CF38 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F888632D158102F50088CF38 /* Cyrus SASL.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D2AAC07E0554694100DB518D;
-			remoteInfo = sasl2;
-		};
-		F8886334158102FD0088CF38 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F888632D158102F50088CF38 /* Cyrus SASL.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = D2AAC07D0554694100DB518D;
-			remoteInfo = sasl2;
-		};
-		F888633F158103460088CF38 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F8886339158103460088CF38 /* openssl.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D2AAC07E0554694100DB518D;
-			remoteInfo = ssl;
-		};
-		F8886341158103460088CF38 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F8886339158103460088CF38 /* openssl.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A0511C5A127770FD00DE46C4;
-			remoteInfo = crypto;
-		};
-		F88863431581034C0088CF38 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F8886339158103460088CF38 /* openssl.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = D2AAC07D0554694100DB518D;
-			remoteInfo = ssl;
-		};
-		F8886347158103630088CF38 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F8886339158103460088CF38 /* openssl.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = A0511C51127770FD00DE46C4;
-			remoteInfo = crypto;
 		};
 		F890D39510CEECD50039817C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -291,9 +246,7 @@
 		F88804D50B4243C000D400E7 /* MailCoreUtilities.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = MailCoreUtilities.h; path = Source/MailCoreUtilities.h; sourceTree = SOURCE_ROOT; };
 		F88804D60B4243C000D400E7 /* MailCoreUtilities.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = MailCoreUtilities.m; path = Source/MailCoreUtilities.m; sourceTree = SOURCE_ROOT; };
 		F88863091581023C0088CF38 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/usr/lib/libiconv.dylib; sourceTree = DEVELOPER_DIR; };
-		F888632D158102F50088CF38 /* Cyrus SASL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Cyrus SASL.xcodeproj"; path = "iOSPorts/ports/security/cyrus-sasl/Cyrus SASL.xcodeproj"; sourceTree = "<group>"; };
 		F8886337158103250088CF38 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
-		F8886339158103460088CF38 /* openssl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openssl.xcodeproj; path = iOSPorts/ports/security/openssl/openssl.xcodeproj; sourceTree = "<group>"; };
 		F88CA0CC0BF7A7B00055AC29 /* CTSMTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTSMTP.h; path = Source/CTSMTP.h; sourceTree = "<group>"; };
 		F88CA0CD0BF7A7B00055AC29 /* CTSMTP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CTSMTP.m; path = Source/CTSMTP.m; sourceTree = "<group>"; };
 		F88CA0D20BF7AC0B0055AC29 /* CTESMTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTESMTP.h; path = Source/CTESMTP.h; sourceTree = "<group>"; };
@@ -350,10 +303,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8886346158103610088CF38 /* libcrypto.a in Frameworks */,
-				F8886345158103500088CF38 /* libssl.a in Frameworks */,
 				F8886338158103250088CF38 /* CFNetwork.framework in Frameworks */,
-				F8886336158103080088CF38 /* libsasl2.a in Frameworks */,
 				F888630A1581023C0088CF38 /* libiconv.dylib in Frameworks */,
 				F8886306158101A50088CF38 /* libmailcore.a in Frameworks */,
 				F8DFCF4C15801A5000C01975 /* SenTestingKit.framework in Frameworks */,
@@ -378,8 +328,6 @@
 		0867D691FE84028FC02AAC07 /* MailCore */ = {
 			isa = PBXGroup;
 			children = (
-				F8886339158103460088CF38 /* openssl.xcodeproj */,
-				F888632D158102F50088CF38 /* Cyrus SASL.xcodeproj */,
 				F890D38D10CEECD50039817C /* libetpan.xcodeproj */,
 				F85A18AF09C7D8F200305C06 /* Tests */,
 				F9FC3A721683FC07004B2D1E /* TestData */,
@@ -543,23 +491,6 @@
 			name = Tests;
 			sourceTree = "<group>";
 		};
-		F888632E158102F50088CF38 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				F8886333158102F50088CF38 /* libsasl2.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		F888633A158103460088CF38 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				F8886340158103460088CF38 /* libssl.a */,
-				F8886342158103460088CF38 /* libcrypto.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		F890D39010CEECD50039817C /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -713,9 +644,6 @@
 			);
 			dependencies = (
 				F80A105417A573AD0063BCD2 /* PBXTargetDependency */,
-				F8886348158103630088CF38 /* PBXTargetDependency */,
-				F88863441581034C0088CF38 /* PBXTargetDependency */,
-				F8886335158102FD0088CF38 /* PBXTargetDependency */,
 				F88863051581019F0088CF38 /* PBXTargetDependency */,
 			);
 			name = Tests;
@@ -743,16 +671,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = F888632E158102F50088CF38 /* Products */;
-					ProjectRef = F888632D158102F50088CF38 /* Cyrus SASL.xcodeproj */;
-				},
-				{
 					ProductGroup = F890D39010CEECD50039817C /* Products */;
 					ProjectRef = F890D38D10CEECD50039817C /* libetpan.xcodeproj */;
-				},
-				{
-					ProductGroup = F888633A158103460088CF38 /* Products */;
-					ProjectRef = F8886339158103460088CF38 /* openssl.xcodeproj */;
 				},
 			);
 			projectRoot = ..;
@@ -777,27 +697,6 @@
 			fileType = archive.ar;
 			path = "libetpan-ios.a";
 			remoteRef = F80A105017A573A50063BCD2 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		F8886333158102F50088CF38 /* libsasl2.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libsasl2.a;
-			remoteRef = F8886332158102F50088CF38 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		F8886340158103460088CF38 /* libssl.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libssl.a;
-			remoteRef = F888633F158103460088CF38 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		F8886342158103460088CF38 /* libcrypto.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libcrypto.a;
-			remoteRef = F8886341158103460088CF38 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		F890D39610CEECD50039817C /* libetpan.framework */ = {
@@ -967,21 +866,6 @@
 			target = F8618B5610DADB5C00C41188 /* MailCore iOS */;
 			targetProxy = F88863041581019F0088CF38 /* PBXContainerItemProxy */;
 		};
-		F8886335158102FD0088CF38 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = sasl2;
-			targetProxy = F8886334158102FD0088CF38 /* PBXContainerItemProxy */;
-		};
-		F88863441581034C0088CF38 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ssl;
-			targetProxy = F88863431581034C0088CF38 /* PBXContainerItemProxy */;
-		};
-		F8886348158103630088CF38 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = crypto;
-			targetProxy = F8886347158103630088CF38 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -1113,10 +997,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				HEADER_SEARCH_PATHS = "$BUILT_PRODUCTS_DIR/include/libetpan/**";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/mronge/Projects/virtru-ios-mail/MailCore/Prebuilt/libetpan-ios/lib",
+					"/Users/mronge/Projects/virtru-ios-mail/MailCore/Prebuilt/libsasl-ios/lib",
+				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRIVATE_HEADERS_FOLDER_PATH = ../../include/MailCore/Private;
 				PRODUCT_NAME = mailcore;
@@ -1130,9 +1022,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				HEADER_SEARCH_PATHS = "$BUILT_PRODUCTS_DIR/include/libetpan/**";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/mronge/Projects/virtru-ios-mail/MailCore/Prebuilt/libetpan-ios/lib",
+					"/Users/mronge/Projects/virtru-ios-mail/MailCore/Prebuilt/libsasl-ios/lib",
+				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRIVATE_HEADERS_FOLDER_PATH = ../../include/MailCore/Private;
 				PRODUCT_NAME = mailcore;
