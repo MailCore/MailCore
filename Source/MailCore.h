@@ -32,6 +32,7 @@
 #import "CTCoreAccount.h"
 #import "CTCoreAddress.h"
 #import "CTCoreFolder.h"
+#import "CTXlistResult.h"
 #import "CTCoreMessage.h"
 #import "CTSMTPConnection.h"
 #import "CTBareAttachment.h"

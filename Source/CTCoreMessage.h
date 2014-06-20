@@ -145,6 +145,21 @@ typedef enum {
 - (void)setHTMLBody:(NSString *)body;
 
 /**
+ The Gmail-specific X-GM-MSGID
+ */
+- (NSString *) gmailMsgId;
+
+/**
+ The Gmail-specific X-GM-THRID (thread id)
+*/
+- (NSString *) gmailThreadId;
+
+/**
+ The Gmail-specific x-gm-labels (labels)
+ */
+- (NSSet *) gmailLabels;
+
+/**
  A list of attachments this message has
 */
 - (NSArray *)attachments;
