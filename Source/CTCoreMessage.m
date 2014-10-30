@@ -272,6 +272,35 @@
 }
 
 
+
+- (void) setHTMLBody:(NSString*)htmlString textBody:(NSString*)plainString {
+    /* 
+     * Message structure:
+     *
+     * [ msg root ]
+     *   --> multipart/alternative (Body)
+     *   -----> text
+     *   -----> html
+     */
+    
+    // Body (multipart/alternative)
+    CTMIME_MultiPart* bodyMultipart = [CTMIME_MultiPart mimeMultiPart];
+    bodyMultipart.contentType = @"multipart/alternative";
+    
+    CTMIME_TextPart* bodyTextPart = [CTMIME_TextPart mimeTextPartWithString:plainString];
+    CTMIME_HtmlPart* bodyHtmlPart = [CTMIME_HtmlPart mimeTextPartWithString:htmlString];
+
+    [bodyMultipart addMIMEPart: bodyTextPart ];
+    [bodyMultipart addMIMEPart: bodyHtmlPart ];
+
+    // Root
+    CTMIME_MessagePart* messagePartRoot = [CTMIME_MessagePart mimeMessagePartWithContent:bodyMultipart];
+    
+    [myParsedMIME release];
+    myParsedMIME = [messagePartRoot retain];
+}
+
+
 - (void)setBody:(NSString *)body {
     CTMIME *oldMIME = myParsedMIME;
     CTMIME_TextPart *text = [CTMIME_TextPart mimeTextPartWithString:body];
@@ -323,11 +352,38 @@
         msg = (CTMIME_MessagePart *)myParsedMIME;
         CTMIME *sub = [msg content];
 
-
         // Creat new multimime part if needed
         if ([sub isKindOfClass:[CTMIME_MultiPart class]]) {
-            multi = (CTMIME_MultiPart *)sub;
-        } else {
+            // Assuming this is the body
+            if ([sub.contentType isEqualToString:@"multipart/alternative"]) {
+                /*
+                 * Transform the following
+                 * message structure:
+                 *
+                 * [ msg root ]
+                 *   --> multipart/alternative
+                 *   -----> text
+                 *   -----> html
+                 *
+                 *  into:
+                 *
+                 * [ MessagePart Root ]
+                 *   --> multipart/mixed
+                 *   -----> attachments
+                 *   -----> multipart/alternative
+                 *   --------> text
+                 *   --------> html
+                 */
+                
+                CTMIME_MultiPart* multipartMixed = [CTMIME_MultiPart mimeMultiPart];
+                [multipartMixed addMIMEPart:sub];
+                multi = multipartMixed;
+                [msg setContent:multipartMixed];
+            }
+            else
+                multi = (CTMIME_MultiPart *)sub;
+        }
+        else {
             multi = [CTMIME_MultiPart mimeMultiPart];
             [multi addMIMEPart:sub];
             [msg setContent:multi];
