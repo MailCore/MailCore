@@ -57,3 +57,6 @@ NSString *MailCoreDecodeMIMEPhrase(char *data);
 NSArray * MailCoreStringArrayFromClist(clist *list);
 clist *MailCoreClistFromStringArray(NSArray *strings);
 
+struct mailimap_set * mailimap_setFromIndexSet(NSIndexSet *indexSet);
+NSIndexSet * MailCoreIndexSetFromMailImapSet(struct mailimap_set *set);
+

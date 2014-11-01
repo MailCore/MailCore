@@ -312,3 +312,28 @@ clist *MailCoreClistFromStringArray(NSArray *strings) {
   
 	return str_list;
 }
+
+struct mailimap_set * mailimap_setFromIndexSet(NSIndexSet *indexSet) {
+    struct mailimap_set *set = mailimap_set_new_empty();
+    [indexSet enumerateRangesUsingBlock:^(NSRange range, BOOL *stop) {
+        mailimap_set_add_interval(set, range.location, range.location + range.length - 1);
+    }];
+    
+    return set;
+}
+
+NSIndexSet * MailCoreIndexSetFromMailImapSet(struct mailimap_set *set) {
+    if (!set || !set->set_list) {
+        return nil;
+    }
+    
+    clistiter *iter;	
+    NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
+    for(iter = clist_begin(set->set_list); iter != NULL; iter = clist_next(iter)) {
+        struct mailimap_set_item * set_item = clist_content(iter);
+        [indexSet addIndexesInRange:(NSRange) { set_item->set_first, set_item->set_last - set_item->set_first + 1 }];
+    }
+    
+    return [[indexSet copy] autorelease];
+}
+

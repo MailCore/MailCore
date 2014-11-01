@@ -45,12 +45,13 @@ NSError* MailCoreCreateStringConvError() {
 }
 
 
-//int imap_fetch_result_to_envelop_list(clist * fetch_result, struct mailmessage_list * env_list);
-//
 int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result,
                         mailsession * session, mailmessage_driver * driver);
 
 @interface CTCoreFolder ()
+
+- (NSIndexSet *)_copyingMessageWithUID:(NSIndexSet *)uids toPath:(NSString *)path;
+
 @end
 
 static const int MAX_PATH_SIZE = 1024;
@@ -669,23 +670,17 @@ static const int MAX_PATH_SIZE = 1024;
 
 - (NSArray *)messagesWithSequenceNumbers:(NSIndexSet *)sequenceNumbers
                          fetchAttributes:(CTFetchAttributes)attrs {
-  struct mailimap_set *set = mailimap_set_new_empty();
-  [sequenceNumbers enumerateRangesUsingBlock:^(NSRange range, BOOL *stop) {
-    mailimap_set_add_interval(set, range.location, range.location + range.length - 1);
-  }];
+    struct mailimap_set *set = mailimap_setFromIndexSet(sequenceNumbers);
   
-  return [self messagesForSet:set fetchAttributes:attrs uidFetch:NO];
+    return [self messagesForSet:set fetchAttributes:attrs uidFetch:NO];
   
 }
 
 - (NSArray *)messagesWithUIDs:(NSIndexSet *)uidNumbers
               fetchAttributes:(CTFetchAttributes)attrs {
-  struct mailimap_set *set = mailimap_set_new_empty();
-  [uidNumbers enumerateRangesUsingBlock:^(NSRange range, BOOL *stop) {
-    mailimap_set_add_interval(set, range.location, range.location + range.length - 1);
-  }];
-  
-  return [self messagesForSet:set fetchAttributes:attrs uidFetch:YES];
+    struct mailimap_set *set = mailimap_setFromIndexSet(uidNumbers);
+    
+    return [self messagesForSet:set fetchAttributes:attrs uidFetch:YES];
 }
 
 - (CTCoreMessage *)messageWithUID:(NSUInteger)uid {
@@ -870,6 +865,19 @@ static const int MAX_PATH_SIZE = 1024;
     return YES;
 }
 
+- (NSIndexSet *)copyMessageWithUIDs:(NSIndexSet *)uids toPath:(NSString *)path {
+    if (![uids count]) {
+        return [NSIndexSet indexSet];
+    }
+    
+    BOOL success = [self connect];
+    if (!success) {
+        return NO;
+    }
+    
+    return [self _copyingMessageWithUID:uids toPath:path];
+}
+
 - (BOOL)moveMessageWithUID:(NSUInteger)uid toPath:(NSString *)path {
     BOOL success = [self connect];
     if (!success) {
@@ -887,6 +895,42 @@ static const int MAX_PATH_SIZE = 1024;
         return NO;
     }
     return YES;
+}
+
+- (NSIndexSet *)moveMessageWithUIDs:(NSIndexSet *)uids toPath:(NSString *)path {
+    if (![uids count]) {
+        return [NSIndexSet indexSet];
+    }
+    
+    BOOL success = [self connect];
+    if (!success) {
+        return NO;
+    }
+    
+    NSIndexSet *destinationUIDs = [self _copyingMessageWithUID:uids toPath:path];
+    
+    if (destinationUIDs) {
+        struct mailimap_set * uidSet = mailimap_setFromIndexSet(uids);
+        struct mail_flags * mail_delete_flags = mail_flags_new(MAIL_FLAG_DELETED, clist_new());
+        struct mailimap_flag_list * imap_delete_flags;
+        imap_flags_to_imap_flags(mail_delete_flags, &imap_delete_flags);
+        
+        // Add the delete flage with silent mode (+FLAGS.SILENT).
+        struct mailimap_store_att_flags * deleteFlag = mailimap_store_att_flags_new(1, 1, imap_delete_flags);
+        int err = mailimap_uid_store([self imapSession], uidSet, deleteFlag);
+        if (err != MAIL_NO_ERROR) {
+            self.lastError = MailCoreCreateErrorFromIMAPCode(err);
+            return nil;
+        }
+        
+        err = mailimap_expunge([self imapSession]);
+        if (err != MAIL_NO_ERROR) {
+            self.lastError = MailCoreCreateErrorFromIMAPCode(err);
+            return nil;
+        }
+    }
+    
+    return destinationUIDs;
 }
 
 - (BOOL)unreadMessageCount:(NSUInteger *)unseenCount {
@@ -1018,6 +1062,39 @@ int uid_list_to_env_list(clist * fetch_result, struct mailmessage_list ** result
         mailmessage_free(carray_get(tab, i));
     err:
         return res;
+}
+
+- (NSIndexSet *)_copyingMessageWithUID:(NSIndexSet *)uids toPath:(NSString *)path {
+    uint32_t nextUID = 0;
+    mailimap *imapSession = [self imapSession];
+    char mbPath[MAX_PATH_SIZE];
+    [self getUTF7String:mbPath fromString:path];
+    struct mailimap_set * uidSet = mailimap_setFromIndexSet(uids);
+    int err = 0;
+    struct mailimap_set * destinationUIDSet = NULL;
+    NSIndexSet *destinationUIDs = nil;
+    if (mailimap_has_uidplus(imapSession)) {
+        uint32_t uidValidity;
+        struct mailimap_set * souceUIDSet;
+        err = mailimap_uidplus_uid_copy([self imapSession], uidSet, mbPath, &uidValidity, &souceUIDSet, &destinationUIDSet);
+    } else {
+        // If IMAP server is not support for UIDPLUS extension, we will calculate the uid manually.
+        if (imapSession->imap_selection_info != NULL) {
+            nextUID = imapSession->imap_selection_info->sel_uidnext;
+        }
+        
+        err = mailimap_uid_copy(imapSession, uidSet, mbPath);
+    }
+    
+    if (err != MAIL_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromIMAPCode(err);
+    } else if (destinationUIDSet) {
+        destinationUIDs = MailCoreIndexSetFromMailImapSet(destinationUIDSet);
+    } else if (nextUID) {
+        destinationUIDs = [NSIndexSet indexSetWithIndexesInRange:(NSRange) { nextUID, [uids count] }];
+    }
+    
+    return destinationUIDs;
 }
 
 

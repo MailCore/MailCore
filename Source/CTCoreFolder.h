@@ -283,10 +283,24 @@
 - (BOOL)copyMessageWithUID:(NSUInteger)uid toPath:(NSString *)path;
 
 /**
+ Copies messages to a folder
+ @return Return index set contains the copied messages' uid on success, \
+ nil on error. Call method lastError to get error if one occurred
+ */
+- (NSIndexSet *)copyMessageWithUIDs:(NSIndexSet *)uids toPath:(NSString *)path;
+
+/**
  Moves a message to a folder
  @return Return YES on success, NO on error. Call method lastError to get error if one occurred
 */
 - (BOOL)moveMessageWithUID:(NSUInteger)uid toPath:(NSString *)path;
+
+/**
+ Moves messages to a folder
+ @return Return index set contains the moved messages' uid on success, \
+ nil on error. Call method lastError to get error if one occurred
+ */
+- (NSIndexSet *)moveMessageWithUIDs:(NSIndexSet *)uids toPath:(NSString *)path;
 
 /**
  Pass in a pointer to a NSUInteger to get the number of unread messages. This causes a round trip to the server, 
