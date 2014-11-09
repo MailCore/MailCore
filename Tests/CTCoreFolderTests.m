@@ -32,17 +32,21 @@
 #import <MailCore/MailCore.h>
 #import "CTCoreFolderTests.h"
 
+// set expected number of messages in folder
+const int kExpectedFolderMessagesCount = 7;
+
 @implementation CTCoreFolderTests {
 
 }
 
 - (void)testFetchOnlyDefaults {
+    NSLog(@"testFetchOnlyDefaults");
     NSArray *messages = [self.folder messagesFromSequenceNumber:1 to:0 withFetchAttributes:CTFetchAttrDefaultsOnly];
-    STAssertTrue(messages.count == 6, @"");
+    STAssertEquals(kExpectedFolderMessagesCount, (int)messages.count, @"");
     CTCoreMessage *msg = [messages objectAtIndex:0];
     STAssertTrue([msg uid] > 0, @"We should have the UID");
-    STAssertTrue([msg messageSize] > 0, @"We always download message size");
-
+    
+    STAssertNil([msg messageSize], @"We have no envelope so should be nil");
     STAssertNil([msg senderDate], @"We have no envelope so should be nil");
     STAssertNil([msg subject], @"We have no envelope so should be nil");
     STAssertNil([msg to], @"We have no envelope so should be nil");
@@ -58,10 +62,10 @@
 
 - (void)testFetchEnvelope {
     NSArray *messages = [self.folder messagesFromSequenceNumber:1 to:0 withFetchAttributes:CTFetchAttrEnvelope];
-    STAssertTrue(messages.count == 6, @"");
+    STAssertEquals(kExpectedFolderMessagesCount, (int)messages.count, @"");
     CTCoreMessage *msg = [messages objectAtIndex:0];
     STAssertTrue([msg uid] > 0, @"We should have the UID");
-    STAssertTrue([msg messageSize] > 0, @"We always download message size");
+    STAssertTrue([msg messageSize] > 0, @"We DO HAVE AN envelope so should be > 0");
 
     STAssertNotNil([msg senderDate], @"We DO HAVE AN envelope so shouldn't be nil");
     STAssertNotNil([msg subject], @"We DO HAVE AN envelope so shouldn't be nil");
@@ -76,10 +80,10 @@
 
 - (void)testFetchEnvelopeUsingUIDFetch {
     NSArray *messages = [self.folder messagesFromUID:1 to:0 withFetchAttributes:CTFetchAttrEnvelope];
-    STAssertTrue(messages.count == 6, @"");
+    STAssertEquals(kExpectedFolderMessagesCount, (int)messages.count, @"");
     CTCoreMessage *msg = [messages objectAtIndex:0];
     STAssertTrue([msg uid] > 0, @"We should have the UID");
-    STAssertTrue([msg messageSize] > 0, @"We always download message size");
+    STAssertTrue([msg messageSize] > 0, @"We DO HAVE AN envelope so should be > 0");
 
     STAssertNotNil([msg senderDate], @"We DO HAVE AN envelope so shouldn't be nil");
     STAssertNotNil([msg subject], @"We DO HAVE AN envelope so shouldn't be nil");
@@ -93,12 +97,14 @@
 }
 
 - (void)testFetchBodyStructure {
+    NSLog(@"testFetchBodyStructure");
     NSArray *messages = [self.folder messagesFromSequenceNumber:1 to:0 withFetchAttributes:CTFetchAttrBodyStructure];
-    STAssertTrue(messages.count == 6, @"");
+    
+    STAssertEquals(kExpectedFolderMessagesCount, (int)messages.count, @"");
     CTCoreMessage *msg = [messages objectAtIndex:0];
     STAssertTrue([msg uid] > 0, @"We should have the UID");
-    STAssertTrue([msg messageSize] > 0, @"We always download message size");
-
+    
+    STAssertNil([msg messageSize], @"We have no envelope so should be nil");
     STAssertNil([msg senderDate], @"We have no envelope so should be nil");
     STAssertNil([msg subject], @"We have no envelope so should be nil");
     STAssertNil([msg to], @"We have no envelope so should be nil");
@@ -114,11 +120,11 @@
 
 - (void)testFetchEverything {
     NSArray *messages = [self.folder messagesFromSequenceNumber:1 to:0 withFetchAttributes:CTFetchAttrEnvelope | CTFetchAttrBodyStructure];
-    STAssertTrue(messages.count == 6, @"");
+    STAssertEquals(kExpectedFolderMessagesCount, (int)messages.count, @"");
     CTCoreMessage *msg = [messages objectAtIndex:0];
     STAssertTrue([msg uid] > 0, @"We should have the UID");
-    STAssertTrue([msg messageSize] > 0, @"We always download message size");
-
+    STAssertTrue([msg messageSize] > 0, @"We DO HAVE AN envelope so should be > 0");
+    
     STAssertNotNil([msg senderDate], @"We DO HAVE AN envelope so shouldn't be nil");
     STAssertNotNil([msg subject], @"We DO HAVE AN envelope so shouldn't be nil");
     STAssertNotNil([msg to], @"We DO HAVE AN envelope so shouldn't be nil");

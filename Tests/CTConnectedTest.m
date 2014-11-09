@@ -70,7 +70,9 @@
     self.account = [[CTCoreAccount alloc] init];
     [self connect];
     self.folder = [self.account folderWithPath:[self.credentials valueForKey:@"path"]];
-    [self.folder connect];
+    
+    BOOL folderConnected = [self.folder connect];
+    STAssertTrue(folderConnected, @"Should successfully connect to folder");
 }
 
 - (void)tearDown {
