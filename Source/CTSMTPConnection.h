@@ -51,7 +51,7 @@
  @param password The password, if there is none then pass in an empty string.
  @param port The port to use, the standard port is 25
  @param connectionType What kind of connection, either: CTSMTPConnectionTypePlain, CTSMTPConnectionTypeStartTLS, CTSMTPConnectionTypeTLS
- @param auth Pass in YES if you would like to use SASL authentication
+ @param authType None, Password, or OAuth2
  @param error Will contain an error when the method returns NO
  @return Returns YES on success, NO on error
 */
@@ -61,7 +61,7 @@
            password:(NSString *)password
                port:(unsigned int)port
      connectionType:(CTSMTPConnectionType)connectionType
-            useAuth:(BOOL)auth
+           authType:(CTSMTPAuthType)authType
               error:(NSError **)error;
 
 /**

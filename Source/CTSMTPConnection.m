@@ -42,7 +42,7 @@
 @implementation CTSMTPConnection
 + (BOOL)sendMessage:(CTCoreMessage *)message server:(NSString *)server username:(NSString *)username
            password:(NSString *)password port:(unsigned int)port connectionType:(CTSMTPConnectionType)connectionType
-            useAuth:(BOOL)auth error:(NSError **)error {
+           authType:(CTSMTPAuthType)authType error:(NSError **)error {
     BOOL success;
     mailsmtp *smtp = NULL;
     smtp = mailsmtp_new(0, NULL);
@@ -71,8 +71,13 @@
             goto error;
         }
     }
-    if (auth) {
+    if (authType == CTSMTPAuthTypePassword) {
         success = [smtpObj authenticateWithUsername:username password:password server:server];
+        if (!success) {
+            goto error;
+        }
+    } else if (authType == CTSMTPAuthTypeOauth2) {
+        success = [smtpObj authenticateWithUsername:username oauth2Token:password];
         if (!success) {
             goto error;
         }

@@ -44,6 +44,7 @@
 - (BOOL)helo;
 - (BOOL)startTLS;
 - (BOOL)authenticateWithUsername:(NSString *)username password:(NSString *)password server:(NSString *)server;
+- (BOOL)authenticateWithUsername:(NSString *)username oauth2Token:(NSString *)oauthToken;
 - (BOOL)setFrom:(NSString *)fromAddress;
 - (BOOL)setRecipientAddress:(NSString *)recAddress;
 @end

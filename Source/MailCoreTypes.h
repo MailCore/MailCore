@@ -70,6 +70,12 @@ typedef enum {
 
 #define CTImapAuthTypePlain         IMAP_AUTH_TYPE_PLAIN
 
+typedef enum {
+    CTSMTPAuthTypeNone = 0,
+    CTSMTPAuthTypePassword,
+    CTSMTPAuthTypeOauth2,
+} CTSMTPAuthType;
+
 /** List of Message Flags **/
 
 #define CTFlagNew			MAIL_FLAG_NEW

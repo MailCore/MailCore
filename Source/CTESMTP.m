@@ -162,6 +162,19 @@ static int fill_local_ip_port(mailstream * stream, char * local_ip_port, size_t 
     return YES;
 }
 
+- (BOOL)authenticateWithUsername:(NSString *)username oauth2Token:(NSString *)oauthToken {
+    char *cUsername = (char *)[username cStringUsingEncoding:NSUTF8StringEncoding];
+    char *cToken = (char *)[oauthToken cStringUsingEncoding:NSUTF8StringEncoding];
+    
+    int r = mailsmtp_oauth2_authenticate([self resource], cUsername, cToken);
+    
+    if (r != MAIL_NO_ERROR) {
+        self.lastError = MailCoreCreateErrorFromSMTPCode(r);
+        return NO;
+    }
+    return YES;
+}
+
 
 - (BOOL)setFrom:(NSString *)fromAddress {
     int ret = mailesmtp_mail([self resource], [fromAddress cStringUsingEncoding:NSUTF8StringEncoding], 1, "MailCoreSMTP");
